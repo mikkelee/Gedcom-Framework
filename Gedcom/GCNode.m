@@ -50,7 +50,7 @@
 	if (self) {
         [self setGedTag:tag];
         [self setXref:xr];
-        [self setValue:value];
+        [self setGedValue:value];
         _subNodes = [subNodes mutableCopy]; //TODO shouldn't be mutable...
 	}
     
