@@ -20,16 +20,17 @@
 
 - (void)testTags
 {
-    GCTag *tag = [GCTag tagCoded:@"INDI"];
-    GCTag *tag2 = [GCTag tagCoded:@"INDI"];
+    GCTag *indi1 = [GCTag tagCoded:@"INDI"];
+    GCTag *indi2 = [GCTag tagNamed:@"Individual"];
     
-	STAssertNotNil(tag, nil);
-	STAssertEquals(tag, tag2, nil);
+	STAssertNotNil(indi1, nil);
+	STAssertEquals(indi1, indi2, nil);
 	
-    NSLog(@"allowedSubTags: %@", [tag validSubTags]);
+    STAssertTrue([indi1 isValidSubTag:[GCTag tagCoded:@"NAME"]], nil);
+    STAssertFalse([indi1 isValidSubTag:[GCTag tagCoded:@"HUSB"]], nil);
     
-    STAssertTrue([tag isValidSubTag:[GCTag tagCoded:@"NAME"]], nil);
-    STAssertFalse([tag isValidSubTag:[GCTag tagCoded:@"HUSB"]], nil);
+    STAssertEqualObjects([indi2 code], @"INDI", nil);
+    STAssertEqualObjects([indi2 name], @"Individual", nil);
 }
 
 @end

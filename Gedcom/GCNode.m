@@ -29,6 +29,8 @@
     NSMutableArray *_subNodes;
 }
 
+#pragma mark Initialization
+
 - (id)init
 {
     self = [super init];
@@ -41,22 +43,28 @@
 	return self;
 }
 
-- (void)addSubNode:(GCNode *) n
+- (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xr subNodes:(NSArray *)subNodes
 {
-	if (self == n) {
-		NSLog(@"ACCESS DENIED: Attempted to add %@ to itself!", self);
-		return;
+    self = [self init];
+    
+	if (self) {
+        [self setGedTag:tag];
+        [self setXref:xr];
+        [self setValue:value];
+        _subNodes = [subNodes mutableCopy]; //TODO shouldn't be mutable...
 	}
     
-	[_subNodes addObject:n];
-    [n setParent:self];
+    return self;
 }
 
-- (void)addSubNodes:(NSArray *)a
+- (id)initWithTag:(GCTag *)tag value:(NSString *)value
 {
-	for (id subNode in a) {
-		[self addSubNode:subNode];
-	}
+    return [self initWithTag:tag value:value xref:nil subNodes:nil];
+}
+
+- (id)initWithTag:(GCTag *)tag xref:(NSString *)xr
+{
+    return [self initWithTag:tag value:nil xref:xr subNodes:nil];
 }
 
 + (NSArray*)arrayOfNodesFromString:(NSString*) gedString
@@ -145,11 +153,33 @@
         currentLevel = level;
         currentNode = node;
 	}
-
+    
 	NSLog(@"Finished parsing gedcom.");
 	
 	return [gedArray copy];
 }
+
+#pragma mark Subnodes
+
+- (void)addSubNode:(GCNode *) n
+{
+	if (self == n) {
+		NSLog(@"ACCESS DENIED: Attempted to add %@ to itself!", self);
+		return;
+	}
+    
+	[_subNodes addObject:n];
+    [n setParent:self];
+}
+
+- (void)addSubNodes:(NSArray *)a
+{
+	for (id subNode in a) {
+		[self addSubNode:subNode];
+	}
+}
+
+#pragma mark Gedcom output
 
 - (NSString *)gedcomString
 {
@@ -224,6 +254,8 @@
 	return gedLines;
 }
 
+#pragma mark Subnode access
+
 -(GCNode *)subNodeForTagPath:(NSString *)tagPath
 {
 	//TODO complain if more than one are found?
@@ -275,10 +307,13 @@
 	
 	return a;
 }
+
+#pragma mark Description
+
 - (NSString *)description
 {
-    return [self gedTag];
-	//return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
+    //return [[self gedTag] code];
+	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
 }
 
 #pragma mark NSCoding
@@ -313,7 +348,11 @@
 {
     GCNode *copy = [[GCNode allocWithZone:zone] init];
     
-    //TODO
+    [copy setValue:[self gedTag] forKey:@"gedTag"];
+    [copy setValue:[self gedValue] forKey:@"gedValue"];
+    [copy setValue:[self xref] forKey:@"xref"];
+    [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
+    [copy setValue:[self subNodes] forKey:@"subNodes"];
     
     return copy;
 }

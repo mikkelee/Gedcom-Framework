@@ -6,8 +6,9 @@ A number of classes to ease GEDCOM-manipulation in Cocoa.
 
 # TODO #
 
-* GCTag: create by name (reverse lookup in tagNames)
 * tags.plist: complete validSubTags/tagAliases
+* GCNode: initWith... methods
+* GCNode: subNodes array shouldn't be mutable
 * GCMutableNode
 * better hiding of GCAge/GCDate internals (ie facade) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * calculations (ie dateA - dateB = age)
@@ -15,11 +16,11 @@ A number of classes to ease GEDCOM-manipulation in Cocoa.
 * "GCObject" something like:
 
 ``` objective-c
-    GCObject *indi = [[GCObject alloc] objectOfType:@"Individual"];
+    GCObject *indi = [GCObject objectWithType:@"Individual"];
     
-    GCObject *birth = [[GCObject alloc] objectOfType:@"Birth"];
+    GCObject *birth = [GCObject objectWithType:@"Birth"];
     
-    [birth addValue:@"1 JAN 1901" forKey:@"Date"];
+    [birth setValue:@"1 JAN 1901" forKey:@"Date"];
     
     [indi addRecord:birth];
 ```

@@ -18,6 +18,7 @@
 }
 
 __strong static NSMutableDictionary *tags;
+__strong static NSMutableDictionary *codeLookup;
 
 -(id)initWithCode:(NSString *)code
 {
@@ -39,7 +40,7 @@ __strong static NSMutableDictionary *tags;
     GCTag *tag = [tags objectForKey:code];
     
     if (tag == nil) {
-        tag = [[GCTag alloc] initWithCode:code];
+        tag = [[self alloc] initWithCode:code];
         [tags setObject:tag forKey:code];
     }
     
@@ -48,11 +49,24 @@ __strong static NSMutableDictionary *tags;
 
 +(GCTag *)tagNamed:(NSString *)name
 {
-    return nil; //TODO
+    if (codeLookup == nil) {
+        codeLookup = [NSMutableDictionary dictionaryWithCapacity:10];
+        
+        for (id key in [[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"]) {
+            [codeLookup setObject:key 
+                           forKey:[[[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"] 
+                                   objectForKey:key]];
+        }
+    }
+    
+    NSString *code = [codeLookup objectForKey:name];
+    
+    return [GCTag tagCoded:code];
 }
 
 -(NSArray *)validSubTags
 {
+    //TODO also for @aliases etc
     return [[[[GCGedcomController sharedController] tags] objectForKey:@"validSubTags"] objectForKey:_code];
 }
 
