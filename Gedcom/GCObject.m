@@ -10,14 +10,41 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
-@interface GCObject ()
-
-
-@end
-
 @implementation GCObject {
     GCTag *_tag;
     NSMutableDictionary *_records;
+}
+
+__strong static NSMutableDictionary *xrefStore;
+
+
++ (void)setupXrefStore
+{
+    static dispatch_once_t pred = 0;
+    
+    dispatch_once(&pred, ^{
+        xrefStore = [NSMutableDictionary dictionaryWithCapacity:4];
+    });
+}
+
++ (void)storeXref:(NSString *)xref forObject:(GCObject *)obj
+{
+    [self setupXrefStore];
+    [xrefStore setObject:xref forKey:[NSValue valueWithPointer:(const void *)obj]];
+}
+
++ (NSString *)xrefForObject:(GCObject *)obj
+{
+    [self setupXrefStore];
+    NSString *xref = [xrefStore objectForKey:[NSValue valueWithPointer:(const void *)obj]];
+    
+    if (xref == nil && [[GCTag tagForAlias:[GCTag tagForName:[obj type]]] isEqualToString:@"@reco"]) {
+        xref = @"@I1@"; //TODO
+        
+        [self storeXref:xref forObject:obj];
+    }
+    
+    return xref;
 }
 
 - (id)initWithType:(NSString *)type
@@ -41,7 +68,9 @@
 {
     GCObject *object = [[GCObject alloc] initWithType:[[node gedTag] name]];
     
-    //TODO xref?
+    if ([node xref]) {
+        [[self class] storeXref:[node xref] forObject:object];
+    }
     
     [object setStringValue:[node gedValue]];
     
@@ -77,8 +106,6 @@
 
 - (GCNode *)gedcomNode
 {
-    NSString *xref = nil; //TODO have some xref generator?
-    
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
     
     for (id subTag in [_tag validSubTags]) {
@@ -100,7 +127,10 @@
         }
     }
     
-    GCNode *node = [[GCNode alloc] initWithTag:_tag value:[self stringValue] xref:xref subNodes:subNodes];
+    GCNode *node = [[GCNode alloc] initWithTag:_tag 
+                                         value:[self stringValue]
+                                          xref:[[self class] xrefForObject:self]
+                                      subNodes:subNodes];
     
     return node;
 }

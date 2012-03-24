@@ -182,7 +182,7 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 - (NSString *)name
 {
-    return [[tagInfo valueForKey:kTagNames] valueForKey:_code];
+    return [[tagInfo objectForKey:kTagNames] objectForKey:_code];
 }
 
 - (BOOL)isCustom
