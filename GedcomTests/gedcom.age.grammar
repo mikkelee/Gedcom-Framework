@@ -1,0 +1,52 @@
+/*
+
+ParseKit grammar for GEDCOM ages based on the 5.5 documentation.
+
+Like the dates, the age is wrapped in [brackets]. Just pass them
+exactly as they appear after the AGE tag.
+
+*/
+
+@start					= '['! age ']'!;
+
+age						= (qualifiedAge | simpleAge | ageKeyword);
+
+qualifiedAge			= qualifier (simpleAge | ageKeyword);
+
+qualifier				= lessThan | greaterThan;
+lessThan				= '<';
+greaterThan				= '>';
+
+simpleAge				= years | months | days |
+						  years months | years months days |
+						  months days | years days;
+
+years					= Number+ 'y';
+months					= Number+ 'm';
+days					= Number+ 'd';
+
+ageKeyword				= ( 'INFANT' | 'STILLBORN' | 'CHILD' );
+
+
+/*************************************************************************
+
+	 AGE_AT_EVENT: = {Size=1:12} 
+	 [ < | > | <NULL>] 
+	 [ YYy MMm DDDd | YYy | MMm | DDDd | 
+	 YYy MMm | YYy DDDd | MMm DDDd | 
+	 CHILD | INFANT | STILLBORN ] 
+	 ] 
+	 Where : 
+	 > = greater than indicated age 
+	 < = less than indicated age 
+	 y = a label indicating years 
+	 m = a label indicating months 
+	 d = a label indicating days 
+	 YY = number of full years 
+	 MM = number of months 
+	 DDD = number of days 
+	 CHILD = age < 8 years 
+	 INFANT = age < 1 year 
+	 STILLBORN = died just prior, at, or near birth, 0 years 
+
+**************************************************************************/

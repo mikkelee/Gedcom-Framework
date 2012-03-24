@@ -1,0 +1,714 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E1C3E6A151C319C005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
+		3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E72151C319C005E09E1 /* InfoPlist.strings */; };
+		3E1C3E78151C319C005E09E1 /* Gedcom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C3E77151C319C005E09E1 /* Gedcom.m */; };
+		3E1C3E80151C319D005E09E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */; };
+		3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
+		3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
+		3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E88151C319D005E09E1 /* InfoPlist.strings */; };
+		3EECFD66151C32630074E26C /* GCAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3A151C32630074E26C /* GCAge.h */; };
+		3EECFD67151C32630074E26C /* GCAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3B151C32630074E26C /* GCAge.m */; };
+		3EECFD68151C32630074E26C /* GCAgeAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3C151C32630074E26C /* GCAgeAssembler.h */; };
+		3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3D151C32630074E26C /* GCAgeAssembler.m */; };
+		3EECFD6A151C32630074E26C /* GCAgeFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3E151C32630074E26C /* GCAgeFormatter.h */; };
+		3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3F151C32630074E26C /* GCAgeFormatter.m */; };
+		3EECFD6C151C32630074E26C /* GCAgeKeyword.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD40151C32630074E26C /* GCAgeKeyword.h */; };
+		3EECFD6D151C32630074E26C /* GCAgeKeyword.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD41151C32630074E26C /* GCAgeKeyword.m */; };
+		3EECFD6E151C32630074E26C /* GCAgeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD42151C32630074E26C /* GCAgeParser.h */; };
+		3EECFD6F151C32630074E26C /* GCAgeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD43151C32630074E26C /* GCAgeParser.m */; };
+		3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD44151C32630074E26C /* GCApproximateDate.h */; };
+		3EECFD71151C32630074E26C /* GCApproximateDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD45151C32630074E26C /* GCApproximateDate.m */; };
+		3EECFD72151C32630074E26C /* GCAttributedDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD46151C32630074E26C /* GCAttributedDate.h */; };
+		3EECFD73151C32630074E26C /* GCAttributedDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD47151C32630074E26C /* GCAttributedDate.m */; };
+		3EECFD74151C32630074E26C /* GCDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD48151C32630074E26C /* GCDate.h */; };
+		3EECFD75151C32630074E26C /* GCDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD49151C32630074E26C /* GCDate.m */; };
+		3EECFD76151C32630074E26C /* GCDateAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD4A151C32630074E26C /* GCDateAssembler.h */; };
+		3EECFD77151C32630074E26C /* GCDateAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD4B151C32630074E26C /* GCDateAssembler.m */; };
+		3EECFD78151C32630074E26C /* GCDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD4C151C32630074E26C /* GCDateFormatter.h */; };
+		3EECFD79151C32630074E26C /* GCDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD4D151C32630074E26C /* GCDateFormatter.m */; };
+		3EECFD7A151C32630074E26C /* GCDatePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD4E151C32630074E26C /* GCDatePair.h */; };
+		3EECFD7B151C32630074E26C /* GCDatePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD4F151C32630074E26C /* GCDatePair.m */; };
+		3EECFD7C151C32630074E26C /* GCDateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD50151C32630074E26C /* GCDateParser.h */; };
+		3EECFD7D151C32630074E26C /* GCDateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD51151C32630074E26C /* GCDateParser.m */; };
+		3EECFD7E151C32630074E26C /* GCDatePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD52151C32630074E26C /* GCDatePeriod.h */; };
+		3EECFD7F151C32630074E26C /* GCDatePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD53151C32630074E26C /* GCDatePeriod.m */; };
+		3EECFD80151C32630074E26C /* GCDatePhrase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD54151C32630074E26C /* GCDatePhrase.h */; };
+		3EECFD81151C32630074E26C /* GCDatePhrase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD55151C32630074E26C /* GCDatePhrase.m */; };
+		3EECFD82151C32630074E26C /* GCDateRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD56151C32630074E26C /* GCDateRange.h */; };
+		3EECFD83151C32630074E26C /* GCDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD57151C32630074E26C /* GCDateRange.m */; };
+		3EECFD84151C32630074E26C /* GCInterpretedDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD58151C32630074E26C /* GCInterpretedDate.h */; };
+		3EECFD85151C32630074E26C /* GCInterpretedDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD59151C32630074E26C /* GCInterpretedDate.m */; };
+		3EECFD86151C32630074E26C /* GCInvalidAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5A151C32630074E26C /* GCInvalidAge.h */; };
+		3EECFD87151C32630074E26C /* GCInvalidAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5B151C32630074E26C /* GCInvalidAge.m */; };
+		3EECFD88151C32630074E26C /* GCInvalidDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5C151C32630074E26C /* GCInvalidDate.h */; };
+		3EECFD89151C32630074E26C /* GCInvalidDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5D151C32630074E26C /* GCInvalidDate.m */; };
+		3EECFD8A151C32630074E26C /* GCNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5E151C32630074E26C /* GCNode.h */; };
+		3EECFD8B151C32630074E26C /* GCNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5F151C32630074E26C /* GCNode.m */; };
+		3EECFD8C151C32630074E26C /* GCQualifiedAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD60151C32630074E26C /* GCQualifiedAge.h */; };
+		3EECFD8D151C32630074E26C /* GCQualifiedAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD61151C32630074E26C /* GCQualifiedAge.m */; };
+		3EECFD8E151C32630074E26C /* GCSimpleAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD62151C32630074E26C /* GCSimpleAge.h */; };
+		3EECFD8F151C32630074E26C /* GCSimpleAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD63151C32630074E26C /* GCSimpleAge.m */; };
+		3EECFD90151C32630074E26C /* GCSimpleDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD64151C32630074E26C /* GCSimpleDate.h */; };
+		3EECFD91151C32630074E26C /* GCSimpleDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD65151C32630074E26C /* GCSimpleDate.m */; };
+		3EF7A1BD151C3661004A8540 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF7A1BA151C363C004A8540 /* ParseKit.framework */; };
+		3EF7A1C0151C36DD004A8540 /* gedcom.age.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 3EF7A1BE151C36DD004A8540 /* gedcom.age.grammar */; };
+		3EF7A1C1151C36DD004A8540 /* gedcom.date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 3EF7A1BF151C36DD004A8540 /* gedcom.date.grammar */; };
+		3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C6151C3873004A8540 /* GCAgeTests.m */; };
+		3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C7151C3873004A8540 /* GCDateTests.m */; };
+		3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF7A1CA151C57A2004A8540 /* GCTag.h */; };
+		3EF7A1CD151C57A4004A8540 /* GCTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1CB151C57A3004A8540 /* GCTag.m */; };
+		3EF7A1CF151C5F8E004A8540 /* GCNodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */; };
+		3EF7A1D2151C5FCE004A8540 /* NSString+GCKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF7A1D0151C5FCD004A8540 /* NSString+GCKitAdditions.h */; };
+		3EF7A1D3151C5FCE004A8540 /* NSString+GCKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1D1151C5FCD004A8540 /* NSString+GCKitAdditions.m */; };
+		3EF7A1D6151C600C004A8540 /* allged.ged in Resources */ = {isa = PBXBuildFile; fileRef = 3EF7A1D4151C600C004A8540 /* allged.ged */; };
+		3EF7A1D7151C600C004A8540 /* simple.ged in Resources */ = {isa = PBXBuildFile; fileRef = 3EF7A1D5151C600C004A8540 /* simple.ged */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E1C3E82151C319D005E09E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E1C3E65151C319C005E09E1;
+			remoteInfo = Gedcom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3E1C3E66151C319C005E09E1 /* Gedcom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gedcom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E1C3E69151C319C005E09E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3E1C3E6C151C319C005E09E1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3E1C3E6D151C319C005E09E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3E1C3E6E151C319C005E09E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3E1C3E71151C319C005E09E1 /* Gedcom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gedcom-Info.plist"; sourceTree = "<group>"; };
+		3E1C3E73151C319C005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3E1C3E75151C319C005E09E1 /* Gedcom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gedcom-Prefix.pch"; sourceTree = "<group>"; };
+		3E1C3E76151C319C005E09E1 /* Gedcom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
+		3E1C3E77151C319C005E09E1 /* Gedcom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gedcom.m; sourceTree = "<group>"; };
+		3E1C3E7E151C319D005E09E1 /* GedcomTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GedcomTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3E1C3E87151C319D005E09E1 /* GedcomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomTests-Info.plist"; sourceTree = "<group>"; };
+		3E1C3E89151C319D005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3EECFD3A151C32630074E26C /* GCAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAge.h; sourceTree = "<group>"; };
+		3EECFD3B151C32630074E26C /* GCAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAge.m; sourceTree = "<group>"; };
+		3EECFD3C151C32630074E26C /* GCAgeAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeAssembler.h; sourceTree = "<group>"; };
+		3EECFD3D151C32630074E26C /* GCAgeAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeAssembler.m; sourceTree = "<group>"; };
+		3EECFD3E151C32630074E26C /* GCAgeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeFormatter.h; sourceTree = "<group>"; };
+		3EECFD3F151C32630074E26C /* GCAgeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeFormatter.m; sourceTree = "<group>"; };
+		3EECFD40151C32630074E26C /* GCAgeKeyword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeKeyword.h; sourceTree = "<group>"; };
+		3EECFD41151C32630074E26C /* GCAgeKeyword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeKeyword.m; sourceTree = "<group>"; };
+		3EECFD42151C32630074E26C /* GCAgeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeParser.h; sourceTree = "<group>"; };
+		3EECFD43151C32630074E26C /* GCAgeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeParser.m; sourceTree = "<group>"; };
+		3EECFD44151C32630074E26C /* GCApproximateDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCApproximateDate.h; sourceTree = "<group>"; };
+		3EECFD45151C32630074E26C /* GCApproximateDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCApproximateDate.m; sourceTree = "<group>"; };
+		3EECFD46151C32630074E26C /* GCAttributedDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAttributedDate.h; sourceTree = "<group>"; };
+		3EECFD47151C32630074E26C /* GCAttributedDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAttributedDate.m; sourceTree = "<group>"; };
+		3EECFD48151C32630074E26C /* GCDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDate.h; sourceTree = "<group>"; };
+		3EECFD49151C32630074E26C /* GCDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDate.m; sourceTree = "<group>"; };
+		3EECFD4A151C32630074E26C /* GCDateAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateAssembler.h; sourceTree = "<group>"; };
+		3EECFD4B151C32630074E26C /* GCDateAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateAssembler.m; sourceTree = "<group>"; };
+		3EECFD4C151C32630074E26C /* GCDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateFormatter.h; sourceTree = "<group>"; };
+		3EECFD4D151C32630074E26C /* GCDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateFormatter.m; sourceTree = "<group>"; };
+		3EECFD4E151C32630074E26C /* GCDatePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePair.h; sourceTree = "<group>"; };
+		3EECFD4F151C32630074E26C /* GCDatePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatePair.m; sourceTree = "<group>"; };
+		3EECFD50151C32630074E26C /* GCDateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateParser.h; sourceTree = "<group>"; };
+		3EECFD51151C32630074E26C /* GCDateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateParser.m; sourceTree = "<group>"; };
+		3EECFD52151C32630074E26C /* GCDatePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePeriod.h; sourceTree = "<group>"; };
+		3EECFD53151C32630074E26C /* GCDatePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatePeriod.m; sourceTree = "<group>"; };
+		3EECFD54151C32630074E26C /* GCDatePhrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePhrase.h; sourceTree = "<group>"; };
+		3EECFD55151C32630074E26C /* GCDatePhrase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatePhrase.m; sourceTree = "<group>"; };
+		3EECFD56151C32630074E26C /* GCDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateRange.h; sourceTree = "<group>"; };
+		3EECFD57151C32630074E26C /* GCDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateRange.m; sourceTree = "<group>"; };
+		3EECFD58151C32630074E26C /* GCInterpretedDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCInterpretedDate.h; sourceTree = "<group>"; };
+		3EECFD59151C32630074E26C /* GCInterpretedDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCInterpretedDate.m; sourceTree = "<group>"; };
+		3EECFD5A151C32630074E26C /* GCInvalidAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCInvalidAge.h; sourceTree = "<group>"; };
+		3EECFD5B151C32630074E26C /* GCInvalidAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCInvalidAge.m; sourceTree = "<group>"; };
+		3EECFD5C151C32630074E26C /* GCInvalidDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCInvalidDate.h; sourceTree = "<group>"; };
+		3EECFD5D151C32630074E26C /* GCInvalidDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCInvalidDate.m; sourceTree = "<group>"; };
+		3EECFD5E151C32630074E26C /* GCNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNode.h; sourceTree = "<group>"; };
+		3EECFD5F151C32630074E26C /* GCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNode.m; sourceTree = "<group>"; };
+		3EECFD60151C32630074E26C /* GCQualifiedAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCQualifiedAge.h; sourceTree = "<group>"; };
+		3EECFD61151C32630074E26C /* GCQualifiedAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCQualifiedAge.m; sourceTree = "<group>"; };
+		3EECFD62151C32630074E26C /* GCSimpleAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimpleAge.h; sourceTree = "<group>"; };
+		3EECFD63151C32630074E26C /* GCSimpleAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimpleAge.m; sourceTree = "<group>"; };
+		3EECFD64151C32630074E26C /* GCSimpleDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimpleDate.h; sourceTree = "<group>"; };
+		3EECFD65151C32630074E26C /* GCSimpleDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimpleDate.m; sourceTree = "<group>"; };
+		3EF7A1BA151C363C004A8540 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseKit.framework; sourceTree = "<group>"; };
+		3EF7A1BE151C36DD004A8540 /* gedcom.age.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gedcom.age.grammar; path = GedcomTests/gedcom.age.grammar; sourceTree = SOURCE_ROOT; };
+		3EF7A1BF151C36DD004A8540 /* gedcom.date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gedcom.date.grammar; path = GedcomTests/gedcom.date.grammar; sourceTree = SOURCE_ROOT; };
+		3EF7A1C6151C3873004A8540 /* GCAgeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeTests.m; sourceTree = "<group>"; };
+		3EF7A1C7151C3873004A8540 /* GCDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateTests.m; sourceTree = "<group>"; };
+		3EF7A1CA151C57A2004A8540 /* GCTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTag.h; sourceTree = "<group>"; };
+		3EF7A1CB151C57A3004A8540 /* GCTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTag.m; sourceTree = "<group>"; };
+		3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNodeTests.m; sourceTree = "<group>"; };
+		3EF7A1D0151C5FCD004A8540 /* NSString+GCKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GCKitAdditions.h"; sourceTree = "<group>"; };
+		3EF7A1D1151C5FCD004A8540 /* NSString+GCKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GCKitAdditions.m"; sourceTree = "<group>"; };
+		3EF7A1D4151C600C004A8540 /* allged.ged */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = allged.ged; sourceTree = "<group>"; };
+		3EF7A1D5151C600C004A8540 /* simple.ged */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = simple.ged; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E1C3E62151C319C005E09E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF7A1BD151C3661004A8540 /* ParseKit.framework in Frameworks */,
+				3E1C3E6A151C319C005E09E1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E1C3E7A151C319D005E09E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1C3E80151C319D005E09E1 /* SenTestingKit.framework in Frameworks */,
+				3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */,
+				3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E1C3E5A151C319B005E09E1 = {
+			isa = PBXGroup;
+			children = (
+				3E1C3E6F151C319C005E09E1 /* Gedcom */,
+				3E1C3E85151C319D005E09E1 /* GedcomTests */,
+				3E1C3E68151C319C005E09E1 /* Frameworks */,
+				3E1C3E67151C319C005E09E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E1C3E67151C319C005E09E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E1C3E66151C319C005E09E1 /* Gedcom.framework */,
+				3E1C3E7E151C319D005E09E1 /* GedcomTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E1C3E68151C319C005E09E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E1C3E69151C319C005E09E1 /* Cocoa.framework */,
+				3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */,
+				3E1C3E6B151C319C005E09E1 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E1C3E6B151C319C005E09E1 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1BA151C363C004A8540 /* ParseKit.framework */,
+				3E1C3E6C151C319C005E09E1 /* AppKit.framework */,
+				3E1C3E6D151C319C005E09E1 /* CoreData.framework */,
+				3E1C3E6E151C319C005E09E1 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3E1C3E6F151C319C005E09E1 /* Gedcom */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1D0151C5FCD004A8540 /* NSString+GCKitAdditions.h */,
+				3EF7A1D1151C5FCD004A8540 /* NSString+GCKitAdditions.m */,
+				3E1C3E76151C319C005E09E1 /* Gedcom.h */,
+				3E1C3E77151C319C005E09E1 /* Gedcom.m */,
+				3EECFD5E151C32630074E26C /* GCNode.h */,
+				3EECFD5F151C32630074E26C /* GCNode.m */,
+				3EF7A1CA151C57A2004A8540 /* GCTag.h */,
+				3EF7A1CB151C57A3004A8540 /* GCTag.m */,
+				3EECFD93151C33590074E26C /* Age */,
+				3EECFD94151C33640074E26C /* Date */,
+				3E1C3E70151C319C005E09E1 /* Supporting Files */,
+			);
+			path = Gedcom;
+			sourceTree = "<group>";
+		};
+		3E1C3E70151C319C005E09E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1BE151C36DD004A8540 /* gedcom.age.grammar */,
+				3EF7A1BF151C36DD004A8540 /* gedcom.date.grammar */,
+				3E1C3E71151C319C005E09E1 /* Gedcom-Info.plist */,
+				3E1C3E72151C319C005E09E1 /* InfoPlist.strings */,
+				3E1C3E75151C319C005E09E1 /* Gedcom-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3E1C3E85151C319D005E09E1 /* GedcomTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */,
+				3EF7A1C6151C3873004A8540 /* GCAgeTests.m */,
+				3EF7A1C7151C3873004A8540 /* GCDateTests.m */,
+				3E1C3E86151C319D005E09E1 /* Supporting Files */,
+			);
+			path = GedcomTests;
+			sourceTree = "<group>";
+		};
+		3E1C3E86151C319D005E09E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1D4151C600C004A8540 /* allged.ged */,
+				3EF7A1D5151C600C004A8540 /* simple.ged */,
+				3E1C3E87151C319D005E09E1 /* GedcomTests-Info.plist */,
+				3E1C3E88151C319D005E09E1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3EECFD93151C33590074E26C /* Age */ = {
+			isa = PBXGroup;
+			children = (
+				3EECFD3A151C32630074E26C /* GCAge.h */,
+				3EECFD3B151C32630074E26C /* GCAge.m */,
+				3EECFD62151C32630074E26C /* GCSimpleAge.h */,
+				3EECFD63151C32630074E26C /* GCSimpleAge.m */,
+				3EF7A1C5151C3820004A8540 /* Parsing */,
+				3EECFD60151C32630074E26C /* GCQualifiedAge.h */,
+				3EECFD61151C32630074E26C /* GCQualifiedAge.m */,
+				3EECFD40151C32630074E26C /* GCAgeKeyword.h */,
+				3EECFD41151C32630074E26C /* GCAgeKeyword.m */,
+				3EECFD5A151C32630074E26C /* GCInvalidAge.h */,
+				3EECFD5B151C32630074E26C /* GCInvalidAge.m */,
+			);
+			name = Age;
+			sourceTree = "<group>";
+		};
+		3EECFD94151C33640074E26C /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				3EECFD48151C32630074E26C /* GCDate.h */,
+				3EECFD49151C32630074E26C /* GCDate.m */,
+				3EECFD64151C32630074E26C /* GCSimpleDate.h */,
+				3EECFD65151C32630074E26C /* GCSimpleDate.m */,
+				3EF7A1C2151C37AE004A8540 /* Parsing */,
+				3EF7A1C4151C37D8004A8540 /* Attributed */,
+				3EF7A1C3151C37BF004A8540 /* Pairs */,
+				3EECFD54151C32630074E26C /* GCDatePhrase.h */,
+				3EECFD55151C32630074E26C /* GCDatePhrase.m */,
+				3EECFD5C151C32630074E26C /* GCInvalidDate.h */,
+				3EECFD5D151C32630074E26C /* GCInvalidDate.m */,
+			);
+			name = Date;
+			sourceTree = "<group>";
+		};
+		3EF7A1C2151C37AE004A8540 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				3EECFD50151C32630074E26C /* GCDateParser.h */,
+				3EECFD51151C32630074E26C /* GCDateParser.m */,
+				3EECFD4A151C32630074E26C /* GCDateAssembler.h */,
+				3EECFD4B151C32630074E26C /* GCDateAssembler.m */,
+				3EECFD4C151C32630074E26C /* GCDateFormatter.h */,
+				3EECFD4D151C32630074E26C /* GCDateFormatter.m */,
+			);
+			name = Parsing;
+			sourceTree = "<group>";
+		};
+		3EF7A1C3151C37BF004A8540 /* Pairs */ = {
+			isa = PBXGroup;
+			children = (
+				3EECFD4E151C32630074E26C /* GCDatePair.h */,
+				3EECFD4F151C32630074E26C /* GCDatePair.m */,
+				3EECFD52151C32630074E26C /* GCDatePeriod.h */,
+				3EECFD53151C32630074E26C /* GCDatePeriod.m */,
+				3EECFD56151C32630074E26C /* GCDateRange.h */,
+				3EECFD57151C32630074E26C /* GCDateRange.m */,
+			);
+			name = Pairs;
+			sourceTree = "<group>";
+		};
+		3EF7A1C4151C37D8004A8540 /* Attributed */ = {
+			isa = PBXGroup;
+			children = (
+				3EECFD46151C32630074E26C /* GCAttributedDate.h */,
+				3EECFD47151C32630074E26C /* GCAttributedDate.m */,
+				3EECFD44151C32630074E26C /* GCApproximateDate.h */,
+				3EECFD45151C32630074E26C /* GCApproximateDate.m */,
+				3EECFD58151C32630074E26C /* GCInterpretedDate.h */,
+				3EECFD59151C32630074E26C /* GCInterpretedDate.m */,
+			);
+			name = Attributed;
+			sourceTree = "<group>";
+		};
+		3EF7A1C5151C3820004A8540 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				3EECFD42151C32630074E26C /* GCAgeParser.h */,
+				3EECFD43151C32630074E26C /* GCAgeParser.m */,
+				3EECFD3C151C32630074E26C /* GCAgeAssembler.h */,
+				3EECFD3D151C32630074E26C /* GCAgeAssembler.m */,
+				3EECFD3E151C32630074E26C /* GCAgeFormatter.h */,
+				3EECFD3F151C32630074E26C /* GCAgeFormatter.m */,
+			);
+			name = Parsing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3E1C3E63151C319C005E09E1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EECFD66151C32630074E26C /* GCAge.h in Headers */,
+				3EECFD68151C32630074E26C /* GCAgeAssembler.h in Headers */,
+				3EECFD6A151C32630074E26C /* GCAgeFormatter.h in Headers */,
+				3EECFD6C151C32630074E26C /* GCAgeKeyword.h in Headers */,
+				3EECFD6E151C32630074E26C /* GCAgeParser.h in Headers */,
+				3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */,
+				3EECFD72151C32630074E26C /* GCAttributedDate.h in Headers */,
+				3EECFD74151C32630074E26C /* GCDate.h in Headers */,
+				3EECFD76151C32630074E26C /* GCDateAssembler.h in Headers */,
+				3EECFD78151C32630074E26C /* GCDateFormatter.h in Headers */,
+				3EECFD7A151C32630074E26C /* GCDatePair.h in Headers */,
+				3EECFD7C151C32630074E26C /* GCDateParser.h in Headers */,
+				3EECFD7E151C32630074E26C /* GCDatePeriod.h in Headers */,
+				3EECFD80151C32630074E26C /* GCDatePhrase.h in Headers */,
+				3EECFD82151C32630074E26C /* GCDateRange.h in Headers */,
+				3EECFD84151C32630074E26C /* GCInterpretedDate.h in Headers */,
+				3EECFD86151C32630074E26C /* GCInvalidAge.h in Headers */,
+				3EECFD88151C32630074E26C /* GCInvalidDate.h in Headers */,
+				3EECFD8A151C32630074E26C /* GCNode.h in Headers */,
+				3EECFD8C151C32630074E26C /* GCQualifiedAge.h in Headers */,
+				3EECFD8E151C32630074E26C /* GCSimpleAge.h in Headers */,
+				3EECFD90151C32630074E26C /* GCSimpleDate.h in Headers */,
+				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
+				3EF7A1D2151C5FCE004A8540 /* NSString+GCKitAdditions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3E1C3E65151C319C005E09E1 /* Gedcom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E1C3E90151C319D005E09E1 /* Build configuration list for PBXNativeTarget "Gedcom" */;
+			buildPhases = (
+				3E1C3E61151C319C005E09E1 /* Sources */,
+				3E1C3E62151C319C005E09E1 /* Frameworks */,
+				3E1C3E63151C319C005E09E1 /* Headers */,
+				3E1C3E64151C319C005E09E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Gedcom;
+			productName = Gedcom;
+			productReference = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3E1C3E7D151C319D005E09E1 /* GedcomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E1C3E93151C319D005E09E1 /* Build configuration list for PBXNativeTarget "GedcomTests" */;
+			buildPhases = (
+				3E1C3E79151C319D005E09E1 /* Sources */,
+				3E1C3E7A151C319D005E09E1 /* Frameworks */,
+				3E1C3E7B151C319D005E09E1 /* Resources */,
+				3E1C3E7C151C319D005E09E1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E1C3E83151C319D005E09E1 /* PBXTargetDependency */,
+			);
+			name = GedcomTests;
+			productName = GedcomTests;
+			productReference = 3E1C3E7E151C319D005E09E1 /* GedcomTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E1C3E5C151C319C005E09E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Mikkel Eide Eriksen";
+			};
+			buildConfigurationList = 3E1C3E5F151C319C005E09E1 /* Build configuration list for PBXProject "Gedcom" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E1C3E5A151C319B005E09E1;
+			productRefGroup = 3E1C3E67151C319C005E09E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E1C3E65151C319C005E09E1 /* Gedcom */,
+				3E1C3E7D151C319D005E09E1 /* GedcomTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E1C3E64151C319C005E09E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */,
+				3EF7A1C0151C36DD004A8540 /* gedcom.age.grammar in Resources */,
+				3EF7A1C1151C36DD004A8540 /* gedcom.date.grammar in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E1C3E7B151C319D005E09E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */,
+				3EF7A1D6151C600C004A8540 /* allged.ged in Resources */,
+				3EF7A1D7151C600C004A8540 /* simple.ged in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E1C3E7C151C319D005E09E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E1C3E61151C319C005E09E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1C3E78151C319C005E09E1 /* Gedcom.m in Sources */,
+				3EECFD67151C32630074E26C /* GCAge.m in Sources */,
+				3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */,
+				3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */,
+				3EECFD6D151C32630074E26C /* GCAgeKeyword.m in Sources */,
+				3EECFD6F151C32630074E26C /* GCAgeParser.m in Sources */,
+				3EECFD71151C32630074E26C /* GCApproximateDate.m in Sources */,
+				3EECFD73151C32630074E26C /* GCAttributedDate.m in Sources */,
+				3EECFD75151C32630074E26C /* GCDate.m in Sources */,
+				3EECFD77151C32630074E26C /* GCDateAssembler.m in Sources */,
+				3EECFD79151C32630074E26C /* GCDateFormatter.m in Sources */,
+				3EECFD7B151C32630074E26C /* GCDatePair.m in Sources */,
+				3EECFD7D151C32630074E26C /* GCDateParser.m in Sources */,
+				3EECFD7F151C32630074E26C /* GCDatePeriod.m in Sources */,
+				3EECFD81151C32630074E26C /* GCDatePhrase.m in Sources */,
+				3EECFD83151C32630074E26C /* GCDateRange.m in Sources */,
+				3EECFD85151C32630074E26C /* GCInterpretedDate.m in Sources */,
+				3EECFD87151C32630074E26C /* GCInvalidAge.m in Sources */,
+				3EECFD89151C32630074E26C /* GCInvalidDate.m in Sources */,
+				3EECFD8B151C32630074E26C /* GCNode.m in Sources */,
+				3EECFD8D151C32630074E26C /* GCQualifiedAge.m in Sources */,
+				3EECFD8F151C32630074E26C /* GCSimpleAge.m in Sources */,
+				3EECFD91151C32630074E26C /* GCSimpleDate.m in Sources */,
+				3EF7A1CD151C57A4004A8540 /* GCTag.m in Sources */,
+				3EF7A1D3151C5FCE004A8540 /* NSString+GCKitAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E1C3E79151C319D005E09E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */,
+				3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */,
+				3EF7A1CF151C5F8E004A8540 /* GCNodeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E1C3E83151C319D005E09E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
+			targetProxy = 3E1C3E82151C319D005E09E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3E1C3E72151C319C005E09E1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E1C3E73151C319C005E09E1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3E1C3E88151C319D005E09E1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E1C3E89151C319D005E09E1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E1C3E8E151C319D005E09E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3E1C3E8F151C319D005E09E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3E1C3E91151C319D005E09E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
+				INFOPLIST_FILE = "Gedcom/Gedcom-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		3E1C3E92151C319D005E09E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
+				INFOPLIST_FILE = "Gedcom/Gedcom-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		3E1C3E94151C319D005E09E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
+				INFOPLIST_FILE = "GedcomTests/GedcomTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3E1C3E95151C319D005E09E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
+				INFOPLIST_FILE = "GedcomTests/GedcomTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E1C3E5F151C319C005E09E1 /* Build configuration list for PBXProject "Gedcom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E1C3E8E151C319D005E09E1 /* Debug */,
+				3E1C3E8F151C319D005E09E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E1C3E90151C319D005E09E1 /* Build configuration list for PBXNativeTarget "Gedcom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E1C3E91151C319D005E09E1 /* Debug */,
+				3E1C3E92151C319D005E09E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E1C3E93151C319D005E09E1 /* Build configuration list for PBXNativeTarget "GedcomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E1C3E94151C319D005E09E1 /* Debug */,
+				3E1C3E95151C319D005E09E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E1C3E5C151C319C005E09E1 /* Project object */;
+}
