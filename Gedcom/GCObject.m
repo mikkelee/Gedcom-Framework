@@ -12,16 +12,11 @@
 
 @interface GCObject ()
 
-#pragma mark NSKeyValueCoding overrides
-
-- (id)valueForUndefinedKey:(NSString *)key; //searches internally for key, for example "Birth"
-- (void)setNilValueForKey:(NSString *)key; //deletes internal record
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key; //creates internal record
 
 @end
 
 @implementation GCObject {
-    NSString *_type;
+    GCTag *_tag;
     NSMutableDictionary *_records;
 }
 
@@ -30,7 +25,7 @@
     self = [super init];
     
     if (self) {
-        _type = type;
+        _tag = [GCTag tagNamed:type];
         _records = [NSMutableDictionary dictionaryWithCapacity:3];
     }
     
@@ -82,13 +77,11 @@
 
 - (GCNode *)gedcomNode
 {
-    GCTag *tag = [GCTag tagNamed:_type];
-    
     NSString *xref = nil; //TODO have some xref generator?
     
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
     
-    for (id subTag in [tag validSubTags]) {
+    for (id subTag in [_tag validSubTags]) {
         for (id tagAlias in [GCTag aliasesForTag:subTag]) {
             id obj = [_records objectForKey:[GCTag nameForTag:tagAlias]];
             
@@ -107,7 +100,7 @@
         }
     }
     
-    GCNode *node = [[GCNode alloc] initWithTag:tag value:[self stringValue] xref:xref subNodes:subNodes];
+    GCNode *node = [[GCNode alloc] initWithTag:_tag value:[self stringValue] xref:xref subNodes:subNodes];
     
     return node;
 }
@@ -136,7 +129,10 @@
     [_records setObject:value forKey:key];
 }
 
-@synthesize type = _type;
+- (NSString *)type
+{
+    return [_tag name];
+}
 
 //TODO handle multiple value types (dates, numbers, strings, ages; acc. to tags.plist?)
 @synthesize stringValue;

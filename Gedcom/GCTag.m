@@ -20,6 +20,10 @@ __strong static NSMutableDictionary *tags;
 __strong static NSDictionary *tagInfo;
 
 const NSString *kTagNames = @"tagNames";
+const NSString *kNameTags = @"nameTags";
+const NSString *kTagAliases = @"tagAliases";
+const NSString *kValidSubTags = @"validSubTags";
+const NSString *kReverseAliases = @"reverseAliases";
 
 + (void)setupTagInfo
 {
@@ -38,15 +42,15 @@ const NSString *kTagNames = @"tagNames";
         for (id tag in [_tags objectForKey:kTagNames]) {
             [nameTags setObject:tag forKey:[[_tags objectForKey:kTagNames] objectForKey:tag]];
         }
-        [_tags setObject:nameTags forKey:@"nameTags"];
+        [_tags setObject:nameTags forKey:kNameTags];
         
         NSMutableDictionary *reverseAliases = [NSMutableDictionary dictionaryWithCapacity:10];
-        for (id tag in [_tags objectForKey:@"tagAliases"]) {
-            for (id alias in [[_tags objectForKey:@"tagAliases"] objectForKey:tag]) {
+        for (id tag in [_tags objectForKey:kTagAliases]) {
+            for (id alias in [[_tags objectForKey:kTagAliases] objectForKey:tag]) {
                 [reverseAliases setObject:tag forKey:alias];
             }
         }
-        [_tags setObject:reverseAliases forKey:@"reverseAliases"];
+        [_tags setObject:reverseAliases forKey:kReverseAliases];
         
         tagInfo = [_tags copy];
         //NSLog(@"tagInfo: %@", [tagInfo]);
@@ -60,12 +64,12 @@ const NSString *kTagNames = @"tagNames";
 
 + (NSString *)tagForName:(NSString *)name
 {
-    return [[tagInfo objectForKey:@"nameTags"] objectForKey:name];
+    return [[tagInfo objectForKey:kNameTags] objectForKey:name];
 }
 
 + (NSArray *)aliasesForTag:(NSString *)tag
 {
-    NSArray *aliases = [[tagInfo objectForKey:@"tagAliases"] objectForKey:tag];
+    NSArray *aliases = [[tagInfo objectForKey:kTagAliases] objectForKey:tag];
     
     if (aliases == nil || [aliases count] == 0) {
         aliases = [NSArray arrayWithObject:tag];
@@ -76,7 +80,7 @@ const NSString *kTagNames = @"tagNames";
 
 + (NSString *)tagForAlias:(NSString *)alias
 {
-    NSString *tag = [[tagInfo objectForKey:@"reverseAliases"] objectForKey:alias];
+    NSString *tag = [[tagInfo objectForKey:kReverseAliases] objectForKey:alias];
     
     if (tag == nil) {
         tag = alias;
@@ -87,7 +91,7 @@ const NSString *kTagNames = @"tagNames";
 
 + (NSArray *)validSubTagsForTag:(NSString *)tag
 {
-    return [[tagInfo objectForKey:@"validSubTags"] objectForKey:tag];
+    return [[tagInfo objectForKey:kValidSubTags] objectForKey:tag];
 }
 
 -(id)initWithCode:(NSString *)code
@@ -178,7 +182,7 @@ const NSString *kTagNames = @"tagNames";
 
 - (NSString *)name
 {
-    return [[tagInfo valueForKey:@"tagNames"] valueForKey:_code];
+    return [[tagInfo valueForKey:kTagNames] valueForKey:_code];
 }
 
 - (BOOL)isCustom

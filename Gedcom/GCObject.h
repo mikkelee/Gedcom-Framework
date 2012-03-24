@@ -19,7 +19,7 @@
 
 - (GCNode *)gedcomNode;
 
-@property NSString *type;
+@property (readonly) NSString *type;
 
 @property NSString *stringValue;
 
