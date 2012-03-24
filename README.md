@@ -14,6 +14,7 @@ A number of classes to ease GEDCOM-manipulation in Cocoa.
 * CONC/CONT consistency: parse during read? coalesce? how to keep weird things like CONC on <248 char lines?
 * "GCObject" something like:
 
+``` objective-c
     GCObject *indi = [[GCObject alloc] objectOfType:@"Individual"];
     
     GCObject *birth = [[GCObject alloc] objectOfType:@"Birth"];
@@ -21,5 +22,6 @@ A number of classes to ease GEDCOM-manipulation in Cocoa.
     [birth addValue:@"1 JAN 1901" forKey:@"Date"];
     
     [indi addRecord:birth];
+```
 
 * appledocs
