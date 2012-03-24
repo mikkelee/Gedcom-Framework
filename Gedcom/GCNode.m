@@ -8,18 +8,20 @@
 
 #import "GCNode.h"
 #import "NSString+GCKitAdditions.h"
+#import "GCTag.h"
 
 @interface GCNode ()
 
 - (void)addSubNode: (GCNode *) n;
 - (void)addSubNodes: (NSArray *) a;
 
+- (NSArray *)gedcomLinesAtLevel:(int) level;
+
 @property GCNode *parent;
-@property NSString *gedTag;
+@property GCTag *gedTag;
 @property NSString *gedValue;
 @property NSString *xref;
 @property NSString *lineSeparator;
-@property BOOL isCustomTag;
 
 @end
 
@@ -32,7 +34,6 @@
     self = [super init];
     
 	if (self) {
-        [self setIsCustomTag:NO];
         [self setLineSeparator:@"\n"];
         _subNodes = [NSMutableArray arrayWithCapacity:2];
 	}
@@ -99,7 +100,7 @@
 		if ([match numberOfRanges] == 4) {
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
 			node = [[GCNode alloc] init];
-			[node setGedTag:[gLine substringWithRange:[match rangeAtIndex:2]]];
+			[node setGedTag:[GCTag tagAbbreviated:[gLine substringWithRange:[match rangeAtIndex:2]]]];
             if ([match rangeAtIndex:3].length > 0) {
                 [node setGedValue:[gLine substringWithRange:[match rangeAtIndex:3]]];
             }
@@ -108,7 +109,7 @@
 			if ([match numberOfRanges] == 4) {
 				level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
 				node = [[GCNode alloc] init];
-				[node setGedTag:[gLine substringWithRange:[match rangeAtIndex:3]]];
+				[node setGedTag:[GCTag tagAbbreviated:[gLine substringWithRange:[match rangeAtIndex:3]]]];
 				[node setXref:[gLine substringWithRange:[match rangeAtIndex:2]]];
 			} else {
 				match = [levelCustomTagValueRegex firstMatchInString:gLine options:0 range:range];
@@ -116,9 +117,8 @@
 					NSLog(@"Custom gedcom tag: %@", [gLine substringWithRange:[match rangeAtIndex:2]]);
 					level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
 					node = [[GCNode alloc] init];
-					[node setGedTag:[gLine substringWithRange:[match rangeAtIndex:2]]];
+					[node setGedTag:[GCTag tagAbbreviated:[gLine substringWithRange:[match rangeAtIndex:2]]]];
 					[node setGedValue:[gLine substringWithRange:[match rangeAtIndex:3]]];
-					[node setIsCustomTag:YES];
 				} else {
 					NSLog(@"Malformed Gedcom line had result: %@ -- %@", gLine, match);
 				}
@@ -185,11 +185,10 @@
 				s = [s stringByAppendingFormat:@"\n%d %@ %@", level, t, line];
 			} else {
 				//split string in 248-char parts, loop & add as CONC
-				NSString *bite;
 				NSString *leftover = line;
 				
 				while ([leftover length] > 248) {
-					bite = [leftover substringToIndex:248];
+					NSString *bite = [leftover substringToIndex:248];
 					leftover = [leftover substringFromIndex:248];
 					
 					s = [s stringByAppendingFormat:@"\n%d %@ %@", level, t, bite];
@@ -206,14 +205,14 @@
 	}
 	
 	if ([self xref] != nil && [self gedValue] == nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] tag]]];
 	} else if ([self xref] == nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], [self gedValue]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [[self gedTag] tag], [self gedValue]]];
 	} else if ([self xref] != nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] tag]]];
 		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, @"CONT", [self gedValue]]];
 	} else {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [[self gedTag] tag]]];
 	}
 	
 	level++;
@@ -276,6 +275,11 @@
 	
 	return a;
 }
+- (NSString *)description
+{
+    return [self gedTag];
+	//return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
+}
 
 #pragma mark NSCoding
 
@@ -285,7 +289,6 @@
     [encoder setValue:[self gedValue] forKey:@"gedValue"];
     [encoder setValue:[self xref] forKey:@"xref"];
     [encoder setValue:[self lineSeparator] forKey:@"lineSeparator"];
-    [encoder setValue:[NSNumber numberWithBool:[self isCustomTag]] forKey:@"isCustomTag"];
     [encoder setValue:[self subNodes] forKey:@"subNodes"];
 }
 
@@ -298,16 +301,10 @@
         [self setGedValue:[decoder decodeObjectForKey:@"gedValue"]];
         [self setXref:[decoder decodeObjectForKey:@"xref"]];
         [self setLineSeparator:[decoder decodeObjectForKey:@"lineSeparator"]];
-        [self setIsCustomTag:[[decoder decodeObjectForKey:@"isCustomTag"] boolValue]];
         _subNodes = [decoder decodeObjectForKey:@"subNodes"];
 	}
     
     return self;
-}
-- (NSString *)description
-{
-    return [self gedTag];
-	//return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
 }
 
 #pragma mark NSCopying
@@ -328,7 +325,6 @@
 @synthesize gedValue;
 @synthesize xref;
 @synthesize lineSeparator;
-@synthesize isCustomTag;
 @synthesize subNodes = _subNodes;
 
 @end

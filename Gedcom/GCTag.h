@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GCTag : NSObject
+@interface GCTag : NSObject <NSCopying, NSCoding>
 
--(id)initWithTag:(NSString *)tag;
--(id)initWithName:(NSString *)name;
++(GCTag *)tagAbbreviated:(NSString *)tag;
++(GCTag *)tagNamed:(NSString *)name;
+
+-(NSArray *)validSubTags;
+-(BOOL)isValidSubTag:(GCTag *)tag;
 
 @property (readonly) NSString *tag;
 @property (readonly) NSString *name;

@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class GCTag;
+
 @interface GCNode : NSObject <NSCopying, NSCoding>
 
 - (id)init;
@@ -19,7 +21,6 @@
 
 - (NSString *)gedcomString;
 - (NSArray *)gedcomLines;
-- (NSArray *)gedcomLinesAtLevel:(int) level;
 
 -(GCNode *)subNodeForTag:(NSString *)tag;
 -(NSArray *)subNodesForTag:(NSString *)tag;
@@ -28,11 +29,10 @@
 -(NSArray *)subNodesForTagPath:(NSString *)tagPath;
 
 @property (readonly) GCNode *parent;
-@property (readonly) NSString *gedTag;
+@property (readonly) GCTag *gedTag;
 @property (readonly) NSString *gedValue;
 @property (readonly) NSString *xref;
 @property (readonly) NSString *lineSeparator;
-@property (readonly) BOOL isCustomTag;
 @property (readonly) NSArray *subNodes;
 
 @end
