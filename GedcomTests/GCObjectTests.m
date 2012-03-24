@@ -28,6 +28,11 @@
     
     [indi addRecord:name];
     
+    GCObject *altName = [GCObject objectWithType:@"Name"];
+    [altName setStringValue:@"Jens /Hansen/ Smed"];
+    
+    [indi addRecord:altName];
+    
     GCObject *birt = [GCObject objectWithType:@"Birth"];
     GCObject *date = [GCObject objectWithType:@"Date"];
     [date setStringValue:@"1 JAN 1901"];

@@ -34,8 +34,24 @@
 
 - (void)addRecord:(GCObject *)object
 {
-    //TODO handle multiple records of same type (NAMEs etc)
-    [self setValue:object forKey:[object type]];
+    id existing = [self valueForKey:[object type]];
+    
+    if (existing) {
+        //one exists already, so we get in array mode:
+        //TODO check if multiple are allowed
+        
+        if ([existing isKindOfClass:[NSMutableArray class]]) {
+            //already have an array, so just add here:
+            [existing addObject:object];
+        } else {
+            //create array and put both in:
+            NSMutableArray *objects = [NSMutableArray arrayWithObjects:existing, object, nil];
+            [self setValue:objects forKey:[object type]];
+        }
+        
+    } else {
+        [self setValue:object forKey:[object type]];
+    }
 }
 
 - (GCNode *)gedcomNode
@@ -47,9 +63,15 @@
     //TODO handle multiple records of same type (NAMEs etc)
     //TODO enforce correct tag order
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
-    for (id key in _records) {
-        [subNodes addObject:[[_records objectForKey:key] gedcomNode]];
-    }
+    [_records enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if ([obj isKindOfClass:[NSMutableArray class]]) {
+            for (id object in obj) {
+                [subNodes addObject:[object gedcomNode]];
+            }
+        } else {
+            [subNodes addObject:[obj gedcomNode]];
+        }
+    }];
     
     GCNode *node = [[GCNode alloc] initWithTag:tag value:[self stringValue] xref:xref subNodes:subNodes];
     
@@ -60,14 +82,8 @@
 
 - (id)valueForUndefinedKey:(NSString *)key
 {
-    //search internally for key, for example "Birth" - can return mutable arrays etc
-    id value = [_records objectForKey:key];
-    
-    if (value == nil) {
-        value = [super valueForUndefinedKey:key];
-    }
-    
-    return value;
+    //search internally for key, for example "Birth" - may return mutable arrays etc
+    return [_records objectForKey:key];
 }
 
 - (void)setNilValueForKey:(NSString *)key
