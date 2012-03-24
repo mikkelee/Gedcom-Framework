@@ -12,6 +12,12 @@
 
 + (id)sharedController;
 
-@property NSDictionary *tags;
++ (NSString *)nameForTag:(NSString *)tag;
++ (NSString *)tagForName:(NSString *)name;
++ (NSArray *)aliasesForTag:(NSString *)tag;
++ (NSString *)tagForAlias:(NSString *)tag;
++ (NSArray *)validSubTagsForTag:(NSString *)tag;
+
+@property (readonly) NSDictionary *tags;
 
 @end

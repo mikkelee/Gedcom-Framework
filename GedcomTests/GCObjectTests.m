@@ -40,7 +40,13 @@
     [birt addRecord:date];
     [indi addRecord:birt];
     
-    NSLog(@"test: %@", [[indi gedcomNode] gedcomString]);
+    //NOTE may randomly fail until node order is enforced; also needs to be corrected below
+    STAssertEqualObjects([[indi gedcomNode] gedcomString], 
+                         @"0 INDI\n"
+                         @"1 NAME Jens /Hansen/ Smed\n"
+                         @"1 NAME Jens /Hansen/\n"
+                         @"1 BIRT\n"
+                         @"2 DATE 1 JAN 1901", nil);
 }
 
 @end

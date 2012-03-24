@@ -49,30 +49,26 @@ __strong static NSMutableDictionary *codeLookup;
 
 +(GCTag *)tagNamed:(NSString *)name
 {
-    if (codeLookup == nil) {
-        codeLookup = [NSMutableDictionary dictionaryWithCapacity:10];
-        
-        for (id key in [[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"]) {
-            [codeLookup setObject:key 
-                           forKey:[[[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"] 
-                                   objectForKey:key]];
-        }
-    }
-    
-    NSString *code = [codeLookup objectForKey:name];
-    
-    return [GCTag tagCoded:code];
+    return [GCTag tagCoded:[GCGedcomController tagForName:name]];
 }
 
 -(NSArray *)validSubTags
 {
-    //TODO also for @aliases etc
-    return [[[[GCGedcomController sharedController] tags] objectForKey:@"validSubTags"] objectForKey:_code];
+    NSArray *valid = [NSArray array];
+    valid = [valid arrayByAddingObjectsFromArray:[GCGedcomController validSubTagsForTag:_code]];
+    valid = [valid arrayByAddingObjectsFromArray:[GCGedcomController validSubTagsForTag:[GCGedcomController tagForAlias:_code]]];
+    
+    return valid;
 }
 
 -(BOOL)isValidSubTag:(GCTag *)tag
 {
     return [[self validSubTags] containsObject:[tag code]];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (%@)", [super description], [self code]];
 }
 
 #pragma mark NSCoding

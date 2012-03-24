@@ -7,6 +7,7 @@
 //
 
 #import "GCGedcomController.h"
+#import "GCObject.h"
 #import "GCNode.h"
 #import "GCTag.h"
 #import "GCAge.h"

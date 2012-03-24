@@ -18,12 +18,6 @@
 
 - (GCNode *)gedcomNode;
 
-#pragma mark NSKeyValueCoding overrides
-
-- (id)valueForUndefinedKey:(NSString *)key; //search internally for key, for example "Birth"
-- (void)setNilValueForKey:(NSString *)key; //delete internal record
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key; //create internal record
-
 @property NSString *type;
 
 @property NSString *stringValue;

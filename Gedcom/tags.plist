@@ -275,6 +275,10 @@
 			<string>SOUR</string>
 			<string>SUBM</string>
 		</array>
+		<key>EVEN</key>
+		<array>
+			<string>BIRT</string>
+		</array>
 	</dict>
 	<key>validSubTags</key>
 	<dict>
@@ -284,6 +288,10 @@
 			<string>SUBN</string>
 			<string>@reco</string>
 			<string>TRLR</string>
+		</array>
+		<key>@reco</key>
+		<array>
+			<string>SOUR</string>
 		</array>
 		<key>FAM</key>
 		<array>
@@ -296,6 +304,11 @@
 		<key>INDI</key>
 		<array>
 			<string>NAME</string>
+			<string>EVEN</string>
+		</array>
+		<key>EVEN</key>
+		<array>
+			<string>DATE</string>
 		</array>
 		<key>NAME</key>
 		<array>

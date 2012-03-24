@@ -9,6 +9,17 @@
 #import "GCObject.h"
 #import "GCNode.h"
 #import "GCTag.h"
+#import "GCGedcomController.h"
+
+@interface GCObject ()
+
+#pragma mark NSKeyValueCoding overrides
+
+- (id)valueForUndefinedKey:(NSString *)key; //searches internally for key, for example "Birth"
+- (void)setNilValueForKey:(NSString *)key; //deletes internal record
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key; //creates internal record
+
+@end
 
 @implementation GCObject {
     NSString *_type;
@@ -36,9 +47,10 @@
 {
     id existing = [self valueForKey:[object type]];
     
-    if (existing) {
+    BOOL allowsMultiple = true; //TODO
+    
+    if (allowsMultiple && existing) {
         //one exists already, so we get in array mode:
-        //TODO check if multiple are allowed
         
         if ([existing isKindOfClass:[NSMutableArray class]]) {
             //already have an array, so just add here:
@@ -49,6 +61,7 @@
             [self setValue:objects forKey:[object type]];
         }
         
+        [[self valueForKey:[object type]] sortUsingSelector:@selector(stringValue)];
     } else {
         [self setValue:object forKey:[object type]];
     }
@@ -60,42 +73,48 @@
     
     NSString *xref = nil; //TODO have some xref generator?
     
-    //TODO handle multiple records of same type (NAMEs etc)
-    //TODO enforce correct tag order
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
-    [_records enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-        if ([obj isKindOfClass:[NSMutableArray class]]) {
-            for (id object in obj) {
-                [subNodes addObject:[object gedcomNode]];
+    
+    for (id subTag in [tag validSubTags]) {
+        for (id tagAlias in [GCGedcomController aliasesForTag:subTag]) {
+            id obj = [_records objectForKey:[GCGedcomController nameForTag:tagAlias]];
+            
+            if (obj) {
+                if ([obj isKindOfClass:[NSMutableArray class]]) {
+                    for (id subObj in obj) {
+                        [subNodes addObject:[subObj gedcomNode]];
+                    }
+                } else {
+                    [subNodes addObject:[obj gedcomNode]];
+                }
             }
-        } else {
-            [subNodes addObject:[obj gedcomNode]];
         }
-    }];
+    }
     
     GCNode *node = [[GCNode alloc] initWithTag:tag value:[self stringValue] xref:xref subNodes:subNodes];
     
     return node;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (type: %@, stringValue: %@)", [super description], [self type], [self stringValue]];
+}
+
 #pragma mark NSKeyValueCoding overrides
 
 - (id)valueForUndefinedKey:(NSString *)key
 {
-    //search internally for key, for example "Birth" - may return mutable arrays etc
     return [_records objectForKey:key];
 }
 
 - (void)setNilValueForKey:(NSString *)key
 {
-    //delete internal record
     [_records removeObjectForKey:key];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    //create internal record
-    
     //TODO validity check (don't put a NAME on a FAM, etc)
     
     [_records setObject:value forKey:key];
