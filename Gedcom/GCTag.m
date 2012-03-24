@@ -14,33 +14,33 @@
 @end
 
 @implementation GCTag {
-    NSString *_tag;
+    NSString *_code;
 }
 
 __strong static NSMutableDictionary *tags;
 
--(id)initWithTag:(NSString *)tag
+-(id)initWithCode:(NSString *)code
 {
     self = [super init];
     
     if (self) {
-        _tag = tag;
+        _code = code;
     }
     
     return self;    
 }
 
-+(GCTag *)tagAbbreviated:(NSString *)t
++(GCTag *)tagCoded:(NSString *)code
 {
     if (tags == nil) {
         tags = [NSMutableDictionary dictionaryWithCapacity:10];
     }
     
-    GCTag *tag = [tags valueForKey:t];
+    GCTag *tag = [tags objectForKey:code];
     
     if (tag == nil) {
-        tag = [[GCTag alloc] initWithTag:t];
-        [tags setObject:tag forKey:t];
+        tag = [[GCTag alloc] initWithCode:code];
+        [tags setObject:tag forKey:code];
     }
     
     return tag;
@@ -53,19 +53,19 @@ __strong static NSMutableDictionary *tags;
 
 -(NSArray *)validSubTags
 {
-    return nil; //TODO
+    return [[[[GCGedcomController sharedController] tags] objectForKey:@"validSubTags"] objectForKey:_code];
 }
 
 -(BOOL)isValidSubTag:(GCTag *)tag
 {
-    return NO; //TODO
+    return [[self validSubTags] containsObject:[tag code]];
 }
 
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder setValue:_tag forKey:@"gedTag"];
+    [encoder setValue:_code forKey:@"gedTag"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -73,7 +73,7 @@ __strong static NSMutableDictionary *tags;
 	self = [super init];
     
     if (self) {
-        _tag = [decoder decodeObjectForKey:@"gedTag"];
+        _code = [decoder decodeObjectForKey:@"gedTag"];
 	}
     
     return self;
@@ -88,14 +88,14 @@ __strong static NSMutableDictionary *tags;
 
 #pragma mark Properties
 
-- (NSString *)tag
+- (NSString *)code
 {
-    return _tag;
+    return _code;
 }
 
 - (NSString *)name
 {
-    return [[[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"] valueForKey:_tag];
+    return [[[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"] valueForKey:_code];
 }
 
 - (BOOL)isCustom

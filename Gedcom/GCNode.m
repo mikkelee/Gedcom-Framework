@@ -100,7 +100,7 @@
 		if ([match numberOfRanges] == 4) {
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
 			node = [[GCNode alloc] init];
-			[node setGedTag:[GCTag tagAbbreviated:[gLine substringWithRange:[match rangeAtIndex:2]]]];
+			[node setGedTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]];
             if ([match rangeAtIndex:3].length > 0) {
                 [node setGedValue:[gLine substringWithRange:[match rangeAtIndex:3]]];
             }
@@ -109,7 +109,7 @@
 			if ([match numberOfRanges] == 4) {
 				level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
 				node = [[GCNode alloc] init];
-				[node setGedTag:[GCTag tagAbbreviated:[gLine substringWithRange:[match rangeAtIndex:3]]]];
+				[node setGedTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:3]]]];
 				[node setXref:[gLine substringWithRange:[match rangeAtIndex:2]]];
 			} else {
 				match = [levelCustomTagValueRegex firstMatchInString:gLine options:0 range:range];
@@ -117,7 +117,7 @@
 					NSLog(@"Custom gedcom tag: %@", [gLine substringWithRange:[match rangeAtIndex:2]]);
 					level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
 					node = [[GCNode alloc] init];
-					[node setGedTag:[GCTag tagAbbreviated:[gLine substringWithRange:[match rangeAtIndex:2]]]];
+					[node setGedTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]];
 					[node setGedValue:[gLine substringWithRange:[match rangeAtIndex:3]]];
 				} else {
 					NSLog(@"Malformed Gedcom line had result: %@ -- %@", gLine, match);
@@ -205,14 +205,14 @@
 	}
 	
 	if ([self xref] != nil && [self gedValue] == nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] tag]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] code]]];
 	} else if ([self xref] == nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [[self gedTag] tag], [self gedValue]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [[self gedTag] code], [self gedValue]]];
 	} else if ([self xref] != nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] tag]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] code]]];
 		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, @"CONT", [self gedValue]]];
 	} else {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [[self gedTag] tag]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [[self gedTag] code]]];
 	}
 	
 	level++;

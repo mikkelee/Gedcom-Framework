@@ -17,6 +17,7 @@
 		3E5F5098151DCC7B00A433A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F5097151DCC7B00A433A6 /* README.md */; };
 		3E5F509B151DEC5100A433A6 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F509A151DEC5100A433A6 /* tags.plist */; };
 		3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C0151DF2E800A433A6 /* Gedcom.h */; };
+		3E5F50C6151DFB0000A433A6 /* GCTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C5151DFB0000A433A6 /* GCTagTests.m */; };
 		3EECFD66151C32630074E26C /* GCAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3A151C32630074E26C /* GCAge.h */; };
 		3EECFD67151C32630074E26C /* GCAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3B151C32630074E26C /* GCAge.m */; };
 		3EECFD68151C32630074E26C /* GCAgeAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3C151C32630074E26C /* GCAgeAssembler.h */; };
@@ -94,7 +95,7 @@
 		3E1C3E71151C319C005E09E1 /* Gedcom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gedcom-Info.plist"; sourceTree = "<group>"; };
 		3E1C3E73151C319C005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E1C3E75151C319C005E09E1 /* Gedcom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gedcom-Prefix.pch"; sourceTree = "<group>"; };
-		3E1C3E76151C319C005E09E1 /* GCGedcomController.h */ = {isa = PBXFileReference; path = GCGedcomController.h; sourceTree = "<group>"; };
+		3E1C3E76151C319C005E09E1 /* GCGedcomController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGedcomController.h; sourceTree = "<group>"; };
 		3E1C3E77151C319C005E09E1 /* GCGedcomController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCGedcomController.m; sourceTree = "<group>"; };
 		3E1C3E7E151C319D005E09E1 /* GedcomTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GedcomTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -103,6 +104,7 @@
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3E5F509A151DEC5100A433A6 /* tags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tags.plist; sourceTree = "<group>"; };
 		3E5F50C0151DF2E800A433A6 /* Gedcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
+		3E5F50C5151DFB0000A433A6 /* GCTagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTagTests.m; sourceTree = "<group>"; };
 		3EECFD3A151C32630074E26C /* GCAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAge.h; sourceTree = "<group>"; };
 		3EECFD3B151C32630074E26C /* GCAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAge.m; sourceTree = "<group>"; };
 		3EECFD3C151C32630074E26C /* GCAgeAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeAssembler.h; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		3E1C3E85151C319D005E09E1 /* GedcomTests */ = {
 			isa = PBXGroup;
 			children = (
+				3E5F50C5151DFB0000A433A6 /* GCTagTests.m */,
 				3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */,
 				3EF7A1C6151C3873004A8540 /* GCAgeTests.m */,
 				3EF7A1C7151C3873004A8540 /* GCDateTests.m */,
@@ -550,6 +553,7 @@
 				3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */,
 				3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */,
 				3EF7A1CF151C5F8E004A8540 /* GCNodeTests.m in Sources */,
+				3E5F50C6151DFB0000A433A6 /* GCTagTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

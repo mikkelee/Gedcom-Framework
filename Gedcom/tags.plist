@@ -276,7 +276,7 @@
 			<string>SUBM</string>
 		</array>
 	</dict>
-	<key>allowedSubTags</key>
+	<key>validSubTags</key>
 	<dict>
 		<key>@root</key>
 		<array>
