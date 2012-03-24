@@ -15,8 +15,10 @@
 - (id)init;
 
 - (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes;
-- (id)initWithTag:(GCTag *)tag value:(NSString *)value;
-- (id)initWithTag:(GCTag *)tag xref:(NSString *)xref;
+
+//convenience
++ (id)nodeWithTag:(GCTag *)tag value:(NSString *)value;
++ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref;
 
 + (NSArray *)arrayOfNodesFromString:(NSString*) gedString;
 + (NSArray *)arrayOfNodesFromArrayOfStrings:(NSArray*) gedLines;

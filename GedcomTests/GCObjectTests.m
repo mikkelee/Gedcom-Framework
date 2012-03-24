@@ -10,6 +10,7 @@
 
 #import "GCObject.h"
 #import "GCNode.h"
+#import "GCTag.h"
 
 @interface GCObjectTests : SenTestCase {
 	
@@ -40,13 +41,26 @@
     [birt addRecord:date];
     [indi addRecord:birt];
     
-    //NOTE may randomly fail until node order is enforced; also needs to be corrected below
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          @"0 INDI\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 BIRT\n"
                          @"2 DATE 1 JAN 1901", nil);
+    
+    
+    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagNamed:@"Individual"] 
+                                         value:nil
+                                          xref:nil
+                                      subNodes:[NSArray arrayWithObjects:
+                                                [GCNode nodeWithTag:[GCTag tagNamed:@"Name"] 
+                                                              value:@"Hans /Jensen/"],
+                                                nil]];
+    
+    GCObject *object = [GCObject objectWithGedcomNode:node];
+    
+    NSLog(@"test: %@", [object gedcomNode]);
+                                                
 }
 
 @end

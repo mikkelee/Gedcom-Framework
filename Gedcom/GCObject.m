@@ -43,6 +43,19 @@
     return [[self alloc] initWithType:type];
 }
 
++ (id)objectWithGedcomNode:(GCNode *)node
+{
+    GCObject *object = [[GCObject alloc] initWithType:[[node gedTag] name]];
+    
+    [object setStringValue:[node gedValue]];
+    
+    for (id subNode in [node subNodes]) {
+        [object addRecord:[GCObject objectWithGedcomNode:subNode]];
+    }
+    
+    return object;
+}
+
 - (void)addRecord:(GCObject *)object
 {
     id existing = [self valueForKey:[object type]];

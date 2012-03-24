@@ -13,6 +13,7 @@
 @interface GCObject : NSObject
 
 + (id)objectWithType:(NSString *)type;
++ (id)objectWithGedcomNode:(GCNode *)node;
 
 - (void)addRecord:(GCObject *)object;
 

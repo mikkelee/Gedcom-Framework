@@ -51,20 +51,26 @@
         [self setGedTag:tag];
         [self setXref:xr];
         [self setGedValue:value];
-        _subNodes = [subNodes mutableCopy]; //TODO shouldn't be mutable...
+        
+        //TODO shouldn't be mutable...
+        if (subNodes) {
+            _subNodes = [subNodes mutableCopy]; 
+        } else {
+            _subNodes = [NSMutableArray arrayWithCapacity:3];
+        }
 	}
     
     return self;
 }
 
-- (id)initWithTag:(GCTag *)tag value:(NSString *)value
++ (id)nodeWithTag:(GCTag *)tag value:(NSString *)value
 {
-    return [self initWithTag:tag value:value xref:nil subNodes:nil];
+    return [[self alloc] initWithTag:tag value:value xref:nil subNodes:nil];
 }
 
-- (id)initWithTag:(GCTag *)tag xref:(NSString *)xr
++ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xr
 {
-    return [self initWithTag:tag value:nil xref:xr subNodes:nil];
+    return [[self alloc] initWithTag:tag value:nil xref:xr subNodes:nil];
 }
 
 + (NSArray*)arrayOfNodesFromString:(NSString*) gedString
@@ -98,35 +104,34 @@
 		if ([gLine isEqualToString:@""]) 
 			continue;
 		
+		GCNode* node = nil;
+        
         NSRange range = NSMakeRange(0, [gLine length]);
+		int level = -1;
 		
 		NSTextCheckingResult *match = [levelTagValueRegex firstMatchInString:gLine options:0 range:range];
-		int level = -1;
-        
-		GCNode* node = nil;
         
 		if ([match numberOfRanges] == 4) {
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-			node = [[GCNode alloc] init];
-			[node setGedTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]];
+            NSString *val = nil;
             if ([match rangeAtIndex:3].length > 0) {
-                [node setGedValue:[gLine substringWithRange:[match rangeAtIndex:3]]];
+                val = [gLine substringWithRange:[match rangeAtIndex:3]];
             }
+            node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]] 
+                                 value:val];
 		} else {
 			match = [levelXrefTagRegex firstMatchInString:gLine options:0 range:range];
 			if ([match numberOfRanges] == 4) {
 				level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-				node = [[GCNode alloc] init];
-				[node setGedTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:3]]]];
-				[node setXref:[gLine substringWithRange:[match rangeAtIndex:2]]];
+                node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:3]]]
+                                      xref:[gLine substringWithRange:[match rangeAtIndex:2]]];
 			} else {
 				match = [levelCustomTagValueRegex firstMatchInString:gLine options:0 range:range];
 				if ([match numberOfRanges] == 4) {
 					NSLog(@"Custom gedcom tag: %@", [gLine substringWithRange:[match rangeAtIndex:2]]);
 					level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-					node = [[GCNode alloc] init];
-					[node setGedTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]];
-					[node setGedValue:[gLine substringWithRange:[match rangeAtIndex:3]]];
+                    node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]
+                                         value:[gLine substringWithRange:[match rangeAtIndex:3]]];
 				} else {
 					NSLog(@"Malformed Gedcom line had result: %@ -- %@", gLine, match);
 				}
