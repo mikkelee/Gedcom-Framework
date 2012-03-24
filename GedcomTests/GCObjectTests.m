@@ -43,25 +43,34 @@
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          @"0 INDI\n"
-                         @"1 NAME Jens /Hansen/ Smed\n"
                          @"1 NAME Jens /Hansen/\n"
+                         @"1 NAME Jens /Hansen/ Smed\n"
                          @"1 BIRT\n"
                          @"2 DATE 1 JAN 1901", nil);
     
     
-    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagNamed:@"Individual"] 
+    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
                                           xref:nil
                                       subNodes:[NSArray arrayWithObjects:
-                                                [GCNode nodeWithTag:[GCTag tagNamed:@"Name"] 
-                                                              value:@"Hans /Jensen/"],
-                                                nil]];
+                                                [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
+                                                              value:@"Jens /Hansen/ Smed"],
+                                                [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
+                                                              value:@"Jens /Hansen/"],
+                                                [[GCNode alloc] initWithTag:[GCTag tagCoded:@"BIRT"] 
+                                                                      value:nil
+                                                                       xref:nil
+                                                                   subNodes:[NSArray arrayWithObjects:
+                                                                             [GCNode nodeWithTag:[GCTag tagCoded:@"DATE"]
+                                                                                                           value:@"1 JAN 1901"],
+                                                                              nil]
+                                                                             ],
+                                                 nil]];
     
     GCObject *object = [GCObject objectWithGedcomNode:node];
     
-    STAssertEqualObjects([[object gedcomNode] gedcomString], 
-                         @"0 INDI\n"
-                         @"1 NAME Hans /Jensen/", nil);
+    STAssertEqualObjects([[indi gedcomNode] gedcomString], 
+                         [[object gedcomNode] gedcomString], nil);
 }
 
 @end

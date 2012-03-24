@@ -34,7 +34,7 @@ is equivalent to:
 
 ``` objective-c
 
-    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"Individual"] 
+    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
                                           xref:nil
                                       subNodes:[NSArray arrayWithObjects:
@@ -42,15 +42,15 @@ is equivalent to:
                                                               value:@"Jens /Hansen/ Smed"],
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/"],
-                                                [[GCNode alloc] nodeWithTag:[GCTag tagCoded:@"BIRT"] 
-                                                                      value:@"Jens /Hansen/"
-                                                                      xref:nil
-                                                                      subNodes:[NSArray arrayWithObjects:
-                                                                                [GCNode nodeWithTag:[GCTag tagCoded:@"BIRT"
-                                                                                              value:@"1 JAN 1901"],
-                                                                      nil],
-                                                              ],
-                                                nil]];
+                                                [[GCNode alloc] initWithTag:[GCTag tagCoded:@"BIRT"] 
+                                                                      value:nil
+                                                                       xref:nil
+                                                                   subNodes:[NSArray arrayWithObjects:
+                                                                             [GCNode nodeWithTag:[GCTag tagCoded:@"DATE"]
+                                                                                                           value:@"1 JAN 1901"],
+                                                                              nil]
+                                                                             ],
+                                                 nil]];
     
 
 ```
@@ -59,8 +59,8 @@ is equivalent to:
 
 ```
 0 INDI
-1 NAME Jens /Hansen/ Smed
 1 NAME Jens /Hansen/
+1 NAME Jens /Hansen/ Smed
 1 BIRT
 2 DATE 1 JAN 1901
 ```
@@ -73,6 +73,7 @@ Additionally, parsing and handling of ages and dates per spec.
 * **GCNode**: subNodes array shouldn't be mutable (GCNode should be fully immutable)
 * **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
 * **GCObject**: xrefs - some kind of central authority?
+* **GCObject**: parent ref
 * **GCMutableNode**
 * **GCAge/GCDate**: better hiding of internals (ie a facade) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * **GCAge/GCDate**: calculations (ie dateA - dateB = age)

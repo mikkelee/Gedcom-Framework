@@ -46,6 +46,8 @@
 {
     GCObject *object = [[GCObject alloc] initWithType:[[node gedTag] name]];
     
+    //TODO xref?
+    
     [object setStringValue:[node gedValue]];
     
     for (id subNode in [node subNodes]) {
@@ -57,7 +59,8 @@
 
 - (void)addRecord:(GCObject *)object
 {
-    id existing = [self valueForKey:[object type]];
+    id key = [object type];
+    id existing = [self valueForKey:key];
     
     BOOL allowsMultiple = true; //TODO
     
@@ -70,12 +73,10 @@
         } else {
             //create array and put both in:
             NSMutableArray *objects = [NSMutableArray arrayWithObjects:existing, object, nil];
-            [self setValue:objects forKey:[object type]];
+            [self setValue:objects forKey:key];
         }
-        
-        [[self valueForKey:[object type]] sortUsingSelector:@selector(stringValue)];
     } else {
-        [self setValue:object forKey:[object type]];
+        [self setValue:object forKey:key];
     }
 }
 
@@ -93,7 +94,10 @@
             
             if (obj) {
                 if ([obj isKindOfClass:[NSMutableArray class]]) {
-                    for (id subObj in obj) {
+                    NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
+                        return [[obj1 stringValue] compare:[obj2 stringValue]];
+                    }];
+                    for (id subObj in sorted) {
                         [subNodes addObject:[subObj gedcomNode]];
                     }
                 } else {
