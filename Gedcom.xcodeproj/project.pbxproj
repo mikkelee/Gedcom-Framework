@@ -189,6 +189,7 @@
 		3E1C3E5A151C319B005E09E1 = {
 			isa = PBXGroup;
 			children = (
+				3E5F5097151DCC7B00A433A6 /* README.md */,
 				3E1C3E6F151C319C005E09E1 /* Gedcom */,
 				3E1C3E85151C319D005E09E1 /* GedcomTests */,
 				3E1C3E68151C319C005E09E1 /* Frameworks */,
@@ -241,7 +242,6 @@
 				3EECFD93151C33590074E26C /* Age */,
 				3EECFD94151C33640074E26C /* Date */,
 				3E1C3E70151C319C005E09E1 /* Supporting Files */,
-				3E5F5097151DCC7B00A433A6 /* README.md */,
 			);
 			path = Gedcom;
 			sourceTree = "<group>";
