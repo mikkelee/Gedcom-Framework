@@ -59,8 +59,9 @@
     
     GCObject *object = [GCObject objectWithGedcomNode:node];
     
-    NSLog(@"test: %@", [object gedcomNode]);
-                                                
+    STAssertEqualObjects([[object gedcomNode] gedcomString], 
+                         @"0 INDI\n"
+                         @"1 NAME Hans /Jensen/", nil);
 }
 
 @end

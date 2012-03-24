@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3E1C3E6A151C319C005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E72151C319C005E09E1 /* InfoPlist.strings */; };
-		3E1C3E78151C319C005E09E1 /* GCGedcomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C3E77151C319C005E09E1 /* GCGedcomController.m */; };
 		3E1C3E80151C319D005E09E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */; };
 		3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
@@ -98,8 +97,6 @@
 		3E1C3E71151C319C005E09E1 /* Gedcom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gedcom-Info.plist"; sourceTree = "<group>"; };
 		3E1C3E73151C319C005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E1C3E75151C319C005E09E1 /* Gedcom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gedcom-Prefix.pch"; sourceTree = "<group>"; };
-		3E1C3E76151C319C005E09E1 /* GCGedcomController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGedcomController.h; sourceTree = "<group>"; };
-		3E1C3E77151C319C005E09E1 /* GCGedcomController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCGedcomController.m; sourceTree = "<group>"; };
 		3E1C3E7E151C319D005E09E1 /* GedcomTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GedcomTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3E1C3E87151C319D005E09E1 /* GedcomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomTests-Info.plist"; sourceTree = "<group>"; };
@@ -239,8 +236,6 @@
 				3EF7A1D0151C5FCD004A8540 /* NSString+GCKitAdditions.h */,
 				3EF7A1D1151C5FCD004A8540 /* NSString+GCKitAdditions.m */,
 				3E5F50C0151DF2E800A433A6 /* Gedcom.h */,
-				3E1C3E76151C319C005E09E1 /* GCGedcomController.h */,
-				3E1C3E77151C319C005E09E1 /* GCGedcomController.m */,
 				3EECFD5E151C32630074E26C /* GCNode.h */,
 				3EECFD5F151C32630074E26C /* GCNode.m */,
 				3EF7A1CA151C57A2004A8540 /* GCTag.h */,
@@ -528,7 +523,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E1C3E78151C319C005E09E1 /* GCGedcomController.m in Sources */,
 				3EECFD67151C32630074E26C /* GCAge.m in Sources */,
 				3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */,
 				3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */,

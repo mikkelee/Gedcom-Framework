@@ -9,7 +9,6 @@
 #import "GCObject.h"
 #import "GCNode.h"
 #import "GCTag.h"
-#import "GCGedcomController.h"
 
 @interface GCObject ()
 
@@ -89,8 +88,8 @@
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
     
     for (id subTag in [tag validSubTags]) {
-        for (id tagAlias in [GCGedcomController aliasesForTag:subTag]) {
-            id obj = [_records objectForKey:[GCGedcomController nameForTag:tagAlias]];
+        for (id tagAlias in [GCTag aliasesForTag:subTag]) {
+            id obj = [_records objectForKey:[GCTag nameForTag:tagAlias]];
             
             if (obj) {
                 if ([obj isKindOfClass:[NSMutableArray class]]) {

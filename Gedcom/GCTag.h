@@ -10,12 +10,22 @@
 
 @interface GCTag : NSObject <NSCopying, NSCoding>
 
+//helpers:
++ (NSString *)nameForTag:(NSString *)tag;
++ (NSString *)tagForName:(NSString *)name;
++ (NSArray *)aliasesForTag:(NSString *)tag;
++ (NSString *)tagForAlias:(NSString *)tag;
++ (NSArray *)validSubTagsForTag:(NSString *)tag;
+
+//convenience constructors:
 +(GCTag *)tagCoded:(NSString *)code;
 +(GCTag *)tagNamed:(NSString *)name;
 
+//misc
 -(NSArray *)validSubTags;
 -(BOOL)isValidSubTag:(GCTag *)tag;
 
+//properties
 @property (readonly) NSString *code;
 @property (readonly) NSString *name;
 @property (readonly) BOOL isCustom;

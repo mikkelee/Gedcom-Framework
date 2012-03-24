@@ -7,7 +7,6 @@
 //
 
 #import "GCTag.h"
-#import "GCGedcomController.h"
 
 @interface GCTag ()
 
@@ -18,7 +17,78 @@
 }
 
 __strong static NSMutableDictionary *tags;
-__strong static NSMutableDictionary *codeLookup;
+__strong static NSDictionary *tagInfo;
+
+const NSString *kTagNames = @"tagNames";
+
++ (void)setupTagInfo
+{
+    static dispatch_once_t pred = 0;
+    
+    dispatch_once(&pred, ^{
+        NSString *plistPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags" ofType:@"plist"];
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        NSMutableDictionary *_tags = [[NSPropertyListSerialization propertyListFromData:data 
+                                                                       mutabilityOption:0 
+                                                                                 format:NULL 
+                                                                       errorDescription:nil] mutableCopy];
+        
+        //adding reverse lookups:
+        NSMutableDictionary *nameTags = [NSMutableDictionary dictionaryWithCapacity:10];
+        for (id tag in [_tags objectForKey:kTagNames]) {
+            [nameTags setObject:tag forKey:[[_tags objectForKey:kTagNames] objectForKey:tag]];
+        }
+        [_tags setObject:nameTags forKey:@"nameTags"];
+        
+        NSMutableDictionary *reverseAliases = [NSMutableDictionary dictionaryWithCapacity:10];
+        for (id tag in [_tags objectForKey:@"tagAliases"]) {
+            for (id alias in [[_tags objectForKey:@"tagAliases"] objectForKey:tag]) {
+                [reverseAliases setObject:tag forKey:alias];
+            }
+        }
+        [_tags setObject:reverseAliases forKey:@"reverseAliases"];
+        
+        tagInfo = [_tags copy];
+        //NSLog(@"tagInfo: %@", [tagInfo]);
+    });
+}
+
++ (NSString *)nameForTag:(NSString *)tag
+{
+    return [[tagInfo objectForKey:kTagNames] objectForKey:tag];
+}
+
++ (NSString *)tagForName:(NSString *)name
+{
+    return [[tagInfo objectForKey:@"nameTags"] objectForKey:name];
+}
+
++ (NSArray *)aliasesForTag:(NSString *)tag
+{
+    NSArray *aliases = [[tagInfo objectForKey:@"tagAliases"] objectForKey:tag];
+    
+    if (aliases == nil || [aliases count] == 0) {
+        aliases = [NSArray arrayWithObject:tag];
+    }
+    
+    return aliases;
+}
+
++ (NSString *)tagForAlias:(NSString *)alias
+{
+    NSString *tag = [[tagInfo objectForKey:@"reverseAliases"] objectForKey:alias];
+    
+    if (tag == nil) {
+        tag = alias;
+    }
+    
+    return tag;
+}
+
++ (NSArray *)validSubTagsForTag:(NSString *)tag
+{
+    return [[tagInfo objectForKey:@"validSubTags"] objectForKey:tag];
+}
 
 -(id)initWithCode:(NSString *)code
 {
@@ -33,6 +103,8 @@ __strong static NSMutableDictionary *codeLookup;
 
 +(GCTag *)tagCoded:(NSString *)code
 {
+    [self setupTagInfo];
+    
     if (tags == nil) {
         tags = [NSMutableDictionary dictionaryWithCapacity:10];
     }
@@ -49,14 +121,15 @@ __strong static NSMutableDictionary *codeLookup;
 
 +(GCTag *)tagNamed:(NSString *)name
 {
-    return [GCTag tagCoded:[GCGedcomController tagForName:name]];
+    return [GCTag tagCoded:[[self class] tagForName:name]];
 }
 
 -(NSArray *)validSubTags
 {
     NSArray *valid = [NSArray array];
-    valid = [valid arrayByAddingObjectsFromArray:[GCGedcomController validSubTagsForTag:_code]];
-    valid = [valid arrayByAddingObjectsFromArray:[GCGedcomController validSubTagsForTag:[GCGedcomController tagForAlias:_code]]];
+    
+    valid = [valid arrayByAddingObjectsFromArray:[[self class] validSubTagsForTag:_code]];
+    valid = [valid arrayByAddingObjectsFromArray:[[self class] validSubTagsForTag:[[self class] tagForAlias:_code]]];
     
     return valid;
 }
@@ -105,7 +178,7 @@ __strong static NSMutableDictionary *codeLookup;
 
 - (NSString *)name
 {
-    return [[[[GCGedcomController sharedController] tags] valueForKey:@"tagNames"] valueForKey:_code];
+    return [[tagInfo valueForKey:@"tagNames"] valueForKey:_code];
 }
 
 - (BOOL)isCustom
