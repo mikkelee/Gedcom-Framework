@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
+    GCUndefinedValue = -1,
     GCStringValue,
     GCNumberValue,
     GCAgeValue,
-    GCDateValue
+    GCDateValue,
+    GCBooleanValue
 } GCValueType;
 
 @class GCAge;
@@ -24,9 +26,12 @@ typedef enum {
 
 - (NSComparisonResult)compare:(id)other;
 
++ (GCValueType)valueTypeNamed:(NSString *)name;
+
 @property (readonly) NSString *stringValue;
 @property (readonly) NSNumber *numberValue;
 @property (readonly) GCAge *ageValue;
 @property (readonly) GCDate *dateValue;
+@property (readonly) BOOL booleanValue;
 
 @end

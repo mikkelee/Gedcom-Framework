@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
+#import "GCValue.h"
+
 #import <Foundation/Foundation.h>
 
 @interface GCTag : NSObject <NSCopying, NSCoding>
@@ -24,6 +26,8 @@
 //misc
 -(NSArray *)validSubTags;
 -(BOOL)isValidSubTag:(GCTag *)tag;
+
+-(GCValueType)valueType;
 
 //properties
 @property (readonly) NSString *code;

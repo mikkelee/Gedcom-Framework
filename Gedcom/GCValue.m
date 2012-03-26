@@ -42,13 +42,34 @@
         case GCAgeValue:
             return [[self ageValue] compare:[other ageValue]];
             break;
-
+            
         case GCDateValue:
             return [[self dateValue] compare:[other dateValue]];
+            break;
+            
+        case GCBooleanValue:
+            return [[NSNumber numberWithBool:[self booleanValue]] compare:[NSNumber numberWithBool:[other booleanValue]]];
             break;
 
         default:
             break;
+    }
+}
+
++ (GCValueType)valueTypeNamed:(NSString *)name
+{
+    if ([name isEqualToString:@"GCStringValue"]) {
+        return GCStringValue;
+    } else if ([name isEqualToString:@"GCNumberValue"]) {
+        return GCNumberValue;
+    } else if ([name isEqualToString:@"GCAgeValue"]) {
+        return GCAgeValue;
+    } else if ([name isEqualToString:@"GCDateValue"]) {
+        return GCDateValue;
+    } else if ([name isEqualToString:@"GCBooleanValue"]) {
+        return GCBooleanValue;
+    } else {
+        return GCUndefinedValue;
     }
 }
 
@@ -57,7 +78,11 @@
     if ([_value isKindOfClass:[NSString class]]) {
         return _value;
     } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [_value stringValue];
+        if (_type == GCBooleanValue) {
+            return [_value booleanValue] ? @"Y" : @"N";
+        } else {
+            return [_value stringValue];
+        }
     } else if ([_value isKindOfClass:[GCAge class]]) {
         return [_value gedcomString];
     } else if ([_value isKindOfClass:[GCDate class]]) {
@@ -109,6 +134,21 @@
         return _value;
     } else {
         return nil; //TODO
+    }
+}
+
+- (BOOL)booleanValue
+{
+    if ([_value isKindOfClass:[NSString class]]) {
+        return [_value isEqualToString:@"Y"];
+    } else if ([_value isKindOfClass:[NSNumber class]]) {
+        return [_value booleanValue];
+    } else if ([_value isKindOfClass:[GCAge class]]) {
+        return NO; //TODO
+    } else if ([_value isKindOfClass:[GCDate class]]) {
+        return NO; //TODO
+    } else {
+        return NO; //TODO
     }
 }
 
