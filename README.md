@@ -15,11 +15,13 @@ Example:
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-    GCRecord *birt = [GCRecord objectWithType:@"Birth" boolValue:YES];
+    GCRecord *birt = [GCRecord objectWithType:@"Birth"];
     
     [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     [indi addRecord:birt];
+    
+    [indi addRecordWithType:@"Death" boolValue:YES];
 ```
 
 is equivalent to:
@@ -35,13 +37,15 @@ is equivalent to:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/"],
                                                 [[GCNode alloc] initWithTag:[GCTag tagCoded:@"BIRT"] 
-                                                                      value:@"Y"
+                                                                      value:nil
                                                                        xref:nil
                                                                    subNodes:[NSArray arrayWithObjects:
                                                                              [GCNode nodeWithTag:[GCTag tagCoded:@"DATE"]
                                                                                                            value:@"1 JAN 1901"],
                                                                               nil]
                                                                              ],
+                                                [GCNode nodeWithTag:[GCTag tagCoded:@"DEAT"] 
+                                                              value:@"Y"],
                                                  nil]];
     
 
@@ -53,8 +57,9 @@ is equivalent to:
 0 @I1@ INDI
 1 NAME Jens /Hansen/
 1 NAME Jens /Hansen/ Smed
-1 BIRT Y
+1 BIRT
 2 DATE 1 JAN 1901
+1 DEAT Y
 ```
 
 Additionally, parsing and handling of ages and dates per spec.
