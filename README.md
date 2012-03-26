@@ -5,17 +5,17 @@
 A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
 
 * Lowest are the GCNodes, a simple representation of the nested structure of GEDCOM data.
-* Above GCNodes are GCObjects.
+* Above GCNodes are GCRecords.
 
 Example:
 
 ``` objective-c
-    GCObject *indi = [GCObject objectWithType:@"Individual"];
+    GCRecord *indi = [GCRecord objectWithType:@"Individual"];
     
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-    GCObject *birt = [GCObject objectWithType:@"Birth"];
+    GCRecord *birt = [GCRecord objectWithType:@"Birth"];
     
     [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     

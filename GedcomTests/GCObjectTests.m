@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCObject.h"
+#import "GCRecord.h"
 #import "GCNode.h"
 #import "GCTag.h"
 #import "GCDate.h"
@@ -24,12 +24,12 @@
 
 - (void)testSimpleObjects
 {
-    GCObject *indi = [GCObject objectWithType:@"Individual"];
+    GCRecord *indi = [GCRecord objectWithType:@"Individual"];
     
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-    GCObject *birt = [GCObject objectWithType:@"Birth"];
+    GCRecord *birt = [GCRecord objectWithType:@"Birth"];
     
     [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
@@ -61,7 +61,7 @@
                                                                              ],
                                                  nil]];
     
-    GCObject *object = [GCObject objectWithGedcomNode:node];
+    GCRecord *object = [GCRecord objectWithGedcomNode:node];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          [[object gedcomNode] gedcomString], nil);
@@ -69,7 +69,7 @@
 
 - (void)testObjectValues
 {
-    GCObject *date = [GCObject objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    GCRecord *date = [GCRecord objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
 }

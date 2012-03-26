@@ -19,8 +19,8 @@
 		3E5F509B151DEC5100A433A6 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F509A151DEC5100A433A6 /* tags.plist */; };
 		3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C0151DF2E800A433A6 /* Gedcom.h */; };
 		3E5F50C6151DFB0000A433A6 /* GCTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C5151DFB0000A433A6 /* GCTagTests.m */; };
-		3E5F50C9151E02C300A433A6 /* GCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C7151E02C300A433A6 /* GCObject.h */; };
-		3E5F50CA151E02C300A433A6 /* GCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C8151E02C300A433A6 /* GCObject.m */; };
+		3E5F50C9151E02C300A433A6 /* GCRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C7151E02C300A433A6 /* GCRecord.h */; };
+		3E5F50CA151E02C300A433A6 /* GCRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C8151E02C300A433A6 /* GCRecord.m */; };
 		3E5F50CD151E27BA00A433A6 /* GCObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */; };
 		3EECFD66151C32630074E26C /* GCAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3A151C32630074E26C /* GCAge.h */; };
 		3EECFD67151C32630074E26C /* GCAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3B151C32630074E26C /* GCAge.m */; };
@@ -109,8 +109,8 @@
 		3E5F509A151DEC5100A433A6 /* tags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tags.plist; sourceTree = "<group>"; };
 		3E5F50C0151DF2E800A433A6 /* Gedcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
 		3E5F50C5151DFB0000A433A6 /* GCTagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTagTests.m; sourceTree = "<group>"; };
-		3E5F50C7151E02C300A433A6 /* GCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObject.h; sourceTree = "<group>"; };
-		3E5F50C8151E02C300A433A6 /* GCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObject.m; sourceTree = "<group>"; };
+		3E5F50C7151E02C300A433A6 /* GCRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRecord.h; sourceTree = "<group>"; };
+		3E5F50C8151E02C300A433A6 /* GCRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRecord.m; sourceTree = "<group>"; };
 		3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjectTests.m; sourceTree = "<group>"; };
 		3EECFD3A151C32630074E26C /* GCAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAge.h; sourceTree = "<group>"; };
 		3EECFD3B151C32630074E26C /* GCAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAge.m; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 				3EECFD5F151C32630074E26C /* GCNode.m */,
 				3EF7A1CA151C57A2004A8540 /* GCTag.h */,
 				3EF7A1CB151C57A3004A8540 /* GCTag.m */,
-				3E5F50C7151E02C300A433A6 /* GCObject.h */,
-				3E5F50C8151E02C300A433A6 /* GCObject.m */,
+				3E5F50C7151E02C300A433A6 /* GCRecord.h */,
+				3E5F50C8151E02C300A433A6 /* GCRecord.m */,
 				3E57557915202A9600A918D1 /* GCValue.h */,
 				3E57557A15202A9600A918D1 /* GCValue.m */,
 				3EECFD93151C33590074E26C /* Age */,
@@ -412,7 +412,7 @@
 				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
 				3EF7A1D2151C5FCE004A8540 /* NSString+GCKitAdditions.h in Headers */,
 				3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */,
-				3E5F50C9151E02C300A433A6 /* GCObject.h in Headers */,
+				3E5F50C9151E02C300A433A6 /* GCRecord.h in Headers */,
 				3E57557B15202A9600A918D1 /* GCValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +554,7 @@
 				3EECFD91151C32630074E26C /* GCSimpleDate.m in Sources */,
 				3EF7A1CD151C57A4004A8540 /* GCTag.m in Sources */,
 				3EF7A1D3151C5FCE004A8540 /* NSString+GCKitAdditions.m in Sources */,
-				3E5F50CA151E02C300A433A6 /* GCObject.m in Sources */,
+				3E5F50CA151E02C300A433A6 /* GCRecord.m in Sources */,
 				3E57557C15202A9600A918D1 /* GCValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
