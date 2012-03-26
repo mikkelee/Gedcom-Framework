@@ -12,19 +12,16 @@ Example:
 ``` objective-c
     GCObject *indi = [GCObject objectWithType:@"Individual"];
     
-    GCObject *name = [GCObject objectWithType:@"Name"];
-    [name setStringValue:@"Jens /Hansen/"];
+    GCObject *name = [GCObject objectWithType:@"Name" stringValue:@"Jens /Hansen/"];
     
     [indi addRecord:name];
     
-    GCObject *altName = [GCObject objectWithType:@"Name"];
-    [altName setStringValue:@"Jens /Hansen/ Smed"];
+    GCObject *altName = [GCObject objectWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
     [indi addRecord:altName];
     
     GCObject *birt = [GCObject objectWithType:@"Birth"];
-    GCObject *date = [GCObject objectWithType:@"Date"];
-    [date setStringValue:@"1 JAN 1901"];
+    GCObject *date = [GCObject objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     [birt addRecord:date];
     [indi addRecord:birt];
@@ -74,6 +71,7 @@ Additionally, parsing and handling of ages and dates per spec.
 * **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
 * **GCObject**: xref generator
 * **GCObject**: parent ref
+* **GCValue**: coercions
 * **GCMutableNode**
 * **GCAge/GCDate**: better hiding of internals (ie a facade) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * **GCAge/GCDate**: calculations (ie dateA - dateB = age)
