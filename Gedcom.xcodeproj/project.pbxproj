@@ -13,6 +13,8 @@
 		3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E88151C319D005E09E1 /* InfoPlist.strings */; };
+		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; };
+		3E57557C15202A9600A918D1 /* GCValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557A15202A9600A918D1 /* GCValue.m */; };
 		3E5F5098151DCC7B00A433A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F5097151DCC7B00A433A6 /* README.md */; };
 		3E5F509B151DEC5100A433A6 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F509A151DEC5100A433A6 /* tags.plist */; };
 		3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C0151DF2E800A433A6 /* Gedcom.h */; };
@@ -101,6 +103,8 @@
 		3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3E1C3E87151C319D005E09E1 /* GedcomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomTests-Info.plist"; sourceTree = "<group>"; };
 		3E1C3E89151C319D005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValue.h; sourceTree = "<group>"; };
+		3E57557A15202A9600A918D1 /* GCValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValue.m; sourceTree = "<group>"; };
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3E5F509A151DEC5100A433A6 /* tags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tags.plist; sourceTree = "<group>"; };
 		3E5F50C0151DF2E800A433A6 /* Gedcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				3EF7A1CB151C57A3004A8540 /* GCTag.m */,
 				3E5F50C7151E02C300A433A6 /* GCObject.h */,
 				3E5F50C8151E02C300A433A6 /* GCObject.m */,
+				3E57557915202A9600A918D1 /* GCValue.h */,
+				3E57557A15202A9600A918D1 /* GCValue.m */,
 				3EECFD93151C33590074E26C /* Age */,
 				3EECFD94151C33640074E26C /* Date */,
 				3E1C3E70151C319C005E09E1 /* Supporting Files */,
@@ -407,6 +413,7 @@
 				3EF7A1D2151C5FCE004A8540 /* NSString+GCKitAdditions.h in Headers */,
 				3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */,
 				3E5F50C9151E02C300A433A6 /* GCObject.h in Headers */,
+				3E57557B15202A9600A918D1 /* GCValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +555,7 @@
 				3EF7A1CD151C57A4004A8540 /* GCTag.m in Sources */,
 				3EF7A1D3151C5FCE004A8540 /* NSString+GCKitAdditions.m in Sources */,
 				3E5F50CA151E02C300A433A6 /* GCObject.m in Sources */,
+				3E57557C15202A9600A918D1 /* GCValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

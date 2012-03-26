@@ -36,7 +36,7 @@ is equivalent to:
 
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:nil
+                                          xref:@"@I1@"
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
@@ -58,7 +58,7 @@ is equivalent to:
 is equivalent to:
 
 ```
-0 INDI
+0 @I1@ INDI
 1 NAME Jens /Hansen/
 1 NAME Jens /Hansen/ Smed
 1 BIRT
@@ -72,7 +72,7 @@ Additionally, parsing and handling of ages and dates per spec.
 * **tags.plist**: complete validSubTags/tagAliases
 * **GCNode**: subNodes array shouldn't be mutable (GCNode should be fully immutable)
 * **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
-* **GCObject**: xrefs - some kind of central authority?
+* **GCObject**: xref generator
 * **GCObject**: parent ref
 * **GCMutableNode**
 * **GCAge/GCDate**: better hiding of internals (ie a facade) - should remain immutable; interface should basically just be input gedcom, get out instance.

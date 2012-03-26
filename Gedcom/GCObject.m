@@ -9,9 +9,11 @@
 #import "GCObject.h"
 #import "GCNode.h"
 #import "GCTag.h"
+#import "GCValue.h"
 
 @implementation GCObject {
     GCTag *_tag;
+    GCValue *_value;
     NSMutableDictionary *_records;
 }
 
@@ -39,7 +41,7 @@ __strong static NSMutableDictionary *xrefStore;
     NSString *xref = [xrefStore objectForKey:[NSValue valueWithPointer:(const void *)obj]];
     
     if (xref == nil && [[GCTag tagForAlias:[GCTag tagForName:[obj type]]] isEqualToString:@"@reco"]) {
-        xref = @"@I1@"; //TODO
+        xref = @"@I1@"; //TODO something like if (tag in @reco) {xref = special++}
         
         [self storeXref:xref forObject:obj];
     }
@@ -62,6 +64,39 @@ __strong static NSMutableDictionary *xrefStore;
 + (id)objectWithType:(NSString *)type
 {
     return [[self alloc] initWithType:type];
+}
+
++ (id)objectWithType:(NSString *)type value:(GCValue *)value
+{
+    GCObject *new = [self objectWithType:type];
+    
+    [new setValue:value];
+    
+    return new;
+}
+
++ (id)objectWithType:(NSString *)type stringValue:(NSString *)value
+{
+    return [self objectWithType:type 
+                          value:[[GCValue alloc] initWithType:GCStringValue value:value]]; 
+}
+
++ (id)objectWithType:(NSString *)type numberValue:(NSNumber *)value
+{
+    return [self objectWithType:type 
+                          value:[[GCValue alloc] initWithType:GCNumberValue value:value]]; 
+}
+
++ (id)objectWithType:(NSString *)type ageValue:(GCAge *)value
+{
+    return [self objectWithType:type 
+                          value:[[GCValue alloc] initWithType:GCAgeValue value:value]]; 
+}
+
++ (id)objectWithType:(NSString *)type dateValue:(GCDate *)value
+{
+    return [self objectWithType:type 
+                          value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
 }
 
 + (id)objectWithGedcomNode:(GCNode *)node
@@ -156,15 +191,62 @@ __strong static NSMutableDictionary *xrefStore;
 {
     //TODO validity check (don't put a NAME on a FAM, etc)
     
+//    if ([value isKindOfClass:[NSString class]]) {
+//        [self addRecord:[[self class] objectWithType:key stringValue:value]];
+//    } else {
+//        [_records setObject:value forKey:key];
+//    }
+    
     [_records setObject:value forKey:key];
 }
+
+#pragma mark Properties
 
 - (NSString *)type
 {
     return [_tag name];
 }
 
-//TODO handle multiple value types (dates, numbers, strings, ages; acc. to tags.plist?)
-@synthesize stringValue;
+@synthesize value = _value;
+
+- (void)setStringValue:(NSString *)stringValue
+{
+    _value = [[GCValue alloc] initWithType:GCStringValue value:stringValue];
+}
+
+- (NSString *)stringValue
+{
+    return [_value stringValue];
+}
+
+- (void)setNumberValue:(NSNumber *)numberValue
+{
+    _value = [[GCValue alloc] initWithType:GCNumberValue value:numberValue];
+}
+
+- (NSNumber *)numberValue
+{
+    return [_value numberValue];
+}
+
+- (void)setAgeValue:(GCAge *)ageValue
+{
+    _value = [[GCValue alloc] initWithType:GCAgeValue value:ageValue];
+}
+
+- (GCAge *)ageValue
+{
+    return [_value ageValue];
+}
+
+- (void)setDateValue:(GCDate *)dateValue
+{
+    _value = [[GCValue alloc] initWithType:GCDateValue value:dateValue];
+}
+
+- (GCDate *)dateValue
+{
+    return [_value dateValue];
+}
 
 @end

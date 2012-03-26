@@ -24,6 +24,19 @@
 
 + (GCDate *)dateFromGedcom:(NSString *)gedcom;
 
+- (NSComparisonResult)compare:(id)other;
+
+//subclasses implement these:
+
+@property (retain, readonly) NSString *gedcomString;
+@property (retain, readonly) NSString *displayString;
+@property (retain, readonly) NSString *description;
+
+@end
+
+
+@interface GCDate ()
+
 //convenience factory methods:
 
 + (GCSimpleDate *)simpleDate:(NSDateComponents *)co; //assumes Gregorian
@@ -39,17 +52,12 @@
 
 + (GCInvalidDate *)invalidDateString:(NSString *)s;
 
-- (NSComparisonResult)compare:(id)other;
-
-//subclasses implement these:
-
 @property (retain, readonly) GCSimpleDate *refDate; //used for sorting, etc.
 
-@property (retain, readonly) NSString *gedcomString;
-@property (retain, readonly) NSString *displayString;
-@property (retain, readonly) NSString *description;
+@property (readonly) NSUInteger year;
+@property (readonly) NSUInteger month;
+@property (readonly) NSUInteger day;
 
 @end
-
 
 

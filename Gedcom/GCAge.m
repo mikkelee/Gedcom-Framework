@@ -71,4 +71,19 @@
 @dynamic displayString;
 @dynamic description;
 
+- (NSUInteger)years
+{
+    return [[[self refAge] ageComponents] year];
+}
+
+- (NSUInteger)months
+{
+    return [[[self refAge] ageComponents] month];
+}
+
+- (NSUInteger)days
+{
+    return [[[self refAge] ageComponents] day];
+}
+
 @end

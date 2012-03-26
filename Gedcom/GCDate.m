@@ -142,4 +142,19 @@
 @dynamic displayString;
 @dynamic description;
 
+- (NSUInteger)year
+{
+    return [[[self refDate] dateComponents] year];
+}
+
+- (NSUInteger)month
+{
+    return [[[self refDate] dateComponents] month];
+}
+
+- (NSUInteger)day
+{
+    return [[[self refDate] dateComponents] day];
+}
+
 @end

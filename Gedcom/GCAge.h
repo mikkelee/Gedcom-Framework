@@ -44,4 +44,8 @@ typedef NSUInteger GCAgeQualifier;
 @property (retain, readonly) NSString *displayString;
 @property (retain, readonly) NSString *description;
 
+@property (readonly) NSUInteger years;
+@property (readonly) NSUInteger months;
+@property (readonly) NSUInteger days;
+
 @end

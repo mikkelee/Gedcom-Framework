@@ -11,6 +11,8 @@
 #import "GCObject.h"
 #import "GCNode.h"
 #import "GCTag.h"
+#import "GCDate.h"
+#import "GCAge.h"
 
 @interface GCObjectTests : SenTestCase {
 	
@@ -20,23 +22,20 @@
 
 @implementation GCObjectTests
 
-- (void)testObjects
+- (void)testSimpleObjects
 {
     GCObject *indi = [GCObject objectWithType:@"Individual"];
     
-    GCObject *name = [GCObject objectWithType:@"Name"];
-    [name setStringValue:@"Jens /Hansen/"];
+    GCObject *name = [GCObject objectWithType:@"Name" stringValue:@"Jens /Hansen/"];
     
     [indi addRecord:name];
     
-    GCObject *altName = [GCObject objectWithType:@"Name"];
-    [altName setStringValue:@"Jens /Hansen/ Smed"];
+    GCObject *altName = [GCObject objectWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
     [indi addRecord:altName];
     
     GCObject *birt = [GCObject objectWithType:@"Birth"];
-    GCObject *date = [GCObject objectWithType:@"Date"];
-    [date setStringValue:@"1 JAN 1901"];
+    GCObject *date = [GCObject objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     [birt addRecord:date];
     [indi addRecord:birt];
@@ -51,7 +50,7 @@
     
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:@"@I1@"
+                                          xref:nil
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
@@ -71,6 +70,13 @@
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          [[object gedcomNode] gedcomString], nil);
+}
+
+- (void)testObjectValues
+{
+    GCObject *date = [GCObject objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    
+    STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
 }
 
 @end
