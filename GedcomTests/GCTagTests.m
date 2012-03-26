@@ -9,6 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import "GCTag.h"
+#import "GCValue.h"
 
 @interface GCTagTests : SenTestCase {
 	
@@ -31,6 +32,9 @@
     
     STAssertEqualObjects([indi2 code], @"INDI", nil);
     STAssertEqualObjects([indi2 name], @"Individual", nil);
+    
+    STAssertEquals([[GCTag tagCoded:@"NAME"] valueType], GCStringValue, nil);
+    STAssertEquals([[GCTag tagCoded:@"EVEN"] valueType], GCBooleanValue, nil);
 }
 
 @end

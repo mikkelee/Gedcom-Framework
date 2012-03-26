@@ -158,13 +158,6 @@ const NSString *kReverseAliases = @"reverseAliases";
     return [[self validSubTags] containsObject:[tag code]];
 }
 
--(GCValueType)valueType
-{
-    //TODO
-    
-    return GCStringValue;
-}
-
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (%@)", [super description], [self code]];
@@ -205,6 +198,11 @@ const NSString *kReverseAliases = @"reverseAliases";
 - (NSString *)name
 {
     return [[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"name"];
+}
+
+-(GCValueType)valueType
+{
+    return [GCValue valueTypeNamed:[[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"valueType"]];
 }
 
 - (BOOL)isCustom
