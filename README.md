@@ -69,13 +69,13 @@ is equivalent to:
 
 # TODO #
 
-* **tags.plist**: complete validSubTags/tagAliases
+* **tags.plist**: complete tags dict & tagAliases
 * **GCNode**: subNodes array shouldn't be mutable (GCNode should be fully immutable)
 * **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
+* **GCMutableNode**: Mutable version of GCNode
 * **GCObject**: xref generator
 * **GCObject**: parent ref
-* **GCValue**: coercions
-* **GCMutableNode**
+* **GCValue**: type coercions
 * **GCAge/GCDate**: better hiding of internals (ie a facade) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * **GCAge/GCDate**: calculations (ie dateA - dateB = age)
 * **appledocs**: and better comments in general
