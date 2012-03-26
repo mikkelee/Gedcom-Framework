@@ -12,25 +12,32 @@
 
 @interface GCNode : NSObject <NSCopying, NSCoding>
 
-- (id)init;
+#pragma mark Initialization
 
 - (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes;
 
-//convenience
+#pragma mark Convenience constructors
+
 + (id)nodeWithTag:(GCTag *)tag value:(NSString *)value;
 + (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref;
 
 + (NSArray *)arrayOfNodesFromString:(NSString*) gedString;
 + (NSArray *)arrayOfNodesFromArrayOfStrings:(NSArray*) gedLines;
 
+#pragma mark Gedcom output
+
 - (NSString *)gedcomString;
 - (NSArray *)gedcomLines;
+
+#pragma mark Subnode access
 
 -(GCNode *)subNodeForTag:(NSString *)tag;
 -(NSArray *)subNodesForTag:(NSString *)tag;
 
 -(GCNode *)subNodeForTagPath:(NSString *)tagPath; //tagPath can be for instance BIRT.DATE
 -(NSArray *)subNodesForTagPath:(NSString *)tagPath;
+
+#pragma mark Properties
 
 @property (readonly) GCNode *parent;
 @property (readonly) GCTag *gedTag;

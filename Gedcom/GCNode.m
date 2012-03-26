@@ -45,6 +45,8 @@
 
 - (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xr subNodes:(NSArray *)subNodes
 {
+    NSParameterAssert(tag != nil);
+    
     self = [self init];
     
 	if (self) {
@@ -52,16 +54,15 @@
         [self setXref:xr];
         [self setGedValue:value];
         
-        //TODO shouldn't be mutable...
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
-        } else {
-            _subNodes = [NSMutableArray arrayWithCapacity:3];
         }
 	}
     
     return self;
 }
+
+#pragma mark Convenience constructors
 
 + (id)nodeWithTag:(GCTag *)tag value:(NSString *)value
 {
@@ -162,26 +163,6 @@
 	NSLog(@"Finished parsing gedcom.");
 	
 	return [gedArray copy];
-}
-
-#pragma mark Subnodes
-
-- (void)addSubNode:(GCNode *) n
-{
-	if (self == n) {
-		NSLog(@"ACCESS DENIED: Attempted to add %@ to itself!", self);
-		return;
-	}
-    
-	[_subNodes addObject:n];
-    [n setParent:self];
-}
-
-- (void)addSubNodes:(NSArray *)a
-{
-	for (id subNode in a) {
-		[self addSubNode:subNode];
-	}
 }
 
 #pragma mark Gedcom output
@@ -313,6 +294,24 @@
 	return a;
 }
 
+- (void)addSubNode:(GCNode *) n
+{
+	if (self == n) {
+		NSLog(@"ACCESS DENIED: Attempted to add %@ to itself!", self);
+		return;
+	}
+    
+	[_subNodes addObject:n];
+    [n setParent:self];
+}
+
+- (void)addSubNodes:(NSArray *)a
+{
+	for (id subNode in a) {
+		[self addSubNode:subNode];
+	}
+}
+
 #pragma mark Description
 
 - (NSString *)description
@@ -321,7 +320,7 @@
 	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
 }
 
-#pragma mark NSCoding
+#pragma mark NSCoding conformance
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
@@ -347,7 +346,7 @@
     return self;
 }
 
-#pragma mark NSCopying
+#pragma mark NSCopying conformance
 
 - (id)copyWithZone:(NSZone *)zone
 {

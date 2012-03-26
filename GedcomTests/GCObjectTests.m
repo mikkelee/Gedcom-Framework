@@ -38,7 +38,7 @@
     [indi addRecordWithType:@"Death" boolValue:YES];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
-                         @"0 @I1@ INDI\n"
+                         @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
                          @"1 BIRT\n"
@@ -49,7 +49,7 @@
     
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:nil
+                                          xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],

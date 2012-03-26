@@ -143,14 +143,20 @@ const NSString *kReverseAliases = @"reverseAliases";
     return [GCTag tagCoded:[[self class] tagForName:name]];
 }
 
--(NSArray *)validSubTags
+-(NSOrderedSet *)validSubTags
 {
-    NSArray *valid = [NSArray array];
+    NSMutableOrderedSet *validTags = [NSMutableOrderedSet orderedSetWithCapacity:3];
     
-    valid = [valid arrayByAddingObjectsFromArray:[[self class] validSubTagsForTag:_code]];
-    valid = [valid arrayByAddingObjectsFromArray:[[self class] validSubTagsForTag:[[self class] tagForAlias:_code]]];
+    NSMutableArray *tags = [NSMutableArray arrayWithCapacity:3];
+    [tags addObjectsFromArray:[[self class] validSubTagsForTag:_code]];
+    [tags addObjectsFromArray:[[self class] validSubTagsForTag:[[self class] tagForAlias:_code]]];
     
-    return valid;
+    for (id tag in tags) {
+        [validTags addObject:tag];
+        [validTags addObjectsFromArray:[[self class] aliasesForTag:tag]];
+    }
+    
+    return validTags;
 }
 
 -(BOOL)isValidSubTag:(GCTag *)tag
@@ -202,7 +208,13 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 -(GCValueType)valueType
 {
-    return [GCValue valueTypeNamed:[[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"valueType"]];
+    NSString *valueType = [[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"valueType"];
+    
+    if (valueType == nil) {
+        valueType = [[[tagInfo objectForKey:kTags] objectForKey:[[self class] tagForAlias:_code]] objectForKey:@"valueType"];
+    }
+    
+    return [GCValue valueTypeNamed:valueType];
 }
 
 - (BOOL)isCustom

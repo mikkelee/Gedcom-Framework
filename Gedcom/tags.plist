@@ -38,6 +38,32 @@
 				<string>TRLR</string>
 			</array>
 		</dict>
+		<key>HEAD</key>
+		<dict>
+			<key>name</key>
+			<string>Header</string>
+			<key>type</key>
+			<string></string>
+			<key>valueType</key>
+			<string></string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
+		<key>SUBN</key>
+		<dict>
+			<key>name</key>
+			<string>Submission</string>
+			<key>type</key>
+			<string></string>
+			<key>valueType</key>
+			<string></string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
 		<key>@reco</key>
 		<dict>
 			<key>name</key>
@@ -51,6 +77,19 @@
 				<string>SOUR</string>
 			</array>
 		</dict>
+		<key>TRLR</key>
+		<dict>
+			<key>name</key>
+			<string>Trailer</string>
+			<key>type</key>
+			<string></string>
+			<key>valueType</key>
+			<string></string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
 		<key>ABBR</key>
 		<dict>
 			<key>name</key>
@@ -58,7 +97,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -71,7 +110,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -84,7 +123,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string>GCBoolValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -97,7 +136,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -110,7 +149,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -123,7 +162,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -136,7 +175,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string>GCAgeValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -149,7 +188,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -162,7 +201,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -175,7 +214,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -188,7 +227,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -201,7 +240,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -214,7 +253,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -227,7 +266,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -240,7 +279,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -253,7 +292,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -266,7 +305,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -279,7 +318,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -291,8 +330,6 @@
 			<string>Birth</string>
 			<key>type</key>
 			<string></string>
-			<key>valueType</key>
-			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string>FAMC</string>
@@ -305,7 +342,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -318,7 +355,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -331,7 +368,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -344,7 +381,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -357,7 +394,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -370,7 +407,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -383,7 +420,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -396,7 +433,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -409,7 +446,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -422,7 +459,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -435,7 +472,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string>FAMC</string>
@@ -448,7 +485,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -461,7 +498,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -474,7 +511,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -487,7 +524,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -500,7 +537,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -513,7 +550,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -526,7 +563,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -539,7 +576,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -552,7 +589,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -565,7 +602,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -578,7 +615,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -591,7 +628,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string>GCDateValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -603,8 +640,6 @@
 			<string>Death</string>
 			<key>type</key>
 			<string></string>
-			<key>valueType</key>
-			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -617,7 +652,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -630,7 +665,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -643,7 +678,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -656,7 +691,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -669,7 +704,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -682,7 +717,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -695,7 +730,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -708,7 +743,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -721,7 +756,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -734,7 +769,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -760,7 +795,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string>EVEN</string>
@@ -777,7 +812,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -790,7 +825,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -803,7 +838,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -816,7 +851,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -829,7 +864,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -842,7 +877,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -855,7 +890,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -868,7 +903,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -881,20 +916,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>HEAD</key>
-		<dict>
-			<key>name</key>
-			<string>Header</string>
-			<key>type</key>
 			<string></string>
-			<key>valueType</key>
-			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -907,7 +929,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -920,7 +942,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -933,7 +955,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -946,7 +968,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string>NAME</string>
@@ -960,7 +982,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -973,7 +995,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -986,7 +1008,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -999,7 +1021,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1012,7 +1034,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1025,7 +1047,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1038,7 +1060,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1051,7 +1073,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1082,7 +1104,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1095,7 +1117,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1108,7 +1130,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1121,7 +1143,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1134,7 +1156,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1147,7 +1169,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1160,7 +1182,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1173,7 +1195,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1186,7 +1208,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1199,7 +1221,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1212,7 +1234,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1225,7 +1247,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1238,7 +1260,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1251,7 +1273,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1264,7 +1286,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1277,7 +1299,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1290,7 +1312,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1303,7 +1325,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1316,7 +1338,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1329,7 +1351,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1342,7 +1364,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1355,7 +1377,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1368,7 +1390,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1381,7 +1403,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1394,7 +1416,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1407,7 +1429,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1420,7 +1442,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1433,7 +1455,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1446,7 +1468,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1459,7 +1481,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1472,7 +1494,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1485,7 +1507,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1498,7 +1520,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1511,7 +1533,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1524,7 +1546,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1537,7 +1559,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1550,7 +1572,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1563,7 +1585,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1576,7 +1598,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1589,20 +1611,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>SUBN</key>
-		<dict>
-			<key>name</key>
-			<string>Submission</string>
-			<key>type</key>
 			<string></string>
-			<key>valueType</key>
-			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1615,7 +1624,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1628,7 +1637,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1641,7 +1650,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1654,7 +1663,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1667,20 +1676,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>TRLR</key>
-		<dict>
-			<key>name</key>
-			<string>Trailer</string>
-			<key>type</key>
 			<string></string>
-			<key>valueType</key>
-			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1693,7 +1689,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1706,7 +1702,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1719,7 +1715,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1732,7 +1728,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCStringValue</string>
+			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>

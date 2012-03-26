@@ -24,7 +24,7 @@
 +(GCTag *)tagNamed:(NSString *)name;
 
 //misc
--(NSArray *)validSubTags;
+-(NSOrderedSet *)validSubTags;
 -(BOOL)isValidSubTag:(GCTag *)tag;
 
 -(GCValueType)valueType;

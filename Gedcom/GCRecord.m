@@ -10,6 +10,8 @@
 #import "GCNode.h"
 #import "GCTag.h"
 #import "GCValue.h"
+#import "GCAge.h"
+#import "GCDate.h"
 
 @implementation GCRecord {
     GCTag *_tag;
@@ -41,7 +43,10 @@ __strong static NSMutableDictionary *xrefStore;
     NSString *xref = [xrefStore objectForKey:[NSValue valueWithPointer:(const void *)obj]];
     
     if (xref == nil && [[GCTag tagForAlias:[GCTag tagForName:[obj type]]] isEqualToString:@"@reco"]) {
-        xref = @"@I1@"; //TODO something like if (tag in @reco) {xref = special++}
+        int i = 0;
+        do {
+            xref = [NSString stringWithFormat:@"@%@%d@", [GCTag tagForName:[obj type]], ++i]; 
+        } while ([[xrefStore allKeysForObject:xref] count] > 0);
         
         [self storeXref:xref forObject:obj];
     }
@@ -105,6 +110,86 @@ __strong static NSMutableDictionary *xrefStore;
                           value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
 }
 
++ (id)objectWithType:(NSString *)type object:(GCRecord *)object
+{
+    return [self objectWithType:type 
+                          value:[[GCValue alloc] initWithType:GCStringValue value:[GCRecord xrefForObject:object]]]; 
+}
+
++ (id)objectWithGedcomNode:(GCNode *)node
+{
+    GCRecord *object = [[GCRecord alloc] initWithType:[[node gedTag] name]];
+    
+    if ([node xref]) {
+        [[self class] storeXref:[node xref] forObject:object];
+    }
+    
+    if ([node gedValue] != nil) {
+        switch ([[node gedTag] valueType]) {
+            case GCStringValue:
+                [object setStringValue:[node gedValue]];
+                break;
+                
+            case GCNumberValue: {
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                [object setNumberValue:[formatter numberFromString:[node gedValue]]];
+            }
+                break;
+                
+            case GCAgeValue:
+                [object setAgeValue:[GCAge ageFromGedcom:[node gedValue]]];
+                break;
+                
+            case GCDateValue:
+                [object setDateValue:[GCDate dateFromGedcom:[node gedValue]]];
+                break;
+                
+            case GCBoolValue:
+                [object setBoolValue:[[node gedValue] isEqualToString:@"Y"]];
+                break;
+                
+            case GCRecordReferenceValue:
+                //TODO
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    for (id subNode in [node subNodes]) {
+        [object addRecord:[GCRecord objectWithGedcomNode:subNode]];
+    }
+    
+    return object;
+}
+
+- (void)addRecord:(GCRecord *)object
+{
+    id key = [object type];
+    
+    NSParameterAssert([[self validSubRecordTypes] containsObject:key]);
+    
+    id existing = [self valueForKey:key];
+    
+    BOOL allowsMultiple = true; //TODO
+    
+    if (allowsMultiple && existing) {
+        //one exists already, so we get in array mode:
+        
+        if ([existing isKindOfClass:[NSMutableArray class]]) {
+            //already have an array, so just add here:
+            [existing addObject:object];
+        } else {
+            //create array and put both in:
+            NSMutableArray *objects = [NSMutableArray arrayWithObjects:existing, object, nil];
+            [self setValue:objects forKey:key];
+        }
+    } else {
+        [self setValue:object forKey:key];
+    }
+}
+
 - (void)addRecordWithType:(NSString *)type stringValue:(NSString *)value
 {
     [self addRecord:[[self class] objectWithType:type stringValue:value]];
@@ -130,44 +215,9 @@ __strong static NSMutableDictionary *xrefStore;
     [self addRecord:[[self class] objectWithType:type dateValue:value]];
 }
 
-+ (id)objectWithGedcomNode:(GCNode *)node
+- (void)addRecordWithType:(NSString *)type object:(GCRecord *)object
 {
-    GCRecord *object = [[GCRecord alloc] initWithType:[[node gedTag] name]];
-    
-    if ([node xref]) {
-        [[self class] storeXref:[node xref] forObject:object];
-    }
-    
-    [object setStringValue:[node gedValue]];
-    
-    for (id subNode in [node subNodes]) {
-        [object addRecord:[GCRecord objectWithGedcomNode:subNode]];
-    }
-    
-    return object;
-}
-
-- (void)addRecord:(GCRecord *)object
-{
-    id key = [object type];
-    id existing = [self valueForKey:key];
-    
-    BOOL allowsMultiple = true; //TODO
-    
-    if (allowsMultiple && existing) {
-        //one exists already, so we get in array mode:
-        
-        if ([existing isKindOfClass:[NSMutableArray class]]) {
-            //already have an array, so just add here:
-            [existing addObject:object];
-        } else {
-            //create array and put both in:
-            NSMutableArray *objects = [NSMutableArray arrayWithObjects:existing, object, nil];
-            [self setValue:objects forKey:key];
-        }
-    } else {
-        [self setValue:object forKey:key];
-    }
+    [self addRecord:[[self class] objectWithType:type object:object]];
 }
 
 - (GCNode *)gedcomNode
@@ -175,20 +225,21 @@ __strong static NSMutableDictionary *xrefStore;
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
     
     for (id subTag in [_tag validSubTags]) {
-        for (id tagAlias in [GCTag aliasesForTag:subTag]) {
-            id obj = [_records objectForKey:[GCTag nameForTag:tagAlias]];
-            
-            if (obj) {
-                if ([obj isKindOfClass:[NSMutableArray class]]) {
-                    NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
-                        return [[obj1 stringValue] compare:[obj2 stringValue]];
-                    }];
-                    for (id subObj in sorted) {
-                        [subNodes addObject:[subObj gedcomNode]];
-                    }
-                } else {
-                    [subNodes addObject:[obj gedcomNode]];
+        //NSLog(@"subTag: %@", subTag);
+        id obj = [_records objectForKey:[GCTag nameForTag:subTag]];
+        
+        if (obj) {
+            //NSLog(@"obj: %@", obj);
+            if ([obj isKindOfClass:[NSMutableArray class]]) {
+                NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
+                    return [[obj1 stringValue] compare:[obj2 stringValue]];
+                }];
+                for (id subObj in sorted) {
+                    //NSLog(@"subObj: %@", subObj);
+                    [subNodes addObject:[subObj gedcomNode]];
                 }
+            } else {
+                [subNodes addObject:[obj gedcomNode]];
             }
         }
     }
@@ -199,6 +250,19 @@ __strong static NSMutableDictionary *xrefStore;
                                       subNodes:subNodes];
     
     return node;
+}
+
+- (NSArray *)validSubRecordTypes
+{
+    NSMutableArray *types = [NSMutableArray arrayWithCapacity:[[_tag validSubTags] count]];
+    
+    for (id tag in [_tag validSubTags]) {
+        [types addObject:[GCTag nameForTag:tag]];
+    }
+    
+    //NSLog(@"types: %@", types);
+    
+    return types;
 }
 
 - (NSString *)description

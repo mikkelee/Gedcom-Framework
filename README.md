@@ -5,14 +5,17 @@
 A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
 
 * GEDCOM text <=> GCNode <=> GCRecord
-* Lowest are the GCNodes, a simple representation of the nested structure of GEDCOM text data.
+* Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
 * Above GCNodes are GCRecords, which allow for more abstracted data access, including automatic handling of value types, references, etc.
+* Eventually, there should be things like GCIndividual with appropriate accessors.
+
+The intent is to hide the GEDCOM specifics, but to allow access if required.
 
 Currently, GCNodes are fully implemented; work is being done on GCRecord / GCValue / GCTag. See also TODO below.
 
 Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; handles ranges & periods, allows for sorting.
 
-Example:
+Example, from top to bottom:
 
 ``` objective-c
     GCRecord *indi = [GCRecord objectWithType:@"Individual"];
