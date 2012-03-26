@@ -70,7 +70,6 @@ yearGreg				= year; // | /\d{3,4}\/\d\d/; // YEARGREG: = [ <NUMBER> | <NUMBER>/<
 //dateExact				= day month yearGreg; // not used in EVEN.DATE
 
 /*************************************************************************
- *	Dates
 
 	 DATE: = {Size=4:35} 
 	 [ <DATE_CALENDAR_ESCAPE> | <NULL>] 
@@ -158,4 +157,4 @@ yearGreg				= year; // | /\d{3,4}\/\d\d/; // YEARGREG: = [ <NUMBER> | <NUMBER>/<
 	 [ <NUMBER> | <NUMBER>/<DIGIT><DIGIT> ] 
 
 
-*/
+**************************************************************************/
