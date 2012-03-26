@@ -14,7 +14,8 @@ typedef enum {
     GCNumberValue,
     GCAgeValue,
     GCDateValue,
-    GCBoolValue
+    GCBoolValue,
+    GCRecordReferenceValue
 } GCValueType;
 
 @class GCAge;

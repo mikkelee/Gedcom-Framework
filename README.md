@@ -4,8 +4,13 @@
 
 A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
 
-* Lowest are the GCNodes, a simple representation of the nested structure of GEDCOM data.
-* Above GCNodes are GCRecords.
+* GEDCOM text <=> GCNode <=> GCRecord
+* Lowest are the GCNodes, a simple representation of the nested structure of GEDCOM text data.
+* Above GCNodes are GCRecords, which allow for more abstracted data access, including automatic handling of value types, references, etc.
+
+Currently, GCNodes are fully implemented; work is being done on GCRecord / GCValue / GCTag. See also TODO below.
+
+Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; handles ranges & periods, allows for sorting.
 
 Example:
 
@@ -61,8 +66,6 @@ is equivalent to:
 2 DATE 1 JAN 1901
 1 DEAT Y
 ```
-
-Additionally, parsing and handling of ages and dates per spec.
 
 # TODO #
 

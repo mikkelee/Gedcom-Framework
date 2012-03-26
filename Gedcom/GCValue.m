@@ -74,6 +74,8 @@
         return GCDateValue;
     } else if ([name isEqualToString:@"GCBoolValue"]) {
         return GCBoolValue;
+    } else if ([name isEqualToString:@"GCRecordReferenceValue"]) {
+        return GCRecordReferenceValue;
     } else {
         return GCUndefinedValue;
     }
