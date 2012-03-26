@@ -40,6 +40,8 @@
 
 - (GCNode *)gedcomNode;
 
+@property GCRecord *parent;
+
 @property (readonly) NSString *type;
 @property (readonly) BOOL isRoot;
 

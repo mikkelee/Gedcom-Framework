@@ -188,6 +188,8 @@ __strong static NSMutableDictionary *xrefStore;
     } else {
         [self setValue:object forKey:key];
     }
+    
+    [object setParent:self];
 }
 
 - (void)addRecordWithType:(NSString *)type stringValue:(NSString *)value
@@ -290,6 +292,8 @@ __strong static NSMutableDictionary *xrefStore;
 }
 
 #pragma mark Properties
+
+@synthesize parent;
 
 - (NSString *)type
 {
