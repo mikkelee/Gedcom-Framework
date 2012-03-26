@@ -99,6 +99,12 @@ __strong static NSMutableDictionary *xrefStore;
                           value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
 }
 
++ (id)objectWithType:(NSString *)type boolValue:(BOOL)value
+{
+    return [self objectWithType:type 
+                          value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
+}
+
 - (void)addRecordWithType:(NSString *)type stringValue:(NSString *)value
 {
     [self addRecord:[[self class] objectWithType:type stringValue:value]];
@@ -112,6 +118,11 @@ __strong static NSMutableDictionary *xrefStore;
 - (void)addRecordWithType:(NSString *)type ageValue:(GCAge *)value
 {
     [self addRecord:[[self class] objectWithType:type ageValue:value]];
+}
+
+- (void)addRecordWithType:(NSString *)type boolValue:(BOOL)value
+{
+    [self addRecord:[[self class] objectWithType:type boolValue:value]];
 }
 
 - (void)addRecordWithType:(NSString *)type dateValue:(GCDate *)value
@@ -261,6 +272,16 @@ __strong static NSMutableDictionary *xrefStore;
 - (GCDate *)dateValue
 {
     return [_value dateValue];
+}
+
+- (void)setBoolValue:(BOOL)boolValue
+{
+    _value = [[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:boolValue]];
+}
+
+- (BOOL)boolValue
+{
+    return [_value boolValue];
 }
 
 @end

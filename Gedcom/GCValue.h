@@ -14,7 +14,7 @@ typedef enum {
     GCNumberValue,
     GCAgeValue,
     GCDateValue,
-    GCBooleanValue
+    GCBoolValue
 } GCValueType;
 
 @class GCAge;
@@ -32,6 +32,6 @@ typedef enum {
 @property (readonly) NSNumber *numberValue;
 @property (readonly) GCAge *ageValue;
 @property (readonly) GCDate *dateValue;
-@property (readonly) BOOL booleanValue;
+@property (readonly) BOOL boolValue;
 
 @end

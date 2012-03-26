@@ -51,8 +51,8 @@
             return [[self dateValue] compare:[other dateValue]];
             break;
             
-        case GCBooleanValue:
-            return [[NSNumber numberWithBool:[self booleanValue]] compare:[NSNumber numberWithBool:[other booleanValue]]];
+        case GCBoolValue:
+            return [[NSNumber numberWithBool:[self boolValue]] compare:[NSNumber numberWithBool:[other boolValue]]];
             break;
 
         default:
@@ -72,8 +72,8 @@
         return GCAgeValue;
     } else if ([name isEqualToString:@"GCDateValue"]) {
         return GCDateValue;
-    } else if ([name isEqualToString:@"GCBooleanValue"]) {
-        return GCBooleanValue;
+    } else if ([name isEqualToString:@"GCBoolValue"]) {
+        return GCBoolValue;
     } else {
         return GCUndefinedValue;
     }
@@ -84,8 +84,8 @@
     if ([_value isKindOfClass:[NSString class]]) {
         return _value;
     } else if ([_value isKindOfClass:[NSNumber class]]) {
-        if (_type == GCBooleanValue) {
-            return [_value booleanValue] ? @"Y" : @"N";
+        if (_type == GCBoolValue) {
+            return [_value boolValue] ? @"Y" : @"N";
         } else {
             return [_value stringValue];
         }
@@ -143,12 +143,12 @@
     }
 }
 
-- (BOOL)booleanValue
+- (BOOL)boolValue
 {
     if ([_value isKindOfClass:[NSString class]]) {
         return [_value isEqualToString:@"Y"];
     } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [_value booleanValue];
+        return [_value boolValue];
     } else if ([_value isKindOfClass:[GCAge class]]) {
         return NO; //TODO
     } else if ([_value isKindOfClass:[GCDate class]]) {

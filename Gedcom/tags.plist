@@ -746,7 +746,7 @@
 			<key>type</key>
 			<string></string>
 			<key>valueType</key>
-			<string>GCBooleanValue</string>
+			<string>GCBoolValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string>DATE</string>

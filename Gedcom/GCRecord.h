@@ -23,12 +23,14 @@
 + (id)objectWithType:(NSString *)type numberValue:(NSNumber *)value;
 + (id)objectWithType:(NSString *)type ageValue:(GCAge *)value;
 + (id)objectWithType:(NSString *)type dateValue:(GCDate *)value;
++ (id)objectWithType:(NSString *)type boolValue:(BOOL)value;
 
 - (void)addRecord:(GCRecord *)object;
 - (void)addRecordWithType:(NSString *)type stringValue:(NSString *)value;
 - (void)addRecordWithType:(NSString *)type numberValue:(NSNumber *)value;
 - (void)addRecordWithType:(NSString *)type ageValue:(GCAge *)value;
 - (void)addRecordWithType:(NSString *)type dateValue:(GCDate *)value;
+- (void)addRecordWithType:(NSString *)type boolValue:(BOOL)value;
 
 - (GCNode *)gedcomNode;
 
@@ -39,5 +41,6 @@
 @property NSNumber *numberValue;
 @property GCAge *ageValue;
 @property GCDate *dateValue;
+@property BOOL boolValue;
 
 @end

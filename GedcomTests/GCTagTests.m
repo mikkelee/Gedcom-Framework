@@ -34,7 +34,7 @@
     STAssertEqualObjects([indi2 name], @"Individual", nil);
     
     STAssertEquals([[GCTag tagCoded:@"NAME"] valueType], GCStringValue, nil);
-    STAssertEquals([[GCTag tagCoded:@"EVEN"] valueType], GCBooleanValue, nil);
+    STAssertEquals([[GCTag tagCoded:@"EVEN"] valueType], GCBoolValue, nil);
 }
 
 @end

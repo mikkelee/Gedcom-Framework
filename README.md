@@ -15,7 +15,7 @@ Example:
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
     [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-    GCRecord *birt = [GCRecord objectWithType:@"Birth"];
+    GCRecord *birt = [GCRecord objectWithType:@"Birth" boolValue:YES];
     
     [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
@@ -28,14 +28,14 @@ is equivalent to:
 
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:@"@I1@"
+                                          xref:nil
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/"],
                                                 [[GCNode alloc] initWithTag:[GCTag tagCoded:@"BIRT"] 
-                                                                      value:nil
+                                                                      value:@"Y"
                                                                        xref:nil
                                                                    subNodes:[NSArray arrayWithObjects:
                                                                              [GCNode nodeWithTag:[GCTag tagCoded:@"DATE"]
@@ -53,7 +53,7 @@ is equivalent to:
 0 @I1@ INDI
 1 NAME Jens /Hansen/
 1 NAME Jens /Hansen/ Smed
-1 BIRT
+1 BIRT Y
 2 DATE 1 JAN 1901
 ```
 
