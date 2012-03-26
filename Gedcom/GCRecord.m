@@ -42,10 +42,10 @@ __strong static NSMutableDictionary *xrefStore;
     [self setupXrefStore];
     NSString *xref = [xrefStore objectForKey:[NSValue valueWithPointer:(const void *)obj]];
     
-    if (xref == nil && [[GCTag tagForAlias:[GCTag tagForName:[obj type]]] isEqualToString:@"@reco"]) {
+    if (xref == nil && [obj isRoot]) {
         int i = 0;
         do {
-            xref = [NSString stringWithFormat:@"@%@%d@", [GCTag tagForName:[obj type]], ++i]; 
+            xref = [NSString stringWithFormat:@"@%@%d@", [[GCTag tagNamed:[obj type]] code], ++i]; 
         } while ([[xrefStore allKeysForObject:xref] count] > 0);
         
         [self storeXref:xref forObject:obj];
@@ -226,7 +226,7 @@ __strong static NSMutableDictionary *xrefStore;
     
     for (id subTag in [_tag validSubTags]) {
         //NSLog(@"subTag: %@", subTag);
-        id obj = [_records objectForKey:[GCTag nameForTag:subTag]];
+        id obj = [_records objectForKey:[[GCTag tagCoded:subTag] name]];
         
         if (obj) {
             //NSLog(@"obj: %@", obj);
@@ -257,7 +257,7 @@ __strong static NSMutableDictionary *xrefStore;
     NSMutableArray *types = [NSMutableArray arrayWithCapacity:[[_tag validSubTags] count]];
     
     for (id tag in [_tag validSubTags]) {
-        [types addObject:[GCTag nameForTag:tag]];
+        [types addObject:[[GCTag tagCoded:tag] name]];
     }
     
     //NSLog(@"types: %@", types);
@@ -294,6 +294,11 @@ __strong static NSMutableDictionary *xrefStore;
 - (NSString *)type
 {
     return [_tag name];
+}
+
+- (BOOL)isRoot
+{
+    return [_tag isRoot];
 }
 
 @synthesize value = _value;

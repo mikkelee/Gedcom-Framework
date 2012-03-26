@@ -10,21 +10,29 @@
 
 @interface GCTag ()
 
+-(id)initWithCode:(NSString *)code name:(NSString *)name valueType:(GCValueType)valueType validSubTags:(NSOrderedSet *)validSubTags;
+
 @end
 
 @implementation GCTag {
     NSString *_code;
+    NSString *_name;
+    NSOrderedSet *_validSubTags;
+    GCValueType _valueType;
 }
+
+#pragma mark Constants
+
+const NSString *kTags = @"tags";
+const NSString *kNameTags = @"nameTags";
+const NSString *kValidSubTags = @"validSubTags";
+const NSString *kRootTags = @"rootTags";
+const NSString *kAliases = @"aliases";
+
+#pragma mark Setup
 
 __strong static NSMutableDictionary *tags;
 __strong static NSDictionary *tagInfo;
-
-//dict keys
-const NSString *kTags = @"tags";
-const NSString *kNameTags = @"nameTags";
-const NSString *kTagAliases = @"tagAliases";
-const NSString *kValidSubTags = @"validSubTags";
-const NSString *kReverseAliases = @"reverseAliases";
 
 + (void)setupTagInfo
 {
@@ -41,69 +49,107 @@ const NSString *kReverseAliases = @"reverseAliases";
                                                                                  format:NULL 
                                                                        errorDescription:&err] mutableCopy];
         
-        if (err) {
-            NSLog(@"error: %@", err);
+        NSAssert(err == nil, @"error: %@", err);
+        
+        //setup aliases:
+        NSMutableDictionary *aliases = [NSMutableDictionary dictionaryWithCapacity:3];
+        for (NSString *c in [_tags objectForKey:kTags]) {
+            NSString *code = c;
             
-        }
-        
-        //adding reverse lookups:
-        NSMutableDictionary *nameTags = [NSMutableDictionary dictionaryWithCapacity:10];
-        for (id tag in [_tags objectForKey:kTags]) {
-            [nameTags setObject:tag forKey:[[[_tags objectForKey:kTags] objectForKey:tag] objectForKey:@"name"]];
-        }
-        [_tags setObject:nameTags forKey:kNameTags];
-        
-        NSMutableDictionary *reverseAliases = [NSMutableDictionary dictionaryWithCapacity:10];
-        for (id tag in [_tags objectForKey:kTagAliases]) {
-            for (id alias in [[_tags objectForKey:kTagAliases] objectForKey:tag]) {
-                [reverseAliases setObject:tag forKey:alias];
+            NSDictionary *tagDict = [[_tags objectForKey:kTags] objectForKey:code];
+            
+            if ([tagDict objectForKey:@"code"]) {
+                code = [tagDict objectForKey:@"code"];
+            }
+            
+            for (id alias in [tagDict objectForKey:kAliases]) {
+                [aliases setObject:code forKey:alias];
             }
         }
-        [_tags setObject:reverseAliases forKey:kReverseAliases];
+        
+        NSLog(@"aliases: %@", aliases);
+        
+        tags = [NSMutableDictionary dictionaryWithCapacity:10];
+        
+        NSMutableDictionary *nameTags = [NSMutableDictionary dictionaryWithCapacity:10];
+        for (NSString *c in [_tags objectForKey:kTags]) {
+            NSString *code = c;
+            
+            NSDictionary *tagDict = [[_tags objectForKey:kTags] objectForKey:code];
+            
+            //override code (for instance, source records and source references are both SOUR)
+            if ([tagDict objectForKey:@"code"]) {
+                code = [tagDict objectForKey:@"code"];
+            }
+            
+            NSString *name = [tagDict objectForKey:@"name"];
+            
+            NSString *valueTypeString = [tagDict objectForKey:@"valueType"];
+            
+            if (valueTypeString == nil || [valueTypeString isEqualToString:@""]) {
+                valueTypeString = [[[_tags objectForKey:kTags] objectForKey:[aliases objectForKey:code]] objectForKey:@"valueType"];
+            }
+            
+            NSMutableOrderedSet *validSubTags = [NSMutableOrderedSet orderedSetWithCapacity:3];
+            
+            //validSubTags from self:
+            for (id subTag in [tagDict objectForKey:kValidSubTags]) {
+                if ([subTag hasPrefix:@"@"]) {
+                    NSLog(@"subTag: %@", subTag);
+                    NSDictionary *aliasDict = [[_tags objectForKey:kTags] objectForKey:subTag];
+                    for (id alias in [aliasDict objectForKey:kAliases]) {
+                        [validSubTags addObject:alias];
+                    }
+                    for (id aliasSubTag in [aliasDict objectForKey:kValidSubTags]) {
+                        [validSubTags addObject:aliasSubTag];
+                    }
+                } else {
+                    [validSubTags addObject:subTag];
+                }
+            }
+            
+            //validSubTags from alias:
+            for (id subTag in [[[_tags objectForKey:kTags] objectForKey:[aliases objectForKey:code]] objectForKey:kValidSubTags]) {
+                if ([subTag hasPrefix:@"@"]) {
+                    NSLog(@"subTag: %@", subTag);
+                    NSDictionary *aliasDict = [[_tags objectForKey:kTags] objectForKey:subTag];
+                    for (id alias in [aliasDict objectForKey:kAliases]) {
+                        [validSubTags addObject:alias];
+                    }
+                    for (id aliasSubTag in [aliasDict objectForKey:kValidSubTags]) {
+                        [validSubTags addObject:aliasSubTag];
+                    }
+                } else {
+                    [validSubTags addObject:subTag];
+                }
+            }
+            
+            GCTag *tag = [[GCTag alloc] initWithCode:code 
+                                                name:name
+                                           valueType:[GCValue valueTypeNamed:valueTypeString]
+                                        validSubTags:validSubTags];
+            
+            [tags setObject:tag forKey:code];
+            
+            NSAssert([nameTags objectForKey:[tagDict objectForKey:@"name"]] == nil, @"Duplicate name: %@ for codes: %@, %@", [tagDict objectForKey:@"name"], code, [nameTags objectForKey:[tagDict objectForKey:@"name"]]);
+            [nameTags setObject:code forKey:[tagDict objectForKey:@"name"]];
+        }
+        [_tags setObject:nameTags forKey:kNameTags];
+        [_tags setObject:[[[_tags objectForKey:kTags] objectForKey:@"@reco"] objectForKey:@"aliases"] forKey:kRootTags];
         
         tagInfo = [_tags copy];
-        //NSLog(@"tagInfo: %@", tagInfo);
+        NSLog(@"tagInfo: %@", tagInfo);
     });
 }
 
-+ (NSString *)nameForTag:(NSString *)tag
-{
-    return [[[tagInfo objectForKey:kTags] objectForKey:tag] objectForKey:@"name"];
-}
-
-+ (NSString *)tagForName:(NSString *)name
++ (NSString *)codeForName:(NSString *)name
 {
     return [[tagInfo objectForKey:kNameTags] objectForKey:name];
 }
 
-+ (NSArray *)aliasesForTag:(NSString *)tag
-{
-    NSArray *aliases = [[tagInfo objectForKey:kTagAliases] objectForKey:tag];
-    
-    if (aliases == nil || [aliases count] == 0) {
-        aliases = [NSArray arrayWithObject:tag];
-    }
-    
-    return aliases;
-}
+#pragma mark Initialization
 
-+ (NSString *)tagForAlias:(NSString *)alias
-{
-    NSString *tag = [[tagInfo objectForKey:kReverseAliases] objectForKey:alias];
-    
-    if (tag == nil) {
-        tag = alias;
-    }
-    
-    return tag;
-}
-
-+ (NSArray *)validSubTagsForTag:(NSString *)tag
-{
-    return [[[tagInfo objectForKey:kTags] objectForKey:tag] objectForKey:kValidSubTags];
-}
-
--(id)initWithCode:(NSString *)code
+-(id)initWithCode:(NSString *)code name:(NSString *)name valueType:(GCValueType)valueType validSubTags:(NSOrderedSet *)validSubTags
 {
     NSParameterAssert(code != nil);
     
@@ -111,10 +157,15 @@ const NSString *kReverseAliases = @"reverseAliases";
     
     if (self) {
         _code = code;
+        _name = name;
+        _valueType = valueType;
+        _validSubTags = validSubTags;
     }
     
     return self;    
 }
+
+#pragma mark Convenience constructors
 
 +(GCTag *)tagCoded:(NSString *)code
 {
@@ -122,14 +173,13 @@ const NSString *kReverseAliases = @"reverseAliases";
     
     [self setupTagInfo];
     
-    if (tags == nil) {
-        tags = [NSMutableDictionary dictionaryWithCapacity:10];
-    }
-    
     GCTag *tag = [tags objectForKey:code];
     
     if (tag == nil) {
-        tag = [[self alloc] initWithCode:code];
+        tag = [[self alloc] initWithCode:code
+                                    name:[NSString stringWithFormat:@"Custom %@ tag", code]
+                               valueType:GCUndefinedValue 
+                            validSubTags:[NSOrderedSet orderedSet]];
         [tags setObject:tag forKey:code];
     }
     
@@ -140,29 +190,17 @@ const NSString *kReverseAliases = @"reverseAliases";
 {
     NSParameterAssert(name != nil);
     
-    return [GCTag tagCoded:[[self class] tagForName:name]];
+    return [GCTag tagCoded:[[self class] codeForName:name]];
 }
 
--(NSOrderedSet *)validSubTags
-{
-    NSMutableOrderedSet *validTags = [NSMutableOrderedSet orderedSetWithCapacity:3];
-    
-    NSMutableArray *tags = [NSMutableArray arrayWithCapacity:3];
-    [tags addObjectsFromArray:[[self class] validSubTagsForTag:_code]];
-    [tags addObjectsFromArray:[[self class] validSubTagsForTag:[[self class] tagForAlias:_code]]];
-    
-    for (id tag in tags) {
-        [validTags addObject:tag];
-        [validTags addObjectsFromArray:[[self class] aliasesForTag:tag]];
-    }
-    
-    return validTags;
-}
+#pragma mark Subtags
 
 -(BOOL)isValidSubTag:(GCTag *)tag
 {
-    return [[self validSubTags] containsObject:[tag code]];
+    return [tag isCustom] || [[self validSubTags] containsObject:[tag code]];
 }
+
+#pragma mark Description
 
 - (NSString *)description
 {
@@ -182,6 +220,8 @@ const NSString *kReverseAliases = @"reverseAliases";
     
     if (self) {
         _code = [decoder decodeObjectForKey:@"gedTag"];
+        
+        //TODO
 	}
     
     return self;
@@ -191,35 +231,24 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return self;
+    return self; //safe, since GCTags are immutable
 }
 
 #pragma mark Properties
 
-- (NSString *)code
-{
-    return _code;
-}
-
-- (NSString *)name
-{
-    return [[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"name"];
-}
-
--(GCValueType)valueType
-{
-    NSString *valueType = [[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"valueType"];
-    
-    if (valueType == nil) {
-        valueType = [[[tagInfo objectForKey:kTags] objectForKey:[[self class] tagForAlias:_code]] objectForKey:@"valueType"];
-    }
-    
-    return [GCValue valueTypeNamed:valueType];
-}
+@synthesize code = _code;
+@synthesize name = _name;
+@synthesize valueType = _valueType;
+@synthesize validSubTags = _validSubTags;
 
 - (BOOL)isCustom
 {
-    return ([self name] == nil);
+    return ([[self name] isEqualToString:[NSString stringWithFormat:@"Custom %@ tag", _code]]);
+}
+
+- (BOOL)isRoot
+{
+    return [[tagInfo objectForKey:kRootTags] containsObject:[self code]];
 }
 
 @end

@@ -2,32 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>tagAliases</key>
-	<dict>
-		<key>@reco</key>
-		<array>
-			<string>FAM</string>
-			<string>INDI</string>
-			<string>OBJE</string>
-			<string>NOTE</string>
-			<string>REPO</string>
-			<string>SOUR</string>
-			<string>SUBM</string>
-		</array>
-		<key>EVEN</key>
-		<array>
-			<string>BIRT</string>
-			<string>DEAT</string>
-		</array>
-	</dict>
 	<key>tags</key>
 	<dict>
 		<key>@root</key>
 		<dict>
 			<key>name</key>
 			<string>document root</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string>GCUndefinedValue</string>
 			<key>validSubTags</key>
@@ -42,8 +22,6 @@
 		<dict>
 			<key>name</key>
 			<string>Header</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -55,8 +33,6 @@
 		<dict>
 			<key>name</key>
 			<string>Submission</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -64,38 +40,505 @@
 				<string></string>
 			</array>
 		</dict>
+		
 		<key>@reco</key>
 		<dict>
 			<key>name</key>
 			<string>root record</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string>GCUndefinedValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string>SOUR</string>
 			</array>
+			<key>aliases</key>
+			<array>
+				<string>FAM</string>
+				<string>INDI</string>
+				<string>OBJE</string>
+				<string>NOTE</string>
+				<string>REPO</string>
+				<string>SOUR</string>
+				<string>SUBM</string>
+			</array>
 		</dict>
-		<key>TRLR</key>
+		
+		<key>FAM</key>
 		<dict>
 			<key>name</key>
-			<string>Trailer</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
+			<string>Family</string>
+			<key>validSubTags</key>
+			<array>
+				<string>@fam_even</string>
+				<string>HUSB</string>
+				<string>WIFE</string>
+				<string>CHIL</string>
+				<string>NCHI</string>
+			</array>
+		</dict>
+		<key>INDI</key>
+		<dict>
+			<key>name</key>
+			<string>Individual</string>
+			<key>validSubTags</key>
+			<array>
+				<string>NAME</string>
+				<string>@indi_even</string>
+				<string>@indi_attr</string>
+				<string>@indi_lds</string>
+			</array>
+		</dict>
+		<key>OBJE</key>
+		<dict>
+			<key>name</key>
+			<string>Object</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
 			</array>
 		</dict>
+		<key>NOTE</key>
+		<dict>
+			<key>name</key>
+			<string>Note</string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
+		<key>REPO</key>
+		<dict>
+			<key>name</key>
+			<string>Repository</string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
+		<key>SOUR</key>
+		<dict>
+			<key>name</key>
+			<string>Source</string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
+		<key>SUBM</key>
+		<dict>
+			<key>name</key>
+			<string>Submitter</string>
+			<key>validSubTags</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
+		
+		<key>@indi_even</key>
+		<dict>
+			<key>name</key>
+			<string>Individual event</string>
+			<key>valueType</key>
+			<string>GCBoolValue</string>
+			<key>validSubTags</key>
+			<array>
+				<string>@even_detl</string>
+			</array>
+			<key>aliases</key>
+			<array>
+				<string>BIRT</string>
+				<string>CHR</string>
+				<string>DEAT</string>
+				<string>BURI</string>
+				<string>CREM</string>
+				<string>ADOP</string>
+				<string>BAPM</string>
+				<string>BARM</string>
+				<string>BASM</string>
+				<string>BLES</string>
+				<string>CHRA</string>
+				<string>CONF</string>
+				<string>FCOM</string>
+				<string>ORDN</string>
+				<string>NATU</string>
+				<string>EMIG</string>
+				<string>IMMI</string>
+				<string>CENS</string>
+				<string>PROB</string>
+				<string>WILL</string>
+				<string>GRAD</string>
+				<string>RETI</string>
+				<string>EVEN</string>
+			</array>
+		</dict>
+		
+		<key>BIRT</key>
+		<dict>
+			<key>name</key>
+			<string>Birth</string>
+			<key>validSubTags</key>
+			<array>
+				<string>FAMC</string>
+			</array>
+		</dict>
+		<key>CHR</key>
+		<dict>
+			<key>name</key>
+			<string>Christening</string>
+			<key>validSubTags</key>
+			<array>
+				<string>FAMC</string>
+			</array>
+		</dict>
+		<key>DEAT</key>
+		<dict>
+			<key>name</key>
+			<string>Death</string>
+		</dict>
+		<key>BURI</key>
+		<dict>
+			<key>name</key>
+			<string>Burial</string>
+		</dict>
+		<key>CREM</key>
+		<dict>
+			<key>name</key>
+			<string>Cremation</string>
+		</dict>
+		<key>ADOP</key>
+		<dict>
+			<key>name</key>
+			<string>Adoption</string>
+			<key>validSubTags</key>
+			<array>
+				<string>FAMC</string>
+			</array>
+		</dict>
+		<key>BAPM</key>
+		<dict>
+			<key>name</key>
+			<string>Baptism</string>
+		</dict>
+		<key>BARM</key>
+		<dict>
+			<key>name</key>
+			<string>Bar Mitzvah</string>
+		</dict>
+		<key>BASM</key>
+		<dict>
+			<key>name</key>
+			<string>Bas Mitzvah</string>
+		</dict>
+		<key>BLES</key>
+		<dict>
+			<key>name</key>
+			<string>Blessing</string>
+		</dict>
+		<key>CHRA</key>
+		<dict>
+			<key>name</key>
+			<string>Adult Christening</string>
+		</dict>
+		<key>CONF</key>
+		<dict>
+			<key>name</key>
+			<string>Confirmation</string>
+		</dict>
+		<key>FCOM</key>
+		<dict>
+			<key>name</key>
+			<string>First Communion</string>
+		</dict>
+		<key>ORDN</key>
+		<dict>
+			<key>name</key>
+			<string>Ordination</string>
+		</dict>
+		<key>NATU</key>
+		<dict>
+			<key>name</key>
+			<string>Naturalization</string>
+		</dict>
+		<key>EMIG</key>
+		<dict>
+			<key>name</key>
+			<string>Emigration</string>
+		</dict>
+		<key>IMMI</key>
+		<dict>
+			<key>name</key>
+			<string>Immigration</string>
+		</dict>
+		<key>CENS</key>
+		<dict>
+			<key>name</key>
+			<string>Census</string>
+		</dict>
+		<key>PROB</key>
+		<dict>
+			<key>name</key>
+			<string>Probate</string>
+		</dict>
+		<key>WILL</key>
+		<dict>
+			<key>name</key>
+			<string>Will</string>
+		</dict>
+		<key>GRAD</key>
+		<dict>
+			<key>name</key>
+			<string>Graduation</string>
+		</dict>
+		<key>RETI</key>
+		<dict>
+			<key>name</key>
+			<string>Retirement</string>
+		</dict>
+		<key>EVEN</key>
+		<dict>
+			<key>name</key>
+			<string>Event</string>
+			<key>valueType</key>
+			<string>GCNoValue</string>
+		</dict>
+		
+		<key>@indi_attr</key>
+		<dict>
+			<key>name</key>
+			<string>Individual attribute</string>
+			<key>valueType</key>
+			<string>GCStringValue</string>
+			<key>validSubTags</key>
+			<array>
+				<string>@even_detl</string>
+			</array>
+			<key>aliases</key>
+			<array>
+				<string>CAST</string>
+				<string>DSRC</string>
+				<string>EDUC</string>
+				<string>IDNO</string>
+				<string>NATI</string>
+				<string>NCHI</string>
+				<string>NMR</string>
+				<string>OCCU</string>
+				<string>PROP</string>
+				<string>RELI</string>
+				<string>RESI</string>
+				<string>SSN</string>
+				<string>TITL</string>
+			</array>
+		</dict>
+		
+		<key>CAST</key>
+		<dict>
+			<key>name</key>
+			<string>Caste</string>
+		</dict>
+		<key>DSCR</key>
+		<dict>
+			<key>name</key>
+			<string>Phy Description</string>
+		</dict>
+		<key>EDUC</key>
+		<dict>
+			<key>name</key>
+			<string>Education</string>
+		</dict>
+		<key>IDNO</key>
+		<dict>
+			<key>name</key>
+			<string>Ident Number</string>
+		</dict>
+		<key>NATI</key>
+		<dict>
+			<key>name</key>
+			<string>Nationality</string>
+		</dict>
+		<key>NCHI</key>
+		<dict>
+			<key>name</key>
+			<string>Children_count</string>
+			<key>valueType</key>
+			<string>GCNumberValue</string>
+		</dict>
+		<key>NMR</key>
+		<dict>
+			<key>name</key>
+			<string>Marriage_count</string>
+			<key>valueType</key>
+			<string>GCNumberValue</string>
+		</dict>
+		<key>OCCU</key>
+		<dict>
+			<key>name</key>
+			<string>Occupation</string>
+		</dict>
+		<key>PROP</key>
+		<dict>
+			<key>name</key>
+			<string>Property</string>
+		</dict>
+		<key>RELI</key>
+		<dict>
+			<key>name</key>
+			<string>Religion</string>
+		</dict>
+		<key>RESI</key>
+		<dict>
+			<key>name</key>
+			<string>Residence</string>
+		</dict>
+		<key>SSN</key>
+		<dict>
+			<key>name</key>
+			<string>Soc Sec Number</string>
+		</dict>
+		<key>TITL</key>
+		<dict>
+			<key>name</key>
+			<string>Title</string>
+		</dict>
+		
+		<key>@indi_lds</key>
+		<dict>
+			<key>name</key>
+			<string>Individual LDS ordinance</string>
+			<key>valueType</key>
+			<string>GCBoolValue</string>
+			<key>validSubTags</key>
+			<array>
+				<string>STAT</string>
+				<string>DATE</string>
+				<string>TEMP</string>
+				<string>PLAC</string>
+			</array>
+			<key>aliases</key>
+			<array>
+				<string>BAPL</string>
+				<string>CONL</string>
+				<string>ENDL</string>
+				<string>SLGC</string>
+			</array>
+		</dict>
+		
+		<key>BAPL</key>
+		<dict>
+			<key>name</key>
+			<string>Baptism-LDS</string>
+		</dict>
+		<key>CONL</key>
+		<dict>
+			<key>name</key>
+			<string>Confirmation L</string>
+		</dict>
+		<key>ENDL</key>
+		<dict>
+			<key>name</key>
+			<string>Endowment</string>
+		</dict>
+		<key>SLGC</key>
+		<dict>
+			<key>name</key>
+			<string>Sealing Child</string>
+			<key>validSubTags</key>
+			<array>
+				<string>FAMC</string>
+			</array>
+		</dict>
+		
+		<key>@fam_even</key>
+		<dict>
+			<key>name</key>
+			<string>Family event</string>
+			<key>valueType</key>
+			<string>GCBoolValue</string>
+			<key>validSubTags</key>
+			<array>
+				<string>@even_detl</string>
+			</array>
+			<key>aliases</key>
+			<array>
+				<string>ANUL</string>
+				<string>CENS</string>
+				<string>DIV</string>
+				<string>DIVF</string>
+				<string>ENGA</string>
+				<string>MARR</string>
+				<string>MARB</string>
+				<string>MARC</string>
+				<string>MARL</string>
+				<string>MARS</string>
+				<string>EVEN</string>
+			</array>
+		</dict>
+		
+		<key>ANUL</key>
+		<dict>
+			<key>name</key>
+			<string>Annulment</string>
+		</dict>
+		<key>DIV</key>
+		<dict>
+			<key>name</key>
+			<string>Divorce</string>
+		</dict>
+		<key>DIVF</key>
+		<dict>
+			<key>name</key>
+			<string>Divorce Filed</string>
+		</dict>
+		<key>ENGA</key>
+		<dict>
+			<key>name</key>
+			<string>Engagement</string>
+		</dict>
+		<key>MARB</key>
+		<dict>
+			<key>name</key>
+			<string>Marriage Bann</string>
+		</dict>
+		<key>MARC</key>
+		<dict>
+			<key>name</key>
+			<string>Marr Contract</string>
+		</dict>
+		<key>MARL</key>
+		<dict>
+			<key>name</key>
+			<string>Marr License</string>
+		</dict>
+		<key>MARR</key>
+		<dict>
+			<key>name</key>
+			<string>Marriage</string>
+		</dict>
+		<key>MARS</key>
+		<dict>
+			<key>name</key>
+			<string>Marr Settlement</string>
+		</dict>
+		
+		<key>@even_detl</key>
+		<dict>
+			<key>name</key>
+			<string>Event detail</string>
+			<key>aliases</key>
+			<array>
+				<string>TYPE</string>
+				<string>DATE</string>
+			</array>
+		</dict>
+		
+		
+		
+		
+		
+		
 		<key>ABBR</key>
 		<dict>
 			<key>name</key>
 			<string>Abbreviation</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -107,23 +550,8 @@
 		<dict>
 			<key>name</key>
 			<string>Address</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>ADOP</key>
-		<dict>
-			<key>name</key>
-			<string>Adoption</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string>GCBoolValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -133,8 +561,6 @@
 		<dict>
 			<key>name</key>
 			<string>Address1</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -146,8 +572,6 @@
 		<dict>
 			<key>name</key>
 			<string>Address2</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -159,8 +583,6 @@
 		<dict>
 			<key>name</key>
 			<string>Afn</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -172,8 +594,6 @@
 		<dict>
 			<key>name</key>
 			<string>Age</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string>GCAgeValue</string>
 			<key>validSubTags</key>
@@ -185,8 +605,6 @@
 		<dict>
 			<key>name</key>
 			<string>Agency</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -198,8 +616,6 @@
 		<dict>
 			<key>name</key>
 			<string>Alias</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -211,8 +627,6 @@
 		<dict>
 			<key>name</key>
 			<string>Ancestors</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -224,21 +638,6 @@
 		<dict>
 			<key>name</key>
 			<string>Ances Interest</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>ANUL</key>
-		<dict>
-			<key>name</key>
-			<string>Annulment</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -250,8 +649,6 @@
 		<dict>
 			<key>name</key>
 			<string>Associates</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -263,84 +660,6 @@
 		<dict>
 			<key>name</key>
 			<string>Author</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>BAPL</key>
-		<dict>
-			<key>name</key>
-			<string>Baptism-LDS</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>BAPM</key>
-		<dict>
-			<key>name</key>
-			<string>Baptism</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>BARM</key>
-		<dict>
-			<key>name</key>
-			<string>Bar Mitzvah</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>BASM</key>
-		<dict>
-			<key>name</key>
-			<string>Bas Mitzvah</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>BIRT</key>
-		<dict>
-			<key>name</key>
-			<string>Birth</string>
-			<key>type</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string>FAMC</string>
-			</array>
-		</dict>
-		<key>BLES</key>
-		<dict>
-			<key>name</key>
-			<string>Blessing</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -352,21 +671,6 @@
 		<dict>
 			<key>name</key>
 			<string>Binary Object</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>BURI</key>
-		<dict>
-			<key>name</key>
-			<string>Burial</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -378,21 +682,6 @@
 		<dict>
 			<key>name</key>
 			<string>Call Number</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>CAST</key>
-		<dict>
-			<key>name</key>
-			<string>Caste</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -404,21 +693,6 @@
 		<dict>
 			<key>name</key>
 			<string>Cause</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>CENS</key>
-		<dict>
-			<key>name</key>
-			<string>Census</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -430,8 +704,6 @@
 		<dict>
 			<key>name</key>
 			<string>Change</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -443,8 +715,6 @@
 		<dict>
 			<key>name</key>
 			<string>Character</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -456,34 +726,6 @@
 		<dict>
 			<key>name</key>
 			<string>Child</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>CHR</key>
-		<dict>
-			<key>name</key>
-			<string>Christening</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string>FAMC</string>
-			</array>
-		</dict>
-		<key>CHRA</key>
-		<dict>
-			<key>name</key>
-			<string>Adult Christening</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -495,8 +737,6 @@
 		<dict>
 			<key>name</key>
 			<string>City</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -508,34 +748,6 @@
 		<dict>
 			<key>name</key>
 			<string>Concatenation</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>CONF</key>
-		<dict>
-			<key>name</key>
-			<string>Confirmation</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>CONL</key>
-		<dict>
-			<key>name</key>
-			<string>Confirmation L</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -547,8 +759,6 @@
 		<dict>
 			<key>name</key>
 			<string>Continued</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -560,8 +770,6 @@
 		<dict>
 			<key>name</key>
 			<string>Copyright</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -573,21 +781,6 @@
 		<dict>
 			<key>name</key>
 			<string>Corporate</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>CREM</key>
-		<dict>
-			<key>name</key>
-			<string>Cremation</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -599,8 +792,6 @@
 		<dict>
 			<key>name</key>
 			<string>Country</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -612,8 +803,6 @@
 		<dict>
 			<key>name</key>
 			<string>Data</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -625,21 +814,8 @@
 		<dict>
 			<key>name</key>
 			<string>Date</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string>GCDateValue</string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>DEAT</key>
-		<dict>
-			<key>name</key>
-			<string>Death</string>
-			<key>type</key>
-			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -649,8 +825,6 @@
 		<dict>
 			<key>name</key>
 			<string>Descendants</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -662,8 +836,6 @@
 		<dict>
 			<key>name</key>
 			<string>Descendant Int</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -675,142 +847,17 @@
 		<dict>
 			<key>name</key>
 			<string>Destination</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
-			</array>
-		</dict>
-		<key>DIV</key>
-		<dict>
-			<key>name</key>
-			<string>Divorce</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>DIVF</key>
-		<dict>
-			<key>name</key>
-			<string>Divorce Filed</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>DSCR</key>
-		<dict>
-			<key>name</key>
-			<string>Phy Description</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>EDUC</key>
-		<dict>
-			<key>name</key>
-			<string>Education</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>EMIG</key>
-		<dict>
-			<key>name</key>
-			<string>Emigration</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>ENDL</key>
-		<dict>
-			<key>name</key>
-			<string>Endowment</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>ENGA</key>
-		<dict>
-			<key>name</key>
-			<string>Engagement</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>EVEN</key>
-		<dict>
-			<key>name</key>
-			<string>Event</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string>GCBoolValue</string>
-			<key>validSubTags</key>
-			<array>
-				<string>DATE</string>
-			</array>
-		</dict>
-		<key>FAM</key>
-		<dict>
-			<key>name</key>
-			<string>Family</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string>EVEN</string>
-				<string>HUSB</string>
-				<string>WIFE</string>
-				<string>CHIL</string>
-				<string>NCHI</string>
 			</array>
 		</dict>
 		<key>FAMC</key>
 		<dict>
 			<key>name</key>
 			<string>Family Child</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -822,8 +869,6 @@
 		<dict>
 			<key>name</key>
 			<string>Family File</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -835,21 +880,6 @@
 		<dict>
 			<key>name</key>
 			<string>Family Spouse</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>FCOM</key>
-		<dict>
-			<key>name</key>
-			<string>First Communion</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -861,8 +891,6 @@
 		<dict>
 			<key>name</key>
 			<string>File</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -874,8 +902,6 @@
 		<dict>
 			<key>name</key>
 			<string>Format</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -887,8 +913,6 @@
 		<dict>
 			<key>name</key>
 			<string>Gedcom</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -900,21 +924,6 @@
 		<dict>
 			<key>name</key>
 			<string>Given Name</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>GRAD</key>
-		<dict>
-			<key>name</key>
-			<string>Graduation</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -926,61 +935,17 @@
 		<dict>
 			<key>name</key>
 			<string>Husband</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
-			</array>
-		</dict>
-		<key>IDNO</key>
-		<dict>
-			<key>name</key>
-			<string>Ident Number</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>IMMI</key>
-		<dict>
-			<key>name</key>
-			<string>Immigration</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>INDI</key>
-		<dict>
-			<key>name</key>
-			<string>Individual</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string>NAME</string>
-				<string>EVEN</string>
 			</array>
 		</dict>
 		<key>LANG</key>
 		<dict>
 			<key>name</key>
 			<string>Language</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -992,73 +957,6 @@
 		<dict>
 			<key>name</key>
 			<string>Legatee</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>MARB</key>
-		<dict>
-			<key>name</key>
-			<string>Marriage Bann</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>MARC</key>
-		<dict>
-			<key>name</key>
-			<string>Marr Contract</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>MARL</key>
-		<dict>
-			<key>name</key>
-			<string>Marr License</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>MARR</key>
-		<dict>
-			<key>name</key>
-			<string>Marriage</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>MARS</key>
-		<dict>
-			<key>name</key>
-			<string>Marr Settlement</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1070,8 +968,6 @@
 		<dict>
 			<key>name</key>
 			<string>Media</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1083,8 +979,6 @@
 		<dict>
 			<key>name</key>
 			<string>Name</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string>GCStringValue</string>
 			<key>validSubTags</key>
@@ -1097,77 +991,10 @@
 				<string>NSFX</string>
 			</array>
 		</dict>
-		<key>NATI</key>
-		<dict>
-			<key>name</key>
-			<string>Nationality</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>NATU</key>
-		<dict>
-			<key>name</key>
-			<string>Naturalization</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>NCHI</key>
-		<dict>
-			<key>name</key>
-			<string>Children_count</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
 		<key>NICK</key>
 		<dict>
 			<key>name</key>
 			<string>Nickname</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>NMR</key>
-		<dict>
-			<key>name</key>
-			<string>Marriage_count</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>NOTE</key>
-		<dict>
-			<key>name</key>
-			<string>Note</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1179,8 +1006,6 @@
 		<dict>
 			<key>name</key>
 			<string>Name_prefix</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1192,34 +1017,6 @@
 		<dict>
 			<key>name</key>
 			<string>Name_suffix</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>OBJE</key>
-		<dict>
-			<key>name</key>
-			<string>Object</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>OCCU</key>
-		<dict>
-			<key>name</key>
-			<string>Occupation</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1231,21 +1028,6 @@
 		<dict>
 			<key>name</key>
 			<string>Ordinance</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>ORDN</key>
-		<dict>
-			<key>name</key>
-			<string>Ordination</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1257,8 +1039,6 @@
 		<dict>
 			<key>name</key>
 			<string>Page</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1270,8 +1050,6 @@
 		<dict>
 			<key>name</key>
 			<string>Pedigree</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1283,8 +1061,6 @@
 		<dict>
 			<key>name</key>
 			<string>Phone</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1296,8 +1072,6 @@
 		<dict>
 			<key>name</key>
 			<string>Place</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1309,34 +1083,6 @@
 		<dict>
 			<key>name</key>
 			<string>Postal_code</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>PROB</key>
-		<dict>
-			<key>name</key>
-			<string>Probate</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>PROP</key>
-		<dict>
-			<key>name</key>
-			<string>Property</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1348,8 +1094,6 @@
 		<dict>
 			<key>name</key>
 			<string>Publication</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1361,8 +1105,6 @@
 		<dict>
 			<key>name</key>
 			<string>Quality Of Data</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1374,8 +1116,6 @@
 		<dict>
 			<key>name</key>
 			<string>Reference</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1387,47 +1127,6 @@
 		<dict>
 			<key>name</key>
 			<string>Relationship</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>RELI</key>
-		<dict>
-			<key>name</key>
-			<string>Religion</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>REPO</key>
-		<dict>
-			<key>name</key>
-			<string>Repository</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>RESI</key>
-		<dict>
-			<key>name</key>
-			<string>Residence</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1439,21 +1138,6 @@
 		<dict>
 			<key>name</key>
 			<string>Restriction</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>RETI</key>
-		<dict>
-			<key>name</key>
-			<string>Retirement</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1465,8 +1149,6 @@
 		<dict>
 			<key>name</key>
 			<string>Rec File Number</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1478,8 +1160,6 @@
 		<dict>
 			<key>name</key>
 			<string>Rec Id Number</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1491,8 +1171,6 @@
 		<dict>
 			<key>name</key>
 			<string>Role</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1504,21 +1182,6 @@
 		<dict>
 			<key>name</key>
 			<string>Sex</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>SLGC</key>
-		<dict>
-			<key>name</key>
-			<string>Sealing Child</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1530,21 +1193,6 @@
 		<dict>
 			<key>name</key>
 			<string>Sealing Spouse</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>SOUR</key>
-		<dict>
-			<key>name</key>
-			<string>Source</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1556,21 +1204,6 @@
 		<dict>
 			<key>name</key>
 			<string>Surn Prefix</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>SSN</key>
-		<dict>
-			<key>name</key>
-			<string>Soc Sec Number</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1582,8 +1215,6 @@
 		<dict>
 			<key>name</key>
 			<string>State</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1595,21 +1226,6 @@
 		<dict>
 			<key>name</key>
 			<string>Status</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>SUBM</key>
-		<dict>
-			<key>name</key>
-			<string>Submitter</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1621,8 +1237,6 @@
 		<dict>
 			<key>name</key>
 			<string>Surname</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1634,8 +1248,6 @@
 		<dict>
 			<key>name</key>
 			<string>Temple</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1647,8 +1259,6 @@
 		<dict>
 			<key>name</key>
 			<string>Text</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1660,21 +1270,6 @@
 		<dict>
 			<key>name</key>
 			<string>Time</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
-			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-		<key>TITL</key>
-		<dict>
-			<key>name</key>
-			<string>Title</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1686,8 +1281,6 @@
 		<dict>
 			<key>name</key>
 			<string>Type</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1699,8 +1292,6 @@
 		<dict>
 			<key>name</key>
 			<string>Version</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1712,8 +1303,6 @@
 		<dict>
 			<key>name</key>
 			<string>Wife</string>
-			<key>type</key>
-			<string></string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -1721,18 +1310,13 @@
 				<string></string>
 			</array>
 		</dict>
-		<key>WILL</key>
+		
+		<key>TRLR</key>
 		<dict>
 			<key>name</key>
-			<string>Will</string>
-			<key>type</key>
-			<string></string>
-			<key>valueType</key>
-			<string></string>
+			<string>Trailer</string>
 			<key>validSubTags</key>
-			<array>
-				<string></string>
-			</array>
+			<array/>
 		</dict>
 	</dict>
 </dict>

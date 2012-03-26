@@ -41,6 +41,7 @@
 - (GCNode *)gedcomNode;
 
 @property (readonly) NSString *type;
+@property (readonly) BOOL isRoot;
 
 @property GCValue *value;
 @property NSString *stringValue;
