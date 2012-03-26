@@ -30,6 +30,10 @@
 
 - (NSComparisonResult)compare:(id)other
 {
+    if (![other isKindOfClass:[self class]]) {
+        return NSOrderedSame;
+    }
+    
     switch (_type) {
         case GCStringValue:
             return [[self stringValue] compare:[other stringValue]];
@@ -54,6 +58,8 @@
         default:
             break;
     }
+    
+    return NSOrderedSame;
 }
 
 + (GCValueType)valueTypeNamed:(NSString *)name

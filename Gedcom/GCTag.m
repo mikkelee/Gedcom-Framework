@@ -19,7 +19,8 @@
 __strong static NSMutableDictionary *tags;
 __strong static NSDictionary *tagInfo;
 
-const NSString *kTagNames = @"tagNames";
+//dict keys
+const NSString *kTags = @"tags";
 const NSString *kNameTags = @"nameTags";
 const NSString *kTagAliases = @"tagAliases";
 const NSString *kValidSubTags = @"validSubTags";
@@ -32,15 +33,23 @@ const NSString *kReverseAliases = @"reverseAliases";
     dispatch_once(&pred, ^{
         NSString *plistPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags" ofType:@"plist"];
         NSData *data = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        
+        NSString *err = nil;
+        
         NSMutableDictionary *_tags = [[NSPropertyListSerialization propertyListFromData:data 
                                                                        mutabilityOption:0 
                                                                                  format:NULL 
-                                                                       errorDescription:nil] mutableCopy];
+                                                                       errorDescription:&err] mutableCopy];
+        
+        if (err) {
+            NSLog(@"error: %@", err);
+            
+        }
         
         //adding reverse lookups:
         NSMutableDictionary *nameTags = [NSMutableDictionary dictionaryWithCapacity:10];
-        for (id tag in [_tags objectForKey:kTagNames]) {
-            [nameTags setObject:tag forKey:[[_tags objectForKey:kTagNames] objectForKey:tag]];
+        for (id tag in [_tags objectForKey:kTags]) {
+            [nameTags setObject:tag forKey:[[[_tags objectForKey:kTags] objectForKey:tag] objectForKey:@"name"]];
         }
         [_tags setObject:nameTags forKey:kNameTags];
         
@@ -53,13 +62,13 @@ const NSString *kReverseAliases = @"reverseAliases";
         [_tags setObject:reverseAliases forKey:kReverseAliases];
         
         tagInfo = [_tags copy];
-        //NSLog(@"tagInfo: %@", [tagInfo]);
+        //NSLog(@"tagInfo: %@", tagInfo);
     });
 }
 
 + (NSString *)nameForTag:(NSString *)tag
 {
-    return [[tagInfo objectForKey:kTagNames] objectForKey:tag];
+    return [[[tagInfo objectForKey:kTags] objectForKey:tag] objectForKey:@"name"];
 }
 
 + (NSString *)tagForName:(NSString *)name
@@ -91,11 +100,13 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 + (NSArray *)validSubTagsForTag:(NSString *)tag
 {
-    return [[tagInfo objectForKey:kValidSubTags] objectForKey:tag];
+    return [[[tagInfo objectForKey:kTags] objectForKey:tag] objectForKey:kValidSubTags];
 }
 
 -(id)initWithCode:(NSString *)code
 {
+    NSParameterAssert(code != nil);
+    
     self = [super init];
     
     if (self) {
@@ -107,6 +118,8 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 +(GCTag *)tagCoded:(NSString *)code
 {
+    NSParameterAssert(code != nil);
+    
     [self setupTagInfo];
     
     if (tags == nil) {
@@ -125,6 +138,8 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 +(GCTag *)tagNamed:(NSString *)name
 {
+    NSParameterAssert(name != nil);
+    
     return [GCTag tagCoded:[[self class] tagForName:name]];
 }
 
@@ -189,7 +204,7 @@ const NSString *kReverseAliases = @"reverseAliases";
 
 - (NSString *)name
 {
-    return [[tagInfo objectForKey:kTagNames] objectForKey:_code];
+    return [[[tagInfo objectForKey:kTags] objectForKey:_code] objectForKey:@"name"];
 }
 
 - (BOOL)isCustom
