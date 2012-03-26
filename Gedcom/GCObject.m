@@ -99,6 +99,26 @@ __strong static NSMutableDictionary *xrefStore;
                           value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
 }
 
+- (void)addRecordWithType:(NSString *)type stringValue:(NSString *)value
+{
+    [self addRecord:[[self class] objectWithType:type stringValue:value]];
+}
+
+- (void)addRecordWithType:(NSString *)type numberValue:(NSNumber *)value
+{
+    [self addRecord:[[self class] objectWithType:type numberValue:value]];
+}
+
+- (void)addRecordWithType:(NSString *)type ageValue:(GCAge *)value
+{
+    [self addRecord:[[self class] objectWithType:type ageValue:value]];
+}
+
+- (void)addRecordWithType:(NSString *)type dateValue:(GCDate *)value
+{
+    [self addRecord:[[self class] objectWithType:type dateValue:value]];
+}
+
 + (id)objectWithGedcomNode:(GCNode *)node
 {
     GCObject *object = [[GCObject alloc] initWithType:[[node gedTag] name]];
@@ -190,12 +210,6 @@ __strong static NSMutableDictionary *xrefStore;
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     //TODO validity check (don't put a NAME on a FAM, etc)
-    
-//    if ([value isKindOfClass:[NSString class]]) {
-//        [self addRecord:[[self class] objectWithType:key stringValue:value]];
-//    } else {
-//        [_records setObject:value forKey:key];
-//    }
     
     [_records setObject:value forKey:key];
 }

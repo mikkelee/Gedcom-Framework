@@ -25,6 +25,10 @@
 + (id)objectWithType:(NSString *)type dateValue:(GCDate *)value;
 
 - (void)addRecord:(GCObject *)object;
+- (void)addRecordWithType:(NSString *)type stringValue:(NSString *)value;
+- (void)addRecordWithType:(NSString *)type numberValue:(NSNumber *)value;
+- (void)addRecordWithType:(NSString *)type ageValue:(GCAge *)value;
+- (void)addRecordWithType:(NSString *)type dateValue:(GCDate *)value;
 
 - (GCNode *)gedcomNode;
 

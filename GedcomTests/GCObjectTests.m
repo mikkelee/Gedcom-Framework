@@ -26,18 +26,13 @@
 {
     GCObject *indi = [GCObject objectWithType:@"Individual"];
     
-    GCObject *name = [GCObject objectWithType:@"Name" stringValue:@"Jens /Hansen/"];
-    
-    [indi addRecord:name];
-    
-    GCObject *altName = [GCObject objectWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
-    
-    [indi addRecord:altName];
+    [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
+    [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
     GCObject *birt = [GCObject objectWithType:@"Birth"];
-    GCObject *date = [GCObject objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
-    [birt addRecord:date];
+    [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    
     [indi addRecord:birt];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
