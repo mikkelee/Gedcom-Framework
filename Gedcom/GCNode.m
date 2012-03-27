@@ -82,84 +82,81 @@
 + (NSArray*)arrayOfNodesFromArrayOfStrings:(NSArray*) gedLines
 {
 	NSMutableArray *gedArray = [NSMutableArray arrayWithCapacity:5];
-    
-    int currentLevel = 0;
-    GCNode *currentNode = nil;
 	
-	//NSMutableDictionary *currentNodes = [NSMutableDictionary dictionaryWithCapacity:5];
+	int currentLevel = 0;
+	GCNode *currentNode = nil;
 	
 	NSLog(@"Began parsing gedcom.");
 	
-    
-    NSRegularExpression *levelTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) ([A-Z]{3,4}[0-9]?)(?: (.*))?$"
-                                                                                        options:0 
-                                                                                          error:nil];
-    NSRegularExpression *levelXrefTagRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (\\@[A-Z_]+\\d*\\@) ([A-Z]{3,4})$" 
-                                                                                       options:0 
-                                                                                         error:nil];
-    NSRegularExpression *levelCustomTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (_[A-Z][A-Z0-9]*)(?: (.*))?$"
-                                                                                              options:0
-                                                                                                error:nil];
+	NSRegularExpression *levelTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) ([A-Z]{3,4}[0-9]?)(?: (.*))?$"
+																						options:0 
+																						  error:nil];
+	NSRegularExpression *levelXrefTagRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (\\@[A-Z_]+\\d*\\@) ([A-Z]{3,4})$" 
+																					   options:0 
+																						 error:nil];
+	NSRegularExpression *levelCustomTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (_[A-Z][A-Z0-9]*)(?: (.*))?$"
+																							  options:0
+																								error:nil];
 	
 	for (NSString *gLine in gedLines) {
 		if ([gLine isEqualToString:@""]) 
 			continue;
 		
 		GCNode* node = nil;
-        
-        NSRange range = NSMakeRange(0, [gLine length]);
+		
+		NSRange range = NSMakeRange(0, [gLine length]);
 		int level = -1;
 		
 		NSTextCheckingResult *match = [levelTagValueRegex firstMatchInString:gLine options:0 range:range];
-        
+		
 		if ([match numberOfRanges] == 4) {
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-            NSString *val = nil;
-            if ([match rangeAtIndex:3].length > 0) {
-                val = [gLine substringWithRange:[match rangeAtIndex:3]];
-            }
-            node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]] 
-                                 value:val];
+			NSString *val = nil;
+			if ([match rangeAtIndex:3].length > 0) {
+				val = [gLine substringWithRange:[match rangeAtIndex:3]];
+			}
+			node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]] 
+								 value:val];
 		} else {
 			match = [levelXrefTagRegex firstMatchInString:gLine options:0 range:range];
 			if ([match numberOfRanges] == 4) {
 				level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-                node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:3]]]
-                                      xref:[gLine substringWithRange:[match rangeAtIndex:2]]];
+				node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:3]]]
+									  xref:[gLine substringWithRange:[match rangeAtIndex:2]]];
 			} else {
 				match = [levelCustomTagValueRegex firstMatchInString:gLine options:0 range:range];
 				if ([match numberOfRanges] == 4) {
 					NSLog(@"Custom gedcom tag: %@", [gLine substringWithRange:[match rangeAtIndex:2]]);
 					level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-                    node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]
-                                         value:[gLine substringWithRange:[match rangeAtIndex:3]]];
+					node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]
+										 value:[gLine substringWithRange:[match rangeAtIndex:3]]];
 				} else {
 					NSLog(@"Malformed Gedcom line had result: %@ -- %@", gLine, match);
 				}
 			}
 		}
-        
-        if (node == nil) {
-            NSLog(@"Unable to create node from gedcom: %@", gLine);
-            //throw?
-        }
 		
-        if (level == 0) { //root
-            [gedArray addObject:node];
-        } else if (level == currentLevel+1) { //child of current
-            [currentNode addSubNode:node];
-        } else { //find correct parent
-            GCNode *parent = currentNode;
-            for (int i = currentLevel; i >= level; i--) {
-                parent = [parent parent];
-            }
-            [parent addSubNode:node];
-        }
-        
-        currentLevel = level;
-        currentNode = node;
+		if (node == nil) {
+			NSLog(@"Unable to create node from gedcom: %@", gLine);
+			//throw?
+		}
+		
+		if (level == 0) { //root
+			[gedArray addObject:node];
+		} else if (level == currentLevel+1) { //child of current
+			[currentNode addSubNode:node];
+		} else { //find correct parent
+			GCNode *parent = currentNode;
+			for (int i = currentLevel; i >= level; i--) {
+				parent = [parent parent];
+			}
+			[parent addSubNode:node];
+		}
+		
+		currentLevel = level;
+		currentNode = node;
 	}
-    
+	
 	NSLog(@"Finished parsing gedcom.");
 	
 	return [gedArray copy];
