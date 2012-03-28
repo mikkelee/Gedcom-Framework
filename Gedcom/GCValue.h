@@ -15,8 +15,14 @@ typedef enum {
     GCAgeValue,
     GCDateValue,
     GCBoolValue,
-    GCRecordReferenceValue
+    GCGenderValue
 } GCValueType;
+
+typedef enum {
+	GCUnknownGender = -1,
+	GCMale,
+	GCFemale
+} GCGender;
 
 @class GCAge;
 @class GCDate;
@@ -34,5 +40,6 @@ typedef enum {
 @property (readonly) GCAge *ageValue;
 @property (readonly) GCDate *dateValue;
 @property (readonly) BOOL boolValue;
+@property (readonly) GCGender genderValue;
 
 @end

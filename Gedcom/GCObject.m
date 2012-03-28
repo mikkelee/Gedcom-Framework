@@ -135,6 +135,11 @@
     [self addAttribute:[GCAttribute attributeForObject:self withType:type dateValue:value]];
 }
 
+- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value
+{
+	[self addAttribute:[GCAttribute attributeForObject:self withType:type genderValue:value]];
+}
+
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
 	[self addRelationship:[GCRelationship relationshipForObject:self withType:type target:target]];

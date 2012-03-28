@@ -91,12 +91,15 @@
 	
 	GCEntity *husb = [GCEntity entityWithType:@"Individual" inContext:ctx];
 	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+	[husb addAttributeWithType:@"Sex" genderValue:GCMale];
 	
 	GCEntity *wife = [GCEntity entityWithType:@"Individual" inContext:ctx];
 	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
+	[wife addAttributeWithType:@"Sex" genderValue:GCFemale];
 	
 	GCEntity *chil = [GCEntity entityWithType:@"Individual" inContext:ctx];
 	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
+	[chil addAttributeWithType:@"Sex" genderValue:GCMale];
 	
     GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
 	[fam addRelationshipWithType:@"Husband" target:husb];
@@ -113,18 +116,21 @@
     STAssertEqualObjects([[husb gedcomNode] gedcomString], 
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
+						 @"1 SEX M\n"
 						 @"1 FAMS @FAM1@"
                          , nil);
 	
     STAssertEqualObjects([[wife gedcomNode] gedcomString], 
                          @"0 @INDI2@ INDI\n"
                          @"1 NAME Anne /Larsdatter/\n"
+						 @"1 SEX F\n"
 						 @"1 FAMS @FAM1@"
                          , nil);
 	
     STAssertEqualObjects([[chil gedcomNode] gedcomString], 
                          @"0 @INDI3@ INDI\n"
                          @"1 NAME Hans /Jensen/\n"
+						 @"1 SEX M\n"
 						 @"1 FAMC @FAM1@"
                          , nil);
 }

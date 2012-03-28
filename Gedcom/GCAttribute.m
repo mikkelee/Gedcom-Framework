@@ -13,7 +13,6 @@
 
 #import "GCEntity.h"
 
-#import "GCValue.h"
 #import "GCAge.h"
 #import "GCDate.h"
 
@@ -115,6 +114,13 @@
     return [self attributeForObject:object
 						   withType:type 
 							  value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
+}
+
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type genderValue:(GCGender)value
+{
+    return [self attributeForObject:object
+						   withType:type 
+							  value:[[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:value]]]; 
 }
 
 #pragma mark Gedcom access

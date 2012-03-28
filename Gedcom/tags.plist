@@ -1219,8 +1219,10 @@
 		<dict>
 			<key>name</key>
 			<string>Sex</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
-			<string></string>
+			<string>GCGenderValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>

@@ -54,6 +54,10 @@
         case GCBoolValue:
             return [[NSNumber numberWithBool:[self boolValue]] compare:[NSNumber numberWithBool:[other boolValue]]];
             break;
+            
+        case GCGenderValue:
+            return [[NSNumber numberWithInt:[self genderValue]] compare:[NSNumber numberWithInt:[other genderValue]]];
+            break;
 
         default:
             break;
@@ -74,8 +78,8 @@
         return GCDateValue;
     } else if ([name isEqualToString:@"GCBoolValue"]) {
         return GCBoolValue;
-    } else if ([name isEqualToString:@"GCRecordReferenceValue"]) {
-        return GCRecordReferenceValue;
+    } else if ([name isEqualToString:@"GCGenderValue"]) {
+        return GCGenderValue;
     } else {
         return GCUndefinedValue;
     }
@@ -88,6 +92,14 @@
     } else if ([_value isKindOfClass:[NSNumber class]]) {
         if (_type == GCBoolValue) {
             return [_value boolValue] ? @"Y" : @"N";
+        } else if (_type == GCGenderValue) {
+			if ([_value intValue] == GCMale) {
+				return @"M";
+			} else if ([_value intValue] == GCFemale) {
+				return @"F";
+			} else {
+				return @"U";
+			}
         } else {
             return [_value stringValue];
         }
@@ -157,6 +169,25 @@
         return NO; //TODO
     } else {
         return NO; //TODO
+    }
+}
+
+- (GCGender)genderValue
+{
+    if ([_value isKindOfClass:[NSString class]]) {
+        return GCUnknownGender;
+    } else if ([_value isKindOfClass:[NSNumber class]]) {
+		if (_type == GCGenderValue) {
+			return [_value intValue];
+		} else {
+			return GCUnknownGender;
+		}
+    } else if ([_value isKindOfClass:[GCAge class]]) {
+        return GCUnknownGender;
+    } else if ([_value isKindOfClass:[GCDate class]]) {
+        return GCUnknownGender;
+    } else {
+        return GCUnknownGender;
     }
 }
 

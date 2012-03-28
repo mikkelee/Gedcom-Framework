@@ -7,8 +7,8 @@
 //
 
 #import "GCProperty.h"
+#import "GCValue.h"
 
-@class GCValue;
 @class GCAge;
 @class GCDate;
 
@@ -27,6 +27,7 @@
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type ageValue:(GCAge *)value;
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type dateValue:(GCDate *)value;
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type boolValue:(BOOL)value;
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type genderValue:(GCGender)value;
 
 #pragma mark Properties
 

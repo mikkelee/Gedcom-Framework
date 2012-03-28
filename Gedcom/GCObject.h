@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GCValue.h"
+
 @class GCNode;
 
 @class GCContext;
@@ -42,6 +44,7 @@
 - (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value;
 - (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value;
 - (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value;
+- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value;
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target;
 
