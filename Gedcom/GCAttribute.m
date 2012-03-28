@@ -49,10 +49,6 @@
                 [object setBoolValue:[[node gedValue] isEqualToString:@"Y"]];
                 break;
                 
-            case GCRecordReferenceValue:
-                //TODO
-                break;
-                
             default:
                 break;
         }

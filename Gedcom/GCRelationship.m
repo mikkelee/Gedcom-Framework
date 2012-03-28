@@ -10,6 +10,7 @@
 
 #import "GCNode.h"
 #import "GCTag.h"
+#import "GCXrefStore.h"
 
 @implementation GCRelationship
 
@@ -17,12 +18,30 @@
 
 + (id)relationshipWithGedcomNode:(GCNode *)node
 {
-	return nil; //TODO
+    GCRelationship *object = [[self alloc] initWithType:[[node gedTag] name]];
+    
+	//TODO what about targets not created yet?
+    [object setTarget:[GCXrefStore entityForXref:[node xref]]];
+    
+    for (id subNode in [node subNodes]) {
+        [object addProperty:[GCProperty propertyWithGedcomNode:subNode]];
+    }
+    
+    return object;
 }
 
-+ (id)relationshipWithType:(NSString *)type object:(GCObject *)object
++ (id)relationshipWithType:(NSString *)type
 {
-	return nil; //TODO
+	return [[self alloc] initWithType:type];
+}
+
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target
+{
+    GCRelationship *new = [[self alloc] initWithType:type];
+    
+    [new setTarget:target];
+    
+    return new;
 }
 
 #pragma mark Gedcom access
@@ -30,9 +49,11 @@
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:[self gedTag]
-								 value:nil //TODO
+								 value:[GCXrefStore xrefForEntity:target]
 								  xref:nil
 							  subNodes:[self subNodes]];
 }
+
+@synthesize target;
 
 @end

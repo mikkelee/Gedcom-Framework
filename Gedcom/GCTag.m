@@ -234,15 +234,7 @@ __strong static NSDictionary *tagInfo;
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-	self = [super init];
-    
-    if (self) {
-        _code = [decoder decodeObjectForKey:@"gedTag"];
-        
-        //TODO
-	}
-    
-    return self;
+	return [GCTag tagCoded:[decoder decodeObjectForKey:@"gedTag"]];
 }
 
 #pragma mark NSCopying

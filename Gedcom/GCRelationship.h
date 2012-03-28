@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "GCProperty.h"
 
+#import "GCEntity.h"
+
 @interface GCRelationship : GCProperty
 
 #pragma mark Convenience constructors
 
 + (id)relationshipWithGedcomNode:(GCNode *)node;
 
-+ (id)relationshipWithType:(NSString *)type object:(GCObject *)object;
++ (id)relationshipWithType:(NSString *)type;
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target;
 
+@property GCEntity *target;
 
 @end

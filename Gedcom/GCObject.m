@@ -168,17 +168,33 @@
 
 - (NSArray *)properties
 {
-	return nil; //TODO
+	return [_properties copy];
 }
 
 - (NSArray *)attributes
 {
-	return nil; //TODO
+	NSMutableArray *attributes = [NSMutableArray arrayWithCapacity:3];
+	
+	for (id property in _properties) {
+		if ([property isKindOfClass:[GCAttribute class]]) {
+			[attributes addObject:property];
+		}
+	}
+	
+	return [attributes copy];
 }
 
 - (NSArray *)relationships
 {
-	return nil; //TODO
+	NSMutableArray *relationships = [NSMutableArray arrayWithCapacity:3];
+	
+	for (id property in _properties) {
+		if ([property isKindOfClass:[GCRelationship class]]) {
+			[relationships addObject:property];
+		}
+	}
+	
+	return [relationships copy];
 }
 
 @synthesize gedTag = _tag;
