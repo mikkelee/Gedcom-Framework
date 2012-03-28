@@ -134,6 +134,8 @@
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
 	[self addRelationship:[GCRelationship relationshipForObject:self withType:type target:target]];
+	
+	//TOOD - should this be moved elsewhere (ie into GCRelationship)?
 	if ([[GCTag tagNamed:type] reverseRelationshipTag]) {
 		[target addRelationshipWithType:[[[GCTag tagNamed:type] reverseRelationshipTag] name] target:(GCEntity *)self];
 	}
