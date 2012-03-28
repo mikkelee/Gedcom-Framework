@@ -53,7 +53,7 @@
                          @"1 DEAT Y"
                          , nil);
     
-    ctx = [GCContext context];
+    ctx = [GCContext context]; //fresh context
 	
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
