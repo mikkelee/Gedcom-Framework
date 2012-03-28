@@ -15,10 +15,10 @@
 
 #pragma mark Convenience constructors
 
-+ (id)relationshipWithGedcomNode:(GCNode *)node;
++ (id)relationshipWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
-+ (id)relationshipWithType:(NSString *)type;
-+ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target;
++ (id)relationshipWithType:(NSString *)type inContext:(GCContext *)context;
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target inContext:(GCContext *)context;
 
 @property GCEntity *target;
 

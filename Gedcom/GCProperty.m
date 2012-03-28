@@ -18,12 +18,12 @@
 
 #pragma mark Convenience constructors
 
-+ (id)propertyWithGedcomNode:(GCNode *)node
++ (id)propertyWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
 	if ([[node gedTag] objectClass] == [GCAttribute class]) {
-		return [GCAttribute attributeWithGedcomNode:node];
+		return [GCAttribute attributeWithGedcomNode:node inContext:context];
 	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
-		return [GCRelationship relationshipWithGedcomNode:node];
+		return [GCRelationship relationshipWithGedcomNode:node inContext:context];
 	} else {
 		return nil;
 	}

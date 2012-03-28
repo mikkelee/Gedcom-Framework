@@ -10,6 +10,8 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
+#import "GCContext.h"
+
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
@@ -19,17 +21,19 @@
 @end
 
 @implementation GCObject {
+	GCContext *_context;
     NSMutableDictionary *_properties;
 }
 
 #pragma mark Initialization
 
-- (id)initWithType:(NSString *)type
+- (id)initWithType:(NSString *)type inContext:(GCContext *)context
 {
     self = [super init];
     
     if (self) {
         _tag = [GCTag tagNamed:type];
+		_context = context;
         _properties = [NSMutableDictionary dictionaryWithCapacity:3];
     }
     
@@ -38,12 +42,12 @@
 
 #pragma mark Convenience constructors
 
-+ (id)objectWithGedcomNode:(GCNode *)node
++ (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    id object = [[self alloc] initWithType:[[node gedTag] name]];
+    id object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
     
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode]];
+        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
     }
     
     return object;
@@ -97,37 +101,37 @@
 
 - (void)addRelationship:(GCRelationship *)relationship
 {
-	[self addRelationship:relationship];
+	[self addProperty:relationship];
 }
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type stringValue:value]];
+    [self addAttribute:[GCAttribute attributeWithType:type stringValue:value inContext:_context]];
 }
 
 - (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type numberValue:value]];
+    [self addAttribute:[GCAttribute attributeWithType:type numberValue:value inContext:_context]];
 }
 
 - (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type ageValue:value]];
+    [self addAttribute:[GCAttribute attributeWithType:type ageValue:value inContext:_context]];
 }
 
 - (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type boolValue:value]];
+    [self addAttribute:[GCAttribute attributeWithType:type boolValue:value inContext:_context]];
 }
 
 - (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type dateValue:value]];
+    [self addAttribute:[GCAttribute attributeWithType:type dateValue:value inContext:_context]];
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-	[self addRelationship:[GCRelationship relationshipWithType:type target:target]];
+	[self addRelationship:[GCRelationship relationshipWithType:type target:target inContext:_context]];
 }
 
 #pragma mark Gedcom access
@@ -228,5 +232,7 @@
 }
 
 @synthesize gedTag = _tag;
+
+@synthesize context = _context;
 
 @end

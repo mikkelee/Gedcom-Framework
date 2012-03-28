@@ -738,8 +738,8 @@
 		<dict>
 			<key>name</key>
 			<string>Child</string>
-			<key>valueType</key>
-			<string></string>
+			<key>reverseRelationshipTag</key>
+			<string>FAMC</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -872,8 +872,8 @@
 		<dict>
 			<key>name</key>
 			<string>Family Child</string>
-			<key>valueType</key>
-			<string></string>
+			<key>objectClass</key>
+			<string>GCRelationship</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -894,6 +894,8 @@
 		<dict>
 			<key>name</key>
 			<string>Family Spouse</string>
+			<key>objectClass</key>
+			<string>GCRelationship</string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -949,8 +951,10 @@
 		<dict>
 			<key>name</key>
 			<string>Husband</string>
-			<key>valueType</key>
-			<string></string>
+			<key>objectClass</key>
+			<string>GCRelationship</string>
+			<key>reverseRelationshipTag</key>
+			<string>FAMS</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1319,8 +1323,10 @@
 		<dict>
 			<key>name</key>
 			<string>Wife</string>
-			<key>valueType</key>
-			<string></string>
+			<key>objectClass</key>
+			<string>GCRelationship</string>
+			<key>reverseRelationshipTag</key>
+			<string>FAMS</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>

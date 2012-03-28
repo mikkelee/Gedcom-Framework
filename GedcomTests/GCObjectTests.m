@@ -8,14 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCEntity.h"
-#import "GCProperty.h"
-#import "GCAttribute.h"
-#import "GCRelationship.h"
-#import "GCNode.h"
-#import "GCTag.h"
-#import "GCDate.h"
-#import "GCAge.h"
+#import "Gedcom.h"
 
 @interface GCObjectTests : SenTestCase {
 	
@@ -25,14 +18,25 @@
 
 @implementation GCObjectTests
 
+- (void)testObjectValues
+{
+	GCContext *ctx = [[GCContext alloc] init];
+	
+    GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"] inContext:ctx];
+    
+    STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
+}
+
 - (void)testSimpleObjects
 {
-    GCEntity *indi = [GCEntity entityWithType:@"Individual"];
+	GCContext *ctx = [[GCContext alloc] init];
+	
+    GCEntity *indi = [GCEntity entityWithType:@"Individual" inContext:ctx];
 	
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
+	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth" inContext:ctx];
     
 	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
@@ -70,7 +74,7 @@
                                                               value:@"Y"],
                                                  nil]];
     
-    GCEntity *object = [GCEntity entityWithGedcomNode:node];
+    GCEntity *object = [GCEntity entityWithGedcomNode:node inContext:ctx];
     
     STAssertEqualObjects([[object gedcomNode] gedcomString], 
                          @"0 @INDI2@ INDI\n"
@@ -82,11 +86,52 @@
                          , nil);
 }
 
-- (void)testObjectValues
+- (void)testRelationships
 {
-    GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
-    
-    STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
+	GCContext *ctx = [[GCContext alloc] init];
+	
+    GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
+	
+	GCEntity *husb = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	
+	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+	
+	GCEntity *wife = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	
+	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
+	
+	GCEntity *chil = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	
+	[wife addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
+	
+	[fam addRelationshipWithType:@"Husband" target:husb];
+	[fam addRelationshipWithType:@"Wife" target:wife];
+	[fam addRelationshipWithType:@"Child" target:chil];
+	
+    STAssertEqualObjects([[fam gedcomNode] gedcomString], 
+                         @"0 @FAM1@ FAM\n"
+                         @"1 HUSB @INDI1@\n"
+                         @"1 WIFE @INDI2@\n"
+                         @"1 CHIL @INDI3@"
+                         , nil);
+	
+    STAssertEqualObjects([[husb gedcomNode] gedcomString], 
+                         @"0 @INDI1@ INDI\n"
+                         @"1 NAME Jens /Hansen/\n"
+						 @"1 FAMS @FAM1@"
+                         , nil);
+	
+    STAssertEqualObjects([[wife gedcomNode] gedcomString], 
+                         @"0 @INDI2@ INDI\n"
+                         @"1 NAME Anne /Larsdatter/\n"
+						 @"1 FAMS @FAM1@"
+                         , nil);
+	
+    STAssertEqualObjects([[wife gedcomNode] gedcomString], 
+                         @"0 @INDI3@ INDI\n"
+                         @"1 NAME Hans /Jensen/\n"
+						 @"1 FAMC @FAM1@"
+                         , nil);
 }
 
 @end

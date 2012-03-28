@@ -21,9 +21,9 @@
 
 #pragma mark Convenience constructors
 
-+ (id)attributeWithGedcomNode:(GCNode *)node
++ (id)attributeWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCAttribute *object = [[self alloc] initWithType:[[node gedTag] name]];
+    GCAttribute *object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
     
     if ([node gedValue] != nil) {
         switch ([[node gedTag] valueType]) {
@@ -55,54 +55,59 @@
     }
     
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode]];
+        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
     }
     
     return object;
 }
 
-+ (id)attributeWithType:(NSString *)type
++ (id)attributeWithType:(NSString *)type inContext:(GCContext *)context
 {
-	return [[self alloc] initWithType:type];
+	return [[self alloc] initWithType:type inContext:context];
 }
 
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value
++ (id)attributeWithType:(NSString *)type value:(GCValue *)value inContext:(GCContext *)context
 {
-    GCProperty *new = [[self alloc] initWithType:type];
+    GCProperty *new = [[self alloc] initWithType:type inContext:context];
     
     [new setValue:value];
     
     return new;
 }
 
-+ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value
++ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value inContext:(GCContext *)context
 {
     return [self attributeWithType:type 
-                          value:[[GCValue alloc] initWithType:GCStringValue value:value]]; 
+							 value:[[GCValue alloc] initWithType:GCStringValue value:value]
+						   inContext:context]; 
 }
 
-+ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value
++ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value inContext:(GCContext *)context
 {
     return [self attributeWithType:type 
-                          value:[[GCValue alloc] initWithType:GCNumberValue value:value]]; 
+							 value:[[GCValue alloc] initWithType:GCNumberValue value:value]
+						   inContext:context]; 
 }
 
-+ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value
++ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value inContext:(GCContext *)context
 {
     return [self attributeWithType:type 
-                          value:[[GCValue alloc] initWithType:GCAgeValue value:value]]; 
+							 value:[[GCValue alloc] initWithType:GCAgeValue value:value]
+						   inContext:context]; 
 }
 
-+ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value
++ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value inContext:(GCContext *)context
 {
     return [self attributeWithType:type 
-                          value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
+							 value:[[GCValue alloc] initWithType:GCDateValue value:value]
+						   inContext:context]; 
 }
 
-+ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value
++ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value inContext:(GCContext *)context
 {
     return [self attributeWithType:type 
-                          value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
+							 value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]
+						   inContext:context]; 
 }
 
 #pragma mark Gedcom access

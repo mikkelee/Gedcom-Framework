@@ -16,17 +16,17 @@
 
 #pragma mark Convenience constructors
 
-+ (id)attributeWithGedcomNode:(GCNode *)node;
++ (id)attributeWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
-+ (id)attributeWithType:(NSString *)type;
++ (id)attributeWithType:(NSString *)type inContext:(GCContext *)context;
 
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value;
++ (id)attributeWithType:(NSString *)type value:(GCValue *)value inContext:(GCContext *)context;
 
-+ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value;
-+ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value;
-+ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value;
-+ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value;
-+ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value;
++ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value inContext:(GCContext *)context;
++ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value inContext:(GCContext *)context;
++ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value inContext:(GCContext *)context;
++ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value inContext:(GCContext *)context;
++ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value inContext:(GCContext *)context;
 
 #pragma mark Properties
 

@@ -10,6 +10,7 @@
 
 @class GCNode;
 
+@class GCContext;
 @class GCAge;
 @class GCDate;
 @class GCTag;
@@ -22,11 +23,11 @@
 
 #pragma mark Initialization
 
-- (id)initWithType:(NSString *)type;
+- (id)initWithType:(NSString *)type inContext:(GCContext *)context;
 
 #pragma mark Convenience constructors
 
-+ (id)objectWithGedcomNode:(GCNode *)node;
++ (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
 #pragma mark GCProperty access
 
@@ -58,5 +59,7 @@
 
 @property (readonly) GCTag *gedTag;
 @property (readonly) GCNode *gedcomNode;
+
+@property (readonly) GCContext *context;
 
 @end

@@ -8,8 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCNode.h"
-#import "NSString+GCKitAdditions.h"
+#import "Gedcom.h"
 
 @interface GCNodeTests : SenTestCase {
 	

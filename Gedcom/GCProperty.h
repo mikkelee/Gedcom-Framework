@@ -13,7 +13,7 @@
 
 #pragma mark Convenience constructors
 
-+ (id)propertyWithGedcomNode:(GCNode *)node;
++ (id)propertyWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
 @property (readonly) GCObject *object;
 

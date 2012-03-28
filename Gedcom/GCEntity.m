@@ -14,23 +14,25 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCXRefStore.h"
+#import "GCContext.h"
 
 @implementation GCEntity 
 
 #pragma mark Convenience constructors
 
-+ (id)entityWithType:(NSString *)type
++ (id)entityWithType:(NSString *)type inContext:(GCContext *)context
 {
-    return [[self alloc] initWithType:type];
+    return [[self alloc] initWithType:type inContext:context];
 }
 
-+ (id)entityWithGedcomNode:(GCNode *)node
++ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCEntity *object = [[self alloc] initWithType:[[node gedTag] name]];
+    GCEntity *object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
     
+	[context storeXref:[node xref] forEntity:object];
+	
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode]];
+        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
     }
     
     return object;
@@ -42,7 +44,7 @@
 {
     return [[GCNode alloc] initWithTag:[self gedTag] 
 								 value:nil
-								  xref:[GCXrefStore xrefForEntity:self]
+								  xref:[[self context] xrefForEntity:self]
 							  subNodes:[self subNodes]];
 }
 

@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCAge.h"
+#import "Gedcom.h"
 
 @interface GCAgeTests : SenTestCase {
 	

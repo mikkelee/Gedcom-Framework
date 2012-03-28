@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCDate.h"
+#import "Gedcom.h"
 
 @interface GCDateTests : SenTestCase {
 	

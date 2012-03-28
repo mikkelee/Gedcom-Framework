@@ -8,8 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCTag.h"
-#import "GCValue.h"
+#import "Gedcom.h"
 
 @interface GCTagTests : SenTestCase {
 	

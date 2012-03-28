@@ -13,8 +13,8 @@
 
 #pragma mark Convenience constructors
 
-+ (id)entityWithGedcomNode:(GCNode *)node;
++ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
-+ (id)entityWithType:(NSString *)type;
++ (id)entityWithType:(NSString *)type inContext:(GCContext *)context;
 
 @end

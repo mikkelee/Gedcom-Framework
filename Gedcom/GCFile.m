@@ -10,11 +10,30 @@
 #import "GCObject.h"
 #import "GCNode.h"
 
-@implementation GCFile
+#import "GCContext.h"
+
+@implementation GCFile {
+	GCContext *_context;
+}
+
+- (id)initWithContext:(GCContext *)context
+{
+	self = [super init];
+	
+	if (self) {
+		_context = context;
+	}
+	
+	return self;
+}
 
 + (id)fileFromGedcomNodes:(NSArray *)nodes
 {
-	return nil; //TODO
+	GCFile *new = [[self alloc] initWithContext:[[GCContext alloc] init]];
+	
+	//TODO
+	
+	return new;
 }
 
 @synthesize head = _head;

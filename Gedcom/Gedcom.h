@@ -6,8 +6,20 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject.h"
+#import "NSString+GCKitAdditions.h"
+
 #import "GCNode.h"
 #import "GCTag.h"
+
+#import "GCContext.h"
+#import "GCFile.h"
+
+#import "GCObject.h"
+#import "GCEntity.h"
+#import "GCProperty.h"
+#import "GCAttribute.h"
+#import "GCRelationship.h"
+
+#import "GCValue.h"
 #import "GCAge.h"
 #import "GCDate.h"
