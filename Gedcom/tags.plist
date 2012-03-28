@@ -22,6 +22,8 @@
 		<dict>
 			<key>name</key>
 			<string>Header</string>
+			<key>objectClass</key>
+			<string>GCHead</string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>
@@ -45,6 +47,8 @@
 		<dict>
 			<key>name</key>
 			<string>root record</string>
+			<key>objectClass</key>
+			<string>GCEntity</string>
 			<key>valueType</key>
 			<string>GCUndefinedValue</string>
 			<key>validSubTags</key>
@@ -138,6 +142,8 @@
 		<dict>
 			<key>name</key>
 			<string>Individual event</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCBoolValue</string>
 			<key>validSubTags</key>
@@ -306,6 +312,8 @@
 		<dict>
 			<key>name</key>
 			<string>Individual attribute</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCStringValue</string>
 			<key>validSubTags</key>
@@ -404,6 +412,8 @@
 		<dict>
 			<key>name</key>
 			<string>Individual LDS ordinance</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCBoolValue</string>
 			<key>validSubTags</key>
@@ -451,6 +461,8 @@
 		<dict>
 			<key>name</key>
 			<string>Family event</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCBoolValue</string>
 			<key>validSubTags</key>
@@ -814,6 +826,8 @@
 		<dict>
 			<key>name</key>
 			<string>Date</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCDateValue</string>
 			<key>validSubTags</key>
@@ -979,6 +993,8 @@
 		<dict>
 			<key>name</key>
 			<string>Name</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCStringValue</string>
 			<key>validSubTags</key>

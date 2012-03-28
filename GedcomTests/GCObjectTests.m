@@ -8,7 +8,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "GCRecord.h"
+#import "GCEntity.h"
+#import "GCProperty.h"
+#import "GCAttribute.h"
+#import "GCRelationship.h"
 #import "GCNode.h"
 #import "GCTag.h"
 #import "GCDate.h"
@@ -24,18 +27,18 @@
 
 - (void)testSimpleObjects
 {
-    GCRecord *indi = [GCRecord objectWithType:@"Individual"];
+    GCEntity *indi = [GCEntity entityWithType:@"Individual"];
+	
+	[indi addAttribute:[GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"]];
+	[indi addAttribute:[GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"]];
     
-    [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
-    [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
+	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-    GCRecord *birt = [GCRecord objectWithType:@"Birth"];
+	[birt addAttribute:[GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]]];
     
-    [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    [indi addAttribute:birt];
     
-    [indi addRecord:birt];
-    
-    [indi addRecordWithType:@"Death" boolValue:YES];
+    [indi addAttribute:[GCAttribute attributeWithType:@"Death" boolValue:YES]];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          @"0 @INDI1@ INDI\n"
@@ -49,7 +52,7 @@
     
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:@"@INDI1@"
+                                          xref:@"@INDI2@"
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
@@ -67,15 +70,21 @@
                                                               value:@"Y"],
                                                  nil]];
     
-    GCRecord *object = [GCRecord objectWithGedcomNode:node];
+    GCEntity *object = [GCEntity entityWithGedcomNode:node];
     
-    STAssertEqualObjects([[indi gedcomNode] gedcomString], 
-                         [[object gedcomNode] gedcomString], nil);
+    STAssertEqualObjects([[object gedcomNode] gedcomString], 
+                         @"0 @INDI2@ INDI\n"
+                         @"1 NAME Jens /Hansen/\n"
+                         @"1 NAME Jens /Hansen/ Smed\n"
+                         @"1 BIRT\n"
+                         @"2 DATE 1 JAN 1901\n"
+                         @"1 DEAT Y"
+                         , nil);
 }
 
 - (void)testObjectValues
 {
-    GCRecord *date = [GCRecord objectWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
 }

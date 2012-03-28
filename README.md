@@ -76,7 +76,7 @@ is equivalent to:
 * **GCNode**: subNodes array shouldn't be mutable (GCNode should be fully immutable)
 * **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
 * **GCMutableNode**: Mutable version of GCNode
-* **GCObject**: parent ref - needs the be enforced better (not currently done when accessing values directly)
+* **GCObject**: parent ref
 * **GCValue**: better type coercions
 * **GCAge/GCDate**: better hiding of internals (ie a facade) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * **GCAge/GCDate**: calculations (ie dateA - dateB = age)

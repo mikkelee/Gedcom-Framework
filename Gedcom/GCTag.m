@@ -10,7 +10,11 @@
 
 @interface GCTag ()
 
--(id)initWithCode:(NSString *)code name:(NSString *)name valueType:(GCValueType)valueType validSubTags:(NSOrderedSet *)validSubTags;
+-(id)initWithCode:(NSString *)code 
+			 name:(NSString *)name 
+		valueType:(GCValueType)valueType 
+	  objectClass:(Class)objectClass
+	 validSubTags:(NSOrderedSet *)validSubTags;
 
 @end
 
@@ -19,6 +23,7 @@
     NSString *_name;
     NSOrderedSet *_validSubTags;
     GCValueType _valueType;
+	Class _objectType;
 }
 
 #pragma mark Constants
@@ -90,6 +95,12 @@ __strong static NSDictionary *tagInfo;
                 valueTypeString = [[[_tags objectForKey:kTags] objectForKey:[aliases objectForKey:code]] objectForKey:@"valueType"];
             }
             
+            NSString *objectClassString = [tagDict objectForKey:@"objectClass"];
+            
+            if (objectClassString == nil || [objectClassString isEqualToString:@""]) {
+                objectClassString = [[[_tags objectForKey:kTags] objectForKey:[aliases objectForKey:code]] objectForKey:@"objectClass"];
+            }
+            
             NSMutableOrderedSet *validSubTags = [NSMutableOrderedSet orderedSetWithCapacity:3];
             
             //validSubTags from self:
@@ -127,6 +138,7 @@ __strong static NSDictionary *tagInfo;
             GCTag *tag = [[GCTag alloc] initWithCode:code 
                                                 name:name
                                            valueType:[GCValue valueTypeNamed:valueTypeString]
+										 objectClass:NSClassFromString(objectClassString)
                                         validSubTags:validSubTags];
             
             [tags setObject:tag forKey:code];
@@ -149,7 +161,11 @@ __strong static NSDictionary *tagInfo;
 
 #pragma mark Initialization
 
--(id)initWithCode:(NSString *)code name:(NSString *)name valueType:(GCValueType)valueType validSubTags:(NSOrderedSet *)validSubTags
+-(id)initWithCode:(NSString *)code 
+			 name:(NSString *)name 
+		valueType:(GCValueType)valueType 
+	  objectClass:(Class)objectClass
+	 validSubTags:(NSOrderedSet *)validSubTags
 {
     NSParameterAssert(code != nil);
     
@@ -159,6 +175,7 @@ __strong static NSDictionary *tagInfo;
         _code = code;
         _name = name;
         _valueType = valueType;
+        _objectClass = objectClass;
         _validSubTags = validSubTags;
     }
     
@@ -178,7 +195,8 @@ __strong static NSDictionary *tagInfo;
     if (tag == nil) {
         tag = [[self alloc] initWithCode:code
                                     name:[NSString stringWithFormat:@"Custom %@ tag", code]
-                               valueType:GCUndefinedValue 
+                               valueType:GCStringValue
+							 objectClass:NSClassFromString(@"GCAttribute")
                             validSubTags:[NSOrderedSet orderedSet]];
         [tags setObject:tag forKey:code];
     }
@@ -239,6 +257,7 @@ __strong static NSDictionary *tagInfo;
 @synthesize code = _code;
 @synthesize name = _name;
 @synthesize valueType = _valueType;
+@synthesize objectClass = _objectClass;
 @synthesize validSubTags = _validSubTags;
 
 - (BOOL)isCustom

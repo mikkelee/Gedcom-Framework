@@ -34,5 +34,6 @@
 
 @property (readonly) NSOrderedSet *validSubTags;
 @property (readonly) GCValueType valueType;
+@property (readonly) Class objectClass;
 
 @end
