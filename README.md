@@ -24,7 +24,6 @@ Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; 
 * **tags.plist**: Currently only partially done
 * **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
 * **GCMutableNode**: Mutable version of GCNode
-* **GCObject**: parent ref (an attribute should know which entity it's sitting on, etc)
 * **GCValue**: better type coercions; some currently return nil.
 * **GCAge/GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * **GCAge/GCDate**: calculations (ie age = dateA - dateB)

@@ -32,7 +32,7 @@
 	[context storeXref:[node xref] forEntity:object];
 	
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
+        [object addProperty:[GCProperty propertyForObject:object withGedcomNode:subNode]];
     }
     
     return object;

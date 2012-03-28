@@ -47,9 +47,9 @@
 	if ([[node gedTag] objectClass] == [GCEntity class]) {
 		return [GCEntity entityWithGedcomNode:node inContext:context];
 	} else if ([[node gedTag] objectClass] == [GCAttribute class]) {
-		return [GCAttribute attributeWithGedcomNode:node inContext:context];
+		return [GCAttribute attributeForObject:nil withGedcomNode:node]; //TODO object = nil (since we should only be creating root objects here, maybe remove the attribute/relationship stuff)
 	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
-		return [GCRelationship relationshipWithGedcomNode:node inContext:context];
+		return [GCRelationship relationshipForObject:nil withGedcomNode:node];
 	} else {
 		return nil;
 	}
@@ -108,32 +108,32 @@
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type stringValue:value inContext:_context]];
+    [self addAttribute:[GCAttribute attributeForObject:self withType:type stringValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type numberValue:value inContext:_context]];
+    [self addAttribute:[GCAttribute attributeForObject:self withType:type numberValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type ageValue:value inContext:_context]];
+    [self addAttribute:[GCAttribute attributeForObject:self withType:type ageValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type boolValue:value inContext:_context]];
+    [self addAttribute:[GCAttribute attributeForObject:self withType:type boolValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
 {
-    [self addAttribute:[GCAttribute attributeWithType:type dateValue:value inContext:_context]];
+    [self addAttribute:[GCAttribute attributeForObject:self withType:type dateValue:value]];
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-	[self addRelationship:[GCRelationship relationshipWithType:type target:target inContext:_context]];
+	[self addRelationship:[GCRelationship relationshipForObject:self withType:type target:target]];
 	if ([[GCTag tagNamed:type] reverseRelationshipTag]) {
 		[target addRelationshipWithType:[[[GCTag tagNamed:type] reverseRelationshipTag] name] target:(GCEntity *)self];
 	}

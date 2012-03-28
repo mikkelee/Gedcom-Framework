@@ -16,29 +16,31 @@
 
 #pragma mark Convenience constructors
 
-+ (id)relationshipWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
++ (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCRelationship *object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
+    GCRelationship *relationship = [[self alloc] initWithType:[[node gedTag] name] inContext:[object context]];
     
+	[relationship setDescribedObject:object];
 	//TODO what about targets not created yet?
-    [object setTarget:[context entityForXref:[node xref]]];
+    [relationship setTarget:[[object context] entityForXref:[node xref]]];
     
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
+        [relationship addProperty:[GCProperty propertyForObject:object withGedcomNode:subNode]];
     }
     
-    return object;
+    return relationship;
 }
 
-+ (id)relationshipWithType:(NSString *)type inContext:(GCContext *)context
++ (id)relationshipForObject:(GCObject *)object withType:(NSString *)type
 {
-	return [[self alloc] initWithType:type inContext:context];
+	return [[self alloc] initWithType:type inContext:[object context]];
 }
 
-+ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target inContext:(GCContext *)context
++ (id)relationshipForObject:(GCObject *)object withType:(NSString *)type target:(GCEntity *)target
 {
-    GCRelationship *new = [[self alloc] initWithType:type inContext:context];
+    GCRelationship *new = [[self alloc] initWithType:type inContext:[object context]];
     
+	[new setDescribedObject:object];
     [new setTarget:target];
     
     return new;

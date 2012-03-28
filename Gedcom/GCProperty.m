@@ -14,21 +14,23 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-@implementation GCProperty 
+@implementation GCProperty {
+	GCObject *_describedObject;
+}
 
 #pragma mark Convenience constructors
 
-+ (id)propertyWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
++ (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
 	if ([[node gedTag] objectClass] == [GCAttribute class]) {
-		return [GCAttribute attributeWithGedcomNode:node inContext:context];
+		return [GCAttribute attributeForObject:object withGedcomNode:node];
 	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
-		return [GCRelationship relationshipWithGedcomNode:node inContext:context];
+		return [GCRelationship relationshipForObject:object withGedcomNode:node];
 	} else {
 		return nil;
 	}
 }
 
-@synthesize object = _object;
+@synthesize describedObject = _describedObject;
 
 @end

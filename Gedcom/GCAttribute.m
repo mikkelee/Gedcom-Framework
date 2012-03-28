@@ -11,6 +11,8 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
+#import "GCEntity.h"
+
 #import "GCValue.h"
 #import "GCAge.h"
 #import "GCDate.h"
@@ -21,32 +23,32 @@
 
 #pragma mark Convenience constructors
 
-+ (id)attributeWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCAttribute *object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
+    GCAttribute *attribute = [[self alloc] initWithType:[[node gedTag] name] inContext:[object context]];
     
     if ([node gedValue] != nil) {
         switch ([[node gedTag] valueType]) {
             case GCStringValue:
-                [object setStringValue:[node gedValue]];
+                [attribute setStringValue:[node gedValue]];
                 break;
                 
             case GCNumberValue: {
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-                [object setNumberValue:[formatter numberFromString:[node gedValue]]];
+                [attribute setNumberValue:[formatter numberFromString:[node gedValue]]];
             }
                 break;
                 
             case GCAgeValue:
-                [object setAgeValue:[GCAge ageFromGedcom:[node gedValue]]];
+                [attribute setAgeValue:[GCAge ageFromGedcom:[node gedValue]]];
                 break;
                 
             case GCDateValue:
-                [object setDateValue:[GCDate dateFromGedcom:[node gedValue]]];
+                [attribute setDateValue:[GCDate dateFromGedcom:[node gedValue]]];
                 break;
                 
             case GCBoolValue:
-                [object setBoolValue:[[node gedValue] isEqualToString:@"Y"]];
+                [attribute setBoolValue:[[node gedValue] isEqualToString:@"Y"]];
                 break;
                 
             default:
@@ -55,59 +57,64 @@
     }
     
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
+        [attribute addProperty:[GCProperty propertyForObject:object withGedcomNode:subNode]];
     }
     
-    return object;
+    return attribute;
 }
 
-+ (id)attributeWithType:(NSString *)type inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type
 {
-	return [[self alloc] initWithType:type inContext:context];
-}
-
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value inContext:(GCContext *)context
-{
-    GCProperty *new = [[self alloc] initWithType:type inContext:context];
+    GCProperty *new = [[self alloc] initWithType:type inContext:[object context]];
     
+	[new setDescribedObject:object];
+    
+    return new;
+}
+
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type value:(GCValue *)value
+{
+    GCProperty *new = [[self alloc] initWithType:type inContext:[object context]];
+    
+	[new setDescribedObject:object];
     [new setValue:value];
     
     return new;
 }
 
-+ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type stringValue:(NSString *)value
 {
-    return [self attributeWithType:type 
-							 value:[[GCValue alloc] initWithType:GCStringValue value:value]
-						   inContext:context]; 
+    return [self attributeForObject:object
+						   withType:type 
+							  value:[[GCValue alloc] initWithType:GCStringValue value:value]]; 
 }
 
-+ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type numberValue:(NSNumber *)value
 {
-    return [self attributeWithType:type 
-							 value:[[GCValue alloc] initWithType:GCNumberValue value:value]
-						   inContext:context]; 
+    return [self attributeForObject:object
+						   withType:type 
+							  value:[[GCValue alloc] initWithType:GCNumberValue value:value]]; 
 }
 
-+ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type ageValue:(GCAge *)value
 {
-    return [self attributeWithType:type 
-							 value:[[GCValue alloc] initWithType:GCAgeValue value:value]
-						   inContext:context]; 
+    return [self attributeForObject:object
+						   withType:type 
+							  value:[[GCValue alloc] initWithType:GCAgeValue value:value]]; 
 }
 
-+ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type dateValue:(GCDate *)value
 {
-    return [self attributeWithType:type 
-							 value:[[GCValue alloc] initWithType:GCDateValue value:value]
-						   inContext:context]; 
+    return [self attributeForObject:object
+						   withType:type 
+							  value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
 }
 
-+ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value inContext:(GCContext *)context
++ (id)attributeForObject:(GCObject *)object withType:(NSString *)type boolValue:(BOOL)value
 {
-    return [self attributeWithType:type 
-							 value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]
-						   inContext:context]; 
+    return [self attributeForObject:object
+						   withType:type 
+							  value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
 }
 
 #pragma mark Gedcom access
