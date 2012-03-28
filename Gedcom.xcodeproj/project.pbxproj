@@ -230,6 +230,17 @@
 			name = Nodes;
 			sourceTree = "<group>";
 		};
+		3E14EDCC15230FE400080364 /* Values */ = {
+			isa = PBXGroup;
+			children = (
+				3E57557915202A9600A918D1 /* GCValue.h */,
+				3E57557A15202A9600A918D1 /* GCValue.m */,
+				3EECFD93151C33590074E26C /* Age */,
+				3EECFD94151C33640074E26C /* Date */,
+			);
+			name = Values;
+			sourceTree = "<group>";
+		};
 		3E1C3E5A151C319B005E09E1 = {
 			isa = PBXGroup;
 			children = (
@@ -285,10 +296,7 @@
 				3E57559315218A9200A918D1 /* GCFile.h */,
 				3E57559415218A9200A918D1 /* GCFile.m */,
 				3E57558A15217C1600A918D1 /* Objects */,
-				3E57557915202A9600A918D1 /* GCValue.h */,
-				3E57557A15202A9600A918D1 /* GCValue.m */,
-				3EECFD93151C33590074E26C /* Age */,
-				3EECFD94151C33640074E26C /* Date */,
+				3E14EDCC15230FE400080364 /* Values */,
 				3E1C3E70151C319C005E09E1 /* Supporting Files */,
 			);
 			path = Gedcom;

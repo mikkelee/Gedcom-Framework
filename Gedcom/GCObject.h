@@ -10,6 +10,8 @@
 
 @class GCNode;
 
+@class GCAge;
+@class GCDate;
 @class GCTag;
 @class GCProperty;
 @class GCAttribute;
@@ -32,6 +34,12 @@
 - (void)addProperty:(GCProperty *)property;
 - (void)addAttribute:(GCAttribute *)attribute;
 - (void)addRelationship:(GCRelationship *)relationship;
+
+- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value;
+- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value;
+- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value;
+- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value;
+- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value;
 
 #pragma mark Gedcom access
 

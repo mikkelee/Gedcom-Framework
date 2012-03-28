@@ -100,6 +100,31 @@
 	[self addRelationship:relationship];
 }
 
+- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
+{
+    [self addAttribute:[GCAttribute attributeWithType:type stringValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
+{
+    [self addAttribute:[GCAttribute attributeWithType:type numberValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
+{
+    [self addAttribute:[GCAttribute attributeWithType:type ageValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
+{
+    [self addAttribute:[GCAttribute attributeWithType:type boolValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
+{
+    [self addAttribute:[GCAttribute attributeWithType:type dateValue:value]];
+}
+
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode

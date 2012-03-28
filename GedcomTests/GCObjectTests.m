@@ -29,16 +29,16 @@
 {
     GCEntity *indi = [GCEntity entityWithType:@"Individual"];
 	
-	[indi addAttribute:[GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"]];
-	[indi addAttribute:[GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"]];
+	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-	[birt addAttribute:[GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]]];
+	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     [indi addAttribute:birt];
     
-    [indi addAttribute:[GCAttribute attributeWithType:@"Death" boolValue:YES]];
+    [indi addAttributeWithType:@"Death" boolValue:YES];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          @"0 @INDI1@ INDI\n"
