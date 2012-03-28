@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class GCObject;
-@class GCNode;
+@class GCContext;
 
 @interface GCFile : NSObject
+
+- (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
 
 + (id)fileFromGedcomNodes:(NSArray *)nodes;
 

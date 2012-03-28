@@ -44,13 +44,15 @@
 
 + (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    id object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
-    
-    for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyWithGedcomNode:subNode inContext:context]];
-    }
-    
-    return object;
+	if ([[node gedTag] objectClass] == [GCEntity class]) {
+		return [GCEntity entityWithGedcomNode:node inContext:context];
+	} else if ([[node gedTag] objectClass] == [GCAttribute class]) {
+		return [GCAttribute attributeWithGedcomNode:node inContext:context];
+	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
+		return [GCRelationship relationshipWithGedcomNode:node inContext:context];
+	} else {
+		return nil;
+	}
 }
 
 #pragma mark GCProperty access

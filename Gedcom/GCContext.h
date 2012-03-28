@@ -12,6 +12,8 @@
 
 @interface GCContext : NSObject
 
++ (id)context;
+
 - (void)storeXref:(NSString *)xref forEntity:(GCEntity *)obj;
 - (NSString *)xrefForEntity:(GCEntity *)obj;
 - (GCEntity *)entityForXref:(NSString *)xref;

@@ -738,6 +738,8 @@
 		<dict>
 			<key>name</key>
 			<string>Child</string>
+			<key>objectClass</key>
+			<string>GCRelationship</string>
 			<key>reverseRelationshipTag</key>
 			<string>FAMC</string>
 			<key>validSubTags</key>

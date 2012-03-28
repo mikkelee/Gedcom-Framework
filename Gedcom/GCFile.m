@@ -14,14 +14,20 @@
 
 @implementation GCFile {
 	GCContext *_context;
+	NSMutableArray *_records;
 }
 
-- (id)initWithContext:(GCContext *)context
+- (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
 {
 	self = [super init];
 	
 	if (self) {
 		_context = context;
+		_records = [NSMutableArray arrayWithCapacity:[nodes count]];
+		
+		for (id node in nodes) {
+			[_records addObject:[GCObject objectWithGedcomNode:node inContext:context]];
+		}
 	}
 	
 	return self;
@@ -29,11 +35,7 @@
 
 + (id)fileFromGedcomNodes:(NSArray *)nodes
 {
-	GCFile *new = [[self alloc] initWithContext:[[GCContext alloc] init]];
-	
-	//TODO
-	
-	return new;
+	return [[self alloc] initWithContext:[GCContext context] gedcomNodes:nodes];
 }
 
 @synthesize head = _head;

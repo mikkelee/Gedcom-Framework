@@ -58,7 +58,7 @@
 -(void)testSimpleGed
 {
 	//from http://www.heiner-eichmann.de/gedcom/gedcom.htm
-	NSString *path = [[NSBundle bundleForClass:[GCNodeTests class]] pathForResource:@"simple" ofType:@"ged"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
 	STAssertNotNil(path, nil);
 	[self testFile:path countShouldBe:7];
 }
@@ -66,7 +66,7 @@
 -(void)testAllGed
 {
 	//from http://www.heiner-eichmann.de/gedcom/gedcom.htm
-	NSString *path = [[NSBundle bundleForClass:[GCNodeTests class]] pathForResource:@"allged" ofType:@"ged"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
 	STAssertNotNil(path, nil);
 	[self testFile:path countShouldBe:18];
 }

@@ -20,7 +20,7 @@
 
 - (void)testObjectValues
 {
-	GCContext *ctx = [[GCContext alloc] init];
+	GCContext *ctx = [GCContext context];
 	
     GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"] inContext:ctx];
     
@@ -29,7 +29,7 @@
 
 - (void)testSimpleObjects
 {
-	GCContext *ctx = [[GCContext alloc] init];
+	GCContext *ctx = [GCContext context];
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual" inContext:ctx];
 	
@@ -53,10 +53,11 @@
                          @"1 DEAT Y"
                          , nil);
     
-    
+    ctx = [GCContext context];
+	
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:@"@INDI2@"
+                                          xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
@@ -77,7 +78,7 @@
     GCEntity *object = [GCEntity entityWithGedcomNode:node inContext:ctx];
     
     STAssertEqualObjects([[object gedcomNode] gedcomString], 
-                         @"0 @INDI2@ INDI\n"
+                         @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
                          @"1 BIRT\n"
@@ -88,7 +89,7 @@
 
 - (void)testRelationships
 {
-	GCContext *ctx = [[GCContext alloc] init];
+	GCContext *ctx = [GCContext context];
 	
     GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
 	
@@ -132,6 +133,16 @@
                          @"1 NAME Hans /Jensen/\n"
 						 @"1 FAMC @FAM1@"
                          , nil);
+}
+
+- (void)TMP//testFile
+{
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
+	NSArray *nodes = [GCNode arrayOfNodesFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]];
+	
+	GCFile *file = [GCFile fileFromGedcomNodes:nodes];
+	
+	NSLog(@"file: %@", file);
 }
 
 @end
