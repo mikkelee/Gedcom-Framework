@@ -4,17 +4,17 @@
 
 A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
 
-* GEDCOM text <=> GCNode <=> GCRecord
+* GEDCOM text <=> GCNode <=> GCObject
 * Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
 * Above GCNodes are GCObjects, which allow for more abstracted data access. There are three basic types of GCObject:
-  * GCEntity: INDI/FAM, etc - the root level records.
-  * GCAttribute: Any non-relationship node, such as a NAME, a DATE, a PLAC.
-  * GCRelationship: References to other entities, such as FAMC, HUSB, etc.
-* Eventually, there should be another layer with things like GCIndividual, GCFamily.
+  * GCEntity: Root level records - INDI, FAM, etc.
+  * GCAttribute: Any non-relationship node - NAME, DATE, PLAC, etc.
+  * GCRelationship: References to other entities - FAMC, HUSB, etc.
+* Eventually, there should be another layer with things like GCIndividual, GCFamily (?).
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
 
-Currently, GCNodes are fully implemented; basic implementation of GCObject and its subclasses is done. See also TODO below.
+Currently, GCNodes are fully implemented; a basic implementation of GCObject and its subclasses is done. See also Examples & TODO below.
 
 Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; handles ranges & periods, allows for sorting.
 
