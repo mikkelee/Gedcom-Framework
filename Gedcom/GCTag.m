@@ -254,10 +254,10 @@ __strong static NSDictionary *tagInfo;
 	GCValueType valueType = [GCValue valueTypeNamed:valueTypeString];
 	
 	if (valueType == GCUndefinedValue) {
-		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
+		NSException *exception = [NSException exceptionWithName:@"GCInvalidValueTypeException"
 														 reason:[NSString stringWithFormat:@"Invalid <valueType> '%@' in %@", valueTypeString, _settings]
 													   userInfo:_settings];
-		//@throw exception;
+		@throw exception;
 	}
 	
 	return valueType;
@@ -272,7 +272,7 @@ __strong static NSDictionary *tagInfo;
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
 														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' in %@", objectClassString, _settings]
 													   userInfo:_settings];
-		//@throw exception;
+		@throw exception;
 	}
 	
 	return objectClass;
