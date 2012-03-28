@@ -125,6 +125,11 @@
     [self addAttribute:[GCAttribute attributeWithType:type dateValue:value]];
 }
 
+- (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
+{
+	[self addRelationship:[GCRelationship relationshipWithType:type target:target]];
+}
+
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
