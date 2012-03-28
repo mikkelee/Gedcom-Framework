@@ -151,7 +151,7 @@ __strong static NSDictionary *tagInfo;
         [_tags setObject:[[[_tags objectForKey:kTags] objectForKey:@"@reco"] objectForKey:@"aliases"] forKey:kRootTags];
         
         tagInfo = [_tags copy];
-        NSLog(@"tagInfo: %@", tagInfo);
+        //NSLog(@"tagInfo: %@", tagInfo);
     });
 }
 

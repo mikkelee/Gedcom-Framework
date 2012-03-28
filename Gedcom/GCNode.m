@@ -111,12 +111,27 @@
 		
 		if ([match numberOfRanges] == 4) {
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
+			GCTag *tag = [GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]];
 			NSString *val = nil;
 			if ([match rangeAtIndex:3].length > 0) {
 				val = [gLine substringWithRange:[match rangeAtIndex:3]];
 			}
-			node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]] 
-								 value:val];
+			if ([[tag code] isEqualToString:@"CONT"]) {
+				if ([currentNode gedValue] == nil) {
+					[currentNode setGedValue:@""];
+				}
+				[currentNode setGedValue:[NSString stringWithFormat:@"%@\n%@", [currentNode gedValue], val]];
+				continue;
+			} else if ([[tag code] isEqualToString:@"CONC"]) {
+				if ([currentNode gedValue] == nil) {
+					[currentNode setGedValue:@""];
+				}
+				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@", [currentNode gedValue], val]];
+				continue;
+			} else {
+				node = [GCNode nodeWithTag:tag 
+									 value:val];
+			}
 		} else {
 			match = [levelXrefTagRegex firstMatchInString:gLine options:0 range:range];
 			if ([match numberOfRanges] == 4) {
@@ -184,48 +199,46 @@
 	
 	if ([[self gedValue] isEqualToString:@""]) {
 		[self setGedValue:nil];
-	} else {
-		NSMutableArray *lines = [[[self gedValue] arrayOfLines] mutableCopyWithZone:NULL];
-		
-		NSString *s = [lines objectAtIndex:0];
-		[lines removeObjectAtIndex:0];
-		
-		level++;
-		for (NSString *line in lines) {
-			NSString *t = @"CONT"; //we use CONT for new lines
-			
-			if ([line length] <= 248) {
-				s = [s stringByAppendingFormat:@"\n%d %@ %@", level, t, line];
-			} else {
-				//split string in 248-char parts, loop & add as CONC
-				NSString *leftover = line;
-				
-				while ([leftover length] > 248) {
-					NSString *bite = [leftover substringToIndex:248];
-					leftover = [leftover substringFromIndex:248];
-					
-					s = [s stringByAppendingFormat:@"\n%d %@ %@", level, t, bite];
-					
-					t = @"CONC"; //and CONC for concatenations
-				}
-				
-				s = [s stringByAppendingFormat:@"\n%d %@ %@", level, t, leftover];
-			}
-		}
-		level--;
-		
-		[self setGedValue:s];
 	}
+	
+	NSMutableArray *lines = [[[self gedValue] arrayOfLines] mutableCopyWithZone:NULL];
+	
+	NSString *firstLine = [lines objectAtIndex:0];
+	[lines removeObjectAtIndex:0];
 	
 	if ([self xref] != nil && [self gedValue] == nil) {
 		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] code]]];
 	} else if ([self xref] == nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [[self gedTag] code], [self gedValue]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [[self gedTag] code], firstLine]];
 	} else if ([self xref] != nil && [self gedValue] != nil) {
 		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] code]]];
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, @"CONT", [self gedValue]]];
+		if (![firstLine isEqualToString:@""]) {
+			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, @"CONT", firstLine]];
+		}
 	} else {
 		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [[self gedTag] code]]];
+	}
+	
+	for (NSString *line in lines) {
+		NSString *t = @"CONT"; //we use CONT for new lines
+		
+		if ([line length] <= 248) {
+			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, line]];
+		} else {
+			//split string in 248-char parts, loop & add as CONC
+			NSString *leftover = line;
+			
+			while ([leftover length] > 248) {
+				NSString *bite = [leftover substringToIndex:248];
+				leftover = [leftover substringFromIndex:248];
+				
+				[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, bite]];
+				
+				t = @"CONC"; //and CONC for concatenations
+			}
+			
+			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, leftover]];
+		}
 	}
 	
 	level++;

@@ -12,6 +12,8 @@
 
 #import "GCContext.h"
 
+#import "GCEntity.h"
+#import "GCHead.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
@@ -44,13 +46,15 @@
 
 + (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-	if ([[node gedTag] objectClass] == [GCEntity class]) {
+	if ([[node gedTag] objectClass] == [GCHead class]) {
+		return [GCHead headWithGedcomNode:node inContext:context];
+	} else if (![[node gedTag] isRoot]) {
+		NSLog(@"Not a rootNode: %@", node); //TODO throw or something
+		return nil;
+	} else if ([[node gedTag] objectClass] == [GCEntity class]) {
 		return [GCEntity entityWithGedcomNode:node inContext:context];
-	} else if ([[node gedTag] objectClass] == [GCAttribute class]) {
-		return [GCAttribute attributeForObject:nil withGedcomNode:node]; //TODO object = nil (since we should only be creating root objects here, maybe remove the attribute/relationship stuff)
-	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
-		return [GCRelationship relationshipForObject:nil withGedcomNode:node];
 	} else {
+		NSLog(@"Shouldn't happen! %@", node);
 		return nil;
 	}
 }

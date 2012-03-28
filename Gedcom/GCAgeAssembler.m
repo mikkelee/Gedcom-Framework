@@ -12,7 +12,7 @@
 #import "GCSimpleAge.h"
 #import "GCAgeKeyword.h"
 
-#define DebugLog(fmt, ...) NSLog(fmt, ## __VA_ARGS__)
+#define DebugLog(fmt, ...) if (0) NSLog(fmt, ## __VA_ARGS__)
 
 @implementation GCAgeAssembler
 

@@ -54,6 +54,7 @@
 			<key>validSubTags</key>
 			<array>
 				<string>SOUR</string>
+				<string>NOTE</string>
 			</array>
 			<key>aliases</key>
 			<array>
@@ -87,6 +88,7 @@
 			<key>validSubTags</key>
 			<array>
 				<string>NAME</string>
+				<string>SEX</string>
 				<string>@indi_even</string>
 				<string>@indi_attr</string>
 				<string>@indi_lds</string>
@@ -136,7 +138,8 @@
 			<string>Submitter</string>
 			<key>validSubTags</key>
 			<array>
-				<string></string>
+				<string>NAME</string>
+				<string>ADDR</string>
 			</array>
 		</dict>
 		
@@ -553,8 +556,10 @@
 		<dict>
 			<key>name</key>
 			<string>Abbreviation</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
-			<string></string>
+			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -564,8 +569,10 @@
 		<dict>
 			<key>name</key>
 			<string>Address</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
-			<string></string>
+			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -575,8 +582,10 @@
 		<dict>
 			<key>name</key>
 			<string>Address1</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
-			<string></string>
+			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -586,8 +595,10 @@
 		<dict>
 			<key>name</key>
 			<string>Address2</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
-			<string></string>
+			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -608,6 +619,8 @@
 		<dict>
 			<key>name</key>
 			<string>Age</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
 			<string>GCAgeValue</string>
 			<key>validSubTags</key>
