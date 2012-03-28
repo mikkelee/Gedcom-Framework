@@ -103,7 +103,7 @@
 	
 	GCEntity *chil = [GCEntity entityWithType:@"Individual" inContext:ctx];
 	
-	[wife addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
+	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
 	
 	[fam addRelationshipWithType:@"Husband" target:husb];
 	[fam addRelationshipWithType:@"Wife" target:wife];
@@ -128,7 +128,7 @@
 						 @"1 FAMS @FAM1@"
                          , nil);
 	
-    STAssertEqualObjects([[wife gedcomNode] gedcomString], 
+    STAssertEqualObjects([[chil gedcomNode] gedcomString], 
                          @"0 @INDI3@ INDI\n"
                          @"1 NAME Hans /Jensen/\n"
 						 @"1 FAMC @FAM1@"
