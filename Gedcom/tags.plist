@@ -90,6 +90,8 @@
 				<string>@indi_even</string>
 				<string>@indi_attr</string>
 				<string>@indi_lds</string>
+				<string>FAMC</string>
+				<string>FAMS</string>
 			</array>
 		</dict>
 		<key>OBJE</key>

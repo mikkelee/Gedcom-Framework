@@ -91,20 +91,16 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
-	
 	GCEntity *husb = [GCEntity entityWithType:@"Individual" inContext:ctx];
-	
 	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
 	
 	GCEntity *wife = [GCEntity entityWithType:@"Individual" inContext:ctx];
-	
 	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
 	
 	GCEntity *chil = [GCEntity entityWithType:@"Individual" inContext:ctx];
-	
 	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
 	
+    GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
 	[fam addRelationshipWithType:@"Husband" target:husb];
 	[fam addRelationshipWithType:@"Wife" target:wife];
 	[fam addRelationshipWithType:@"Child" target:chil];

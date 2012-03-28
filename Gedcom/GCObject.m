@@ -72,7 +72,7 @@
 {
     id key = [property type];
 	
-	NSLog(@"self: %@ key: %@", self, key);
+	//NSLog(@"self: %@ key: %@", self, key);
     
     NSParameterAssert([[self validProperties] containsObject:key]);
     
@@ -134,6 +134,9 @@
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
 	[self addRelationship:[GCRelationship relationshipWithType:type target:target inContext:_context]];
+	if ([[GCTag tagNamed:type] reverseRelationshipTag]) {
+		[target addRelationshipWithType:[[[GCTag tagNamed:type] reverseRelationshipTag] name] target:(GCEntity *)self];
+	}
 }
 
 #pragma mark Gedcom access

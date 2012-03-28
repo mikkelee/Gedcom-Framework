@@ -108,7 +108,7 @@ __strong static NSDictionary *tagInfo;
             //validSubTags from self:
             for (id subTag in [settings objectForKey:kValidSubTags]) {
                 if ([subTag hasPrefix:@"@"]) {
-                    NSLog(@"subTag: %@", subTag);
+                    //NSLog(@"subTag: %@", subTag);
                     NSDictionary *aliasDict = [[_tags objectForKey:kTags] objectForKey:subTag];
                     for (id alias in [aliasDict objectForKey:kAliases]) {
                         [validSubTags addObject:alias];
@@ -124,7 +124,7 @@ __strong static NSDictionary *tagInfo;
             //validSubTags from alias:
             for (id subTag in [[[_tags objectForKey:kTags] objectForKey:[aliases objectForKey:code]] objectForKey:kValidSubTags]) {
                 if ([subTag hasPrefix:@"@"]) {
-                    NSLog(@"subTag: %@", subTag);
+                    //NSLog(@"subTag: %@", subTag);
                     NSDictionary *aliasDict = [[_tags objectForKey:kTags] objectForKey:subTag];
                     for (id alias in [aliasDict objectForKey:kAliases]) {
                         [validSubTags addObject:alias];
@@ -285,7 +285,13 @@ __strong static NSDictionary *tagInfo;
 
 - (GCTag *)reverseRelationshipTag
 {
-	return [_settings objectForKey:kReverseRelationshipTag];
+	NSString *code = [_settings objectForKey:kReverseRelationshipTag];
+	
+	if (code != nil) {
+		return [GCTag tagCoded:code];
+	} else {
+		return nil;
+	}
 }
 
 - (BOOL)isCustom
