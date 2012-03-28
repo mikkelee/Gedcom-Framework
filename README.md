@@ -6,30 +6,48 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
 
 * GEDCOM text <=> GCNode <=> GCRecord
 * Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
-* Above GCNodes are GCRecords, which allow for more abstracted data access, including automatic handling of value types, references, etc.
-* Eventually, there should be things like GCIndividual with appropriate accessors.
+* Above GCNodes are GCObjects, which allow for more abstracted data access. There are three basic types of GCObject:
+  * GCEntity: INDI/FAM, etc - the root level records.
+  * GCAttribute: Any non-relationship node, such as a NAME, a DATE, a PLAC.
+  * GCRelationship: References to other entities, such as FAMC, HUSB, etc.
+* Eventually, there should be another layer with things like GCIndividual, GCFamily.
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
 
-Currently, GCNodes are fully implemented; work is being done on GCRecord / GCValue / GCTag. See also TODO below.
+Currently, GCNodes are fully implemented; basic implementation of GCObject and its subclasses is done. See also TODO below.
 
 Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; handles ranges & periods, allows for sorting.
 
-Example, from top to bottom:
+
+# TODO #
+
+* **tags.plist**: Currently only partially done
+* **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
+* **GCMutableNode**: Mutable version of GCNode
+* **GCObject**: parent ref (an attribute should know which entity it's sitting on, etc)
+* **GCValue**: better type coercions; some currently return nil.
+* **GCAge/GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.
+* **GCAge/GCDate**: calculations (ie age = dateA - dateB)
+* **appledocs**: and better comments & cleaner headers in general
+
+
+# Examples #
 
 ``` objective-c
-    GCRecord *indi = [GCRecord objectWithType:@"Individual"];
+	GCContext *ctx = [GCContext context];
+	
+    GCEntity *indi = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	
+	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-    [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/"];
-    [indi addRecordWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
+	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth" inContext:ctx];
     
-    GCRecord *birt = [GCRecord objectWithType:@"Birth"];
+	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
-    [birt addRecordWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    [indi addAttribute:birt];
     
-    [indi addRecord:birt];
-    
-    [indi addRecordWithType:@"Death" boolValue:YES];
+    [indi addAttributeWithType:@"Death" boolValue:YES];
 ```
 
 is equivalent to:
@@ -38,7 +56,7 @@ is equivalent to:
 
     GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
                                          value:nil
-                                          xref:nil
+                                          xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
                                                 [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
@@ -62,7 +80,7 @@ is equivalent to:
 is equivalent to:
 
 ```
-0 @I1@ INDI
+0 @INDI1@ INDI
 1 NAME Jens /Hansen/
 1 NAME Jens /Hansen/ Smed
 1 BIRT
@@ -70,14 +88,38 @@ is equivalent to:
 1 DEAT Y
 ```
 
-# TODO #
+Relationship example:
 
-* **tags.plist**: complete tags dict & tagAliases
-* **GCNode**: subNodes array shouldn't be mutable (GCNode should be fully immutable)
-* **GCNode**: CONC/CONT consistency: parse during read & coalesce? keep weird things like CONC on <248 char lines?
-* **GCMutableNode**: Mutable version of GCNode
-* **GCObject**: parent ref
-* **GCValue**: better type coercions
-* **GCAge/GCDate**: better hiding of internals (ie a facade) - should remain immutable; interface should basically just be input gedcom, get out instance.
-* **GCAge/GCDate**: calculations (ie dateA - dateB = age)
-* **appledocs**: and better comments in general
+```objective-c
+	GCEntity *husb = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+	
+	GCEntity *wife = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
+	
+	GCEntity *chil = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
+	
+    GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
+	[fam addRelationshipWithType:@"Husband" target:husb];
+	[fam addRelationshipWithType:@"Wife" target:wife];
+	[fam addRelationshipWithType:@"Child" target:chil];
+```
+
+is equivalent to:
+
+```
+0 @FAM1@ FAM
+1 HUSB @INDI1@
+1 WIFE @INDI2@
+1 CHIL @INDI3@
+0 @INDI1@ INDI
+1 NAME Jens /Hansen/
+1 FAMS @FAM1@
+0 @INDI2@ INDI
+1 NAME Anne /Larsdatter/
+1 FAMS @FAM1@
+0 @INDI3@ INDI
+1 NAME Hans /Jensen/
+1 FAMC @FAM1@"
+```
