@@ -156,7 +156,7 @@ NSString * const GCAgeQualifier_toString[] = {
  */
 - (GCSimpleAge *)refAge
 {
-	GCSimpleAge *m = [[GCSimpleAge alloc] init];
+	GCSimpleAge *a = [[GCSimpleAge alloc] init];
     
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init]; 
     
@@ -170,9 +170,11 @@ NSString * const GCAgeQualifier_toString[] = {
         //TODO error!!
     }
     
-	[m setAgeComponents:ageComponents];
+	[a setAgeComponents:ageComponents];
     
-    return m;
+	//TODO return a qualifiedage with GCLessThan ?
+	
+	return a;
 }
 
 @synthesize keyword;
