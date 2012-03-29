@@ -33,7 +33,7 @@
 {
 	BOOL result = NO;
 	
-	GCAge *age = [GCAge ageFromGedcom:string];
+	GCAge *age = [GCAge ageWithGedcom:string];
 	
 	if (age) {
 		result = YES;
@@ -50,7 +50,7 @@
 {
 	BOOL result = NO;
 	
-	GCAge *age = [GCAge ageFromGedcom:string];
+	GCAge *age = [GCAge ageWithGedcom:string];
 	
 	if (age) {
 		result = YES;

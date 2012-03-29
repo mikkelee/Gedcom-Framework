@@ -17,7 +17,7 @@ typedef enum {
 
 //generally you should use this:
 
-+ (GCAge *)ageFromGedcom:(NSString *)gedcom;
++ (GCAge *)ageWithGedcom:(NSString *)gedcom;
 
 //convenience factory methods:
 

@@ -21,29 +21,29 @@
 
 - (void)testSimpleAge
 {
-	GCAge *result = [GCAge ageFromGedcom:@"3y 2d"];
+	GCAge *result = [GCAge ageWithGedcom:@"3y 2d"];
 	
 	STAssertEqualObjects(@"[GCSimpleAge (3 years, 0 months, 2 days)]", [result description], nil);
 }
 
 - (void)testAgeKeyword
 {
-	GCAge *result = [GCAge ageFromGedcom:@"INFANT"];
+	GCAge *result = [GCAge ageWithGedcom:@"INFANT"];
 	
 	STAssertEqualObjects(@"[GCAgeKeyword 'INFANT']", [result description], nil);
 }
 
 - (void)testQualifiedAge
 {
-	GCAge *result = [GCAge ageFromGedcom:@"< 10d"];
+	GCAge *result = [GCAge ageWithGedcom:@"< 10d"];
 	
 	STAssertEqualObjects(@"[GCQualifiedAge < [GCSimpleAge (0 years, 0 months, 10 days)]]", [result description], nil);
 }
 
 - (void)testAgeSort
 {
-	GCAge *age1 = [GCAge ageFromGedcom:@"1y 20d"];
-	GCAge *age2 = [GCAge ageFromGedcom:@"4y 1m"];
+	GCAge *age1 = [GCAge ageWithGedcom:@"1y 20d"];
+	GCAge *age2 = [GCAge ageWithGedcom:@"4y 1m"];
 	
 	STAssertEquals((NSInteger)NSOrderedAscending, [age1 compare:age2], nil);
 }

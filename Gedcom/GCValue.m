@@ -130,9 +130,9 @@
 - (GCAge *)ageValue
 {
     if ([_value isKindOfClass:[NSString class]]) {
-        return [GCAge ageFromGedcom:_value];
+        return [GCAge ageWithGedcom:_value];
     } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [GCAge ageFromGedcom:[_value stringValue]];
+        return [GCAge ageWithGedcom:[_value stringValue]];
     } else if ([_value isKindOfClass:[GCAge class]]) {
         return _value;
     } else if ([_value isKindOfClass:[GCDate class]]) {

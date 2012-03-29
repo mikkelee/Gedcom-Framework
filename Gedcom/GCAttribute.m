@@ -39,7 +39,7 @@
                 break;
                 
             case GCAgeValue:
-                [attribute setAgeValue:[GCAge ageFromGedcom:[node gedValue]]];
+                [attribute setAgeValue:[GCAge ageWithGedcom:[node gedValue]]];
                 break;
                 
             case GCDateValue:
