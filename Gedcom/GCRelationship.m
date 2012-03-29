@@ -12,7 +12,9 @@
 #import "GCTag.h"
 #import "GCContext.h"
 
-@implementation GCRelationship
+@implementation GCRelationship {
+	GCEntity *_target;
+}
 
 #pragma mark Convenience constructors
 
@@ -21,8 +23,12 @@
     GCRelationship *relationship = [[self alloc] initWithType:[[node gedTag] name] inContext:[object context]];
     
 	[relationship setDescribedObject:object];
-	//TODO what about targets not created yet?
-    [relationship setTarget:[[object context] entityForXref:[node xref]]];
+	
+	[[object context] registerXref:[node gedValue] forBlock:^(NSString *xref) {
+		GCEntity *target = [[object context] entityForXref:xref];
+		[relationship setTarget:target];
+		NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
+	}];
     
     for (id subNode in [node subNodes]) {
         [relationship addProperty:[GCProperty propertyForObject:object withGedcomNode:subNode]];
@@ -38,12 +44,12 @@
 
 + (id)relationshipForObject:(GCObject *)object withType:(NSString *)type target:(GCEntity *)target
 {
-    GCRelationship *new = [[self alloc] initWithType:type inContext:[object context]];
+    GCRelationship *relationship = [[self alloc] initWithType:type inContext:[object context]];
     
-	[new setDescribedObject:object];
-    [new setTarget:target];
-    
-    return new;
+	[relationship setDescribedObject:object];
+    [relationship setTarget:target];
+	
+    return relationship;
 }
 
 #pragma mark Gedcom access
@@ -51,11 +57,11 @@
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:[self gedTag]
-								 value:[[self context] xrefForEntity:target]
+								 value:[[self context] xrefForEntity:_target]
 								  xref:nil
 							  subNodes:[self subNodes]];
 }
 
-@synthesize target;
+@synthesize target = _target;
 
 @end

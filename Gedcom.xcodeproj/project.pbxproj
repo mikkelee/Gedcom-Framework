@@ -17,6 +17,8 @@
 		3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E88151C319D005E09E1 /* InfoPlist.strings */; };
 		3E252F0F1523915A00BAFCB1 /* GCHead.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E252F0D1523915900BAFCB1 /* GCHead.h */; };
 		3E252F101523915A00BAFCB1 /* GCHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E252F0E1523915900BAFCB1 /* GCHead.m */; };
+		3E252F131523A87800BAFCB1 /* GCTrailer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E252F111523A87800BAFCB1 /* GCTrailer.h */; };
+		3E252F141523A87800BAFCB1 /* GCTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E252F121523A87800BAFCB1 /* GCTrailer.m */; };
 		3E4373551521CB7200BA362F /* GCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4373531521CB7200BA362F /* GCAttribute.h */; };
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; };
@@ -123,6 +125,8 @@
 		3E1C3E89151C319D005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E252F0D1523915900BAFCB1 /* GCHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHead.h; sourceTree = "<group>"; };
 		3E252F0E1523915900BAFCB1 /* GCHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHead.m; sourceTree = "<group>"; };
+		3E252F111523A87800BAFCB1 /* GCTrailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTrailer.h; sourceTree = "<group>"; };
+		3E252F121523A87800BAFCB1 /* GCTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTrailer.m; sourceTree = "<group>"; };
 		3E4373531521CB7200BA362F /* GCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GCAttribute.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3E4373541521CB7200BA362F /* GCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValue.h; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 				3E57558715217C0D00A918D1 /* GCObject.m */,
 				3E252F0D1523915900BAFCB1 /* GCHead.h */,
 				3E252F0E1523915900BAFCB1 /* GCHead.m */,
+				3E252F111523A87800BAFCB1 /* GCTrailer.h */,
+				3E252F121523A87800BAFCB1 /* GCTrailer.m */,
 				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
 				3E5F50C8151E02C300A433A6 /* GCEntity.m */,
 				3E4373591521CF1400BA362F /* Properties */,
@@ -502,6 +508,7 @@
 				3E4373551521CB7200BA362F /* GCAttribute.h in Headers */,
 				3E14EDCA15230DAF00080364 /* GCContext.h in Headers */,
 				3E252F0F1523915A00BAFCB1 /* GCHead.h in Headers */,
+				3E252F131523A87800BAFCB1 /* GCTrailer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +659,7 @@
 				3E4373561521CB7200BA362F /* GCAttribute.m in Sources */,
 				3E14EDCB15230DAF00080364 /* GCContext.m in Sources */,
 				3E252F101523915A00BAFCB1 /* GCHead.m in Sources */,
+				3E252F141523A87800BAFCB1 /* GCTrailer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

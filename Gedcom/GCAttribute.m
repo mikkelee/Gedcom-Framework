@@ -64,21 +64,20 @@
 
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type
 {
-    GCProperty *new = [[self alloc] initWithType:type inContext:[object context]];
+    GCAttribute *attribute = [[self alloc] initWithType:type inContext:[object context]];
     
-	[new setDescribedObject:object];
+	[attribute setDescribedObject:object];
     
-    return new;
+    return attribute;
 }
 
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type value:(GCValue *)value
 {
-    GCProperty *new = [[self alloc] initWithType:type inContext:[object context]];
+    GCAttribute *attribute = [self attributeForObject:object withType:type];
     
-	[new setDescribedObject:object];
-    [new setValue:value];
+    [attribute setValue:value];
     
-    return new;
+    return attribute;
 }
 
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type stringValue:(NSString *)value

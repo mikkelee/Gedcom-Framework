@@ -13,6 +13,7 @@
 
 @implementation GCContext {
 	NSMutableDictionary *xrefStore;
+	NSMutableDictionary *xrefBlocks;
 }
 
 - (id)init
@@ -21,6 +22,7 @@
 	
 	if (self) {
         xrefStore = [NSMutableDictionary dictionaryWithCapacity:4];
+        xrefBlocks = [NSMutableDictionary dictionaryWithCapacity:4];
 	}
 	
 	return self;
@@ -34,6 +36,13 @@
 - (void)storeXref:(NSString *)xref forEntity:(GCEntity *)obj
 {
 	[xrefStore setObject:xref forKey:[NSValue valueWithPointer:(const void *)obj]];
+	
+	if ([xrefBlocks objectForKey:xref]) {
+		for (void (^block) (NSString *) in [xrefBlocks objectForKey:xref]) {
+			block(xref);
+		}
+		[xrefBlocks removeObjectForKey:xref];
+	}
 }
 
 - (NSString *)xrefForEntity:(GCEntity *)obj
@@ -43,7 +52,7 @@
     if (xref == nil) {
         int i = 0;
         do {
-            xref = [NSString stringWithFormat:@"@%@%d@", [[GCTag tagNamed:[obj type]] code], ++i]; 
+            xref = [NSString stringWithFormat:@"@%@%d@", [[obj gedTag] code], ++i]; 
         } while ([[xrefStore allKeysForObject:xref] count] > 0);
         
         [self storeXref:xref forEntity:obj];
@@ -54,7 +63,16 @@
 
 - (GCEntity *)entityForXref:(NSString *)xref
 {
-	return [[xrefStore allKeysForObject:xref] lastObject];
+	return [[[xrefStore allKeysForObject:xref] lastObject] pointerValue];
+}
+
+- (void)registerXref:(NSString *)xref forBlock:(void (^)(NSString *xref))block
+{
+	if ([xrefBlocks objectForKey:xref]) {
+		[[xrefBlocks objectForKey:xref] addObject:block];
+	} else {
+		[xrefBlocks setObject:[NSMutableSet setWithObject:block] forKey:xref];
+	}
 }
 
 - (NSString *)description

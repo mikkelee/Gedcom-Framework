@@ -17,6 +17,8 @@
 - (NSString *)xrefForEntity:(GCEntity *)obj;
 - (GCEntity *)entityForXref:(NSString *)xref;
 
+- (void)registerXref:(NSString *)xref forBlock:(void (^)(NSString *xref))block;
+
 //used by gedcom import:
 - (void)storeXref:(NSString *)xref forEntity:(GCEntity *)obj;
 

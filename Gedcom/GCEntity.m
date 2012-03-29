@@ -27,15 +27,15 @@
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCEntity *object = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
+    GCEntity *entity = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
     
-	[context storeXref:[node xref] forEntity:object];
+	[context storeXref:[node xref] forEntity:entity];
 	
     for (id subNode in [node subNodes]) {
-        [object addProperty:[GCProperty propertyForObject:object withGedcomNode:subNode]];
+        [entity addProperty:[GCProperty propertyForObject:entity withGedcomNode:subNode]];
     }
     
-    return object;
+    return entity;
 }
 
 #pragma mark Properties

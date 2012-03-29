@@ -544,6 +544,7 @@
 			<array>
 				<string>TYPE</string>
 				<string>DATE</string>
+				<string>PLAC</string>
 			</array>
 		</dict>
 		
@@ -891,6 +892,8 @@
 			<string>Family Child</string>
 			<key>objectClass</key>
 			<string>GCRelationship</string>
+			<key>reverseRelationshipTag</key>
+			<string>CHIL</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1109,8 +1112,10 @@
 		<dict>
 			<key>name</key>
 			<string>Place</string>
+			<key>objectClass</key>
+			<string>GCAttribute</string>
 			<key>valueType</key>
-			<string></string>
+			<string>GCStringValue</string>
 			<key>validSubTags</key>
 			<array>
 				<string></string>
@@ -1356,6 +1361,8 @@
 		<dict>
 			<key>name</key>
 			<string>Trailer</string>
+			<key>objectClass</key>
+			<string>GCTrailer</string>
 			<key>validSubTags</key>
 			<array/>
 		</dict>

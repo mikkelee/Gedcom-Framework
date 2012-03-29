@@ -142,7 +142,12 @@
 	
 	GCFile *file = [GCFile fileFromGedcomNodes:nodes];
 	
-	NSLog(@"file: %@", file);
+	NSMutableArray *gLines = [NSMutableArray arrayWithCapacity:3];
+	for (GCNode *node in [file gedcomNodes]) {
+		[gLines addObject:[node gedcomString]];
+	}
+	
+	NSLog(@"file: %@", [gLines componentsJoinedByString:@"\n"]);
 }
 
 @end

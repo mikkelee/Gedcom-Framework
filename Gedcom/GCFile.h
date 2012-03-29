@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class GCObject;
 @class GCContext;
+
+@class GCHead;
 
 @interface GCFile : NSObject
 
@@ -17,7 +18,9 @@
 
 + (id)fileFromGedcomNodes:(NSArray *)nodes;
 
-@property GCObject *head;
+@property GCHead *head;
 @property NSMutableArray *records;
+
+@property (readonly) NSArray *gedcomNodes;
 
 @end

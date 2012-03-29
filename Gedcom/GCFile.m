@@ -12,6 +12,9 @@
 
 #import "GCContext.h"
 
+#import "GCHead.h"
+#import "GCTrailer.h"
+
 @implementation GCFile {
 	GCContext *_context;
 	NSMutableArray *_records;
@@ -36,6 +39,26 @@
 + (id)fileFromGedcomNodes:(NSArray *)nodes
 {
 	return [[self alloc] initWithContext:[GCContext context] gedcomNodes:nodes];
+}
+
+- (NSArray *)gedcomNodes
+{
+	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_records count]+2];
+	
+	//[nodes addObject:[_head gedcomNode]];
+	
+	for (id record in _records) {
+		if ([record isKindOfClass:[GCHead class]]) {
+			continue;
+		} else if ([record isKindOfClass:[GCTrailer class]]) {
+			continue;
+		}
+		[nodes addObject:[record gedcomNode]];
+	}
+	
+	//TODO trlr
+	
+	return nodes;
 }
 
 @synthesize head = _head;
