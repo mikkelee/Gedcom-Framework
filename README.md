@@ -14,7 +14,7 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
 
-Currently, GCNodes are fully implemented; a basic implementation of GCObject and its subclasses is done. See also Examples & TODO below.
+Currently, GCNodes are fully implemented; a basic implementation of GCObject and its subclasses is done. Current work is being done on GCFile, focusing on correctly parsing a test-file called "simple.ged". See also Examples & TODO below.
 
 Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; handles ranges & periods, allows for sorting.
 
@@ -122,3 +122,7 @@ is equivalent to:
 1 NAME Hans /Jensen/
 1 FAMC @FAM1@"
 ```
+
+======
+
+Test files for GEDCOM compliance are from http://www.heiner-eichmann.de/gedcom/gedcom.htm
