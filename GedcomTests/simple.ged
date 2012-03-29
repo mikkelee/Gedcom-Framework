@@ -13,35 +13,35 @@
 1 NAME /Father/
 1 SEX M
 1 BIRT
-2 PLAC birth place
 2 DATE 1 JAN 1899
+2 PLAC birth place
 1 DEAT
-2 PLAC death place
 2 DATE 31 DEC 1990
+2 PLAC death place
 1 FAMS @FAMILY@
 0 @MOTHER@ INDI
 1 NAME /Mother/
 1 SEX F
 1 BIRT
-2 PLAC birth place
 2 DATE 1 JAN 1899
+2 PLAC birth place
 1 DEAT
-2 PLAC death place
 2 DATE 31 DEC 1990
+2 PLAC death place
 1 FAMS @FAMILY@
 0 @CHILD@ INDI
 1 NAME /Child/
 1 BIRT
-2 PLAC birth place
 2 DATE 31 JUL 1950
+2 PLAC birth place
 1 DEAT
-2 PLAC death place
 2 DATE 29 FEB 2000
+2 PLAC death place
 1 FAMC @FAMILY@
 0 @FAMILY@ FAM
 1 MARR
-2 PLAC marriage place
 2 DATE 1 APR 1950
+2 PLAC marriage place
 1 HUSB @FATHER@
 1 WIFE @MOTHER@
 1 CHIL @CHILD@

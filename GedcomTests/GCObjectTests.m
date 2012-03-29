@@ -139,20 +139,21 @@
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
 	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+	NSArray *gc_inputLines = [fileContents arrayOfLines];
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
 	GCFile *file = [GCFile fileFromGedcomNodes:nodes];
 	
-	NSMutableArray *gLines = [NSMutableArray arrayWithCapacity:3];
+	NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:3];
 	for (GCNode *node in [file gedcomNodes]) {
-		[gLines addObject:[node gedcomString]];
+		[gc_outputLines addObjectsFromArray:[node gedcomLines]];
 	}
 	
-	NSLog(@"file: %@", [gLines componentsJoinedByString:@"\n"]);
+	NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
 	
-	STAssertEqualObjects([gLines componentsJoinedByString:@"\n"],
-						 fileContents,
-						 nil);
+	for (int i = 0; i < [gc_outputLines count]; i++) {
+		STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], nil);
+	}
 }
 
 @end

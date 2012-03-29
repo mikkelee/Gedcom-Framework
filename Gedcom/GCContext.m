@@ -68,7 +68,9 @@
 
 - (void)registerXref:(NSString *)xref forBlock:(void (^)(NSString *xref))block
 {
-	if ([xrefBlocks objectForKey:xref]) {
+	if ([self entityForXref:xref]) {
+		block(xref);
+	} else	if ([xrefBlocks objectForKey:xref]) {
 		[[xrefBlocks objectForKey:xref] addObject:block];
 	} else {
 		[xrefBlocks setObject:[NSMutableSet setWithObject:block] forKey:xref];
