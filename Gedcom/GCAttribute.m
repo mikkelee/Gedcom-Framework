@@ -50,6 +50,16 @@
                 [attribute setBoolValue:[[node gedValue] isEqualToString:@"Y"]];
                 break;
                 
+            case GCGenderValue:
+				if ([[node gedValue] isEqualToString:@"M"]) {
+					[attribute setGenderValue:GCMale];
+				} else if ([[node gedValue] isEqualToString:@"F"]) {
+					[attribute setGenderValue:GCFemale];
+				} else {
+					[attribute setGenderValue:GCUnknownGender];
+				}
+                break;
+                
             default:
                 break;
         }
@@ -184,6 +194,16 @@
 - (BOOL)boolValue
 {
     return [_value boolValue];
+}
+
+- (void)setGenderValue:(GCGender)genderValue
+{
+    _value = [[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:genderValue]];
+}
+
+- (GCGender)genderValue
+{
+    return [_value genderValue];
 }
 
 @end

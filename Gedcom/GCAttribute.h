@@ -37,5 +37,6 @@
 @property GCAge *ageValue;
 @property GCDate *dateValue;
 @property BOOL boolValue;
+@property GCGender genderValue;
 
 @end
