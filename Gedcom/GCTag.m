@@ -155,11 +155,6 @@ __strong static NSDictionary *tagInfo;
     });
 }
 
-+ (NSString *)codeForName:(NSString *)name
-{
-    return [[tagInfo objectForKey:kNameTags] objectForKey:name];
-}
-
 #pragma mark Initialization
 
 -(id)initWithCode:(NSString *)code 
@@ -207,7 +202,7 @@ __strong static NSDictionary *tagInfo;
 {
     NSParameterAssert(name != nil);
     
-    return [GCTag tagCoded:[[self class] codeForName:name]];
+    return [GCTag tagCoded:[[tagInfo objectForKey:kNameTags] objectForKey:name]];
 }
 
 #pragma mark Subtags

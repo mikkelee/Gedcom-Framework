@@ -13,7 +13,7 @@
 #import "GCContext.h"
 
 #import "GCEntity.h"
-#import "GCHead.h"
+#import "GCHeader.h"
 #import "GCTrailer.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
@@ -47,8 +47,8 @@
 
 + (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-	if ([[node gedTag] objectClass] == [GCHead class]) {
-		return [GCHead headWithGedcomNode:node inContext:context];
+	if ([[node gedTag] objectClass] == [GCHeader class]) {
+		return [GCHeader headerWithGedcomNode:node inContext:context];
 	} else if ([[node gedTag] objectClass] == [GCTrailer class]) {
 		return [GCTrailer trailerWithGedcomNode:node inContext:context];
 	} else if (![[node gedTag] isRoot]) {

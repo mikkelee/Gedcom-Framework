@@ -11,9 +11,11 @@
 
 @interface GCProperty : GCObject
 
-#pragma mark Convenience constructors
+#pragma mark Convenience constructor
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
+
+#pragma mark Properties
 
 @property GCObject *describedObject; //TODO better name?
 

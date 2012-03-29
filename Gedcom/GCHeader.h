@@ -1,5 +1,5 @@
 //
-//  GCTrailer.h
+//  GCHead.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 28/03/12.
@@ -8,10 +8,10 @@
 
 #import "GCObject.h"
 
-@interface GCTrailer : GCObject
+@interface GCHeader : GCObject
 
 #pragma mark Convenience constructor
 
-+ (id)trailerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
++ (id)headerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
 @end

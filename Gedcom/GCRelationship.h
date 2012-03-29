@@ -20,6 +20,8 @@
 + (id)relationshipForObject:(GCObject *)object withType:(NSString *)type;
 + (id)relationshipForObject:(GCObject *)object withType:(NSString *)type target:(GCEntity *)target;
 
+#pragma mark Properties
+
 @property GCEntity *target;
 
 @end

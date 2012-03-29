@@ -23,7 +23,7 @@
 			<key>name</key>
 			<string>Header</string>
 			<key>objectClass</key>
-			<string>GCHead</string>
+			<string>GCHeader</string>
 			<key>valueType</key>
 			<string></string>
 			<key>validSubTags</key>

@@ -138,7 +138,8 @@
 - (void)testFile
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
-	NSArray *nodes = [GCNode arrayOfNodesFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]];
+	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
 	GCFile *file = [GCFile fileFromGedcomNodes:nodes];
 	
@@ -148,6 +149,10 @@
 	}
 	
 	NSLog(@"file: %@", [gLines componentsJoinedByString:@"\n"]);
+	
+	STAssertEqualObjects([gLines componentsJoinedByString:@"\n"],
+						 fileContents,
+						 nil);
 }
 
 @end

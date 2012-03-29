@@ -17,10 +17,6 @@
 +(GCTag *)tagCoded:(NSString *)code;
 +(GCTag *)tagNamed:(NSString *)name;
 
-#pragma mark Helpers
-
-+ (NSString *)codeForName:(NSString *)name;
-
 #pragma mark Subtags
 
 -(BOOL)isValidSubTag:(GCTag *)tag;

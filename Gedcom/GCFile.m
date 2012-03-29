@@ -12,7 +12,7 @@
 
 #import "GCContext.h"
 
-#import "GCHead.h"
+#import "GCHeader.h"
 #import "GCTrailer.h"
 
 @implementation GCFile {
@@ -48,7 +48,7 @@
 	//[nodes addObject:[_head gedcomNode]];
 	
 	for (id record in _records) {
-		if ([record isKindOfClass:[GCHead class]]) {
+		if ([record isKindOfClass:[GCHeader class]]) {
 			//continue;
 		} else if ([record isKindOfClass:[GCTrailer class]]) {
 			//continue;

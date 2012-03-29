@@ -10,15 +10,21 @@
 
 @class GCContext;
 
-@class GCHead;
+@class GCHeader;
 
 @interface GCFile : NSObject
 
+#pragma mark Initialization
+
 - (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
+
+#pragma mark Convenience constructor
 
 + (id)fileFromGedcomNodes:(NSArray *)nodes;
 
-@property GCHead *head;
+#pragma mark Properties
+
+@property GCHeader *head;
 @property NSMutableArray *records;
 
 @property (readonly) NSArray *gedcomNodes;
