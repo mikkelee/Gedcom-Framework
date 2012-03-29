@@ -8,31 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
-    GCAgeLessThan,
-    GCAgeGreaterThan
-} GCAgeQualifier;
-
 @interface GCAge : NSObject <NSCoding, NSCopying>
 
-//generally you should use this:
-
-+ (GCAge *)ageWithGedcom:(NSString *)gedcom;
-
-//convenience factory methods:
+#pragma mark Initialization
 
 - (id)initWithGedcom:(NSString *)gedcom;
-- (id)initWithSimpleAge:(NSDateComponents *)c;
-- (id)initWithAgeKeyword:(NSString *)s;
-- (id)initWithInvalidAgeString:(NSString *)s;
-- (id)initWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
 
-+ (id)ageWithSimpleAge:(NSDateComponents *)c;
-+ (id)ageWithAgeKeyword:(NSString *)p;
-+ (id)ageWithInvalidAgeString:(NSString *)s;
-+ (id)ageWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
+#pragma mark Convenience constructor
+
++ (id)ageWithGedcom:(NSString *)gedcom;
+
+#pragma mark Comparison
 
 - (NSComparisonResult)compare:(id)other;
+
+#pragma mark Properties
 
 @property (retain, readonly) NSString *gedcomString;
 @property (retain, readonly) NSString *displayString;

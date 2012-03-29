@@ -13,7 +13,22 @@
 
 @class GCSimpleAge;
 
+typedef enum {
+    GCAgeLessThan,
+    GCAgeGreaterThan
+} GCAgeQualifier;
+
 @interface GCAge ()
+
+- (id)initWithSimpleAge:(NSDateComponents *)c;
+- (id)initWithAgeKeyword:(NSString *)s;
+- (id)initWithInvalidAgeString:(NSString *)s;
+- (id)initWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
+
++ (id)ageWithSimpleAge:(NSDateComponents *)c;
++ (id)ageWithAgeKeyword:(NSString *)p;
++ (id)ageWithInvalidAgeString:(NSString *)s;
++ (id)ageWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
 
 @property (retain, readonly) GCSimpleAge *refAge; //used for sorting, etc.
 
@@ -470,7 +485,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 #pragma mark Convenience constructors
 
-+ (id)ageFromGedcom:(NSString *)gedcom
++ (id)ageWithGedcom:(NSString *)gedcom
 {
 	return [[self alloc] initWithGedcom:gedcom];
 }
