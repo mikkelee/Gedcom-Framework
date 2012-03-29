@@ -41,7 +41,7 @@ Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; 
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth" inContext:ctx];
+	GCAttribute *birt = [GCAttribute attributeForObject:indi withType:@"Birth"];
     
 	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
@@ -126,4 +126,4 @@ is equivalent to:
 
 ======
 
-Test files for GEDCOM compliance are from http://www.heiner-eichmann.de/gedcom/gedcom.htm
+Test files for GEDCOM compliance are from http://www.heiner-eichmann.de/gedcom/gedcom.htm (with minor modifications: node order, trailing space on CHAN, etc)
