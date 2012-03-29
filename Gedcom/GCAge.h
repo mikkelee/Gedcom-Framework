@@ -8,20 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class GCSimpleAge;
-@class GCAgeKeyword;
-@class GCInvalidAge;
-@class GCQualifiedAge;
-
-enum {
+typedef enum {
     GCAgeLessThan,
     GCAgeGreaterThan
-};
-typedef NSUInteger GCAgeQualifier;
+} GCAgeQualifier;
 
-@interface GCAge : NSObject {
-
-}
+@interface GCAge : NSObject <NSCoding, NSCopying>
 
 //generally you should use this:
 
@@ -29,16 +21,17 @@ typedef NSUInteger GCAgeQualifier;
 
 //convenience factory methods:
 
-+ (GCSimpleAge *)simpleAge:(NSDateComponents *)c;
-+ (GCAgeKeyword *)ageKeyword:(NSString *)p;
-+ (GCInvalidAge *)invalidAgeString:(NSString *)s;
-+ (GCQualifiedAge *)age:(GCAge *)a withQualifier:(GCAgeQualifier)q;
+- (id)initWithSimpleAge:(NSDateComponents *)c;
+- (id)initWithAgeKeyword:(NSString *)s;
+- (id)initWithInvalidAgeString:(NSString *)s;
+- (id)initWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
+
++ (id)ageWithSimpleAge:(NSDateComponents *)c;
++ (id)ageWithAgeKeyword:(NSString *)p;
++ (id)ageWithInvalidAgeString:(NSString *)s;
++ (id)ageWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
 
 - (NSComparisonResult)compare:(id)other;
-
-//subclasses implement these:
-
-@property (retain, readonly) GCSimpleAge *refAge; //used for sorting, etc.
 
 @property (retain, readonly) NSString *gedcomString;
 @property (retain, readonly) NSString *displayString;

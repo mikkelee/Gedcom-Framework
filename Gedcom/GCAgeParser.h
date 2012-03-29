@@ -12,13 +12,7 @@
 @class GCAge;
 @class GCAgeAssembler;
 
-@interface GCAgeParser : NSObject {
-	NSMutableDictionary *cache;
-	
-	PKParser *ageParser;
-	GCAgeAssembler *assembler;
-	NSLock *lock;
-}
+@interface GCAgeParser : NSObject
 
 + (GCAgeParser *)sharedAgeParser;
 - (GCAge *)parseGedcom:(NSString *)g;

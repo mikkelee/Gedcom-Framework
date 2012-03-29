@@ -7,7 +7,6 @@
 //
 
 #import "GCAgeFormatter.h"
-#import "GCAgeParser.h"
 #import "GCAge.h"
 
 @implementation GCAgeFormatter

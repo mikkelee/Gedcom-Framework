@@ -9,9 +9,14 @@
 #import "GCAgeParser.h"
 #import "GCAgeAssembler.h"
 #import "GCAge.h"
-#import "GCInvalidAge.h"
 
-@implementation GCAgeParser
+@implementation GCAgeParser {
+	NSMutableDictionary *cache;
+	
+	PKParser *ageParser;
+	GCAgeAssembler *assembler;
+	NSLock *lock;
+}
 
 + (id)sharedAgeParser // fancy new ARC/GCD singleton!
 {
@@ -58,7 +63,7 @@
 	
 	GCAge *age = [assembler age];
 	if (age == nil) {
-		age = [GCAge invalidAgeString:g];
+		age = [GCAge ageWithInvalidAgeString:g];
 	}
     
 	[cache setObject:age forKey:g];

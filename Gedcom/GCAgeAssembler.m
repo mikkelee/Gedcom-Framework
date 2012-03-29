@@ -9,12 +9,12 @@
 #import <ParseKit/ParseKit.h>
 #import "GCAgeAssembler.h"
 #import "GCAge.h"
-#import "GCSimpleAge.h"
-#import "GCAgeKeyword.h"
 
 #define DebugLog(fmt, ...) if (0) NSLog(fmt, ## __VA_ARGS__)
 
-@implementation GCAgeAssembler
+@implementation GCAgeAssembler {
+	NSDateComponents *currentAgeComponents;
+}
 
 - (GCAgeAssembler *)init
 {	
@@ -59,13 +59,13 @@
 - (void)didMatchAgeKeyword:(PKAssembly *)a
 {
 	DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-	[a push:[GCAge ageKeyword:[[a pop] stringValue]]];
+	[a push:[GCAge ageWithAgeKeyword:[[a pop] stringValue]]];
 }
 
 - (void)didMatchSimpleAge:(PKAssembly *)a
 {
 	DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-	[a push:[GCAge simpleAge:currentAgeComponents]];
+	[a push:[GCAge ageWithSimpleAge:currentAgeComponents]];
 }
 
 - (void)didMatchQualifiedAge:(PKAssembly *)a
@@ -75,9 +75,9 @@
 	id qualifier = [a pop];
 	if ([a isStackEmpty]) {
 		if ([[qualifier stringValue] isEqualToString:@"<"]) {
-			[a push:[GCAge age:anAge withQualifier:GCAgeLessThan]];
+			[a push:[GCAge ageWithAge:anAge withQualifier:GCAgeLessThan]];
 		} else if ([[qualifier stringValue] isEqualToString:@">"]) {
-			[a push:[GCAge age:anAge withQualifier:GCAgeGreaterThan]];
+			[a push:[GCAge ageWithAge:anAge withQualifier:GCAgeGreaterThan]];
 		}
 	} else {
 		DebugLog(@"ERROR: Objects remaining on stack!");

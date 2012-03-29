@@ -10,9 +10,7 @@
 
 @class GCAge;
 
-@interface GCAgeAssembler : NSObject {
-	NSDateComponents *currentAgeComponents;
-}
+@interface GCAgeAssembler : NSObject
 
 - (void)initialize;
 

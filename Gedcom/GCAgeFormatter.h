@@ -9,9 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface GCAgeFormatter : NSFormatter {
-
-}
+@interface GCAgeFormatter : NSFormatter
 
 - (NSString *)editingStringForObjectValue:(id)anObject;
 - (NSString *)stringForObjectValue:(id)anObject;

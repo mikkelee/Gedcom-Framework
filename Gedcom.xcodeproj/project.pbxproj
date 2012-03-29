@@ -46,8 +46,6 @@
 		3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3D151C32630074E26C /* GCAgeAssembler.m */; };
 		3EECFD6A151C32630074E26C /* GCAgeFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3E151C32630074E26C /* GCAgeFormatter.h */; };
 		3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3F151C32630074E26C /* GCAgeFormatter.m */; };
-		3EECFD6C151C32630074E26C /* GCAgeKeyword.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD40151C32630074E26C /* GCAgeKeyword.h */; };
-		3EECFD6D151C32630074E26C /* GCAgeKeyword.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD41151C32630074E26C /* GCAgeKeyword.m */; };
 		3EECFD6E151C32630074E26C /* GCAgeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD42151C32630074E26C /* GCAgeParser.h */; };
 		3EECFD6F151C32630074E26C /* GCAgeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD43151C32630074E26C /* GCAgeParser.m */; };
 		3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD44151C32630074E26C /* GCApproximateDate.h */; };
@@ -72,16 +70,10 @@
 		3EECFD83151C32630074E26C /* GCDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD57151C32630074E26C /* GCDateRange.m */; };
 		3EECFD84151C32630074E26C /* GCInterpretedDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD58151C32630074E26C /* GCInterpretedDate.h */; };
 		3EECFD85151C32630074E26C /* GCInterpretedDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD59151C32630074E26C /* GCInterpretedDate.m */; };
-		3EECFD86151C32630074E26C /* GCInvalidAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5A151C32630074E26C /* GCInvalidAge.h */; };
-		3EECFD87151C32630074E26C /* GCInvalidAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5B151C32630074E26C /* GCInvalidAge.m */; };
 		3EECFD88151C32630074E26C /* GCInvalidDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5C151C32630074E26C /* GCInvalidDate.h */; };
 		3EECFD89151C32630074E26C /* GCInvalidDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5D151C32630074E26C /* GCInvalidDate.m */; };
 		3EECFD8A151C32630074E26C /* GCNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5E151C32630074E26C /* GCNode.h */; };
 		3EECFD8B151C32630074E26C /* GCNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5F151C32630074E26C /* GCNode.m */; };
-		3EECFD8C151C32630074E26C /* GCQualifiedAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD60151C32630074E26C /* GCQualifiedAge.h */; };
-		3EECFD8D151C32630074E26C /* GCQualifiedAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD61151C32630074E26C /* GCQualifiedAge.m */; };
-		3EECFD8E151C32630074E26C /* GCSimpleAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD62151C32630074E26C /* GCSimpleAge.h */; };
-		3EECFD8F151C32630074E26C /* GCSimpleAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD63151C32630074E26C /* GCSimpleAge.m */; };
 		3EECFD90151C32630074E26C /* GCSimpleDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD64151C32630074E26C /* GCSimpleDate.h */; };
 		3EECFD91151C32630074E26C /* GCSimpleDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD65151C32630074E26C /* GCSimpleDate.m */; };
 		3EF7A1BD151C3661004A8540 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF7A1BA151C363C004A8540 /* ParseKit.framework */; };
@@ -154,8 +146,6 @@
 		3EECFD3D151C32630074E26C /* GCAgeAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeAssembler.m; sourceTree = "<group>"; };
 		3EECFD3E151C32630074E26C /* GCAgeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeFormatter.h; sourceTree = "<group>"; };
 		3EECFD3F151C32630074E26C /* GCAgeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeFormatter.m; sourceTree = "<group>"; };
-		3EECFD40151C32630074E26C /* GCAgeKeyword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeKeyword.h; sourceTree = "<group>"; };
-		3EECFD41151C32630074E26C /* GCAgeKeyword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeKeyword.m; sourceTree = "<group>"; };
 		3EECFD42151C32630074E26C /* GCAgeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeParser.h; sourceTree = "<group>"; };
 		3EECFD43151C32630074E26C /* GCAgeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeParser.m; sourceTree = "<group>"; };
 		3EECFD44151C32630074E26C /* GCApproximateDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCApproximateDate.h; sourceTree = "<group>"; };
@@ -180,16 +170,10 @@
 		3EECFD57151C32630074E26C /* GCDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateRange.m; sourceTree = "<group>"; };
 		3EECFD58151C32630074E26C /* GCInterpretedDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCInterpretedDate.h; sourceTree = "<group>"; };
 		3EECFD59151C32630074E26C /* GCInterpretedDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCInterpretedDate.m; sourceTree = "<group>"; };
-		3EECFD5A151C32630074E26C /* GCInvalidAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCInvalidAge.h; sourceTree = "<group>"; };
-		3EECFD5B151C32630074E26C /* GCInvalidAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCInvalidAge.m; sourceTree = "<group>"; };
 		3EECFD5C151C32630074E26C /* GCInvalidDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCInvalidDate.h; sourceTree = "<group>"; };
 		3EECFD5D151C32630074E26C /* GCInvalidDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCInvalidDate.m; sourceTree = "<group>"; };
 		3EECFD5E151C32630074E26C /* GCNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNode.h; sourceTree = "<group>"; };
 		3EECFD5F151C32630074E26C /* GCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNode.m; sourceTree = "<group>"; };
-		3EECFD60151C32630074E26C /* GCQualifiedAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCQualifiedAge.h; sourceTree = "<group>"; };
-		3EECFD61151C32630074E26C /* GCQualifiedAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCQualifiedAge.m; sourceTree = "<group>"; };
-		3EECFD62151C32630074E26C /* GCSimpleAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimpleAge.h; sourceTree = "<group>"; };
-		3EECFD63151C32630074E26C /* GCSimpleAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimpleAge.m; sourceTree = "<group>"; };
 		3EECFD64151C32630074E26C /* GCSimpleDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimpleDate.h; sourceTree = "<group>"; };
 		3EECFD65151C32630074E26C /* GCSimpleDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimpleDate.m; sourceTree = "<group>"; };
 		3EF7A1BA151C363C004A8540 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseKit.framework; sourceTree = "<group>"; };
@@ -381,15 +365,9 @@
 			children = (
 				3EECFD3A151C32630074E26C /* GCAge.h */,
 				3EECFD3B151C32630074E26C /* GCAge.m */,
-				3EECFD62151C32630074E26C /* GCSimpleAge.h */,
-				3EECFD63151C32630074E26C /* GCSimpleAge.m */,
+				3EECFD3E151C32630074E26C /* GCAgeFormatter.h */,
+				3EECFD3F151C32630074E26C /* GCAgeFormatter.m */,
 				3EF7A1C5151C3820004A8540 /* Parsing */,
-				3EECFD60151C32630074E26C /* GCQualifiedAge.h */,
-				3EECFD61151C32630074E26C /* GCQualifiedAge.m */,
-				3EECFD40151C32630074E26C /* GCAgeKeyword.h */,
-				3EECFD41151C32630074E26C /* GCAgeKeyword.m */,
-				3EECFD5A151C32630074E26C /* GCInvalidAge.h */,
-				3EECFD5B151C32630074E26C /* GCInvalidAge.m */,
 			);
 			name = Age;
 			sourceTree = "<group>";
@@ -460,8 +438,6 @@
 				3EECFD43151C32630074E26C /* GCAgeParser.m */,
 				3EECFD3C151C32630074E26C /* GCAgeAssembler.h */,
 				3EECFD3D151C32630074E26C /* GCAgeAssembler.m */,
-				3EECFD3E151C32630074E26C /* GCAgeFormatter.h */,
-				3EECFD3F151C32630074E26C /* GCAgeFormatter.m */,
 			);
 			name = Parsing;
 			sourceTree = "<group>";
@@ -476,7 +452,6 @@
 				3EECFD66151C32630074E26C /* GCAge.h in Headers */,
 				3EECFD68151C32630074E26C /* GCAgeAssembler.h in Headers */,
 				3EECFD6A151C32630074E26C /* GCAgeFormatter.h in Headers */,
-				3EECFD6C151C32630074E26C /* GCAgeKeyword.h in Headers */,
 				3EECFD6E151C32630074E26C /* GCAgeParser.h in Headers */,
 				3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */,
 				3EECFD72151C32630074E26C /* GCAttributedDate.h in Headers */,
@@ -489,11 +464,8 @@
 				3EECFD80151C32630074E26C /* GCDatePhrase.h in Headers */,
 				3EECFD82151C32630074E26C /* GCDateRange.h in Headers */,
 				3EECFD84151C32630074E26C /* GCInterpretedDate.h in Headers */,
-				3EECFD86151C32630074E26C /* GCInvalidAge.h in Headers */,
 				3EECFD88151C32630074E26C /* GCInvalidDate.h in Headers */,
 				3EECFD8A151C32630074E26C /* GCNode.h in Headers */,
-				3EECFD8C151C32630074E26C /* GCQualifiedAge.h in Headers */,
-				3EECFD8E151C32630074E26C /* GCSimpleAge.h in Headers */,
 				3EECFD90151C32630074E26C /* GCSimpleDate.h in Headers */,
 				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
 				3EF7A1D2151C5FCE004A8540 /* NSString+GCKitAdditions.h in Headers */,
@@ -628,7 +600,6 @@
 				3EECFD67151C32630074E26C /* GCAge.m in Sources */,
 				3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */,
 				3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */,
-				3EECFD6D151C32630074E26C /* GCAgeKeyword.m in Sources */,
 				3EECFD6F151C32630074E26C /* GCAgeParser.m in Sources */,
 				3EECFD71151C32630074E26C /* GCApproximateDate.m in Sources */,
 				3EECFD73151C32630074E26C /* GCAttributedDate.m in Sources */,
@@ -641,11 +612,8 @@
 				3EECFD81151C32630074E26C /* GCDatePhrase.m in Sources */,
 				3EECFD83151C32630074E26C /* GCDateRange.m in Sources */,
 				3EECFD85151C32630074E26C /* GCInterpretedDate.m in Sources */,
-				3EECFD87151C32630074E26C /* GCInvalidAge.m in Sources */,
 				3EECFD89151C32630074E26C /* GCInvalidDate.m in Sources */,
 				3EECFD8B151C32630074E26C /* GCNode.m in Sources */,
-				3EECFD8D151C32630074E26C /* GCQualifiedAge.m in Sources */,
-				3EECFD8F151C32630074E26C /* GCSimpleAge.m in Sources */,
 				3EECFD91151C32630074E26C /* GCSimpleDate.m in Sources */,
 				3EF7A1CD151C57A4004A8540 /* GCTag.m in Sources */,
 				3EF7A1D3151C5FCE004A8540 /* NSString+GCKitAdditions.m in Sources */,
