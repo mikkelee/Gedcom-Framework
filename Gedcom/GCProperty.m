@@ -27,7 +27,10 @@
 	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
 		return [GCRelationship relationshipForObject:object withGedcomNode:node];
 	} else {
-		return nil;
+		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
+														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' on %@", [[node gedTag] objectClass], node]
+													   userInfo:nil];
+		@throw exception;
 	}
 }
 

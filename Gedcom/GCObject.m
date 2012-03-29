@@ -175,7 +175,7 @@
 - (GCNode *)gedcomNode
 {
 	[self doesNotRecognizeSelector:_cmd];
-	return nil;
+	__builtin_unreachable();
 }
 
 - (NSArray *)subNodes
