@@ -49,9 +49,9 @@
 	
 	for (id record in _records) {
 		if ([record isKindOfClass:[GCHead class]]) {
-			continue;
+			//continue;
 		} else if ([record isKindOfClass:[GCTrailer class]]) {
-			continue;
+			//continue;
 		}
 		[nodes addObject:[record gedcomNode]];
 	}

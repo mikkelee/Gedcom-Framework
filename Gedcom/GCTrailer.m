@@ -8,11 +8,25 @@
 
 #import "GCTrailer.h"
 
-@implementation GCTrailer
+@interface GCTrailer ()
+
+@property GCNode *gedcomNode;
+
+@end
+
+@implementation GCTrailer {
+	GCNode *_gedcomNode;
+}
 
 + (id)trailerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-	return [[self alloc] init]; //TODO?
+	GCTrailer *trailer = [[self alloc] init];
+	
+	[trailer setGedcomNode:node]; //TODO
+	
+	return trailer;
 }
+
+@synthesize gedcomNode = _gedcomNode;
 
 @end

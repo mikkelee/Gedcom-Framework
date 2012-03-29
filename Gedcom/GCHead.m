@@ -8,11 +8,25 @@
 
 #import "GCHead.h"
 
-@implementation GCHead
+@interface GCHead ()
+
+@property GCNode *gedcomNode;
+
+@end
+
+@implementation GCHead {
+	GCNode *_gedcomNode;
+}
 
 + (id)headWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-	return [[self alloc] init]; //TODO
+	GCHead *head = [[self alloc] init];
+	
+	[head setGedcomNode:node]; //TODO
+	
+	return head;
 }
+
+@synthesize gedcomNode = _gedcomNode;
 
 @end
