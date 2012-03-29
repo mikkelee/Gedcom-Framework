@@ -212,6 +212,8 @@
 
 #pragma mark NSKeyValueCoding overrides
 
+//TODO fix this dumb stuff, internal storage of properties is a mess.
+
 - (id)valueForUndefinedKey:(NSString *)key
 {
     return [_properties objectForKey:key];

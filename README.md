@@ -25,7 +25,7 @@ Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; 
 * **GCNode**: CONC/CONT - currently unable to preserve weird things like CONC on <248 char lines (which is a dumb thing to do anyway, but allowed in spec)
 * **GCMutableNode**: Mutable version of GCNode
 * **GCValue**: better type coercions; some currently return nil.
-* **GCAge/GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.
+* **GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.
 * **GCAge/GCDate**: calculations (ie age = dateA - dateB)
 * **appledocs**: and better comments & cleaner headers in general
 
