@@ -135,7 +135,7 @@
                          , nil);
 }
 
-- (void)TMP//testFile
+- (void)testFile
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
 	NSArray *nodes = [GCNode arrayOfNodesFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]];

@@ -21,6 +21,7 @@ typedef enum {
 
 //convenience factory methods:
 
+- (id)initWithGedcom:(NSString *)gedcom;
 - (id)initWithSimpleAge:(NSDateComponents *)c;
 - (id)initWithAgeKeyword:(NSString *)s;
 - (id)initWithInvalidAgeString:(NSString *)s;

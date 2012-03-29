@@ -42,12 +42,8 @@
 		3E5F50CD151E27BA00A433A6 /* GCObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */; };
 		3EECFD66151C32630074E26C /* GCAge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3A151C32630074E26C /* GCAge.h */; };
 		3EECFD67151C32630074E26C /* GCAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3B151C32630074E26C /* GCAge.m */; };
-		3EECFD68151C32630074E26C /* GCAgeAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3C151C32630074E26C /* GCAgeAssembler.h */; };
-		3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3D151C32630074E26C /* GCAgeAssembler.m */; };
 		3EECFD6A151C32630074E26C /* GCAgeFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD3E151C32630074E26C /* GCAgeFormatter.h */; };
 		3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3F151C32630074E26C /* GCAgeFormatter.m */; };
-		3EECFD6E151C32630074E26C /* GCAgeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD42151C32630074E26C /* GCAgeParser.h */; };
-		3EECFD6F151C32630074E26C /* GCAgeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD43151C32630074E26C /* GCAgeParser.m */; };
 		3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD44151C32630074E26C /* GCApproximateDate.h */; };
 		3EECFD71151C32630074E26C /* GCApproximateDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD45151C32630074E26C /* GCApproximateDate.m */; };
 		3EECFD72151C32630074E26C /* GCAttributedDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD46151C32630074E26C /* GCAttributedDate.h */; };
@@ -142,12 +138,8 @@
 		3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjectTests.m; sourceTree = "<group>"; };
 		3EECFD3A151C32630074E26C /* GCAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAge.h; sourceTree = "<group>"; };
 		3EECFD3B151C32630074E26C /* GCAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAge.m; sourceTree = "<group>"; };
-		3EECFD3C151C32630074E26C /* GCAgeAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeAssembler.h; sourceTree = "<group>"; };
-		3EECFD3D151C32630074E26C /* GCAgeAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeAssembler.m; sourceTree = "<group>"; };
 		3EECFD3E151C32630074E26C /* GCAgeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeFormatter.h; sourceTree = "<group>"; };
 		3EECFD3F151C32630074E26C /* GCAgeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeFormatter.m; sourceTree = "<group>"; };
-		3EECFD42151C32630074E26C /* GCAgeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeParser.h; sourceTree = "<group>"; };
-		3EECFD43151C32630074E26C /* GCAgeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeParser.m; sourceTree = "<group>"; };
 		3EECFD44151C32630074E26C /* GCApproximateDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCApproximateDate.h; sourceTree = "<group>"; };
 		3EECFD45151C32630074E26C /* GCApproximateDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCApproximateDate.m; sourceTree = "<group>"; };
 		3EECFD46151C32630074E26C /* GCAttributedDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAttributedDate.h; sourceTree = "<group>"; };
@@ -367,7 +359,6 @@
 				3EECFD3B151C32630074E26C /* GCAge.m */,
 				3EECFD3E151C32630074E26C /* GCAgeFormatter.h */,
 				3EECFD3F151C32630074E26C /* GCAgeFormatter.m */,
-				3EF7A1C5151C3820004A8540 /* Parsing */,
 			);
 			name = Age;
 			sourceTree = "<group>";
@@ -431,17 +422,6 @@
 			name = Attributed;
 			sourceTree = "<group>";
 		};
-		3EF7A1C5151C3820004A8540 /* Parsing */ = {
-			isa = PBXGroup;
-			children = (
-				3EECFD42151C32630074E26C /* GCAgeParser.h */,
-				3EECFD43151C32630074E26C /* GCAgeParser.m */,
-				3EECFD3C151C32630074E26C /* GCAgeAssembler.h */,
-				3EECFD3D151C32630074E26C /* GCAgeAssembler.m */,
-			);
-			name = Parsing;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -450,9 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EECFD66151C32630074E26C /* GCAge.h in Headers */,
-				3EECFD68151C32630074E26C /* GCAgeAssembler.h in Headers */,
 				3EECFD6A151C32630074E26C /* GCAgeFormatter.h in Headers */,
-				3EECFD6E151C32630074E26C /* GCAgeParser.h in Headers */,
 				3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */,
 				3EECFD72151C32630074E26C /* GCAttributedDate.h in Headers */,
 				3EECFD74151C32630074E26C /* GCDate.h in Headers */,
@@ -598,9 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EECFD67151C32630074E26C /* GCAge.m in Sources */,
-				3EECFD69151C32630074E26C /* GCAgeAssembler.m in Sources */,
 				3EECFD6B151C32630074E26C /* GCAgeFormatter.m in Sources */,
-				3EECFD6F151C32630074E26C /* GCAgeParser.m in Sources */,
 				3EECFD71151C32630074E26C /* GCApproximateDate.m in Sources */,
 				3EECFD73151C32630074E26C /* GCAttributedDate.m in Sources */,
 				3EECFD75151C32630074E26C /* GCDate.m in Sources */,
