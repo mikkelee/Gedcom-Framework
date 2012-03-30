@@ -149,7 +149,7 @@
 		[gc_outputLines addObjectsFromArray:[node gedcomLines]];
 	}
 	
-	NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
+	//NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
 	
 	for (int i = 0; i < [gc_outputLines count]; i++) {
 		STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], nil);

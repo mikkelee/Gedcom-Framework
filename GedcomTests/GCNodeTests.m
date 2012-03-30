@@ -71,9 +71,16 @@
 	[self testFile:path countShouldBe:18];
 }
 
-/*-(void)testWTF
+-(void)testValueForKey
 {
-	STAssertNotNil(nil, @"WTF");
-}*/
+	GCNode *aNode = [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] value:@"Jens /Hansen/"];
+	
+	GCNode *bNode = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
+										  value:nil 
+										   xref:@"@I1@" 
+									   subNodes:[NSArray arrayWithObject:aNode]];
+	
+	STAssertEqualObjects(aNode, [bNode valueForKey:@"NAME"], nil);
+}
 
 @end

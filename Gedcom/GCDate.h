@@ -22,7 +22,7 @@
 
 //generally you should use this:
 
-+ (GCDate *)dateFromGedcom:(NSString *)gedcom;
++ (id)dateFromGedcom:(NSString *)gedcom;
 
 - (NSComparisonResult)compare:(id)other;
 
@@ -32,6 +32,10 @@
 @property (retain, readonly) NSString *displayString;
 @property (retain, readonly) NSString *description;
 
+@property (readonly) NSUInteger year;
+@property (readonly) NSUInteger month;
+@property (readonly) NSUInteger day;
+
 @end
 
 
@@ -39,24 +43,20 @@
 
 //convenience factory methods:
 
-+ (GCSimpleDate *)simpleDate:(NSDateComponents *)co; //assumes Gregorian
-+ (GCSimpleDate *)simpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca;
++ (id)simpleDate:(NSDateComponents *)co; //assumes Gregorian
++ (id)simpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca;
 
-+ (GCApproximateDate *)approximateDate:(GCSimpleDate *)sd withType:(NSString *)t;
-+ (GCInterpretedDate *)interpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p;
++ (id)approximateDate:(GCSimpleDate *)sd withType:(NSString *)t;
++ (id)interpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p;
 
-+ (GCDatePeriod *)datePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
-+ (GCDateRange *)dateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
++ (id)datePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
++ (id)dateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
 
-+ (GCDatePhrase *)datePhrase:(NSString *)p;
++ (id)datePhrase:(NSString *)p;
 
-+ (GCInvalidDate *)invalidDateString:(NSString *)s;
++ (id)invalidDateString:(NSString *)s;
 
 @property (retain, readonly) GCSimpleDate *refDate; //used for sorting, etc.
-
-@property (readonly) NSUInteger year;
-@property (readonly) NSUInteger month;
-@property (readonly) NSUInteger day;
 
 @end
 

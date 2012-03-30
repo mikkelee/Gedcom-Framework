@@ -219,8 +219,8 @@
 			children = (
 				3E57557915202A9600A918D1 /* GCValue.h */,
 				3E57557A15202A9600A918D1 /* GCValue.m */,
-				3EECFD93151C33590074E26C /* Age */,
-				3EECFD94151C33640074E26C /* Date */,
+				3EECFD93151C33590074E26C /* Ages */,
+				3EECFD94151C33640074E26C /* Dates */,
 			);
 			name = Values;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
-		3EECFD93151C33590074E26C /* Age */ = {
+		3EECFD93151C33590074E26C /* Ages */ = {
 			isa = PBXGroup;
 			children = (
 				3EECFD3A151C32630074E26C /* GCAge.h */,
@@ -360,10 +360,10 @@
 				3EECFD3E151C32630074E26C /* GCAgeFormatter.h */,
 				3EECFD3F151C32630074E26C /* GCAgeFormatter.m */,
 			);
-			name = Age;
+			name = Ages;
 			sourceTree = "<group>";
 		};
-		3EECFD94151C33640074E26C /* Date */ = {
+		3EECFD94151C33640074E26C /* Dates */ = {
 			isa = PBXGroup;
 			children = (
 				3EECFD48151C32630074E26C /* GCDate.h */,
@@ -380,7 +380,7 @@
 				3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */,
 				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
 			);
-			name = Date;
+			name = Dates;
 			sourceTree = "<group>";
 		};
 		3EF7A1C2151C37AE004A8540 /* Parsing */ = {

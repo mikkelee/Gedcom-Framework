@@ -29,14 +29,6 @@
 - (NSString *)gedcomString;
 - (NSArray *)gedcomLines;
 
-#pragma mark Subnode access
-
--(GCNode *)subNodeForTag:(NSString *)tag;
--(NSArray *)subNodesForTag:(NSString *)tag;
-
--(GCNode *)subNodeForTagPath:(NSString *)tagPath; //tagPath can be for instance BIRT.DATE
--(NSArray *)subNodesForTagPath:(NSString *)tagPath;
-
 #pragma mark Properties
 
 @property (readonly) GCNode *parent;

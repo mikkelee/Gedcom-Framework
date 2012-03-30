@@ -17,6 +17,14 @@
 
 - (NSArray *)gedcomLinesAtLevel:(int) level;
 
+#pragma mark Subnode access
+
+-(GCNode *)subNodeForTag:(NSString *)tag;
+-(NSArray *)subNodesForTag:(NSString *)tag;
+
+-(GCNode *)subNodeForTagPath:(NSString *)tagPath; //tagPath can be for instance BIRT.DATE
+-(NSArray *)subNodesForTagPath:(NSString *)tagPath;
+
 @property GCNode *parent;
 @property GCTag *gedTag;
 @property NSString *gedValue;
@@ -264,10 +272,12 @@
 	
 	NSMutableArray *ta = [[tagPath componentsSeparatedByString:@"."] mutableCopy];
 	NSString *first = [ta objectAtIndex:0];
+	GCTag *tag = [GCTag tagCoded:first];
+	
 	[ta removeObjectAtIndex:0];
 	
     for (id subNode in [self subNodes]) {
-		if ([first isEqualTo:[subNode gedTag]])
+		if ([tag isEqualTo:[subNode gedTag]])
 			if ([ta count] > 0) {
 				[a addObjectsFromArray:[subNode subNodesForTagPath:[ta componentsJoinedByString:@"."]]];
 			} else {
@@ -278,8 +288,10 @@
 	return a;
 }
 
--(GCNode *)subNodeForTag:(NSString *)tag
+-(GCNode *)subNodeForTag:(NSString *)tagCode
 {
+	GCTag *tag = [GCTag tagCoded:tagCode];
+	
     for (id subNode in [self subNodes]) {
 		if ([tag isEqualTo:[subNode gedTag]]) {
 			return subNode;
@@ -289,9 +301,11 @@
 	return nil;
 }
 
--(NSArray *)subNodesForTag:(NSString *)tag
+-(NSArray *)subNodesForTag:(NSString *)tagCode
 {
 	NSMutableArray *a = [NSMutableArray arrayWithCapacity:5];
+	
+	GCTag *tag = [GCTag tagCoded:tagCode];
 	
     for (id subNode in [self subNodes]) {
 		if ([tag isEqualTo:[subNode gedTag]]) {
@@ -302,6 +316,32 @@
 	//NSLog(@"subNodes for %@: %@", tag, a);
 	
 	return a;
+}
+
+- (id)valueForKey:(NSString *)key
+{
+	NSArray *subNodes = [self subNodesForTag:key];
+	
+	if ([subNodes count] > 1) {
+		return subNodes;
+	} else if ([subNodes count] == 1) {
+		return [subNodes lastObject];
+	} else {
+		return nil;
+	}
+}
+
+- (id)valueForKeyPath:(NSString *)keyPath
+{
+	NSArray *subNodes = [self subNodesForTagPath:keyPath];
+	
+	if ([subNodes count] > 1) {
+		return subNodes;
+	} else if ([subNodes count] == 1) {
+		return [subNodes lastObject];
+	} else {
+		return nil;
+	}
 }
 
 - (void)addSubNode:(GCNode *) n
