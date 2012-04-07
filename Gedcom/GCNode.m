@@ -346,13 +346,10 @@
 
 - (void)addSubNode:(GCNode *) n
 {
-	if (self == n) {
-		NSLog(@"ACCESS DENIED: Attempted to add %@ to itself!", self);
-		return;
-	}
+	NSParameterAssert(self != n);
     
 	[_subNodes addObject:n];
-    [n setParent:self];
+	[n setParent:self];
 }
 
 - (void)addSubNodes:(NSArray *)a
