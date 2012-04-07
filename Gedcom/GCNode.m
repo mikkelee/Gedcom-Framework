@@ -249,11 +249,9 @@
 		}
 	}
 	
-	level++;
 	for (id subNode in [self subNodes] ) {
-		[gedLines addObjectsFromArray:[subNode gedcomLinesAtLevel:level]];
+		[gedLines addObjectsFromArray:[subNode gedcomLinesAtLevel:level+1]];
 	}
-	level--;
 	
 	return gedLines;
 }
