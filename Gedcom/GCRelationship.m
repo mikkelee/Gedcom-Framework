@@ -44,6 +44,8 @@
 
 + (id)relationshipForObject:(GCObject *)object withType:(NSString *)type target:(GCEntity *)target
 {
+	NSParameterAssert([object context] == [target context]);
+	
     GCRelationship *relationship = [[self alloc] initWithType:type inContext:[object context]];
     
 	[relationship setDescribedObject:object];
