@@ -272,10 +272,14 @@
 	return gedLines;
 }
 
-#pragma mark Subnode access
+#pragma mark NSKeyValueCoding overrides
 
 - (id)valueForKey:(NSString *)key
 {
+    if ([super valueForKey:key]) {
+        return [super valueForKey:key];
+    }
+    
 	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
 	
     for (id subNode in [self subNodes]) {
@@ -295,6 +299,10 @@
 
 - (id)valueForKeyPath:(NSString *)keyPath
 {
+    if ([super valueForKeyPath:keyPath]) {
+        return [super valueForKeyPath:keyPath];
+    }
+    
 	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
 	
 	NSMutableArray *ta = [[keyPath componentsSeparatedByString:@"."] mutableCopy];
@@ -319,9 +327,9 @@
 	} else {
 		return nil;
 	}
-	
-	//TODO should also call super...
 }
+
+#pragma mark Adding subnodes
 
 - (void)addSubNode:(GCNode *) n
 {
