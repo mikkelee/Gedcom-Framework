@@ -23,8 +23,7 @@
 
 @interface GCObject () 
 
-- (void)addAttribute:(GCAttribute *)attribute;
-- (void)addRelationship:(GCRelationship *)relationship;
+- (void)addProperty:(GCProperty *)property;
 
 @end
 
@@ -64,49 +63,45 @@
 	return [[GCTag tagNamed:[self type]] allowsMultipleSubtags:[GCTag tagNamed:type]];
 }
 
-- (void)addAttribute:(GCAttribute *)attribute
+- (void)addProperty:(GCProperty *)property
 {
-    [self setValue:attribute forKey:[attribute type]];
-}
-
-- (void)addRelationship:(GCRelationship *)relationship
-{
-    [self setValue:relationship forKey:[relationship type]];
+    [self setValue:property forKey:[property type]];
+    [property setDescribedObject:self];
 }
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
 {
-    [self addAttribute:[GCAttribute attributeForObject:self 
+    [self addProperty:[GCAttribute attributeForObject:self 
 											  withType:type stringValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
 {
-    [self addAttribute:[GCAttribute attributeForObject:self 
+    [self addProperty:[GCAttribute attributeForObject:self 
 											  withType:type numberValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
 {
-    [self addAttribute:[GCAttribute attributeForObject:self 
+    [self addProperty:[GCAttribute attributeForObject:self 
 											  withType:type ageValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
 {
-    [self addAttribute:[GCAttribute attributeForObject:self 
+    [self addProperty:[GCAttribute attributeForObject:self 
 											  withType:type boolValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
 {
-    [self addAttribute:[GCAttribute attributeForObject:self 
+    [self addProperty:[GCAttribute attributeForObject:self 
 											  withType:type dateValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value
 {
-	[self addAttribute:[GCAttribute attributeForObject:self 
+	[self addProperty:[GCAttribute attributeForObject:self 
 											  withType:type genderValue:value]];
 }
 
@@ -115,7 +110,7 @@
 	GCRelationship *relationship = [GCRelationship relationshipForObject:self 
 																withType:type target:target];
 	
-	[self addRelationship:relationship];
+	[self addProperty:relationship];
     
 	if ([[relationship gedTag] reverseRelationshipTag]) {
 		BOOL relationshipExists = NO;
