@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class GCDate;
+
 @interface GCAge : NSObject <NSCoding, NSCopying>
 
 #pragma mark Initialization
@@ -17,6 +19,10 @@
 #pragma mark Convenience constructor
 
 + (id)ageWithGedcom:(NSString *)gedcom;
+
+#pragma mark Helpers
+
++ (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate;
 
 #pragma mark Comparison
 

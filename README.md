@@ -22,7 +22,7 @@ Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; 
 # TODO #
 
 * **tags.plist**: Currently only partially done
-* **GCNode**: CONC/CONT - currently unable to preserve weird things like CONC on <248 char lines (which is a dumb thing to do anyway, but allowed in spec)
+* **GCNode**: CONC/CONT - currently unable to preserve weird things like CONC on <248 char lines (which is a dumb thing to do anyway, but allowed in spec) - use unicode "Zero Width Space U+200B" or "Word Joiner U+2060" to handle it?
 * **GCProperty**: changing describedObject should pass on change
 * **GCMutableNode**: Mutable version of GCNode
 * **GCValue**: better type coercions; some currently return nil.

@@ -512,6 +512,13 @@ NSString * const GCAgeQualifier_toString[] = {
 	return [[self alloc] initWithAge:a withQualifier:q];
 }
 
+#pragma mark Helpers
+
++ (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
+{
+    return nil; //TODO
+}
+
 #pragma mark Comparison
 
 -(NSComparisonResult) compare:(id)other {
