@@ -19,9 +19,12 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCMutableArrayProxy.h"
+#import "GCMutableOrderedSetProxy.h"
 
 @interface GCObject () 
+
+- (void)addAttribute:(GCAttribute *)attribute;
+- (void)addRelationship:(GCRelationship *)relationship;
 
 @end
 
@@ -144,7 +147,7 @@
         id obj = [self valueForKey:propertyName];
         
         if (obj) {
-            if ([obj isKindOfClass:[GCMutableArrayProxy class]]) {
+            if ([obj isKindOfClass:[GCMutableOrderedSetProxy class]]) {
                 NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
                     return [[obj1 stringValue] compare:[obj2 stringValue]];
                 }];
@@ -185,7 +188,7 @@
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-    if ([[self validProperties] containsObject:key]) {
+    if ([[self validProperties] containsObject:key] && [value isKindOfClass:[GCProperty class]]) {
         if ([self allowsMultiplePropertiesOfType:key]) {
             id existing = [self valueForKey:key];
             
@@ -200,21 +203,21 @@
                 }
             } else {
                 //create array:
-                id array = [NSMutableArray arrayWithCapacity:1];
+                NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:1];
                 if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
                     for (id obj in value) {
-                        [array addObject:obj];
+                        [set addObject:obj];
                     }
                 } else {
-                    [array addObject:value];
+                    [set addObject:value];
                 }
-                [_properties setObject:[[GCMutableArrayProxy alloc] initWithMutableArray:array
-                                                                                addBlock:^(id obj) {
-                                                                                    [obj setDescribedObject:self];
-                                                                                }
-                                                                             removeBlock:^(id obj) {
-                                                                                 [obj setDescribedObject:nil];
-                                                                             }]
+                [_properties setObject:[[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:set
+                                                                                          addBlock:^(id obj) {
+                                                                                              [obj setDescribedObject:self];
+                                                                                          }
+                                                                                       removeBlock:^(id obj) {
+                                                                                           [obj setDescribedObject:nil];
+                                                                                       }]
                                 forKey:key];
             }
         } else {
@@ -237,8 +240,10 @@
 	NSMutableArray *properties = [NSMutableArray arrayWithCapacity:3];
 	
 	for (id property in [_properties allValues]) {
-		if ([property isKindOfClass:[NSArray class]]) {
-			[properties addObjectsFromArray:property];
+		if ([property respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
+            for (id p in property) {
+                [properties addObjectsFromArray:p];
+            }
 		} else {
 			[properties addObject:property];
 		}

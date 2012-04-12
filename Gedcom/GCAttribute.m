@@ -61,6 +61,7 @@
                 break;
                 
             default:
+                NSAssert(NO, @"Shouldn't happen");
                 break;
         }
     }
@@ -77,7 +78,7 @@
 {
     GCAttribute *attribute = [[self alloc] initWithType:type];
     
-	[attribute setDescribedObject:object];
+    [object setValue:attribute forKey:type];
     
     return attribute;
 }

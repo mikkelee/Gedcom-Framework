@@ -38,8 +38,6 @@
     
 	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
-    [indi addAttribute:birt];
-    
     [indi addAttributeWithType:@"Death" boolValue:YES];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
