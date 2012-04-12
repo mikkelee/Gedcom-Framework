@@ -10,10 +10,7 @@
 
 #import "Gedcom.h"
 
-@interface GCNodeTests : SenTestCase {
-	
-}
-
+@interface GCNodeTests : SenTestCase
 @end
 
 

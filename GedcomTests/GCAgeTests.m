@@ -10,10 +10,7 @@
 
 #import "Gedcom.h"
 
-@interface GCAgeTests : SenTestCase {
-	
-}
-
+@interface GCAgeTests : SenTestCase
 @end
 
 

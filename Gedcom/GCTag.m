@@ -192,6 +192,7 @@ __strong static NSMutableDictionary *tagInfo;
         return YES;
     }
     
+    //TODO cache this:
     NSDictionary *validDict = nil;
     for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
         if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
@@ -214,11 +215,13 @@ __strong static NSMutableDictionary *tagInfo;
     }
     NSParameterAssert(validDict);
     
-	NSInteger min = [[validDict objectForKey:@"min"] integerValue];
+    //TODO use this:
+	//NSInteger min = [[validDict objectForKey:@"min"] integerValue];
+    
     NSInteger max = [[validDict objectForKey:@"max"] isEqual:@"M"]
-    ? INT_MAX
-    : [[validDict objectForKey:@"max"] integerValue]
-    ;
+                  ? INT_MAX
+                  : [[validDict objectForKey:@"max"] integerValue]
+                  ;
 	
 	return [tag isCustom] || max > 1;
 }
@@ -290,8 +293,8 @@ __strong static NSMutableDictionary *tagInfo;
 
 - (NSOrderedSet *)validSubTags
 {
+    //TODO cache this:
     NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[[_settings objectForKey:kValidSubTags] count]];
-    
     for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
         if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
             for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {

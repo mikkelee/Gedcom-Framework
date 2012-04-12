@@ -10,10 +10,7 @@
 
 #import "Gedcom.h"
 
-@interface GCDateTests : SenTestCase {
-	
-}
-
+@interface GCDateTests : SenTestCase
 @end
 
 @implementation GCDateTests

@@ -10,10 +10,7 @@
 
 #import "Gedcom.h"
 
-@interface GCTagTests : SenTestCase {
-	
-}
-
+@interface GCTagTests : SenTestCase
 @end
 
 @implementation GCTagTests
