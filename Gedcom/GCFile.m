@@ -9,10 +9,12 @@
 #import "GCFile.h"
 #import "GCObject.h"
 #import "GCNode.h"
+#import "GCTag.h"
 
 #import "GCContext.h"
 
 #import "GCHeader.h"
+#import "GCEntity.h"
 #import "GCTrailer.h"
 
 @implementation GCFile {
@@ -29,7 +31,17 @@
 		_records = [NSMutableArray arrayWithCapacity:[nodes count]];
 		
 		for (id node in nodes) {
-			[_records addObject:[GCObject objectWithGedcomNode:node inContext:context]];
+            GCObject *object = nil;
+            if ([[[node gedTag] objectClass] isEqual:[GCHeader class]]) {
+                object = [GCHeader headerWithGedcomNode:node inContext:context];
+            } else if ([[[node gedTag] objectClass] isEqual:[GCTrailer class]]) {
+                object = [GCTrailer trailerWithGedcomNode:node inContext:context];
+            } else if ([[[node gedTag] objectClass] isEqual:[GCEntity class]]) {
+                object = [GCEntity entityWithGedcomNode:node inContext:context];
+            } else {
+                NSLog(@"Shouldn't happen! %@ unknown class: %@", node, [[node gedTag] objectClass]);
+            }
+			[_records addObject:object];
 		}
 	}
 	

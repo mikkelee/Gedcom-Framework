@@ -24,7 +24,7 @@
 
 + (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCAttribute *attribute = [[self alloc] initWithType:[[node gedTag] name] inContext:[object context]];
+    GCAttribute *attribute = [[self alloc] initWithType:[[node gedTag] name]];
     
     if ([node gedValue] != nil) {
         switch ([[node gedTag] valueType]) {
@@ -74,7 +74,7 @@
 
 + (id)attributeForObject:(GCObject *)object withType:(NSString *)type
 {
-    GCAttribute *attribute = [[self alloc] initWithType:type inContext:[object context]];
+    GCAttribute *attribute = [[self alloc] initWithType:type];
     
 	[attribute setDescribedObject:object];
     

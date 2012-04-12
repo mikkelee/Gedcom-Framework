@@ -276,7 +276,13 @@
 
 - (id)valueForKey:(NSString *)key
 {
-    if ([super valueForKey:key]) {
+    BOOL isValidSubTag = NO;
+    for (GCTag *validSubTag in [[self gedTag] validSubTags]) {
+        if ([[validSubTag code] isEqualToString:key]) {
+            isValidSubTag = YES;
+        }
+    }
+    if (!isValidSubTag) {
         return [super valueForKey:key];
     }
     
@@ -286,38 +292,6 @@
 		if ([[[subNode gedTag] code] isEqualTo:key]) {
 			[subNodes addObject:subNode];
 		}
-	}
-	
-	if ([subNodes count] > 1) {
-		return subNodes;
-	} else if ([subNodes count] == 1) {
-		return [subNodes lastObject];
-	} else {
-		return nil;
-	}
-}
-
-- (id)valueForKeyPath:(NSString *)keyPath
-{
-    if ([super valueForKeyPath:keyPath]) {
-        return [super valueForKeyPath:keyPath];
-    }
-    
-	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
-	
-	NSMutableArray *ta = [[keyPath componentsSeparatedByString:@"."] mutableCopy];
-	NSString *first = [ta objectAtIndex:0];
-	
-	[ta removeObjectAtIndex:0];
-	
-    for (id subNode in [self subNodes]) {
-		if ([[[subNode gedTag] code] isEqualTo:first]) {
-			if ([ta count] > 0) {
-				[subNodes addObjectsFromArray:[subNode valueForKeyPath:[ta componentsJoinedByString:@"."]]];
-			} else {
-				[subNodes addObject:subNode];
-			}
-        }
 	}
 	
 	if ([subNodes count] > 1) {

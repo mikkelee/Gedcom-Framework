@@ -34,6 +34,13 @@
 	}
 }
 
+#pragma mark Cocoa properties
+
 @synthesize describedObject = _describedObject;
+
+- (GCContext *)context
+{
+    return [_describedObject context];
+}
 
 @end

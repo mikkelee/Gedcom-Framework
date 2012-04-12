@@ -16,7 +16,22 @@
 
 #import "GCContext.h"
 
-@implementation GCEntity 
+@implementation GCEntity {
+    GCContext *_context;
+}
+
+#pragma mark Initialization
+
+- (id)initWithType:(NSString *)type inContext:(GCContext *)context
+{
+    self = [super initWithType:type];
+    
+    if (self) {
+		_context = context;
+    }
+    
+    return self;    
+}
 
 #pragma mark Convenience constructors
 
@@ -47,5 +62,7 @@
 								  xref:[[self context] xrefForEntity:self]
 							  subNodes:[self subNodes]];
 }
+
+@synthesize context = _context;
 
 @end

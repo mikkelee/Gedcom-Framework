@@ -20,7 +20,7 @@
 
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCRelationship *relationship = [[self alloc] initWithType:[[node gedTag] name] inContext:[object context]];
+    GCRelationship *relationship = [[self alloc] initWithType:[[node gedTag] name]];
     
 	[relationship setDescribedObject:object];
 	
@@ -46,7 +46,7 @@
 {
 	NSParameterAssert([object context] == [target context]);
 	
-    GCRelationship *relationship = [[self alloc] initWithType:type inContext:[object context]];
+    GCRelationship *relationship = [[self alloc] initWithType:type];
     
 	[relationship setDescribedObject:object];
     [relationship setTarget:target];

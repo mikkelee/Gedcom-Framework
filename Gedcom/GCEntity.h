@@ -11,6 +11,10 @@
 
 @interface GCEntity : GCObject
 
+#pragma mark Initialization
+
+- (id)initWithType:(NSString *)type inContext:(GCContext *)context;
+
 #pragma mark Convenience constructors
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;

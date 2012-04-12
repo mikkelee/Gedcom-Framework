@@ -26,39 +26,21 @@
 @end
 
 @implementation GCObject {
-	GCContext *_context;
     NSMutableDictionary *_properties;
 }
 
 #pragma mark Initialization
 
-- (id)initWithType:(NSString *)type inContext:(GCContext *)context
+- (id)initWithType:(NSString *)type
 {
     self = [super init];
     
     if (self) {
         _tag = [GCTag tagNamed:type];
-		_context = context;
         _properties = [NSMutableDictionary dictionaryWithCapacity:3];
     }
     
     return self;    
-}
-
-#pragma mark Convenience constructors
-
-+ (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
-{
-	if ([[[node gedTag] objectClass] isEqual:[GCHeader class]]) {
-		return [GCHeader headerWithGedcomNode:node inContext:context];
-	} else if ([[[node gedTag] objectClass] isEqual:[GCTrailer class]]) {
-		return [GCTrailer trailerWithGedcomNode:node inContext:context];
-	} else if ([[[node gedTag] objectClass] isEqual:[GCEntity class]]) {
-		return [GCEntity entityWithGedcomNode:node inContext:context];
-	} else {
-		NSLog(@"Shouldn't happen! %@ unknown class: %@", node, [[node gedTag] objectClass]);
-		return nil;
-	}
 }
 
 #pragma mark GCProperty access
@@ -189,17 +171,14 @@
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
     
     for (NSString *propertyName in [self validProperties]) {
-        //NSLog(@"property: %@", property);
         id obj = [self valueForKey:propertyName];
         
         if (obj) {
-            //NSLog(@"obj: %@", obj);
             if ([obj isKindOfClass:[GCMutableArrayProxy class]]) {
                 NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
                     return [[obj1 stringValue] compare:[obj2 stringValue]];
                 }];
                 for (id subObj in sorted) {
-                    //NSLog(@"subObj: %@", subObj);
                     [subNodes addObject:[subObj gedcomNode]];
                 }
             } else {
@@ -218,11 +197,13 @@
 
 #pragma mark NSKeyValueCoding overrides
 
-//TODO fix this dumb stuff, internal storage of properties is a mess.
-
-- (id)valueForUndefinedKey:(NSString *)key
+- (id)valueForKey:(NSString *)key
 {
-    return [_properties objectForKey:key];
+    if ([[self validProperties] containsObject:key]) {
+        return [_properties objectForKey:key];
+    } else {
+        return [super valueForKey:key];
+    }
 }
 
 - (void)setNilValueForKey:(NSString *)key
@@ -230,14 +211,16 @@
     [_properties removeObjectForKey:key];
 }
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+- (void)setValue:(id)value forKey:(NSString *)key
 {
-    //TODO validity check (don't put a NAME on a FAM, etc)
-    
-    [_properties setObject:value forKey:key];
+    if ([[self validProperties] containsObject:key]) {
+        [_properties setObject:value forKey:key];
+    } else {
+        [super setValue:value forKey:key];
+    }
 }
 
-#pragma mark Properties
+#pragma mark Cocoa properties
 
 - (NSString *)type
 {
@@ -287,6 +270,6 @@
 
 @synthesize gedTag = _tag;
 
-@synthesize context = _context;
+@dynamic context;
 
 @end
