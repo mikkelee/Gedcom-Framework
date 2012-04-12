@@ -1,0 +1,819 @@
+{
+	"@Root object": {
+		"variants": [
+                     "Header",
+					 "@Record",
+					 "Trailer"
+                     ]
+	},
+	
+	"Header": {
+		"code": "HEAD",
+		"objectType": "GCHeader",
+		"validSubTags": [
+                         { "name": "Submitter reference", "min": "1", "max": "1" },
+                         { "name": "Submission reference", "min": "0", "max": "M" }
+                         ]
+	},
+	
+	"@Record": {
+		"variants": [
+					 "Submission record",
+					 "Family record",
+					 "Individual record",
+					 "Multimedia record",
+					 "Note record",
+					 "Repository record",
+					 "Source record",
+					 "Submitter record"
+					 ],
+		"validSubTags": [
+                         { "name": "Source citation", "min": "0", "max": "M" },
+                         { "name": "Source description", "min": "0", "max": "M" },
+                         { "name": "Note reference", "min": "0", "max": "M" }
+                         ]
+	},
+	
+	"Trailer": {
+		"code": "TRLR",
+		"objectType": "GCTrailer"
+	},
+	
+	"Submission record": {
+		"code": "SUBN",
+		"objectType": "GCEntity"
+	},
+	"Family record": {
+		"code": "FAM",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "@Family event", "min": "0", "max": "M" },
+                         { "name": "Husband", "min": "0", "max": "1" },
+                         { "name": "Wife", "min": "0", "max": "1" },
+                         { "name": "Child", "min": "0", "max": "M" },
+                         { "name": "Number of children", "min": "0", "max": "1" }
+                         ]
+	},
+	"Individual record": {
+		"code": "INDI",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Name", "min": "0", "max": "M" },
+                         { "name": "Sex", "min": "0", "max": "M" },
+                         { "name": "@Individual event", "min": "0", "max": "M" },
+                         { "name": "@Individual attribute", "min": "0", "max": "M" },
+                         { "name": "@Individual LDS ordinance", "min": "0", "max": "M" },
+                         { "name": "Child in family", "min": "0", "max": "M" },
+                         { "name": "Spouse in family", "min": "0", "max": "M" }
+                         ]
+	},
+	"Multimedia record": {
+		"code": "OBJE",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Format", "min": "1", "max": "1" },
+                         { "name": "Title", "min": "0", "max": "1" }
+                         ]
+	},
+	"Note record": {
+		"code": "NOTE",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Record Id Number", "min": "0", "max": "1" }
+                         ]
+	},
+	"Repository record": {
+		"code": "REPO",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Name", "min": "0", "max": "1" },
+                         { "name": "Address", "min": "0", "max": "1" }
+                         ]
+	},
+	"Source record": {
+		"code": "SOUR",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Data", "min": "0", "max": "1" }
+                         ]
+	},
+	"Submitter record": {
+		"code": "SUBM",
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Name", "min": "1", "max": "1" },
+                         { "name": "Address", "min": "0", "max": "1" }
+                         ]
+	},
+	
+	"Husband": {
+		"code": "HUSB",
+		"objectType": "GCRelationship",
+		"target": "Individual",
+        "reverseRelationshipTag": "Spouse in family",
+		"validSubTags": [
+        ]
+	},
+	"Wife": {
+		"code": "WIFE",
+		"objectType": "GCRelationship",
+		"target": "Individual",
+        "reverseRelationshipTag": "Spouse in family",
+		"validSubTags": [
+        ]
+	},
+	"Child": {
+		"code": "CHIL",
+		"objectType": "GCRelationship",
+		"target": "Individual",
+        "reverseRelationshipTag": "Child in family",
+		"validSubTags": [
+        ]
+	},
+    
+	"Submitter reference": {
+		"code": "SUBM",
+		"objectType": "GCRelationship",
+		"target": "Submitter record",
+		"validSubTags": [
+        ]
+	},
+	"Submission reference": {
+		"code": "SUBN",
+		"objectType": "GCRelationship",
+		"target": "Submission record",
+		"validSubTags": [
+        ]
+	},
+	
+    "@Individual event": {
+		"objectType": "GCProperty",
+        "valueType": "GCBoolValue",
+		"variants": [
+                     "Birth",
+                     "Christening",
+                     "Death",
+                     "Burial",
+                     "Cremation",
+                     "Adoption",
+                     "Baptism",
+                     "Bar Mitzvah",
+                     "Bas Mitzvah",
+                     "Blessing",
+                     "Adult Christening",
+                     "Confirmation",
+                     "First Communion",
+                     "Ordinance",
+                     "Naturalization",
+                     "Emigration",
+                     "Immigration",
+                     "Census",
+                     "Probate",
+                     "Will",
+                     "Graduation",
+                     "Retirement",
+                     "Event"
+                     ],
+        "validSubTags": [
+                         { "name": "@Event detail", "min": "0", "max": "M" }
+                         ]
+    },
+    "@Individual attribute": {
+		"objectType": "GCProperty",
+        "valueType": "GCStringValue",
+		"variants": [
+                     "Caste",
+                     "Descendants",
+                     "Education",
+                     "Ident number",
+                     "Nationality",
+                     "Number of children",
+                     "Number of marriages",
+                     "Occupation",
+                     "Property",
+                     "Religion",
+                     "Residence",
+                     "Social Security Number",
+                     "Title"
+                     ],
+        "validSubTags": [
+                         { "name": "@Event detail", "min": "0", "max": "M" }
+                         ]
+    },
+    "@Individual LDS ordinance": {
+		"objectType": "GCProperty",
+		"variants": [
+                     "LDS Baptism",
+                     "LDS Confirmation",
+                     "LDS Endowment",
+                     "LDS Sealing Child"
+                     ],
+		"validSubTags": [
+                         { "name": "State", "min": "0", "max": "1" },
+                         { "name": "Date", "min": "0", "max": "1" },
+                         { "name": "Temple", "min": "0", "max": "1" },
+                         { "name": "Place", "min": "0", "max": "1" }
+                         ]
+    },
+    "@Family event": {
+		"objectType": "GCProperty",
+		"variants": [
+                     "Annulment",
+                     "Census",
+                     "Divorce",
+                     "Divorce Filed",
+                     "Engagement",
+                     "Marriage",
+                     "Marriage Bann",
+                     "Marriage Contract",
+                     "Marriage License",
+                     "Marriage Settlement",
+                     "Event"
+                     ],
+        "validSubTags": [
+                         { "name": "@Event detail", "min": "0", "max": "M" }
+                         ]
+    },
+    "@Event detail": {
+		"objectType": "GCProperty",
+		"variants": [
+                     "Type",
+                     "Date",
+                     "Place",
+                     "Address"
+                     ]
+    },
+    
+    "Name": {
+        "code": "NAME",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue",
+        "validSubTags": [
+                         { "name": "Name Prefix", "min": "0", "max": "1" },
+                         { "name": "Given Name", "min": "0", "max": "1" },
+                         { "name": "Nickname", "min": "0", "max": "1" },
+                         { "name": "Surname Prefix", "min": "0", "max": "1" },
+                         { "name": "Surname", "min": "0", "max": "1" },
+                         { "name": "Name Suffix", "min": "0", "max": "1" },
+                         { "name": "Source citation", "min": "0", "max": "M" },
+                         { "name": "Source description", "min": "0", "max": "M" },
+                         { "name": "Note reference", "min": "0", "max": "M" }
+                         ]
+    },
+    "Name Prefix": {
+        "code": "NPFX",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Given Name": {
+        "code": "GIVN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Nickname": {
+        "code": "NICK",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Surname Prefix": {
+        "code": "SPFX",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Surname": {
+        "code": "SURN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Name Suffix": {
+        "code": "NSFX",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    
+    "Child in family": {
+        "code": "FAMC",
+		"objectType": "GCRelationship"
+    },
+    "Spouse in family": {
+        "code": "FAMS",
+		"objectType": "GCRelationship"
+    },
+    
+	"Source citation": {
+		"code": "SOUR",
+		"objectType": "GCRelationship",
+		"validSubTags": [
+                         { "name": "Page", "min": "1", "max": "1" }
+                         ]
+	},
+	"Source description": {
+		"code": "SOUR",
+		"objectType": "GCAttribute"
+	},
+    
+	"Note reference": {
+		"code": "NOTE",
+		"objectType": "GCRelationship"
+	},
+    
+
+    "Abbreviation": {
+        "code": "ABBR",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Address": {
+        "code": "ADDR",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Address1": {
+        "code": "ADR1",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Address2": {
+        "code": "ADR2",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Adoption": {
+        "code": "ADOP",
+		"objectType": "GCAttribute"
+    },
+    "Afn": {
+        "code": "AFN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Age": {
+        "code": "AGE",
+		"objectType": "GCAttribute",
+        "valueType": "GCAgeValue"
+    },
+    "Agency": {
+        "code": "AGNC",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Alias": {
+        "code": "ALIA",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Ances Interest": {
+        "code": "ANCI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Ancestors": {
+        "code": "ANCE",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Associates": {
+        "code": "ASSO",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Author": {
+        "code": "AUTH",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Adult Christening": {
+        "code": "CHRA",
+		"objectType": "GCAttribute"
+    },
+    "Annulment": {
+        "code": "ANUL",
+		"objectType": "GCAttribute"
+    },
+    "Baptism": {
+        "code": "BAPM",
+		"objectType": "GCAttribute"
+    },
+    "LDS Baptism": {
+        "code": "BAPL",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Bar Mitzvah": {
+        "code": "BARM",
+		"objectType": "GCAttribute"
+    },
+    "Bas Mitzvah": {
+        "code": "BASM",
+		"objectType": "GCAttribute"
+    },
+    "Binary Object": {
+        "code": "BLOB",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Birth": {
+        "code": "BIRT",
+		"objectType": "GCAttribute"
+    },
+    "Blessing": {
+        "code": "BLES",
+		"objectType": "GCAttribute"
+    },
+    "Burial": {
+        "code": "BURI",
+		"objectType": "GCAttribute"
+    },
+    "Call Number": {
+        "code": "CALN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Caste": {
+        "code": "CAST",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Cause": {
+        "code": "CAUS",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Census": {
+        "code": "CENS",
+		"objectType": "GCAttribute",
+    },
+    "Change": {
+        "code": "CHAN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Character Set": {
+        "code": "CHAR",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Number of children": {
+        "code": "NCHI",
+		"objectType": "GCAttribute",
+        "valueType": "GCNumberValue"
+    },
+    "Christening": {
+        "code": "CHR",
+		"objectType": "GCAttribute"
+    },
+    "City": {
+        "code": "CITY",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "LDS Confirmation": {
+        "code": "CONL",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Confirmation": {
+        "code": "CONF",
+		"objectType": "GCAttribute"
+    },
+    "Copyright": {
+        "code": "COPR",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Corporate": {
+        "code": "CORP",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Country": {
+        "code": "CTRY",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Cremation": {
+        "code": "CREM",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Data": {
+        "code": "DATA",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Date": {
+        "code": "DATE",
+		"objectType": "GCAttribute",
+        "valueType": "GCDateValue"
+    },
+    "Death": {
+        "code": "DEAT",
+		"objectType": "GCAttribute"
+    },
+    "Descendant Interest": {
+        "code": "DESI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Descendants": {
+        "code": "DESC",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Destination": {
+        "code": "DEST",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Divorce Filed": {
+        "code": "DIVF",
+		"objectType": "GCAttribute"
+    },
+    "Divorce": {
+        "code": "DIV",
+		"objectType": "GCAttribute"
+    },
+    "Education": {
+        "code": "EDUC",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Emigration": {
+        "code": "EMIG",
+		"objectType": "GCAttribute"
+    },
+    "LDS Endowment": {
+        "code": "ENDL",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Engagement": {
+        "code": "ENGA",
+		"objectType": "GCAttribute"
+    },
+    "Event": {
+        "code": "EVEN",
+		"objectType": "GCAttribute"
+    },
+    "Family File": {
+        "code": "FAMF",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "File": {
+        "code": "FILE",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "First Communion": {
+        "code": "FCOM",
+		"objectType": "GCAttribute"
+    },
+    "Format": {
+        "code": "FORM",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Gedcom": {
+        "code": "GEDC",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Graduation": {
+        "code": "GRAD",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Ident number": {
+        "code": "IDNO",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Immigration": {
+        "code": "IMMI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Language": {
+        "code": "LANG",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Legatee": {
+        "code": "LEGA",
+		"objectType": "GCAttribute"
+    },
+    "Marriage Contract": {
+        "code": "MARC",
+		"objectType": "GCAttribute"
+    },
+    "Marriage License": {
+        "code": "MARL",
+		"objectType": "GCAttribute"
+    },
+    "Marriage Settlement": {
+        "code": "MARS",
+		"objectType": "GCAttribute"
+    },
+    "Marriage Bann": {
+        "code": "MARB",
+		"objectType": "GCAttribute"
+    },
+    "Marriage": {
+        "code": "MARR",
+		"objectType": "GCAttribute"
+    },
+    "Number of marriages": {
+        "code": "NMR",
+		"objectType": "GCAttribute",
+        "valueType": "GCNumberValue"
+    },
+    "Media": {
+        "code": "MEDI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Nationality": {
+        "code": "NATI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Naturalization": {
+        "code": "NATU",
+		"objectType": "GCAttribute"
+    },
+    "Occupation": {
+        "code": "OCCU",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Ordinance": {
+        "code": "ORDI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Ordination": {
+        "code": "ORDN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Page": {
+        "code": "PAGE",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Pedigree": {
+        "code": "PEDI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Phone": {
+        "code": "PHON",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Phy Description": {
+        "code": "DSCR",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Place": {
+        "code": "PLAC",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Postal_code": {
+        "code": "POST",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Probate": {
+        "code": "PROB",
+		"objectType": "GCAttribute"
+    },
+    "Property": {
+        "code": "PROP",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Publication": {
+        "code": "PUBL",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Quality Of Data": {
+        "code": "QUAY",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Record File Number": {
+        "code": "RFN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Record Id Number": {
+        "code": "RIN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Reference": {
+        "code": "REFN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Relationship": {
+        "code": "RELA",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Religion": {
+        "code": "RELI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Residence": {
+        "code": "RESI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Restriction": {
+        "code": "RESN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Retirement": {
+        "code": "RETI",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Role": {
+        "code": "ROLE",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "LDS Sealing Child": {
+        "code": "SLGC",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Sealing Spouse": {
+        "code": "SLGS",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Sex": {
+        "code": "SEX",
+		"objectType": "GCAttribute",
+        "valueType": "GCGenderValue"
+    },
+    "Social Security Number": {
+        "code": "SSN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "State": {
+        "code": "STAE",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Status": {
+        "code": "STAT",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Temple": {
+        "code": "TEMP",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Text": {
+        "code": "TEXT",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Time": {
+        "code": "TIME",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Title": {
+        "code": "TITL",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Type": {
+        "code": "TYPE",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Version": {
+        "code": "VERS",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
+    "Will": {
+        "code": "WILL",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    }
+}

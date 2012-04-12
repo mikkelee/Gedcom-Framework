@@ -29,7 +29,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"Individual" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
 	
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
@@ -53,23 +53,23 @@
     
     ctx = [GCContext context]; //fresh context
 	
-    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagCoded:@"INDI"] 
+    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagWithType:@"GCEntity" code:@"INDI"] 
                                          value:nil
                                           xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
-                                                [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
+                                                [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"NAME"] 
                                                               value:@"Jens /Hansen/ Smed"],
-                                                [GCNode nodeWithTag:[GCTag tagCoded:@"NAME"] 
+                                                [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"NAME"] 
                                                               value:@"Jens /Hansen/"],
-                                                [[GCNode alloc] initWithTag:[GCTag tagCoded:@"BIRT"] 
+                                                [[GCNode alloc] initWithTag:[GCTag tagWithType:@"GCAttribute" code:@"BIRT"] 
                                                                       value:nil
                                                                        xref:nil
                                                                    subNodes:[NSArray arrayWithObjects:
-                                                                             [GCNode nodeWithTag:[GCTag tagCoded:@"DATE"]
+                                                                             [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"DATE"]
                                                                                                            value:@"1 JAN 1901"],
                                                                               nil]
                                                                              ],
-                                                [GCNode nodeWithTag:[GCTag tagCoded:@"DEAT"] 
+                                                [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"DEAT"] 
                                                               value:@"Y"],
                                                  nil]];
     
@@ -89,19 +89,19 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-	GCEntity *husb = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	GCEntity *husb = [GCEntity entityWithType:@"Individual record" inContext:ctx];
 	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
 	[husb addAttributeWithType:@"Sex" genderValue:GCMale];
 	
-	GCEntity *wife = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	GCEntity *wife = [GCEntity entityWithType:@"Individual record" inContext:ctx];
 	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
 	[wife addAttributeWithType:@"Sex" genderValue:GCFemale];
 	
-	GCEntity *chil = [GCEntity entityWithType:@"Individual" inContext:ctx];
+	GCEntity *chil = [GCEntity entityWithType:@"Individual record" inContext:ctx];
 	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
 	[chil addAttributeWithType:@"Sex" genderValue:GCMale];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"Family" inContext:ctx];
+    GCEntity *fam = [GCEntity entityWithType:@"Family record" inContext:ctx];
 	[fam addRelationshipWithType:@"Husband" target:husb];
 	[fam addRelationshipWithType:@"Wife" target:wife];
 	[fam addRelationshipWithType:@"Child" target:chil];

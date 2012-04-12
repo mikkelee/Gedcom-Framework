@@ -20,20 +20,20 @@
 
 - (void)testTags
 {
-    GCTag *indi1 = [GCTag tagCoded:@"INDI"];
-    GCTag *indi2 = [GCTag tagNamed:@"Individual"];
+    GCTag *indi1 = [GCTag tagWithType:@"GCEntity" code:@"INDI"];
+    GCTag *indi2 = [GCTag tagNamed:@"Individual record"];
     
 	STAssertNotNil(indi1, nil);
 	STAssertEquals(indi1, indi2, nil);
 	
-    STAssertTrue([indi1 isValidSubTag:[GCTag tagCoded:@"NAME"]], nil);
-    STAssertFalse([indi1 isValidSubTag:[GCTag tagCoded:@"HUSB"]], nil);
+    STAssertTrue([indi1 isValidSubTag:[GCTag tagWithType:@"GCAttribute" code:@"NAME"]], nil);
+    STAssertFalse([indi1 isValidSubTag:[GCTag tagWithType:@"GCRelationship" code:@"HUSB"]], nil);
     
     STAssertEqualObjects([indi2 code], @"INDI", nil);
-    STAssertEqualObjects([indi2 name], @"Individual", nil);
+    STAssertEqualObjects([indi2 name], @"Individual record", nil);
     
-    STAssertEquals([[GCTag tagCoded:@"NAME"] valueType], GCStringValue, nil);
-    STAssertEquals([[GCTag tagCoded:@"BIRT"] valueType], GCBoolValue, nil);
+    STAssertEquals([[GCTag tagWithType:@"GCAttribute" code:@"NAME"] valueType], GCStringValue, nil);
+    STAssertEquals([[GCTag tagWithType:@"GCAttribute" code:@"BIRT"] valueType], GCBoolValue, nil);
 }
 
 @end

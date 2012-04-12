@@ -3,7 +3,7 @@
 //  GCCoreData
 //
 //  Created by Mikkel Eide Eriksen on 22/02/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

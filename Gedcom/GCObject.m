@@ -19,6 +19,8 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
+#import "GCMutableArrayProxy.h"
+
 @interface GCObject () 
 
 @end
@@ -47,17 +49,14 @@
 
 + (id)objectWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-	if ([[node gedTag] objectClass] == [GCHeader class]) {
+	if ([[[node gedTag] objectClass] isEqual:[GCHeader class]]) {
 		return [GCHeader headerWithGedcomNode:node inContext:context];
-	} else if ([[node gedTag] objectClass] == [GCTrailer class]) {
+	} else if ([[[node gedTag] objectClass] isEqual:[GCTrailer class]]) {
 		return [GCTrailer trailerWithGedcomNode:node inContext:context];
-	} else if (![[node gedTag] isRoot]) {
-		NSLog(@"Not a rootNode: %@", node); //TODO throw or something
-		return nil;
-	} else if ([[node gedTag] objectClass] == [GCEntity class]) {
+	} else if ([[[node gedTag] objectClass] isEqual:[GCEntity class]]) {
 		return [GCEntity entityWithGedcomNode:node inContext:context];
 	} else {
-		NSLog(@"Shouldn't happen! %@", node);
+		NSLog(@"Shouldn't happen! %@ unknown class: %@", node, [[node gedTag] objectClass]);
 		return nil;
 	}
 }
@@ -69,10 +68,15 @@
 	NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
 	
 	for (id subTag in [_tag validSubTags]) {
-		[valid addObject:[[GCTag tagCoded:subTag] name]];
+		[valid addObject:[subTag name]];
 	}
 	
 	return valid;
+}
+
+- (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
+{
+	return [[GCTag tagNamed:[self type]] allowsMultipleSubtags:[GCTag tagNamed:type]];
 }
 
 - (void)addProperty:(GCProperty *)property
@@ -83,22 +87,24 @@
     
     NSParameterAssert([[self validProperties] containsObject:key]);
     
-    id existing = [self valueForKey:key];
-    
-    BOOL allowsMultiple = true; //TODO
-    
-    if (allowsMultiple && existing) {
-        //one exists already, so we get in array mode:
-        
-        if ([existing isKindOfClass:[NSMutableArray class]]) {
-            //already have an array, so just add here:
-            [existing addObject:property];
-        } else {
-            //create array and put both in:
-            NSMutableArray *objects = [NSMutableArray arrayWithObjects:existing, property, nil];
-            [self setValue:objects forKey:key];
-        }
-    } else {
+    if ([self allowsMultiplePropertiesOfType:key]) {
+		id existing = [self valueForKey:key];
+		
+		if (existing) {
+			//already have an array, so just add here:
+			[existing addObject:property];
+		} else {
+			//create array:
+			[self setValue:[[GCMutableArrayProxy alloc] initWithMutableArray:[NSMutableArray arrayWithObject:property]
+																	addBlock:^(id obj) {
+																		[obj setDescribedObject:self];
+																	}
+																 removeBlock:^(id obj) {
+																	 [obj setDescribedObject:nil];
+																 }]
+					forKey:key];
+		}
+	} else {
         [self setValue:property forKey:key];
     }
 }
@@ -188,7 +194,7 @@
         
         if (obj) {
             //NSLog(@"obj: %@", obj);
-            if ([obj isKindOfClass:[NSMutableArray class]]) {
+            if ([obj isKindOfClass:[GCMutableArrayProxy class]]) {
                 NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
                     return [[obj1 stringValue] compare:[obj2 stringValue]];
                 }];

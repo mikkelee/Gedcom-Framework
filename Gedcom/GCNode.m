@@ -17,14 +17,6 @@
 
 - (NSArray *)gedcomLinesAtLevel:(int) level;
 
-#pragma mark Subnode access
-
--(GCNode *)subNodeForTag:(NSString *)tag;
--(NSArray *)subNodesForTag:(NSString *)tag;
-
--(GCNode *)subNodeForTagPath:(NSString *)tagPath; //tagPath can be for instance BIRT.DATE
--(NSArray *)subNodesForTagPath:(NSString *)tagPath;
-
 @property GCNode *parent;
 @property GCTag *gedTag;
 @property NSString *gedValue;
@@ -51,7 +43,7 @@
 	return self;
 }
 
-- (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xr subNodes:(NSArray *)subNodes
+- (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     NSParameterAssert(tag != nil);
     
@@ -59,7 +51,7 @@
     
 	if (self) {
         [self setGedTag:tag];
-        [self setXref:xr];
+        [self setXref:xref];
         [self setGedValue:value];
         
         if (subNodes) {
@@ -96,69 +88,93 @@
 	
 	NSLog(@"Began parsing gedcom.");
 	
-	NSRegularExpression *levelTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) ([A-Z]{3,4}[0-9]?)(?: (.*))?$"
-																						options:0 
+	NSRegularExpression *levelXrefTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (?:(\\@[A-Z_]+\\d*\\@) )?([A-Z]{3,4}[0-9]?|_[A-Z][A-Z0-9]*)(?: (.*))?$"
+																						options:kNilOptions 
 																						  error:nil];
-	NSRegularExpression *levelXrefTagRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (\\@[A-Z_]+\\d*\\@) ([A-Z]{3,4})$" 
-																					   options:0 
-																						 error:nil];
-	NSRegularExpression *levelCustomTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (_[A-Z][A-Z0-9]*)(?: (.*))?$"
-																							  options:0
-																								error:nil];
 	
 	for (NSString *gLine in gedLines) {
 		if ([gLine isEqualToString:@""]) 
 			continue;
 		
+		int level = -1;
 		GCNode* node = nil;
 		
 		NSRange range = NSMakeRange(0, [gLine length]);
-		int level = -1;
+		NSTextCheckingResult *match = [levelXrefTagValueRegex firstMatchInString:gLine options:kNilOptions range:range];
 		
-		NSTextCheckingResult *match = [levelTagValueRegex firstMatchInString:gLine options:0 range:range];
-		
-		if ([match numberOfRanges] == 4) {
+        //NSLog(@"gLine: %@", gLine);
+        
+        if (match) {
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-			GCTag *tag = [GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]];
-			NSString *val = nil;
-			if ([match rangeAtIndex:3].length > 0) {
-				val = [gLine substringWithRange:[match rangeAtIndex:3]];
+            
+			NSString *xref = nil;
+			if ([match rangeAtIndex:2].length > 0) {
+				xref = [gLine substringWithRange:[match rangeAtIndex:2]];
 			}
-			if ([[tag code] isEqualToString:@"CONT"]) {
+            
+            NSString *code = [gLine substringWithRange:[match rangeAtIndex:3]];
+            
+			NSString *val = nil;
+			if ([match rangeAtIndex:4].length > 0) {
+				val = [gLine substringWithRange:[match rangeAtIndex:4]];
+			}
+            
+			if ([code isEqualToString:@"CONT"]) {
 				if ([currentNode gedValue] == nil) {
 					[currentNode setGedValue:@""];
 				}
 				[currentNode setGedValue:[NSString stringWithFormat:@"%@\n%@", [currentNode gedValue], val]];
 				continue;
-			} else if ([[tag code] isEqualToString:@"CONC"]) {
+			} else if ([code isEqualToString:@"CONC"]) {
 				if ([currentNode gedValue] == nil) {
 					[currentNode setGedValue:@""];
 				}
 				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@", [currentNode gedValue], val]];
 				continue;
-			} else {
-				node = [GCNode nodeWithTag:tag 
-									 value:val];
 			}
-		} else {
-			match = [levelXrefTagRegex firstMatchInString:gLine options:0 range:range];
-			if ([match numberOfRanges] == 4) {
-				level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-				node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:3]]]
-									  xref:[gLine substringWithRange:[match rangeAtIndex:2]]];
-			} else {
-				match = [levelCustomTagValueRegex firstMatchInString:gLine options:0 range:range];
-				if ([match numberOfRanges] == 4) {
-					NSLog(@"Custom gedcom tag: %@", [gLine substringWithRange:[match rangeAtIndex:2]]);
-					level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-					node = [GCNode nodeWithTag:[GCTag tagCoded:[gLine substringWithRange:[match rangeAtIndex:2]]]
-										 value:[gLine substringWithRange:[match rangeAtIndex:3]]];
-				} else {
-					NSLog(@"Malformed Gedcom line had result: %@ -- %@", gLine, match);
-				}
-			}
-		}
-		
+            
+            NSString *type = nil;
+            if (level == 0) {
+                if (xref != nil) {
+                    type = @"GCEntity";
+                } else {
+                    //TODO Fix special cases (turn header/trailer into entities?)
+                    if ([code isEqualToString:@"HEAD"]) {
+                        type = @"GCHeader";
+                    } else if ([code isEqualToString:@"TRLR"]) {
+                        type = @"GCTrailer";
+                    } else {
+                        type = @"WTF";
+                    }
+                }
+            } else if ([val hasPrefix:@"@"] && [val hasSuffix:@"@"]) {
+                type = @"GCRelationship";
+            } else {
+                type = @"GCAttribute";
+            }
+            
+			GCTag *tag = [GCTag tagWithType:type code:code];
+            
+            /*
+             NSLog(@"level: %d", level);
+             NSLog(@"xref: %@", xref);
+             NSLog(@"code: %@", code);
+             NSLog(@"val: %@", val);
+             NSLog(@"type: %@", type);
+             NSLog(@"tag: %@", tag);
+             */
+            
+            if (xref) {
+                node = [GCNode nodeWithTag:tag 
+                                      xref:xref];
+            } else {
+                node = [GCNode nodeWithTag:tag 
+                                     value:val];
+            }
+            
+            //NSLog(@"node: %@", node);
+        }
+        
 		if (node == nil) {
 			NSLog(@"Unable to create node from gedcom: %@", gLine);
 			//throw?
@@ -258,67 +274,15 @@
 
 #pragma mark Subnode access
 
--(GCNode *)subNodeForTagPath:(NSString *)tagPath
-{
-	//TODO complain if more than one are found?
-	return [[self subNodesForTagPath:tagPath] objectAtIndex:0];
-}
-
--(NSArray *)subNodesForTagPath:(NSString *)tagPath
-{
-	NSMutableArray *a = [NSMutableArray arrayWithCapacity:5];
-	
-	NSMutableArray *ta = [[tagPath componentsSeparatedByString:@"."] mutableCopy];
-	NSString *first = [ta objectAtIndex:0];
-	GCTag *tag = [GCTag tagCoded:first];
-	
-	[ta removeObjectAtIndex:0];
-	
-    for (id subNode in [self subNodes]) {
-		if ([tag isEqualTo:[subNode gedTag]])
-			if ([ta count] > 0) {
-				[a addObjectsFromArray:[subNode subNodesForTagPath:[ta componentsJoinedByString:@"."]]];
-			} else {
-				[a addObject:subNode];
-			}
-	}
-	
-	return a;
-}
-
--(GCNode *)subNodeForTag:(NSString *)tagCode
-{
-	GCTag *tag = [GCTag tagCoded:tagCode];
-	
-    for (id subNode in [self subNodes]) {
-		if ([tag isEqualTo:[subNode gedTag]]) {
-			return subNode;
-		}
-	}
-	
-	return nil;
-}
-
--(NSArray *)subNodesForTag:(NSString *)tagCode
-{
-	NSMutableArray *a = [NSMutableArray arrayWithCapacity:5];
-	
-	GCTag *tag = [GCTag tagCoded:tagCode];
-	
-    for (id subNode in [self subNodes]) {
-		if ([tag isEqualTo:[subNode gedTag]]) {
-			[a addObject:subNode];
-		}
-	}
-	
-	//NSLog(@"subNodes for %@: %@", tag, a);
-	
-	return a;
-}
-
 - (id)valueForKey:(NSString *)key
 {
-	NSArray *subNodes = [self subNodesForTag:key];
+	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
+	
+    for (id subNode in [self subNodes]) {
+		if ([[[subNode gedTag] code] isEqualTo:key]) {
+			[subNodes addObject:subNode];
+		}
+	}
 	
 	if ([subNodes count] > 1) {
 		return subNodes;
@@ -331,7 +295,22 @@
 
 - (id)valueForKeyPath:(NSString *)keyPath
 {
-	NSArray *subNodes = [self subNodesForTagPath:keyPath];
+	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
+	
+	NSMutableArray *ta = [[keyPath componentsSeparatedByString:@"."] mutableCopy];
+	NSString *first = [ta objectAtIndex:0];
+	
+	[ta removeObjectAtIndex:0];
+	
+    for (id subNode in [self subNodes]) {
+		if ([[[subNode gedTag] code] isEqualTo:first]) {
+			if ([ta count] > 0) {
+				[subNodes addObjectsFromArray:[subNode valueForKeyPath:[ta componentsJoinedByString:@"."]]];
+			} else {
+				[subNodes addObject:subNode];
+			}
+        }
+	}
 	
 	if ([subNodes count] > 1) {
 		return subNodes;
@@ -340,6 +319,8 @@
 	} else {
 		return nil;
 	}
+	
+	//TODO should also call super...
 }
 
 - (void)addSubNode:(GCNode *) n
@@ -408,11 +389,11 @@
 
 #pragma mark Properties
 
-@synthesize parent;
-@synthesize gedTag;
-@synthesize gedValue;
-@synthesize xref;
-@synthesize lineSeparator;
+@synthesize parent = _parent;
+@synthesize gedTag = _gedTag;
+@synthesize gedValue = _gedValue;
+@synthesize xref = _xref;
+@synthesize lineSeparator = _lineSeparator;
 @synthesize subNodes = _subNodes;
 
 @end

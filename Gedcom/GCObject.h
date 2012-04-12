@@ -34,6 +34,7 @@
 #pragma mark GCProperty access
 
 - (NSOrderedSet *)validProperties;
+- (BOOL)allowsMultiplePropertiesOfType:(NSString *)type;
 
 - (void)addProperty:(GCProperty *)property;
 - (void)addAttribute:(GCAttribute *)attribute;

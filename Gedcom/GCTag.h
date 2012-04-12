@@ -14,19 +14,20 @@
 
 #pragma mark Convenience constructors
 
-+(GCTag *)tagCoded:(NSString *)code;
 +(GCTag *)tagNamed:(NSString *)name;
+
++(GCTag *)tagWithType:(NSString *)type code:(NSString *)code;
 
 #pragma mark Subtags
 
 -(BOOL)isValidSubTag:(GCTag *)tag;
+-(BOOL)allowsMultipleSubtags:(GCTag *)tag;
 
 #pragma mark Properties
 
 @property (readonly) NSString *code;
 @property (readonly) NSString *name;
 @property (readonly) BOOL isCustom;
-@property (readonly) BOOL isRoot;
 
 @property (readonly) NSOrderedSet *validSubTags;
 @property (readonly) GCValueType valueType;
