@@ -23,8 +23,6 @@
 
 @interface GCObject () 
 
-- (void)addProperty:(GCProperty *)property;
-
 @end
 
 @implementation GCObject {
@@ -66,49 +64,41 @@
 - (void)addProperty:(GCProperty *)property
 {
     [self setValue:property forKey:[property type]];
-    [property setDescribedObject:self];
 }
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
 {
-    [self addProperty:[GCAttribute attributeForObject:self 
-											  withType:type stringValue:value]];
+    [self addProperty:[GCAttribute attributeWithType:type stringValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
 {
-    [self addProperty:[GCAttribute attributeForObject:self 
-											  withType:type numberValue:value]];
+    [self addProperty:[GCAttribute attributeWithType:type numberValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
 {
-    [self addProperty:[GCAttribute attributeForObject:self 
-											  withType:type ageValue:value]];
+    [self addProperty:[GCAttribute attributeWithType:type ageValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
 {
-    [self addProperty:[GCAttribute attributeForObject:self 
-											  withType:type boolValue:value]];
+    [self addProperty:[GCAttribute attributeWithType:type boolValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
 {
-    [self addProperty:[GCAttribute attributeForObject:self 
-											  withType:type dateValue:value]];
+    [self addProperty:[GCAttribute attributeWithType:type dateValue:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value
 {
-	[self addProperty:[GCAttribute attributeForObject:self 
-											  withType:type genderValue:value]];
+	[self addProperty:[GCAttribute attributeWithType:type genderValue:value]];
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-	GCRelationship *relationship = [GCRelationship relationshipForObject:self 
-																withType:type target:target];
+	GCRelationship *relationship = [GCRelationship relationshipWithType:type target:target];
 	
 	[self addProperty:relationship];
     
@@ -170,7 +160,21 @@
 - (id)valueForKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
-        return [_properties objectForKey:key];
+        id obj = [_properties objectForKey:key];
+        
+        if ([self allowsMultiplePropertiesOfType:key] && obj == nil) {
+            //return a fresh proxy that will act when added to/removed from.
+            obj = [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:[NSMutableOrderedSet orderedSet]
+                                                                     addBlock:^(id obj) {
+                                                                         [obj setDescribedObject:self];
+                                                                     }
+                                                                  removeBlock:^(id obj) {
+                                                                      [obj setDescribedObject:nil];
+                                                                  }];
+            [_properties setObject:obj forKey:key];
+        }
+        
+        return obj;
     } else {
         return [super valueForKey:key];
     }
@@ -189,23 +193,10 @@
             
             if (existing) {
                 //already have an array, so just add here:
-                if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
-                    for (id obj in value) {
-                        [existing addObject:obj];
-                    }
-                } else {
-                    [existing addObject:value];
-                }
+                [existing addObject:value];
             } else {
                 //create array:
-                NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:1];
-                if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
-                    for (id obj in value) {
-                        [set addObject:obj];
-                    }
-                } else {
-                    [set addObject:value];
-                }
+                NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithObject:value];
                 [_properties setObject:[[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:set
                                                                                           addBlock:^(id obj) {
                                                                                               [obj setDescribedObject:self];
@@ -218,6 +209,7 @@
         } else {
             [_properties setObject:value forKey:key];
         }
+        [value setDescribedObject:self];
     } else {
         [super setValue:value forKey:key];
     }

@@ -17,8 +17,8 @@
 
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
-+ (id)relationshipForObject:(GCObject *)object withType:(NSString *)type;
-+ (id)relationshipForObject:(GCObject *)object withType:(NSString *)type target:(GCEntity *)target;
++ (id)relationshipWithType:(NSString *)type;
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target;
 
 #pragma mark Properties
 

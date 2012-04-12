@@ -18,16 +18,16 @@
 
 + (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type;
++ (id)attributeWithType:(NSString *)type;
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type value:(GCValue *)value;
++ (id)attributeWithType:(NSString *)type value:(GCValue *)value;
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type stringValue:(NSString *)value;
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type numberValue:(NSNumber *)value;
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type ageValue:(GCAge *)value;
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type dateValue:(GCDate *)value;
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type boolValue:(BOOL)value;
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type genderValue:(GCGender)value;
++ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value;
++ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value;
++ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value;
++ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value;
++ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value;
++ (id)attributeWithType:(NSString *)type genderValue:(GCGender)value;
 
 #pragma mark Properties
 

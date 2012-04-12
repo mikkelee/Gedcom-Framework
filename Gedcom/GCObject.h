@@ -32,6 +32,8 @@
 - (NSOrderedSet *)validProperties;
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type;
 
+- (void)addProperty:(GCProperty *)property;
+
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value;
 - (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value;
 - (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value;

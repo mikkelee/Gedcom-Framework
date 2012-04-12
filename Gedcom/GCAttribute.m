@@ -74,70 +74,66 @@
     return attribute;
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type
++ (id)attributeWithType:(NSString *)type
 {
     GCAttribute *attribute = [[self alloc] initWithType:type];
     
-    [object setValue:attribute forKey:type];
+    //[object addProperty:attribute];
     
     return attribute;
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type value:(GCValue *)value
++ (id)attributeWithType:(NSString *)type value:(GCValue *)value
 {
-    GCAttribute *attribute = [self attributeForObject:object withType:type];
+    GCAttribute *attribute = [self attributeWithType:type];
     
     [attribute setValue:value];
     
     return attribute;
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type stringValue:(NSString *)value
++ (id)attributeWithType:(NSString *)type stringValue:(NSString *)value
 {
-    return [self attributeForObject:object
-						   withType:type 
-							  value:[[GCValue alloc] initWithType:GCStringValue value:value]]; 
+    return [self attributeWithType:type 
+                             value:[[GCValue alloc] initWithType:GCStringValue value:value]]; 
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type numberValue:(NSNumber *)value
++ (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value
 {
-    return [self attributeForObject:object
-						   withType:type 
-							  value:[[GCValue alloc] initWithType:GCNumberValue value:value]]; 
+    return [self attributeWithType:type 
+                             value:[[GCValue alloc] initWithType:GCNumberValue value:value]]; 
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type ageValue:(GCAge *)value
++ (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value
 {
-    return [self attributeForObject:object
-						   withType:type 
-							  value:[[GCValue alloc] initWithType:GCAgeValue value:value]]; 
+    return [self attributeWithType:type 
+                             value:[[GCValue alloc] initWithType:GCAgeValue value:value]]; 
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type dateValue:(GCDate *)value
++ (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value
 {
-    return [self attributeForObject:object
-						   withType:type 
-							  value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
+    return [self attributeWithType:type 
+                             value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type boolValue:(BOOL)value
++ (id)attributeWithType:(NSString *)type boolValue:(BOOL)value
 {
-    return [self attributeForObject:object
-						   withType:type 
-							  value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
+    return [self attributeWithType:type 
+                             value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
 }
 
-+ (id)attributeForObject:(GCObject *)object withType:(NSString *)type genderValue:(GCGender)value
++ (id)attributeWithType:(NSString *)type genderValue:(GCGender)value
 {
-    return [self attributeForObject:object
-						   withType:type 
-							  value:[[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:value]]]; 
+    return [self attributeWithType:type 
+                             value:[[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:value]]]; 
 }
 
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
 {
+    NSParameterAssert([self describedObject]); //something's gone wrong if there's no describedObject
+    
     return [[GCNode alloc] initWithTag:[self gedTag] 
 								 value:[self stringValue]
 								  xref:nil

@@ -38,18 +38,18 @@
     return relationship;
 }
 
-+ (id)relationshipForObject:(GCObject *)object withType:(NSString *)type
++ (id)relationshipWithType:(NSString *)type
 {
-	return [[self alloc] initWithType:type inContext:[object context]];
+	return [[self alloc] initWithType:type];
 }
 
-+ (id)relationshipForObject:(GCObject *)object withType:(NSString *)type target:(GCEntity *)target
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-	NSParameterAssert([object context] == [target context]);
+	//NSParameterAssert([object context] == [target context]);
 	
     GCRelationship *relationship = [[self alloc] initWithType:type];
     
-	[relationship setDescribedObject:object];
+    //[object addProperty:relationship];
     [relationship setTarget:target];
 	
     return relationship;
@@ -59,6 +59,8 @@
 
 - (GCNode *)gedcomNode
 {
+    NSParameterAssert([self describedObject]); //something's gone wrong if there's no describedObject
+    
     return [[GCNode alloc] initWithTag:[self gedTag]
 								 value:[[self context] xrefForEntity:_target]
 								  xref:nil
