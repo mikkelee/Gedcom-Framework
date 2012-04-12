@@ -66,7 +66,8 @@
     }
     
     for (id subNode in [node subNodes]) {
-        [attribute addProperty:[GCProperty propertyForObject:object withGedcomNode:subNode]];
+        GCProperty *property = [GCProperty propertyForObject:attribute withGedcomNode:subNode];
+        [attribute setValue:property forKey:[property type]];
     }
     
     return attribute;

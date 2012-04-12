@@ -32,7 +32,6 @@
 - (NSOrderedSet *)validProperties;
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type;
 
-- (void)addProperty:(GCProperty *)property;
 - (void)addAttribute:(GCAttribute *)attribute;
 - (void)addRelationship:(GCRelationship *)relationship;
 

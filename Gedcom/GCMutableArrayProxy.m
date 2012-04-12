@@ -37,16 +37,28 @@
 	return self;
 }
 
+#pragma mark Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (type: %@)", [super description], _array];
+}
+
 #pragma mark Forwarding
 
 - (id)forwardingTargetForSelector:(SEL)sel
 {
 	//http://www.mikeash.com/pyblog/friday-qa-2009-03-27-objective-c-message-forwarding.html
-	
-	return _array; //forward all unknown selectors to contained array
+    //forward all NSMutableArray-selectors to contained array
+    
+	if ([_array respondsToSelector:sel]) {
+        return _array;
+    } else {
+        return nil;
+    }
 }
 
-#pragma mark Primitive overrides:
+#pragma mark Primitive overrides
 
 // run add/remove callbacks, then perform on contained array
 

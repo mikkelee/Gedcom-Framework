@@ -61,44 +61,14 @@
 	return [[GCTag tagNamed:[self type]] allowsMultipleSubtags:[GCTag tagNamed:type]];
 }
 
-- (void)addProperty:(GCProperty *)property
-{
-    id key = [property type];
-	
-	//NSLog(@"self: %@ key: %@", self, key);
-    
-    NSParameterAssert([[self validProperties] containsObject:key]);
-    
-    if ([self allowsMultiplePropertiesOfType:key]) {
-		id existing = [self valueForKey:key];
-		
-		if (existing) {
-			//already have an array, so just add here:
-			[existing addObject:property];
-		} else {
-			//create array:
-			[self setValue:[[GCMutableArrayProxy alloc] initWithMutableArray:[NSMutableArray arrayWithObject:property]
-																	addBlock:^(id obj) {
-																		[obj setDescribedObject:self];
-																	}
-																 removeBlock:^(id obj) {
-																	 [obj setDescribedObject:nil];
-																 }]
-					forKey:key];
-		}
-	} else {
-        [self setValue:property forKey:key];
-    }
-}
-
 - (void)addAttribute:(GCAttribute *)attribute
 {
-	[self addProperty:attribute];
+    [self setValue:attribute forKey:[attribute type]];
 }
 
 - (void)addRelationship:(GCRelationship *)relationship
 {
-	[self addProperty:relationship];
+    [self setValue:relationship forKey:[relationship type]];
 }
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
@@ -178,7 +148,7 @@
                 NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
                     return [[obj1 stringValue] compare:[obj2 stringValue]];
                 }];
-                for (id subObj in sorted) {
+                for (GCProperty *subObj in sorted) {
                     [subNodes addObject:[subObj gedcomNode]];
                 }
             } else {
@@ -189,6 +159,8 @@
 	
 	return subNodes;
 }
+
+#pragma mark Description
 
 - (NSString *)description
 {
@@ -214,7 +186,26 @@
 - (void)setValue:(id)value forKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
-        [_properties setObject:value forKey:key];
+        if ([self allowsMultiplePropertiesOfType:key]) {
+            id existing = [self valueForKey:key];
+            
+            if (existing) {
+                //already have an array, so just add here:
+                [existing addObject:value];
+            } else {
+                //create array:
+                [_properties setObject:[[GCMutableArrayProxy alloc] initWithMutableArray:[NSMutableArray arrayWithObject:value]
+                                                                                addBlock:^(id obj) {
+                                                                                    [obj setDescribedObject:self];
+                                                                                }
+                                                                             removeBlock:^(id obj) {
+                                                                            [obj setDescribedObject:nil];
+                                                                             }]
+                        forKey:key];
+            }
+        } else {
+            [_properties setObject:value forKey:key];
+        }
     } else {
         [super setValue:value forKey:key];
     }
