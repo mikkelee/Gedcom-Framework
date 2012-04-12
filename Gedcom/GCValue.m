@@ -58,7 +58,7 @@
         case GCGenderValue:
             return [[NSNumber numberWithInt:[self genderValue]] compare:[NSNumber numberWithInt:[other genderValue]]];
             break;
-
+            
         default:
             break;
     }

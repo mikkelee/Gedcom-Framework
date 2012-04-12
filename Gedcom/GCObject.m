@@ -213,9 +213,9 @@
                                                                                     [obj setDescribedObject:self];
                                                                                 }
                                                                              removeBlock:^(id obj) {
-                                                                            [obj setDescribedObject:nil];
+                                                                                 [obj setDescribedObject:nil];
                                                                              }]
-                        forKey:key];
+                                forKey:key];
             }
         } else {
             [_properties setObject:value forKey:key];

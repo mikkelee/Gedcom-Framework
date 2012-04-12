@@ -89,8 +89,8 @@
 	NSLog(@"Began parsing gedcom.");
 	
 	NSRegularExpression *levelXrefTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (?:(\\@[A-Z_]+\\d*\\@) )?([A-Z]{3,4}[0-9]?|_[A-Z][A-Z0-9]*)(?: (.*))?$"
-																						options:kNilOptions 
-																						  error:nil];
+                                                                                            options:kNilOptions 
+                                                                                              error:nil];
 	
 	for (NSString *gLine in gedLines) {
 		if ([gLine isEqualToString:@""]) 
