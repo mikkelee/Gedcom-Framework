@@ -31,7 +31,7 @@
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
 	
-	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+    [indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
 	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
 	GCAttribute *birt = [GCAttribute attributeForObject:indi withType:@"Birth"];

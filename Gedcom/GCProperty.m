@@ -15,7 +15,6 @@
 #import "GCRelationship.h"
 
 @implementation GCProperty {
-	GCObject *_describedObject;
 }
 
 #pragma mark Convenience constructors

@@ -191,10 +191,24 @@
             
             if (existing) {
                 //already have an array, so just add here:
-                [existing addObject:value];
+                if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
+                    for (id obj in value) {
+                        [existing addObject:obj];
+                    }
+                } else {
+                    [existing addObject:value];
+                }
             } else {
                 //create array:
-                [_properties setObject:[[GCMutableArrayProxy alloc] initWithMutableArray:[NSMutableArray arrayWithObject:value]
+                id array = [NSMutableArray arrayWithCapacity:1];
+                if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
+                    for (id obj in value) {
+                        [array addObject:obj];
+                    }
+                } else {
+                    [array addObject:value];
+                }
+                [_properties setObject:[[GCMutableArrayProxy alloc] initWithMutableArray:array
                                                                                 addBlock:^(id obj) {
                                                                                     [obj setDescribedObject:self];
                                                                                 }

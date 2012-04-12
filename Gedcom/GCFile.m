@@ -19,7 +19,6 @@
 
 @implementation GCFile {
 	GCContext *_context;
-	NSMutableArray *_records;
 }
 
 - (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
