@@ -516,7 +516,9 @@ NSString * const GCAgeQualifier_toString[] = {
 
 + (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
 {
-    return nil; //TODO
+    //TODO
+	[self doesNotRecognizeSelector:_cmd];
+	__builtin_unreachable();
 }
 
 #pragma mark Comparison
