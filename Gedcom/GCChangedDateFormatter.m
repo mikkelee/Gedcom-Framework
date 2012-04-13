@@ -54,14 +54,14 @@
 	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
 	[timeFormatter setDateFormat:@"HH:mm:ss"];
     
-    GCNode *timeNode = [GCNode nodeWithTag:[GCTag tagNamed:@"Time"] 
+    GCNode *timeNode = [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"TIME"] 
                                      value:[timeFormatter stringFromDate:date]];
 	
-    GCNode *dateNode = [GCNode nodeWithTag:[GCTag tagNamed:@"Date"] 
+    GCNode *dateNode = [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"DATE"] 
                                      value:[dateFormatter stringFromDate:date]
                                   subNodes:[NSArray arrayWithObject:timeNode]];
     
-    return [GCNode nodeWithTag:[GCTag tagNamed:@"Changed"] 
+    return [GCNode nodeWithTag:[GCTag tagNamed:@"@Changed"] 
                          value:nil 
                       subNodes:[NSArray arrayWithObject:dateNode]];
 }

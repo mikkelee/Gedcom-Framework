@@ -286,16 +286,6 @@
 
 - (id)valueForKey:(NSString *)key
 {
-    BOOL isValidSubTag = NO;
-    for (GCTag *validSubTag in [[self gedTag] validSubTags]) {
-        if ([[validSubTag code] isEqualToString:key]) {
-            isValidSubTag = YES;
-        }
-    }
-    if (!isValidSubTag) {
-        return [super valueForKey:key];
-    }
-    
 	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
 	
     for (id subNode in [self subNodes]) {
@@ -309,7 +299,7 @@
 	} else if ([subNodes count] == 1) {
 		return [subNodes lastObject];
 	} else {
-		return nil;
+        return [super valueForKey:key];
 	}
 }
 

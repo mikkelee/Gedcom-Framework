@@ -60,11 +60,9 @@ __strong static NSMutableDictionary *tagInfo;
         if ([tagDict objectForKey:kValueType] && ![variant objectForKey:kValueType]) {
             [variant setObject:[tagDict objectForKey:kValueType] forKey:kValueType];
         }
-        [self recurse:variantName];
-    }
-    
-    for (NSDictionary *subTag in [tagDict objectForKey:kValidSubTags]) {
-        [self recurse:[subTag objectForKey:kName]];
+        if (![tagStore objectForKey:variantName]) {
+            [self recurse:variantName];
+        }
     }
     
     if ([tagDict objectForKey:kCode] != nil) {
@@ -76,7 +74,11 @@ __strong static NSMutableDictionary *tagInfo;
                      forKey:[NSString stringWithFormat:@"%@:%@", [tagDict objectForKey:kObjectType], [tagDict objectForKey:kCode]]];
     }
     
-    //NSLog(@"obj: %@", obj);
+    for (NSDictionary *subTag in [tagDict objectForKey:kValidSubTags]) {
+        if (![tagStore objectForKey:[subTag objectForKey:kName]]) {
+            [self recurse:[subTag objectForKey:kName]];
+        }
+    }
 }
 
 + (void)setupTagInfo
@@ -105,13 +107,20 @@ __strong static NSMutableDictionary *tagInfo;
         for (NSString *key in [tagInfo keyEnumerator]) {
             if (![tagStore objectForKey:key]) {
                 NSMutableDictionary *tagDict = [tagInfo objectForKey:key];
+                if (![tagDict objectForKey:kCode]) {
+                    continue;
+                }
                 GCTag *tag = [[GCTag alloc] initWithName:key
                                                 settings:tagDict];
+                
+                NSParameterAssert([tagStore objectForKey:key] == nil);
                 [tagStore setObject:tag 
                              forKey:key];
+                
+                NSString *typeCodeKey = [NSString stringWithFormat:@"%@:%@", [tagDict objectForKey:kObjectType], [tagDict objectForKey:kCode]];
+                NSParameterAssert([tagStore objectForKey:typeCodeKey] == nil);
                 [tagStore setObject:tag
-                             forKey:[NSString stringWithFormat:@"%@:%@", [tagDict objectForKey:kObjectType], [tagDict objectForKey:kCode]]];
-                [tagStore setObject:tag forKey:key];
+                             forKey:typeCodeKey];
             }
         }
     });

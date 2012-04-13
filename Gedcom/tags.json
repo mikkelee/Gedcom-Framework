@@ -40,7 +40,16 @@
 	
 	"Submission record": {
 		"code": "SUBN",
-		"objectType": "GCEntity"
+		"objectType": "GCEntity",
+		"validSubTags": [
+                         { "name": "Submitter reference", "min": "0", "max": "1" },
+                         { "name": "Family File", "min": "0", "max": "1" },
+                         { "name": "Temple", "min": "0", "max": "1" },
+                         { "name": "Ancestors", "min": "0", "max": "1" },
+                         { "name": "Descendants", "min": "0", "max": "1" },
+                         { "name": "Ordinance", "min": "0", "max": "1" },
+                         { "name": "Record Id Number", "min": "0", "max": "1" }
+                         ]
 	},
 	"Family record": {
 		"code": "FAM",
@@ -50,7 +59,8 @@
                          { "name": "Husband", "min": "0", "max": "1" },
                          { "name": "Wife", "min": "0", "max": "1" },
                          { "name": "Child", "min": "0", "max": "M" },
-                         { "name": "Number of children", "min": "0", "max": "1" }
+                         { "name": "Number of children", "min": "0", "max": "1" },
+                         { "name": "Submission reference", "min": "0", "max": "M" }
                          ]
 	},
 	"Individual record": {
@@ -63,7 +73,8 @@
                          { "name": "@Individual attribute", "min": "0", "max": "M" },
                          { "name": "@Individual LDS ordinance", "min": "0", "max": "M" },
                          { "name": "Child in family", "min": "0", "max": "M" },
-                         { "name": "Spouse in family", "min": "0", "max": "M" }
+                         { "name": "Spouse in family", "min": "0", "max": "M" },
+                         { "name": "Submission reference", "min": "0", "max": "M" }
                          ]
 	},
 	"Multimedia record": {
@@ -101,7 +112,12 @@
 		"objectType": "GCEntity",
 		"validSubTags": [
                          { "name": "Name", "min": "1", "max": "1" },
-                         { "name": "Address", "min": "0", "max": "1" }
+                         { "name": "Address", "min": "0", "max": "1" },
+                         { "name": "Phone", "min": "0", "max": "3" },
+                         { "name": "@Multimedia", "min": "0", "max": "M" },
+                         { "name": "Language", "min": "0", "max": "3" },
+                         { "name": "Record File Number", "min": "0", "max": "1" },
+                         { "name": "Ancestral File Number", "min": "0", "max": "1" }
                          ]
 	},
 	
@@ -239,7 +255,13 @@
                      "Type",
                      "Date",
                      "Place",
-                     "Address"
+                     "Address",
+                     "Source citation",
+                     "Source embedded",
+                     "Multimedia reference",
+                     "Multimedia embedded",
+                     "Note reference",
+                     "Note embedded"
                      ]
     },
     
@@ -301,7 +323,7 @@
     "@Source": {
         "variants": [
                      "Source citation",
-                     "Source description"
+                     "Source embedded"
                      ]
     },
 	"Source citation": {
@@ -309,12 +331,20 @@
 		"objectType": "GCRelationship",
         "target": "Source record",
 		"validSubTags": [
-                         { "name": "Page", "min": "1", "max": "1" }
+                         { "name": "Page", "min": "0", "max": "1" },
+                         { "name": "Data", "min": "0", "max": "1" },
+                         { "name": "Quality of data", "min": "0", "max": "1" },
+                         { "name": "@Multimedia", "min": "0", "max": "M" },
+                         { "name": "@Note", "min": "0", "max": "M" }
                          ]
 	},
-	"Source description": {
+	"Source embedded": {
 		"code": "SOUR",
-		"objectType": "GCAttribute"
+		"objectType": "GCAttribute",
+		"validSubTags": [
+                         { "name": "Text", "min": "0", "max": "M" },
+                         { "name": "@Note", "min": "0", "max": "M" }
+                         ]
 	},
     
     
@@ -340,7 +370,7 @@
     
     "@Multimedia": {
         "variants": [
-                     "Multimedia citation",
+                     "Multimedia reference",
                      "Multimedia embedded"
                      ]
     },
@@ -361,6 +391,11 @@
                         ]
 	},
     
+    "@Changed": {
+        "code": "CHAN",
+		"objectType": "GCAttribute",
+        "valueType": "GCStringValue"
+    },
     
     "Abbreviation": {
         "code": "ABBR",
@@ -384,9 +419,12 @@
     },
     "Adoption": {
         "code": "ADOP",
-		"objectType": "GCAttribute"
+		"objectType": "GCAttribute",
+        "validSubNodes": [
+                          { "name": "Child in family", "min": "0", "max": "1" }
+                          ]
     },
-    "Afn": {
+    "Ancestral File Number": {
         "code": "AFN",
 		"objectType": "GCAttribute",
         "valueType": "GCStringValue"
@@ -414,7 +452,7 @@
     "Ancestors": {
         "code": "ANCE",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "GCNumberValue"
     },
     "Associates": {
         "code": "ASSO",
@@ -458,7 +496,10 @@
     },
     "Birth": {
         "code": "BIRT",
-		"objectType": "GCAttribute"
+		"objectType": "GCAttribute",
+        "validSubNodes": [
+                          { "name": "Child in family", "min": "0", "max": "1" }
+                          ]
     },
     "Blessing": {
         "code": "BLES",
@@ -487,11 +528,6 @@
         "code": "CENS",
 		"objectType": "GCAttribute",
     },
-    "Last modified": {
-        "code": "CHAN",
-		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
-    },
     "Character Set": {
         "code": "CHAR",
 		"objectType": "GCAttribute",
@@ -504,7 +540,10 @@
     },
     "Christening": {
         "code": "CHR",
-		"objectType": "GCAttribute"
+		"objectType": "GCAttribute",
+        "validSubNodes": [
+                          { "name": "Child in family", "min": "0", "max": "1" }
+                          ]
     },
     "City": {
         "code": "CITY",
@@ -562,7 +601,7 @@
     "Descendants": {
         "code": "DESC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "GCNumberValue"
     },
     "Destination": {
         "code": "DEST",
@@ -745,7 +784,7 @@
 		"objectType": "GCAttribute",
         "valueType": "GCStringValue"
     },
-    "Quality Of Data": {
+    "Quality of data": {
         "code": "QUAY",
 		"objectType": "GCAttribute",
         "valueType": "GCStringValue"

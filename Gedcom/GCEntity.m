@@ -57,9 +57,10 @@
 	[context storeXref:[node xref] forEntity:entity];
 	
     for (id subNode in [node subNodes]) {
-        [[entity properties] addObject:[GCProperty propertyForObject:entity withGedcomNode:subNode]];
-        if ([[[subNode gedTag] name] isEqualToString:@"Changed"]) {
+        if ([[[subNode gedTag] name] isEqualToString:@"@Changed"]) {
             [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:subNode]];
+        } else {
+            [[entity properties] addObject:[GCProperty propertyForObject:entity withGedcomNode:subNode]];
         }
     }
     
