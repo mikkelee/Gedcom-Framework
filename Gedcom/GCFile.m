@@ -30,17 +30,15 @@
 		_records = [NSMutableArray arrayWithCapacity:[nodes count]];
 		
 		for (id node in nodes) {
-            GCObject *object = nil;
             if ([[[node gedTag] objectClass] isEqual:[GCHeader class]]) {
-                object = [GCHeader headerWithGedcomNode:node inContext:context];
+                _head = [GCHeader headerWithGedcomNode:node inContext:context];
             } else if ([[[node gedTag] objectClass] isEqual:[GCTrailer class]]) {
-                object = [GCTrailer trailerWithGedcomNode:node inContext:context];
+                continue; //ignore trailer... 
             } else if ([[[node gedTag] objectClass] isEqual:[GCEntity class]]) {
-                object = [GCEntity entityWithGedcomNode:node inContext:context];
+                [_records addObject:[GCEntity entityWithGedcomNode:node inContext:context]];
             } else {
                 NSLog(@"Shouldn't happen! %@ unknown class: %@", node, [[node gedTag] objectClass]);
             }
-			[_records addObject:object];
 		}
 	}
 	
@@ -56,18 +54,16 @@
 {
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_records count]+2];
 	
-	//[nodes addObject:[_head gedcomNode]];
+	[nodes addObject:[_head gedcomNode]];
 	
 	for (id record in _records) {
 		if ([record isKindOfClass:[GCHeader class]]) {
-			//continue;
+			continue;
 		} else if ([record isKindOfClass:[GCTrailer class]]) {
-			//continue;
+            [nodes addObject:[GCNode nodeWithTag:[GCTag tagNamed:@"Trailer"] value:nil]];
 		}
 		[nodes addObject:[record gedcomNode]];
 	}
-	
-	//TODO trlr
 	
 	return nodes;
 }

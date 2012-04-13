@@ -76,11 +76,7 @@
 
 + (id)attributeWithType:(NSString *)type
 {
-    GCAttribute *attribute = [[self alloc] initWithType:type];
-    
-    //[object addProperty:attribute];
-    
-    return attribute;
+    return [[self alloc] initWithType:type];
 }
 
 #pragma mark Gedcom access
