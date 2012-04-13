@@ -6,14 +6,12 @@
 //  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "GCAttributedDate.h"
 
 @class GCDatePhrase;
 
-@interface GCInterpretedDate : GCAttributedDate {
-
-}
+@interface GCInterpretedDate : GCAttributedDate
 
 @property (copy) GCDatePhrase *datePhrase;
 

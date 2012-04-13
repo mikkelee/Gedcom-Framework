@@ -15,7 +15,7 @@
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property GCObject *describedObject; //TODO better name?
 

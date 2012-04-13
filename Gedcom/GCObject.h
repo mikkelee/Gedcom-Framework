@@ -39,7 +39,7 @@
 
 - (NSArray *)subNodes;
 
-#pragma mark Cocoa properties
+#pragma mark Objective-C properties
 
 @property (readonly) NSString *type;
 

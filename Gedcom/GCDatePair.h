@@ -6,9 +6,10 @@
 //  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "GCSimpleDate.h"
+#import <Foundation/Foundation.h>
 #import "GCDate.h"
+
+@class GCSimpleDate;
 
 @interface GCDatePair : GCDate {
 

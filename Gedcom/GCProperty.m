@@ -33,7 +33,7 @@
 	}
 }
 
-#pragma mark Cocoa properties
+#pragma mark Objective-C properties
 
 @synthesize describedObject = _describedObject;
 

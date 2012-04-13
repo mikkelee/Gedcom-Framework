@@ -6,7 +6,7 @@
 //  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 @interface GCDate : NSObject <NSCoding, NSCopying>
 

@@ -186,7 +186,7 @@
     return [NSString stringWithFormat:@"%@ (type: %@)", [super description], [self type]];
 }
 
-#pragma mark Cocoa properties
+#pragma mark Objective-C properties
 
 - (NSString *)type
 {
