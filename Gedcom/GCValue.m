@@ -28,6 +28,36 @@
     return self;
 }
 
++ (id)valueWithString:(NSString *)value
+{
+    return [[self alloc] initWithType:GCStringValue value:value];
+}
+
++ (id)valueWithNumber:(NSNumber *)value
+{
+    return [[self alloc] initWithType:GCNumberValue value:value];
+}
+
++ (id)valueWithAge:(GCAge *)value
+{
+    return [[self alloc] initWithType:GCAgeValue value:value];
+}
+
++ (id)valueWithDate:(GCDate *)value
+{
+    return [[self alloc] initWithType:GCDateValue value:value];
+}
+
++ (id)valueWithBool:(BOOL)value
+{
+    return [[self alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]];
+}
+
++ (id)valueWithGender:(GCGender)value
+{
+    return [[self alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:value]];
+}
+
 - (NSComparisonResult)compare:(id)other
 {
     if (![other isKindOfClass:[self class]]) {

@@ -28,16 +28,18 @@
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
 	
-    [[indi properties] addObject:[GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"]];
-    [[indi properties] addObject:[GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"]];
+    [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
+	[indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/ Smed"]];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-	[[birt properties] addObject:[GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]]];
+	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
     [[indi properties] addObject:birt];
+    //alternately: [indi addProperty:birt];
+    //alternately: [[indi valueForKey:[birt type]] addObject:birt];
     
-    [[indi properties] addObject:[GCAttribute attributeWithType:@"Death" boolValue:YES]];
+    [indi addAttributeWithType:@"Death" boolValue:YES];
     
     STAssertEqualObjects([[indi gedcomNode] gedcomString], 
                          @"0 @INDI1@ INDI\n"
@@ -130,6 +132,26 @@
 						 @"1 SEX M\n"
 						 @"1 FAMC @FAM1@"
                          , nil);
+}
+
+- (void)testKVC
+{
+    GCProperty *name1 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+    GCProperty *name2 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Jensen/"];
+    
+    GCProperty *nickname = [GCAttribute attributeWithType:@"Nickname" stringValue:@"Store Jens"];
+    
+    [name1 addProperty:nickname];
+    
+    STAssertEqualObjects([nickname describedObject], name1, nil);
+    STAssertTrue([[name1 properties] containsObject:nickname], nil);
+    STAssertFalse([[name2 properties] containsObject:nickname], nil);
+    
+    [name2 addProperty:nickname];
+    
+    STAssertEqualObjects([nickname describedObject], name2, nil);
+    STAssertTrue([[name2 properties] containsObject:nickname], nil);
+    STAssertFalse([[name1 properties] containsObject:nickname], nil);
 }
 
 - (void)testFile

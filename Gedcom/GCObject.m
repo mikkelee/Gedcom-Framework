@@ -23,9 +23,6 @@
 
 @interface GCObject () 
 
-- (void)addProperty:(GCProperty *)property;
-- (void)removeProperty:(GCProperty *)property;
-
 @end
 
 @implementation GCObject {
@@ -48,32 +45,54 @@
 
 #pragma mark GCProperty access
 
-- (NSOrderedSet *)validProperties
-{
-	NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
-	
-	for (id subTag in [_tag validSubTags]) {
-		[valid addObject:[subTag name]];
-	}
-	
-	return valid;
-}
-
-- (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
-{
-	return [[GCTag tagNamed:[self type]] allowsMultipleSubtags:[GCTag tagNamed:type]];
-}
-
 - (void)addProperty:(GCProperty *)property
 {
-    [self setValue:property forKey:[property type]];
+    NSParameterAssert([property isKindOfClass:[GCProperty class]]);
+    
+    if ([property describedObject]) {
+        [[property describedObject] removeProperty:property];
+    }
+    
+    if ([self allowsMultiplePropertiesOfType:[property type]]) {
+        id existing = [_properties valueForKey:[property type]];
+        
+        if (existing) {
+            //already have an set, so just add here:
+            [existing addObject:property];
+        } else {
+            //create set:
+            [_properties setObject:[NSMutableOrderedSet orderedSetWithObject:property]
+                            forKey:[property type]];
+        }
+    } else {
+        [self removeProperty:[_properties valueForKey:[property type]]];
+        [_properties setObject:property forKey:[property type]];
+    }
+    
+    [property setDescribedObject:self];
 }
 
 - (void)removeProperty:(GCProperty *)property
 {
-    //TODO
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
+    if (property == nil) {
+        return;
+    }
+    
+    NSParameterAssert([property isKindOfClass:[GCProperty class]]);
+    NSParameterAssert([property describedObject] == self);
+    
+    if ([self allowsMultiplePropertiesOfType:[property type]]) {
+        [[_properties valueForKey:[property type]] removeObject:property];
+    } else {
+        [_properties removeObjectForKey:[property type]];
+    }
+    
+    [property setDescribedObject:nil];
+}
+
+- (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type value:value]];
 }
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
@@ -126,6 +145,63 @@
 	}
 }
 
+- (NSOrderedSet *)validProperties
+{
+	NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
+	
+	for (id subTag in [_tag validSubTags]) {
+		[valid addObject:[subTag name]];
+	}
+	
+	return valid;
+}
+
+- (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
+{
+	return [[GCTag tagNamed:[self type]] allowsMultipleSubtags:[GCTag tagNamed:type]];
+}
+
+#pragma mark NSKeyValueCoding overrides
+
+- (id)valueForKey:(NSString *)key
+{
+    if ([[self validProperties] containsObject:key]) {
+        id obj = [_properties objectForKey:key];
+        
+        if ([self allowsMultiplePropertiesOfType:key]) {
+            if (obj == nil) {
+                obj = [NSMutableOrderedSet orderedSet];
+            }
+            //return a fresh proxy that will act when added to/removed from.
+            return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:obj
+                                                                      addBlock:^(id obj) {
+                                                                          [self addProperty:obj];
+                                                                      }
+                                                                   removeBlock:^(id obj) {
+                                                                       [self removeProperty:obj];
+                                                                   }];
+        } else {
+            return obj;
+        }
+    } else {
+        return [super valueForKey:key];
+    }
+}
+
+- (void)setNilValueForKey:(NSString *)key
+{
+    [_properties removeObjectForKey:key];
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key
+{
+    if ([[self validProperties] containsObject:key] && [value isKindOfClass:[GCProperty class]]) {
+        //TODO
+    } else {
+        [super setValue:value forKey:key];
+    }
+}
+
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
@@ -139,10 +215,10 @@
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
     
     for (NSString *propertyName in [self validProperties]) {
-        id obj = [self valueForKey:propertyName];
+        id obj = [_properties valueForKey:propertyName];
         
         if (obj) {
-            if ([obj isKindOfClass:[GCMutableOrderedSetProxy class]]) {
+            if ([obj isKindOfClass:[NSOrderedSet class]]) {
                 NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
                     return [[obj1 stringValue] compare:[obj2 stringValue]];
                 }];
@@ -165,66 +241,6 @@
     return [NSString stringWithFormat:@"%@ (type: %@)", [super description], [self type]];
 }
 
-#pragma mark NSKeyValueCoding overrides
-
-- (id)valueForKey:(NSString *)key
-{
-    if ([[self validProperties] containsObject:key]) {
-        id obj = [_properties objectForKey:key];
-        
-        if ([self allowsMultiplePropertiesOfType:key] && obj == nil) {
-            //return a fresh proxy that will act when added to/removed from.
-            obj = [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:[NSMutableOrderedSet orderedSet]
-                                                                     addBlock:^(id obj) {
-                                                                         [obj setDescribedObject:self];
-                                                                     }
-                                                                  removeBlock:^(id obj) {
-                                                                      [obj setDescribedObject:nil];
-                                                                  }];
-            [_properties setObject:obj forKey:key];
-        }
-        
-        return obj;
-    } else {
-        return [super valueForKey:key];
-    }
-}
-
-- (void)setNilValueForKey:(NSString *)key
-{
-    [_properties removeObjectForKey:key];
-}
-
-- (void)setValue:(id)value forKey:(NSString *)key
-{
-    if ([[self validProperties] containsObject:key] && [value isKindOfClass:[GCProperty class]]) {
-        if ([self allowsMultiplePropertiesOfType:key]) {
-            id existing = [self valueForKey:key];
-            
-            if (existing) {
-                //already have an array, so just add here:
-                [existing addObject:value];
-            } else {
-                //create array:
-                NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithObject:value];
-                [_properties setObject:[[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:set
-                                                                                          addBlock:^(id obj) {
-                                                                                              [obj setDescribedObject:self];
-                                                                                          }
-                                                                                       removeBlock:^(id obj) {
-                                                                                           [obj setDescribedObject:nil];
-                                                                                       }]
-                                forKey:key];
-            }
-        } else {
-            [_properties setObject:value forKey:key];
-        }
-        [value setDescribedObject:self];
-    } else {
-        [super setValue:value forKey:key];
-    }
-}
-
 #pragma mark Cocoa properties
 
 - (NSString *)type
@@ -239,7 +255,7 @@
 	for (id property in [_properties allValues]) {
 		if ([property respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
             for (id p in property) {
-                [properties addObjectsFromArray:p];
+                [properties addObject:p];
             }
 		} else {
 			[properties addObject:property];

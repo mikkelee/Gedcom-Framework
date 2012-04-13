@@ -94,37 +94,37 @@
 + (id)attributeWithType:(NSString *)type stringValue:(NSString *)value
 {
     return [self attributeWithType:type 
-                             value:[[GCValue alloc] initWithType:GCStringValue value:value]]; 
+                             value:[GCValue valueWithString:value]]; 
 }
 
 + (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value
 {
     return [self attributeWithType:type 
-                             value:[[GCValue alloc] initWithType:GCNumberValue value:value]]; 
+                             value:[GCValue valueWithNumber:value]]; 
 }
 
 + (id)attributeWithType:(NSString *)type ageValue:(GCAge *)value
 {
     return [self attributeWithType:type 
-                             value:[[GCValue alloc] initWithType:GCAgeValue value:value]]; 
+                             value:[GCValue valueWithAge:value]]; 
 }
 
 + (id)attributeWithType:(NSString *)type dateValue:(GCDate *)value
 {
     return [self attributeWithType:type 
-                             value:[[GCValue alloc] initWithType:GCDateValue value:value]]; 
+                             value:[GCValue valueWithDate:value]]; 
 }
 
 + (id)attributeWithType:(NSString *)type boolValue:(BOOL)value
 {
     return [self attributeWithType:type 
-                             value:[[GCValue alloc] initWithType:GCBoolValue value:[NSNumber numberWithBool:value]]]; 
+                             value:[GCValue valueWithBool:value]]; 
 }
 
 + (id)attributeWithType:(NSString *)type genderValue:(GCGender)value
 {
     return [self attributeWithType:type 
-                             value:[[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:value]]]; 
+                             value:[GCValue valueWithGender:value]]; 
 }
 
 #pragma mark Gedcom access
