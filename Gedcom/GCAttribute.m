@@ -91,6 +91,36 @@
     return attribute;
 }
 
+#pragma mark Gedcom access
+
+- (GCNode *)gedcomNode
+{
+    NSParameterAssert([self describedObject]); //something's gone wrong if there's no describedObject
+    
+    return [[GCNode alloc] initWithTag:[self gedTag] 
+								 value:[self stringValue]
+								  xref:nil
+							  subNodes:[self subNodes]];
+}
+
+#pragma mark Properties
+
+@synthesize value = _value;
+
+- (void)setGenderValue:(GCGender)genderValue
+{
+    _value = [[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:genderValue]];
+}
+
+- (GCGender)genderValue
+{
+    return [_value genderValue];
+}
+
+@end
+
+@implementation GCAttribute (GCConvenienceMethods)
+
 + (id)attributeWithType:(NSString *)type stringValue:(NSString *)value
 {
     return [self attributeWithType:type 
@@ -127,21 +157,6 @@
                              value:[GCValue valueWithGender:value]]; 
 }
 
-#pragma mark Gedcom access
-
-- (GCNode *)gedcomNode
-{
-    NSParameterAssert([self describedObject]); //something's gone wrong if there's no describedObject
-    
-    return [[GCNode alloc] initWithTag:[self gedTag] 
-								 value:[self stringValue]
-								  xref:nil
-							  subNodes:[self subNodes]];
-}
-
-#pragma mark Properties
-
-@synthesize value = _value;
 
 - (void)setStringValue:(NSString *)stringValue
 {
@@ -191,16 +206,6 @@
 - (BOOL)boolValue
 {
     return [_value boolValue];
-}
-
-- (void)setGenderValue:(GCGender)genderValue
-{
-    _value = [[GCValue alloc] initWithType:GCGenderValue value:[NSNumber numberWithInt:genderValue]];
-}
-
-- (GCGender)genderValue
-{
-    return [_value genderValue];
 }
 
 @end

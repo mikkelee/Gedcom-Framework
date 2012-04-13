@@ -95,36 +95,6 @@
     [self addProperty:[GCAttribute attributeWithType:type value:value]];
 }
 
-- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
-{
-    [self addProperty:[GCAttribute attributeWithType:type stringValue:value]];
-}
-
-- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
-{
-    [self addProperty:[GCAttribute attributeWithType:type numberValue:value]];
-}
-
-- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
-{
-    [self addProperty:[GCAttribute attributeWithType:type ageValue:value]];
-}
-
-- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
-{
-    [self addProperty:[GCAttribute attributeWithType:type boolValue:value]];
-}
-
-- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
-{
-    [self addProperty:[GCAttribute attributeWithType:type dateValue:value]];
-}
-
-- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value
-{
-	[self addProperty:[GCAttribute attributeWithType:type genderValue:value]];
-}
-
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
 	GCRelationship *relationship = [GCRelationship relationshipWithType:type target:target];
@@ -335,3 +305,38 @@
 @dynamic context;
 
 @end
+
+@implementation GCObject (GCConvenienceMethods)
+
+- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type stringValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type numberValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type ageValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type boolValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type dateValue:value]];
+}
+
+- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value
+{
+	[self addProperty:[GCAttribute attributeWithType:type genderValue:value]];
+}
+
+@end
+

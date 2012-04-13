@@ -37,13 +37,6 @@
 
 - (void)addAttributeWithType:(NSString *)type value:(GCValue *)value;
 
-- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value;
-- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value;
-- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value;
-- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value;
-- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value;
-- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value;
-
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target;
 
 #pragma mark Gedcom access
@@ -62,5 +55,16 @@
 @property (readonly) GCNode *gedcomNode;
 
 @property (readonly) GCContext *context;
+
+@end
+
+@interface GCObject (GCConvenienceMethods)
+
+- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value;
+- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value;
+- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value;
+- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value;
+- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value;
+- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value;
 
 @end

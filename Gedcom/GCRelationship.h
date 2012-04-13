@@ -18,10 +18,15 @@
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
 + (id)relationshipWithType:(NSString *)type;
-+ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target;
 
 #pragma mark Properties
 
 @property GCEntity *target;
+
+@end
+
+@interface GCRelationship (GCConvenienceMethods)
+
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target;
 
 @end

@@ -42,18 +42,6 @@
 	return [[self alloc] initWithType:type];
 }
 
-+ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target
-{
-	//NSParameterAssert([object context] == [target context]);
-	
-    GCRelationship *relationship = [[self alloc] initWithType:type];
-    
-    //[object addProperty:relationship];
-    [relationship setTarget:target];
-	
-    return relationship;
-}
-
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
@@ -67,5 +55,18 @@
 }
 
 @synthesize target = _target;
+
+@end
+
+@implementation GCRelationship (GCConvenienceMethods)
+
++ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target
+{
+    GCRelationship *relationship = [[self alloc] initWithType:type];
+    
+    [relationship setTarget:target];
+	
+    return relationship;
+}
 
 @end
