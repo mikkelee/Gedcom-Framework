@@ -443,7 +443,7 @@
         "code": "CENS",
 		"objectType": "GCAttribute",
     },
-    "Change": {
+    "Last modified": {
         "code": "CHAN",
 		"objectType": "GCAttribute",
         "valueType": "GCStringValue"

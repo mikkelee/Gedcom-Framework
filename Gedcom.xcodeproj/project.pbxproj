@@ -354,6 +354,8 @@
 				3EF7A1D1151C5FCD004A8540 /* NSString+GCKitAdditions.m */,
 				3EB5ABD1153615E10036B4D5 /* GCMutableOrderedSetProxy.h */,
 				3EB5ABD2153615E10036B4D5 /* GCMutableOrderedSetProxy.m */,
+				3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */,
+				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -384,8 +386,6 @@
 				3EECFD55151C32630074E26C /* GCDatePhrase.m */,
 				3EECFD5C151C32630074E26C /* GCInvalidDate.h */,
 				3EECFD5D151C32630074E26C /* GCInvalidDate.m */,
-				3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */,
-				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
 			);
 			name = Dates;
 			sourceTree = "<group>";

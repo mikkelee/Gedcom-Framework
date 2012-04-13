@@ -21,6 +21,9 @@
 + (id)nodeWithTag:(GCTag *)tag value:(NSString *)value;
 + (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref;
 
++ (id)nodeWithTag:(GCTag *)tag value:(NSString *)value subNodes:(NSArray *)subNodes;
++ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes;
+
 + (NSArray *)arrayOfNodesFromString:(NSString*) gedString;
 + (NSArray *)arrayOfNodesFromArrayOfStrings:(NSArray*) gedLines;
 

@@ -8,7 +8,12 @@
 
 #import "GCChangedDateFormatter.h"
 
-@implementation GCChangedDateFormatter
+#import "GCNode.h"
+#import "GCTag.h"
+
+@implementation GCChangedDateFormatter {
+    NSDateFormatter *_dateFormatter;
+}
 
 + (id)sharedFormatter // fancy new ARC/GCD singleton!
 {
@@ -22,14 +27,43 @@
 
 - (GCChangedDateFormatter *)init
 {
-	if (![super init])
-		return nil;
+    self = [super init];
 	
-	[self setDateFormat:@"dd MMM yyyy HH:mm:ss"];
+    if (self) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"dd MMM yyyy HH:mm:ss"];
+    }
 	
 	return self;
 }
 
+-(NSDate *)dateWithNode:(GCNode *)node
+{
+	return [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", 
+                                          [[node valueForKey:@"DATE"] gedValue], 
+                                          [[node valueForKeyPath:@"DATE.TIME"] gedValue]
+                                          ]];
+	
+}
 
+-(GCNode *)nodeWithDate:(NSDate *)date
+{
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"dd MMM yyyy"];
+	[dateFormatter setShortMonthSymbols:[NSArray arrayWithObjects:@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec", nil]];
+	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+	[timeFormatter setDateFormat:@"HH:mm:ss"];
+    
+    GCNode *timeNode = [GCNode nodeWithTag:[GCTag tagNamed:@"Time"] 
+                                     value:[timeFormatter stringFromDate:date]];
+	
+    GCNode *dateNode = [GCNode nodeWithTag:[GCTag tagNamed:@"Date"] 
+                                     value:[dateFormatter stringFromDate:date]
+                                  subNodes:[NSArray arrayWithObject:timeNode]];
+    
+    return [GCNode nodeWithTag:[GCTag tagNamed:@"Changed"] 
+                         value:nil 
+                      subNodes:[NSArray arrayWithObject:dateNode]];
+}
 
 @end

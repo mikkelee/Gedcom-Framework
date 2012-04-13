@@ -16,6 +16,14 @@
 
 #import "GCContext.h"
 
+#import "GCChangedDateFormatter.h"
+
+@interface GCEntity ()
+
+@property NSDate *lastModified;
+
+@end
+
 @implementation GCEntity {
     GCContext *_context;
 }
@@ -50,12 +58,26 @@
 	
     for (id subNode in [node subNodes]) {
         [[entity properties] addObject:[GCProperty propertyForObject:entity withGedcomNode:subNode]];
+        if ([[[subNode gedTag] name] isEqualToString:@"Changed"]) {
+            [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:subNode]];
+        }
     }
     
     return entity;
 }
 
 #pragma mark Properties
+
+- (NSArray *)subNodes
+{
+    NSMutableArray *subNodes = [[super subNodes] mutableCopy];
+    
+    if (_lastModified) {
+        [subNodes addObject:[[GCChangedDateFormatter sharedFormatter] nodeWithDate:_lastModified]];
+    }
+    
+    return subNodes;
+}
 
 - (GCNode *)gedcomNode
 {
@@ -66,5 +88,7 @@
 }
 
 @synthesize context = _context;
+
+@synthesize lastModified = _lastModified;
 
 @end

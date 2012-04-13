@@ -69,9 +69,19 @@
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:nil];
 }
 
-+ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xr
++ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref
 {
-    return [[self alloc] initWithTag:tag value:nil xref:xr subNodes:nil];
+    return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
+}
+
++ (id)nodeWithTag:(GCTag *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
+{
+    return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
+}
+
++ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
+{
+    return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
 }
 
 + (NSArray*)arrayOfNodesFromString:(NSString*) gedString

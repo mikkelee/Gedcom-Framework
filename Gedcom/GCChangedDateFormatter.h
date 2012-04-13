@@ -8,16 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-/*
-	Singleton to avoid the overhead of repeatedly creating new NSDateFormatters for the ChangedDates.
-	
-	Hardcoded to parse dates of format "dd MMM yyyy HH:mm:ss"
-*/
+@class GCNode;
 
-@interface GCChangedDateFormatter : NSDateFormatter {
+@interface GCChangedDateFormatter : NSObject {
 
 }
 
-+ (GCChangedDateFormatter *)sharedFormatter;
++ (id)sharedFormatter;
+
+- (GCNode *)nodeWithDate:(NSDate *)date;
+- (NSDate *)dateWithNode:(GCNode *)node;
 
 @end
