@@ -66,6 +66,13 @@
     [self setValue:property forKey:[property type]];
 }
 
+- (void)removeProperty:(GCProperty *)property
+{
+    //TODO
+	[self doesNotRecognizeSelector:_cmd];
+	__builtin_unreachable();
+}
+
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
 {
     [self addProperty:[GCAttribute attributeWithType:type stringValue:value]];
@@ -222,9 +229,9 @@
     return [_tag name];
 }
 
-- (NSArray *)properties
+- (id)properties
 {
-	NSMutableArray *properties = [NSMutableArray arrayWithCapacity:3];
+	NSMutableOrderedSet *properties = [NSMutableOrderedSet orderedSet];
 	
 	for (id property in [_properties allValues]) {
 		if ([property respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
@@ -236,12 +243,25 @@
 		}
 	}
 	
-	return [properties copy];
+	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:properties
+                                                              addBlock:^(id obj) {
+                                                                  [self addProperty:obj];
+                                                              }
+                                                           removeBlock:^(id obj) {
+                                                               [self removeProperty:obj];
+                                                           }];
 }
 
-- (NSArray *)attributes
+- (void)setProperties:(NSMutableOrderedSet *)properties
 {
-	NSMutableArray *attributes = [NSMutableArray arrayWithCapacity:3];
+    //TODO
+	[self doesNotRecognizeSelector:_cmd];
+	__builtin_unreachable();
+}
+
+- (id)attributes
+{
+	NSMutableOrderedSet *attributes = [NSMutableOrderedSet orderedSet];
 	
 	for (id property in [self properties]) {
 		if ([property isKindOfClass:[GCAttribute class]]) {
@@ -249,12 +269,25 @@
 		}
 	}
 	
-	return [attributes copy];
+	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:attributes
+                                                              addBlock:^(id obj) {
+                                                                  [self addProperty:obj];
+                                                              }
+                                                           removeBlock:^(id obj) {
+                                                               [self removeProperty:obj];
+                                                           }];
 }
 
-- (NSArray *)relationships
+- (void)setAttributes:(NSMutableOrderedSet *)attributes
 {
-	NSMutableArray *relationships = [NSMutableArray arrayWithCapacity:3];
+    //TODO
+	[self doesNotRecognizeSelector:_cmd];
+	__builtin_unreachable();
+}
+
+- (id)relationships
+{
+	NSMutableOrderedSet *relationships = [NSMutableOrderedSet orderedSet];
 	
 	for (id property in [self properties]) {
 		if ([property isKindOfClass:[GCRelationship class]]) {
@@ -262,7 +295,20 @@
 		}
 	}
 	
-	return [relationships copy];
+	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:relationships
+                                                              addBlock:^(id obj) {
+                                                                  [self addProperty:obj];
+                                                              }
+                                                           removeBlock:^(id obj) {
+                                                               [self removeProperty:obj];
+                                                           }];
+}
+
+- (void)setRelationships:(NSMutableOrderedSet *)relationships
+{
+    //TODO
+	[self doesNotRecognizeSelector:_cmd];
+	__builtin_unreachable();
 }
 
 @synthesize gedTag = _tag;

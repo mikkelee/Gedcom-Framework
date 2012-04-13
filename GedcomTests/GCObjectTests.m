@@ -35,7 +35,8 @@
     
 	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
     
-    [indi addProperty:birt];
+    [[indi properties] addObject:birt];
+    //alternately: [indi addProperty:birt];
     //alternately: [[indi valueForKey:[birt type]] addObject:birt];
     
     [indi addAttributeWithType:@"Death" boolValue:YES];

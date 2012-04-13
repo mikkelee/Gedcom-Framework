@@ -33,6 +33,7 @@
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type;
 
 - (void)addProperty:(GCProperty *)property;
+- (void)removeProperty:(GCProperty *)property;
 
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value;
 - (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value;
@@ -51,9 +52,9 @@
 
 @property (readonly) NSString *type;
 
-@property (readonly) NSArray *properties;
-@property (readonly) NSArray *attributes;
-@property (readonly) NSArray *relationships;
+@property NSMutableOrderedSet *properties;
+@property NSMutableOrderedSet *attributes;
+@property NSMutableOrderedSet *relationships;
 
 @property (readonly) GCTag *gedTag;
 @property (readonly) GCNode *gedcomNode;
