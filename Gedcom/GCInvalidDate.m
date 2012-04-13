@@ -8,23 +8,9 @@
 
 #import "GCInvalidDate.h"
 
+#import "GCSimpleDate.h"
+
 @implementation GCInvalidDate
-
-- (id)initWithCoder:(NSCoder *)coder
-{
-	self = [super init];
-    
-    if (self) {
-        [self setString:[coder decodeObjectForKey:@"string"]];
-	}
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeObject:[self string] forKey:@"string"];
-}
 
 -(NSString *)description
 {
@@ -34,15 +20,6 @@
 -(NSString *)gedcomString
 {
 	return [self string];
-}
-
-- (GCInvalidDate *)copyWithZone:(NSZone *)zone
-{
-	GCInvalidDate *date = [[GCInvalidDate alloc] init];
-	
-	[date setString:[self string]];
-	
-	return date;
 }
 
 - (GCSimpleDate *)refDate

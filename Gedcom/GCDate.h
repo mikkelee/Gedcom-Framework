@@ -8,25 +8,27 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class GCSimpleDate;
-@class GCApproximateDate;
-@class GCInterpretedDate;
-@class GCDatePeriod;
-@class GCDateRange;
-@class GCDatePhrase;
-@class GCInvalidDate;
-
-@interface GCDate : NSObject {
+@interface GCDate : NSObject <NSCoding, NSCopying> {
 	
 }
 
-//generally you should use this:
+#pragma mark Initialization
 
-+ (id)dateFromGedcom:(NSString *)gedcom;
+- (id)initWithGedcom:(NSString *)gedcom;
+
+#pragma mark Convenience constructor
+
++ (id)dateWithGedcom:(NSString *)gedcom;
+
+#pragma mark Helpers
+
+//TODO
+
+#pragma mark Comparison
 
 - (NSComparisonResult)compare:(id)other;
 
-//subclasses implement these:
+#pragma mark Properties
 
 @property (retain, readonly) NSString *gedcomString;
 @property (retain, readonly) NSString *displayString;
@@ -39,25 +41,5 @@
 @end
 
 
-@interface GCDate ()
-
-//convenience factory methods:
-
-+ (id)simpleDate:(NSDateComponents *)co; //assumes Gregorian
-+ (id)simpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca;
-
-+ (id)approximateDate:(GCSimpleDate *)sd withType:(NSString *)t;
-+ (id)interpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p;
-
-+ (id)datePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
-+ (id)dateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
-
-+ (id)datePhrase:(NSString *)p;
-
-+ (id)invalidDateString:(NSString *)s;
-
-@property (retain, readonly) GCSimpleDate *refDate; //used for sorting, etc.
-
-@end
 
 

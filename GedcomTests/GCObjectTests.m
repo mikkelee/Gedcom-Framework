@@ -17,7 +17,7 @@
 
 - (void)testObjectValues
 {
-    GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+    GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
     
     STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
 }
@@ -33,7 +33,7 @@
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
     
     [[indi properties] addObject:birt];
     //alternately: [indi addProperty:birt];

@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GCDate.h"
 
-@interface GCDatePhrase : GCDate <NSCoding, NSCopying> {
+@interface GCDatePhrase : GCDate {
 
 }
 

@@ -175,9 +175,9 @@
 - (GCDate *)dateValue
 {
     if ([_value isKindOfClass:[NSString class]]) {
-        return [GCDate dateFromGedcom:_value];
+        return [GCDate dateWithGedcom:_value];
     } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [GCDate dateFromGedcom:[_value stringValue]];
+        return [GCDate dateWithGedcom:[_value stringValue]];
     } else if ([_value isKindOfClass:[GCAge class]]) {
         return nil; //TODO
     } else if ([_value isKindOfClass:[GCDate class]]) {

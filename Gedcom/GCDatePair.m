@@ -13,24 +13,6 @@
 
 @implementation GCDatePair
 
-- (id)initWithCoder:(NSCoder *)coder
-{
-	self = [super init];
-    
-    if (self) {
-        [self setDateA:[coder decodeObjectForKey:@"dateA"]];
-        [self setDateB:[coder decodeObjectForKey:@"dateB"]];
-    }
-    
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeObject:[self dateA] forKey:@"dateA"];
-	[coder encodeObject:[self dateB] forKey:@"dateB"];
-}
-
 //TODO enforce [dateA calendar] isEqual [dateB calendar]
 
 - (GCSimpleDate *)refDate

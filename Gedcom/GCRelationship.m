@@ -27,7 +27,7 @@
 	[[object context] registerXref:[node gedValue] forBlock:^(NSString *xref) {
 		GCEntity *target = [[object context] entityForXref:xref];
 		[relationship setTarget:target];
-		NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
+		//NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
 	}];
     
     for (id subNode in [node subNodes]) {

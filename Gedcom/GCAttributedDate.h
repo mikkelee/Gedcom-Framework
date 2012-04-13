@@ -11,7 +11,7 @@
 
 @class GCSimpleDate;
 
-@interface GCAttributedDate : GCDate <NSCoding, NSCopying> {
+@interface GCAttributedDate : GCDate {
 
 }
 

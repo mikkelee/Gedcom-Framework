@@ -45,6 +45,122 @@
  
  */
 
+#pragma mark Private methods
+
+@interface GCDate ()
+
++ (id)dateWithSimpleDate:(NSDateComponents *)co; //assumes Gregorian
++ (id)dateWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca;
+
++ (id)dateWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t;
++ (id)dateWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p;
+
++ (id)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
++ (id)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
+
++ (id)dateWithPhrase:(NSString *)p;
+
++ (id)dateWithInvalidDateString:(NSString *)s;
+
+@property (retain, readonly) GCSimpleDate *refDate; //used for sorting, etc.
+
+@end
+
+#pragma mark -
+#pragma mark Concrete subclasses
+#pragma mark -
+
+#pragma mark TODO
+
+#pragma mark -
+#pragma mark Placeholder class
+#pragma mark -
+
+@interface GCPlaceholderDate : GCDate
+@end
+
+@implementation GCPlaceholderDate
+
+- (id)initWithSimpleDate:(NSDateComponents *)co
+{
+	id date = [[GCSimpleDate alloc] init];
+	
+	[date setDateComponents:co];
+	[date setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]];
+	
+	return date;
+}
+
+- (id)initWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
+{
+	id date = [[GCSimpleDate alloc] init];
+	
+	[date setDateComponents:co];
+	[date setCalendar:ca];
+	
+	return date;
+}
+
+- (id)initWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t
+{
+	id date = [[GCApproximateDate alloc] init];
+	
+	[date setSimpleDate:sd];
+	[date setDateType:t];
+	
+	return date;
+}
+
+- (id)initWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
+{
+	id date = [[GCInterpretedDate alloc] init];
+	
+	[date setSimpleDate:sd];
+	[date setPhrase:p];
+	
+	return date;
+}
+
+- (id)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+{
+	id date = [[GCDatePeriod alloc] init];
+	
+	[date setDateA:f];
+	[date setDateB:t];
+	
+	return date;
+}
+
+- (id)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+{
+	id date = [[GCDateRange alloc] init];
+	
+	[date setDateA:f];
+	[date setDateB:t];
+	
+	return date;
+}
+
+- (id)initWithDatePhrase:(NSString *)p
+{
+	id date = [[GCDatePhrase alloc] init];
+	
+	[date setPhrase:p];
+	
+	return date;
+}
+
+- (id)initWithInvalidDateString:(NSString *)s
+{
+	id date = [[GCInvalidDate alloc] init];
+	
+	[date setString:s];
+	
+	return date;
+}
+
+@end
+
 #pragma mark -
 #pragma mark Parsing
 #pragma mark -
@@ -116,7 +232,7 @@
 - (void)didMatchDateGreg:(PKAssembly *)a
 {
     DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-    [a push:[GCDate simpleDate:currentDateComponents]];
+    [a push:[GCDate dateWithSimpleDate:currentDateComponents]];
     
     currentDateComponents = [[NSDateComponents alloc] init];
 }
@@ -125,7 +241,7 @@
 - (void)didMatchDateJuln:(PKAssembly *)a
 {
     DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-    [a push:[GCDate simpleDate:currentDateComponents withCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:nil]]];
+    [a push:[GCDate dateWithSimpleDate:currentDateComponents withCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:nil]]];
     
     currentDateComponents = [[NSDateComponents alloc] init];
 }
@@ -141,7 +257,7 @@
 - (void)didMatchDateHebr:(PKAssembly *)a
 {
     DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-    [a push:[GCDate simpleDate:currentDateComponents withCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar]]];
+    [a push:[GCDate dateWithSimpleDate:currentDateComponents withCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar]]];
     
     currentDateComponents = [[NSDateComponents alloc] init];
 }
@@ -157,7 +273,7 @@
 - (void)didMatchDateFren:(PKAssembly *)a
 {
     DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-    [a push:[GCDate simpleDate:currentDateComponents withCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:nil]]];
+    [a push:[GCDate dateWithSimpleDate:currentDateComponents withCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:nil]]];
     
     currentDateComponents = [[NSDateComponents alloc] init];
 }
@@ -185,16 +301,16 @@
     id keyword = [a pop];
     if ([[keyword stringValue] isEqualToString:@"TO"]) {
         if ([a isStackEmpty]) {
-            [a push:[GCDate datePeriodFrom:nil to:aDate]];
+            [a push:[GCDate dateWithPeriodFrom:nil to:aDate]];
         } else {
             id anotherDate = [a pop];
             id keyword = [a pop];
             if ([[keyword stringValue] isEqualToString:@"FROM"]) {
-                [a push:[GCDate datePeriodFrom:anotherDate to:aDate]];
+                [a push:[GCDate dateWithPeriodFrom:anotherDate to:aDate]];
             }
         }
     } else if ([[keyword stringValue] isEqualToString:@"FROM"]) {
-        [a push:[GCDate datePeriodFrom:aDate to:nil]];
+        [a push:[GCDate dateWithPeriodFrom:aDate to:nil]];
     }
 }
 
@@ -206,16 +322,16 @@
     id keyword = [a pop];
     if ([a isStackEmpty]) {
         if ([[keyword stringValue] isEqualToString:@"BEF"]) {
-            [a push:[GCDate dateRangeFrom:nil to:aDate]];
+            [a push:[GCDate dateWithRangeFrom:nil to:aDate]];
         } else if ([[keyword stringValue] isEqualToString:@"AFT"]) {
-            [a push:[GCDate dateRangeFrom:aDate to:nil]];
+            [a push:[GCDate dateWithRangeFrom:aDate to:nil]];
         }
     } else {
         if ([[keyword stringValue] isEqualToString:@"AND"]) {
             id anotherDate = [a pop];
             id keyword = [a pop];
             if ([[keyword stringValue] isEqualToString:@"BET"]) {
-                [a push:[GCDate dateRangeFrom:anotherDate to:aDate]];
+                [a push:[GCDate dateWithRangeFrom:anotherDate to:aDate]];
             }
         }
     }
@@ -227,7 +343,7 @@
     DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
     id simpleDate = [a pop];
     id type = [a pop];
-    [a push:[GCDate approximateDate:simpleDate withType:[type stringValue]]];
+    [a push:[GCDate dateWithApproximateDate:simpleDate withType:[type stringValue]]];
 }
 
 
@@ -238,7 +354,7 @@
     id simpleDate = [a pop];
     id keyword = [a pop];
     if ([[keyword stringValue] isEqualToString:@"INT"]) {
-        [a push:[GCDate interpretedDate:simpleDate withPhrase:phrase]];		
+        [a push:[GCDate dateWithInterpretedDate:simpleDate withPhrase:phrase]];		
     } else {
         NSLog(@"This shouldn't happen (keyword wasn't INT): %@", keyword);
     }
@@ -262,7 +378,7 @@
             phrase = [NSString stringWithFormat:@"%@ %@", contents, phrase];
         }
         
-        [a push:[GCDate datePhrase:phrase]];
+        [a push:[GCDate dateWithPhrase:phrase]];
     } else {
         NSLog(@"This shouldn't happen (endParen wasn't ')'): %@", endParen);
     }
@@ -287,7 +403,6 @@
 @end
 
 #pragma mark GCDateParser
-
 
 @interface GCDateParser : NSObject {
 	NSMutableDictionary *cache;
@@ -351,7 +466,7 @@
     GCDate *date = [assembler date];
     
     if (date == nil) {
-        date = [GCDate invalidDateString:g];
+        date = [GCDate dateWithInvalidDateString:g];
     }
     [cache setObject:date forKey:g];
     
@@ -363,91 +478,121 @@
 @end
 
 #pragma mark -
+#pragma mark Abstract class
+#pragma mark -
 
 @implementation GCDate 
 
-+ (GCDate *)dateFromGedcom:(NSString *)gedcom
+#pragma mark Initialization
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    if ([GCDate self] == self)
+        return [GCPlaceholderDate allocWithZone:zone];    
+    return [super allocWithZone:zone];
+}
+
+- (id)initWithGedcom:(NSString *)gedcom
 {
 	return [[GCDateParser sharedDateParser] parseGedcom:gedcom];
 }
 
-+ (GCSimpleDate *)simpleDate:(NSDateComponents *)co
+- (id)initWithSimpleDate:(NSDateComponents *)co
 {
-	GCSimpleDate *date = [[GCSimpleDate alloc] init];
-	
-	[date setDateComponents:co];
-	[date setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCSimpleDate *)simpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
+- (id)initWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
 {
-	GCSimpleDate *date = [[GCSimpleDate alloc] init];
-	
-	[date setDateComponents:co];
-	[date setCalendar:ca];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCApproximateDate *)approximateDate:(GCSimpleDate *)sd withType:(NSString *)t
+- (id)initWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t
 {
-	GCApproximateDate *date = [[GCApproximateDate alloc] init];
-	
-	[date setSimpleDate:sd];
-	[date setType:t];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCInterpretedDate *)interpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
+- (id)initWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
 {
-	GCInterpretedDate *date = [[GCInterpretedDate alloc] init];
-	
-	[date setSimpleDate:sd];
-	[date setPhrase:p];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCDatePeriod *)datePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+- (id)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
-	GCDatePeriod *date = [[GCDatePeriod alloc] init];
-	
-	[date setDateA:f];
-	[date setDateB:t];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCDateRange *)dateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+- (id)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
-	GCDateRange *date = [[GCDateRange alloc] init];
-	
-	[date setDateA:f];
-	[date setDateB:t];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCDatePhrase *)datePhrase:(NSString *)p
+- (id)initWithDatePhrase:(NSString *)p
 {
-	GCDatePhrase *date = [[GCDatePhrase alloc] init];
-	
-	[date setPhrase:p];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
-+ (GCInvalidDate *)invalidDateString:(NSString *)s
+- (id)initWithInvalidDateString:(NSString *)s
 {
-	GCInvalidDate *date = [[GCInvalidDate alloc] init];
-	
-	[date setString:s];
-	
-	return date;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
+
+#pragma mark Convenience constructors
+
++ (id)dateWithGedcom:(NSString *)gedcom
+{
+	return [[self alloc] initWithGedcom:gedcom];
+}
+
++ (id)dateWithSimpleDate:(NSDateComponents *)co
+{
+	return [[self alloc] initWithSimpleDate:co];
+}
+
++ (id)dateWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
+{
+	return [[self alloc] initWithSimpleDate:co withCalendar:ca];
+}
+
++ (id)dateWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t
+{
+	return [[self alloc] initWithApproximateDate:sd withType:t];
+}
+
++ (id)dateWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
+{
+    return [[self alloc] initWithInterpretedDate:sd withPhrase:p];
+}
+
++ (id)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+{
+    return [[self alloc] initWithDatePeriodFrom:f to:t];
+}
+
++ (id)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+{
+    return [[self alloc] initWithDateRangeFrom:f to:t];
+}
+
++ (id)dateWithPhrase:(NSString *)p
+{
+    return [[self alloc] initWithDatePhrase:p];
+}
+
++ (id)dateWithInvalidDateString:(NSString *)s
+{
+    return [[self alloc] initWithInvalidDateString:s];
+}
+
+#pragma mark Comparison
 
 -(NSComparisonResult) compare:(id)other {
 	if (other == nil) {
@@ -456,6 +601,27 @@
 		return [[self refDate] compare:[other refDate]];
 	}
 }
+
+#pragma mark NSCoding compliance
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+	return [self initWithGedcom:[coder decodeObjectForKey:@"gedcomString"]];
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:[self gedcomString] forKey:@"gedcomString"];
+}
+
+#pragma mark NSCopying compliance
+
+- (id)copyWithZone:(NSZone *)zone
+{
+	return self;
+}
+
+#pragma mark Properties
 
 @dynamic refDate;
 

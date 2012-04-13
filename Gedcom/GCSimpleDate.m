@@ -13,24 +13,6 @@
 
 @implementation GCSimpleDate
 
-- (id)initWithCoder:(NSCoder *)coder
-{
-	self = [super init];
-    
-    if (self) {
-        [self setDateComponents:[coder decodeObjectForKey:@"components"]];
-        [self setCalendar:[coder decodeObjectForKey:@"calendar"]];
-	}
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeObject:[self dateComponents] forKey:@"components"];
-	[coder encodeObject:[self calendar] forKey:@"calendar"];
-}
-
 - (NSComparisonResult)compare:(id)other {
 	if (other == nil) {
 		return NSOrderedAscending;
@@ -70,16 +52,6 @@
 	}
 	
 	return [NSString stringWithFormat:@"%@%@%04d", day, month, [[self dateComponents] year]];
-}
-
-- (GCSimpleDate *)copyWithZone:(NSZone *)zone
-{
-	GCSimpleDate *date = [[GCSimpleDate alloc] init];
-	
-	[date setDateComponents:[self dateComponents]];
-	[date setCalendar:[self calendar]];
-	
-	return date;
 }
 
 - (NSDate *)date

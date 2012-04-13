@@ -11,7 +11,7 @@
 
 @class GCDatePhrase;
 
-@interface GCInterpretedDate : GCAttributedDate <NSCoding, NSCopying> {
+@interface GCInterpretedDate : GCAttributedDate {
 
 }
 

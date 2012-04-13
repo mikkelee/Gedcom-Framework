@@ -33,14 +33,4 @@
 	}
 }
 
-- (GCDateRange *)copyWithZone:(NSZone *)zone
-{
-	GCDateRange *date = [[GCDateRange alloc] init];
-	
-	[date setDateA:[self dateA]];
-	[date setDateB:[self dateB]];
-	
-	return date;
-}
-
 @end

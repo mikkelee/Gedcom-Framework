@@ -10,7 +10,7 @@
 #import "GCSimpleDate.h"
 #import "GCDate.h"
 
-@interface GCDatePair : GCDate <NSCoding, NSCopying> {
+@interface GCDatePair : GCDate {
 
 }
 

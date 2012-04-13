@@ -43,7 +43,7 @@
                 break;
                 
             case GCDateValue:
-                [attribute setDateValue:[GCDate dateFromGedcom:[node gedValue]]];
+                [attribute setDateValue:[GCDate dateWithGedcom:[node gedValue]]];
                 break;
                 
             case GCBoolValue:

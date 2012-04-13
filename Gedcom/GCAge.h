@@ -30,9 +30,9 @@
 
 #pragma mark Properties
 
-@property (retain, readonly) NSString *gedcomString;
-@property (retain, readonly) NSString *displayString;
-@property (retain, readonly) NSString *description;
+@property (readonly) NSString *gedcomString;
+@property (readonly) NSString *displayString;
+@property (readonly) NSString *description;
 
 @property (readonly) NSUInteger years;
 @property (readonly) NSUInteger months;

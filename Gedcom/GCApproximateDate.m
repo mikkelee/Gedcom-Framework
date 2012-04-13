@@ -11,43 +11,16 @@
 
 @implementation GCApproximateDate
 
-- (id)initWithCoder:(NSCoder *)coder
-{
-	self = [super init];
-    
-    if (self) {
-        [self setSimpleDate:[coder decodeObjectForKey:@"simpleDate"]];
-        [self setType:[coder decodeObjectForKey:@"type"]];
-    }
-    
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeObject:[self type] forKey:@"type"];
-}
-
 -(NSString *)description
 {
-	return [NSString stringWithFormat:@"[GCApproximateDate '%@' %@]", [self type], [self simpleDate]];
+	return [NSString stringWithFormat:@"[GCApproximateDate '%@' %@]", [self dateType], [self simpleDate]];
 }
 
 -(NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"%@ %@", [self type], [[self simpleDate] gedcomString]];
+	return [NSString stringWithFormat:@"%@ %@", [self dateType], [[self simpleDate] gedcomString]];
 }
 
-- (GCApproximateDate *)copyWithZone:(NSZone *)zone
-{
-	GCApproximateDate *date = [[GCApproximateDate alloc] init];
-	
-	[date setType:[self type]];
-	[date setSimpleDate:[self simpleDate]];
-	
-	return date;
-}
-
-@synthesize type;
+@synthesize dateType;
 
 @end

@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "GCAttributedDate.h"
 
-@interface GCApproximateDate : GCAttributedDate <NSCoding, NSCopying> {
+@interface GCApproximateDate : GCAttributedDate {
 
 }
 
-@property (retain) NSString *type;
+@property (retain) NSString *dateType;
 
 @end
