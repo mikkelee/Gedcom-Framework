@@ -8,8 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GCDateFormatter : NSFormatter {
-}
+@interface GCDateFormatter : NSFormatter
 
 - (NSString *)editingStringForObjectValue:(id)date;
 - (NSString *)stringForObjectValue:(id)date;

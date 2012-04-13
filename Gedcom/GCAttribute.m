@@ -13,6 +13,7 @@
 
 #import "GCEntity.h"
 
+#import "GCValue.h"
 #import "GCAge.h"
 #import "GCDate.h"
 
@@ -82,15 +83,6 @@
     return attribute;
 }
 
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value
-{
-    GCAttribute *attribute = [self attributeWithType:type];
-    
-    [attribute setValue:value];
-    
-    return attribute;
-}
-
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
@@ -120,6 +112,15 @@
 @end
 
 @implementation GCAttribute (GCConvenienceMethods)
+
++ (id)attributeWithType:(NSString *)type value:(GCValue *)value
+{
+    GCAttribute *attribute = [self attributeWithType:type];
+    
+    [attribute setValue:value];
+    
+    return attribute;
+}
 
 + (id)attributeWithType:(NSString *)type stringValue:(NSString *)value
 {

@@ -9,9 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GCDate.h"
 
-@interface GCInvalidDate : GCDate {
-
-}
+@interface GCInvalidDate : GCDate
 
 @property (copy) NSString *string;
 @property (retain, readonly) NSCalendar *calendar;

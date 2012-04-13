@@ -11,9 +11,7 @@
 
 @class GCSimpleDate;
 
-@interface GCAttributedDate : GCDate {
-
-}
+@interface GCAttributedDate : GCDate
 
 @property (retain) GCSimpleDate *simpleDate;
 @property (retain, readonly) NSCalendar *calendar;

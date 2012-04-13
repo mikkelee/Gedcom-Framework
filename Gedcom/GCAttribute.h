@@ -7,8 +7,8 @@
 //
 
 #import "GCProperty.h"
-#import "GCValue.h"
 
+@class GCValue;
 @class GCAge;
 @class GCDate;
 
@@ -20,8 +20,6 @@
 
 + (id)attributeWithType:(NSString *)type;
 
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value;
-
 #pragma mark Properties
 
 @property GCValue *value;
@@ -29,6 +27,8 @@
 @end
 
 @interface GCAttribute (GCConvenienceMethods)
+
++ (id)attributeWithType:(NSString *)type value:(GCValue *)value;
 
 + (id)attributeWithType:(NSString *)type stringValue:(NSString *)value;
 + (id)attributeWithType:(NSString *)type numberValue:(NSNumber *)value;

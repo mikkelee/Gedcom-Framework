@@ -15,6 +15,6 @@
 
 }
 
-@property (copy) GCDatePhrase *phrase;
+@property (copy) GCDatePhrase *datePhrase;
 
 @end

@@ -14,14 +14,14 @@
 
 -(NSString *)description
 {
-	return [NSString stringWithFormat:@"[GCInterpretedDate %@ %@]", [self simpleDate], [self phrase]];
+	return [NSString stringWithFormat:@"[GCInterpretedDate %@ %@]", [self simpleDate], [self datePhrase]];
 }
 
 -(NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"INT %@ (%@)]", [[self simpleDate] gedcomString], [[self phrase] gedcomString]];
+	return [NSString stringWithFormat:@"INT %@ (%@)]", [[self simpleDate] gedcomString], [[self datePhrase] gedcomString]];
 }
 
-@synthesize phrase;
+@synthesize datePhrase;
 
 @end

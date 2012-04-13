@@ -116,7 +116,7 @@
 	id date = [[GCInterpretedDate alloc] init];
 	
 	[date setSimpleDate:sd];
-	[date setPhrase:p];
+	[date setDatePhrase:p];
 	
 	return date;
 }

@@ -10,9 +10,7 @@
 
 @class GCNode;
 
-@interface GCChangedDateFormatter : NSObject {
-
-}
+@interface GCChangedDateFormatter : NSObject
 
 + (id)sharedFormatter;
 

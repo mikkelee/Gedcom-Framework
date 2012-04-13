@@ -8,9 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GCDate : NSObject <NSCoding, NSCopying> {
-	
-}
+@interface GCDate : NSObject <NSCoding, NSCopying>
 
 #pragma mark Initialization
 

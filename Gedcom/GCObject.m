@@ -90,31 +90,6 @@
     [property setDescribedObject:nil];
 }
 
-- (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
-{
-    [self addProperty:[GCAttribute attributeWithType:type value:value]];
-}
-
-- (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
-{
-	GCRelationship *relationship = [GCRelationship relationshipWithType:type target:target];
-	
-	[self addProperty:relationship];
-    
-	if ([[relationship gedTag] reverseRelationshipTag]) {
-		BOOL relationshipExists = NO;
-		for (GCRelationship *relationship in [target relationships]) {
-			if ([[relationship target] isEqual:self]) {
-				relationshipExists = YES;
-			}
-		}
-		if (!relationshipExists) {
-			[target addRelationshipWithType:[[[relationship gedTag] reverseRelationshipTag] name] 
-									 target:(GCEntity *)self];
-		}
-	}
-}
-
 - (NSOrderedSet *)validProperties
 {
 	NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
@@ -308,6 +283,11 @@
 
 @implementation GCObject (GCConvenienceMethods)
 
+- (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
+{
+    [self addProperty:[GCAttribute attributeWithType:type value:value]];
+}
+
 - (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value
 {
     [self addProperty:[GCAttribute attributeWithType:type stringValue:value]];
@@ -336,6 +316,26 @@
 - (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value
 {
 	[self addProperty:[GCAttribute attributeWithType:type genderValue:value]];
+}
+
+- (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
+{
+	GCRelationship *relationship = [GCRelationship relationshipWithType:type target:target];
+	
+	[self addProperty:relationship];
+    
+	if ([[relationship gedTag] reverseRelationshipTag]) {
+		BOOL relationshipExists = NO;
+		for (GCRelationship *relationship in [target relationships]) {
+			if ([[relationship target] isEqual:self]) {
+				relationshipExists = YES;
+			}
+		}
+		if (!relationshipExists) {
+			[target addRelationshipWithType:[[[relationship gedTag] reverseRelationshipTag] name] 
+									 target:(GCEntity *)self];
+		}
+	}
 }
 
 @end
