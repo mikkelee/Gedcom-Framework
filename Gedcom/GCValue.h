@@ -31,13 +31,6 @@ typedef enum {
 
 - (id)initWithType:(GCValueType)type value:(id)value;
 
-+ (id)valueWithString:(NSString *)value;
-+ (id)valueWithNumber:(NSNumber *)value;
-+ (id)valueWithAge:(GCAge *)value;
-+ (id)valueWithDate:(GCDate *)value;
-+ (id)valueWithBool:(BOOL)value;
-+ (id)valueWithGender:(GCGender)value;
-
 - (NSComparisonResult)compare:(id)other;
 
 + (GCValueType)valueTypeNamed:(NSString *)name;
@@ -48,5 +41,16 @@ typedef enum {
 @property (readonly) GCDate *dateValue;
 @property (readonly) BOOL boolValue;
 @property (readonly) GCGender genderValue;
+
+@end
+
+@interface GCValue (GCConvenienceMethods)
+
++ (id)valueWithString:(NSString *)value;
++ (id)valueWithNumber:(NSNumber *)value;
++ (id)valueWithAge:(GCAge *)value;
++ (id)valueWithDate:(GCDate *)value;
++ (id)valueWithBool:(BOOL)value;
++ (id)valueWithGender:(GCGender)value;
 
 @end
