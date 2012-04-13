@@ -24,6 +24,8 @@
 
 - (id)initWithType:(NSString *)type inContext:(GCContext *)context
 {
+    NSParameterAssert(context);
+    
     self = [super initWithType:type];
     
     if (self) {
@@ -42,7 +44,7 @@
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCEntity *entity = [[self alloc] initWithType:[[node gedTag] name] inContext:context];
+    GCEntity *entity = [self entityWithType:[[node gedTag] name] inContext:context];
     
 	[context storeXref:[node xref] forEntity:entity];
 	
