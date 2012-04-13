@@ -28,9 +28,8 @@
 					 "Submitter record"
 					 ],
 		"validSubTags": [
-                         { "name": "Source citation", "min": "0", "max": "M" },
-                         { "name": "Source description", "min": "0", "max": "M" },
-                         { "name": "Note reference", "min": "0", "max": "M" }
+                         { "name": "@Source", "min": "0", "max": "M" },
+                         { "name": "@Note", "min": "0", "max": "M" }
                          ]
 	},
 	
@@ -255,9 +254,8 @@
                          { "name": "Surname Prefix", "min": "0", "max": "1" },
                          { "name": "Surname", "min": "0", "max": "1" },
                          { "name": "Name Suffix", "min": "0", "max": "1" },
-                         { "name": "Source citation", "min": "0", "max": "M" },
-                         { "name": "Source description", "min": "0", "max": "M" },
-                         { "name": "Note reference", "min": "0", "max": "M" }
+                         { "name": "@Source", "min": "0", "max": "M" },
+                         { "name": "@Note", "min": "0", "max": "M" }
                          ]
     },
     "Name Prefix": {
@@ -300,9 +298,16 @@
 		"objectType": "GCRelationship"
     },
     
+    "@Source": {
+        "variants": [
+                     "Source citation",
+                     "Source description"
+                     ]
+    },
 	"Source citation": {
 		"code": "SOUR",
 		"objectType": "GCRelationship",
+        "target": "Source record",
 		"validSubTags": [
                          { "name": "Page", "min": "1", "max": "1" }
                          ]
@@ -312,12 +317,51 @@
 		"objectType": "GCAttribute"
 	},
     
+    
+    "@Note": {
+        "variants": [
+                     "Note reference",
+                     "Note embedded"
+                     ],
+		"validSubTags": [
+                         { "name": "@Source", "min": "1", "max": "1" }
+                         ]
+    },
 	"Note reference": {
 		"code": "NOTE",
-		"objectType": "GCRelationship"
+		"objectType": "GCRelationship",
+        "target": "Note record"
+	},
+	"Note embedded": {
+		"code": "NOTE",
+		"objectType": "GCAttribute",
+		"valueType": "GCStringValue"
 	},
     
-
+    "@Multimedia": {
+        "variants": [
+                     "Multimedia citation",
+                     "Multimedia embedded"
+                     ]
+    },
+	"Multimedia reference": {
+		"code": "OBJE",
+		"objectType": "GCRelationship",
+        "target": "Multimedia record",
+	},
+	"Multimedia embedded": {
+		"code": "OBJE",
+		"objectType": "GCAttribute",
+		"valueType": "GCStringValue",
+		"validSubTags": [
+                         { "name": "Format", "min": "1", "max": "1" },
+                         { "name": "Title", "min": "0", "max": "1" },
+                         { "name": "File", "min": "0", "max": "1" },
+                         { "name": "@Note", "min": "0", "max": "1" }
+                        ]
+	},
+    
+    
     "Abbreviation": {
         "code": "ABBR",
 		"objectType": "GCAttribute",

@@ -193,6 +193,11 @@ __strong static NSMutableDictionary *tagInfo;
     }
     
     //TODO cache this:
+    
+    if ([_settings objectForKey:kValidSubTags] == nil) {
+        return NO;
+    }
+    
     NSDictionary *validDict = nil;
     for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
         if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
