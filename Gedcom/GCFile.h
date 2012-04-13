@@ -17,10 +17,11 @@
 #pragma mark Initialization
 
 - (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
+- (id)initWithHeader:(GCHeader *)header entities:(NSArray *)entities;
 
 #pragma mark Convenience constructor
 
-+ (id)fileFromGedcomNodes:(NSArray *)nodes;
++ (id)fileWithGedcomNodes:(NSArray *)nodes;
 
 #pragma mark Properties
 

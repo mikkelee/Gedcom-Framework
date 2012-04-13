@@ -50,7 +50,26 @@
 	return self;
 }
 
-+ (id)fileFromGedcomNodes:(NSArray *)nodes
+- (id)initWithHeader:(GCHeader *)header entities:(NSArray *)entities
+{
+    self = [super init];
+    
+    if (self) {
+        _head = header;
+        _records = [NSMutableArray arrayWithCapacity:[entities count]];
+        
+        for (GCEntity *entity in entities) {
+            NSParameterAssert(_context == nil || _context == [entity context]);
+            
+            [_records addObject:entity];
+        }
+    }
+    
+    return self;
+}
+
+
++ (id)fileWithGedcomNodes:(NSArray *)nodes
 {
 	return [[self alloc] initWithContext:[GCContext context] gedcomNodes:nodes];
 }

@@ -161,7 +161,7 @@
 	NSArray *gc_inputLines = [fileContents arrayOfLines];
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
-	GCFile *file = [GCFile fileFromGedcomNodes:nodes];
+	GCFile *file = [GCFile fileWithGedcomNodes:nodes];
 	
 	NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:3];
 	for (GCNode *node in [file gedcomNodes]) {
