@@ -30,12 +30,17 @@
 		_records = [NSMutableArray arrayWithCapacity:[nodes count]];
 		
 		for (id node in nodes) {
-            if ([[[node gedTag] objectClass] isEqual:[GCHeader class]]) {
+            Class objectClass = [[node gedTag] objectClass];
+            
+            if ([objectClass isEqual:[GCHeader class]]) {
+                if (_head) {
+                    NSLog(@"Multiple headers!?");
+                }
                 _head = [GCHeader headerWithGedcomNode:node inContext:context];
-            } else if ([[[node gedTag] objectClass] isEqual:[GCTrailer class]]) {
-                continue; //ignore trailer... 
-            } else if ([[[node gedTag] objectClass] isEqual:[GCEntity class]]) {
+            } else if ([objectClass isEqual:[GCEntity class]]) {
                 [_records addObject:[GCEntity entityWithGedcomNode:node inContext:context]];
+            } else if ([objectClass isEqual:[GCTrailer class]]) {
+                continue; //ignore trailer... 
             } else {
                 NSLog(@"Shouldn't happen! %@ unknown class: %@", node, [[node gedTag] objectClass]);
             }
@@ -57,14 +62,11 @@
 	[nodes addObject:[_head gedcomNode]];
 	
 	for (id record in _records) {
-		if ([record isKindOfClass:[GCHeader class]]) {
-			continue;
-		} else if ([record isKindOfClass:[GCTrailer class]]) {
-            [nodes addObject:[GCNode nodeWithTag:[GCTag tagNamed:@"Trailer"] value:nil]];
-		}
 		[nodes addObject:[record gedcomNode]];
 	}
 	
+    [nodes addObject:[GCNode nodeWithTag:[GCTag tagNamed:@"Trailer"] value:nil]];
+    
 	return nodes;
 }
 
