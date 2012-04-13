@@ -52,14 +52,10 @@
 		3EECFD73151C32630074E26C /* GCAttributedDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD47151C32630074E26C /* GCAttributedDate.m */; };
 		3EECFD74151C32630074E26C /* GCDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD48151C32630074E26C /* GCDate.h */; };
 		3EECFD75151C32630074E26C /* GCDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD49151C32630074E26C /* GCDate.m */; };
-		3EECFD76151C32630074E26C /* GCDateAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD4A151C32630074E26C /* GCDateAssembler.h */; };
-		3EECFD77151C32630074E26C /* GCDateAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD4B151C32630074E26C /* GCDateAssembler.m */; };
 		3EECFD78151C32630074E26C /* GCDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD4C151C32630074E26C /* GCDateFormatter.h */; };
 		3EECFD79151C32630074E26C /* GCDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD4D151C32630074E26C /* GCDateFormatter.m */; };
 		3EECFD7A151C32630074E26C /* GCDatePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD4E151C32630074E26C /* GCDatePair.h */; };
 		3EECFD7B151C32630074E26C /* GCDatePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD4F151C32630074E26C /* GCDatePair.m */; };
-		3EECFD7C151C32630074E26C /* GCDateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD50151C32630074E26C /* GCDateParser.h */; };
-		3EECFD7D151C32630074E26C /* GCDateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD51151C32630074E26C /* GCDateParser.m */; };
 		3EECFD7E151C32630074E26C /* GCDatePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD52151C32630074E26C /* GCDatePeriod.h */; };
 		3EECFD7F151C32630074E26C /* GCDatePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD53151C32630074E26C /* GCDatePeriod.m */; };
 		3EECFD80151C32630074E26C /* GCDatePhrase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD54151C32630074E26C /* GCDatePhrase.h */; };
@@ -150,14 +146,10 @@
 		3EECFD47151C32630074E26C /* GCAttributedDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAttributedDate.m; sourceTree = "<group>"; };
 		3EECFD48151C32630074E26C /* GCDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDate.h; sourceTree = "<group>"; };
 		3EECFD49151C32630074E26C /* GCDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDate.m; sourceTree = "<group>"; };
-		3EECFD4A151C32630074E26C /* GCDateAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateAssembler.h; sourceTree = "<group>"; };
-		3EECFD4B151C32630074E26C /* GCDateAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateAssembler.m; sourceTree = "<group>"; };
 		3EECFD4C151C32630074E26C /* GCDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateFormatter.h; sourceTree = "<group>"; };
 		3EECFD4D151C32630074E26C /* GCDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateFormatter.m; sourceTree = "<group>"; };
 		3EECFD4E151C32630074E26C /* GCDatePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePair.h; sourceTree = "<group>"; };
 		3EECFD4F151C32630074E26C /* GCDatePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatePair.m; sourceTree = "<group>"; };
-		3EECFD50151C32630074E26C /* GCDateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDateParser.h; sourceTree = "<group>"; };
-		3EECFD51151C32630074E26C /* GCDateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateParser.m; sourceTree = "<group>"; };
 		3EECFD52151C32630074E26C /* GCDatePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePeriod.h; sourceTree = "<group>"; };
 		3EECFD53151C32630074E26C /* GCDatePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatePeriod.m; sourceTree = "<group>"; };
 		3EECFD54151C32630074E26C /* GCDatePhrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePhrase.h; sourceTree = "<group>"; };
@@ -382,9 +374,10 @@
 			children = (
 				3EECFD48151C32630074E26C /* GCDate.h */,
 				3EECFD49151C32630074E26C /* GCDate.m */,
+				3EECFD4C151C32630074E26C /* GCDateFormatter.h */,
+				3EECFD4D151C32630074E26C /* GCDateFormatter.m */,
 				3EECFD64151C32630074E26C /* GCSimpleDate.h */,
 				3EECFD65151C32630074E26C /* GCSimpleDate.m */,
-				3EF7A1C2151C37AE004A8540 /* Parsing */,
 				3EF7A1C4151C37D8004A8540 /* Attributed */,
 				3EF7A1C3151C37BF004A8540 /* Pairs */,
 				3EECFD54151C32630074E26C /* GCDatePhrase.h */,
@@ -395,19 +388,6 @@
 				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
 			);
 			name = Dates;
-			sourceTree = "<group>";
-		};
-		3EF7A1C2151C37AE004A8540 /* Parsing */ = {
-			isa = PBXGroup;
-			children = (
-				3EECFD50151C32630074E26C /* GCDateParser.h */,
-				3EECFD51151C32630074E26C /* GCDateParser.m */,
-				3EECFD4A151C32630074E26C /* GCDateAssembler.h */,
-				3EECFD4B151C32630074E26C /* GCDateAssembler.m */,
-				3EECFD4C151C32630074E26C /* GCDateFormatter.h */,
-				3EECFD4D151C32630074E26C /* GCDateFormatter.m */,
-			);
-			name = Parsing;
 			sourceTree = "<group>";
 		};
 		3EF7A1C3151C37BF004A8540 /* Pairs */ = {
@@ -448,10 +428,8 @@
 				3EECFD70151C32630074E26C /* GCApproximateDate.h in Headers */,
 				3EECFD72151C32630074E26C /* GCAttributedDate.h in Headers */,
 				3EECFD74151C32630074E26C /* GCDate.h in Headers */,
-				3EECFD76151C32630074E26C /* GCDateAssembler.h in Headers */,
 				3EECFD78151C32630074E26C /* GCDateFormatter.h in Headers */,
 				3EECFD7A151C32630074E26C /* GCDatePair.h in Headers */,
-				3EECFD7C151C32630074E26C /* GCDateParser.h in Headers */,
 				3EECFD7E151C32630074E26C /* GCDatePeriod.h in Headers */,
 				3EECFD80151C32630074E26C /* GCDatePhrase.h in Headers */,
 				3EECFD82151C32630074E26C /* GCDateRange.h in Headers */,
@@ -595,10 +573,8 @@
 				3EECFD71151C32630074E26C /* GCApproximateDate.m in Sources */,
 				3EECFD73151C32630074E26C /* GCAttributedDate.m in Sources */,
 				3EECFD75151C32630074E26C /* GCDate.m in Sources */,
-				3EECFD77151C32630074E26C /* GCDateAssembler.m in Sources */,
 				3EECFD79151C32630074E26C /* GCDateFormatter.m in Sources */,
 				3EECFD7B151C32630074E26C /* GCDatePair.m in Sources */,
-				3EECFD7D151C32630074E26C /* GCDateParser.m in Sources */,
 				3EECFD7F151C32630074E26C /* GCDatePeriod.m in Sources */,
 				3EECFD81151C32630074E26C /* GCDatePhrase.m in Sources */,
 				3EECFD83151C32630074E26C /* GCDateRange.m in Sources */,

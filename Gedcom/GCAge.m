@@ -6,6 +6,8 @@
 //  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.
 //
 
+#define DebugLog(fmt, ...) if (0) NSLog(fmt, ## __VA_ARGS__)
+
 #import "GCAge.h"
 #import <ParseKit/ParseKit.h>
 
@@ -275,8 +277,6 @@ NSString * const GCAgeQualifier_toString[] = {
 @property (copy) GCAge *age;
 
 @end
-
-#define DebugLog(fmt, ...) if (0) NSLog(fmt, ## __VA_ARGS__)
 
 @implementation GCAgeAssembler {
 	NSDateComponents *currentAgeComponents;
