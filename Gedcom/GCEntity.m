@@ -47,8 +47,7 @@
 	[context storeXref:[node xref] forEntity:entity];
 	
     for (id subNode in [node subNodes]) {
-        GCProperty *property = [GCProperty propertyForObject:entity withGedcomNode:subNode];
-        [entity setValue:property forKey:[property type]];
+        [[entity properties] addObject:[GCProperty propertyForObject:entity withGedcomNode:subNode]];
     }
     
     return entity;

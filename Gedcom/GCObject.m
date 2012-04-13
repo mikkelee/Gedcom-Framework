@@ -23,6 +23,9 @@
 
 @interface GCObject () 
 
+- (void)addProperty:(GCProperty *)property;
+- (void)removeProperty:(GCProperty *)property;
+
 @end
 
 @implementation GCObject {

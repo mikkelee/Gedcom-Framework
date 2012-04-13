@@ -31,8 +31,7 @@
 	}];
     
     for (id subNode in [node subNodes]) {
-        GCProperty *property = [GCProperty propertyForObject:relationship withGedcomNode:subNode];
-        [relationship setValue:property forKey:[property type]];
+        [[relationship properties] addObject:[GCProperty propertyForObject:relationship withGedcomNode:subNode]];
     }
     
     return relationship;
