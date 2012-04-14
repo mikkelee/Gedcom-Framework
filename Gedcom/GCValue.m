@@ -28,44 +28,6 @@
     return self;
 }
 
-- (NSComparisonResult)compare:(id)other
-{
-    if (![other isKindOfClass:[self class]]) {
-        return NSOrderedSame;
-    }
-    
-    switch (_type) {
-        case GCStringValue:
-            return [[self stringValue] compare:[other stringValue]];
-            break;
-            
-        case GCNumberValue:
-            return [[self numberValue] compare:[other numberValue]];
-            break;
-            
-        case GCAgeValue:
-            return [[self ageValue] compare:[other ageValue]];
-            break;
-            
-        case GCDateValue:
-            return [[self dateValue] compare:[other dateValue]];
-            break;
-            
-        case GCBoolValue:
-            return [[NSNumber numberWithBool:[self boolValue]] compare:[NSNumber numberWithBool:[other boolValue]]];
-            break;
-            
-        case GCGenderValue:
-            return [[NSNumber numberWithInt:[self genderValue]] compare:[NSNumber numberWithInt:[other genderValue]]];
-            break;
-            
-        default:
-            break;
-    }
-    
-    return NSOrderedSame;
-}
-
 + (GCValueType)valueTypeNamed:(NSString *)name
 {
     if ([name isEqualToString:@"GCStringValue"]) {
@@ -189,6 +151,68 @@
     } else {
         return GCUnknownGender;
     }
+}
+
+#pragma mark Comparison & equality
+
+- (NSComparisonResult)compare:(id)other
+{
+    if (![other isKindOfClass:[self class]]) {
+        return NSOrderedAscending;
+    }
+    
+    switch (_type) {
+        case GCStringValue:
+            return [[self stringValue] compare:[other stringValue]];
+            break;
+            
+        case GCNumberValue:
+            return [[self numberValue] compare:[other numberValue]];
+            break;
+            
+        case GCAgeValue:
+            return [[self ageValue] compare:[other ageValue]];
+            break;
+            
+        case GCDateValue:
+            return [[self dateValue] compare:[other dateValue]];
+            break;
+            
+        case GCBoolValue:
+            return [[NSNumber numberWithBool:[self boolValue]] compare:[NSNumber numberWithBool:[other boolValue]]];
+            break;
+            
+        case GCGenderValue:
+            return [[NSNumber numberWithInt:[self genderValue]] compare:[NSNumber numberWithInt:[other genderValue]]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return NSOrderedAscending;
+}
+
+-(BOOL) isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    }
+    if (![super isEqual:other]) {
+        return NO;
+    }
+    
+    return ([self compare:other] == NSOrderedSame);
+}
+
+-(NSUInteger)hash
+{
+    NSUInteger hash = 0;
+    
+    hash += [[NSNumber numberWithInt:_type] hash];
+    hash += [_value hash];
+    
+    return hash;
 }
 
 @end

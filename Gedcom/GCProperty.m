@@ -33,6 +33,25 @@
 	}
 }
 
+#pragma mark Comparison
+
+- (NSComparisonResult)compare:(id)other
+{
+    if (![other isKindOfClass:[self class]]) {
+        return NSOrderedAscending;
+    }
+    
+    if ([self describedObject] != [(GCProperty *)other describedObject]) {
+        return [[self describedObject] compare:[(GCProperty *)other describedObject]];
+    }
+    
+    if ([self type] != [(GCProperty *)other type]) {
+        return [[self type] compare:[(GCProperty *)other type]];
+    }
+    
+    return NSOrderedSame;
+}
+
 #pragma mark Objective-C properties
 
 @synthesize describedObject = _describedObject;

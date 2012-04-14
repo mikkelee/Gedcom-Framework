@@ -39,6 +39,14 @@
 
 - (NSArray *)subNodes;
 
+#pragma mark Comparison
+
+- (NSComparisonResult)compare:(id)other;
+
+#pragma mark Equality
+
+-(BOOL) isEqualTo:(id)other;
+
 #pragma mark Objective-C properties
 
 @property (readonly) NSString *type;

@@ -91,7 +91,24 @@
 							  subNodes:[self subNodes]];
 }
 
-#pragma mark Properties
+#pragma mark Comparison
+
+- (NSComparisonResult)compare:(id)other
+{
+    NSComparisonResult result = [super compare:other];
+    
+    if (result != NSOrderedSame) {
+        return result;
+    }
+    
+    if ([self value] != [(GCAttribute *)other value]) {
+        return [[self value] compare:[(GCAttribute *)other value]];
+    }
+    
+    return NSOrderedSame;
+}
+
+#pragma mark Objective-C properties
 
 @synthesize value = _value;
 

@@ -38,6 +38,7 @@
     
     if (self) {
 		_context = context;
+        [_context xrefForEntity:self];
     }
     
     return self;    
@@ -67,7 +68,24 @@
     return entity;
 }
 
-#pragma mark Properties
+#pragma mark Comparison
+
+- (NSComparisonResult)compare:(id)other
+{
+    NSComparisonResult result = [super compare:other];
+    
+    if (result != NSOrderedSame) {
+        return result;
+    }
+    
+    if ([self type] != [(GCProperty *)other type]) {
+        return [[self type] compare:[(GCProperty *)other type]];
+    }
+    
+    return NSOrderedSame;
+}
+
+#pragma mark Objective-C properties
 
 - (NSArray *)subNodes
 {

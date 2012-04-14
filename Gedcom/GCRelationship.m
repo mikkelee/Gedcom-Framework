@@ -54,6 +54,25 @@
 							  subNodes:[self subNodes]];
 }
 
+#pragma mark Comparison
+
+- (NSComparisonResult)compare:(id)other
+{
+    NSComparisonResult result = [super compare:other];
+    
+    if (result != NSOrderedSame) {
+        return result;
+    }
+    
+    if ([self target] != [(GCRelationship *)other target]) {
+        return [[self target] compare:[(GCRelationship *)other target]];
+    }
+    
+    return NSOrderedSame;
+}
+
+#pragma mark Objective-C properties
+
 @synthesize target = _target;
 
 @end
