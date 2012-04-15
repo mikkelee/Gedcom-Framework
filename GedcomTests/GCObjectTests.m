@@ -159,17 +159,6 @@
 	GCContext *ctx = [GCContext context];
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	
-    [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
-	[indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/ Smed"]];
-    
-	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
-    
-	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
-    
-    [[indi properties] addObject:birt];
-    
-    [indi addAttributeWithType:@"Death" boolValue:YES];
     
     [indi setGedcomString:@"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
@@ -178,9 +167,26 @@
                          @"2 DATE 1 JAN 1901\n"
                          @"1 DEAT Y"];
     
-    GCAttribute *birt2 = [[indi valueForKey:@"Birth"] lastObject];
+    GCAttribute *birt1 = [[indi valueForKey:@"Birth"] lastObject];
+    GCAttribute *deat1 = [[indi valueForKey:@"Death"] lastObject];
     
-    STAssertEqualObjects(birt, birt2, nil);
+    //NSLog(@"[indi properties]: %@", [indi properties]);
+    
+    [indi setGedcomString:@"0 @INDI1@ INDI\n"
+                         @"1 NAME Jens /Hansen/\n"
+                         @"1 NAME Jens /Hansen/ Smed\n"
+                         @"1 BIRT\n"
+                         @"2 DATE 1 JAN 1901\n"
+                         @"1 DEAT\n"
+                         @"2 DATE 1 JAN 1930"];
+    
+    GCAttribute *birt2 = [[indi valueForKey:@"Birth"] lastObject];
+    GCAttribute *deat2 = [[indi valueForKey:@"Death"] lastObject];
+    
+    STAssertEqualObjects(birt1, birt2, nil);
+    STAssertFalse([deat1 isEqual:deat2], nil);
+    
+    //NSLog(@"[indi properties]: %@", [indi properties]);
     
     STAssertEquals([[indi properties] count], (NSUInteger)4, nil);
 }

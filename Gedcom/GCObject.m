@@ -327,8 +327,16 @@
         NSParameterAssert([[node xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);
     }
     
+    NSMutableOrderedSet *originalProperties = [[self properties] mutableCopy];
+    
     for (GCNode *subNode in [node subNodes]) {
-        [[self properties] addObject:[GCProperty propertyForObject:self withGedcomNode:subNode]];
+        GCProperty *property = [GCProperty propertyForObject:self withGedcomNode:subNode];
+        [[self properties] addObject:property];
+        [originalProperties removeObject:property];
+    }
+    
+    for (GCProperty *property in originalProperties) {
+        [self removeProperty:property];
     }
 }
 
