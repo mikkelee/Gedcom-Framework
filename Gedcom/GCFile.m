@@ -42,7 +42,7 @@
             } else if ([objectClass isEqual:[GCTrailer class]]) {
                 continue; //ignore trailer... 
             } else {
-                NSLog(@"Shouldn't happen! %@ unknown class: %@", node, [[node gedTag] objectClass]);
+                NSLog(@"Shouldn't happen! %@ unknown class: %@", node, objectClass);
             }
 		}
 	}

@@ -58,16 +58,14 @@
     }
 }
 
-/* is this even needed?
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
-    if ([self respondsToSelector:aSelector]) {
+    if ([_set respondsToSelector:aSelector]) {
         return YES;
     } else {
-        return [_set respondsToSelector:aSelector];
+        return [super respondsToSelector:aSelector];
     }
 }
-*/
 
 #pragma mark Primitive overrides
 

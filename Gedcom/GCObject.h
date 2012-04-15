@@ -57,6 +57,7 @@
 
 @property (readonly) GCTag *gedTag;
 @property (readonly) GCNode *gedcomNode;
+@property NSString *gedcomString;
 
 @property (readonly) GCContext *context;
 

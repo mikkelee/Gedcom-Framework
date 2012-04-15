@@ -55,8 +55,10 @@
     
     [property setDescribedObject:self];
     
+    [self willChangeValueForKey:[property type]];
+    
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
-        id existing = [_properties valueForKey:[property type]];
+        NSMutableOrderedSet *existing = [_properties valueForKey:[property type]];
         
         if (existing) {
             //already have an set, so just add here:
@@ -70,6 +72,8 @@
         [self removeProperty:[_properties valueForKey:[property type]]];
         [_properties setObject:property forKey:[property type]];
     }
+    
+    [self didChangeValueForKey:[property type]];
 }
 
 - (void)removeProperty:(GCProperty *)property
@@ -81,6 +85,8 @@
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert([property describedObject] == self);
     
+    [self willChangeValueForKey:[property type]];
+    
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
         [[_properties valueForKey:[property type]] removeObject:property];
     } else {
@@ -88,6 +94,8 @@
     }
     
     [property setDescribedObject:nil];
+    
+    [self didChangeValueForKey:[property type]];
 }
 
 - (NSOrderedSet *)validProperties
@@ -149,12 +157,6 @@
 
 #pragma mark Gedcom access
 
-- (GCNode *)gedcomNode
-{
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
-}
-
 - (NSArray *)subNodes
 {
     NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
@@ -184,25 +186,22 @@
 - (NSComparisonResult)compare:(id)other
 {
     //subclasses override to get actual result.
-    return NSOrderedAscending;
+    return NSOrderedSame;
 }
 
 #pragma mark Equality
 
 -(BOOL) isEqualTo:(id)other
 {
-    return [self isEqual:other] || [[[self gedcomNode] gedcomString] isEqualToString:[[other gedcomNode] gedcomString]];
+    return [self isEqual:other] || [[self gedcomString] isEqualToString:[other gedcomString]];
 }
 
-/* 
+
 //TODO think about whether this is a good idea or not
 -(BOOL) isEqual:(id)other
 {
     if (other == self) {
         return YES;
-    }
-    if (![super isEqual:other]) {
-        return NO;
     }
     
     return ([self compare:other] == NSOrderedSame);
@@ -212,7 +211,6 @@
 {
     return [[[self gedcomNode] gedcomString] hash];
 }
-*/
 
 #pragma mark Description
 
@@ -310,9 +308,34 @@
 	__builtin_unreachable();
 }
 
+- (NSString *)gedcomString
+{
+    return [[self gedcomNode] gedcomString];
+}
+
+- (void)setGedcomString:(NSString *)gedcomString
+{
+    NSArray *nodes = [GCNode arrayOfNodesFromString:gedcomString];
+    
+    NSParameterAssert([nodes count] == 1);
+    
+    GCNode *node = [nodes lastObject];
+    
+    NSParameterAssert([[[node gedTag] objectClass] isEqual:[self class]]);
+    
+    if ([node xref]) {
+        NSParameterAssert([[node xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);
+    }
+    
+    for (GCNode *subNode in [node subNodes]) {
+        [[self properties] addObject:[GCProperty propertyForObject:self withGedcomNode:subNode]];
+    }
+}
+
 @synthesize gedTag = _tag;
 
 @dynamic context;
+@dynamic gedcomNode;
 
 @end
 
