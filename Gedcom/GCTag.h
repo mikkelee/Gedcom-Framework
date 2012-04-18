@@ -12,10 +12,6 @@
 
 @interface GCTag : NSObject <NSCopying, NSCoding>
 
-#pragma mark Convenience constructors
-
-+(GCTag *)tagWithType:(NSString *)type code:(NSString *)code;
-
 #pragma mark Entry points
 
 +(GCTag *)tagNamed:(NSString *)name;

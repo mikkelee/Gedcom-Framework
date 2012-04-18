@@ -143,7 +143,7 @@ __strong static NSMutableDictionary *tagInfo;
     return self;    
 }
 
-#pragma mark Convenience constructors
+#pragma mark Entry points
 
 +(GCTag *)tagWithType:(NSString *)type code:(NSString *)code
 {
@@ -170,25 +170,85 @@ __strong static NSMutableDictionary *tagInfo;
 
 +(GCTag *)tagNamed:(NSString *)name
 {
+    [self setupTagInfo];
+    
     NSParameterAssert(name != nil);
     
     GCTag *tag = [tagStore objectForKey:name];
     
     if (tag == nil) {
-        tag = [[self alloc] initWithName:name //TODO "Custom"?
-								settings:[NSDictionary dictionaryWithObjectsAndKeys:
-										  @"GCStringValue", kValueType,
-										  @"GCAttribute", kObjectType,
-										  [NSOrderedSet orderedSet], kValidSubTags,
-										  nil]];
-        NSLog(@"Created custom %@ tag: %@", name, tag);
-        [tagStore setObject:tag forKey:name];
+		NSException *exception = [NSException exceptionWithName:@"GCInvalidTagNameException"
+														 reason:[NSString stringWithFormat:@"Invalid tag name '%@'", name]
+													   userInfo:nil];
+		@throw exception;
     }
     
     return tag;
 }
 
++(GCTag *)rootTagWithCode:(NSString *)code
+{
+    [self setupTagInfo];
+    
+    NSParameterAssert(code != nil);
+    
+    NSDictionary *tmp = [NSDictionary dictionaryWithObjectsAndKeys:
+                         @"Header", @"HEAD",
+                         @"Submission record", @"SUBN",
+                         @"Family record", @"FAM",
+                         @"Individual record", @"INDI",
+                         @"Multimedia record", @"OBJE",
+                         @"Note record", @"NOTE",
+                         @"Repository record", @"REPO",
+                         @"Source record", @"SOUR",
+                         @"Submitter record", @"SUBM",
+                         @"Trailer", @"TRLR",
+                         nil];
+    
+    return [tagStore objectForKey:[tmp valueForKey:code]];
+}
+
 #pragma mark Subtags
+
+-(GCTag *)subTagWithCode:(NSString *)code
+{
+    if ([code hasPrefix:@"_"]) {
+        if ([tagStore valueForKey:code]) {
+            return [tagStore valueForKey:code];
+        }
+        GCTag *tag = [[GCTag alloc] initWithName:[NSString stringWithFormat:@"Custom %@ tag", code]
+                                        settings:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                  @"GCStringValue", kValueType,
+                                                  @"GCAttribute", kObjectType,
+                                                  [NSOrderedSet orderedSet], kValidSubTags,
+                                                  nil]];
+        NSLog(@"Created custom GCAttribute %@ tag: %@", code, tag);
+        [tagStore setObject:tag forKey:code];
+    }
+    
+    for (GCTag *subTag in [self validSubTags]) {
+        if ([[subTag code] isEqualToString:code]) {
+            return subTag;
+        }
+    }
+    
+    //TODO error?
+    
+    return nil;
+}
+
+-(GCTag *)subTagWithName:(NSString *)name
+{
+    for (GCTag *subTag in [self validSubTags]) {
+        if ([[subTag name] isEqualToString:name]) {
+            return subTag;
+        }
+    }
+    
+    //TODO error?
+    
+    return nil;
+}
 
 -(BOOL)isValidSubTag:(GCTag *)tag
 {

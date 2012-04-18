@@ -70,9 +70,9 @@
 
 -(void)testValueForKey
 {
-	GCNode *aNode = [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"NAME"] value:@"Jens /Hansen/"];
+	GCNode *aNode = [GCNode nodeWithTag:[GCTag tagNamed:@"Name"] value:@"Jens /Hansen/"];
 	
-	GCNode *bNode = [[GCNode alloc] initWithTag:[GCTag tagWithType:@"GCEntity" code:@"INDI"] 
+	GCNode *bNode = [[GCNode alloc] initWithTag:[GCTag rootTagWithCode:@"INDI"] 
 										  value:nil 
 										   xref:@"@I1@" 
 									   subNodes:[NSArray arrayWithObject:aNode]];

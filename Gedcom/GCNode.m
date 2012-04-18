@@ -115,7 +115,19 @@
         //NSLog(@"gLine: %@", gLine);
         
         if (match) {
+            GCNode *parent = nil;
+            
 			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
+            
+            if (level == 0) { //root
+                parent = nil;
+            } else if (level == currentLevel+1) { //child of current
+                parent = currentNode;
+            } else { //find correct parent
+                for (int i = currentLevel; i >= level; i--) {
+                    parent = [parent parent];
+                }
+            }
             
 			NSString *xref = nil;
 			if ([match rangeAtIndex:2].length > 0) {
@@ -143,28 +155,6 @@
 				continue;
 			}
             
-            NSString *type = nil;
-            if (level == 0) {
-                if (xref != nil) {
-                    type = @"GCEntity";
-                } else {
-                    //TODO Fix special cases (turn header/trailer into entities?)
-                    if ([code isEqualToString:@"HEAD"]) {
-                        type = @"GCHeader";
-                    } else if ([code isEqualToString:@"TRLR"]) {
-                        type = @"GCTrailer";
-                    } else {
-                        type = @"WTF";
-                    }
-                }
-            } else if ([val hasPrefix:@"@"] && [val hasSuffix:@"@"]) {
-                type = @"GCRelationship";
-            } else {
-                type = @"GCAttribute";
-            }
-            
-			GCTag *tag = [GCTag tagWithType:type code:code];
-            
             /*
              NSLog(@"level: %d", level);
              NSLog(@"xref: %@", xref);
@@ -174,36 +164,24 @@
              NSLog(@"tag: %@", tag);
              */
             
-            if (xref) {
-                node = [GCNode nodeWithTag:tag 
-                                      xref:xref];
-            } else {
-                node = [GCNode nodeWithTag:tag 
+            NSLog(@"code: %@", code);
+            
+            if (parent) {
+                node = [GCNode nodeWithTag:[[parent gedTag] subTagWithCode:code] 
                                      value:val];
+                [parent addSubNode:node];
+            } else {
+                node = [GCNode nodeWithTag:[GCTag rootTagWithCode:code] 
+                                      xref:xref];
+                [gedArray addObject:node];
             }
             
-            //NSLog(@"node: %@", node);
-        }
-        
-		if (node == nil) {
+            currentLevel = level;
+            currentNode = node;
+        } else {
 			NSLog(@"Unable to create node from gedcom: %@", gLine);
 			//throw?
 		}
-		
-		if (level == 0) { //root
-			[gedArray addObject:node];
-		} else if (level == currentLevel+1) { //child of current
-			[currentNode addSubNode:node];
-		} else { //find correct parent
-			GCNode *parent = currentNode;
-			for (int i = currentLevel; i >= level; i--) {
-				parent = [parent parent];
-			}
-			[parent addSubNode:node];
-		}
-		
-		currentLevel = level;
-		currentNode = node;
 	}
 	
 	NSLog(@"Finished parsing gedcom.");
