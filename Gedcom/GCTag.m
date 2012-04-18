@@ -326,7 +326,7 @@ __strong static NSMutableDictionary *tagInfo;
     return self; //safe, since GCTags are immutable
 }
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @synthesize name = _name;
 

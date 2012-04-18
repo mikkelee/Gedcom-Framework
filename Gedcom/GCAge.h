@@ -28,7 +28,7 @@
 
 - (NSComparisonResult)compare:(id)other;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property (readonly) NSString *gedcomString;
 @property (readonly) NSString *displayString;

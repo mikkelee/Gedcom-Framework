@@ -22,12 +22,10 @@
 -(GCTag *)subTagWithCode:(NSString *)code;
 -(GCTag *)subTagWithName:(NSString *)name;
 
-#pragma mark Subtags
-
 -(BOOL)isValidSubTag:(GCTag *)tag;
 -(BOOL)allowsMultipleSubtags:(GCTag *)tag;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property (readonly) NSString *code;
 @property (readonly) NSString *name;

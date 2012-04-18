@@ -26,7 +26,7 @@
 
 - (NSComparisonResult)compare:(id)other;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property (retain, readonly) NSString *gedcomString;
 @property (retain, readonly) NSString *displayString;

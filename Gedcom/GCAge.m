@@ -550,7 +550,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	return self;
 }
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @dynamic refAge;
 

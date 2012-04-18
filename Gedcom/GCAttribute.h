@@ -20,7 +20,7 @@
 
 + (id)attributeWithType:(NSString *)type;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property GCValue *value;
 

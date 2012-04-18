@@ -621,7 +621,7 @@
 	return self;
 }
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @dynamic refDate;
 

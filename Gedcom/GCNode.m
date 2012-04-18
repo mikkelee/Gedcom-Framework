@@ -347,7 +347,7 @@
     return copy;
 }
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @synthesize parent = _parent;
 @synthesize gedTag = _gedTag;

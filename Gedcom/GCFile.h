@@ -23,7 +23,7 @@
 
 + (id)fileWithGedcomNodes:(NSArray *)nodes;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property GCHeader *head;
 @property NSMutableArray *records;

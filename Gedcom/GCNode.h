@@ -32,7 +32,7 @@
 - (NSString *)gedcomString;
 - (NSArray *)gedcomLines;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property (readonly) GCNode *parent;
 @property (readonly) GCTag *gedTag;

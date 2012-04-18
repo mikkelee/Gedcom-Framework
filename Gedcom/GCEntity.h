@@ -21,7 +21,7 @@
 
 + (id)entityWithType:(NSString *)type inContext:(GCContext *)context;
 
-#pragma mark Properties
+#pragma mark Objective-C properties
 
 @property (readonly) NSDate *lastModified;
 

@@ -89,6 +89,8 @@
 	return nodes;
 }
 
+#pragma mark Objective-C properties
+
 @synthesize head = _head;
 @synthesize records = _records;
 
