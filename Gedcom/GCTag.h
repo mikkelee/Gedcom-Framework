@@ -14,9 +14,17 @@
 
 #pragma mark Convenience constructors
 
-+(GCTag *)tagNamed:(NSString *)name;
-
 +(GCTag *)tagWithType:(NSString *)type code:(NSString *)code;
+
+#pragma mark Entry points
+
++(GCTag *)tagNamed:(NSString *)name;
++(GCTag *)rootTagWithCode:(NSString *)code;
+
+#pragma mark Subtags
+
+-(GCTag *)subTagWithCode:(NSString *)code;
+-(GCTag *)subTagWithName:(NSString *)name;
 
 #pragma mark Subtags
 

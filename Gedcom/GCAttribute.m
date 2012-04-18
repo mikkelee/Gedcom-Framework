@@ -68,8 +68,10 @@
     }
     
     for (id subNode in [node subNodes]) {
-        [[attribute properties] addObject:[GCProperty propertyForObject:attribute withGedcomNode:subNode]];
+        [GCProperty propertyForObject:attribute withGedcomNode:subNode];
     }
+    
+    [object addProperty:attribute];
     
     return attribute;
 }
@@ -83,8 +85,6 @@
 
 - (GCNode *)gedcomNode
 {
-    NSParameterAssert([self describedObject]); //something's gone wrong if there's no describedObject
-    
     return [[GCNode alloc] initWithTag:[self gedTag] 
 								 value:[self stringValue]
 								  xref:nil

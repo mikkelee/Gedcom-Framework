@@ -50,12 +50,15 @@
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     
     if ([property describedObject]) {
+        if ([property describedObject] == self) {
+            return;
+        }
         [[property describedObject] removeProperty:property];
     }
     
-    [property setDescribedObject:self];
-    
     [self willChangeValueForKey:[property type]];
+    
+    [property setDescribedObject:self];
     
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
         NSMutableOrderedSet *existing = [_properties valueForKey:[property type]];
@@ -116,6 +119,25 @@
 
 #pragma mark NSKeyValueCoding overrides
 
+- (void)setValue:(id)value forKey:(NSString *)key
+{
+    if ([[self validProperties] containsObject:key]) {
+        if ([value isKindOfClass:[GCValue class]]) {
+            [self addAttributeWithType:key value:value];
+        } else if ([value isKindOfClass:[GCEntity class]]) {
+            [self addRelationshipWithType:key target:value];
+        } else if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
+            for (id item in value) {
+                [self setValue:item forKey:key];
+            }
+        } else {
+            //error!
+        }
+    } else {
+        [super setValue:value forKey:key];
+    }
+}
+
 - (id)valueForKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
@@ -144,15 +166,6 @@
 - (void)setNilValueForKey:(NSString *)key
 {
     [_properties removeObjectForKey:key];
-}
-
-- (void)setValue:(id)value forKey:(NSString *)key
-{
-    if ([[self validProperties] containsObject:key] && [value isKindOfClass:[GCProperty class]]) {
-        //TODO
-    } else {
-        [super setValue:value forKey:key];
-    }
 }
 
 #pragma mark Gedcom access
@@ -193,7 +206,7 @@
 
 -(BOOL) isEqualTo:(id)other
 {
-    return [self isEqual:other] || [[self gedcomString] isEqualToString:[other gedcomString]];
+    return [[self gedcomString] isEqualToString:[other gedcomString]];
 }
 
 
@@ -204,12 +217,12 @@
         return YES;
     }
     
-    return ([self compare:other] == NSOrderedSame);
+    return [[self gedcomString] isEqualToString:[other gedcomString]];
 }
 
 -(NSUInteger)hash
 {
-    return [[[self gedcomNode] gedcomString] hash];
+    return [[self gedcomString] hash];
 }
 
 #pragma mark Description
@@ -329,12 +342,16 @@
     
     NSMutableOrderedSet *originalProperties = [[self properties] mutableCopy];
     
+    NSLog(@"originalProperties: %@", originalProperties);
+    
     for (GCNode *subNode in [node subNodes]) {
         GCProperty *property = [GCProperty propertyForObject:self withGedcomNode:subNode];
-        [[self properties] addObject:property];
         [originalProperties removeObject:property];
     }
     
+    NSLog(@"originalProperties: %@", originalProperties);
+    
+    //remove the left over objects:
     for (GCProperty *property in originalProperties) {
         [self removeProperty:property];
     }

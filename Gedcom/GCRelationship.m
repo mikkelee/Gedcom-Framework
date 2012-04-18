@@ -22,17 +22,17 @@
 {
     GCRelationship *relationship = [[self alloc] initWithType:[[node gedTag] name]];
     
-	[relationship setDescribedObject:object];
-	
 	[[object context] registerXref:[node gedValue] forBlock:^(NSString *xref) {
 		GCEntity *target = [[object context] entityForXref:xref];
 		[relationship setTarget:target];
-		//NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
+		NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
 	}];
     
     for (id subNode in [node subNodes]) {
-        [[relationship properties] addObject:[GCProperty propertyForObject:relationship withGedcomNode:subNode]];
+        [GCProperty propertyForObject:relationship withGedcomNode:subNode];
     }
+    
+    [object addProperty:relationship];
     
     return relationship;
 }
@@ -46,8 +46,6 @@
 
 - (GCNode *)gedcomNode
 {
-    NSParameterAssert([self describedObject]); //something's gone wrong if there's no describedObject
-    
     return [[GCNode alloc] initWithTag:[self gedTag]
 								 value:[[self context] xrefForEntity:_target]
 								  xref:nil
