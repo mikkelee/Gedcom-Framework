@@ -31,14 +31,22 @@
     _entity = entity;
     for (NSString *key in [_entity validProperties]) {
         NSLog(@"Observing: %@", key);
-        [entity addObserver:self forKeyPath:key options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+        [_entity addObserver:self forKeyPath:key options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     }
     [self didChangeValueForKey:@"entity"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"observed: %@ %@ %@ %@", keyPath, object, change, context);
+    NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
+}
+
+-(void)dealloc
+{
+    for (NSString *key in [_entity validProperties]) {
+        NSLog(@"Deobserving: %@", key);
+        [_entity removeObserver:self forKeyPath:key];
+    }
 }
 
 @end
@@ -66,7 +74,7 @@
     [indi setValue:names 
             forKey:@"Name"];
     
-    
+    [[indi valueForKey:@"Name"] removeObjectAtIndex:0];
 }
 
 
