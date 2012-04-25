@@ -56,8 +56,6 @@
         [[property describedObject] removeProperty:property];
     }
     
-    [self willChangeValueForKey:[property type]];
-    
     [property setDescribedObject:self];
     
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
@@ -65,18 +63,32 @@
         
         if (existing) {
             //already have an set, so just add here:
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[existing count]];
+            
+            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
+            
             [existing addObject:property];
+            
+            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
         } else {
             //create set:
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+            
+            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
+            
             [_properties setObject:[NSMutableOrderedSet orderedSetWithObject:property]
                             forKey:[property type]];
+            
+            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
         }
     } else {
+        [self willChangeValueForKey:[property type]];
+        
         [self removeProperty:[_properties valueForKey:[property type]]];
         [_properties setObject:property forKey:[property type]];
+        
+        [self didChangeValueForKey:[property type]];
     }
-    
-    [self didChangeValueForKey:[property type]];
 }
 
 - (void)removeProperty:(GCProperty *)property
@@ -88,17 +100,24 @@
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert([property describedObject] == self);
     
-    [self willChangeValueForKey:[property type]];
-    
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
-        [[_properties valueForKey:[property type]] removeObject:property];
+        NSMutableOrderedSet *set = [_properties valueForKey:[property type]];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[set indexOfObject:property]];
+        
+        [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexSet forKey:[property type]];
+        
+        [set removeObject:property];
+        
+        [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexSet forKey:[property type]];
     } else {
+        [self willChangeValueForKey:[property type]];
+        
         [_properties removeObjectForKey:[property type]];
+        
+        [self didChangeValueForKey:[property type]];
     }
     
     [property setDescribedObject:nil];
-    
-    [self didChangeValueForKey:[property type]];
 }
 
 - (NSOrderedSet *)validProperties

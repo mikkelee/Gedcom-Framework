@@ -208,7 +208,7 @@
                      "Number of children",
                      "Number of marriages",
                      "Occupation",
-                     "Property",
+                     "Property owned",
                      "Religion",
                      "Residence",
                      "Social Security Number",
@@ -791,7 +791,7 @@
         "code": "PROB",
 		"objectType": "GCAttribute"
     },
-    "Property": {
+    "Property owned": {
         "code": "PROP",
 		"objectType": "GCAttribute",
         "valueType": "GCStringValue"
