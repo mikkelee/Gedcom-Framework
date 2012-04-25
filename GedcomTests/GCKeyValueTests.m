@@ -12,12 +12,26 @@
 
 @interface GCTestObserver : NSObject
 
+- (NSArray *)observations;
+
 @property GCEntity *entity;
 
 @end
 
 @implementation GCTestObserver {
     GCEntity *_entity;
+    NSMutableArray *_observations;
+}
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _observations = [NSMutableArray arrayWithCapacity:1];
+    }
+    
+    return self;
 }
 
 -(GCEntity *)entity
@@ -30,7 +44,7 @@
     [self willChangeValueForKey:@"entity"];
     _entity = entity;
     for (NSString *key in [_entity validProperties]) {
-        NSLog(@"Observing: %@", key);
+        //NSLog(@"Observing: %@", key);
         [_entity addObserver:self forKeyPath:key options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     }
     [self didChangeValueForKey:@"entity"];
@@ -38,13 +52,19 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
+    //NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
+    [_observations addObject:[NSString stringWithFormat:@"%@ : %@ : %@", [change valueForKey:NSKeyValueChangeKindKey], [[[change valueForKey:NSKeyValueChangeOldKey] lastObject] gedcomString], [[[change valueForKey:NSKeyValueChangeNewKey] lastObject] gedcomString]]];
+}
+
+- (NSArray *)observations
+{
+    return [_observations copy];
 }
 
 -(void)dealloc
 {
     for (NSString *key in [_entity validProperties]) {
-        NSLog(@"Deobserving: %@", key);
+        //NSLog(@"Deobserving: %@", key);
         [_entity removeObserver:self forKeyPath:key];
     }
 }
@@ -102,10 +122,19 @@
     [indi setValue:names 
             forKey:@"Name"];
     
-    //TODO this should fire something too(?)
+    //TODO should this fire something too?
     [[[indi valueForKey:@"Name"] objectAtIndex:1] setValue:[GCValue valueWithString:@"Store Jens"] forKey:@"Nickname"];
     
     [[indi valueForKey:@"Name"] removeObjectAtIndex:0];
+    
+    NSArray *observations = [NSArray arrayWithObjects:
+                             @"2 : (null) : 0 NAME Jens /Hansen/",
+                             @"2 : (null) : 0 NAME Jens /Hansen/ Smed",
+                             @"3 : 0 NAME Jens /Hansen/ : (null)",
+                             nil];
+    STAssertEqualObjects([observer observations], 
+                         observations,
+                         nil);
 }
 
 @end
