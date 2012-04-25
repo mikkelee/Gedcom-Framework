@@ -1,30 +1,34 @@
 # README #
 
-**Note**: A work in progress. Selectors may change name / appear / disappear.
+**Note**: A work in progress. Selectors may change name / appear / disappear. Currently, GCNodes are fully implemented; a basic implementation of GCObject and its subclasses is done. Most work is done in KVC/KVO & tags.json.
 
 A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
 
 * GEDCOM text <=> GCNode <=> GCObject
 * Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
-* Above GCNodes are GCObjects, which allow for more abstracted data access. There are three basic types of GCObject:
+* Above GCNodes are GCObjects, which allow for more abstracted data access. There are two basic types of GCObject:
   * GCEntity: Root level records - INDI, FAM, etc.
-  * GCAttribute: Any non-relationship node - NAME, DATE, PLAC, etc.
-  * GCRelationship: References to other entities - FAMC, HUSB, etc.
+  * GCProperty: Describes an entity. There are two kinds of properties:
+    * GCAttribute: Any non-relationship node - NAME, DATE, PLAC, etc.
+    * GCRelationship: References to other entities - FAMC, HUSB, etc.
 * Mapping between GCNodes and GCObjects is helped by GCTags which know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
-* Eventually, there should be another layer with things like GCIndividual, GCFamily (?).
+* Xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
+* Property values are handled via GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
+  * GCGenderValue
+  * GCAgeValue (parsed via ParseKit)
+  * GCDateValue (parsed via ParseKit)
+  * GCStringValue
+  * GCNumberValue
+  * GCBoolValue
+* Eventually, there may be another layer with things like GCIndividual, GCFamily (?).
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
 
-Currently, GCNodes are fully implemented; a basic implementation of GCObject and its subclasses is done. Current work is being done on GCFile, focusing on correctly parsing a test-file called "simple.ged". See also Examples & TODO below.
-
-Additionally, parsing and handling of ages and dates per 5.5 spec via ParseKit; handles ranges & periods, allows for sorting.
-
-
 # TODO #
 
-* **tags.plist**: Currently only partially done
+* **GCNode/GCTag**: Move GCTag from GCNode to GCObject (nodes should be "dumb").
+* **tags.json**: Currently only partially done
 * **GCNode**: CONC/CONT - currently unable to preserve weird things like CONC on <248 char lines (which is a dumb thing to do anyway, but allowed in spec) - use unicode "Zero Width Space U+200B" or "Word Joiner U+2060" to handle it?
-* **GCProperty**: changing describedObject should pass on change
 * **GCMutableNode**: Mutable version of GCNode
 * **GCValue**: better type coercions; some currently return nil.
 * **GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.
