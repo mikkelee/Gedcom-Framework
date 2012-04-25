@@ -233,6 +233,7 @@
 		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
 	}
 	
+    //TODO clean up this mess, it's a pain in the ass to follow:
 	for (NSString *line in lines) {
 		NSString *t = @"CONT"; //we use CONT for new lines
 		
