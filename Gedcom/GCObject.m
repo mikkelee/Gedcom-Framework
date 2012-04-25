@@ -59,28 +59,20 @@
     [property setDescribedObject:self];
     
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
-        NSMutableOrderedSet *existing = [_properties valueForKey:[property type]];
+        NSMutableOrderedSet *set = [_properties valueForKey:[property type]];
         
-        if (existing) {
-            //already have an set, so just add here:
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[existing count]];
-            
-            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
-            
-            [existing addObject:property];
-            
-            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
-        } else {
-            //create set:
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-            
-            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
-            
-            [_properties setObject:[NSMutableOrderedSet orderedSetWithObject:property]
-                            forKey:[property type]];
-            
-            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
+        if (!set) {
+            set = [NSMutableOrderedSet orderedSetWithCapacity:1];
+            [_properties setValue:set forKey:[property type]];
         }
+        
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[set count]];
+        
+        [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
+        
+        [set addObject:property];
+        
+        [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
     } else {
         [self willChangeValueForKey:[property type]];
         
