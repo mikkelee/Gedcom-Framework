@@ -131,7 +131,9 @@
 #pragma mark NSKeyValueCoding overrides
 
 void setValueForKeyHelper(id obj, NSString *key, id value) {
-    if ([value isKindOfClass:[GCValue class]]) {
+    if ([value isKindOfClass:[GCProperty class]]) {
+        [obj addProperty:value];
+    } else if ([value isKindOfClass:[GCValue class]]) {
         [obj addAttributeWithType:key value:value];
     } else if ([value isKindOfClass:[GCEntity class]]) {
         [obj addRelationshipWithType:key target:value];
@@ -160,6 +162,15 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     }
 }
 
+- (void)setNilValueForKey:(NSString *)key
+{
+    if ([[self validProperties] containsObject:key]) {
+        [_properties removeObjectForKey:key];
+    } else {
+        [super setNilValueForKey:key];
+    }
+}
+
 - (id)valueForKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
@@ -185,12 +196,35 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     }
 }
 
-- (void)setNilValueForKey:(NSString *)key
+- (id)valueForKeyPath:(NSString *)keyPath
 {
-    if ([[self validProperties] containsObject:key]) {
-        [_properties removeObjectForKey:key];
+    NSMutableArray *keys = [[keyPath componentsSeparatedByString:@"."] mutableCopy];
+    NSString *firstKey = [keys objectAtIndex:0];
+    [keys removeObjectAtIndex:0];
+    
+    if ([[self validProperties] containsObject:firstKey]) {
+        id obj = [self valueForKey:firstKey];
+        
+        if ([keys count] == 0) {
+            return obj;
+        }
+        
+        if ([obj isKindOfClass:[GCMutableOrderedSetProxy class]]) {
+            NSMutableOrderedSet *values = [NSMutableOrderedSet orderedSetWithCapacity:[obj count]];
+            
+            for (id item in obj) {
+                id val = [item valueForKeyPath:[keys componentsJoinedByString:@"."]];
+                if (val) {
+                    [values addObject:val];
+                }
+            }
+            
+            return values;
+        } else {
+            return [obj valueForKeyPath:[keys componentsJoinedByString:@"."]];
+        }
     } else {
-        [super setNilValueForKey:key];
+        return [super valueForKeyPath:keyPath];
     }
 }
 

@@ -56,6 +56,34 @@
 
 @implementation GCKeyValueTests
 
+- (void)testKVC
+{
+	GCContext *ctx = [GCContext context];
+	
+    GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    
+    GCProperty *name1 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
+    GCProperty *name2 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Jensen/"];
+    
+    GCProperty *nickname = [GCAttribute attributeWithType:@"Nickname" stringValue:@"Store Jens"];
+    
+    [name1 addProperty:nickname];
+    
+    STAssertEqualObjects([nickname describedObject], name1, nil);
+    STAssertTrue([[name1 properties] containsObject:nickname], nil);
+    STAssertFalse([[name2 properties] containsObject:nickname], nil);
+    
+    [name2 addProperty:nickname];
+    
+    STAssertEqualObjects([nickname describedObject], name2, nil);
+    STAssertTrue([[name2 properties] containsObject:nickname], nil);
+    STAssertFalse([[name1 properties] containsObject:nickname], nil);
+    
+    [indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"Name"];
+    
+    STAssertEqualObjects([indi valueForKeyPath:@"Name.Nickname"], [NSOrderedSet orderedSetWithObject:nickname], nil);
+}
+
 -(void)testKVO
 {
     GCTestObserver *observer = [[GCTestObserver alloc] init];
@@ -74,8 +102,10 @@
     [indi setValue:names 
             forKey:@"Name"];
     
+    //TODO this should fire something too(?)
+    [[[indi valueForKey:@"Name"] objectAtIndex:1] setValue:[GCValue valueWithString:@"Store Jens"] forKey:@"Nickname"];
+    
     [[indi valueForKey:@"Name"] removeObjectAtIndex:0];
 }
-
 
 @end

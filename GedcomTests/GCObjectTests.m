@@ -152,26 +152,6 @@
                          , nil);
 }
 
-- (void)testKVC
-{
-    GCProperty *name1 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
-    GCProperty *name2 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Jensen/"];
-    
-    GCProperty *nickname = [GCAttribute attributeWithType:@"Nickname" stringValue:@"Store Jens"];
-    
-    [name1 addProperty:nickname];
-    
-    STAssertEqualObjects([nickname describedObject], name1, nil);
-    STAssertTrue([[name1 properties] containsObject:nickname], nil);
-    STAssertFalse([[name2 properties] containsObject:nickname], nil);
-    
-    [name2 addProperty:nickname];
-    
-    STAssertEqualObjects([nickname describedObject], name2, nil);
-    STAssertTrue([[name2 properties] containsObject:nickname], nil);
-    STAssertFalse([[name1 properties] containsObject:nickname], nil);
-}
-
 - (void)testSetGedcomString
 {
 	GCContext *ctx = [GCContext context];
