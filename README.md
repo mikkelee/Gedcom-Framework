@@ -40,39 +40,52 @@ The intent is to hide the GEDCOM specifics, but to allow access if required.
 	GCContext *ctx = [GCContext context];
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    
+    NSArray *names = [NSArray arrayWithObjects:
+                      [GCValue valueWithString:@"Jens /Hansen/"], 
+                      [GCValue valueWithString:@"Jens /Hansen/ Smed"], 
+                      nil];
+    
+    [indi setValue:names 
+            forKey:@"Name"];
 	
-    [indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
-	[indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
+    //alternately:
+    // [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
+	// [indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
     
-	GCAttribute *birt = [GCAttribute attributeForObject:indi withType:@"Birth"];
+	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateFromGedcom:@"1 JAN 1901"]];
+	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
     
-    [indi addAttribute:birt];
+    [[indi properties] addObject:birt];
+    
+    //alternately:
+    // [indi addProperty:birt];
+    // [[indi valueForKey:[birt type]] addObject:birt];
     
     [indi addAttributeWithType:@"Death" boolValue:YES];
 ```
 
-is equivalent to (note [GCTag tagWithType:@"GCEntity" code:@"INDI"] is equivalent to [GCTag tagNamed:@"Individual record"]):
+is equivalent to:
 
 ``` objective-c
-    GCNode *node = [[GCNode alloc] initWithTag:[GCTag tagWithType:@"GCEntity" code:@"INDI"] 
+    GCNode *node = [[GCNode alloc] initWithTag:@"INDI" 
                                          value:nil
                                           xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
-                                                [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"NAME"] 
+                                                [GCNode nodeWithTag:@"NAME" 
                                                               value:@"Jens /Hansen/ Smed"],
-                                                [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"NAME"] 
+                                                [GCNode nodeWithTag:@"NAME" 
                                                               value:@"Jens /Hansen/"],
-                                                [[GCNode alloc] initWithTag:[GCTag tagWithType:@"GCAttribute" code:@"BIRT"] 
+                                                [[GCNode alloc] initWithTag:@"BIRT" 
                                                                       value:nil
                                                                        xref:nil
                                                                    subNodes:[NSArray arrayWithObjects:
-                                                                             [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"DATE"]
-                                                                                                           value:@"1 JAN 1901"],
+                                                                             [GCNode nodeWithTag:@"DATE"
+                                                                                           value:@"1 JAN 1901"],
                                                                               nil]
                                                                              ],
-                                                [GCNode nodeWithTag:[GCTag tagWithType:@"GCAttribute" code:@"DEAT"] 
+                                                [GCNode nodeWithTag:@"DEAT" 
                                                               value:@"Y"],
                                                  nil]];
 ```
@@ -106,9 +119,15 @@ Relationship example:
 	[chil addAttributeWithType:@"Sex" genderValue:GCMale];
 	
     GCEntity *fam = [GCEntity entityWithType:@"Family record" inContext:ctx];
-	[fam addRelationshipWithType:@"Husband" target:husb];
-	[fam addRelationshipWithType:@"Wife" target:wife];
-	[fam addRelationshipWithType:@"Child" target:chil];
+    
+    [fam setValue:husb forKey:@"Husband"];
+    [fam setValue:wife forKey:@"Wife"];
+    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"Child"];
+    
+    //alternately:
+	// [fam addRelationshipWithType:@"Husband" target:husb];
+	// [fam addRelationshipWithType:@"Wife" target:wife];
+	// [fam addRelationshipWithType:@"Child" target:chil];
 ```
 
 is equivalent to:
