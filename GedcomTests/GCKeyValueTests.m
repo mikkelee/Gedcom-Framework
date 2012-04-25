@@ -53,7 +53,11 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     //NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
-    [_observations addObject:[NSString stringWithFormat:@"%@ : %@ : %@", [change valueForKey:NSKeyValueChangeKindKey], [[[change valueForKey:NSKeyValueChangeOldKey] lastObject] gedcomString], [[[change valueForKey:NSKeyValueChangeNewKey] lastObject] gedcomString]]];
+    [_observations addObject:
+     [NSString stringWithFormat:@"%@ : %@ : %@", 
+      [change valueForKey:NSKeyValueChangeKindKey], 
+      [[[change valueForKey:NSKeyValueChangeOldKey] lastObject] gedcomString], 
+      [[[change valueForKey:NSKeyValueChangeNewKey] lastObject] gedcomString]]];
 }
 
 - (NSArray *)observations
@@ -128,6 +132,7 @@
     [[indi valueForKey:@"Name"] removeObjectAtIndex:0];
     
     NSArray *observations = [NSArray arrayWithObjects:
+                             // NSKeyValueChange : old : new
                              @"2 : (null) : 0 NAME Jens /Hansen/",
                              @"2 : (null) : 0 NAME Jens /Hansen/ Smed",
                              @"3 : 0 NAME Jens /Hansen/ : (null)",
