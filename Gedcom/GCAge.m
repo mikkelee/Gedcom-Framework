@@ -11,6 +11,8 @@
 #import "GCAge.h"
 #import <ParseKit/ParseKit.h>
 
+#import "GCDate.h"
+
 #pragma mark Private methods
 
 @class GCSimpleAge;
@@ -516,9 +518,24 @@ NSString * const GCAgeQualifier_toString[] = {
 
 + (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
 {
-    //TODO
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
+    NSParameterAssert([fromDate year] != -1);
+    NSParameterAssert([toDate year] != -1);
+    
+    NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
+    
+    [ageComponents setYear:([toDate year] - [fromDate year])];
+    
+    NSUInteger fromMonth = [fromDate month] != -1 ? [fromDate month] : 6;
+    NSUInteger toMonth = [toDate month] != -1 ? [toDate month] : 6;
+    
+    [ageComponents setMonth:(fromMonth - toMonth)];
+    
+    NSUInteger fromDay = [fromDate day] != -1 ? [fromDate day] : 15;
+    NSUInteger toDay = [toDate day] != -1 ? [toDate day] : 15;
+    
+    [ageComponents setDay:(fromDay - toDay)];
+    
+    return [GCAge ageWithSimpleAge:ageComponents];
 }
 
 #pragma mark Comparison
