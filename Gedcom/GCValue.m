@@ -22,6 +22,7 @@
     
     if (self) {
         _type = type;
+        //TODO enforce type for value...
         _value = value;
     }
     
@@ -49,108 +50,209 @@
 
 - (NSString *)stringValue
 {
-    if ([_value isKindOfClass:[NSString class]]) {
-        return _value;
-    } else if ([_value isKindOfClass:[NSNumber class]]) {
-        if (_type == GCBoolValue) {
-            return [_value boolValue] ? @"Y" : @"N";
-        } else if (_type == GCGenderValue) {
-			if ([_value intValue] == GCMale) {
-				return @"M";
-			} else if ([_value intValue] == GCFemale) {
-				return @"F";
-			} else {
-				return @"U";
-			}
-        } else {
+    switch (_type) {
+        case GCStringValue:
+            return _value;
+            break;
+            
+        case GCNumberValue:
             return [_value stringValue];
-        }
-    } else if ([_value isKindOfClass:[GCAge class]]) {
-        return [_value gedcomString];
-    } else if ([_value isKindOfClass:[GCDate class]]) {
-        return [_value gedcomString];
-    } else {
-        return nil; //TODO
+            break;
+            
+        case GCAgeValue:
+            return [_value gedcomString];
+            break;
+            
+        case GCDateValue:
+            return [_value gedcomString];
+            break;
+            
+        case GCBoolValue:
+            return [_value boolValue] ? @"Y" : @"N";
+            break;
+            
+        case GCGenderValue:
+            if ([_value intValue] == GCMale) {
+                return @"M";
+            } else if ([_value intValue] == GCFemale) {
+                return @"F";
+            } else {
+                return @"U";
+            }
+            break;
+            
+        default:
+            break;
     }
+    
+    NSAssert(NO, @"Unable to coerce %@ to stringValue", _value);
+    __builtin_unreachable();
 }
 
 - (NSNumber *)numberValue
 {
-    if ([_value isKindOfClass:[NSString class]]) {
-        return nil; //TODO
-    } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return _value;
-    } else if ([_value isKindOfClass:[GCAge class]]) {
-        return [NSNumber numberWithInt:[_value years]];
-    } else if ([_value isKindOfClass:[GCDate class]]) {
-        return [NSNumber numberWithInt:[_value year]];
-    } else {
-        return nil; //TODO
+    switch (_type) {
+        case GCStringValue:
+            return [NSNumber numberWithInt:[_value integerValue]];
+            break;
+            
+        case GCNumberValue:
+            return _value;
+            break;
+            
+        case GCAgeValue:
+            return [NSNumber numberWithInt:[_value years]];
+            break;
+            
+        case GCDateValue:
+            return [NSNumber numberWithInt:[_value year]];
+            break;
+            
+        case GCBoolValue:
+            break;
+            
+        case GCGenderValue:
+            break;
+            
+        default:
+            break;
     }
+    
+    NSAssert(NO, @"Unable to coerce %@ to numberValue", _value);
+    __builtin_unreachable();
 }
 
 - (GCAge *)ageValue
 {
-    if ([_value isKindOfClass:[NSString class]]) {
-        return [GCAge ageWithGedcom:_value];
-    } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [GCAge ageWithGedcom:[_value stringValue]];
-    } else if ([_value isKindOfClass:[GCAge class]]) {
-        return _value;
-    } else if ([_value isKindOfClass:[GCDate class]]) {
-        return nil; //TODO
-    } else {
-        return nil; //TODO
+    switch (_type) {
+        case GCStringValue:
+            return [GCAge ageWithGedcom:_value];
+            break;
+            
+        case GCNumberValue:
+            return [GCAge ageWithGedcom:[_value stringValue]];
+            break;
+            
+        case GCAgeValue:
+            return _value;
+            break;
+            
+        case GCDateValue:
+            break;
+            
+        case GCBoolValue:
+            break;
+            
+        case GCGenderValue:
+            break;
+            
+        default:
+            break;
     }
+    
+    NSAssert(NO, @"Unable to coerce %@ to ageValue", _value);
+    __builtin_unreachable();
 }
 
 - (GCDate *)dateValue
 {
-    if ([_value isKindOfClass:[NSString class]]) {
-        return [GCDate dateWithGedcom:_value];
-    } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [GCDate dateWithGedcom:[_value stringValue]];
-    } else if ([_value isKindOfClass:[GCAge class]]) {
-        return nil; //TODO
-    } else if ([_value isKindOfClass:[GCDate class]]) {
-        return _value;
-    } else {
-        return nil; //TODO
+    switch (_type) {
+        case GCStringValue:
+            return [GCDate dateWithGedcom:_value];
+            break;
+            
+        case GCNumberValue:
+            return [GCDate dateWithGedcom:[_value stringValue]];
+            break;
+            
+        case GCAgeValue:
+            break;
+            
+        case GCDateValue:
+            return _value;
+            break;
+            
+        case GCBoolValue:
+            break;
+            
+        case GCGenderValue:
+            break;
+            
+        default:
+            break;
     }
+    
+    NSAssert(NO, @"Unable to coerce %@ to dateValue", _value);
+    __builtin_unreachable();
 }
 
 - (BOOL)boolValue
 {
-    if ([_value isKindOfClass:[NSString class]]) {
-        return [_value isEqualToString:@"Y"];
-    } else if ([_value isKindOfClass:[NSNumber class]]) {
-        return [_value boolValue];
-    } else if ([_value isKindOfClass:[GCAge class]]) {
-        return NO; //TODO
-    } else if ([_value isKindOfClass:[GCDate class]]) {
-        return NO; //TODO
-    } else {
-        return NO; //TODO
+    switch (_type) {
+        case GCStringValue:
+            return [_value isEqualToString:@"Y"];
+            break;
+            
+        case GCNumberValue:
+            return [_value boolValue];
+            break;
+            
+        case GCAgeValue:
+            break;
+            
+        case GCDateValue:
+            break;
+            
+        case GCBoolValue:
+            return [_value boolValue];
+            break;
+            
+        case GCGenderValue:
+            break;
+            
+        default:
+            break;
     }
+    
+    NSAssert(NO, @"Unable to coerce %@ to boolValue", _value);
+    __builtin_unreachable();
 }
 
 - (GCGender)genderValue
 {
-    if ([_value isKindOfClass:[NSString class]]) {
-        return GCUnknownGender;
-    } else if ([_value isKindOfClass:[NSNumber class]]) {
-		if (_type == GCGenderValue) {
+    switch (_type) {
+        case GCStringValue:
+            if ([_value isEqualToString:@"M"]) {
+                return GCMale;
+            } else if ([_value isEqualToString:@"F"]) {
+                return GCFemale;
+            } else {
+                return GCUnknownGender;
+            }
+            break;
+            
+        case GCNumberValue:
+            break;
+            
+        case GCAgeValue:
+            break;
+            
+        case GCDateValue:
+            break;
+            
+        case GCBoolValue:
+            break;
+            
+        case GCGenderValue:
 			return [_value intValue];
-		} else {
-			return GCUnknownGender;
-		}
-    } else if ([_value isKindOfClass:[GCAge class]]) {
-        return GCUnknownGender;
-    } else if ([_value isKindOfClass:[GCDate class]]) {
-        return GCUnknownGender;
-    } else {
-        return GCUnknownGender;
+            break;
+            
+        default:
+            break;
     }
+    
+    NSAssert(NO, @"Unable to coerce %@ to genderValue", _value);
+    __builtin_unreachable();
 }
 
 #pragma mark Comparison & equality
