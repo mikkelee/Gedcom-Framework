@@ -18,7 +18,7 @@
 - (NSArray *)gedcomLinesAtLevel:(int) level;
 
 @property GCNode *parent;
-@property GCTag *gedTag;
+@property NSString *gedTag;
 @property NSString *gedValue;
 @property NSString *xref;
 @property NSString *lineSeparator;
@@ -43,7 +43,7 @@
 	return self;
 }
 
-- (id)initWithTag:(GCTag *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     NSParameterAssert(tag != nil);
     
@@ -64,22 +64,22 @@
 
 #pragma mark Convenience constructors
 
-+ (id)nodeWithTag:(GCTag *)tag value:(NSString *)value
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value
 {
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:nil];
 }
 
-+ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref
 {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
 }
 
-+ (id)nodeWithTag:(GCTag *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
 {
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
 }
 
-+ (id)nodeWithTag:(GCTag *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
 }
@@ -168,11 +168,11 @@
             NSLog(@"code: %@", code);
             
             if (parent) {
-                node = [GCNode nodeWithTag:[[parent gedTag] subTagWithCode:code] 
+                node = [GCNode nodeWithTag:code 
                                      value:val];
                 [parent addSubNode:node];
             } else {
-                node = [GCNode nodeWithTag:[GCTag rootTagWithCode:code] 
+                node = [GCNode nodeWithTag:code 
                                       xref:xref];
                 [gedArray addObject:node];
             }
@@ -220,16 +220,16 @@
 	[lines removeObjectAtIndex:0];
 	
 	if ([self xref] != nil && [self gedValue] == nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] code]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
 	} else if ([self xref] == nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [[self gedTag] code], firstLine]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], firstLine]];
 	} else if ([self xref] != nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [[self gedTag] code]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
 		if (![firstLine isEqualToString:@""]) {
 			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, @"CONT", firstLine]];
 		}
 	} else {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [[self gedTag] code]]];
+		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
 	}
 	
 	for (NSString *line in lines) {
@@ -268,7 +268,7 @@
 	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
 	
     for (id subNode in [self subNodes]) {
-		if ([[[subNode gedTag] code] isEqualTo:key]) {
+		if ([[subNode gedTag] isEqualTo:key]) {
 			[subNodes addObject:subNode];
 		}
 	}

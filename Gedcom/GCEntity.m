@@ -53,12 +53,12 @@
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCEntity *entity = [self entityWithType:[[node gedTag] name] inContext:context];
+    GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:[node gedTag]] name] inContext:context];
     
 	[context storeXref:[node xref] forEntity:entity];
 	
-    for (id subNode in [node subNodes]) {
-        if ([[[subNode gedTag] name] isEqualToString:@"@Changed"]) {
+    for (GCNode *subNode in [node subNodes]) {
+        if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
             [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:subNode]];
         } else {
             [entity addPropertyWithGedcomNode:subNode];
@@ -100,7 +100,7 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:[self gedTag] 
+    return [[GCNode alloc] initWithTag:[[self gedTag] code]
 								 value:nil
 								  xref:[[self context] xrefForEntity:self]
 							  subNodes:[self subNodes]];

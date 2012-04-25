@@ -26,13 +26,15 @@
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-	if ([[node gedTag] objectClass] == [GCAttribute class]) {
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag]];
+    
+	if ([tag objectClass] == [GCAttribute class]) {
 		return [GCAttribute attributeForObject:object withGedcomNode:node];
-	} else if ([[node gedTag] objectClass] == [GCRelationship class]) {
+	} else if ([tag objectClass] == [GCRelationship class]) {
 		return [GCRelationship relationshipForObject:object withGedcomNode:node];
 	} else {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
-														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' on %@", [[node gedTag] objectClass], node]
+														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' on %@", [tag objectClass], node]
 													   userInfo:nil];
 		@throw exception;
 	}

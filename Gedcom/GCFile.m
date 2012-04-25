@@ -29,8 +29,9 @@
 		_context = context;
 		_records = [NSMutableArray arrayWithCapacity:[nodes count]];
 		
-		for (id node in nodes) {
-            Class objectClass = [[node gedTag] objectClass];
+		for (GCNode *node in nodes) {
+            GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
+            Class objectClass = [tag objectClass];
             
             if ([objectClass isEqual:[GCHeader class]]) {
                 if (_head) {
@@ -88,7 +89,7 @@
 		[nodes addObject:[record gedcomNode]];
 	}
 	
-    [nodes addObject:[GCNode nodeWithTag:[GCTag tagNamed:@"Trailer"] value:nil]];
+    [nodes addObject:[GCNode nodeWithTag:@"TRLR" value:nil]];
     
 	return nodes;
 }

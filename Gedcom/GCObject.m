@@ -394,7 +394,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     
     GCNode *node = [nodes lastObject];
     
-    NSParameterAssert([[[node gedTag] objectClass] isEqual:[self class]]);
+    NSParameterAssert([[[self gedTag] code] isEqualToString:[node gedTag]]);
     
     if ([node xref]) {
         NSParameterAssert([[node xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);

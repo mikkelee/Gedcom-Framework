@@ -25,10 +25,12 @@
 
 + (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCAttribute *attribute = [[self alloc] initWithType:[[node gedTag] name]];
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag]];
+    
+    GCAttribute *attribute = [[self alloc] initWithType:[tag name]];
     
     if ([node gedValue] != nil) {
-        switch ([[node gedTag] valueType]) {
+        switch ([tag valueType]) {
             case GCStringValue:
                 [attribute setStringValue:[node gedValue]];
                 break;
@@ -67,7 +69,7 @@
         }
     }
     
-    for (id subNode in [node subNodes]) {
+    for (GCNode *subNode in [node subNodes]) {
         [attribute addPropertyWithGedcomNode:subNode];
     }
     
@@ -85,7 +87,7 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:[self gedTag] 
+    return [[GCNode alloc] initWithTag:[[self gedTag] code]
 								 value:[self stringValue]
 								  xref:nil
 							  subNodes:[self subNodes]];

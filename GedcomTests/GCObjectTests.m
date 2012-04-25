@@ -63,24 +63,23 @@
     
     ctx = [GCContext context]; //fresh context
 	
-    GCTag *indiTag = [GCTag rootTagWithCode:@"INDI"];
-    GCNode *node = [[GCNode alloc] initWithTag:indiTag 
+    GCNode *node = [[GCNode alloc] initWithTag:@"INDI" 
                                          value:nil
                                           xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
-                                                [GCNode nodeWithTag:[indiTag subTagWithCode:@"NAME"] 
+                                                [GCNode nodeWithTag:@"NAME" 
                                                               value:@"Jens /Hansen/ Smed"],
-                                                [GCNode nodeWithTag:[indiTag subTagWithCode:@"NAME"] 
+                                                [GCNode nodeWithTag:@"NAME" 
                                                               value:@"Jens /Hansen/"],
-                                                [[GCNode alloc] initWithTag:[indiTag subTagWithCode:@"BIRT"] 
+                                                [[GCNode alloc] initWithTag:@"BIRT" 
                                                                       value:nil
                                                                        xref:nil
                                                                    subNodes:[NSArray arrayWithObjects:
-                                                                             [GCNode nodeWithTag:[[indiTag subTagWithCode:@"BIRT"] subTagWithCode:@"DATE"]
-                                                                                                           value:@"1 JAN 1901"],
+                                                                             [GCNode nodeWithTag:@"DATE"
+                                                                                           value:@"1 JAN 1901"],
                                                                               nil]
                                                                              ],
-                                                [GCNode nodeWithTag:[indiTag subTagWithCode:@"DEAT"] 
+                                                [GCNode nodeWithTag:@"DEAT" 
                                                               value:@"Y"],
                                                  nil]];
     

@@ -26,7 +26,6 @@ The intent is to hide the GEDCOM specifics, but to allow access if required.
 
 # TODO #
 
-* **GCNode/GCTag**: Move GCTag from GCNode to GCObject (nodes should be "dumb").
 * **tags.json**: Currently only partially done
 * **GCNode**: CONC/CONT - currently unable to preserve weird things like CONC on <248 char lines (which is a dumb thing to do anyway, but allowed in spec) - use unicode "Zero Width Space U+200B" or "Word Joiner U+2060" to handle it?
 * **GCMutableNode**: Mutable version of GCNode

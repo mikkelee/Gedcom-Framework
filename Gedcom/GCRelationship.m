@@ -20,7 +20,9 @@
 
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCRelationship *relationship = [[self alloc] initWithType:[[node gedTag] name]];
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag]];
+    
+    GCRelationship *relationship = [[self alloc] initWithType:[tag name]];
     
 	[[object context] registerXref:[node gedValue] forBlock:^(NSString *xref) {
 		GCEntity *target = [[object context] entityForXref:xref];
@@ -28,7 +30,7 @@
 		NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
 	}];
     
-    for (id subNode in [node subNodes]) {
+    for (GCNode *subNode in [node subNodes]) {
         [relationship addPropertyWithGedcomNode:subNode];
     }
     
@@ -46,7 +48,7 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:[self gedTag]
+    return [[GCNode alloc] initWithTag:[[self gedTag] code]
 								 value:[[self context] xrefForEntity:_target]
 								  xref:nil
 							  subNodes:[self subNodes]];
