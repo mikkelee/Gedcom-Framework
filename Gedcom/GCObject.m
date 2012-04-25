@@ -114,7 +114,7 @@
 
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
 {
-	return [[GCTag tagNamed:[self type]] allowsMultipleSubtags:[GCTag tagNamed:type]];
+	return [_tag allowsMultipleSubtags:[GCTag tagNamed:type]];
 }
 
 #pragma mark NSKeyValueCoding overrides
@@ -127,6 +127,8 @@
         } else if ([value isKindOfClass:[GCEntity class]]) {
             [self addRelationshipWithType:key target:value];
         } else if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
+            // HACKTOWN: this is shameful
+            [self setNilValueForKey:key]; //clean first
             for (id item in value) {
                 [self setValue:item forKey:key];
             }
@@ -165,7 +167,11 @@
 
 - (void)setNilValueForKey:(NSString *)key
 {
-    [_properties removeObjectForKey:key];
+    if ([[self validProperties] containsObject:key]) {
+        [_properties removeObjectForKey:key];
+    } else {
+        [super setNilValueForKey:key];
+    }
 }
 
 #pragma mark Gedcom access

@@ -27,17 +27,28 @@
 	GCContext *ctx = [GCContext context];
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    
+    NSArray *names = [NSArray arrayWithObjects:
+                      [GCValue valueWithString:@"Jens /Hansen/"], 
+                      [GCValue valueWithString:@"Jens /Hansen/ Smed"], 
+                      nil];
+    
+    [indi setValue:names 
+            forKey:@"Name"];
 	
-    [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
-	[indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/ Smed"]];
+    //alternately:
+	// [indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
+    // [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
 	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
     
     [[indi properties] addObject:birt];
-    //alternately: [indi addProperty:birt];
-    //alternately: [[indi valueForKey:[birt type]] addObject:birt];
+    
+    //alternately:
+    // [indi addProperty:birt];
+    // [[indi valueForKey:[birt type]] addObject:birt];
     
     [indi addAttributeWithType:@"Death" boolValue:YES];
     
@@ -102,9 +113,15 @@
 	[chil addAttributeWithType:@"Sex" genderValue:GCMale];
 	
     GCEntity *fam = [GCEntity entityWithType:@"Family record" inContext:ctx];
-	[fam addRelationshipWithType:@"Husband" target:husb];
-	[fam addRelationshipWithType:@"Wife" target:wife];
-	[fam addRelationshipWithType:@"Child" target:chil];
+    
+    [fam setValue:husb forKey:@"Husband"];
+    [fam setValue:wife forKey:@"Wife"];
+    [fam setValue:chil forKey:@"Child"];
+    
+    //alternately:
+	// [fam addRelationshipWithType:@"Husband" target:husb];
+	// [fam addRelationshipWithType:@"Wife" target:wife];
+	// [fam addRelationshipWithType:@"Child" target:chil];
 	
     STAssertEqualObjects([fam gedcomString], 
                          @"0 @FAM1@ FAM\n"
