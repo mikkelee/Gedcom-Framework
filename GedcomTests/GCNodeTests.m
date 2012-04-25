@@ -59,9 +59,8 @@
 	[self testFile:path countShouldBe:7];
 }
 
--(void)TMP//testAllGed
+-(void)testAllGed
 {
-	//NOTE: this test FAILS due to the <248 CONC issue.
 	//from http://www.heiner-eichmann.de/gedcom/gedcom.htm
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
 	STAssertNotNil(path, nil);

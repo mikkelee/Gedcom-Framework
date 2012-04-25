@@ -27,7 +27,6 @@ The intent is to hide the GEDCOM specifics, but to allow access if required.
 # TODO #
 
 * **tags.json**: Currently only partially done
-* **GCNode**: CONC/CONT - currently unable to preserve weird things like CONC on <248 char lines (which is a dumb thing to do anyway, but allowed in spec) - use unicode "Zero Width Space U+200B" or "Word Joiner U+2060" to handle it?
 * **GCMutableNode**: Mutable version of GCNode
 * **GCValue**: better type coercions; some currently return nil.
 * **GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.

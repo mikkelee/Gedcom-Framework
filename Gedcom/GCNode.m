@@ -152,7 +152,7 @@
 				if ([currentNode gedValue] == nil) {
 					[currentNode setGedValue:@""];
 				}
-				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@", [currentNode gedValue], val]];
+				[currentNode setGedValue:[NSString stringWithFormat:@"%@\u2060%@", [currentNode gedValue], val]];
 				continue;
 			}
             
@@ -162,18 +162,19 @@
              NSLog(@"code: %@", code);
              NSLog(@"val: %@", val);
              NSLog(@"type: %@", type);
-             NSLog(@"tag: %@", tag);
              */
             
-            NSLog(@"code: %@", code);
-            
-            if (parent) {
-                node = [GCNode nodeWithTag:code 
-                                     value:val];
-                [parent addSubNode:node];
-            } else {
+            if (xref) {
                 node = [GCNode nodeWithTag:code 
                                       xref:xref];
+            } else {
+                node = [GCNode nodeWithTag:code 
+                                     value:val];
+            }
+            
+            if (parent) {
+                [parent addSubNode:node];
+            } else {
                 [gedArray addObject:node];
             }
             
@@ -236,14 +237,30 @@
 		NSString *t = @"CONT"; //we use CONT for new lines
 		
 		if ([line length] <= 248) {
-			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, line]];
+            if ([line rangeOfString:@"\u2060"].location != NSNotFound) {
+                NSUInteger index = [line rangeOfString:@"\u2060"].location;
+                
+                [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, [line substringToIndex:index]]];
+                
+                t = @"CONC";
+                
+                [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, [line substringFromIndex:index+1]]];
+            } else {
+                [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, line]];
+            }
 		} else {
 			//split string in 248-char parts, loop & add as CONC
 			NSString *leftover = line;
 			
-			while ([leftover length] > 248) {
-				NSString *bite = [leftover substringToIndex:248];
-				leftover = [leftover substringFromIndex:248];
+			while ([leftover length] > 248 || [leftover rangeOfString:@"\u2060"].location != NSNotFound) {
+                NSUInteger toIndex = 248;
+                NSUInteger fromIndex = 248;
+                if ([leftover rangeOfString:@"\u2060"].location != NSNotFound) {
+                    toIndex = [leftover rangeOfString:@"\u2060"].location;
+                    fromIndex = toIndex + 1;
+                }
+				NSString *bite = [leftover substringToIndex:toIndex];
+				leftover = [leftover substringFromIndex:fromIndex];
 				
 				[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, bite]];
 				

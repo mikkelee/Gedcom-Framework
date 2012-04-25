@@ -402,14 +402,14 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     
     NSMutableOrderedSet *originalProperties = [[self properties] mutableCopy];
     
-    NSLog(@"originalProperties: %@", originalProperties);
+    //NSLog(@"originalProperties: %@", originalProperties);
     
     for (GCNode *subNode in [node subNodes]) {
         GCProperty *property = [GCProperty propertyForObject:self withGedcomNode:subNode];
         [originalProperties removeObject:property];
     }
     
-    NSLog(@"originalProperties: %@", originalProperties);
+    //NSLog(@"originalProperties: %@", originalProperties);
     
     //remove the left over objects:
     for (GCProperty *property in originalProperties) {

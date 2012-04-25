@@ -167,7 +167,7 @@
     GCAttribute *birt1 = [[indi valueForKey:@"Birth"] lastObject];
     GCAttribute *deat1 = [[indi valueForKey:@"Death"] lastObject];
     
-    NSLog(@"[indi properties]: %@", [indi properties]);
+    //NSLog(@"[indi properties]: %@", [indi properties]);
     
     [indi setGedcomString:@"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
@@ -183,7 +183,7 @@
     STAssertEqualObjects(birt1, birt2, nil);
     STAssertFalse([deat1 isEqual:deat2], nil);
     
-    NSLog(@"[indi properties]: %@", [indi properties]);
+    //NSLog(@"[indi properties]: %@", [indi properties]);
     
     STAssertEquals([[indi properties] count], (NSUInteger)4, nil);
 }
@@ -202,10 +202,10 @@
 		[gc_outputLines addObjectsFromArray:[node gedcomLines]];
 	}
 	
-	NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
+	//NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
 	
 	for (int i = 0; i < [gc_outputLines count]; i++) {
-		NSLog(@"test: %@ - %@", [gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i]);
+		//NSLog(@"test: %@ - %@", [gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i]);
 		STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], nil);
 	}
 }
