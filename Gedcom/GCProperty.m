@@ -14,8 +14,13 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-@implementation GCProperty {
-}
+@interface GCProperty ()
+
+@property GCObject *primitiveDescribedObject;
+
+@end
+
+@implementation GCProperty 
 
 #pragma mark Convenience constructors
 
@@ -54,7 +59,26 @@
 
 #pragma mark Objective-C properties
 
-@synthesize describedObject = _describedObject;
+@synthesize primitiveDescribedObject = _describedObject;
+
+-(GCObject *)describedObject
+{
+    return [self primitiveDescribedObject];
+}
+
+-(void)setDescribedObject:(GCObject *)describedObject
+{
+    [self willChangeValueForKey:@"describedObject"];
+    if (_describedObject) {
+        if (_describedObject == self) {
+            return;
+        }
+        [_describedObject removeProperty:self];
+    }
+    [self setPrimitiveDescribedObject:describedObject];
+    [_describedObject addProperty:self];
+    [self didChangeValueForKey:@"describedObject"];
+}
 
 - (GCContext *)context
 {

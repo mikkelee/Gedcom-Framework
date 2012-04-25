@@ -56,7 +56,7 @@
         [[property describedObject] removeProperty:property];
     }
     
-    [property setDescribedObject:self];
+    [property setValue:self forKey:@"primitiveDescribedObject"];
     
     if ([self allowsMultiplePropertiesOfType:[property type]]) {
         NSMutableOrderedSet *set = [_properties valueForKey:[property type]];
@@ -109,7 +109,7 @@
         [self didChangeValueForKey:[property type]];
     }
     
-    [property setDescribedObject:nil];
+    [property setValue:nil forKey:@"primitiveDescribedObject"];
 }
 
 - (NSOrderedSet *)validProperties
