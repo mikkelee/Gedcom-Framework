@@ -74,4 +74,6 @@
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target;
 
+- (void)addPropertyWithGedcomNode:(GCNode *)node;
+
 @end

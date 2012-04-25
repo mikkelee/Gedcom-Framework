@@ -119,21 +119,30 @@
 
 #pragma mark NSKeyValueCoding overrides
 
+void setValueForKeyHelper(id obj, NSString *key, id value) {
+    if ([value isKindOfClass:[GCValue class]]) {
+        [obj addAttributeWithType:key value:value];
+    } else if ([value isKindOfClass:[GCEntity class]]) {
+        [obj addRelationshipWithType:key target:value];
+    } else {
+		NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
+														 reason:[NSString stringWithFormat:@"Invalid value %@ for setValue:forKey:", value]
+													   userInfo:nil];
+		@throw exception;
+    }
+}
+
 - (void)setValue:(id)value forKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
-        if ([value isKindOfClass:[GCValue class]]) {
-            [self addAttributeWithType:key value:value];
-        } else if ([value isKindOfClass:[GCEntity class]]) {
-            [self addRelationshipWithType:key target:value];
-        } else if ([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
-            // HACKTOWN: this is shameful
+        if ([self allowsMultiplePropertiesOfType:key]) {
+            NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
             for (id item in value) {
-                [self setValue:item forKey:key];
+                setValueForKeyHelper(self, key, item);
             }
         } else {
-            //error!
+            setValueForKeyHelper(self, key, value);
         }
     } else {
         [super setValue:value forKey:key];
@@ -425,6 +434,11 @@
 									 target:(GCEntity *)self];
 		}
 	}
+}
+
+- (void)addPropertyWithGedcomNode:(GCNode *)node
+{
+    [GCProperty propertyForObject:self withGedcomNode:node];
 }
 
 @end

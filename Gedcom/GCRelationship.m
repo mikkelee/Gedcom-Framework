@@ -29,7 +29,7 @@
 	}];
     
     for (id subNode in [node subNodes]) {
-        [GCProperty propertyForObject:relationship withGedcomNode:subNode];
+        [relationship addPropertyWithGedcomNode:subNode];
     }
     
     [object addProperty:relationship];

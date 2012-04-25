@@ -61,7 +61,7 @@
         if ([[[subNode gedTag] name] isEqualToString:@"@Changed"]) {
             [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:subNode]];
         } else {
-            [GCProperty propertyForObject:entity withGedcomNode:subNode];
+            [entity addPropertyWithGedcomNode:subNode];
         }
     }
     

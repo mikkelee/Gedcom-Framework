@@ -116,7 +116,7 @@
     
     [fam setValue:husb forKey:@"Husband"];
     [fam setValue:wife forKey:@"Wife"];
-    [fam setValue:chil forKey:@"Child"];
+    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"Child"];
     
     //alternately:
 	// [fam addRelationshipWithType:@"Husband" target:husb];
