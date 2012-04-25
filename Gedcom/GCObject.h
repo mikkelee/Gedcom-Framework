@@ -10,16 +10,10 @@
 
 #import "GCValue.h"
 
-@class GCNode;
-
 @class GCContext;
-@class GCAge;
-@class GCDate;
+@class GCNode;
 @class GCTag;
-@class GCEntity;
 @class GCProperty;
-@class GCAttribute;
-@class GCRelationship;
 
 @interface GCObject : NSObject
 
@@ -62,6 +56,10 @@
 @property (readonly) GCContext *context;
 
 @end
+
+@class GCEntity;
+@class GCAge;
+@class GCDate;
 
 @interface GCObject (GCConvenienceMethods)
 

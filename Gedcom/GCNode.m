@@ -124,6 +124,7 @@
             } else if (level == currentLevel+1) { //child of current
                 parent = currentNode;
             } else { //find correct parent
+                parent = currentNode;
                 for (int i = currentLevel; i >= level; i--) {
                     parent = [parent parent];
                 }

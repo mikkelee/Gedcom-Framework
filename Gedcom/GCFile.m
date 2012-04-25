@@ -56,7 +56,7 @@
     
     if (self) {
         _head = header;
-        _records = [NSMutableArray arrayWithCapacity:[entities count]];
+        _records = [NSMutableOrderedSet orderedSetWithCapacity:[entities count]];
         
         for (GCEntity *entity in entities) {
             NSParameterAssert(_context == nil || _context == [entity context]);
@@ -79,6 +79,10 @@
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_records count]+2];
 	
 	[nodes addObject:[_head gedcomNode]];
+    
+    if (_submission) {
+        [nodes addObject:[_submission gedcomNode]];
+    }
 	
 	for (id record in _records) {
 		[nodes addObject:[record gedcomNode]];
@@ -92,6 +96,9 @@
 #pragma mark Objective-C properties
 
 @synthesize head = _head;
+@synthesize submission = _submission;
 @synthesize records = _records;
 
+        
+        
 @end

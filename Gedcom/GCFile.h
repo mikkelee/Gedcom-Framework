@@ -11,6 +11,7 @@
 @class GCContext;
 
 @class GCHeader;
+@class GCEntity;
 
 @interface GCFile : NSObject
 
@@ -26,8 +27,21 @@
 #pragma mark Objective-C properties
 
 @property GCHeader *head;
-@property NSMutableArray *records;
+@property GCEntity *submission; //optional
+@property (readonly) NSMutableOrderedSet *records;
 
 @property (readonly) NSArray *gedcomNodes;
 
+@end
+
+@interface GCFile (GCConvenienceMethods)
+/* TODO
+@property (readonly) NSMutableOrderedSet *families;
+@property (readonly) NSMutableOrderedSet *individuals;
+@property (readonly) NSMutableOrderedSet *multimediaObjects;
+@property (readonly) NSMutableOrderedSet *notes;
+@property (readonly) NSMutableOrderedSet *repositories;
+@property (readonly) NSMutableOrderedSet *sources;
+@property (readonly) NSMutableOrderedSet *submitters;
+*/
 @end

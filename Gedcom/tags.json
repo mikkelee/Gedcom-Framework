@@ -11,6 +11,9 @@
 		"code": "HEAD",
 		"objectType": "GCHeader",
 		"validSubTags": [
+                         { "name": "Header source", "min": "1", "max": "1" },
+                         { "name": "Gedcom", "min": "1", "max": "1" },
+                         { "name": "Character set", "min": "1", "max": "1" },
                          { "name": "Submitter reference", "min": "1", "max": "1" },
                          { "name": "Submission reference", "min": "0", "max": "M" }
                          ]
@@ -346,6 +349,13 @@
                          { "name": "@Note", "min": "0", "max": "M" }
                          ]
 	},
+	"Header source": {
+		"code": "SOUR",
+		"objectType": "GCAttribute",
+		"validSubTags": [
+                         { "name": "Version", "min": "0", "max": "1" }
+                         ]
+	},
     
     
     "@Note": {
@@ -528,10 +538,13 @@
         "code": "CENS",
 		"objectType": "GCAttribute",
     },
-    "Character Set": {
+    "Character set": {
         "code": "CHAR",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "GCStringValue",
+		"validSubTags": [
+                         { "name": "Version", "min": "0", "max": "1" }
+                         ]
     },
     "Number of children": {
         "code": "NCHI",
@@ -660,7 +673,11 @@
     "Gedcom": {
         "code": "GEDC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "GCStringValue",
+		"validSubTags": [
+                         { "name": "Version", "min": "1", "max": "1" },
+                         { "name": "Format", "min": "1", "max": "1" }
+                         ]
     },
     "Graduation": {
         "code": "GRAD",
