@@ -7,7 +7,6 @@
 //
 
 #import "GCNode.h"
-#import "NSString+GCKitAdditions.h"
 #import "GCTag.h"
 
 @interface GCNode ()
@@ -86,15 +85,10 @@
 
 + (NSArray*)arrayOfNodesFromString:(NSString*) gedString
 {
-	return [GCNode arrayOfNodesFromArrayOfStrings:[gedString arrayOfLines]];
-}
-
-+ (NSArray*)arrayOfNodesFromArrayOfStrings:(NSArray*) gedLines
-{
 	NSMutableArray *gedArray = [NSMutableArray arrayWithCapacity:5];
 	
-	int currentLevel = 0;
-	GCNode *currentNode = nil;
+	__block int currentLevel = 0;
+	__block GCNode *currentNode = nil;
 	
 	NSLog(@"Began parsing gedcom.");
 	
@@ -102,10 +96,11 @@
                                                                                             options:kNilOptions 
                                                                                               error:nil];
 	
-	for (NSString *gLine in gedLines) {
-		if ([gLine isEqualToString:@""]) 
-			continue;
-		
+    [gedString enumerateLinesUsingBlock:^(NSString *gLine, BOOL *stop) {
+		if ([gLine isEqualToString:@""]) {
+			return;
+        }
+     
 		int level = -1;
 		GCNode* node = nil;
 		
@@ -147,13 +142,13 @@
 					[currentNode setGedValue:@""];
 				}
 				[currentNode setGedValue:[NSString stringWithFormat:@"%@\n%@", [currentNode gedValue], val]];
-				continue;
+				return;
 			} else if ([code isEqualToString:@"CONC"]) {
 				if ([currentNode gedValue] == nil) {
 					[currentNode setGedValue:@""];
 				}
 				[currentNode setGedValue:[NSString stringWithFormat:@"%@\u2060%@", [currentNode gedValue], val]];
-				continue;
+				return;
 			}
             
             /*
@@ -184,7 +179,7 @@
 			NSLog(@"Unable to create node from gedcom: %@", gLine);
 			//throw?
 		}
-	}
+	}];
 	
 	NSLog(@"Finished parsing gedcom.");
 	
@@ -207,31 +202,27 @@
 {
 	NSMutableArray *gedLines = [NSMutableArray arrayWithCapacity:5];
 	
-	if ([[self xref] isEqualToString:@""]) {
-		[self setXref:nil];
-	}
-	
-	if ([[self gedValue] isEqualToString:@""]) {
-		[self setGedValue:nil];
-	}
-	
-	NSMutableArray *lines = [[[self gedValue] arrayOfLines] mutableCopyWithZone:NULL];
-	
-	NSString *firstLine = [lines objectAtIndex:0];
-	[lines removeObjectAtIndex:0];
-	
-	if ([self xref] != nil && [self gedValue] == nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
-	} else if ([self xref] == nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], firstLine]];
-	} else if ([self xref] != nil && [self gedValue] != nil) {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
-		if (![firstLine isEqualToString:@""]) {
-			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, @"CONT", firstLine]];
-		}
+	NSMutableArray *lines = [[[self gedValue] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
+    
+	NSString *firstLine = nil;
+    
+    if ([lines count] > 0) {
+        firstLine = [lines objectAtIndex:0];
+        [lines removeObjectAtIndex:0];
+    }
+    
+    if ([self xref] && ![[self xref] isEqualToString:@""]) {
+        [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
+		if (firstLine && ![firstLine isEqualToString:@""]) {
+            [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], firstLine]];
+        }
 	} else {
-		[gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
-	}
+		if (firstLine && ![firstLine isEqualToString:@""]) {
+            [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], firstLine]];
+        } else {
+            [gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
+        }
+    }
 	
     //TODO clean up this mess, it's a pain in the ass to follow:
 	for (NSString *line in lines) {

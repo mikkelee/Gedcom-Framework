@@ -192,7 +192,13 @@
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
 	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-	NSArray *gc_inputLines = [fileContents arrayOfLines];
+	
+    NSMutableArray *gc_inputLines = [NSMutableArray array];
+    
+    [fileContents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        [gc_inputLines addObject:line];
+    }];
+
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
 	GCFile *file = [GCFile fileWithGedcomNodes:nodes];
@@ -214,7 +220,13 @@
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
 	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-	NSArray *gc_inputLines = [fileContents arrayOfLines];
+    
+    NSMutableArray *gc_inputLines = [NSMutableArray array];
+    
+    [fileContents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        [gc_inputLines addObject:line];
+    }];
+
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
 	GCFile *file = [GCFile fileWithGedcomNodes:nodes];

@@ -18,8 +18,13 @@
 
 -(void)testGedString:(NSString *)gc_inputString countShouldBe:(NSUInteger) countShouldBe
 {
-	NSArray *gc_inputLines = [gc_inputString arrayOfLines];
-	NSArray *nodes = [GCNode arrayOfNodesFromArrayOfStrings:[gc_inputString arrayOfLines]];
+	NSMutableArray *gc_inputLines = [NSMutableArray array];
+    
+    [gc_inputString enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        [gc_inputLines addObject:line];
+    }];
+    
+	NSArray *nodes = [GCNode arrayOfNodesFromString:gc_inputString];
 	NSMutableString *gc_outputString = [NSMutableString stringWithString:@""];
 	NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:[nodes count]];
 	

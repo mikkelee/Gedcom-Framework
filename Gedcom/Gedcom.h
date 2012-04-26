@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "NSString+GCKitAdditions.h"
-
 #import "GCNode.h"
 #import "GCTag.h"
 

@@ -23,7 +23,6 @@
 + (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes;
 
 + (NSArray *)arrayOfNodesFromString:(NSString*) gedString;
-+ (NSArray *)arrayOfNodesFromArrayOfStrings:(NSArray*) gedLines;
 
 #pragma mark Gedcom output
 
