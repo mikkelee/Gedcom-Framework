@@ -12,40 +12,11 @@
 
 #import <ParseKit/ParseKit.h>
 
-#import "GCSimpleDate.h"
-#import "GCApproximateDate.h"
-#import "GCInterpretedDate.h"
-#import "GCDatePeriod.h"
-#import "GCDateRange.h"
-#import "GCDatePhrase.h"
-#import "GCInvalidDate.h"
-
-/*
- DATE_VALUE: = {Size=1:35} 
- [ 
- <DATE> | 
- <DATE_PERIOD> | 
- <DATE_RANGE> 
- <DATE_APPROXIMATED> | 
- INT <DATE> (<DATE_PHRASE>) | 
- (<DATE_PHRASE>) 
- ] 
- 
- The DATE_VALUE represents the date of an activity, attribute, or event where: 
- INT =Interpreted from knowledge about the associated date phrase included in parentheses. 
- 
- An acceptable alternative to the date phrase choice is to use one of the other choices
- such as <DATE_APPROXIMATED> choice as the DATE line value and then include the <DATE_PHRASE>
- as a NOTE value subordinate to the DATE line. 
- 
- The date value can take on the date form of just a date, an approximated date, between a date
- and another date, and from one date to another date. The preferred form of showing date
- imprecision, is to show, for example, MAY 1890 rather than ABT 12 MAY 1890. This is because
- limits have not been assigned to the precision of the prefixes such as ABT or EST. 
- 
- */
+#import "GCAge.h"
 
 #pragma mark Private methods
+
+@class GCSimpleDate, GCDatePhrase;
 
 @interface GCDate ()
 
@@ -70,7 +41,327 @@
 #pragma mark Concrete subclasses
 #pragma mark -
 
-#pragma mark TODO
+#pragma mark GCSimpleDate
+
+@interface GCSimpleDate : GCDate
+
+- (NSDate *)date;
+
+@property (copy) NSDateComponents *dateComponents;
+@property (retain) NSCalendar *calendar;
+
+@end
+
+@implementation GCSimpleDate
+
+- (NSComparisonResult)compare:(id)other {
+	if (other == nil) {
+		return NSOrderedAscending;
+	} else if ([other isKindOfClass:[GCSimpleDate class]]) {
+		if (![[self calendar] isEqual:[other calendar]]) {
+			NSLog(@"WARNING: It is not safe at this moment to compare two GCDateSimples with different calendars.");
+		}
+		if ([[self dateComponents] year] != [[other dateComponents] year]) {
+			return [[NSNumber numberWithInt:[[self dateComponents] year]] compare:[NSNumber numberWithInt:[[other dateComponents] year]]];
+		} else if ([[self dateComponents] month] != [[other dateComponents] month]) {
+			return [[NSNumber numberWithInt:[[self dateComponents] month]] compare:[NSNumber numberWithInt:[[other dateComponents] month]]];
+		} else {
+			return [[NSNumber numberWithInt:[[self dateComponents] day]] compare:[NSNumber numberWithInt:[[other dateComponents] day]]];
+		}
+	} else {
+		return [self compare:[other refDate]];
+	}
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"[GCSimpleDate (%@) %d %d %d]", [[self calendar] calendarIdentifier], [[self dateComponents] year], [[self dateComponents] month], [[self dateComponents] day]];
+}
+
+- (NSString *)gedcomString
+{
+	NSArray *monthNames = [@"JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC" componentsSeparatedByString:@" "];
+	
+	NSString *month = @"";
+	if ([[self dateComponents] month] >= 1 && [[self dateComponents] month] <= 12) {
+		month = [NSString stringWithFormat:@"%@ ", [monthNames objectAtIndex:[[self dateComponents] month]-1]];
+	}
+	
+	NSString *day = @"";
+	if ([[self dateComponents] day] >= 1 && [[self dateComponents] day] <= 31) {
+		day = [NSString stringWithFormat:@"%d ", [[self dateComponents] day]];
+	}
+	
+	return [NSString stringWithFormat:@"%@%@%04d", day, month, [[self dateComponents] year]];
+}
+
+- (NSDate *)date
+{
+	return [[self calendar] dateFromComponents:[self dateComponents]];
+}
+
+- (GCSimpleDate *)refDate
+{
+	return self;
+}
+
+@synthesize dateComponents;
+@synthesize calendar;
+
+@end
+
+#pragma mark GCDatePhrase
+
+@interface GCDatePhrase : GCDate
+
+@property NSString *phrase;
+@property (readonly) NSCalendar *calendar;
+
+@end
+
+@implementation GCDatePhrase
+
+-(NSString *)description
+{
+	return [NSString stringWithFormat:@"[GCDatePhrase '%@']", [self phrase]];
+}
+
+-(NSString *)gedcomString
+{
+	return [NSString stringWithFormat:@"(%@)", [self phrase]];
+}
+
+- (NSCalendar *)calendar
+{
+	return nil;
+}
+
+- (GCSimpleDate *)refDate
+{
+	return nil;
+}
+
+@synthesize phrase;
+
+@end
+
+#pragma mark GCAttributedDate
+
+@interface GCAttributedDate : GCDate
+
+@property (retain) GCSimpleDate *simpleDate;
+@property (retain, readonly) NSCalendar *calendar;
+
+@end
+
+@implementation GCAttributedDate
+
+- (NSCalendar *)calendar
+{
+	return [[self simpleDate] calendar];
+}
+
+- (GCSimpleDate *)refDate
+{
+	return [self simpleDate];
+}
+
+@synthesize simpleDate;
+
+@end
+
+#pragma mark GCApproximateDate
+
+@interface GCApproximateDate : GCAttributedDate
+
+@property (retain) NSString *dateType;
+
+@end
+
+@implementation GCApproximateDate
+
+-(NSString *)description
+{
+	return [NSString stringWithFormat:@"[GCApproximateDate '%@' %@]", [self dateType], [self simpleDate]];
+}
+
+-(NSString *)gedcomString
+{
+	return [NSString stringWithFormat:@"%@ %@", [self dateType], [[self simpleDate] gedcomString]];
+}
+
+@synthesize dateType;
+
+@end
+
+#pragma mark GCInterpretedDate
+
+@interface GCInterpretedDate : GCAttributedDate
+
+@property (copy) GCDatePhrase *datePhrase;
+
+@end
+
+@implementation GCInterpretedDate
+
+-(NSString *)description
+{
+	return [NSString stringWithFormat:@"[GCInterpretedDate %@ %@]", [self simpleDate], [self datePhrase]];
+}
+
+-(NSString *)gedcomString
+{
+	return [NSString stringWithFormat:@"INT %@ (%@)]", [[self simpleDate] gedcomString], [[self datePhrase] gedcomString]];
+}
+
+@synthesize datePhrase;
+
+@end
+
+#pragma mark GCDatePair
+
+@class GCSimpleDate;
+
+@interface GCDatePair : GCDate
+
+@property (retain) GCSimpleDate *dateA;
+@property (retain) GCSimpleDate *dateB;
+@property (retain, readonly) NSCalendar *calendar;
+
+@end
+
+@implementation GCDatePair
+
+//TODO enforce [dateA calendar] isEqual [dateB calendar]
+
+- (GCSimpleDate *)refDate
+{
+	if ([self dateA] == nil) {
+		return [self dateB];
+	} else if ([self dateB] == nil) {
+		return [self dateA];
+	} else {
+		GCSimpleDate *m = [[GCSimpleDate alloc] init];
+		
+		[m setCalendar:[[self dateA] calendar]];
+		[m setDateComponents:[[[self dateA] calendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[[[self dateA] date] dateByAddingTimeInterval:[[[self dateB] date] timeIntervalSinceDate:[[self dateA] date]]/2]]];
+        
+		return m;
+	}
+}
+
+- (NSCalendar *)calendar
+{
+	if ([self dateA]) {
+		return [[self dateA] calendar];
+	} else {
+		return [[self dateB] calendar];
+	}
+}
+
+@synthesize dateA;
+@synthesize dateB;
+
+@end
+
+#pragma mark GCDatePeriod
+
+@interface GCDatePeriod : GCDatePair
+
+@end
+
+@implementation GCDatePeriod
+
+- (NSString *)description
+{
+	if ([self dateA] == nil) {
+		return [NSString stringWithFormat:@"[GCDateRange TO %@]", [self dateB]];
+	} else if ([self dateB] == nil) {
+		return [NSString stringWithFormat:@"[GCDateRange FROM %@]", [self dateA]];
+	} else {
+		return [NSString stringWithFormat:@"[GCDatePeriod FROM %@ TO %@]", [self dateA], [self dateB]];
+	}
+}
+
+- (NSString *)gedcomString
+{
+	if ([self dateA] == nil) {
+		return [NSString stringWithFormat:@"TO %@", [[self dateB] gedcomString]];
+	} else if ([self dateB] == nil) {
+		return [NSString stringWithFormat:@"FROM %@", [[self dateA] gedcomString]];
+	} else {
+		return [NSString stringWithFormat:@"FROM %@ TO %@", [self dateA], [self dateB]];
+	}
+}
+
+@end
+
+#pragma mark GCDateRange
+
+@interface GCDateRange : GCDatePair
+
+@end
+
+@implementation GCDateRange
+
+- (NSString *)description
+{
+	if ([self dateA] == nil) {
+		return [NSString stringWithFormat:@"[GCDateRange BEF %@]", [self dateB]];
+	} else if ([self dateB] == nil) {
+		return [NSString stringWithFormat:@"[GCDateRange AFT %@]", [self dateA]];
+	} else {
+		return [NSString stringWithFormat:@"[GCDateRange BET %@ AND %@]", [self dateA], [self dateB]];
+	}
+}
+
+- (NSString *)gedcomString
+{
+	if ([self dateA] == nil) {
+		return [NSString stringWithFormat:@"BEF %@", [[self dateB] gedcomString]];
+	} else if ([self dateB] == nil) {
+		return [NSString stringWithFormat:@"AFT %@", [[self dateA] gedcomString]];
+	} else {
+		return [NSString stringWithFormat:@"BET %@ AND %@", [[self dateA] gedcomString], [[self dateB] gedcomString]];
+	}
+}
+
+@end
+
+#pragma mark GCInvalidDate
+
+@interface GCInvalidDate : GCDate
+
+@property (copy) NSString *string;
+@property (retain, readonly) NSCalendar *calendar;
+
+@end
+
+@implementation GCInvalidDate
+
+-(NSString *)description
+{
+	return [NSString stringWithFormat:@"[GCInvalidDate '%@']", [self string]];
+}
+
+-(NSString *)gedcomString
+{
+	return [self string];
+}
+
+- (GCSimpleDate *)refDate
+{
+	return nil;
+}
+
+- (NSCalendar *)calendar
+{
+	return nil;
+}
+
+@synthesize string;
+
+@end
 
 #pragma mark -
 #pragma mark Placeholder class
@@ -606,6 +897,27 @@
 + (id)dateWithInvalidDateString:(NSString *)s
 {
     return [[self alloc] initWithInvalidDateString:s];
+}
+
+#pragma mark Helpers
+
+- (id)dateByAddingAge:(GCAge *)age
+{
+    NSDate *theDate = nil;
+    //TODO
+   /* if ([self minDate] != nil && [[self minDate] isEqual:[self maxDate]]) {
+        theDate = [self minDate];
+    }
+    
+    */
+    NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
+    
+    [ageComponents setYear:[age years]];
+    [ageComponents setMonth:[age months]];
+    [ageComponents setDay:[age days]];
+    
+    
+    return [[[self refDate] calendar] dateByAddingComponents:ageComponents toDate:theDate options:0];
 }
 
 #pragma mark Comparison

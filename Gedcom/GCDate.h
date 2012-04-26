@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GCAge;
+
 @interface GCDate : NSObject <NSCoding, NSCopying>
 
 #pragma mark Initialization
@@ -22,7 +24,9 @@
 
 #pragma mark Helpers
 
-//TODO
+- (id)dateByAddingAge:(GCAge *)age;
+
+//- (BOOL)containsDate:(NSDate *)date;
 
 #pragma mark Comparison
 
@@ -35,6 +39,9 @@
 @property (retain, readonly) NSString *description;
 
 @property (readonly) NSDate *date;
+
+//@property (readonly) NSDate *minDate;
+//@property (readonly) NSDate *maxDate;
 
 @property (readonly) NSUInteger year;
 @property (readonly) NSUInteger month;
