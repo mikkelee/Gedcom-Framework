@@ -521,8 +521,8 @@ NSString * const GCAgeQualifier_toString[] = {
     NSCalendar *calendar = [[fromDate valueForKey:@"refDate"] calendar];
     
     NSDateComponents *ageComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                  fromDate:[fromDate date] 
-                                                    toDate:[toDate date] 
+                                                  fromDate:[fromDate minDate] 
+                                                    toDate:[toDate maxDate] 
                                                    options:NO];
     
     return [GCAge ageWithSimpleAge:ageComponents];

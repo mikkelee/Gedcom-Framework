@@ -45,8 +45,6 @@
 
 @interface GCSimpleDate : GCDate
 
-- (NSDate *)date;
-
 @property (copy) NSDateComponents *dateComponents;
 @property (retain) NSCalendar *calendar;
 
@@ -95,9 +93,14 @@
 	return [NSString stringWithFormat:@"%@%@%04d", day, month, [[self dateComponents] year]];
 }
 
-- (NSDate *)date
+- (NSDate *)minDate
 {
-	return [[self calendar] dateFromComponents:[self dateComponents]];
+    return [[self calendar] dateFromComponents:[self dateComponents]];
+}
+
+- (NSDate *)maxDate
+{
+    return [[self calendar] dateFromComponents:[self dateComponents]];
 }
 
 - (GCSimpleDate *)refDate
@@ -141,6 +144,16 @@
 	return nil;
 }
 
+- (NSDate *)minDate
+{
+    return nil;
+}
+
+- (NSDate *)maxDate
+{
+    return nil;
+}
+
 @synthesize phrase;
 
 @end
@@ -164,6 +177,16 @@
 - (GCSimpleDate *)refDate
 {
 	return [self simpleDate];
+}
+
+- (NSDate *)minDate
+{
+    return [[[self simpleDate] calendar] dateFromComponents:[[self simpleDate] dateComponents]];
+}
+
+- (NSDate *)maxDate
+{
+    return [[[self simpleDate] calendar] dateFromComponents:[[self simpleDate] dateComponents]];
 }
 
 @synthesize simpleDate;
@@ -244,7 +267,7 @@
 		GCSimpleDate *m = [[GCSimpleDate alloc] init];
 		
 		[m setCalendar:[[self dateA] calendar]];
-		[m setDateComponents:[[[self dateA] calendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[[[self dateA] date] dateByAddingTimeInterval:[[[self dateB] date] timeIntervalSinceDate:[[self dateA] date]]/2]]];
+		[m setDateComponents:[[[self dateA] calendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[[self minDate] dateByAddingTimeInterval:[[self maxDate] timeIntervalSinceDate:[self minDate]]/2]]];
         
 		return m;
 	}
@@ -261,6 +284,16 @@
 
 @synthesize dateA;
 @synthesize dateB;
+
+- (NSDate *)minDate
+{
+    return [[[self dateA] calendar] dateFromComponents:[[self dateA] dateComponents]];
+}
+
+- (NSDate *)maxDate
+{
+    return [[[self dateB] calendar] dateFromComponents:[[self dateB] dateComponents]];
+}
 
 @end
 
@@ -357,6 +390,16 @@
 - (NSCalendar *)calendar
 {
 	return nil;
+}
+
+- (NSDate *)minDate
+{
+    return nil;
+}
+
+- (NSDate *)maxDate
+{
+    return nil;
 }
 
 @synthesize string;
@@ -920,6 +963,18 @@
     return [[[self refDate] calendar] dateByAddingComponents:ageComponents toDate:theDate options:0];
 }
 
+- (BOOL)containsDate:(NSDate *)date
+{
+    if ([self minDate] == nil) {
+        return ([[self maxDate] compare:date] == NSOrderedAscending);
+    } else if ([self maxDate] == nil) {
+        return ([[self minDate] compare:date] == NSOrderedDescending);
+    } else {
+        return ([[self minDate] compare:date] == NSOrderedDescending) && ([[self maxDate] compare:date] == NSOrderedAscending);
+    }
+}
+
+
 #pragma mark Comparison
 
 -(NSComparisonResult) compare:(id)other {
@@ -957,10 +1012,8 @@
 @dynamic displayString;
 @dynamic description;
 
--(NSDate *)date
-{
-    return [[[self refDate] calendar] dateFromComponents:[[self refDate] dateComponents]];
-}
+@synthesize minDate;
+@synthesize maxDate;
 
 - (NSUInteger)year
 {
