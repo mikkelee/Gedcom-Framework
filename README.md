@@ -29,7 +29,6 @@ The intent is to hide the GEDCOM specifics, but to allow access if required.
 * **tags.json**: Currently only partially done
 * **GCMutableNode**: Mutable version of GCNode
 * **GCDate**: better hiding of internals (ie a proper class cluster) - should remain immutable; interface should basically just be input gedcom, get out instance.
-* **GCAge/GCDate**: calculations (ie age = dateA - dateB)
 * **appledocs**: and better comments & cleaner headers in general
 * **GCObject**: NSCoding
 
