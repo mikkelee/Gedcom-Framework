@@ -7,19 +7,19 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
 * GEDCOM text <=> GCNode <=> GCObject
 * Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
 * Above GCNodes are GCObjects, which allow for more abstracted data access. There are two basic types of GCObject:
-  - GCEntity: Root level records - INDI, FAM, etc.
-  - GCProperty: Describes an entity. There are two kinds of properties:
-    * GCAttribute: Any non-relationship node - NAME, DATE, PLAC, etc.
-    * GCRelationship: References to other entities - FAMC, HUSB, etc.
+    - GCEntity: Root level records - INDI, FAM, etc.
+    - GCProperty: Describes an entity. There are two kinds of properties:
+        * GCAttribute: Any non-relationship node - NAME, DATE, PLAC, etc.
+        * GCRelationship: References to other entities - FAMC, HUSB, etc.
 * Mapping between GCNodes and GCObjects is helped by GCTags which know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
 * Xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
 * Property values are handled via GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
-  - GCGenderValue
-  - GCAgeValue (parsed via ParseKit)
-  - GCDateValue (parsed via ParseKit)
-  - GCStringValue
-  - GCNumberValue
-  - GCBoolValue
+    - GCGenderValue
+    - GCAgeValue (parsed via ParseKit)
+    - GCDateValue (parsed via ParseKit)
+    - GCStringValue
+    - GCNumberValue
+    - GCBoolValue
 * Eventually, there may be another layer with things like GCIndividual, GCFamily (?).
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
