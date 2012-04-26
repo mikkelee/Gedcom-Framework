@@ -499,9 +499,12 @@
 
 - (id)initWithDate:(NSDate *)date
 {
-    //TODO
-    [self doesNotRecognizeSelector:_cmd];    
-    return nil;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                  fromDate:date];
+    
+    return [GCSimpleDate dateWithSimpleDate:dateComponents withCalendar:calendar];
 }
 
 
