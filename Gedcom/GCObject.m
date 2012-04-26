@@ -14,7 +14,6 @@
 
 #import "GCEntity.h"
 #import "GCHeader.h"
-#import "GCTrailer.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"

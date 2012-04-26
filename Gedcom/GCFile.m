@@ -15,7 +15,11 @@
 
 #import "GCHeader.h"
 #import "GCEntity.h"
-#import "GCTrailer.h"
+
+@interface GCTrailer : NSObject
+@end
+@implementation GCTrailer
+@end
 
 @implementation GCFile {
 	GCContext *_context;

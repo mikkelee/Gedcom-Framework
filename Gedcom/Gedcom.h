@@ -14,7 +14,6 @@
 #import "GCContext.h"
 #import "GCFile.h"
 #import "GCHeader.h"
-#import "GCTrailer.h"
 
 #import "GCObject.h"
 #import "GCEntity.h"
