@@ -47,12 +47,21 @@
 
 - (void)testAgeMath
 {
-    GCDate *date1 = [GCDate dateWithGedcom:@"1900"];
-    GCDate *date2 = [GCDate dateWithGedcom:@"1910"];
+    GCDate *date1, *date2;
+    GCAge *age;
     
-    GCAge *age = [GCAge ageFromDate:date1 toDate:date2];
+    date1 = [GCDate dateWithGedcom:@"1900"];
+    date2 = [GCDate dateWithGedcom:@"1910"];
+    
+    age = [GCAge ageFromDate:date1 toDate:date2];
     
 	STAssertEqualObjects(@"[GCSimpleAge (10 years, 0 months, 0 days)]", [age description], nil);
+    
+    date2 = [GCDate dateWithGedcom:@"MAY 1910"];
+    
+    age = [GCAge ageFromDate:date1 toDate:date2];
+    
+	STAssertEqualObjects(@"[GCSimpleAge (10 years, 4 months, 0 days)]", [age description], nil);
 }
 
 @end

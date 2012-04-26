@@ -13,10 +13,12 @@
 #pragma mark Initialization
 
 - (id)initWithGedcom:(NSString *)gedcom;
+- (id)initWithDate:(NSDate *)date;
 
 #pragma mark Convenience constructor
 
 + (id)dateWithGedcom:(NSString *)gedcom;
++ (id)dateWithDate:(NSDate *)date;
 
 #pragma mark Helpers
 
@@ -31,6 +33,8 @@
 @property (retain, readonly) NSString *gedcomString;
 @property (retain, readonly) NSString *displayString;
 @property (retain, readonly) NSString *description;
+
+@property (readonly) NSDate *date;
 
 @property (readonly) NSUInteger year;
 @property (readonly) NSUInteger month;

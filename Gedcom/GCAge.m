@@ -518,22 +518,12 @@ NSString * const GCAgeQualifier_toString[] = {
 
 + (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
 {
-    NSParameterAssert([fromDate year] != -1);
-    NSParameterAssert([toDate year] != -1);
+    NSCalendar *calendar = [[fromDate valueForKey:@"refDate"] calendar];
     
-    NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
-    
-    [ageComponents setYear:([toDate year] - [fromDate year])];
-    
-    NSUInteger fromMonth = [fromDate month] != -1 ? [fromDate month] : 6;
-    NSUInteger toMonth = [toDate month] != -1 ? [toDate month] : 6;
-    
-    [ageComponents setMonth:(fromMonth - toMonth)];
-    
-    NSUInteger fromDay = [fromDate day] != -1 ? [fromDate day] : 15;
-    NSUInteger toDay = [toDate day] != -1 ? [toDate day] : 15;
-    
-    [ageComponents setDay:(fromDay - toDay)];
+    NSDateComponents *ageComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                  fromDate:[fromDate date] 
+                                                    toDate:[toDate date] 
+                                                   options:NO];
     
     return [GCAge ageWithSimpleAge:ageComponents];
 }

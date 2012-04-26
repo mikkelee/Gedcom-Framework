@@ -497,6 +497,14 @@
 	return [[GCDateParser sharedDateParser] parseGedcom:gedcom];
 }
 
+- (id)initWithDate:(NSDate *)date
+{
+    //TODO
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
+}
+
+
 - (id)initWithSimpleDate:(NSDateComponents *)co
 {
     [self doesNotRecognizeSelector:_cmd];    
@@ -550,6 +558,11 @@
 + (id)dateWithGedcom:(NSString *)gedcom
 {
 	return [[self alloc] initWithGedcom:gedcom];
+}
+
++ (id)dateWithDate:(NSDate *)date
+{
+    return [[self alloc] initWithDate:date];
 }
 
 + (id)dateWithSimpleDate:(NSDateComponents *)co
@@ -628,6 +641,11 @@
 @dynamic gedcomString;
 @dynamic displayString;
 @dynamic description;
+
+-(NSDate *)date
+{
+    return [[[self refDate] calendar] dateFromComponents:[[self refDate] dateComponents]];
+}
 
 - (NSUInteger)year
 {
