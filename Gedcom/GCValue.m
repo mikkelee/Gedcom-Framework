@@ -22,7 +22,6 @@
     
     if (self) {
         _type = type;
-        //TODO enforce type for value...
         switch (_type) {
             case GCStringValue:
                 NSParameterAssert([value isKindOfClass:[NSString class]]);
