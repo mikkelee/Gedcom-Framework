@@ -80,6 +80,18 @@
 
 @implementation GCKeyValueTests
 
+-(void)testValueForKey
+{
+	GCNode *aNode = [GCNode nodeWithTag:@"NAME" value:@"Jens /Hansen/"];
+	
+	GCNode *bNode = [[GCNode alloc] initWithTag:@"INDI" 
+										  value:nil 
+										   xref:@"@I1@" 
+									   subNodes:[NSArray arrayWithObject:aNode]];
+	
+	STAssertEqualObjects(aNode, [bNode valueForKey:@"NAME"], nil);
+}
+
 - (void)testKVC
 {
 	GCContext *ctx = [GCContext context];

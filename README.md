@@ -27,7 +27,6 @@ The intent is to hide the GEDCOM specifics, but to allow access if required.
 # TODO #
 
 * **tags.json**: Currently only partially done
-* **GCMutableNode**: Mutable version of GCNode
 * **appledocs**: and better comments & cleaner headers in general
 * **GCObject**: NSCoding
 

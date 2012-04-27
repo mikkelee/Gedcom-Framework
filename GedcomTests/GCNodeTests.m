@@ -72,16 +72,23 @@
 	[self testFile:path countShouldBe:18];
 }
 
--(void)testValueForKey
+- (void)testMutableNode
 {
-	GCNode *aNode = [GCNode nodeWithTag:@"NAME" value:@"Jens /Hansen/"];
-	
-	GCNode *bNode = [[GCNode alloc] initWithTag:@"INDI" 
-										  value:nil 
-										   xref:@"@I1@" 
-									   subNodes:[NSArray arrayWithObject:aNode]];
-	
-	STAssertEqualObjects(aNode, [bNode valueForKey:@"NAME"], nil);
+    GCNode *node = [GCNode nodeWithTag:@"NAME" value:@"Jens /Hansen/"];
+    
+    GCMutableNode *mutableNode = [node mutableCopy];
+    
+    [mutableNode setGedValue:@"Jens /Hansen/ Smed"];
+    
+    STAssertEqualObjects([mutableNode gedValue], @"Jens /Hansen/ Smed", nil);
+    
+    GCMutableNode *nickname = [GCMutableNode nodeWithTag:@"NICK" value:@"Smeden"];
+    
+    STAssertEquals([[mutableNode subNodes] count], (NSUInteger)0, nil);
+
+    [mutableNode addSubNode:nickname];
+    
+    STAssertEquals([[mutableNode subNodes] count], (NSUInteger)1, nil);
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "GCNode.h"
+#import "GCMutableNode.h"
+
 #import "GCTag.h"
 
 #import "GCContext.h"
@@ -22,3 +24,6 @@
 #import "GCValue.h"
 #import "GCAge.h"
 #import "GCDate.h"
+
+#import "GCAgeFormatter.h"
+#import "GCDateFormatter.h"

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GCNode : NSObject <NSCopying, NSCoding>
+@interface GCNode : NSObject <NSCopying, NSCoding, NSMutableCopying>
 
 #pragma mark Initialization
 

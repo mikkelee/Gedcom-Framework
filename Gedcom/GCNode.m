@@ -9,6 +9,8 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
+#import "GCMutableNode.h"
+
 @interface GCNode ()
 
 - (void)addSubNode: (GCNode *) n;
@@ -32,29 +34,26 @@
 
 - (id)init
 {
-    self = [super init];
-    
-	if (self) {
-        [self setLineSeparator:@"\n"];
-        _subNodes = [NSMutableArray arrayWithCapacity:2];
-	}
-    
-	return self;
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
 }
 
 - (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     NSParameterAssert(tag != nil);
     
-    self = [self init];
+    self = [super init];
     
 	if (self) {
+        [self setLineSeparator:@"\n"];
         [self setGedTag:tag];
         [self setXref:xref];
         [self setGedValue:value];
         
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
+        } else {
+            _subNodes = [NSMutableArray arrayWithCapacity:2];
         }
 	}
     
@@ -312,7 +311,6 @@
 
 - (NSString *)description
 {
-    //return [[self gedTag] code];
 	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
 }
 
@@ -346,13 +344,30 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    GCNode *copy = [[GCNode allocWithZone:zone] init];
+    GCNode *copy = [[GCNode allocWithZone:zone] initWithTag:[self gedTag] 
+                                                      value:[self gedValue] 
+                                                       xref:[self xref] 
+                                                   subNodes:[self subNodes]];
     
-    [copy setValue:[self gedTag] forKey:@"gedTag"];
-    [copy setValue:[self gedValue] forKey:@"gedValue"];
-    [copy setValue:[self xref] forKey:@"xref"];
     [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
-    [copy setValue:[self subNodes] forKey:@"subNodes"];
+    
+    return copy;
+}
+
+#pragma mark NSMutableCopying conformance
+
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+    GCMutableNode *copy = [[GCMutableNode allocWithZone:zone] initWithTag:[self gedTag] 
+                                                                    value:[self gedValue] 
+                                                                     xref:[self xref] 
+                                                                 subNodes:nil];
+    
+    [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
+    
+    for (id subNode in [self subNodes]) {
+        [copy addSubNode:[subNode mutableCopy]];
+    }
     
     return copy;
 }
