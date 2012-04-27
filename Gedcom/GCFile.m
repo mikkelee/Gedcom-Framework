@@ -89,6 +89,8 @@
 
 - (void)addRecord:(GCEntity *)record
 {
+    NSParameterAssert([[record context] isEqual:_context]);
+    
     [_records addObject:record];
 }
 
