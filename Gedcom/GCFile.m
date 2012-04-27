@@ -35,7 +35,7 @@
 	
 	if (self) {
 		_context = context;
-		_records = [NSMutableArray arrayWithCapacity:[nodes count]];
+		_entities = [NSMutableArray arrayWithCapacity:[nodes count]];
 		
 		for (GCNode *node in nodes) {
             GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
@@ -47,7 +47,7 @@
                 }
                 _head = [GCHeader headerWithGedcomNode:node inContext:context];
             } else if ([objectClass isEqual:[GCEntity class]]) {
-                [_records addObject:[GCEntity entityWithGedcomNode:node inContext:context]];
+                [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:context]];
             } else if ([objectClass isEqual:[GCTrailer class]]) {
                 continue; //ignore trailer... 
             } else {
@@ -65,12 +65,12 @@
     
     if (self) {
         _head = header;
-        _records = [NSMutableOrderedSet orderedSetWithCapacity:[entities count]];
+        _entities = [NSMutableOrderedSet orderedSetWithCapacity:[entities count]];
         
         for (GCEntity *entity in entities) {
             NSParameterAssert(_context == nil || _context == [entity context]);
             
-            [_records addObject:entity];
+            [_entities addObject:entity];
         }
     }
     
@@ -85,29 +85,29 @@
 	return [[self alloc] initWithContext:[GCContext context] gedcomNodes:nodes];
 }
 
-#pragma mark Record access
+#pragma mark Entity access
 
-- (void)addRecord:(GCEntity *)record
+- (void)addEntity:(GCEntity *)entity
 {
-    NSParameterAssert([[record context] isEqual:_context]);
+    NSParameterAssert([[entity context] isEqual:_context]);
     
-    [_records addObject:record];
+    [_entities addObject:entity];
 }
 
-- (void)removeRecord:(GCEntity *)record
+- (void)removeEntity:(GCEntity *)entity
 {
-    [_records removeObject:record];
+    [_entities removeObject:entity];
 }
 
 #pragma mark Objective-C properties
 
 @synthesize head = _head;
 @synthesize submission = _submission;
-@synthesize records = _records;
+@synthesize entities = _entities;
 
 - (NSArray *)gedcomNodes
 {
-	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_records count]+2];
+	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_entities count]+2];
 	
 	[nodes addObject:[_head gedcomNode]];
     
@@ -115,8 +115,8 @@
         [nodes addObject:[_submission gedcomNode]];
     }
 	
-	for (id record in _records) {
-		[nodes addObject:[record gedcomNode]];
+	for (id entity in _entities) {
+		[nodes addObject:[entity gedcomNode]];
 	}
 	
     [nodes addObject:[GCNode nodeWithTag:@"TRLR" value:nil]];
@@ -128,58 +128,58 @@
 
 @implementation GCFile (GCConvenienceMethods)
 
-- (id)recordsOfType:(NSString *)type
+- (id)entitiesOfType:(NSString *)type
 {
-	NSMutableOrderedSet *records = [NSMutableOrderedSet orderedSet];
+	NSMutableOrderedSet *entities = [NSMutableOrderedSet orderedSet];
 	
-	for (GCEntity *record in _records) {
-		if ([[record type] isEqualToString:type]) {
-			[records addObject:record];
+	for (GCEntity *entity in _entities) {
+		if ([[entity type] isEqualToString:type]) {
+			[entities addObject:entity];
 		}
 	}
 	
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:records
+	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:entities
                                                               addBlock:^(id obj) {
-                                                                  [self addRecord:obj];
+                                                                  [self addEntity:obj];
                                                               }
                                                            removeBlock:^(id obj) {
-                                                               [self removeRecord:obj];
+                                                               [self removeEntity:obj];
                                                            }];
 }
 
 - (id)families
 {
-	return [self recordsOfType:@"Family record"];
+	return [self entitiesOfType:@"Family record"];
 }
 
 - (id)individuals
 {
-	return [self recordsOfType:@"Individual record"];
+	return [self entitiesOfType:@"Individual record"];
 }
 
 - (id)multimediaObjects
 {
-	return [self recordsOfType:@"Multimedia record"];
+	return [self entitiesOfType:@"Multimedia record"];
 }
 
 - (id)notes
 {
-	return [self recordsOfType:@"Note record"];
+	return [self entitiesOfType:@"Note record"];
 }
 
 - (id)repositories
 {
-	return [self recordsOfType:@"Repository record"];
+	return [self entitiesOfType:@"Repository record"];
 }
 
 - (id)sources
 {
-	return [self recordsOfType:@"Source record"];
+	return [self entitiesOfType:@"Source record"];
 }
 
 - (id)submitters 
 {
-	return [self recordsOfType:@"Submitter record"];
+	return [self entitiesOfType:@"Submitter record"];
 }
 
 @end

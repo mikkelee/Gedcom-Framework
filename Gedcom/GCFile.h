@@ -24,16 +24,16 @@
 
 + (id)fileWithGedcomNodes:(NSArray *)nodes;
 
-#pragma mark Record access
+#pragma mark Entity access
 
-- (void)addRecord:(GCEntity *)record;
-- (void)removeRecord:(GCEntity *)record;
+- (void)addEntity:(GCEntity *)entity;
+- (void)removeEntity:(GCEntity *)entity;
 
 #pragma mark Objective-C properties
 
 @property GCHeader *head;
 @property GCEntity *submission; //optional
-@property (readonly) NSMutableOrderedSet *records;
+@property (readonly) NSMutableOrderedSet *entities;
 
 @property (readonly) NSArray *gedcomNodes;
 
