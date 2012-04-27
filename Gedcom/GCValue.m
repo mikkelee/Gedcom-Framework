@@ -323,7 +323,7 @@
     return NSOrderedAscending;
 }
 
--(BOOL) isEqual:(id)other
+- (BOOL)isEqual:(id)other
 {
     if (other == self) {
         return YES;
@@ -335,7 +335,7 @@
     return ([self compare:other] == NSOrderedSame);
 }
 
--(NSUInteger)hash
+- (NSUInteger)hash
 {
     NSUInteger hash = 0;
     

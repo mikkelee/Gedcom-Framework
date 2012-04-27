@@ -37,7 +37,7 @@
 	return self;
 }
 
--(NSDate *)dateWithNode:(GCNode *)node
+- (NSDate *)dateWithNode:(GCNode *)node
 {
 	return [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", 
                                           [[node valueForKey:@"DATE"] gedValue], 
@@ -46,7 +46,7 @@
 	
 }
 
--(GCNode *)nodeWithDate:(NSDate *)date
+- (GCNode *)nodeWithDate:(NSDate *)date
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"dd MMM yyyy"];

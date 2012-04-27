@@ -39,7 +39,7 @@
 
 #pragma mark Equality
 
--(BOOL) isEqualTo:(id)other;
+- (BOOL)isEqualTo:(id)other;
 
 #pragma mark Objective-C properties
 

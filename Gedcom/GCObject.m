@@ -263,12 +263,12 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 #pragma mark Equality
 
--(BOOL) isEqualTo:(id)other
+- (BOOL)isEqualTo:(id)other
 {
     return [[self gedcomString] isEqualToString:[other gedcomString]];
 }
 
--(BOOL) isEqual:(id)other
+- (BOOL)isEqual:(id)other
 {
     if (other == self) {
         return YES;
@@ -277,7 +277,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     return [[self gedcomString] isEqualToString:[other gedcomString]];
 }
 
--(NSUInteger)hash
+- (NSUInteger)hash
 {
     return [[self gedcomString] hash];
 }

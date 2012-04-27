@@ -34,7 +34,7 @@ typedef enum {
 + (id)ageWithInvalidAgeString:(NSString *)s;
 + (id)ageWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
 
-@property (retain, readonly) GCSimpleAge *refAge; //used for sorting, etc.
+@property (readonly) GCSimpleAge *refAge; //used for sorting, etc.
 
 @end
 
@@ -46,7 +46,7 @@ typedef enum {
 
 @interface GCSimpleAge : GCAge
 
-@property (copy) NSDateComponents *ageComponents;
+@property NSDateComponents *ageComponents;
 
 @end
 
@@ -116,8 +116,8 @@ typedef enum {
 
 @interface GCQualifiedAge : GCAge
 
-@property (copy) GCAge * age;
-@property (assign) GCAgeQualifier qualifier;
+@property GCAge * age;
+@property GCAgeQualifier qualifier;
 
 @end
 
@@ -223,18 +223,18 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @interface GCInvalidAge : GCAge
 
-@property (copy) NSString *string;
+@property NSString *string;
 
 @end
 
 @implementation GCInvalidAge
 
--(NSString *)description
+- (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCInvalidAge '%@']", [self string]];
 }
 
--(NSString *)gedcomString
+- (NSString *)gedcomString
 {
 	return [self string];
 }
@@ -569,7 +569,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 #pragma mark Comparison
 
--(NSComparisonResult) compare:(id)other {
+- (NSComparisonResult) compare:(id)other {
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else {

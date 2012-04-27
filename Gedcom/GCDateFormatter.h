@@ -12,7 +12,6 @@
 
 - (NSString *)editingStringForObjectValue:(id)date;
 - (NSString *)stringForObjectValue:(id)date;
-//- (NSAttributedString *)attributedStringForObjectValue:(id)dateC withDefaultAttributes:(NSDictionary *)attributes;
 
 - (BOOL)getObjectValue:(id *)dateC forString:(NSString *)string errorDescription:(NSString **)error;
 - (BOOL)getObjectValue:(out id *)anObject forString:(NSString *)aString range:(inout NSRange *)rangep error:(out NSError **)error;

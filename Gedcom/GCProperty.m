@@ -63,12 +63,12 @@
 
 @synthesize primitiveDescribedObject = _describedObject;
 
--(GCObject *)describedObject
+- (GCObject *)describedObject
 {
     return [self primitiveDescribedObject];
 }
 
--(void)setDescribedObject:(GCObject *)describedObject
+- (void)setDescribedObject:(GCObject *)describedObject
 {
     [self willChangeValueForKey:@"describedObject"];
     if (_describedObject) {

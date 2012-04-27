@@ -13,7 +13,6 @@
 
 - (NSString *)editingStringForObjectValue:(id)anObject;
 - (NSString *)stringForObjectValue:(id)anObject;
-//- (NSAttributedString *)attributedStringForObjectValue:(id)anObject withDefaultAttributes:(NSDictionary *)attributes;
 
 - (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error;
 - (BOOL)getObjectValue:(out id *)outVal forString:(NSString *)aString range:(inout NSRange *)rangep error:(out NSError **)error;

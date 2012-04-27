@@ -17,6 +17,6 @@
 
 #pragma mark Objective-C properties
 
-@property GCObject *describedObject; //TODO better name?
+@property GCObject *describedObject;
 
 @end

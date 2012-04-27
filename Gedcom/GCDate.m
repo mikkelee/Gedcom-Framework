@@ -1040,7 +1040,7 @@
 
 #pragma mark Comparison
 
--(NSComparisonResult) compare:(id)other {
+- (NSComparisonResult) compare:(id)other {
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else {

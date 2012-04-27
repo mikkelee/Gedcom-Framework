@@ -10,8 +10,8 @@
 
 @interface GCTag ()
 
--(id)initWithName:(NSString *)name 
-		 settings:(NSDictionary *)settings;
+- (id)initWithName:(NSString *)name 
+          settings:(NSDictionary *)settings;
 
 @end
 
@@ -128,7 +128,7 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Initialization
 
--(id)initWithName:(NSString *)name 
+- (id)initWithName:(NSString *)name 
 		 settings:(NSDictionary *)settings
 {
     NSParameterAssert(name != nil);
@@ -145,7 +145,7 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Entry points
 
-+(GCTag *)tagWithType:(NSString *)type code:(NSString *)code
++ (GCTag *)tagWithType:(NSString *)type code:(NSString *)code
 {
     NSParameterAssert(type != nil);
     NSParameterAssert(code != nil);
@@ -168,7 +168,7 @@ __strong static NSMutableDictionary *tagInfo;
     return tag;
 }
 
-+(GCTag *)tagNamed:(NSString *)name
++ (GCTag *)tagNamed:(NSString *)name
 {
     [self setupTagInfo];
     
@@ -186,7 +186,7 @@ __strong static NSMutableDictionary *tagInfo;
     return tag;
 }
 
-+(GCTag *)rootTagWithCode:(NSString *)code
++ (GCTag *)rootTagWithCode:(NSString *)code
 {
     [self setupTagInfo];
     
@@ -210,7 +210,7 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Subtags
 
--(GCTag *)subTagWithCode:(NSString *)code
+- (GCTag *)subTagWithCode:(NSString *)code
 {
     if ([code hasPrefix:@"_"]) {
         if ([tagStore valueForKey:code]) {
@@ -237,7 +237,7 @@ __strong static NSMutableDictionary *tagInfo;
     return nil;
 }
 
--(GCTag *)subTagWithName:(NSString *)name
+- (GCTag *)subTagWithName:(NSString *)name
 {
     for (GCTag *subTag in [self validSubTags]) {
         if ([[subTag name] isEqualToString:name]) {
@@ -250,12 +250,12 @@ __strong static NSMutableDictionary *tagInfo;
     return nil;
 }
 
--(BOOL)isValidSubTag:(GCTag *)tag
+- (BOOL)isValidSubTag:(GCTag *)tag
 {
     return [tag isCustom] || [[self validSubTags] containsObject:tag];
 }
 
--(BOOL)allowsMultipleSubtags:(GCTag *)tag
+- (BOOL)allowsMultipleSubtags:(GCTag *)tag
 {
     if ([tag isCustom]) {
         return YES;
