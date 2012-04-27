@@ -32,7 +32,6 @@
 
 @property (readonly) NSString *gedcomString;
 @property (readonly) NSString *displayString;
-@property (readonly) NSString *description;
 
 @property (readonly) NSUInteger years;
 @property (readonly) NSUInteger months;

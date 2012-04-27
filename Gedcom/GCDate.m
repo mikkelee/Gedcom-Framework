@@ -1073,7 +1073,6 @@
 
 @dynamic gedcomString;
 @dynamic displayString;
-@dynamic description;
 
 @synthesize minDate;
 @synthesize maxDate;

@@ -602,7 +602,6 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @dynamic gedcomString;
 @dynamic displayString;
-@dynamic description;
 
 - (NSUInteger)years
 {
