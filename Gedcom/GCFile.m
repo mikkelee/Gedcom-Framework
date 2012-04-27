@@ -16,6 +16,8 @@
 #import "GCHeader.h"
 #import "GCEntity.h"
 
+#import "GCMutableOrderedSetProxy.h"
+
 @interface GCTrailer : NSObject
 @end
 @implementation GCTrailer
@@ -24,6 +26,8 @@
 @implementation GCFile {
 	GCContext *_context;
 }
+
+#pragma mark Initialization
 
 - (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
 {
@@ -74,10 +78,30 @@
 }
 
 
+#pragma mark Convenience constructor
+
 + (id)fileWithGedcomNodes:(NSArray *)nodes
 {
 	return [[self alloc] initWithContext:[GCContext context] gedcomNodes:nodes];
 }
+
+#pragma mark Record access
+
+- (void)addRecord:(GCEntity *)record
+{
+    [_records addObject:record];
+}
+
+- (void)removeRecord:(GCEntity *)record
+{
+    [_records removeObject:record];
+}
+
+#pragma mark Objective-C properties
+
+@synthesize head = _head;
+@synthesize submission = _submission;
+@synthesize records = _records;
 
 - (NSArray *)gedcomNodes
 {
@@ -98,12 +122,62 @@
 	return nodes;
 }
 
-#pragma mark Objective-C properties
+@end
 
-@synthesize head = _head;
-@synthesize submission = _submission;
-@synthesize records = _records;
+@implementation GCFile (GCConvenienceMethods)
 
-        
-        
+- (id)recordsOfType:(NSString *)type
+{
+	NSMutableOrderedSet *records = [NSMutableOrderedSet orderedSet];
+	
+	for (GCEntity *record in _records) {
+		if ([[record type] isEqualToString:type]) {
+			[records addObject:record];
+		}
+	}
+	
+	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:records
+                                                              addBlock:^(id obj) {
+                                                                  [self addRecord:obj];
+                                                              }
+                                                           removeBlock:^(id obj) {
+                                                               [self removeRecord:obj];
+                                                           }];
+}
+
+- (id)families
+{
+	return [self recordsOfType:@"Family record"];
+}
+
+- (id)individuals
+{
+	return [self recordsOfType:@"Individual record"];
+}
+
+- (id)multimediaObjects
+{
+	return [self recordsOfType:@"Multimedia record"];
+}
+
+- (id)notes
+{
+	return [self recordsOfType:@"Note record"];
+}
+
+- (id)repositories
+{
+	return [self recordsOfType:@"Repository record"];
+}
+
+- (id)sources
+{
+	return [self recordsOfType:@"Source record"];
+}
+
+- (id)submitters 
+{
+	return [self recordsOfType:@"Submitter record"];
+}
+
 @end

@@ -24,6 +24,11 @@
 
 + (id)fileWithGedcomNodes:(NSArray *)nodes;
 
+#pragma mark Record access
+
+- (void)addRecord:(GCEntity *)record;
+- (void)removeRecord:(GCEntity *)record;
+
 #pragma mark Objective-C properties
 
 @property GCHeader *head;
@@ -35,7 +40,7 @@
 @end
 
 @interface GCFile (GCConvenienceMethods)
-/* TODO
+
 @property (readonly) NSMutableOrderedSet *families;
 @property (readonly) NSMutableOrderedSet *individuals;
 @property (readonly) NSMutableOrderedSet *multimediaObjects;
@@ -43,5 +48,5 @@
 @property (readonly) NSMutableOrderedSet *repositories;
 @property (readonly) NSMutableOrderedSet *sources;
 @property (readonly) NSMutableOrderedSet *submitters;
-*/
+
 @end
