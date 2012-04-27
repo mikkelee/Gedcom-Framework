@@ -23,6 +23,34 @@
     if (self) {
         _type = type;
         //TODO enforce type for value...
+        switch (_type) {
+            case GCStringValue:
+                NSParameterAssert([value isKindOfClass:[NSString class]]);
+                break;
+                
+            case GCNumberValue:
+                NSParameterAssert([value isKindOfClass:[NSNumber class]]);
+                break;
+                
+            case GCAgeValue:
+                NSParameterAssert([value isKindOfClass:[GCAge class]]);
+                break;
+                
+            case GCDateValue:
+                NSParameterAssert([value isKindOfClass:[GCDate class]]);
+                break;
+                
+            case GCBoolValue:
+                NSParameterAssert([value isKindOfClass:[NSNumber class]]);
+                break;
+                
+            case GCGenderValue:
+                NSParameterAssert([value isKindOfClass:[NSNumber class]]);
+                break;
+                
+            default:
+                break;
+        }
         _value = value;
     }
     
