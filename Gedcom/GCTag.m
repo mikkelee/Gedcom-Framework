@@ -100,7 +100,7 @@ __strong static NSMutableDictionary *tagInfo;
         //NSLog(@"tagInfo: %@", tagInfo);
         NSAssert(tagInfo != nil, @"error: %@", err);
         
-        tagStore = [NSMutableDictionary dictionaryWithCapacity:10];
+        tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
         [self recurse:@"@Root object"];
         
         //TODO get rid of this when tags.json is finalized:

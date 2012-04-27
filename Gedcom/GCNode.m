@@ -53,7 +53,7 @@
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
         } else {
-            _subNodes = [NSMutableArray arrayWithCapacity:2];
+            _subNodes = [NSMutableArray array];
         }
 	}
     
@@ -84,7 +84,7 @@
 
 + (NSArray*)arrayOfNodesFromString:(NSString*) gedString
 {
-	NSMutableArray *gedArray = [NSMutableArray arrayWithCapacity:5];
+	NSMutableArray *gedArray = [NSMutableArray array];
 	
 	__block int currentLevel = 0;
 	__block GCNode *currentNode = nil;
@@ -199,7 +199,7 @@
 
 - (NSArray *)gedcomLinesAtLevel:(int) level
 {
-	NSMutableArray *gedLines = [NSMutableArray arrayWithCapacity:5];
+	NSMutableArray *gedLines = [NSMutableArray array];
 	
 	NSMutableArray *lines = [[[self gedValue] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
     
@@ -273,7 +273,7 @@
 
 - (id)valueForKey:(NSString *)key
 {
-	NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:5];
+	NSMutableArray *subNodes = [NSMutableArray array];
 	
     for (id subNode in [self subNodes]) {
 		if ([[subNode gedTag] isEqualTo:key]) {

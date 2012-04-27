@@ -21,8 +21,8 @@
 	self = [super init];
 	
 	if (self) {
-        xrefStore = [NSMutableDictionary dictionaryWithCapacity:4];
-        xrefBlocks = [NSMutableDictionary dictionaryWithCapacity:4];
+        xrefStore = [NSMutableDictionary dictionary];
+        xrefBlocks = [NSMutableDictionary dictionary];
 	}
 	
 	return self;

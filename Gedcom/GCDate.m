@@ -838,7 +838,7 @@
     if (![super init])
         return nil;
     
-    cache = [NSMutableDictionary dictionaryWithCapacity:3];
+    cache = [NSMutableDictionary dictionary];
     
     NSString *grammarPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gedcom.date" ofType:@"grammar"];
     

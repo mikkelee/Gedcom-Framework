@@ -440,7 +440,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	if (![super init])
 		return nil;
 	
-    cache = [NSMutableDictionary dictionaryWithCapacity:3];
+    cache = [NSMutableDictionary dictionary];
     
 	NSString *grammarPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gedcom.age" ofType:@"grammar"];
 	

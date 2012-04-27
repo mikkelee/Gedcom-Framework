@@ -36,7 +36,7 @@
     
     if (self) {
         _tag = [GCTag tagNamed:type];
-        _properties = [NSMutableDictionary dictionaryWithCapacity:3];
+        _properties = [NSMutableDictionary dictionary];
     }
     
     return self;    
@@ -61,7 +61,7 @@
         NSMutableOrderedSet *set = [_properties valueForKey:[property type]];
         
         if (!set) {
-            set = [NSMutableOrderedSet orderedSetWithCapacity:1];
+            set = [NSMutableOrderedSet orderedSet];
             [_properties setValue:set forKey:[property type]];
         }
         
@@ -233,7 +233,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 - (NSArray *)subNodes
 {
-    NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:3];
+    NSMutableArray *subNodes = [NSMutableArray arrayWithCapacity:[_properties count]];
     
     for (NSString *propertyName in [self validProperties]) {
         id obj = [_properties valueForKey:propertyName];
