@@ -16,23 +16,13 @@
 
 #pragma mark Initialization
 
-- (id)init
-{
-	NSAssert(NO,@"You must use initWithMutableArray...");
-	__builtin_unreachable();
-}
-
 - (id)initWithMutableOrderedSet:(NSMutableOrderedSet *)set 
                        addBlock:(void (^)(id obj))addBlock 
                     removeBlock:(void (^)(id obj))removeBlock
 {
-	self = [super init];
-	
-	if (self) {
-		_set = set;
-		_addBlock = addBlock;
-		_removeBlock = removeBlock;
-	}
+	_set = set;
+	_addBlock = addBlock;
+	_removeBlock = removeBlock;
 	
 	return self;
 }
@@ -46,25 +36,17 @@
 
 #pragma mark Forwarding
 
-- (id)forwardingTargetForSelector:(SEL)sel
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-	//http://www.mikeash.com/pyblog/friday-qa-2009-03-27-objective-c-message-forwarding.html
-    //forward all NSMutableOrderedSet-selectors to contained set
-    
-	if ([_set respondsToSelector:sel]) {
-        return _set;
-    } else {
-        return nil;
-    }
+    return [_set methodSignatureForSelector:aSelector];
 }
 
-- (BOOL)respondsToSelector:(SEL)aSelector
+
+- (void)forwardInvocation:(NSInvocation *)invocation
 {
-    if ([_set respondsToSelector:aSelector]) {
-        return YES;
-    } else {
-        return [super respondsToSelector:aSelector];
-    }
+    [invocation setTarget:_set];
+    [invocation invoke];
+    return;
 }
 
 #pragma mark Primitive overrides

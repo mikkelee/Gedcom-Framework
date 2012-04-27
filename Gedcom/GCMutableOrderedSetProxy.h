@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GCMutableOrderedSetProxy : NSObject
+@interface GCMutableOrderedSetProxy : NSProxy
 
 #pragma mark Initialization
 
