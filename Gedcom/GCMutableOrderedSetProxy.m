@@ -158,9 +158,9 @@
 
 - (void)removeObjectsInRange:(NSRange)range
 {
-    //TODO
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
+    for (NSUInteger idx = range.location; idx <= range.length; idx++) {
+        [self removeObjectAtIndex:idx];
+    }
 }
 
 - (void)removeObjectsAtIndexes:(NSIndexSet *)indexes
