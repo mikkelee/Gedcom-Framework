@@ -46,8 +46,8 @@
 @property (readonly) NSString *type;
 
 @property NSMutableOrderedSet *properties;
-@property NSMutableOrderedSet *attributes;
-@property NSMutableOrderedSet *relationships;
+@property (readonly) NSMutableOrderedSet *attributes;
+@property (readonly) NSMutableOrderedSet *relationships;
 
 @property (readonly) GCTag *gedTag;
 @property (readonly) GCNode *gedcomNode;

@@ -268,8 +268,6 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     return [[self gedcomString] isEqualToString:[other gedcomString]];
 }
 
-
-//TODO think about whether this is a good idea or not
 -(BOOL) isEqual:(id)other
 {
     if (other == self) {
@@ -323,9 +321,12 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 - (void)setProperties:(NSMutableOrderedSet *)properties
 {
-    //TODO
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
+    _properties = [NSMutableDictionary dictionary];
+    
+    for (id property in properties) {
+        NSParameterAssert([property isKindOfClass:[GCProperty class]]);
+        [self addProperty:property];
+    }
 }
 
 - (id)attributes
@@ -347,13 +348,6 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
                                                            }];
 }
 
-- (void)setAttributes:(NSMutableOrderedSet *)attributes
-{
-    //TODO
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
-}
-
 - (id)relationships
 {
 	NSMutableOrderedSet *relationships = [NSMutableOrderedSet orderedSet];
@@ -371,13 +365,6 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
                                                            removeBlock:^(id obj) {
                                                                [self removeProperty:obj];
                                                            }];
-}
-
-- (void)setRelationships:(NSMutableOrderedSet *)relationships
-{
-    //TODO
-	[self doesNotRecognizeSelector:_cmd];
-	__builtin_unreachable();
 }
 
 - (NSString *)gedcomString
