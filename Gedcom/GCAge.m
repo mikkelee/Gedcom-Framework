@@ -61,7 +61,7 @@ typedef enum {
 {
 	NSString *months = @"";
 	if ([[self ageComponents] month] >= 1) {
-		months = [NSString stringWithFormat:@" %@", [[self ageComponents] month]];
+		months = [NSString stringWithFormat:@" %@m", [[self ageComponents] month]];
 	}
 	
 	NSString *days = @"";
@@ -70,6 +70,21 @@ typedef enum {
 	}
 	
 	return [NSString stringWithFormat:@"%dy%@%@", [[self ageComponents] year], months, days];
+}
+
+- (NSString *)displayString
+{
+	NSString *months = @"";
+	if ([[self ageComponents] month] >= 1) {
+		months = [NSString stringWithFormat:@", %@ months", [[self ageComponents] month]];
+	}
+	
+	NSString *days = @"";
+	if ([[self ageComponents] day] >= 1) {
+		days = [NSString stringWithFormat:@", %d days", [[self ageComponents] day]];
+	}
+	
+	return [NSString stringWithFormat:@"%d years%@%@", [[self ageComponents] year], months, days];
 }
 
 - (GCSimpleAge *)refAge
@@ -123,6 +138,11 @@ NSString * const GCAgeQualifier_toString[] = {
 	return [NSString stringWithFormat:@"%@ %@", GCAgeQualifier_toString[[self qualifier]], [self age]];
 }
 
+- (NSString *)displayString
+{
+    return [self gedcomString];
+}
+
 - (GCSimpleAge *)refAge
 {
 	return [[self age] refAge];
@@ -143,14 +163,19 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @implementation GCAgeKeyword
 
--(NSString *)description
+- (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCAgeKeyword '%@']", [self keyword]];
 }
 
--(NSString *)gedcomString
+- (NSString *)gedcomString
 {
 	return [self keyword];
+}
+
+- (NSString *)displayString
+{
+    return [[self keyword] capitalizedString];
 }
 
 /*
@@ -203,6 +228,11 @@ NSString * const GCAgeQualifier_toString[] = {
 -(NSString *)gedcomString
 {
 	return [self string];
+}
+
+- (NSString *)displayString
+{
+    return [self gedcomString];
 }
 
 - (GCSimpleAge *)refAge

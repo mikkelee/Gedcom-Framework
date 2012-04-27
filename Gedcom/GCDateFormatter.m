@@ -13,7 +13,12 @@
 
 - (NSString *)editingStringForObjectValue:(id)date
 {
-	return [self stringForObjectValue:date];
+    if (![date isKindOfClass:[GCDate class]]) {
+		NSLog(@"date was wrong class: %@", [date className]);
+        return nil;
+    }
+    
+	return [date gedcomString];
 }
 
 - (NSString *)stringForObjectValue:(id)date;
@@ -23,14 +28,9 @@
         return nil;
     }
 	
-	return [date gedcomString]; //TODO '<' instead of 'BEF' etc?
+	return [date displayString];
 }
-/*
-- (NSAttributedString *)attributedStringForObjectValue:(id)date withDefaultAttributes:(NSDictionary *)attributes
-{
-	return [[NSAttributedString alloc] initWithString:[self editingStringForObjectValue:date]]; //TODO
-}
-*/
+
 - (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error
 {
 	BOOL result = NO;

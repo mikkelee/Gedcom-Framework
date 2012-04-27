@@ -17,7 +17,7 @@
         return nil;
     }
 	
-	return [self stringForObjectValue:anObject];
+	return [anObject gedcomString];
 }
 
 - (NSString *)stringForObjectValue:(id)anObject;
@@ -26,7 +26,7 @@
         return nil;
     }
 	
-	return [anObject gedcomString];
+	return [anObject displayString];
 }
 
 - (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error

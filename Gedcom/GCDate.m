@@ -93,6 +93,11 @@
 	return [NSString stringWithFormat:@"%@%@%04d", day, month, [[self dateComponents] year]];
 }
 
+- (NSString *)displayString
+{
+    return [self gedcomString]; //TODO format according to user settings...
+}
+
 - (NSDate *)minDate
 {
     return [[self calendar] dateFromComponents:[self dateComponents]];
@@ -124,14 +129,19 @@
 
 @implementation GCDatePhrase
 
--(NSString *)description
+- (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCDatePhrase '%@']", [self phrase]];
 }
 
--(NSString *)gedcomString
+- (NSString *)gedcomString
 {
 	return [NSString stringWithFormat:@"(%@)", [self phrase]];
+}
+
+- (NSString *)displayString
+{
+    return [self gedcomString];
 }
 
 - (NSCalendar *)calendar
@@ -203,14 +213,19 @@
 
 @implementation GCApproximateDate
 
--(NSString *)description
+- (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCApproximateDate '%@' %@]", [self dateType], [self simpleDate]];
 }
 
--(NSString *)gedcomString
+- (NSString *)gedcomString
 {
 	return [NSString stringWithFormat:@"%@ %@", [self dateType], [[self simpleDate] gedcomString]];
+}
+
+- (NSString *)displayString
+{
+	return [NSString stringWithFormat:@"~ %@", [[self simpleDate] displayString]];
 }
 
 @synthesize dateType;
@@ -227,14 +242,19 @@
 
 @implementation GCInterpretedDate
 
--(NSString *)description
+- (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCInterpretedDate %@ %@]", [self simpleDate], [self datePhrase]];
 }
 
--(NSString *)gedcomString
+- (NSString *)gedcomString
 {
 	return [NSString stringWithFormat:@"INT %@ (%@)]", [[self simpleDate] gedcomString], [[self datePhrase] gedcomString]];
+}
+
+- (NSString *)displayString
+{
+	return [NSString stringWithFormat:@"\"%@\" (%@)]", [[self simpleDate] displayString], [[self datePhrase] displayString]];
 }
 
 @synthesize datePhrase;
@@ -283,24 +303,24 @@
 	}
 }
 
--(GCSimpleDate *)dateA
+- (GCSimpleDate *)dateA
 {
     return _dateA;
 }
 
--(void)setDateA:(GCSimpleDate *)dateA
+- (void)setDateA:(GCSimpleDate *)dateA
 {
     NSParameterAssert(dateA == nil || _dateB == nil || [[dateA calendar] isEqual:[_dateB calendar]]);
     
     _dateA = dateA;
 }
 
--(GCSimpleDate *)dateB
+- (GCSimpleDate *)dateB
 {
     return _dateB;
 }
 
--(void)setDateB:(GCSimpleDate *)dateB
+- (void)setDateB:(GCSimpleDate *)dateB
 {
     NSParameterAssert(dateB == nil || _dateA == nil || [[_dateA calendar] isEqual:[dateB calendar]]);
     
@@ -345,7 +365,18 @@
 	} else if ([self dateB] == nil) {
 		return [NSString stringWithFormat:@"FROM %@", [[self dateA] gedcomString]];
 	} else {
-		return [NSString stringWithFormat:@"FROM %@ TO %@", [self dateA], [self dateB]];
+		return [NSString stringWithFormat:@"FROM %@ TO %@", [[self dateA] gedcomString], [[self dateB] gedcomString]];
+	}
+}
+
+- (NSString *)displayString
+{
+	if ([self dateA] == nil) {
+		return [NSString stringWithFormat:@"? – %@", [[self dateB] displayString]];
+	} else if ([self dateB] == nil) {
+		return [NSString stringWithFormat:@"%@ – ?", [[self dateA] displayString]];
+	} else {
+		return [NSString stringWithFormat:@"%@ – %@", [[self dateA] displayString], [[self dateB] displayString]];
 	}
 }
 
@@ -381,6 +412,17 @@
 	}
 }
 
+- (NSString *)displayString
+{
+	if ([self dateA] == nil) {
+		return [NSString stringWithFormat:@"< %@", [[self dateB] displayString]];
+	} else if ([self dateB] == nil) {
+		return [NSString stringWithFormat:@"> %@", [[self dateA] displayString]];
+	} else {
+		return [NSString stringWithFormat:@"%@ – %@", [[self dateA] displayString], [[self dateB] displayString]];
+	}
+}
+
 @end
 
 #pragma mark GCInvalidDate
@@ -394,14 +436,19 @@
 
 @implementation GCInvalidDate
 
--(NSString *)description
+- (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCInvalidDate '%@']", [self string]];
 }
 
--(NSString *)gedcomString
+- (NSString *)gedcomString
 {
 	return [self string];
+}
+
+- (NSString *)displayString
+{
+    return [self gedcomString];
 }
 
 - (GCSimpleDate *)refDate
