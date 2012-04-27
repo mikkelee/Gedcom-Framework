@@ -45,8 +45,8 @@
 
 @interface GCSimpleDate : GCDate
 
-@property (copy) NSDateComponents *dateComponents;
-@property (retain) NSCalendar *calendar;
+@property NSDateComponents *dateComponents;
+@property NSCalendar *calendar;
 
 @end
 
@@ -162,8 +162,8 @@
 
 @interface GCAttributedDate : GCDate
 
-@property (retain) GCSimpleDate *simpleDate;
-@property (retain, readonly) NSCalendar *calendar;
+@property GCSimpleDate *simpleDate;
+@property (readonly) NSCalendar *calendar;
 
 @end
 
@@ -197,7 +197,7 @@
 
 @interface GCApproximateDate : GCAttributedDate
 
-@property (retain) NSString *dateType;
+@property NSString *dateType;
 
 @end
 
@@ -221,7 +221,7 @@
 
 @interface GCInterpretedDate : GCAttributedDate
 
-@property (copy) GCDatePhrase *datePhrase;
+@property GCDatePhrase *datePhrase;
 
 @end
 
@@ -247,15 +247,16 @@
 
 @interface GCDatePair : GCDate
 
-@property (retain) GCSimpleDate *dateA;
-@property (retain) GCSimpleDate *dateB;
-@property (retain, readonly) NSCalendar *calendar;
+@property GCSimpleDate *dateA;
+@property GCSimpleDate *dateB;
+@property (readonly) NSCalendar *calendar;
 
 @end
 
-@implementation GCDatePair
-
-//TODO enforce [dateA calendar] isEqual [dateB calendar]
+@implementation GCDatePair {
+    GCSimpleDate *_dateA;
+    GCSimpleDate *_dateB;
+}
 
 - (GCSimpleDate *)refDate
 {
@@ -282,8 +283,29 @@
 	}
 }
 
-@synthesize dateA;
-@synthesize dateB;
+-(GCSimpleDate *)dateA
+{
+    return _dateA;
+}
+
+-(void)setDateA:(GCSimpleDate *)dateA
+{
+    NSParameterAssert(dateA == nil || _dateB == nil || [[dateA calendar] isEqual:[_dateB calendar]]);
+    
+    _dateA = dateA;
+}
+
+-(GCSimpleDate *)dateB
+{
+    return _dateB;
+}
+
+-(void)setDateB:(GCSimpleDate *)dateB
+{
+    NSParameterAssert(dateB == nil || _dateA == nil || [[_dateA calendar] isEqual:[dateB calendar]]);
+    
+    _dateB = dateB;
+}
 
 - (NSDate *)minDate
 {
@@ -365,8 +387,8 @@
 
 @interface GCInvalidDate : GCDate
 
-@property (copy) NSString *string;
-@property (retain, readonly) NSCalendar *calendar;
+@property NSString *string;
+@property (readonly) NSCalendar *calendar;
 
 @end
 
@@ -508,7 +530,7 @@
 
 - (void)initialize;
 
-@property (copy) GCDate *date;
+@property GCDate *date;
 
 @end
 
