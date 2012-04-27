@@ -860,7 +860,7 @@
     NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                   fromDate:date];
     
-    return [GCSimpleDate dateWithSimpleDate:dateComponents withCalendar:calendar];
+    return [GCDate dateWithSimpleDate:dateComponents withCalendar:calendar];
 }
 
 
@@ -968,21 +968,15 @@
 
 - (id)dateByAddingAge:(GCAge *)age
 {
-    NSDate *theDate = nil;
-    //TODO
-   /* if ([self minDate] != nil && [[self minDate] isEqual:[self maxDate]]) {
-        theDate = [self minDate];
-    }
+    NSDate *theDate = [self maxDate] ? [self maxDate] : [self minDate];
     
-    */
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
     
     [ageComponents setYear:[age years]];
     [ageComponents setMonth:[age months]];
     [ageComponents setDay:[age days]];
     
-    
-    return [[[self refDate] calendar] dateByAddingComponents:ageComponents toDate:theDate options:0];
+    return [GCDate dateWithDate:[[[self refDate] calendar] dateByAddingComponents:ageComponents toDate:theDate options:0]];
 }
 
 - (BOOL)containsDate:(NSDate *)date
