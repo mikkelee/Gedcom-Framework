@@ -204,13 +204,13 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     [keys removeObjectAtIndex:0];
     
     if ([[self validProperties] containsObject:firstKey]) {
-        id obj = [self valueForKey:firstKey];
+        id obj = [_properties valueForKey:firstKey];
         
         if ([keys count] == 0) {
             return obj;
         }
         
-        if ([obj isKindOfClass:[GCMutableOrderedSetProxy class]]) {
+        if ([obj isKindOfClass:[NSOrderedSet class]]) {
             NSMutableOrderedSet *values = [NSMutableOrderedSet orderedSetWithCapacity:[obj count]];
             
             for (id item in obj) {
