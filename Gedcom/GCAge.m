@@ -185,25 +185,34 @@ NSString * const GCAgeQualifier_toString[] = {
  */
 - (GCSimpleAge *)refAge
 {
-	GCSimpleAge *a = [[GCSimpleAge alloc] init];
+	GCSimpleAge *age = [[GCSimpleAge alloc] init];
     
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init]; 
     
+    GCAgeQualifier qualifier = 0;
+    
     if ([[self keyword] isEqualToString:@"CHILD"]) {
         [ageComponents setYear:8];
+        qualifier = GCAgeLessThan;
     } else if ([[self keyword] isEqualToString:@"INFANT"]) {
         [ageComponents setYear:1];
+        qualifier = GCAgeLessThan;
     } else if ([[self keyword] isEqualToString:@"STILLBORN"]) {
         [ageComponents setYear:0];
     } else {
-        //TODO error!!
+		NSException *exception = [NSException exceptionWithName:@"GCInvalidAgeKeywordException"
+														 reason:[NSString stringWithFormat:@"Invalid AgeKeyword '%@'", [self keyword]]
+													   userInfo:nil];
+		@throw exception;
     }
     
-	[a setAgeComponents:ageComponents];
+	[age setAgeComponents:ageComponents];
     
-	//TODO return a qualifiedage with GCLessThan ?
-	
-	return a;
+    if (qualifier) {
+        return [GCAge ageWithAge:age withQualifier:qualifier];
+    } else {
+        return age;
+    }
 }
 
 @synthesize keyword;
