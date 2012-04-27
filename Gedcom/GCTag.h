@@ -10,6 +10,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef struct {
+    NSInteger min;
+    NSInteger max;
+} GCAllowedOccurrences;
+
 @interface GCTag : NSObject <NSCopying, NSCoding>
 
 #pragma mark Entry points
@@ -23,7 +28,7 @@
 - (GCTag *)subTagWithName:(NSString *)name;
 
 - (BOOL)isValidSubTag:(GCTag *)tag;
-- (BOOL)allowsMultipleSubtags:(GCTag *)tag;
+- (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
 #pragma mark Objective-C properties
 

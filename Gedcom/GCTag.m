@@ -232,8 +232,6 @@ __strong static NSMutableDictionary *tagInfo;
         }
     }
     
-    //TODO error?
-    
     return nil;
 }
 
@@ -245,8 +243,6 @@ __strong static NSMutableDictionary *tagInfo;
         }
     }
     
-    //TODO error?
-    
     return nil;
 }
 
@@ -255,16 +251,16 @@ __strong static NSMutableDictionary *tagInfo;
     return [tag isCustom] || [[self validSubTags] containsObject:tag];
 }
 
-- (BOOL)allowsMultipleSubtags:(GCTag *)tag
+- (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag
 {
     if ([tag isCustom]) {
-        return YES;
+        return (GCAllowedOccurrences){0, NSIntegerMax};
     }
     
     //TODO cache this:
     
     if ([_settings objectForKey:kValidSubTags] == nil) {
-        return NO;
+        return (GCAllowedOccurrences){0, 0};
     }
     
     NSDictionary *validDict = nil;
@@ -289,15 +285,14 @@ __strong static NSMutableDictionary *tagInfo;
     }
     NSParameterAssert(validDict);
     
-    //TODO use this:
-	//NSInteger min = [[validDict objectForKey:@"min"] integerValue];
+    NSInteger min = [[validDict objectForKey:@"min"] integerValue];
     
     NSInteger max = [[validDict objectForKey:@"max"] isEqual:@"M"]
-                  ? INT_MAX
+                  ? NSIntegerMax
                   : [[validDict objectForKey:@"max"] integerValue]
                   ;
 	
-	return [tag isCustom] || max > 1;
+    return (GCAllowedOccurrences){min, max};
 }
 
 #pragma mark Description

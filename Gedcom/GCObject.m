@@ -124,7 +124,9 @@
 
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
 {
-	return [_tag allowsMultipleSubtags:[GCTag tagNamed:type]];
+    GCAllowedOccurrences occurrences = [_tag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
+    
+    return occurrences.max > 1;
 }
 
 #pragma mark NSKeyValueCoding overrides
