@@ -8,14 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface GCAgeFormatter : NSFormatter
-
-- (NSString *)editingStringForObjectValue:(id)anObject;
-- (NSString *)stringForObjectValue:(id)anObject;
-
-- (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error;
-- (BOOL)getObjectValue:(out id *)outVal forString:(NSString *)aString range:(inout NSRange *)rangep error:(out NSError **)error;
-
 
 @end

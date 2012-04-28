@@ -13,18 +13,14 @@
 
 - (NSString *)editingStringForObjectValue:(id)anObject
 {
-    if (![anObject isKindOfClass:[GCAge class]]) {
-        return nil;
-    }
+    NSParameterAssert([date isKindOfClass:[GCAge class]]);
 	
 	return [anObject gedcomString];
 }
 
 - (NSString *)stringForObjectValue:(id)anObject;
 {
-    if (![anObject isKindOfClass:[GCAge class]]) {
-        return nil;
-    }
+    NSParameterAssert([anObject isKindOfClass:[GCAge class]]);
 	
 	return [anObject displayString];
 }

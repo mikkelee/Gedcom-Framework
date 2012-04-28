@@ -11,24 +11,18 @@
 
 @implementation GCDateFormatter
 
-- (NSString *)editingStringForObjectValue:(id)date
+- (NSString *)editingStringForObjectValue:(id)anObject
 {
-    if (![date isKindOfClass:[GCDate class]]) {
-		NSLog(@"date was wrong class: %@", [date className]);
-        return nil;
-    }
-    
-	return [date gedcomString];
+    NSParameterAssert([anObject isKindOfClass:[GCDate class]]);
+
+	return [anObject gedcomString];
 }
 
-- (NSString *)stringForObjectValue:(id)date;
+- (NSString *)stringForObjectValue:(id)anObject;
 {
-    if (![date isKindOfClass:[GCDate class]]) {
-		NSLog(@"date was wrong class: %@", [date className]);
-        return nil;
-    }
-	
-	return [date displayString];
+    NSParameterAssert([anObject isKindOfClass:[GCDate class]]);
+    
+	return [anObject displayString];
 }
 
 - (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error
