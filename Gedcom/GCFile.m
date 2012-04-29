@@ -65,10 +65,12 @@
     
     if (self) {
         _head = header;
+        _context = [header context];
+        
         _entities = [NSMutableOrderedSet orderedSetWithCapacity:[entities count]];
         
         for (GCEntity *entity in entities) {
-            NSParameterAssert(_context == nil || _context == [entity context]);
+            NSParameterAssert(_context == [entity context]);
             
             [_entities addObject:entity];
         }
