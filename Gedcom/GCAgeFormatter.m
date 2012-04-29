@@ -13,7 +13,7 @@
 
 - (NSString *)editingStringForObjectValue:(id)anObject
 {
-    NSParameterAssert([date isKindOfClass:[GCAge class]]);
+    NSParameterAssert([anObject isKindOfClass:[GCAge class]]);
 	
 	return [anObject gedcomString];
 }

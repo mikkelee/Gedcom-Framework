@@ -40,7 +40,7 @@
 
 - (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
-    NSParameterAssert(tag != nil);
+    NSParameterAssert(tag != nil && ([tag length] <= 4 || [tag hasPrefix:@"_"]));
     
     self = [super init];
     
@@ -61,26 +61,6 @@
 }
 
 #pragma mark Convenience constructors
-
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value
-{
-    return [[self alloc] initWithTag:tag value:value xref:nil subNodes:nil];
-}
-
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref
-{
-    return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
-}
-
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
-{
-    return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
-}
-
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
-{
-    return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
-}
 
 + (NSArray*)arrayOfNodesFromString:(NSString*) gedString
 {
@@ -380,5 +360,29 @@
 @synthesize xref = _xref;
 @synthesize lineSeparator = _lineSeparator;
 @synthesize subNodes = _subNodes;
+
+@end
+
+@implementation GCNode (GCConvenienceMethods)
+
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value
+{
+    return [[self alloc] initWithTag:tag value:value xref:nil subNodes:nil];
+}
+
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref
+{
+    return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
+}
+
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
+{
+    return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
+}
+
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
+{
+    return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
+}
 
 @end

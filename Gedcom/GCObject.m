@@ -34,6 +34,9 @@
 {
     self = [super init];
     
+    NSParameterAssert([self class] != [GCObject class]);
+    NSParameterAssert([self class] != [GCProperty class]);
+    
     if (self) {
         _tag = [GCTag tagNamed:type];
         _properties = [NSMutableDictionary dictionary];
