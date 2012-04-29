@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 
+ NSFormatter subclass for displaying ages in a user interface as well as turn user-supplied input into GCAge objects.
+ 
+ */
 @interface GCAgeFormatter : NSFormatter
 
 @end

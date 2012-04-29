@@ -39,6 +39,8 @@
 
 - (NSDate *)dateWithNode:(GCNode *)node
 {
+    NSParameterAssert([[node gedTag] isEqualToString:@"CHAN"]);
+    
 	return [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", 
                                           [[node valueForKey:@"DATE"] gedValue], 
                                           [[node valueForKeyPath:@"DATE.TIME"] gedValue]

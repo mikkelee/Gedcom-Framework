@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 
+ NSFormatter subclass for displaying dates in a user interface as well as turn user-supplied input into GCDate objects.
+ 
+ */
 @interface GCDateFormatter : NSFormatter
 
 @end

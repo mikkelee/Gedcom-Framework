@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		3E29DB2F154AE1F100756CF4 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3E29DB30154AE1F100756CF4 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				3E29DB33154AE1F700756CF4 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3E14EDCA15230DAF00080364 /* GCContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E14EDC815230DAE00080364 /* GCContext.h */; };
 		3E14EDCB15230DAF00080364 /* GCContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14EDC915230DAE00080364 /* GCContext.m */; };
@@ -438,6 +452,7 @@
 			targets = (
 				3E1C3E65151C319C005E09E1 /* Gedcom */,
 				3E1C3E7D151C319D005E09E1 /* GedcomTests */,
+				3E29DB2F154AE1F100756CF4 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -480,6 +495,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		3E29DB33154AE1F700756CF4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Mikkel Eide Eriksen\" --company-id dk.kildekort --output $SOURCE_ROOT/Documentation --logformat Xcode --keep-intermediate-files --warn-undocumented-object --warn-undocumented-member --keep-undocumented-objects --keep-undocumented-members --keep-merged-sections --prefix-merged-sections --no-repeat-first-par Gedcom/*.h";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -660,6 +688,20 @@
 			};
 			name = Release;
 		};
+		3E29DB31154AE1F100756CF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3E29DB32154AE1F100756CF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -689,6 +731,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3E29DB30154AE1F100756CF4 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E29DB31154AE1F100756CF4 /* Debug */,
+				3E29DB32154AE1F100756CF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

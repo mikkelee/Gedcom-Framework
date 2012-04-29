@@ -24,12 +24,21 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
 
+Full AppleDoc documentation in the headers, can be built with the Documentation target.
+
 # TODO #
 
 * **tags.json**: Currently only partially done
-* **appledocs**: and better comments & cleaner headers in general
 * **GCObject**: NSCoding
-
+* **GCObject**: something like -propertiesFulfillingBlock:
+* **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
+* **GCObject/GCProperty**: Should throw on init if [self class] is obj/prop
+* **GCMutableNode**: removeSubNode:, use GCMutableOrderedSetProxy
+* **GCChangedDateFormatter**: Make a true formatter
+* **GCValue**: Make GCAge/GCDate subclass of GCValue?
+* **GCContext**: +contextNamed: - refactor methodnames
+* **GCRelationship**: make sure reverse relationships are removed when necessary
+* **GCEntity**: lastModified should update when adding/removing properties
 
 # Examples #
 

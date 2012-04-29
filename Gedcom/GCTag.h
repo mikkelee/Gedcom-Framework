@@ -15,30 +15,92 @@ typedef struct {
     NSInteger max;
 } GCAllowedOccurrences;
 
+/**
+ 
+ Tags 
+ 
+ Only one of each tag exists.
+ 
+ TODO
+ 
+ */
 @interface GCTag : NSObject <NSCopying, NSCoding>
 
 #pragma mark Entry points
 
+/// @name Obtaining tags
+
+/** Returns a tag with the given name.
+ 
+ @param name The name of the requested tag.
+ @return A tag or `nil` if none exists.
+ */
 + (GCTag *)tagNamed:(NSString *)name;
+
+/** Returns a root tag with the given code.
+ 
+ @param code The code of the requested tag.
+ @return A tag or `nil` if none exists.
+ */
 + (GCTag *)rootTagWithCode:(NSString *)code;
 
 #pragma mark Subtags
 
+/// @name Accessing subtags
+
+/** Returns the subtag of the receiver with the given code.
+ 
+ @param code The name of the requested subtag.
+ @return A tag or `nil` if none exists.
+ */
 - (GCTag *)subTagWithCode:(NSString *)code;
+
+/** Returns the subtag of the receiver with the given name.
+ 
+ @param name The name of the requested subtag.
+ @return A tag or `nil` if none exists.
+ */
 - (GCTag *)subTagWithName:(NSString *)name;
 
+/** Returns whether a given subtag is a valid subtag of the receiver.
+ 
+ @param tag A GCTag object.
+ @return `YES` if the given subtag is valid, otherwise `NO`.
+ */
 - (BOOL)isValidSubTag:(GCTag *)tag;
+
+/** Returns a struct with the minimum and maximum allowed occurrences of a given subtag on the receiver.
+ 
+ GCAllowedOccurrences is a { `min`, `max` } struct of two NSIntegers
+ 
+ @param tag A GCTag object.
+ @return A GCAllowedOccurrences struct.
+ */
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
 #pragma mark Objective-C properties
 
+/// @name Accessing properties
+
+/// The Gedcom code of the receiver.
 @property (readonly) NSString *code;
+
+/// The human readable name of the receiver.
 @property (readonly) NSString *name;
+
+/// Whether the tag is custom or not.
 @property (readonly) BOOL isCustom;
 
+/// An ordered collection of valid subtags.
 @property (readonly) NSOrderedSet *validSubTags;
-@property (readonly) GCValueType valueType;
+
+/// The class type of the tag. Can be any subclass of GCObject.
 @property (readonly) Class objectClass;
+
+/// An enum indicating which type its value is. Will be GCUndefinedValue if the tag is not a property-tag. See GCValue.
+@property (readonly) GCValueType valueType;
+
+/// If the tag is a relationship-tag and the relationship is two-way (such as FAMC &lt;-&gt; CHIL) the reverse tag is provided. Can be `nil`.
 @property (readonly) GCTag *reverseRelationshipTag;
 
 @end
