@@ -8,6 +8,8 @@
 
 #import "GCHeader.h"
 
+#import "GCNode.h"
+
 @interface GCHeader ()
 
 @property GCNode *gedcomNode;
@@ -20,6 +22,8 @@
 
 + (id)headerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
+    NSParameterAssert([[node gedTag] isEqualToString:@"HEAD"]);
+    
 	GCHeader *head = [[self alloc] init];
 	
 	[head setGedcomNode:node]; //TODO
