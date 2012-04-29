@@ -20,7 +20,7 @@
  Abstract object. Subclasses are GCHeader, GCEntity and GCProperty.
  
  */
-@interface GCObject : NSObject
+@interface GCObject : NSObject <NSCoding>
 
 #pragma mark Initialization
 
@@ -198,5 +198,12 @@
  @param node A node.
  */
 - (void)addPropertyWithGedcomNode:(GCNode *)node;
+
+@end
+
+@interface GCObject (GCCodingHelpers)
+
+- (void)decodeProperties:(NSCoder *)aDecoder;
+- (void)encodeProperties:(NSCoder *)aCoder;
 
 @end

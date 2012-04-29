@@ -15,7 +15,7 @@
  A context provides lookup functionality related to xrefs.
  
  */
-@interface GCContext : NSObject
+@interface GCContext : NSObject <NSCoding>
 
 /// @name Obtaining a context
 

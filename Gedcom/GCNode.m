@@ -290,11 +290,11 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder setValue:[self gedTag] forKey:@"gedTag"];
-    [encoder setValue:[self gedValue] forKey:@"gedValue"];
-    [encoder setValue:[self xref] forKey:@"xref"];
-    [encoder setValue:[self lineSeparator] forKey:@"lineSeparator"];
-    [encoder setValue:[self subNodes] forKey:@"subNodes"];
+    [encoder encodeObject:[self gedTag] forKey:@"gedTag"];
+    [encoder encodeObject:[self gedValue] forKey:@"gedValue"];
+    [encoder encodeObject:[self xref] forKey:@"xref"];
+    [encoder encodeObject:[self lineSeparator] forKey:@"lineSeparator"];
+    [encoder encodeObject:[self subNodes] forKey:@"subNodes"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder

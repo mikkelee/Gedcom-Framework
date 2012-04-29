@@ -71,6 +71,29 @@
     return NSOrderedSame;
 }
 
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithType:[aDecoder decodeObjectForKey:@"type"]];
+    
+    if (self) {
+        [self setDescribedObject:[aDecoder decodeObjectForKey:@"describedObject"]];
+        _target = [aDecoder decodeObjectForKey:@"target"];
+        [self decodeProperties:aDecoder];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:[self type] forKey:@"type"];
+    [aCoder encodeObject:[self describedObject] forKey:@"describedObject"];
+    [aCoder encodeObject:_target forKey:@"target"];
+    [self encodeProperties:aCoder];
+}
+
 #pragma mark Objective-C properties
 
 - (GCEntity *)target

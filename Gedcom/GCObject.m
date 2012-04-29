@@ -273,7 +273,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 {
     return [[self gedcomString] isEqualToString:[other gedcomString]];
 }
-
+/*
 - (BOOL)isEqual:(id)other
 {
     if (other == self) {
@@ -286,6 +286,19 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 - (NSUInteger)hash
 {
     return [[self gedcomString] hash];
+}*/
+
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    [self doesNotRecognizeSelector:_cmd];    
+    return nil;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [self doesNotRecognizeSelector:_cmd];    
 }
 
 #pragma mark Description
@@ -471,3 +484,16 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 @end
 
+@implementation GCObject (GCCodingHelpers)
+
+- (void)decodeProperties:(NSCoder *)aDecoder
+{
+    _properties = [aDecoder decodeObjectForKey:@"properties"];
+}
+
+- (void)encodeProperties:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_properties forKey:@"properties"];
+}
+
+@end

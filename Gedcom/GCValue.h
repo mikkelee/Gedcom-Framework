@@ -42,7 +42,7 @@ typedef enum {
  GCValue objects are immutable. To change the value of an attribute, assign a new value object to it.
  
  */
-@interface GCValue : NSObject
+@interface GCValue : NSObject <NSCoding>
 
 /// @name Creating and initializing values
 

@@ -20,6 +20,8 @@
 	GCNode *_gedcomNode;
 }
 
+#pragma mark Convenience constructors
+
 + (id)headerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
     NSParameterAssert([[node gedTag] isEqualToString:@"HEAD"]);
@@ -30,6 +32,26 @@
 	
 	return head;
 }
+
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super init];
+    
+    if (self) {
+        _gedcomNode = [aDecoder decodeObjectForKey:@"gedcomNode"];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_gedcomNode forKey:@"gedcomNode"];
+}
+
+#pragma mark Objective-C properties
 
 @synthesize gedcomNode = _gedcomNode;
 

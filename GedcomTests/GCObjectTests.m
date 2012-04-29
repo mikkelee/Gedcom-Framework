@@ -204,12 +204,31 @@
     GCAttribute *birt2 = [[indi valueForKey:@"Birth"] lastObject];
     GCAttribute *deat2 = [[indi valueForKey:@"Death"] lastObject];
     
-    STAssertEqualObjects(birt1, birt2, nil);
+    STAssertTrue([birt1 isEqualTo:birt2], nil);
     STAssertFalse([deat1 isEqual:deat2], nil);
     
     //NSLog(@"[indi properties]: %@", [indi properties]);
     
     STAssertEquals([[indi properties] count], (NSUInteger)4, nil);
+}
+
+- (void)testCoding
+{
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
+	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+	
+	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
+	
+	GCFile *file = [GCFile fileWithGedcomNodes:nodes];
+    
+    NSData *fileData = [NSKeyedArchiver archivedDataWithRootObject:file];
+    
+    GCFile *decodedFile = [NSKeyedUnarchiver unarchiveObjectWithData:fileData];
+    
+    //NSLog(@"file: %@", [file gedcomString]);
+    //NSLog(@"decodedFile: %@", [decodedFile gedcomString]);
+    
+    STAssertTrue([file isEqualTo:decodedFile], nil);
 }
 
 - (void)testFile

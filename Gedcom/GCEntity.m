@@ -93,6 +93,31 @@
     return NSOrderedSame;
 }
 
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithType:[aDecoder decodeObjectForKey:@"type"]];
+    
+    if (self) {
+        _context = [aDecoder decodeObjectForKey:@"context"];
+        
+        [self decodeProperties:aDecoder];
+        
+        _lastModified = [aDecoder decodeObjectForKey:@"lastModified"];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:[self type] forKey:@"type"];
+    [aCoder encodeObject:_context forKey:@"context"];
+    [aCoder encodeObject:_lastModified forKey:@"lastModified"];
+    [self encodeProperties:aCoder];
+}
+
 #pragma mark Objective-C properties
 
 - (NSOrderedSet *)subNodes

@@ -29,7 +29,6 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 # TODO #
 
 * **tags.json**: Currently only partially done
-* **GCObject**: NSCoding
 * **GCObject**: something like -propertiesFulfillingBlock:
 * **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
 * **GCChangedDateFormatter**: Make a true formatter
@@ -37,6 +36,7 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **GCContext**: +contextNamed: - refactor methodnames
 * **Unit tests**: Better coverage
 * **GCTag**: +tagsByName
+* **GCObject**: Validation (check if required properties are present etc).
 
 # Examples #
 

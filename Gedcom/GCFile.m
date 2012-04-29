@@ -42,10 +42,10 @@
             Class objectClass = [tag objectClass];
             
             if ([objectClass isEqual:[GCHeader class]]) {
-                if (_head) {
+                if (_header) {
                     NSLog(@"Multiple headers!?");
                 }
-                _head = [GCHeader headerWithGedcomNode:node inContext:context];
+                _header = [GCHeader headerWithGedcomNode:node inContext:context];
             } else if ([objectClass isEqual:[GCEntity class]]) {
                 [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:context]];
             } else if ([objectClass isEqual:[GCTrailer class]]) {
@@ -64,7 +64,7 @@
     self = [super init];
     
     if (self) {
-        _head = header;
+        _header = header;
         _context = [header context];
         
         _entities = [NSMutableOrderedSet orderedSetWithCapacity:[entities count]];
@@ -101,9 +101,42 @@
     [_entities removeObject:entity];
 }
 
+#pragma mark Equality
+
+- (BOOL)isEqualTo:(id)object
+{
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    return [[self gedcomString] isEqualToString:[object gedcomString]];
+}
+
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super init];
+    
+    if (self) {
+        _context = [aDecoder decodeObjectForKey:@"context"];
+        _header = [aDecoder decodeObjectForKey:@"header"];
+        _entities = [aDecoder decodeObjectForKey:@"entities"];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_context forKey:@"context"];
+    [aCoder encodeObject:_header forKey:@"header"];
+    [aCoder encodeObject:_entities forKey:@"entities"];
+}
+
 #pragma mark Objective-C properties
 
-@synthesize head = _head;
+@synthesize header = _header;
 @synthesize submission = _submission;
 @synthesize entities = _entities;
 
@@ -111,7 +144,7 @@
 {
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_entities count]+2];
 	
-	[nodes addObject:[_head gedcomNode]];
+	[nodes addObject:[_header gedcomNode]];
     
     if (_submission) {
         [nodes addObject:[_submission gedcomNode]];
@@ -124,6 +157,17 @@
     [nodes addObject:[GCNode nodeWithTag:@"TRLR" value:nil]];
     
 	return nodes;
+}
+
+- (NSString *)gedcomString
+{
+    NSMutableArray *gedcomStrings = [NSMutableArray array];
+    
+    for (GCNode *node in [self gedcomNodes]) {
+        [gedcomStrings addObjectsFromArray:[node gedcomLines]];
+    }
+    
+    return [gedcomStrings componentsJoinedByString:@"\n"];
 }
 
 @end

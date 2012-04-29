@@ -18,7 +18,7 @@
  A file keeps a header and a collection of entities.
  
  */
-@interface GCFile : NSObject
+@interface GCFile : NSObject <NSCoding>
 
 #pragma mark Initialization
 
@@ -72,7 +72,7 @@
 #pragma mark Objective-C properties
 
 /// The header of the receiver.
-@property GCHeader *head;
+@property GCHeader *header;
 
 /// An optional submission entity.
 @property GCEntity *submission; //optional
@@ -86,6 +86,9 @@
 
 /// The receiver as an ordered collection of Gedcom nodes.
 @property (readonly) NSArray *gedcomNodes;
+
+/// The receiver as a Gedcom string.
+@property (readonly) NSString *gedcomString;
 
 @end
 

@@ -344,6 +344,22 @@
     return hash;
 }
 
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [self initWithType:[aDecoder decodeIntegerForKey:@"type"] 
+                        value:[aDecoder decodeObjectForKey:@"value"]];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInteger:_type forKey:@"type"];
+    [aCoder encodeObject:_value forKey:@"value"];
+}
+
 @end
 
 @implementation GCValue (GCConvenienceMethods)
