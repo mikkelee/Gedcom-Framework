@@ -31,7 +31,7 @@
 	
     if (self) {
         _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"dd MMM yyyy HH:mm:ss"];
+        [_dateFormatter setDateFormat:@"d MMM yyyy HH:mm:ss"];
     }
 	
 	return self;
@@ -51,7 +51,7 @@
 - (GCNode *)nodeWithDate:(NSDate *)date
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"dd MMM yyyy"];
+	[dateFormatter setDateFormat:@"d MMM yyyy"];
 	[dateFormatter setShortMonthSymbols:[NSArray arrayWithObjects:@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec", nil]];
 	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
 	[timeFormatter setDateFormat:@"HH:mm:ss"];

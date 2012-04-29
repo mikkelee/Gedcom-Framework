@@ -62,7 +62,7 @@
                          @"2 DATE 1 JAN 1901\n"
                          @"1 DEAT Y\n"
                          @"1 CHAN\n"
-                         @"2 DATE 01 Jan 2000\n"
+                         @"2 DATE 1 Jan 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
     
@@ -128,10 +128,11 @@
 	// [fam addRelationshipWithType:@"Child" target:chil];
 	
     //Setting known dates
-    [fam setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
-    [husb setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
-    [wife setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
-    [chil setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
+    NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"];
+    [fam setValue:knownDate forKey:@"lastModified"];
+    [husb setValue:knownDate forKey:@"lastModified"];
+    [wife setValue:knownDate forKey:@"lastModified"];
+    [chil setValue:knownDate forKey:@"lastModified"];
 
     STAssertEqualObjects([fam gedcomString], 
                          @"0 @FAM1@ FAM\n"
@@ -139,7 +140,7 @@
                          @"1 WIFE @INDI2@\n"
                          @"1 CHIL @INDI3@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 01 Jan 2000\n"
+                         @"2 DATE 1 Jan 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 	
@@ -149,7 +150,7 @@
 						 @"1 SEX M\n"
 						 @"1 FAMS @FAM1@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 01 Jan 2000\n"
+                         @"2 DATE 1 Jan 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 	
@@ -159,7 +160,7 @@
 						 @"1 SEX F\n"
 						 @"1 FAMS @FAM1@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 01 Jan 2000\n"
+                         @"2 DATE 1 Jan 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 	
@@ -169,7 +170,7 @@
 						 @"1 SEX M\n"
 						 @"1 FAMC @FAM1@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 01 Jan 2000\n"
+                         @"2 DATE 1 Jan 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 }
