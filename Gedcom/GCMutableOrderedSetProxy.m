@@ -20,6 +20,8 @@
                        addBlock:(void (^)(id obj))addBlock 
                     removeBlock:(void (^)(id obj))removeBlock
 {
+    NSParameterAssert(set);
+    
 	_set = set;
 	_addBlock = addBlock;
 	_removeBlock = removeBlock;

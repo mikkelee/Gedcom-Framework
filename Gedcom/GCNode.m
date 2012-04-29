@@ -337,7 +337,9 @@
     
     [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
     
-    for (id subNode in [self subNodes]) {
+    [copy setSubNodes:[NSMutableOrderedSet orderedSetWithCapacity:[_subNodes count]]];
+
+    for (id subNode in _subNodes) {
         [copy addSubNode:[subNode mutableCopy]];
     }
     

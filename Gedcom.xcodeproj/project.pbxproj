@@ -638,9 +638,16 @@
 					"\"$(SRCROOT)\"",
 				);
 				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
 				INFOPLIST_FILE = "Gedcom/Gedcom-Info.plist";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lprofile_rt",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -656,9 +663,16 @@
 					"\"$(SRCROOT)\"",
 				);
 				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
 				INFOPLIST_FILE = "Gedcom/Gedcom-Info.plist";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lprofile_rt",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -671,6 +685,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
 				INFOPLIST_FILE = "GedcomTests/GedcomTests-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -683,6 +698,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
 				INFOPLIST_FILE = "GedcomTests/GedcomTests-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
