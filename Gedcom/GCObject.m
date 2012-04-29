@@ -455,22 +455,13 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-	GCRelationship *relationship = [GCRelationship relationshipWithType:type target:target];
-	
-	[self addProperty:relationship];
+    GCRelationship *relationship = [GCRelationship relationshipWithType:type];
     
-	if ([[relationship gedTag] reverseRelationshipTag]) {
-		BOOL relationshipExists = NO;
-		for (GCRelationship *relationship in [target relationships]) {
-			if ([[relationship target] isEqual:self]) {
-				relationshipExists = YES;
-			}
-		}
-		if (!relationshipExists) {
-			[target addRelationshipWithType:[[[relationship gedTag] reverseRelationshipTag] name] 
-									 target:(GCEntity *)self];
-		}
-	}
+    [self addProperty:relationship];
+    
+    [relationship setTarget:target];
+    
+	//[self addProperty:[GCRelationship relationshipWithType:type target:target]];
 }
 
 - (void)addPropertyWithGedcomNode:(GCNode *)node

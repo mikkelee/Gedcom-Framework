@@ -52,13 +52,18 @@
     
     [indi addAttributeWithType:@"Death" boolValue:YES];
     
+    [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"]; //Setting a known date so output is known
+    
     STAssertEqualObjects([indi gedcomString], 
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
                          @"1 BIRT\n"
                          @"2 DATE 1 JAN 1901\n"
-                         @"1 DEAT Y"
+                         @"1 DEAT Y\n"
+                         @"1 CHAN\n"
+                         @"2 DATE 01 Jan 2000\n"
+                         @"3 TIME 12:00:00"
                          , nil);
     
     ctx = [GCContext context]; //fresh context
@@ -122,32 +127,50 @@
 	// [fam addRelationshipWithType:@"Wife" target:wife];
 	// [fam addRelationshipWithType:@"Child" target:chil];
 	
+    //Setting known dates
+    [fam setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
+    [husb setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
+    [wife setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
+    [chil setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"];
+
     STAssertEqualObjects([fam gedcomString], 
                          @"0 @FAM1@ FAM\n"
                          @"1 HUSB @INDI1@\n"
                          @"1 WIFE @INDI2@\n"
-                         @"1 CHIL @INDI3@"
+                         @"1 CHIL @INDI3@\n"
+                         @"1 CHAN\n"
+                         @"2 DATE 01 Jan 2000\n"
+                         @"3 TIME 12:00:00"
                          , nil);
 	
     STAssertEqualObjects([husb gedcomString], 
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
 						 @"1 SEX M\n"
-						 @"1 FAMS @FAM1@"
+						 @"1 FAMS @FAM1@\n"
+                         @"1 CHAN\n"
+                         @"2 DATE 01 Jan 2000\n"
+                         @"3 TIME 12:00:00"
                          , nil);
 	
     STAssertEqualObjects([wife gedcomString], 
                          @"0 @INDI2@ INDI\n"
                          @"1 NAME Anne /Larsdatter/\n"
 						 @"1 SEX F\n"
-						 @"1 FAMS @FAM1@"
+						 @"1 FAMS @FAM1@\n"
+                         @"1 CHAN\n"
+                         @"2 DATE 01 Jan 2000\n"
+                         @"3 TIME 12:00:00"
                          , nil);
 	
     STAssertEqualObjects([chil gedcomString], 
                          @"0 @INDI3@ INDI\n"
                          @"1 NAME Hans /Jensen/\n"
 						 @"1 SEX M\n"
-						 @"1 FAMC @FAM1@"
+						 @"1 FAMC @FAM1@\n"
+                         @"1 CHAN\n"
+                         @"2 DATE 01 Jan 2000\n"
+                         @"3 TIME 12:00:00"
                          , nil);
 }
 

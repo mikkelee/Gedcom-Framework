@@ -24,17 +24,17 @@
     
     GCRelationship *relationship = [[self alloc] initWithType:[tag name]];
     
-	[[object context] registerXref:[node gedValue] forBlock:^(NSString *xref) {
-		GCEntity *target = [[object context] entityForXref:xref];
-		[relationship setTarget:target];
-		//NSLog(@"Set %@ => %@ on %@", xref, [[object context] entityForXref:xref], relationship);
-	}];
-    
     for (GCNode *subNode in [node subNodes]) {
         [relationship addPropertyWithGedcomNode:subNode];
     }
     
     [object addProperty:relationship];
+    
+	[[object context] registerXref:[node gedValue] forBlock:^(NSString *xref) {
+		GCEntity *target = [[object context] entityForXref:xref];
+		NSLog(@"Set %@ => %@ on %@", xref, target, relationship);
+		[relationship setTarget:target];
+	}];
     
     return relationship;
 }
@@ -73,7 +73,40 @@
 
 #pragma mark Objective-C properties
 
-@synthesize target = _target;
+- (GCEntity *)target
+{
+    return _target;
+}
+
+- (void)setTarget:(GCEntity *)target
+{
+    NSParameterAssert([self describedObject]);
+    
+    if ([[self gedTag] reverseRelationshipTag]) {
+        //remove previous reverse relationship before changing target.
+        for (GCRelationship *relationship in [_target relationships]) {
+            if ([[relationship target] isEqual:[self describedObject]]) {
+                [_target removeProperty:relationship];
+            }
+        }
+        if (target != nil) {
+            //set up new reverse relationship
+            BOOL relationshipExists = NO;
+            for (GCRelationship *relationship in [target relationships]) {
+                if ([[relationship target] isEqual:[self describedObject]]) {
+                    //NSLog(@"relationship: %@", relationship);
+                    relationshipExists = YES;
+                }
+            }
+            if (!relationshipExists) {
+                [target addRelationshipWithType:[[[self gedTag] reverseRelationshipTag] name] 
+                                         target:(GCEntity *)[self describedObject]];
+            }
+        }
+    }
+    
+    _target = target;
+}
 
 @end
 

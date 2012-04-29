@@ -57,12 +57,20 @@
     
 	[context storeXref:[node xref] forEntity:entity];
 	
+    GCNode *changeNode = nil;
+    
     for (GCNode *subNode in [node subNodes]) {
         if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
-            [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:subNode]];
+            changeNode = subNode;
         } else {
             [entity addPropertyWithGedcomNode:subNode];
         }
+    }
+    
+    if (changeNode) {
+        [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode]];
+    } else {
+        [entity setLastModified:nil];
     }
     
     return entity;
@@ -109,5 +117,17 @@
 @synthesize context = _context;
 
 @synthesize lastModified = _lastModified;
+
+- (void)didChangeValueForKey:(NSString *)key
+{
+    [self setLastModified:[NSDate date]];
+    [super didChangeValueForKey:key];
+}
+
+- (void)didChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
+{
+    [self setLastModified:[NSDate date]];
+    [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
+}
 
 @end
