@@ -87,9 +87,9 @@
 
 #pragma mark Objective-C properties
 
-- (NSArray *)subNodes
+- (NSOrderedSet *)subNodes
 {
-    NSMutableArray *subNodes = [[super subNodes] mutableCopy];
+    NSMutableOrderedSet *subNodes = [[super subNodes] mutableCopy];
     
     if (_lastModified) {
         [subNodes addObject:[[GCChangedDateFormatter sharedFormatter] nodeWithDate:_lastModified]];

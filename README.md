@@ -33,12 +33,13 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **GCObject**: something like -propertiesFulfillingBlock:
 * **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
 * **GCObject/GCProperty**: Should throw on init if [self class] is obj/prop
-* **GCMutableNode**: removeSubNode:, use GCMutableOrderedSetProxy
 * **GCChangedDateFormatter**: Make a true formatter
 * **GCValue**: Make GCAge/GCDate subclass of GCValue?
 * **GCContext**: +contextNamed: - refactor methodnames
 * **GCRelationship**: make sure reverse relationships are removed when necessary
 * **GCEntity**: lastModified should update when adding/removing properties
+* **Unit tests**: Better coverage
+* **GCTag**: +tagsByName
 
 # Examples #
 

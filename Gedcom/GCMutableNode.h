@@ -15,7 +15,7 @@
  */
 @interface GCMutableNode : GCNode
 
-/// @name Adding subnodes
+/// @name Accessing subnodes
 
 /** Adds a subnode at the end of the receiver's collection of subnodes.
  
@@ -24,6 +24,14 @@
  @param node A node.
  */
 - (void)addSubNode: (GCMutableNode *) node;
+
+/** Removes a subnode from the receiver's collection of subnodes.
+ 
+ The parent of the subnode will be set to `nil`.
+ 
+ @param node A node.
+ */
+- (void)removeSubNode: (GCMutableNode *) node;
 
 /** Adds each node in turn using addSubNode:
  
@@ -46,6 +54,6 @@
 @property NSString *lineSeparator;
 
 /// An ordered collection containing the subnodes of the receiver; may not be `nil`.
-@property NSArray *subNodes;
+@property NSOrderedSet *subNodes;
 
 @end

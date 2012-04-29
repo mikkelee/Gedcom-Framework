@@ -8,6 +8,8 @@
 
 #import "GCMutableNode.h"
 
+#import "GCMutableOrderedSetProxy.h"
+
 @interface GCMutableNode ()
 
 @property GCNode *parent;
@@ -15,7 +17,7 @@
 @end;
 
 @implementation GCMutableNode {
-    NSMutableArray *_subNodes;
+    NSMutableOrderedSet *_subNodes;
 }
 
 #pragma mark Initialization
@@ -26,7 +28,7 @@
     
 	if (self) {
         [self setLineSeparator:@"\n"];
-        _subNodes = [NSMutableArray array];
+        _subNodes = [NSMutableOrderedSet orderedSet];
 	}
     
 	return self;
@@ -47,11 +49,19 @@
     NSParameterAssert([node isKindOfClass:[GCMutableNode class]]);
     
     if (!_subNodes) {
-        _subNodes = [NSMutableArray array];
+        _subNodes = [NSMutableOrderedSet orderedSet];
     }
     
     [_subNodes addObject:node];
     [node setParent:self];
+}
+
+- (void)removeSubNode: (GCMutableNode *) node
+{
+    NSParameterAssert([node parent] == self);
+    
+    [_subNodes removeObject:node];
+    [node setParent:nil];
 }
 
 - (void)addSubNodes:(NSArray *)subNodes
@@ -68,6 +78,27 @@
 @synthesize gedValue = _gedValue;
 @synthesize xref = _xref;
 @synthesize lineSeparator = _lineSeparator;
-@synthesize subNodes = _subNodes;
+
+- (id)subNodes
+{
+    return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:_subNodes
+                                                              addBlock:^(id obj) {
+                                                                  [self addSubNode:obj];
+                                                              }
+                                                           removeBlock:^(id obj) {
+                                                               [self removeSubNode:obj];
+                                                           }];
+
+}
+
+- (void)setSubNodes:(NSOrderedSet *)subNodes
+{
+    _subNodes = [NSMutableOrderedSet orderedSetWithCapacity:[subNodes count]];
+    
+    for (id subNode in subNodes) {
+        [self addSubNode:subNode];
+    }
+
+}
 
 @end

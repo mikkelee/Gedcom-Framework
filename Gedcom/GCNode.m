@@ -14,7 +14,6 @@
 @interface GCNode ()
 
 - (void)addSubNode: (GCNode *) n;
-- (void)addSubNodes: (NSArray *) a;
 
 - (NSArray *)gedcomLinesAtLevel:(int) level;
 
@@ -27,7 +26,7 @@
 @end
 
 @implementation GCNode {
-    NSMutableArray *_subNodes;
+    NSMutableOrderedSet *_subNodes;
 }
 
 #pragma mark Initialization
@@ -38,7 +37,7 @@
     return nil;
 }
 
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
 {
     NSParameterAssert(tag != nil && ([tag length] <= 4 || [tag hasPrefix:@"_"]));
     
@@ -53,7 +52,7 @@
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
         } else {
-            _subNodes = [NSMutableArray array];
+            _subNodes = [NSMutableOrderedSet orderedSet];
         }
 	}
     
@@ -280,13 +279,6 @@
 	[n setParent:self];
 }
 
-- (void)addSubNodes:(NSArray *)a
-{
-	for (id subNode in a) {
-		[self addSubNode:subNode];
-	}
-}
-
 #pragma mark Description
 
 - (NSString *)description
@@ -375,12 +367,12 @@
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
 }
 
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSOrderedSet *)subNodes
 {
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
 }
 
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
 {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
 }

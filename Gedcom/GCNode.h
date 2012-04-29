@@ -26,10 +26,10 @@
  @param tag A letter string such as @"INDI" or @"NOTE"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
  @param value An optional value.
  @param xref An optional xref.
- @param subNodes An array of nodes. If `nil`, the node will create an empty collection.
+ @param subNodes A collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes;
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes;
 
 #pragma mark Convenience constructors
 
@@ -70,7 +70,7 @@
 @property (readonly) NSString *lineSeparator;
 
 /// An ordered collection containing the subnodes of the receiver; may not be `nil`.
-@property (readonly) NSArray *subNodes;
+@property (readonly) NSOrderedSet *subNodes;
 
 @end
 
@@ -101,7 +101,7 @@
  @param subNodes An array of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes;
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSOrderedSet *)subNodes;
 
 /** Returns a node with the specified properties.
  
@@ -110,6 +110,6 @@
  @param subNodes An array of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes;
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes;
 
 @end

@@ -73,7 +73,7 @@
 
 /// The properties of the receiver as a collection of nodes.
 /// @see GCNode
-- (NSArray *)subNodes;
+- (NSOrderedSet *)subNodes;
 
 #pragma mark Comparison
 

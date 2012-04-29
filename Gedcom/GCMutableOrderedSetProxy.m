@@ -38,12 +38,18 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-    return [_set methodSignatureForSelector:aSelector];
+    NSLog(@"selector: %@", NSStringFromSelector(aSelector));
+    
+    return [NSMutableOrderedSet instanceMethodSignatureForSelector:aSelector];
 }
 
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
+    NSLog(@"invocation: %@", invocation);
+    
+    //TODO could probably run _addBlock & _removeBlock here with some state-checking code and get rid of the overrides below.
+    
     [invocation setTarget:_set];
     [invocation invoke];
     return;
