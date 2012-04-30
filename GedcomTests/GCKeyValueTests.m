@@ -96,12 +96,12 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
-    GCProperty *name1 = [GCAttribute attributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
-    GCProperty *name2 = [GCAttribute attributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Jensen/"]];
+    GCProperty *name1 = [GCAttribute attributeWithType:@"name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+    GCProperty *name2 = [GCAttribute attributeWithType:@"name" value:[GCString valueWithGedcomString:@"Jens /Jensen/"]];
     
-    GCProperty *nickname = [GCAttribute attributeWithType:@"Nickname" value:[GCString valueWithGedcomString:@"Store Jens"]];
+    GCProperty *nickname = [GCAttribute attributeWithType:@"nickname" value:[GCString valueWithGedcomString:@"Store Jens"]];
     
     [name1 addProperty:nickname];
     
@@ -115,9 +115,9 @@
     STAssertTrue([[name2 properties] containsObject:nickname], nil);
     STAssertFalse([[name1 properties] containsObject:nickname], nil);
     
-    [indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"Name"];
+    [indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"name"];
     
-    STAssertEqualObjects([indi valueForKeyPath:@"Name.Nickname"], [NSOrderedSet orderedSetWithObject:nickname], nil);
+    STAssertEqualObjects([indi valueForKeyPath:@"name.nickname"], [NSOrderedSet orderedSetWithObject:nickname], nil);
 }
 
 -(void)testKVO
@@ -126,7 +126,7 @@
     
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
     [observer setEntity:indi];
     
@@ -136,12 +136,12 @@
                       nil];
     
     [indi setValue:names 
-            forKey:@"Name"];
+            forKey:@"name"];
     
     //TODO should this fire something too?
-    [[[indi valueForKey:@"Name"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"Nickname"];
+    [[[indi valueForKey:@"name"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
     
-    [[indi valueForKey:@"Name"] removeObjectAtIndex:0];
+    [[indi valueForKey:@"name"] removeObjectAtIndex:0];
     
     NSArray *observations = [NSArray arrayWithObjects:
                              // NSKeyValueChange : old : new

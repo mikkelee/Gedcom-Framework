@@ -101,7 +101,7 @@ __strong static NSMutableDictionary *tagInfo;
         NSAssert(tagInfo != nil, @"error: %@", err);
         
         tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
-        [self recurse:@"@Root object"];
+        [self recurse:@"@rootObject"];
         
         //TODO get rid of this when tags.json is finalized:
         for (NSString *key in [tagInfo keyEnumerator]) {
@@ -194,16 +194,16 @@ __strong static NSMutableDictionary *tagInfo;
     NSParameterAssert(code != nil);
     
     NSDictionary *tmp = [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"Header", @"HEAD",
-                         @"Submission record", @"SUBN",
-                         @"Family record", @"FAM",
-                         @"Individual record", @"INDI",
-                         @"Multimedia record", @"OBJE",
-                         @"Note record", @"NOTE",
-                         @"Repository record", @"REPO",
-                         @"Source record", @"SOUR",
-                         @"Submitter record", @"SUBM",
-                         @"Trailer", @"TRLR",
+                         @"header", @"HEAD",
+                         @"submissionRecord", @"SUBN",
+                         @"familyRecord", @"FAM",
+                         @"individualRecord", @"INDI",
+                         @"multimediaRecord", @"OBJE",
+                         @"noteRecord", @"NOTE",
+                         @"repositoryRecord", @"REPO",
+                         @"sourceRecord", @"SOUR",
+                         @"submitterRecord", @"SUBM",
+                         @"trailer", @"TRLR",
                          nil];
     
     return [tagStore objectForKey:[tmp valueForKey:code]];

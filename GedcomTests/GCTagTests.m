@@ -18,7 +18,7 @@
 - (void)testTags
 {
     GCTag *indi1 = [GCTag rootTagWithCode:@"INDI"];
-    GCTag *indi2 = [GCTag tagNamed:@"Individual record"];
+    GCTag *indi2 = [GCTag tagNamed:@"individualRecord"];
     
 	STAssertNotNil(indi1, nil);
 	STAssertEquals(indi1, indi2, nil);
@@ -27,7 +27,7 @@
     STAssertFalse([indi1 isValidSubTag:[indi1 subTagWithCode:@"HUSB"]], nil);
     
     STAssertEqualObjects([indi2 code], @"INDI", nil);
-    STAssertEqualObjects([indi2 name], @"Individual record", nil);
+    STAssertEqualObjects([indi1 name], @"individualRecord", nil);
     
     STAssertEquals([[indi1 subTagWithCode:@"NAME"] valueType], [GCString class], nil);
     STAssertEquals([[indi1 subTagWithCode:@"BIRT"] valueType], [GCBool class], nil);

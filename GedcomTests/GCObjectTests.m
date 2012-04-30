@@ -17,7 +17,7 @@
 
 - (void)testObjectValues
 {
-    GCAttribute *date = [GCAttribute attributeWithType:@"Date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
+    GCAttribute *date = [GCAttribute attributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     STAssertEqualObjects([[date value] gedcomString], @"1 JAN 1901", nil);
 }
@@ -26,7 +26,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
                       [GCString valueWithGedcomString:@"Jens /Hansen/"], 
@@ -34,14 +34,14 @@
                       nil];
     
     [indi setValue:names 
-            forKey:@"Name"];
+            forKey:@"name"];
 	
     //alternately:
     // [indi addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
     
-	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
+	GCAttribute *birt = [GCAttribute attributeWithType:@"birth"];
     
-	[birt addAttributeWithType:@"Date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
+	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     [[indi properties] addObject:birt];
     
@@ -49,7 +49,7 @@
     // [indi addProperty:birt];
     // [[indi valueForKey:[birt type]] addObject:birt];
     
-    [indi addAttributeWithType:@"Death" value:[GCBool yes]];
+    [indi addAttributeWithType:@"death" value:[GCBool yes]];
     
     [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"]; //Setting a known date so output is known
     
@@ -103,23 +103,23 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-	GCEntity *husb = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[husb addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
-	[husb addAttributeWithType:@"Sex" value:[GCGender maleGender]];
+	GCEntity *husb = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+	[husb addAttributeWithType:@"name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCEntity *wife = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[wife addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
-	[wife addAttributeWithType:@"Sex" value:[GCGender femaleGender]];
+	GCEntity *wife = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+	[wife addAttributeWithType:@"name" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
+	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCEntity *chil = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[chil addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
-	[chil addAttributeWithType:@"Sex" value:[GCGender maleGender]];
+	GCEntity *chil = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+	[chil addAttributeWithType:@"name" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
+	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"Family record" inContext:ctx];
+    GCEntity *fam = [GCEntity entityWithType:@"familyRecord" inContext:ctx];
     
-    [fam setValue:husb forKey:@"Husband"];
-    [fam setValue:wife forKey:@"Wife"];
-    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"Child"];
+    [fam setValue:husb forKey:@"husband"];
+    [fam setValue:wife forKey:@"wife"];
+    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"child"];
     
     //alternately:
 	// [fam addRelationshipWithType:@"Husband" target:husb];
@@ -178,7 +178,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
     [indi setGedcomString:@"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
@@ -187,8 +187,8 @@
                          @"2 DATE 1 JAN 1901\n"
                          @"1 DEAT Y"];
     
-    GCAttribute *birt1 = [[indi valueForKey:@"Birth"] lastObject];
-    GCAttribute *deat1 = [[indi valueForKey:@"Death"] lastObject];
+    GCAttribute *birt1 = [[indi valueForKey:@"birth"] lastObject];
+    GCAttribute *deat1 = [[indi valueForKey:@"death"] lastObject];
     
     //NSLog(@"[indi properties]: %@", [indi properties]);
     
@@ -200,8 +200,8 @@
                          @"1 DEAT\n"
                          @"2 DATE 1 JAN 1930"];
     
-    GCAttribute *birt2 = [[indi valueForKey:@"Birth"] lastObject];
-    GCAttribute *deat2 = [[indi valueForKey:@"Death"] lastObject];
+    GCAttribute *birt2 = [[indi valueForKey:@"birth"] lastObject];
+    GCAttribute *deat2 = [[indi valueForKey:@"death"] lastObject];
     
     STAssertTrue([birt1 isEqualTo:birt2], nil);
     STAssertFalse([deat1 isEqual:deat2], nil);
@@ -267,7 +267,7 @@
     BOOL result = [submitter validateObject:&error];
     
     STAssertFalse(result, nil);
-    STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], @"Too few values for key Name", nil);
+    STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], @"Too few values for key name", nil);
 }
 
 - (void)testFile
