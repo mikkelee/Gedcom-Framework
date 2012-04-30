@@ -23,7 +23,9 @@
 
 /// @name Helpers
 
-/** Calculates and returns a date created by subtracting `toDate` from `fromDate`.
+/** Calculates and returns an age created by subtracting `toDate` from `fromDate`.
+ 
+ Useful for example for calculating how old an individual was on a given date.
  
  @param fromDate A GCDate object.
  @param toDate A GCDate object.
