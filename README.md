@@ -1,6 +1,6 @@
 # README #
 
-**Note**: A work in progress. Selectors may change name / appear / disappear. Currently, GCNodes are fully implemented; a basic implementation of GCObject and its subclasses is done. Most work is done in KVC/KVO & tags.json.
+**Note**: A work in progress. Selectors & classes may change name / appear / disappear.
 
 A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
 
@@ -13,7 +13,7 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
         * GCRelationship: References to other entities - FAMC, HUSB, etc.
 * Mapping between GCNodes and GCObjects is helped by GCTags which know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
 * Xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
-* Property values are handled via subclasses of GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
+* Attribute values are handled via subclasses of GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
     - GCGender
     - GCAge (parsed via ParseKit)
     - GCDate (parsed via ParseKit)
@@ -30,9 +30,9 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 
 * **tags.json**: Currently only partially done
 * **Unit tests**: Better (full) code coverage
-* **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
 * **GCChangedDateFormatter**: Make a true formatter
 * **GCValue**: Formatters
+* **GCValue**: more helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
 
 # Examples #
 
