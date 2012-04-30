@@ -55,7 +55,7 @@
 {
     GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:[node gedTag]] name] inContext:context];
     
-	[context storeXref:[node xref] forEntity:entity];
+	[context setXref:[node xref] forEntity:entity];
 	
     GCNode *changeNode = nil;
     

@@ -47,7 +47,7 @@
  @param xref A string containing an xref.
  @param block A block that will be called as soon as an entity exists.
  */
-- (void)registerXref:(NSString *)xref forBlock:(void (^)(NSString *xref))block;
+- (void)registerBlock:(void (^)(NSString *xref))block forXref:(NSString *)xref;
 
 /** Stores an xref for an entity.
  
@@ -58,6 +58,6 @@
  @param xref A string containing an xref.
  @param entity An entity to be associated with the xref.
  */
-- (void)storeXref:(NSString *)xref forEntity:(GCEntity *)entity;
+- (void)setXref:(NSString *)xref forEntity:(GCEntity *)entity;
 
 @end

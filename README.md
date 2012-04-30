@@ -33,7 +33,6 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
 * **GCChangedDateFormatter**: Make a true formatter
 * **GCValue**: Make GCAge/GCDate subclass of GCValue?
-* **GCContext**: +contextNamed: - refactor methodnames
 
 # Examples #
 

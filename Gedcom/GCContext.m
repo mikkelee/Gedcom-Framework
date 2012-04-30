@@ -33,7 +33,7 @@
 	return [[self alloc] init];
 }
 
-- (void)storeXref:(NSString *)xref forEntity:(GCEntity *)obj
+- (void)setXref:(NSString *)xref forEntity:(GCEntity *)obj
 {
     NSParameterAssert(xref);
     
@@ -76,7 +76,7 @@
             xref = [NSString stringWithFormat:@"@%@%d@", [[obj gedTag] code], ++i]; 
         } while ([xrefStore objectForKey:xref]);
         
-        [self storeXref:xref forEntity:obj];
+        [self setXref:xref forEntity:obj];
     }
     
     //NSLog(@"xref: %@", xref);
@@ -89,7 +89,7 @@
     return [xrefStore objectForKey:xref];
 }
 
-- (void)registerXref:(NSString *)xref forBlock:(void (^)(NSString *xref))block
+- (void)registerBlock:(void (^)(NSString *xref))block forXref:(NSString *)xref
 {
     NSParameterAssert(xref);
     
