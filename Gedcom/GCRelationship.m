@@ -71,6 +71,13 @@
     return NSOrderedSame;
 }
 
+#pragma mark Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (target: %@)", [super description], [self target]];
+}
+
 #pragma mark NSCoding conformance
 
 - (id)initWithCoder:(NSCoder *)aDecoder

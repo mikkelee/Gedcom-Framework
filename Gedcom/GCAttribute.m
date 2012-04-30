@@ -133,6 +133,13 @@
     [self encodeProperties:aCoder];
 }
 
+#pragma mark Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (value: %@)", [super description], [self value]];
+}
+
 #pragma mark Objective-C properties
 
 @synthesize value = _value;

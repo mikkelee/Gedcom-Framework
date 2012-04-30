@@ -360,6 +360,13 @@
     [aCoder encodeObject:_value forKey:@"value"];
 }
 
+#pragma mark Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (%@)", [super description], [self stringValue]];
+}
+
 @end
 
 @implementation GCValue (GCConvenienceMethods)

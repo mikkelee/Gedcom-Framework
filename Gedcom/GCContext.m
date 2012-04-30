@@ -126,7 +126,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"%@: %@", [super description], xrefStore];
+	return [NSString stringWithFormat:@"%@ (xrefStore: %@)", [super description], xrefStore];
 }
 
 @end

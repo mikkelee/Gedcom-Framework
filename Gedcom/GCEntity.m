@@ -118,6 +118,13 @@
     [self encodeProperties:aCoder];
 }
 
+#pragma mark Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (properties: %@)", [super description], [self properties]];
+}
+
 #pragma mark Objective-C properties
 
 - (NSOrderedSet *)subNodes
