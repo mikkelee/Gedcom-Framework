@@ -75,7 +75,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (target: %@)", [super description], [self target]];
+    return [NSString stringWithFormat:@"%@ (target: %@)", [super description], [[self context] xrefForEntity:[self target]]];
 }
 
 #pragma mark NSCoding conformance

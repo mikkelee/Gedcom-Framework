@@ -466,6 +466,53 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 @implementation GCObject (GCValidationMethods)
 
+BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
+    if (value == nil) {
+        //TODO check required
+        return YES;
+    }
+    if (![value isKindOfClass:type]) {
+        if (NULL != error) {
+            *error = [NSError errorWithDomain:@"GCErrorDoman" 
+                                         code:-1 
+                                     userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                               [NSString stringWithFormat:@"Value %@ is incorrect type for key %@ (should be %@)", value, key, type], NSLocalizedDescriptionKey,
+                                               nil]];
+        }
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+BOOL validateTargetTypeHelper(NSString *key, id target, Class type, NSError **error) {
+    if (![target isKindOfClass:type]) {
+        if (NULL != error) {
+            *error = [NSError errorWithDomain:@"GCErrorDoman" 
+                                         code:-1 
+                                     userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                               [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", target, key, type], NSLocalizedDescriptionKey,
+                                               nil]];
+        }
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
+    if ([tag objectClass] == [GCAttribute class] && !validateValueTypeHelper(key, [(GCAttribute *)property value], [tag valueType], error)) {
+        return NO;
+    }
+    
+    //TODO:
+    if ([tag objectClass] == [GCRelationship class] && !validateValueTypeHelper(key, [(GCRelationship *)property target], [GCEntity class], error)) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (BOOL)validateObject:(NSError **)outError
 {
     for (id propertyKey in [self validProperties]) {
@@ -475,8 +522,13 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
         
         if ([self allowsMultiplePropertiesOfType:propertyKey]) {
             propertyCount = [[self valueForKey:propertyKey] count];
+            for (id property in [self valueForKey:propertyKey]) {
+                validatePropertyHelper(propertyKey, property, subTag, outError);
+            }
         } else {
             propertyCount = [self valueForKey:propertyKey] ? 1 : 0;
+            
+            validatePropertyHelper(propertyKey, [self valueForKey:propertyKey], subTag, outError);
         }
         
         GCAllowedOccurrences allowedOccurrences = [[self gedTag] allowedOccurrencesOfSubTag:subTag];
@@ -515,7 +567,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 {
     GCTag *subTag = [[self gedTag] subTagWithName:inKey];
     
-    // TODO check if ioValue is of correct type
+    validatePropertyHelper(inKey, [self valueForKey:inKey], subTag, outError);
     
     if ([self allowsMultiplePropertiesOfType:inKey]) {
         if ([[self valueForKey:inKey] count] + 1 > [[self gedTag] allowedOccurrencesOfSubTag:subTag].max) {
@@ -523,7 +575,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
                                                 code:-1 
                                             userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      @"Too many values for key", NSLocalizedDescriptionKey,
+                                                      [NSString stringWithFormat:@"Too many values for key %@", inKey], NSLocalizedDescriptionKey,
                                                       nil]];
             }
             return NO;
