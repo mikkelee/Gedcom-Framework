@@ -348,44 +348,6 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     }
 }
 
-- (id)attributes
-{
-	NSMutableOrderedSet *attributes = [NSMutableOrderedSet orderedSet];
-	
-	for (id property in [self properties]) {
-		if ([property isKindOfClass:[GCAttribute class]]) {
-			[attributes addObject:property];
-		}
-	}
-	
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:attributes
-                                                              addBlock:^(id obj) {
-                                                                  [self addProperty:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeProperty:obj];
-                                                           }];
-}
-
-- (id)relationships
-{
-	NSMutableOrderedSet *relationships = [NSMutableOrderedSet orderedSet];
-	
-	for (id property in [self properties]) {
-		if ([property isKindOfClass:[GCRelationship class]]) {
-			[relationships addObject:property];
-		}
-	}
-	
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:relationships
-                                                              addBlock:^(id obj) {
-                                                                  [self addProperty:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeProperty:obj];
-                                                           }];
-}
-
 - (NSString *)gedcomString
 {
     return [[self gedcomNode] gedcomString];
@@ -480,6 +442,40 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 - (void)addPropertyWithGedcomNode:(GCNode *)node
 {
     [GCProperty propertyForObject:self withGedcomNode:node];
+}
+
+- (id)propertiesFulfillingBlock:(BOOL (^)(GCProperty *property))block
+{
+	NSMutableOrderedSet *properties = [NSMutableOrderedSet orderedSet];
+	
+	for (id property in [self properties]) {
+		if (block(property)) {
+			[properties addObject:property];
+		}
+	}
+	
+	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:properties
+                                                              addBlock:^(id obj) {
+                                                                  [self addProperty:obj];
+                                                              }
+                                                           removeBlock:^(id obj) {
+                                                               [self removeProperty:obj];
+                                                           }];
+}
+
+
+- (id)attributes
+{
+    return [self propertiesFulfillingBlock:^BOOL(GCProperty *property) {
+        return [property isKindOfClass:[GCAttribute class]];
+    }];
+}
+
+- (id)relationships
+{
+    return [self propertiesFulfillingBlock:^BOOL(GCProperty *property) {
+        return [property isKindOfClass:[GCRelationship class]];
+    }];
 }
 
 @end

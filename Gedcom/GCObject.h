@@ -105,12 +105,6 @@
 /// An ordered collection of all properties on the receiver.
 @property NSMutableOrderedSet *properties;
 
-/// An ordered collection of the receiver's attributes.
-@property (readonly) NSMutableOrderedSet *attributes;
-
-/// An ordered collection of the receiver's relationships.
-@property (readonly) NSMutableOrderedSet *relationships;
-
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
 
@@ -198,6 +192,12 @@
  @param node A node.
  */
 - (void)addPropertyWithGedcomNode:(GCNode *)node;
+
+/// An ordered collection of the receiver's attributes.
+@property (readonly) NSMutableOrderedSet *attributes;
+
+/// An ordered collection of the receiver's relationships.
+@property (readonly) NSMutableOrderedSet *relationships;
 
 @end
 

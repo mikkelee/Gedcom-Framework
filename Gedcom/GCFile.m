@@ -174,12 +174,12 @@
 
 @implementation GCFile (GCConvenienceMethods)
 
-- (id)entitiesOfType:(NSString *)type
+- (id)entitiesFulfillingBlock:(BOOL (^)(GCEntity *entity))block
 {
 	NSMutableOrderedSet *entities = [NSMutableOrderedSet orderedSet];
 	
 	for (GCEntity *entity in _entities) {
-		if ([[entity type] isEqualToString:type]) {
+		if (block(entity)) {
 			[entities addObject:entity];
 		}
 	}
@@ -191,6 +191,13 @@
                                                            removeBlock:^(id obj) {
                                                                [self removeEntity:obj];
                                                            }];
+}
+
+- (id)entitiesOfType:(NSString *)type
+{
+    return [self entitiesFulfillingBlock:^BOOL(GCEntity *entity) {
+        return [[entity type] isEqualToString:type];
+    }];
 }
 
 - (id)families

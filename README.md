@@ -30,7 +30,6 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 
 * **tags.json**: Currently only partially done
 * **Unit tests**: Better coverage
-* **GCObject**: something like -propertiesFulfillingBlock:
 * **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
 * **GCChangedDateFormatter**: Make a true formatter
 * **GCValue**: Make GCAge/GCDate subclass of GCValue?
