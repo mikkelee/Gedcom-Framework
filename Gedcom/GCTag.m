@@ -116,15 +116,16 @@ __strong static NSMutableDictionary *tagInfo;
                 NSParameterAssert([tagStore objectForKey:key] == nil);
                 [tagStore setObject:tag 
                              forKey:key];
-                
-                NSString *typeCodeKey = [NSString stringWithFormat:@"%@:%@", [tagDict objectForKey:kObjectType], [tagDict objectForKey:kCode]];
-                NSParameterAssert([tagStore objectForKey:typeCodeKey] == nil);
-                [tagStore setObject:tag
-                             forKey:typeCodeKey];
             }
         }
     });
 }
+
++ (NSDictionary *)tagsByName
+{
+    return [tagStore copy];
+}
+
 
 #pragma mark Initialization
 

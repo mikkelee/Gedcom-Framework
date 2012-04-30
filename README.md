@@ -34,7 +34,6 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **GCChangedDateFormatter**: Make a true formatter
 * **GCValue**: Make GCAge/GCDate subclass of GCValue?
 * **GCContext**: +contextNamed: - refactor methodnames
-* **GCTag**: +tagsByName
 
 # Examples #
 
