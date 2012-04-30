@@ -467,10 +467,6 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 @implementation GCObject (GCValidationMethods)
 
 BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
-    if (value == nil) {
-        //TODO check required
-        return YES;
-    }
     if (![value isKindOfClass:type]) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
@@ -501,13 +497,20 @@ BOOL validateTargetTypeHelper(NSString *key, id target, Class type, NSError **er
 }
 
 BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
-    if ([tag objectClass] == [GCAttribute class] && !validateValueTypeHelper(key, [(GCAttribute *)property value], [tag valueType], error)) {
-        return NO;
+    if ([tag objectClass] == [GCAttribute class]) {
+        if ([(GCAttribute *)property value] == nil) {
+            //TODO check if value is required
+            return YES;
+        } else if (!validateValueTypeHelper(key, [(GCAttribute *)property value], [tag valueType], error)) {
+            return NO;
+        }
     }
     
-    //TODO:
-    if ([tag objectClass] == [GCRelationship class] && !validateValueTypeHelper(key, [(GCRelationship *)property target], [GCEntity class], error)) {
-        return NO;
+    if ([tag objectClass] == [GCRelationship class]) {
+        //TODO 
+        if (!validateValueTypeHelper(key, [(GCRelationship *)property target], [GCEntity class], error)) {
+            return NO;
+        }
     }
     
     return YES;
@@ -556,8 +559,6 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
             
             return NO;
         }
-        
-        //TODO check type correctness of value
     }
     
     return YES;
