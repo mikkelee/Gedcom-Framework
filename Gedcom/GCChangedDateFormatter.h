@@ -15,7 +15,7 @@
  NSFormatter subclass for translating between CHAN nodes and NSDates.
  
  */
-@interface GCChangedDateFormatter : NSFormatter
+@interface GCChangedDateFormatter : NSDateFormatter
 
 /** Returns the shared instance of the formatter for the application, creating it if necessary.
  

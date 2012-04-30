@@ -30,7 +30,6 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 
 * **tags.json**: Currently only partially done
 * **Unit tests**: Better (full) code coverage
-* **GCChangedDateFormatter**: Make a true formatter
 * **GCValue**: more helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
 * **GCContext**: predicate search helpers?
 

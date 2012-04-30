@@ -11,9 +11,7 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
-@implementation GCChangedDateFormatter {
-    NSDateFormatter *_dateFormatter;
-}
+@implementation GCChangedDateFormatter
 
 + (id)sharedFormatter // fancy new ARC/GCD singleton!
 {
@@ -30,8 +28,7 @@
     self = [super init];
 	
     if (self) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"d MMM yyyy HH:mm:ss"];
+        [self setDateFormat:@"d MMM yyyy HH:mm:ss"];
     }
 	
 	return self;
@@ -41,7 +38,7 @@
 {
     NSParameterAssert([[node gedTag] isEqualToString:@"CHAN"]);
     
-	return [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", 
+	return [self dateFromString:[NSString stringWithFormat:@"%@ %@", 
                                           [[node valueForKey:@"DATE"] gedValue], 
                                           [[node valueForKeyPath:@"DATE.TIME"] gedValue]
                                           ]];
