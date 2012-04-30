@@ -19,26 +19,6 @@
  */
 @interface GCAge : GCValue
 
-#pragma mark Initialization
-
-/// @name Creating and initializing ages
-
-/** Initializes and returns an age initialized with a given Gedcom string.
- 
- @param gedcom A Gedcom age string.
- @return A new age.
- */
-- (id)initWithGedcom:(NSString *)gedcom;
-
-#pragma mark Convenience constructor
-
-/** Returns an age initialized with a given Gedcom string.
- 
- @param gedcom A Gedcom age string.
- @return A new age.
- */
-+ (id)valueWithGedcomString:(NSString *)gedcom;
-
 #pragma mark Helpers
 
 /// @name Helpers
@@ -50,17 +30,6 @@
  @return A new age.
  */
 + (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate;
-
-#pragma mark Comparison
-
-/// @name Comparing ages
-
-/** Compares the receiver to another GCAge.
- 
- @param other A GCAge object.
- @return `NSOrderedAscending` if the receiver is younger than other, `NSOrderedDescending` if the receiver is older than other, and `NSOrderedSame` if they are equal.
- */
-- (NSComparisonResult)compare:(id)other;
 
 #pragma mark Objective-C properties
 

@@ -19,31 +19,7 @@
  */
 @interface GCDate : GCValue
 
-#pragma mark Initialization
-
-/// @name Creating and initializing dates
-/** Initializes and returns a date initialized with a given Gedcom string.
- 
- @param gedcom A Gedcom date string.
- @return A new date.
- */
-- (id)initWithGedcom:(NSString *)gedcom;
-
-/** Initializes and returns a date initialized with a given NSDate object.
- 
- @param date An NSDate object.
- @return A new date.
- */
-- (id)initWithDate:(NSDate *)date;
-
 #pragma mark Convenience constructor
-
-/** Returns a date created with a given Gedcom string.
- 
- @param gedcom An NSDate object.
- @return A new date.
- */
-+ (id)valueWithGedcomString:(NSString *)gedcom;
 
 /** Returns a date created with a given NSDate object.
  
@@ -70,16 +46,6 @@
  @return `YES` if date is contained in the receiver, otherwise `NO`.
  */
 - (BOOL)containsDate:(NSDate *)date;
-
-#pragma mark Comparison
-
-/// @name Comparing dates
-/** Compares the receiver to another GCDate.
- 
- @param other A GCDate object.
- @return `NSOrderedAscending` if the receiver is earlier than other, `NSOrderedDescending` if the receiver is later than other, and `NSOrderedSame` if they are equal.
- */
-- (NSComparisonResult)compare:(id)other;
 
 #pragma mark Objective-C properties
 

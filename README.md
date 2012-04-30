@@ -29,9 +29,10 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 # TODO #
 
 * **tags.json**: Currently only partially done
-* **Unit tests**: Better coverage
+* **Unit tests**: Better (full) code coverage
 * **GCDate**: helpers should accept more values (like containsDate:(GCDate *)date)
 * **GCChangedDateFormatter**: Make a true formatter
+* **GCValue**: Formatters
 
 # Examples #
 
