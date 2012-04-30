@@ -29,5 +29,4 @@
 #import "GCGender.h"
 #import "GCBool.h"
 
-#import "GCAgeFormatter.h"
-#import "GCDateFormatter.h"
+#import "GCValueFormatter.h"

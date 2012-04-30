@@ -13,7 +13,7 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
         * GCRelationship: References to other entities - FAMC, HUSB, etc.
 * Mapping between GCNodes and GCObjects is helped by GCTags which know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
 * Xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
-* Attribute values are handled via subclasses of GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
+* Attribute values are handled via subclasses of GCValue, which can be hold one of many types (like NSValue). Sorting and formatters are provided. The types are:
     - GCGender
     - GCAge (parsed via ParseKit)
     - GCDate (parsed via ParseKit)
@@ -31,8 +31,8 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **tags.json**: Currently only partially done
 * **Unit tests**: Better (full) code coverage
 * **GCChangedDateFormatter**: Make a true formatter
-* **GCValue**: Formatters
 * **GCValue**: more helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
+* **GCContext**: predicate search helpers?
 
 # Examples #
 
