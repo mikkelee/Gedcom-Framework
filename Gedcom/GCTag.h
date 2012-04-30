@@ -17,11 +17,9 @@ typedef struct {
 
 /**
  
- Tags 
+ Tags are immutable singleton instances that help mapping between GCNode and GCObject.
  
- Only one of each tag exists.
- 
- TODO
+ A tag knows its Gedcom code, what subtags are allowed, what type value a property has, etc.
  
  */
 @interface GCTag : NSObject <NSCopying, NSCoding>
