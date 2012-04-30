@@ -138,48 +138,6 @@
  */
 - (void)addAttributeWithType:(NSString *)type value:(GCValue *)value;
 
-/** Creates a GCAttribute with the given type and string value and adds it to the receiver via addProperty:
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type stringValue:(NSString *)value;
-
-/** Creates a GCAttribute with the given type and numeric value and adds it to the receiver via addProperty:
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type numberValue:(NSNumber *)value;
-
-/** Creates a GCAttribute with the given type and age value and adds it to the receiver via addProperty:
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type ageValue:(GCAge *)value;
-
-/** Creates a GCAttribute with the given type and boolean value and adds it to the receiver via addProperty:
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type boolValue:(BOOL)value;
-
-/** Creates a GCAttribute with the given type and date value and adds it to the receiver via addProperty:
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type dateValue:(GCDate *)value;
-
-/** Creates a GCAttribute with the given type and gender value and adds it to the receiver via addProperty:
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type genderValue:(GCGender)value;
-
 /** Creates a GCRelationship with the given type and target and adds it to the receiver via addProperty:
  
  @param type The type of the relationship.

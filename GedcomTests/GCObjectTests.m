@@ -17,9 +17,9 @@
 
 - (void)testObjectValues
 {
-    GCAttribute *date = [GCAttribute attributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
+    GCAttribute *date = [GCAttribute attributeWithType:@"Date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
-    STAssertEqualObjects([date stringValue], @"1 JAN 1901", nil);
+    STAssertEqualObjects([[date value] gedcomString], @"1 JAN 1901", nil);
 }
 
 - (void)testSimpleObjects
@@ -29,20 +29,19 @@
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
-                      [GCValue valueWithString:@"Jens /Hansen/"], 
-                      [GCValue valueWithString:@"Jens /Hansen/ Smed"], 
+                      [GCString valueWithGedcomString:@"Jens /Hansen/"], 
+                      [GCString valueWithGedcomString:@"Jens /Hansen/ Smed"], 
                       nil];
     
     [indi setValue:names 
             forKey:@"Name"];
 	
     //alternately:
-	// [indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
-    // [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
+    // [indi addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
+	[birt addAttributeWithType:@"Date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     [[indi properties] addObject:birt];
     
@@ -50,7 +49,7 @@
     // [indi addProperty:birt];
     // [[indi valueForKey:[birt type]] addObject:birt];
     
-    [indi addAttributeWithType:@"Death" boolValue:YES];
+    [indi addAttributeWithType:@"Death" value:[GCBool yes]];
     
     [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"]; //Setting a known date so output is known
     
@@ -105,16 +104,16 @@
 	GCContext *ctx = [GCContext context];
 	
 	GCEntity *husb = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
-	[husb addAttributeWithType:@"Sex" genderValue:GCMale];
+	[husb addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+	[husb addAttributeWithType:@"Sex" value:[GCGender maleGender]];
 	
 	GCEntity *wife = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
-	[wife addAttributeWithType:@"Sex" genderValue:GCFemale];
+	[wife addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
+	[wife addAttributeWithType:@"Sex" value:[GCGender femaleGender]];
 	
 	GCEntity *chil = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
-	[chil addAttributeWithType:@"Sex" genderValue:GCMale];
+	[chil addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
+	[chil addAttributeWithType:@"Sex" value:[GCGender maleGender]];
 	
     GCEntity *fam = [GCEntity entityWithType:@"Family record" inContext:ctx];
     

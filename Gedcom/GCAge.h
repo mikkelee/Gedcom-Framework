@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GCValue.h"
+
 @class GCDate;
 
 /**
@@ -15,7 +17,7 @@
  Gedcom ages can have many forms. This class cluster provides parsing, sorting, and a helper method for calculating ages.
  
  */
-@interface GCAge : NSObject <NSCoding, NSCopying>
+@interface GCAge : GCValue
 
 #pragma mark Initialization
 
@@ -35,7 +37,7 @@
  @param gedcom A Gedcom age string.
  @return A new age.
  */
-+ (id)ageWithGedcom:(NSString *)gedcom;
++ (id)valueWithGedcomString:(NSString *)gedcom;
 
 #pragma mark Helpers
 
@@ -61,14 +63,6 @@
 - (NSComparisonResult)compare:(id)other;
 
 #pragma mark Objective-C properties
-
-/// @name Gedcom access
-
-/// The date as a Gedcom-compliant string
-@property (readonly) NSString *gedcomString;
-
-/// The date as a display-friendly string
-@property (readonly) NSString *displayString;
 
 /// @name Accessing properties
 

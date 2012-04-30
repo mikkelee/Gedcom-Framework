@@ -528,7 +528,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 #pragma mark Convenience constructors
 
-+ (id)ageWithGedcom:(NSString *)gedcom
++ (id)valueWithGedcomString:(NSString *)gedcom
 {
 	return [[self alloc] initWithGedcom:gedcom];
 }
@@ -575,18 +575,6 @@ NSString * const GCAgeQualifier_toString[] = {
 	} else {
 		return [[self refAge] compare:[other refAge]];
 	}
-}
-
-#pragma mark NSCoding compliance
-
-- (id)initWithCoder:(NSCoder *)coder
-{
-	return [self initWithGedcom:[coder decodeObjectForKey:@"gedcomString"]];
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeObject:[self gedcomString] forKey:@"gedcomString"];
 }
 
 #pragma mark NSCopying compliance

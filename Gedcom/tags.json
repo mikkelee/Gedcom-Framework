@@ -166,7 +166,7 @@
 	
     "@Individual event": {
 		"objectType": "GCProperty",
-        "valueType": "GCBoolValue",
+        "valueType": "bool",
 		"variants": [
                      "Birth",
                      "Christening",
@@ -198,7 +198,7 @@
     },
     "@Individual attribute": {
 		"objectType": "GCProperty",
-        "valueType": "GCStringValue",
+        "valueType": "string",
 		"variants": [
                      "Caste",
                      "Descendants",
@@ -235,6 +235,7 @@
     },
     "@Family event": {
 		"objectType": "GCProperty",
+        "valueType": "bool",
 		"variants": [
                      "Annulment",
                      "Census",
@@ -271,7 +272,7 @@
     "Name": {
         "code": "NAME",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue",
+        "valueType": "string",
         "validSubTags": [
                          { "name": "Name Prefix", "min": "0", "max": "1" },
                          { "name": "Given Name", "min": "0", "max": "1" },
@@ -286,32 +287,32 @@
     "Name Prefix": {
         "code": "NPFX",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Given Name": {
         "code": "GIVN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Nickname": {
         "code": "NICK",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Surname Prefix": {
         "code": "SPFX",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Surname": {
         "code": "SURN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Name Suffix": {
         "code": "NSFX",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     
     "Child in family": {
@@ -375,7 +376,7 @@
 	"Note embedded": {
 		"code": "NOTE",
 		"objectType": "GCAttribute",
-		"valueType": "GCStringValue"
+		"valueType": "string"
 	},
     
     "@Multimedia": {
@@ -392,40 +393,40 @@
 	"Multimedia embedded": {
 		"code": "OBJE",
 		"objectType": "GCAttribute",
-		"valueType": "GCStringValue",
+		"valueType": "string",
 		"validSubTags": [
                          { "name": "Format", "min": "1", "max": "1" },
                          { "name": "Title", "min": "0", "max": "1" },
                          { "name": "File", "min": "0", "max": "1" },
                          { "name": "@Note", "min": "0", "max": "1" }
-                        ]
+                         ]
 	},
     
     "@Changed": {
         "code": "CHAN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     
     "Abbreviation": {
         "code": "ABBR",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Address": {
         "code": "ADDR",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Address1": {
         "code": "ADR1",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Address2": {
         "code": "ADR2",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Adoption": {
         "code": "ADOP",
@@ -437,42 +438,42 @@
     "Ancestral File Number": {
         "code": "AFN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Age": {
         "code": "AGE",
 		"objectType": "GCAttribute",
-        "valueType": "GCAgeValue"
+        "valueType": "age"
     },
     "Agency": {
         "code": "AGNC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Alias": {
         "code": "ALIA",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Ances Interest": {
         "code": "ANCI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Ancestors": {
         "code": "ANCE",
 		"objectType": "GCAttribute",
-        "valueType": "GCNumberValue"
+        "valueType": "number"
     },
     "Associates": {
         "code": "ASSO",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Author": {
         "code": "AUTH",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Adult Christening": {
         "code": "CHRA",
@@ -489,7 +490,7 @@
     "LDS Baptism": {
         "code": "BAPL",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Bar Mitzvah": {
         "code": "BARM",
@@ -502,7 +503,7 @@
     "Binary Object": {
         "code": "BLOB",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Birth": {
         "code": "BIRT",
@@ -522,17 +523,17 @@
     "Call Number": {
         "code": "CALN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Caste": {
         "code": "CAST",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Cause": {
         "code": "CAUS",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Census": {
         "code": "CENS",
@@ -541,7 +542,7 @@
     "Character set": {
         "code": "CHAR",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue",
+        "valueType": "string",
 		"validSubTags": [
                          { "name": "Version", "min": "0", "max": "1" }
                          ]
@@ -549,7 +550,7 @@
     "Number of children": {
         "code": "NCHI",
 		"objectType": "GCAttribute",
-        "valueType": "GCNumberValue"
+        "valueType": "number"
     },
     "Christening": {
         "code": "CHR",
@@ -561,12 +562,12 @@
     "City": {
         "code": "CITY",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "LDS Confirmation": {
         "code": "CONL",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Confirmation": {
         "code": "CONF",
@@ -575,32 +576,32 @@
     "Copyright": {
         "code": "COPR",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Corporate": {
         "code": "CORP",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Country": {
         "code": "CTRY",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Cremation": {
         "code": "CREM",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Data": {
         "code": "DATA",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Date": {
         "code": "DATE",
 		"objectType": "GCAttribute",
-        "valueType": "GCDateValue"
+        "valueType": "date"
     },
     "Death": {
         "code": "DEAT",
@@ -609,17 +610,17 @@
     "Descendant Interest": {
         "code": "DESI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Descendants": {
         "code": "DESC",
 		"objectType": "GCAttribute",
-        "valueType": "GCNumberValue"
+        "valueType": "number"
     },
     "Destination": {
         "code": "DEST",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Divorce Filed": {
         "code": "DIVF",
@@ -632,7 +633,7 @@
     "Education": {
         "code": "EDUC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Emigration": {
         "code": "EMIG",
@@ -641,7 +642,7 @@
     "LDS Endowment": {
         "code": "ENDL",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Engagement": {
         "code": "ENGA",
@@ -654,12 +655,12 @@
     "Family File": {
         "code": "FAMF",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "File": {
         "code": "FILE",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "First Communion": {
         "code": "FCOM",
@@ -668,12 +669,12 @@
     "Format": {
         "code": "FORM",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Gedcom": {
         "code": "GEDC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue",
+        "valueType": "string",
 		"validSubTags": [
                          { "name": "Version", "min": "1", "max": "1" },
                          { "name": "Format", "min": "1", "max": "1" }
@@ -682,22 +683,22 @@
     "Graduation": {
         "code": "GRAD",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Ident number": {
         "code": "IDNO",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Immigration": {
         "code": "IMMI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Language": {
         "code": "LANG",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Legatee": {
         "code": "LEGA",
@@ -726,17 +727,17 @@
     "Number of marriages": {
         "code": "NMR",
 		"objectType": "GCAttribute",
-        "valueType": "GCNumberValue"
+        "valueType": "number"
     },
     "Media": {
         "code": "MEDI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Nationality": {
         "code": "NATI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Naturalization": {
         "code": "NATU",
@@ -745,47 +746,47 @@
     "Occupation": {
         "code": "OCCU",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Ordinance": {
         "code": "ORDI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Ordination": {
         "code": "ORDN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Page": {
         "code": "PAGE",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Pedigree": {
         "code": "PEDI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Phone": {
         "code": "PHON",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Phy Description": {
         "code": "DSCR",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Place": {
         "code": "PLAC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Postal_code": {
         "code": "POST",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Probate": {
         "code": "PROB",
@@ -794,126 +795,126 @@
     "Property owned": {
         "code": "PROP",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Publication": {
         "code": "PUBL",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Quality of data": {
         "code": "QUAY",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Record File Number": {
         "code": "RFN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Record Id Number": {
         "code": "RIN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Reference": {
         "code": "REFN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Relationship": {
         "code": "RELA",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Religion": {
         "code": "RELI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Residence": {
         "code": "RESI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Restriction": {
         "code": "RESN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Retirement": {
         "code": "RETI",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Role": {
         "code": "ROLE",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "LDS Sealing Child": {
         "code": "SLGC",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Sealing Spouse": {
         "code": "SLGS",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Sex": {
         "code": "SEX",
 		"objectType": "GCAttribute",
-        "valueType": "GCGenderValue"
+        "valueType": "gender"
     },
     "Social Security Number": {
         "code": "SSN",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "State": {
         "code": "STAE",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Status": {
         "code": "STAT",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Temple": {
         "code": "TEMP",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Text": {
         "code": "TEXT",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Time": {
         "code": "TIME",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Title": {
         "code": "TITL",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Type": {
         "code": "TYPE",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Version": {
         "code": "VERS",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     },
     "Will": {
         "code": "WILL",
 		"objectType": "GCAttribute",
-        "valueType": "GCStringValue"
+        "valueType": "string"
     }
 }

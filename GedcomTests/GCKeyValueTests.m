@@ -98,10 +98,10 @@
 	
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
     
-    GCProperty *name1 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
-    GCProperty *name2 = [GCAttribute attributeWithType:@"Name" stringValue:@"Jens /Jensen/"];
+    GCProperty *name1 = [GCAttribute attributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+    GCProperty *name2 = [GCAttribute attributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Jensen/"]];
     
-    GCProperty *nickname = [GCAttribute attributeWithType:@"Nickname" stringValue:@"Store Jens"];
+    GCProperty *nickname = [GCAttribute attributeWithType:@"Nickname" value:[GCString valueWithGedcomString:@"Store Jens"]];
     
     [name1 addProperty:nickname];
     
@@ -131,15 +131,15 @@
     [observer setEntity:indi];
     
     NSArray *names = [NSArray arrayWithObjects:
-                      [GCValue valueWithString:@"Jens /Hansen/"], 
-                      [GCValue valueWithString:@"Jens /Hansen/ Smed"], 
+                      [GCString valueWithGedcomString:@"Jens /Hansen/"], 
+                      [GCString valueWithGedcomString:@"Jens /Hansen/ Smed"], 
                       nil];
     
     [indi setValue:names 
             forKey:@"Name"];
     
     //TODO should this fire something too?
-    [[[indi valueForKey:@"Name"] objectAtIndex:1] setValue:[GCValue valueWithString:@"Store Jens"] forKey:@"Nickname"];
+    [[[indi valueForKey:@"Name"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"Nickname"];
     
     [[indi valueForKey:@"Name"] removeObjectAtIndex:0];
     

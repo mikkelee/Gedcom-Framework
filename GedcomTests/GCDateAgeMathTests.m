@@ -21,14 +21,14 @@
     GCDate *date1, *date2;
     GCAge *age;
     
-    date1 = [GCDate dateWithGedcom:@"1900"];
-    date2 = [GCDate dateWithGedcom:@"1910"];
+    date1 = [GCDate valueWithGedcomString:@"1900"];
+    date2 = [GCDate valueWithGedcomString:@"1910"];
     
     age = [GCAge ageFromDate:date1 toDate:date2];
     
 	STAssertEqualObjects(@"[GCSimpleAge (10 years, 0 months, 0 days)]", [age description], nil);
     
-    date2 = [GCDate dateWithGedcom:@"MAY 1910"];
+    date2 = [GCDate valueWithGedcomString:@"MAY 1910"];
     
     age = [GCAge ageFromDate:date1 toDate:date2];
     
@@ -37,8 +37,8 @@
 
 - (void)testDateByAddingAge
 {
-    GCDate *date = [GCDate dateWithGedcom:@"12 OCT 2002"];
-    GCAge *age = [GCAge ageWithGedcom:@"12y 3m"]; 
+    GCDate *date = [GCDate valueWithGedcomString:@"12 OCT 2002"];
+    GCAge *age = [GCAge valueWithGedcomString:@"12y 3m"]; 
     
     GCDate *date2 = [date dateByAddingAge:age];
     

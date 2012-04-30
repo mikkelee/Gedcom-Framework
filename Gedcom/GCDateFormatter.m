@@ -30,7 +30,7 @@
 	BOOL result = NO;
 	//NSLog(@"string: %@", string);
 	
-	GCDate *date = [GCDate dateWithGedcom:string];
+	GCDate *date = [GCDate valueWithGedcomString:string];
 	//NSLog(@"date: %@", date);
 	
 	if (date) {
@@ -49,7 +49,7 @@
 	BOOL result = NO;
 	//NSLog(@"string: %@", string);
 	
-	GCDate *date = [GCDate dateWithGedcom:string];
+	GCDate *date = [GCDate valueWithGedcomString:string];
 	//NSLog(@"date: %@", date);
 	
 	if (date) {

@@ -103,8 +103,8 @@ typedef struct {
 /// The class type of the tag. Can be any subclass of GCObject.
 @property (readonly) Class objectClass;
 
-/// An enum indicating which type its value is. Will be GCUndefinedValue if the tag is not a property-tag. See GCValue.
-@property (readonly) GCValueType valueType;
+/// A class indicating which type its value is. Will be `nil` if the tag is not a property-tag. See GCValue.
+@property (readonly) Class valueType;
 
 /// If the tag is a relationship-tag and the relationship is two-way (such as FAMC &lt;-&gt; CHIL) the reverse tag is provided. Can be `nil`.
 @property (readonly) GCTag *reverseRelationshipTag;

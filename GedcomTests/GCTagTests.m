@@ -29,8 +29,8 @@
     STAssertEqualObjects([indi2 code], @"INDI", nil);
     STAssertEqualObjects([indi2 name], @"Individual record", nil);
     
-    STAssertEquals([[indi1 subTagWithCode:@"NAME"] valueType], GCStringValue, nil);
-    STAssertEquals([[indi1 subTagWithCode:@"BIRT"] valueType], GCBoolValue, nil);
+    STAssertEquals([[indi1 subTagWithCode:@"NAME"] valueType], [GCString class], nil);
+    STAssertEquals([[indi1 subTagWithCode:@"BIRT"] valueType], [GCBool class], nil);
 }
 
 @end

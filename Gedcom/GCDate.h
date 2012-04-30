@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GCValue.h"
+
 @class GCAge;
 
 /**
@@ -15,7 +17,7 @@
  Gedcom dates can have many forms. This class cluster provides parsing, sorting, and a helper method for calculating dates.
  
  */
-@interface GCDate : NSObject <NSCoding, NSCopying>
+@interface GCDate : GCValue
 
 #pragma mark Initialization
 
@@ -41,7 +43,7 @@
  @param gedcom An NSDate object.
  @return A new date.
  */
-+ (id)dateWithGedcom:(NSString *)gedcom;
++ (id)valueWithGedcomString:(NSString *)gedcom;
 
 /** Returns a date created with a given NSDate object.
  

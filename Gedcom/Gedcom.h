@@ -24,6 +24,10 @@
 #import "GCValue.h"
 #import "GCAge.h"
 #import "GCDate.h"
+#import "GCString.h"
+#import "GCNumber.h"
+#import "GCGender.h"
+#import "GCBool.h"
 
 #import "GCAgeFormatter.h"
 #import "GCDateFormatter.h"

@@ -331,19 +331,13 @@ __strong static NSMutableDictionary *tagInfo;
     return [_settings objectForKey:kCode];
 }
 
-- (GCValueType)valueType
+- (Class)valueType
 {
 	NSString *valueTypeString = [_settings objectForKey:kValueType];
-	GCValueType valueType = [GCValue valueTypeNamed:valueTypeString];
-	
-	if (valueType == GCUndefinedValue) {
-		NSException *exception = [NSException exceptionWithName:@"GCInvalidValueTypeException"
-														 reason:[NSString stringWithFormat:@"Invalid <%@> '%@' in %@", kValueType, valueTypeString, _settings]
-													   userInfo:_settings];
-		@throw exception;
-	}
-	
-	return valueType;
+    
+    Class valueClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [valueTypeString capitalizedString]]);
+    
+	return valueClass;
 }
 
 - (Class)objectClass

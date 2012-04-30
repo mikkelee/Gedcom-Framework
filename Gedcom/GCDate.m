@@ -961,7 +961,7 @@
 
 #pragma mark Convenience constructors
 
-+ (id)dateWithGedcom:(NSString *)gedcom
++ (id)valueWithGedcomString:(NSString *)gedcom
 {
 	return [[self alloc] initWithGedcom:gedcom];
 }
@@ -1046,18 +1046,6 @@
 	} else {
 		return [[self refDate] compare:[other refDate]];
 	}
-}
-
-#pragma mark NSCoding compliance
-
-- (id)initWithCoder:(NSCoder *)coder
-{
-	return [self initWithGedcom:[coder decodeObjectForKey:@"gedcomString"]];
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeObject:[self gedcomString] forKey:@"gedcomString"];
 }
 
 #pragma mark NSCopying compliance
