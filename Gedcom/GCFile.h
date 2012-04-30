@@ -121,6 +121,15 @@
 
 @interface GCFile (GCValidationMethods)
 
+/// @name Validating files
+
+/** Returns whether the receiver is a valid Gedcom file.
+ 
+ If the file is invalid, the error pointer will be updated with an NSError describing the problem.
+ 
+ @param error A pointer to an NSError object
+ @return `YES` if the file is valid, otherwise `NO`.
+ */
 - (BOOL)validateFile:(NSError **)error;
 
 @end

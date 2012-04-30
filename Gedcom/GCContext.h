@@ -38,7 +38,7 @@
  */
 - (GCEntity *)entityForXref:(NSString *)xref;
 
-/// @name Registering Xrefs
+/// @name Registering callbacks
 
 /** Register a callback for an xref.
  
@@ -48,6 +48,8 @@
  @param block A block that will be called as soon as an entity exists.
  */
 - (void)registerBlock:(void (^)(NSString *xref))block forXref:(NSString *)xref;
+
+/// @name Registering Xrefs
 
 /** Stores an xref for an entity.
  

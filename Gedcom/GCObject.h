@@ -203,13 +203,35 @@
 
 @interface GCObject (GCCodingHelpers)
 
+//TODO should probably not be documented at all...
+
+/// @name Internal methods
+
+/** Used internally.
+ 
+ @param aDecoder Used internally.
+ */
 - (void)decodeProperties:(NSCoder *)aDecoder;
+
+/** Used internally.
+ 
+ @param aCoder Used internally.
+ */
 - (void)encodeProperties:(NSCoder *)aCoder;
 
 @end
 
 @interface GCObject (GCValidationMethods)
 
+/// @name Validating objects
+
+/** Returns whether the receiver is a valid Gedcom object.
+ 
+ If the object is invalid, the error pointer will be updated with an NSError describing the problem.
+ 
+ @param error A pointer to an NSError object
+ @return `YES` if the object is valid, otherwise `NO`.
+ */
 - (BOOL)validateObject:(NSError **)error;
 
 @end
