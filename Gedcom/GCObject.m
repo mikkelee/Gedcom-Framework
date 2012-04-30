@@ -497,3 +497,74 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 }
 
 @end
+
+@implementation GCObject (GCValidationMethods)
+
+- (BOOL)validateObject:(NSError **)outError
+{
+    for (id propertyKey in [self validProperties]) {
+        GCTag *subTag = [[self gedTag] subTagWithName:propertyKey];
+        
+        NSInteger propertyCount = 0;
+        
+        if ([self allowsMultiplePropertiesOfType:propertyKey]) {
+            propertyCount = [[self valueForKey:propertyKey] count];
+        } else {
+            propertyCount = [self valueForKey:propertyKey] ? 1 : 0;
+        }
+        
+        GCAllowedOccurrences allowedOccurrences = [[self gedTag] allowedOccurrencesOfSubTag:subTag];
+        
+        if (propertyCount > allowedOccurrences.max) {
+            if (NULL != outError) {
+                *outError = [NSError errorWithDomain:@"GCErrorDoman" 
+                                                code:-1 
+                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      [NSString stringWithFormat:@"Too many values for key %@", propertyKey], NSLocalizedDescriptionKey,
+                                                      nil]];
+            }
+            
+            return NO;
+        }
+        
+        if (propertyCount < allowedOccurrences.min) {
+            if (NULL != outError) {
+                *outError = [NSError errorWithDomain:@"GCErrorDoman" 
+                                                code:-1 
+                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      [NSString stringWithFormat:@"Too few values for key %@", propertyKey], NSLocalizedDescriptionKey,
+                                                      nil]];
+            }
+            
+            return NO;
+        }
+        
+        //TODO check type correctness of value
+    }
+    
+    return YES;
+}
+
+- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
+{
+    GCTag *subTag = [[self gedTag] subTagWithName:inKey];
+    
+    // TODO check if ioValue is of correct type
+    
+    if ([self allowsMultiplePropertiesOfType:inKey]) {
+        if ([[self valueForKey:inKey] count] + 1 > [[self gedTag] allowedOccurrencesOfSubTag:subTag].max) {
+            if (NULL != outError) {
+                *outError = [NSError errorWithDomain:@"GCErrorDoman" 
+                                                code:-1 
+                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      @"Too many values for key", NSLocalizedDescriptionKey,
+                                                      nil]];
+            }
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+@end

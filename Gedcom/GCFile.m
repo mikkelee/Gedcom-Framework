@@ -229,3 +229,26 @@
 }
 
 @end
+
+@implementation GCFile (GCValidationMethods)
+
+- (BOOL)validateFile:(NSError *__autoreleasing *)error
+{
+    if (![_header validateObject:error]) {
+        return NO;
+    }
+    
+    if (_submission && ![_submission validateObject:error]) {
+        return NO;
+    }
+    
+    for (GCEntity *entity in _entities) {
+        if (![entity validateObject:error]) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+@end

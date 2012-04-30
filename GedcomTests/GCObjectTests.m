@@ -231,6 +231,46 @@
     STAssertTrue([file isEqualTo:decodedFile], nil);
 }
 
+- (void)testFileValidation
+{
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
+	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+	
+	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
+	
+	GCFile *file = [GCFile fileWithGedcomNodes:nodes];
+    
+    NSError *error = nil;
+    
+    BOOL result = [file validateFile:&error];
+    
+    STAssertTrue(result, nil);
+    STAssertNil(error, nil);
+}
+
+- (void)testObjectValidation
+{
+    GCContext *ctx = [GCContext context];
+    
+    // Submitter that's missing a required property NAME.
+    NSArray *malformedNodes = [GCNode arrayOfNodesFromString:
+                               @"0 @SUBM1@ SUBM\n"
+                               @"1 LANG English\n"
+                               @"1 LANG English\n"
+                               @"1 LANG English\n"
+                               @"1 LANG English"
+                               ];
+    
+    GCEntity *submitter = [GCEntity entityWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
+    
+    NSError *error = nil;
+    
+    BOOL result = [submitter validateObject:&error];
+    
+    STAssertFalse(result, nil);
+    STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], @"Too few values for key Name", nil);
+}
+
 - (void)testFile
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];

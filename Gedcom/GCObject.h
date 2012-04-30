@@ -207,3 +207,9 @@
 - (void)encodeProperties:(NSCoder *)aCoder;
 
 @end
+
+@interface GCObject (GCValidationMethods)
+
+- (BOOL)validateObject:(NSError **)error;
+
+@end

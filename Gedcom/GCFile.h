@@ -118,3 +118,9 @@
 @property (readonly) NSMutableOrderedSet *submitters;
 
 @end
+
+@interface GCFile (GCValidationMethods)
+
+- (BOOL)validateFile:(NSError **)error;
+
+@end
