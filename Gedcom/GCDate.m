@@ -95,7 +95,9 @@
 
 - (NSString *)displayString
 {
-    return [self gedcomString]; //TODO format according to user settings...
+    return [NSDateFormatter localizedStringFromDate:[[self calendar] dateFromComponents:[self dateComponents]]
+                                          dateStyle:NSDateFormatterShortStyle
+                                          timeStyle:NSDateFormatterShortStyle];
 }
 
 - (NSDate *)minDate
