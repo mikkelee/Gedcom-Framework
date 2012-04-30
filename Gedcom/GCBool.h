@@ -8,14 +8,26 @@
 
 #import "GCValue.h"
 
+/**
+ 
+ A Gedcom boolean value.
+ 
+ */
 @interface GCBool : GCValue
 
-+ (id)valueWithGedcomString:(NSString *)string;
-
+/** Returns a singleton instance representing a true value.
+ 
+ @return A singleton instance representing a true value.
+ */
 + (id)yes;
 
+/** Returns a singleton instance representing a false value.
+ 
+ @return A singleton instance representing a false value.
+ */
 + (id)no;
 
+/// The receiver's value as a BOOL.
 @property (readonly) BOOL boolValue;
 
 @end

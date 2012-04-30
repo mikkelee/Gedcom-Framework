@@ -12,24 +12,37 @@
  
  The value of an attribute.
  
- GCValue objects are abstract and immutable. To change the value of an attribute, assign a new value object to it.
+ GCValue objects are abstract and immutable. To change the value of a GCAttribute, assign a new value object to it.
  
  Use one of the following subclasses:
  
- TODO
+ GCString,
+ GCNumber,
+ GCDate,
+ GCAge,
+ GCGender, or
+ GCBool.
  
  */
 @interface GCValue : NSObject <NSCoding, NSCopying>
 
 /// @name Creating values
 
+/** Returns a new Gedcom value interpreted from the given string.
+ 
+ `GCValue`s cannot be created directly, but must be done via a subclass.
+ 
+ @param gedcomString a Gedcom string.
+ @return A new value.
+ 
+ */
 + (id)valueWithGedcomString:(NSString *)gedcomString;
 
 /// @name Comparing values
 
 /** Compares the receiver to another GCValue.
  
- The exact comparison ... TODO
+ The exact comparison method chosen depends on the subclass.
  
  @param other A GCValue object.
  @return `NSOrderedAscending` if the receiver is earlier than other, `NSOrderedDescending` if the receiver is later than other, and `NSOrderedSame` if they are equal.

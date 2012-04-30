@@ -8,8 +8,11 @@
 
 #import "GCValue.h"
 
+/**
+ 
+ A Gedcom string value.
+ 
+ */
 @interface GCString : GCValue
-
-+ (id)valueWithGedcomString:(NSString *)gedcomString;
 
 @end
