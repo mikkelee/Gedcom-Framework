@@ -13,13 +13,13 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
         * GCRelationship: References to other entities - FAMC, HUSB, etc.
 * Mapping between GCNodes and GCObjects is helped by GCTags which know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
 * Xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
-* Property values are handled via GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
-    - GCGenderValue
-    - GCAgeValue (parsed via ParseKit)
-    - GCDateValue (parsed via ParseKit)
-    - GCStringValue
-    - GCNumberValue
-    - GCBoolValue
+* Property values are handled via subclasses of GCValue, which can be hold one of many types (like NSValue). Sorting is supported. The types are:
+    - GCGender
+    - GCAge (parsed via ParseKit)
+    - GCDate (parsed via ParseKit)
+    - GCString
+    - GCNumber
+    - GCBool
 * Eventually, there may be another layer with things like GCIndividual, GCFamily (?).
 
 The intent is to hide the GEDCOM specifics, but to allow access if required.
@@ -41,20 +41,19 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
     GCEntity *indi = [GCEntity entityWithType:@"Individual record" inContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
-                      [GCValue valueWithString:@"Jens /Hansen/"], 
-                      [GCValue valueWithString:@"Jens /Hansen/ Smed"], 
+                      [GCString valueWithGedcomString:@"Jens /Hansen/"], 
+                      [GCString valueWithGedcomString:@"Jens /Hansen/ Smed"], 
                       nil];
     
     [indi setValue:names 
             forKey:@"Name"];
 	
     //alternately:
-    // [indi addAttributeWithType:@"Name" value:[GCValue valueWithString:@"Jens /Hansen/"]];
-	// [indi addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/ Smed"];
+    // [indi addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"Birth"];
     
-	[birt addAttributeWithType:@"Date" dateValue:[GCDate dateWithGedcom:@"1 JAN 1901"]];
+	[birt addAttributeWithType:@"Date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     [[indi properties] addObject:birt];
     
@@ -62,7 +61,7 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
     // [indi addProperty:birt];
     // [[indi valueForKey:[birt type]] addObject:birt];
     
-    [indi addAttributeWithType:@"Death" boolValue:YES];
+    [indi addAttributeWithType:@"Death" value:[GCBool yes]];
 ```
 
 is equivalent to:
@@ -106,16 +105,16 @@ Relationship example:
 	GCContext *ctx = [GCContext context];
 	
 	GCEntity *husb = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[husb addAttributeWithType:@"Name" stringValue:@"Jens /Hansen/"];
-	[husb addAttributeWithType:@"Sex" genderValue:GCMale];
+	[husb addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+	[husb addAttributeWithType:@"Sex" value:[GCGender maleGender]];
 	
 	GCEntity *wife = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[wife addAttributeWithType:@"Name" stringValue:@"Anne /Larsdatter/"];
-	[wife addAttributeWithType:@"Sex" genderValue:GCFemale];
+	[wife addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
+	[wife addAttributeWithType:@"Sex" value:[GCGender femaleGender]];
 	
 	GCEntity *chil = [GCEntity entityWithType:@"Individual record" inContext:ctx];
-	[chil addAttributeWithType:@"Name" stringValue:@"Hans /Jensen/"];
-	[chil addAttributeWithType:@"Sex" genderValue:GCMale];
+	[chil addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
+	[chil addAttributeWithType:@"Sex" value:[GCGender maleGender]];
 	
     GCEntity *fam = [GCEntity entityWithType:@"Family record" inContext:ctx];
     
