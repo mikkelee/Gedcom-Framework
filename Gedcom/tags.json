@@ -100,7 +100,8 @@
 		"objectType": "GCEntity",
 		"validSubTags": [
                          { "name": "name", "min": "0", "max": "1" },
-                         { "name": "address", "min": "0", "max": "1" }
+                         { "name": "address", "min": "0", "max": "1" },
+                         { "name": "phoneNumber", "min": "0", "max": "3" }
                          ]
 	},
 	"sourceRecord": {
@@ -116,7 +117,7 @@
 		"validSubTags": [
                          { "name": "name", "min": "1", "max": "1" },
                          { "name": "address", "min": "0", "max": "1" },
-                         { "name": "phone", "min": "0", "max": "3" },
+                         { "name": "phoneNumber", "min": "0", "max": "3" },
                          { "name": "@multimedia", "min": "0", "max": "M" },
                          { "name": "language", "min": "0", "max": "3" },
                          { "name": "recordFileNumber", "min": "0", "max": "1" },
@@ -127,7 +128,7 @@
 	"husband": {
 		"code": "HUSB",
 		"objectType": "GCRelationship",
-		"target": "Individual",
+		"target": "individualRecord",
         "reverseRelationshipTag": "spouseInFamily",
 		"validSubTags": [
         ]
@@ -135,7 +136,7 @@
 	"wife": {
 		"code": "WIFE",
 		"objectType": "GCRelationship",
-		"target": "Individual",
+		"target": "individualRecord",
         "reverseRelationshipTag": "spouseInFamily",
 		"validSubTags": [
         ]
@@ -143,7 +144,7 @@
 	"child": {
 		"code": "CHIL",
 		"objectType": "GCRelationship",
-		"target": "Individual",
+		"target": "individualRecord",
         "reverseRelationshipTag": "childInFamily",
 		"validSubTags": [
         ]
@@ -152,14 +153,14 @@
 	"submitterReference": {
 		"code": "SUBM",
 		"objectType": "GCRelationship",
-		"target": "SubmitterRecord",
+		"target": "submitterRecord",
 		"validSubTags": [
         ]
 	},
 	"submissionReference": {
 		"code": "SUBN",
 		"objectType": "GCRelationship",
-		"target": "SubmissionRecord",
+		"target": "submissionRecord",
 		"validSubTags": [
         ]
 	},
@@ -333,7 +334,7 @@
 	"sourceCitation": {
 		"code": "SOUR",
 		"objectType": "GCRelationship",
-        "target": "SourceRecord",
+        "target": "sourceRecord",
 		"validSubTags": [
                          { "name": "page", "min": "0", "max": "1" },
                          { "name": "data", "min": "0", "max": "1" },
@@ -371,7 +372,7 @@
 	"noteReference": {
 		"code": "NOTE",
 		"objectType": "GCRelationship",
-        "target": "NoteRecord"
+        "target": "noteRecord"
 	},
 	"noteEmbedded": {
 		"code": "NOTE",
@@ -388,7 +389,7 @@
 	"multimediaReference": {
 		"code": "OBJE",
 		"objectType": "GCRelationship",
-        "target": "MultimediaRecord",
+        "target": "multimediaRecord"
 	},
 	"multimediaEmbedded": {
 		"code": "OBJE",
@@ -416,14 +417,22 @@
     "address": {
         "code": "ADDR",
 		"objectType": "GCAttribute",
-        "valueType": "string"
+        "valueType": "string",
+		"validSubTags": [
+                         { "name": "addressLine1", "min": "0", "max": "1" },
+                         { "name": "addressLine2", "min": "0", "max": "1" },
+                         { "name": "city", "min": "0", "max": "1" },
+                         { "name": "state", "min": "0", "max": "1" },
+                         { "name": "postalCode", "min": "0", "max": "1" },
+                         { "name": "country", "min": "0", "max": "1" }
+                         ]
     },
-    "address1": {
+    "addressLine1": {
         "code": "ADR1",
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
-    "address2": {
+    "addressLine2": {
         "code": "ADR2",
 		"objectType": "GCAttribute",
         "valueType": "string"
@@ -768,7 +777,7 @@
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
-    "phone": {
+    "phoneNumber": {
         "code": "PHON",
 		"objectType": "GCAttribute",
         "valueType": "string"
@@ -783,7 +792,7 @@
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
-    "postal_code": {
+    "postalCode": {
         "code": "POST",
 		"objectType": "GCAttribute",
         "valueType": "string"

@@ -50,7 +50,7 @@
 - (void)addProperty:(GCProperty *)property
 {
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    NSParameterAssert([[self validProperties] containsObject:[property type]]);
+    NSParameterAssert([[property gedTag] isCustom] || [[self validProperties] containsObject:[property type]]);
     
     if ([property describedObject]) {
         if ([property describedObject] == self) {

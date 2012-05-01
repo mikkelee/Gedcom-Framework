@@ -146,29 +146,6 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Entry points
 
-+ (GCTag *)tagWithType:(NSString *)type code:(NSString *)code
-{
-    NSParameterAssert(type != nil);
-    NSParameterAssert(code != nil);
-    
-    [self setupTagInfo];
-    
-    GCTag *tag = [tagStore objectForKey:[NSString stringWithFormat:@"%@:%@", type, code]];
-    
-    if (tag == nil) {
-        tag = [[self alloc] initWithName:[NSString stringWithFormat:@"Custom %@ tag", code]
-								settings:[NSDictionary dictionaryWithObjectsAndKeys:
-										  @"GCStringValue", kValueType,
-										  @"GCAttribute", kObjectType,
-										  [NSOrderedSet orderedSet], kValidSubTags,
-										  nil]];
-        NSLog(@"Created custom %@ %@ tag: %@", type, code, tag);
-        [tagStore setObject:tag forKey:code];
-    }
-    
-    return tag;
-}
-
 + (GCTag *)tagNamed:(NSString *)name
 {
     [self setupTagInfo];
@@ -217,14 +194,18 @@ __strong static NSMutableDictionary *tagInfo;
         if ([tagStore valueForKey:code]) {
             return [tagStore valueForKey:code];
         }
-        GCTag *tag = [[GCTag alloc] initWithName:[NSString stringWithFormat:@"Custom %@ tag", code]
+        NSString *tagName = [NSString stringWithFormat:@"Custom %@ tag", code];
+        GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                  code, kCode,
                                                   @"GCStringValue", kValueType,
                                                   @"GCAttribute", kObjectType,
                                                   [NSOrderedSet orderedSet], kValidSubTags,
                                                   nil]];
-        NSLog(@"Created custom GCAttribute %@ tag: %@", code, tag);
-        [tagStore setObject:tag forKey:code];
+        NSLog(@"Created custom %@ tag: %@", code, tag);
+        [tagStore setObject:tag forKey:tagName];
+        
+        return tag;
     }
     
     for (GCTag *subTag in [self validSubTags]) {
