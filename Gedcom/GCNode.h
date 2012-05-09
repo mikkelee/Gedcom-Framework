@@ -55,7 +55,7 @@
 /// @name Accessing properties
 
 /// The parent node of the receiver; will be `nil` for root nodes.
-@property (readonly) GCNode *parent;
+@property (weak, readonly) GCNode *parent;
 
 /// The tag of the receiver; may not be `nil`.
 @property (readonly) NSString *gedTag;

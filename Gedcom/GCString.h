@@ -10,7 +10,7 @@
 
 /**
  
- A Gedcom string value.
+ A Gedcom string value. Its string value can be accessed via -gedcomString (see GCValue).
  
  */
 @interface GCString : GCValue

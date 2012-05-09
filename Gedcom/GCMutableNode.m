@@ -12,7 +12,7 @@
 
 @interface GCMutableNode ()
 
-@property GCNode *parent;
+@property (weak) GCNode *parent;
 
 @end;
 

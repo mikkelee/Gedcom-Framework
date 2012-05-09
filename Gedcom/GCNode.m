@@ -17,7 +17,7 @@
 
 - (NSArray *)gedcomLinesAtLevel:(int) level;
 
-@property GCNode *parent;
+@property (weak) GCNode *parent;
 @property NSString *gedTag;
 @property NSString *gedValue;
 @property NSString *xref;

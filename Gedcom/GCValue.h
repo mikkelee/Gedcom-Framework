@@ -51,12 +51,12 @@
 
 /// @name Gedcom access
 
-/// The value as a Gedcom-compliant string
+/// The value as a Gedcom-compliant string. Consider using the appropiate GCalueFormatter subclass.
 @property (readonly) NSString *gedcomString;
 
 /// @name Displaying values
 
-/// The value as a display-friendly string
+/// The value as a display-friendly string. Consider using the appropiate GCalueFormatter subclass.
 @property (readonly) NSString *displayString;
 
 @end

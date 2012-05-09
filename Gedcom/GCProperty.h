@@ -35,6 +35,6 @@
 /// @name Accessing properties
 
 /// The object being described by the receiver.
-@property GCObject *describedObject;
+@property (weak) GCObject *describedObject;
 
 @end
