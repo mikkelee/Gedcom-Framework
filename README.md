@@ -32,6 +32,7 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **Unit tests**: Better (full) code coverage
 * **GCValue**: more helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
 * **GCContext**: predicate search helpers?
+* **GCObject/GCEntity**: enumeratePropertiesUsingBlock etc
 
 # Examples #
 

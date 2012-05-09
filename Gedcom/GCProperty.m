@@ -16,7 +16,7 @@
 
 @interface GCProperty ()
 
-@property GCObject *primitiveDescribedObject;
+@property (weak) GCObject *primitiveDescribedObject;
 
 @end
 
