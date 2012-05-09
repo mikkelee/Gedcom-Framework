@@ -120,10 +120,12 @@
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (properties: %@)", [super description], [self properties]];
 }
+//COV_NF_END
 
 #pragma mark Objective-C properties
 

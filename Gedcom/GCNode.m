@@ -281,10 +281,12 @@
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
 }
+//COV_NF_END
 
 #pragma mark NSCoding conformance
 

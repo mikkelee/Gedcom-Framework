@@ -303,10 +303,12 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (type: %@)", [super description], [self type]];
 }
+//COV_NF_END
 
 #pragma mark Objective-C properties
 

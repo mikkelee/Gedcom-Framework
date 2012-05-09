@@ -71,10 +71,12 @@
 	}
 }
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCSimpleDate (%@) %d %d %d]", [[self calendar] calendarIdentifier], [[self dateComponents] year], [[self dateComponents] month], [[self dateComponents] day]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -131,10 +133,12 @@
 
 @implementation GCDatePhrase
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCDatePhrase '%@']", [self phrase]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -215,10 +219,12 @@
 
 @implementation GCApproximateDate
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCApproximateDate '%@' %@]", [self dateType], [self simpleDate]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -244,10 +250,12 @@
 
 @implementation GCInterpretedDate
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCInterpretedDate %@ %@]", [self simpleDate], [self datePhrase]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -349,6 +357,7 @@
 
 @implementation GCDatePeriod
 
+//COV_NF_START
 - (NSString *)description
 {
 	if ([self dateA] == nil) {
@@ -359,6 +368,7 @@
 		return [NSString stringWithFormat:@"[GCDatePeriod FROM %@ TO %@]", [self dateA], [self dateB]];
 	}
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -392,6 +402,7 @@
 
 @implementation GCDateRange
 
+//COV_NF_START
 - (NSString *)description
 {
 	if ([self dateA] == nil) {
@@ -402,6 +413,7 @@
 		return [NSString stringWithFormat:@"[GCDateRange BET %@ AND %@]", [self dateA], [self dateB]];
 	}
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -438,10 +450,12 @@
 
 @implementation GCInvalidDate
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCInvalidDate '%@']", [self string]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {

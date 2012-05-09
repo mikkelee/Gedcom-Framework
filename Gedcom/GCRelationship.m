@@ -73,10 +73,12 @@
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (target: %@)", [super description], [[self context] xrefForEntity:[self target]]];
 }
+//COV_NF_END
 
 #pragma mark NSCoding conformance
 

@@ -31,10 +31,12 @@
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (type: %@)", [super description], _set];
 }
+//COV_NF_END
 
 #pragma mark Forwarding
 

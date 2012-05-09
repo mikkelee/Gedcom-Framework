@@ -52,10 +52,12 @@
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (%@)", [super description], [self gedcomString]];
 }
+//COV_NF_END
 
 #pragma mark -
 

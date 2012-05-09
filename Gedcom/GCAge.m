@@ -52,10 +52,12 @@ typedef enum {
 
 @implementation GCSimpleAge
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCSimpleAge (%d years, %d months, %d days)]", [[self ageComponents] year], [[self ageComponents] month], [[self ageComponents] day]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -128,10 +130,12 @@ NSString * const GCAgeQualifier_toString[] = {
     @">"
 };
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCQualifiedAge %@ %@]", GCAgeQualifier_toString[[self qualifier]], [self age]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -163,10 +167,12 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @implementation GCAgeKeyword
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCAgeKeyword '%@']", [self keyword]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -229,10 +235,12 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @implementation GCInvalidAge
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"[GCInvalidAge '%@']", [self string]];
 }
+//COV_NF_END
 
 - (NSString *)gedcomString
 {

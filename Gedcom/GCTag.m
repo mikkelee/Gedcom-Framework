@@ -279,10 +279,12 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (%@ %@)", [super description], [self code], [self name]];
 }
+//COV_NF_END
 
 #pragma mark NSCoding
 

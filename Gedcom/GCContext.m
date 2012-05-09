@@ -124,9 +124,11 @@
 
 #pragma mark Description
 
+//COV_NF_START
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"%@ (xrefStore: %@)", [super description], xrefStore];
 }
+//COV_NF_END
 
 @end
