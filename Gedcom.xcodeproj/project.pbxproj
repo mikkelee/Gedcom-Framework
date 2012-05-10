@@ -39,6 +39,7 @@
 		3E3969FF154F34E600AE8636 /* GCFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3969FE154F34E600AE8636 /* GCFormatterTests.m */; };
 		3E396A03154F375400AE8636 /* GCValueFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E396A01154F375400AE8636 /* GCValueFormatter.h */; };
 		3E396A04154F375400AE8636 /* GCValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A02154F375400AE8636 /* GCValueFormatter.m */; };
+		3E396A07155B43B600AE8636 /* GCFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A06155B43B600AE8636 /* GCFileTests.m */; };
 		3E4373551521CB7200BA362F /* GCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4373531521CB7200BA362F /* GCAttribute.h */; };
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; };
@@ -122,6 +123,7 @@
 		3E3969FE154F34E600AE8636 /* GCFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFormatterTests.m; sourceTree = "<group>"; };
 		3E396A01154F375400AE8636 /* GCValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValueFormatter.h; sourceTree = "<group>"; };
 		3E396A02154F375400AE8636 /* GCValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValueFormatter.m; sourceTree = "<group>"; };
+		3E396A06155B43B600AE8636 /* GCFileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFileTests.m; sourceTree = "<group>"; };
 		3E4373531521CB7200BA362F /* GCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GCAttribute.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3E4373541521CB7200BA362F /* GCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValue.h; sourceTree = "<group>"; };
@@ -289,9 +291,10 @@
 		3E1C3E85151C319D005E09E1 /* GedcomTests */ = {
 			isa = PBXGroup;
 			children = (
-				3E5F50C5151DFB0000A433A6 /* GCTagTests.m */,
 				3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */,
+				3E5F50C5151DFB0000A433A6 /* GCTagTests.m */,
 				3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */,
+				3E396A06155B43B600AE8636 /* GCFileTests.m */,
 				3EF7A1C6151C3873004A8540 /* GCAgeTests.m */,
 				3EF7A1C7151C3873004A8540 /* GCDateTests.m */,
 				3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */,
@@ -576,6 +579,7 @@
 				3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */,
 				3E29DB1A154A1D9600756CF4 /* GCDateAgeMathTests.m in Sources */,
 				3E3969FF154F34E600AE8636 /* GCFormatterTests.m in Sources */,
+				3E396A07155B43B600AE8636 /* GCFileTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
