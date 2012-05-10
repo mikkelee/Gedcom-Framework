@@ -510,6 +510,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	return [[GCAgeParser sharedAgeParser] parseGedcom:gedcom];
 }
 
+//COV_NF_START
 - (id)initWithSimpleAge:(NSDateComponents *)c
 {
     [self doesNotRecognizeSelector:_cmd];    
@@ -533,6 +534,7 @@ NSString * const GCAgeQualifier_toString[] = {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
+//COV_NF_END
 
 #pragma mark Convenience constructors
 

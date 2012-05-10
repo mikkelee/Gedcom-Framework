@@ -290,6 +290,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 #pragma mark NSCoding conformance
 
+//COV_NF_START
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     [self doesNotRecognizeSelector:_cmd];    
@@ -300,6 +301,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 {
     [self doesNotRecognizeSelector:_cmd];    
 }
+//COV_NF_END
 
 #pragma mark Description
 

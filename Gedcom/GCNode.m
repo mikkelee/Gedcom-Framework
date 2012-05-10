@@ -31,11 +31,13 @@
 
 #pragma mark Initialization
 
+//COV_NF_START
 - (id)init
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
+//COV_NF_END
 
 - (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
 {

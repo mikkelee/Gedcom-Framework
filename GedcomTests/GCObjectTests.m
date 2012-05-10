@@ -15,6 +15,13 @@
 
 @implementation GCObjectTests
 
+- (void)testContext
+{
+    GCContext *ctx = [GCContext context];
+    
+    STAssertNil([ctx xrefForEntity:nil], nil);
+}
+
 - (void)testObjectValues
 {
     GCAttribute *date = [GCAttribute attributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
@@ -247,18 +254,11 @@
     STAssertNil(error, nil);
 }
 
-- (void)testObjectValidation
+- (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedError:(NSString *)errorString
 {
     GCContext *ctx = [GCContext context];
     
-    // Submitter that's missing a required property NAME.
-    NSArray *malformedNodes = [GCNode arrayOfNodesFromString:
-                               @"0 @SUBM1@ SUBM\n"
-                               @"1 LANG English\n"
-                               @"1 LANG English\n"
-                               @"1 LANG English\n"
-                               @"1 LANG English"
-                               ];
+    NSArray *malformedNodes = [GCNode arrayOfNodesFromString:nodeString];
     
     GCEntity *submitter = [GCEntity entityWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
     
@@ -267,7 +267,26 @@
     BOOL result = [submitter validateObject:&error];
     
     STAssertFalse(result, nil);
-    STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], @"Too few values for key name", nil);
+    STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], errorString, nil);
+}
+
+- (void)testObjectValidation
+{
+    // Submitter that's missing a required property NAME.
+    [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
+                                             @"1 LANG English\n"
+                                             @"1 LANG English\n"
+                                             @"1 LANG English"
+                               exceptedError:@"Too few values for key name"];
+    
+    // Submitter with too many LANG properties.
+    [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
+                                             @"1 NAME John Doe\n"
+                                             @"1 LANG English\n"
+                                             @"1 LANG English\n"
+                                             @"1 LANG English\n"
+                                             @"1 LANG English"
+                               exceptedError:@"Too many values for key language"];
 }
 
 - (void)testFile

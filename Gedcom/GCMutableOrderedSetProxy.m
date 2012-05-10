@@ -107,11 +107,11 @@
 {
     NSParameterAssert([objects count] == [indexes count]);
     
-    NSUInteger index = [indexes firstIndex];
+    NSUInteger idx = [indexes firstIndex];
     
     for (id obj in objects) {
-        [self insertObject:obj atIndex:index];
-        index = [indexes indexGreaterThanIndex: index];
+        [self insertObject:obj atIndex:idx];
+        idx = [indexes indexGreaterThanIndex: idx];
     }
 }
 
@@ -139,11 +139,11 @@
 {
     NSParameterAssert([objects count] == [indexes count]);
     
-    NSUInteger index = [indexes firstIndex];
+    NSUInteger idx = [indexes firstIndex];
     
     for (id obj in objects) {
-        [self replaceObjectAtIndex:index withObject:obj];
-        index = [indexes indexGreaterThanIndex:index];
+        [self replaceObjectAtIndex:idx withObject:obj];
+        idx = [indexes indexGreaterThanIndex:idx];
     }
 }
 
@@ -157,11 +157,11 @@
 
 - (void)removeObjectsAtIndexes:(NSIndexSet *)indexes
 {
-    NSUInteger index = [indexes firstIndex];
+    NSUInteger idx = [indexes firstIndex];
     
-    while(index != NSNotFound) {
-        [self removeObjectAtIndex:index];
-        index = [indexes indexGreaterThanIndex:index];
+    while(idx != NSNotFound) {
+        [self removeObjectAtIndex:idx];
+        idx = [indexes indexGreaterThanIndex:idx];
     }
 }
 

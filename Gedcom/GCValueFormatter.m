@@ -81,11 +81,13 @@
 
 @implementation GCValueFormatter 
 
+//COV_NF_START
 - (Class)classToFormat
 {
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
+//COV_NF_END
 
 - (NSString *)editingStringForObjectValue:(id)anObject
 {

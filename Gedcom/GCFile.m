@@ -174,15 +174,20 @@
 
 @implementation GCFile (GCConvenienceMethods)
 
-- (id)entitiesFulfillingBlock:(BOOL (^)(GCEntity *entity))block
+- (id)entitiesPassingTest:(BOOL (^)(id obj))block
 {
 	NSMutableOrderedSet *entities = [NSMutableOrderedSet orderedSet];
 	
-	for (GCEntity *entity in _entities) {
-		if (block(entity)) {
-			[entities addObject:entity];
-		}
-	}
+    NSIndexSet *indexes = [_entities indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return block(obj);
+    }];
+    
+    NSUInteger idx = [indexes firstIndex];
+    
+    while(idx != NSNotFound) {
+		[entities addObject:[_entities objectAtIndex:idx]];
+        idx = [indexes indexGreaterThanIndex:idx];
+    }
 	
 	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:entities
                                                               addBlock:^(id obj) {
@@ -195,8 +200,8 @@
 
 - (id)entitiesOfType:(NSString *)type
 {
-    return [self entitiesFulfillingBlock:^BOOL(GCEntity *entity) {
-        return [[entity type] isEqualToString:type];
+    return [self entitiesPassingTest:^BOOL(id obj) {
+        return [[(GCEntity *)obj type] isEqualToString:type];
     }];
 }
 

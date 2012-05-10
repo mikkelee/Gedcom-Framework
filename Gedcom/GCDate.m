@@ -926,7 +926,7 @@
     return [GCDate dateWithSimpleDate:dateComponents withCalendar:calendar];
 }
 
-
+//COV_NF_START
 - (id)initWithSimpleDate:(NSDateComponents *)co
 {
     [self doesNotRecognizeSelector:_cmd];    
@@ -974,6 +974,7 @@
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
+//COV_NF_END
 
 #pragma mark Convenience constructors
 

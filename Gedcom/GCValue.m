@@ -17,11 +17,13 @@
     return [super init];
 }
 
+//COV_NF_START
 + (id)valueWithGedcomString:(NSString *)gedcomString
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
+//COV_NF_END
 
 #pragma mark NSCoding conformance
 
@@ -44,11 +46,13 @@
 
 #pragma mark Comparison
 
+//COV_NF_START
 - (NSComparisonResult)compare:(id)other
 {
     [self doesNotRecognizeSelector:_cmd];
     __builtin_unreachable();
 }
+//COV_NF_END
 
 #pragma mark Description
 
