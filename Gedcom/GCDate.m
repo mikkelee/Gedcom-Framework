@@ -384,11 +384,11 @@
 - (NSString *)displayString
 {
 	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"? – %@", [[self dateB] displayString]];
+		return [NSString stringWithFormat:@"– %@", [[self dateB] displayString]];
 	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"%@ – ?", [[self dateA] displayString]];
+		return [NSString stringWithFormat:@"%@ –", [[self dateA] displayString]];
 	} else {
-		return [NSString stringWithFormat:@"%@ – %@", [[self dateA] displayString], [[self dateB] displayString]];
+		return [NSString stringWithFormat:@"%@ … %@", [[self dateA] displayString], [[self dateB] displayString]];
 	}
 }
 
