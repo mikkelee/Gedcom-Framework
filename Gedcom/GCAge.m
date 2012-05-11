@@ -63,7 +63,7 @@ typedef enum {
 {
 	NSString *months = @"";
 	if ([[self ageComponents] month] >= 1) {
-		months = [NSString stringWithFormat:@" %@m", [[self ageComponents] month]];
+		months = [NSString stringWithFormat:@" %dm", [[self ageComponents] month]];
 	}
 	
 	NSString *days = @"";
@@ -78,7 +78,7 @@ typedef enum {
 {
 	NSString *months = @"";
 	if ([[self ageComponents] month] >= 1) {
-		months = [NSString stringWithFormat:@", %@ months", [[self ageComponents] month]];
+		months = [NSString stringWithFormat:@", %d months", [[self ageComponents] month]];
 	}
 	
 	NSString *days = @"";
