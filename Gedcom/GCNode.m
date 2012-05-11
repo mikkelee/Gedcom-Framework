@@ -29,6 +29,8 @@
     NSMutableOrderedSet *_subNodes;
 }
 
+static NSString *concSeparator;
+
 #pragma mark Initialization
 
 //COV_NF_START
@@ -41,6 +43,10 @@
 
 - (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
 {
+    if (!concSeparator) {
+        concSeparator = [NSString stringWithFormat:@"%C", 0x2060];
+    }
+    
     NSParameterAssert(tag != nil && ([tag length] <= 4 || [tag hasPrefix:@"_"]));
     
     self = [super init];
@@ -127,7 +133,7 @@
 				if ([currentNode gedValue] == nil) {
 					[currentNode setGedValue:@""];
 				}
-				[currentNode setGedValue:[NSString stringWithFormat:@"%@\u2060%@", [currentNode gedValue], val]];
+				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@%@", [currentNode gedValue], concSeparator, val]];
 				return;
 			}
             
@@ -178,18 +184,73 @@
 	return [self gedcomLinesAtLevel:0];
 }
 
+void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray **outSubLines) {
+	NSMutableArray *lines = [[inLine componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
+    
+    NSString *initial = nil;
+    NSMutableArray *subLines = [NSMutableArray array];
+    
+    for (NSString *line in lines) {
+        if ([line length] <= 248 && [line rangeOfString:concSeparator].location == NSNotFound) {
+            //line's good to go.
+            
+            if (initial == nil) {
+                initial = line;
+            } else {
+                //we already set the first line so make a CONT node
+                [subLines addObject:[NSString stringWithFormat:@"%d CONT %@", level+1, line]];
+            }
+        } else {
+            //we need to split the line on >248 or concSeparator
+            
+            NSString *leftover = line;
+            
+            BOOL firstPass = YES;
+            
+            while ([leftover length] > 248 || [leftover rangeOfString:concSeparator].location != NSNotFound) {
+                NSUInteger toIndex = 248; //assume length is the reason
+                NSUInteger fromIndex = 248;
+                if ([leftover rangeOfString:concSeparator].location != NSNotFound) {
+                    // split on concSeparator
+                    toIndex = [leftover rangeOfString:concSeparator].location;
+                    fromIndex = toIndex + [concSeparator length];
+                }
+                NSString *bite = [leftover substringToIndex:toIndex];
+                leftover = [leftover substringFromIndex:fromIndex];
+                
+                if (firstPass) {
+                    if (initial == nil) {
+                        initial = bite;
+                    } else {
+                        [subLines addObject:[NSString stringWithFormat:@"%d CONT %@", level+1, bite]];
+                    }
+                } else {
+                    //we already set the first line so make a CONC node
+                    [subLines addObject:[NSString stringWithFormat:@"%d CONC %@", level+1, bite]];
+                }
+                
+                firstPass = NO;
+            }
+            
+            [subLines addObject:[NSString stringWithFormat:@"%d CONC %@", level+1, leftover]];
+        }
+    }
+    
+    *outInitial = initial;
+    *outSubLines = [subLines copy];
+    
+    //NSLog(@"outInitial: %@", *outInitial);
+    //NSLog(@"outSubLines: %@", *outSubLines);
+}
+
 - (NSArray *)gedcomLinesAtLevel:(int) level
 {
 	NSMutableArray *gedLines = [NSMutableArray array];
+    
+    NSString *firstLine = nil;
+    NSArray *subLineNodes = nil;
 	
-	NSMutableArray *lines = [[[self gedValue] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
-    
-	NSString *firstLine = nil;
-    
-    if ([lines count] > 0) {
-        firstLine = [lines objectAtIndex:0];
-        [lines removeObjectAtIndex:0];
-    }
+    contConcHelper(level, [self gedValue], &firstLine, &subLineNodes);
     
     if ([self xref] && ![[self xref] isEqualToString:@""]) {
         [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
@@ -203,46 +264,9 @@
             [gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
         }
     }
-	
-    //TODO clean up this mess, it's a pain in the ass to follow:
-	for (NSString *line in lines) {
-		NSString *t = @"CONT"; //we use CONT for new lines
-		
-		if ([line length] <= 248) {
-            if ([line rangeOfString:@"\u2060"].location != NSNotFound) {
-                NSUInteger index = [line rangeOfString:@"\u2060"].location;
-                
-                [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, [line substringToIndex:index]]];
-                
-                t = @"CONC";
-                
-                [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, [line substringFromIndex:index+1]]];
-            } else {
-                [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, line]];
-            }
-		} else {
-			//split string in 248-char parts, loop & add as CONC
-			NSString *leftover = line;
-			
-			while ([leftover length] > 248 || [leftover rangeOfString:@"\u2060"].location != NSNotFound) {
-                NSUInteger toIndex = 248;
-                NSUInteger fromIndex = 248;
-                if ([leftover rangeOfString:@"\u2060"].location != NSNotFound) {
-                    toIndex = [leftover rangeOfString:@"\u2060"].location;
-                    fromIndex = toIndex + 1;
-                }
-				NSString *bite = [leftover substringToIndex:toIndex];
-				leftover = [leftover substringFromIndex:fromIndex];
-				
-				[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, bite]];
-				
-				t = @"CONC"; //and CONC for concatenations
-			}
-			
-			[gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level+1, t, leftover]];
-		}
-	}
-	
+    
+    [gedLines addObjectsFromArray:subLineNodes];
+    
 	for (id subNode in [self subNodes] ) {
 		[gedLines addObjectsFromArray:[subNode gedcomLinesAtLevel:level+1]];
 	}
