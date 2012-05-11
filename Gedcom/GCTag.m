@@ -191,10 +191,10 @@ __strong static NSMutableDictionary *tagInfo;
 - (GCTag *)subTagWithCode:(NSString *)code
 {
     if ([code hasPrefix:@"_"]) {
-        if ([tagStore valueForKey:code]) {
-            return [tagStore valueForKey:code];
-        }
         NSString *tagName = [NSString stringWithFormat:@"Custom %@ tag", code];
+        if ([tagStore valueForKey:tagName]) {
+            return [tagStore valueForKey:tagName];
+        }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:[NSDictionary dictionaryWithObjectsAndKeys:
                                                   code, kCode,
