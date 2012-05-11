@@ -32,9 +32,8 @@
     STAssertNil(error, nil);
 }
 
-- (void)testFile
+- (void)testFileAtPath:(NSString *)path
 {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
     NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     NSMutableArray *gc_inputLines = [NSMutableArray array];
@@ -54,37 +53,21 @@
     
     //NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
     
+    int errorCount = 0;
     for (int i = 0; i < [gc_outputLines count]; i++) {
         //NSLog(@"test: %@ - %@", [gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i]);
         STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], nil);
+        if (![[gc_inputLines objectAtIndex:i] isEqualTo:[gc_outputLines objectAtIndex:i]] && ++errorCount > 100) {
+            break;
+        }
     }
 }
 
-- (void)AtestFile2
+- (void)testSimpleGed
 {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
-    NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
     
-    NSMutableArray *gc_inputLines = [NSMutableArray array];
-    
-    [fileContents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-        [gc_inputLines addObject:line];
-    }];
-    
-    NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
-    
-    GCFile *file = [GCFile fileWithGedcomNodes:nodes];
-    
-    NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:3];
-    for (GCNode *node in [file gedcomNodes]) {
-        [gc_outputLines addObjectsFromArray:[node gedcomLines]];
-    }
-    
-    //NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
-    
-    for (int i = 0; i < [gc_outputLines count]; i++) {
-        STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], nil);
-    }
+    [self testFileAtPath:path];
 }
 
 @end
