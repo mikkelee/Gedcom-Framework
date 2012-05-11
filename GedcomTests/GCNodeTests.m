@@ -39,8 +39,12 @@
 	STAssertNotNil(gc_outputString, nil);
 	STAssertEquals(countShouldBe, [nodes count], @"[nodes count] (%d) != %d", [nodes count], countShouldBe);
 	
+    int errorCount = 0;
 	for (int i = 0; i < [gc_outputLines count]; i++) {
 		STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], nil);
+        if (![[gc_inputLines objectAtIndex:i] isEqualTo:[gc_outputLines objectAtIndex:i]] && ++errorCount > 100) {
+            break;
+        }
 	}
 }
 
@@ -89,6 +93,19 @@
     [mutableNode addSubNode:nickname];
     
     STAssertEquals([[mutableNode subNodes] count], (NSUInteger)1, nil);
+}
+
+- (void)testConcatenation
+{
+    NSString *gedcom = 
+    @"0 @N1@ NOTE\n"
+    @"1 CONT abc\n"
+    @"1 CONC def\n"
+    @"1 CONC ghi\n"
+    @"1 CONT A very very long line that needs to be broken up because it is more than 248 characters long resulting in some CONC nodes underneath the current node. They should be assembled and disassembled losslessly by the GCNode code without need for program\n"
+    @"1 CONC mer- or user-intervention."
+    ;
+	[self testGedString:gedcom countShouldBe:1];
 }
 
 @end
