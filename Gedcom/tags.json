@@ -51,7 +51,8 @@
                          { "name": "ancestors", "min": "0", "max": "1" },
                          { "name": "descendants", "min": "0", "max": "1" },
                          { "name": "ordinance", "min": "0", "max": "1" },
-                         { "name": "recordIdNumber", "min": "0", "max": "1" }
+                         { "name": "recordIdNumber", "min": "0", "max": "1" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	"familyRecord": {
@@ -63,13 +64,18 @@
                          { "name": "wife", "min": "0", "max": "1" },
                          { "name": "child", "min": "0", "max": "M" },
                          { "name": "numberOfChildren", "min": "0", "max": "1" },
-                         { "name": "submissionReference", "min": "0", "max": "M" }
+                         { "name": "submissionReference", "min": "0", "max": "M" },
+                         { "name": "@source", "min": "0", "max": "M" },
+                         { "name": "@multimedia", "min": "0", "max": "M" },
+                         { "name": "@note", "min": "0", "max": "M" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	"individualRecord": {
 		"code": "INDI",
 		"objectType": "GCEntity",
 		"validSubTags": [
+                         { "name": "restrictionNotice", "min": "0", "max": "1" },
                          { "name": "name", "min": "0", "max": "M" },
                          { "name": "sex", "min": "0", "max": "M" },
                          { "name": "@individualEvent", "min": "0", "max": "M" },
@@ -77,7 +83,15 @@
                          { "name": "@individualLDSOrdinance", "min": "0", "max": "M" },
                          { "name": "childInFamily", "min": "0", "max": "M" },
                          { "name": "spouseInFamily", "min": "0", "max": "M" },
-                         { "name": "submissionReference", "min": "0", "max": "M" }
+                         { "name": "submissionReference", "min": "0", "max": "M" },
+                         { "name": "association", "min": "0", "max": "M" },
+                         { "name": "alias", "min": "0", "max": "M" },
+                         { "name": "ancestorInterest", "min": "0", "max": "M" },
+                         { "name": "descendantInterest", "min": "0", "max": "M" },
+                         { "name": "@source", "min": "0", "max": "M" },
+                         { "name": "@multimedia", "min": "0", "max": "M" },
+                         { "name": "@note", "min": "0", "max": "M" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	"multimediaRecord": {
@@ -85,14 +99,16 @@
 		"objectType": "GCEntity",
 		"validSubTags": [
                          { "name": "format", "min": "1", "max": "1" },
-                         { "name": "title", "min": "0", "max": "1" }
+                         { "name": "title", "min": "0", "max": "1" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	"noteRecord": {
 		"code": "NOTE",
 		"objectType": "GCEntity",
 		"validSubTags": [
-                         { "name": "recordIdNumber", "min": "0", "max": "1" }
+                         { "name": "recordIdNumber", "min": "0", "max": "1" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	"repositoryRecord": {
@@ -101,14 +117,25 @@
 		"validSubTags": [
                          { "name": "name", "min": "0", "max": "1" },
                          { "name": "address", "min": "0", "max": "1" },
-                         { "name": "phoneNumber", "min": "0", "max": "3" }
+                         { "name": "phoneNumber", "min": "0", "max": "3" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	"sourceRecord": {
 		"code": "SOUR",
 		"objectType": "GCEntity",
 		"validSubTags": [
-                         { "name": "data", "min": "0", "max": "1" }
+                         { "name": "sourceData", "min": "0", "max": "1" },
+                         { "name": "author", "min": "0", "max": "1" },
+                         { "name": "title", "min": "0", "max": "1" },
+                         { "name": "abbreviation", "min": "0", "max": "1" },
+                         { "name": "publicationFacts", "min": "0", "max": "1" },
+                         { "name": "text", "min": "0", "max": "1" },
+                         { "name": "repositoryCitation", "min": "0", "max": "1" },
+                         { "name": "@multimedia", "min": "0", "max": "M" },
+                         { "name": "@note", "min": "0", "max": "M" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "1" },
+                         { "name": "recordIdNumber", "min": "0", "max": "1" }
                          ]
 	},
 	"submitterRecord": {
@@ -121,7 +148,8 @@
                          { "name": "@multimedia", "min": "0", "max": "M" },
                          { "name": "language", "min": "0", "max": "3" },
                          { "name": "recordFileNumber", "min": "0", "max": "1" },
-                         { "name": "ancestralFileNumber", "min": "0", "max": "1" }
+                         { "name": "ancestralFileNumber", "min": "0", "max": "1" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
 	
@@ -261,6 +289,9 @@
                      "date",
                      "place",
                      "address",
+                     "phoneNumber",
+                     "age",
+                     "cause",
                      "sourceCitation",
                      "sourceEmbedded",
                      "multimediaReference",
@@ -318,7 +349,10 @@
     
     "childInFamily": {
         "code": "FAMC",
-		"objectType": "GCRelationship"
+		"objectType": "GCRelationship",
+		"validSubTags": [
+                         { "name": "pedigree", "min": "0", "max": "1" }
+                         ]
     },
     "spouseInFamily": {
         "code": "FAMS",
@@ -359,6 +393,15 @@
                          ]
 	},
     
+	"repositoryCitation": {
+		"code": "REPO",
+		"objectType": "GCRelationship",
+		"target": "repositoryRecord",
+		"validSubTags": [
+                         { "name": "@note", "min": "0", "max": "M" },
+                         { "name": "callNumber", "min": "0", "max": "M" }
+                         ]
+	},
     
     "@note": {
         "variants": [
@@ -440,7 +483,7 @@
     "adoption": {
         "code": "ADOP",
 		"objectType": "GCAttribute",
-        "validSubNodes": [
+        "validSubTags": [
                           { "name": "childInFamily", "min": "0", "max": "1" }
                           ]
     },
@@ -454,30 +497,36 @@
 		"objectType": "GCAttribute",
         "valueType": "age"
     },
-    "agency": {
+    "responsibleAgency": {
         "code": "AGNC",
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
     "alias": {
         "code": "ALIA",
-		"objectType": "GCAttribute",
-        "valueType": "string"
+		"objectType": "GCRelationship",
+        "target": "individualRecord"
     },
-    "ancesInterest": {
+    "ancestorInterest": {
         "code": "ANCI",
-		"objectType": "GCAttribute",
-        "valueType": "string"
+		"objectType": "GCRelationship",
+        "target": "submitterRecord"
     },
     "ancestors": {
         "code": "ANCE",
 		"objectType": "GCAttribute",
         "valueType": "number"
     },
-    "associates": {
+    "association": {
         "code": "ASSO",
-		"objectType": "GCAttribute",
-        "valueType": "string"
+		"objectType": "GCRelationship",
+        "valueType": "string",
+        "validSubTags": [
+                          { "name": "type", "min": "1", "max": "1" },
+                          { "name": "relationshipDescriptor", "min": "1", "max": "1" },
+                          { "name": "@note", "min": "0", "max": "M" },
+                          { "name": "@source", "min": "0", "max": "M" }
+                          ]
     },
     "author": {
         "code": "AUTH",
@@ -517,7 +566,7 @@
     "birth": {
         "code": "BIRT",
 		"objectType": "GCAttribute",
-        "validSubNodes": [
+        "validSubTags": [
                           { "name": "childInFamily", "min": "0", "max": "1" }
                           ]
     },
@@ -564,7 +613,7 @@
     "christening": {
         "code": "CHR",
 		"objectType": "GCAttribute",
-        "validSubNodes": [
+        "validSubTags": [
                           { "name": "childInFamily", "min": "0", "max": "1" }
                           ]
     },
@@ -605,7 +654,21 @@
     "data": {
         "code": "DATA",
 		"objectType": "GCAttribute",
-        "valueType": "string"
+        "valueType": "string",
+		"validSubTags": [
+                         { "name": "date", "min": "0", "max": "1" },
+                         { "name": "text", "min": "0", "max": "M" }
+                         ]
+    },
+    "sourceData": {
+        "code": "DATA",
+		"objectType": "GCAttribute",
+        "valueType": "string",
+		"validSubTags": [
+                         { "name": "eventsRecorded", "min": "0", "max": "M" },
+                         { "name": "responsibleAgency", "min": "0", "max": "1" },
+                         { "name": "@note", "min": "0", "max": "M" }
+                         ]
     },
     "date": {
         "code": "DATE",
@@ -618,8 +681,8 @@
     },
     "descendantInterest": {
         "code": "DESI",
-		"objectType": "GCAttribute",
-        "valueType": "string"
+		"objectType": "GCRelationship",
+        "target": "submitterRecord"
     },
     "descendants": {
         "code": "DESC",
@@ -660,6 +723,14 @@
     "event": {
         "code": "EVEN",
 		"objectType": "GCAttribute"
+    },
+    "eventsRecorded": {
+        "code": "EVEN",
+		"objectType": "GCAttribute",
+		"validSubTags": [
+                         { "name": "date", "min": "0", "max": "1" },
+                         { "name": "place", "min": "0", "max": "1" }
+                         ]
     },
     "familyFile": {
         "code": "FAMF",
@@ -806,7 +877,7 @@
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
-    "publication": {
+    "publicationFacts": {
         "code": "PUBL",
 		"objectType": "GCAttribute",
         "valueType": "string"
@@ -826,12 +897,15 @@
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
-    "reference": {
+    "userReferenceNumber": {
         "code": "REFN",
 		"objectType": "GCAttribute",
-        "valueType": "string"
+        "valueType": "string",
+		"validSubTags": [
+                         { "name": "type", "min": "0", "max": "1" },
+                         ]
     },
-    "relationship": {
+    "relationshipDescriptor": {
         "code": "RELA",
 		"objectType": "GCAttribute",
         "valueType": "string"
@@ -846,7 +920,7 @@
 		"objectType": "GCAttribute",
         "valueType": "string"
     },
-    "restriction": {
+    "restrictionNotice": {
         "code": "RESN",
 		"objectType": "GCAttribute",
         "valueType": "string"
