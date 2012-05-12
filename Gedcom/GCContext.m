@@ -14,6 +14,7 @@
 @implementation GCContext {
 	NSMutableDictionary *xrefStore;
 	NSMutableDictionary *xrefBlocks;
+    NSMutableSet *storedEntities; //to avoid expensive allKeysForObject: calls if we don't have it stored
 }
 
 - (id)init
@@ -23,6 +24,7 @@
 	if (self) {
         xrefStore = [NSMutableDictionary dictionary];
         xrefBlocks = [NSMutableDictionary dictionary];
+        storedEntities = [NSMutableSet set];
 	}
 	
 	return self;
@@ -37,13 +39,16 @@
 {
     NSParameterAssert(xref);
     
-    for (NSString *key in [xrefStore allKeysForObject:obj]) {
-        [xrefStore removeObjectForKey:key];
+    if ([storedEntities containsObject:obj]) {
+        for (NSString *key in [xrefStore allKeysForObject:obj]) {
+            [xrefStore removeObjectForKey:key];
+        }
     }
     
     //NSLog(@"Storing %@ for %@", xref, obj);
     
     [xrefStore setObject:obj forKey:xref];
+    [storedEntities addObject:obj];
 	
 	if ([xrefBlocks objectForKey:xref]) {
 		for (void (^block) (NSString *) in [xrefBlocks objectForKey:xref]) {

@@ -38,7 +38,6 @@
     
     if (self) {
 		_context = context;
-        [_context xrefForEntity:self];
     }
     
     return self;    
@@ -57,15 +56,16 @@
     
 	[context setXref:[node xref] forEntity:entity];
 	
-    GCNode *changeNode = nil;
+    __block GCNode *changeNode = nil;
     
-    for (GCNode *subNode in [node subNodes]) {
+    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        GCNode *subNode = (GCNode *)obj;
         if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
             changeNode = subNode;
         } else {
             [entity addPropertyWithGedcomNode:subNode];
         }
-    }
+    }];
     
     if (changeNode) {
         [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode]];

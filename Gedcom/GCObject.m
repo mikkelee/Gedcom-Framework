@@ -26,6 +26,8 @@
 
 @implementation GCObject {
     NSMutableDictionary *_properties;
+    
+    NSOrderedSet *_cachedValidProperties;
 }
 
 #pragma mark Initialization
@@ -117,13 +119,17 @@
 
 - (NSOrderedSet *)validProperties
 {
-	NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
+    if (!_cachedValidProperties) {
+        NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
+        
+        for (id subTag in [_tag validSubTags]) {
+            [valid addObject:[subTag name]];
+        }
+        
+        _cachedValidProperties = [valid copy];
+    }
 	
-	for (id subTag in [_tag validSubTags]) {
-		[valid addObject:[subTag name]];
-	}
-	
-	return valid;
+	return _cachedValidProperties;
 }
 
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type

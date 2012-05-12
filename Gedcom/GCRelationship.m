@@ -24,9 +24,10 @@
     
     GCRelationship *relationship = [[self alloc] initWithType:[tag name]];
     
-    for (GCNode *subNode in [node subNodes]) {
+    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        GCNode *subNode = (GCNode *)obj;
         [relationship addPropertyWithGedcomNode:subNode];
-    }
+    }];
     
     [object addProperty:relationship];
     

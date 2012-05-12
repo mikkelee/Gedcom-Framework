@@ -17,6 +17,8 @@
 
 @implementation GCTag {
 	NSDictionary *_settings;
+    
+    NSOrderedSet *_cachedValidSubTags;
 }
 
 #pragma mark Constants
@@ -198,8 +200,8 @@ __strong static NSMutableDictionary *tagInfo;
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:[NSDictionary dictionaryWithObjectsAndKeys:
                                                   code, kCode,
-                                                  @"GCStringValue", kValueType,
-                                                  @"GCAttribute", kObjectType,
+                                                  @"stringValue", kValueType,
+                                                  @"attribute", kObjectType,
                                                   [NSOrderedSet orderedSet], kValidSubTags,
                                                   nil]];
         NSLog(@"Created custom %@ tag: %@", code, tag);
@@ -255,13 +257,13 @@ __strong static NSMutableDictionary *tagInfo;
                                  [valid objectForKey:@"min"], @"min",
                                  [valid objectForKey:@"max"], @"max",
                                  nil];
-                    continue;
+                    break;
                 }
             }
         } else {
             if ([[valid objectForKey:kName] isEqual:[tag name]]) {
                 validDict = valid;
-                continue;
+                break;
             }
         }
     }
@@ -326,33 +328,29 @@ __strong static NSMutableDictionary *tagInfo;
 - (Class)objectClass
 {
 	NSString *objectClassString = [_settings objectForKey:kObjectType];
-	Class objectClass = NSClassFromString(objectClassString);
-	
-	if (objectClass == nil) {
-		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
-														 reason:[NSString stringWithFormat:@"Invalid <%@> '%@' in %@", kObjectType, objectClassString, _settings]
-													   userInfo:_settings];
-		@throw exception;
-	}
-	
+    
+	Class objectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
+		
 	return objectClass;
 }
 
 - (NSOrderedSet *)validSubTags
 {
-    //TODO cache this:
-    NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[[_settings objectForKey:kValidSubTags] count]];
-    for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
-        if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
-            for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {
-                [set addObject:[GCTag tagNamed:variantName]];                
+    if (!_cachedValidSubTags) {
+        NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[[_settings objectForKey:kValidSubTags] count]];
+        for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
+            if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
+                for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {
+                    [set addObject:[GCTag tagNamed:variantName]];                
+                }
+            } else {
+                [set addObject:[GCTag tagNamed:[valid objectForKey:kName]]];
             }
-        } else {
-            [set addObject:[GCTag tagNamed:[valid objectForKey:kName]]];
         }
+        _cachedValidSubTags = [set copy];
     }
     
-    return set;
+    return _cachedValidSubTags;
 }
 
 - (GCTag *)reverseRelationshipTag

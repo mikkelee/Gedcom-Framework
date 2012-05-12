@@ -33,9 +33,10 @@
         [attribute setValue:[[tag valueType] valueWithGedcomString:[node gedValue]]];
     }
     
-    for (GCNode *subNode in [node subNodes]) {
+    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        GCNode *subNode = (GCNode *)obj;
         [attribute addPropertyWithGedcomNode:subNode];
-    }
+    }];
     
     [object addProperty:attribute];
     
