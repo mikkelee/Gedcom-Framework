@@ -297,13 +297,43 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
 
 #pragma mark Adding subnodes
 
-- (void)addSubNode:(GCNode *) n
+- (void)addSubNode:(GCNode *)node
 {
-	NSParameterAssert(self != n);
+	NSParameterAssert(self != node);
     
-	[_subNodes addObject:n];
-	[n setParent:self];
+	[_subNodes addObject:node];
+	[node setParent:self];
 }
+
+/*
+#pragma mark Comparison
+
+- (BOOL)isEqual:(GCNode *)other
+{
+    if (![[self gedTag] isEqualToString:[other gedTag]]) {
+        return NO;
+    }
+    
+    if ([self gedValue] && ![[self gedValue] isEqualToString:[other gedValue]]) {
+        return NO;
+    }
+    
+    if ([self xref] && ![[self xref] isEqualToString:[other xref]]) {
+        return NO;
+    }
+    
+    if (![[[self subNodes] set] isEqualToSet:[[other subNodes] set]]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (NSUInteger)hash
+{
+    return [[self gedTag] hash] + [[self xref] hash] + [[self gedValue] hash] + [[[self subNodes] set] hash];
+}
+*/
 
 #pragma mark Description
 
