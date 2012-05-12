@@ -22,7 +22,7 @@
 {
     NSString *gedcomString = 
     @"1 CHAN\n"
-    @"2 DATE 2 May 2009\n"
+    @"2 DATE 2 MAY 2009\n"
     @"3 TIME 20:07:12"
     ;
     

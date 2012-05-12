@@ -56,7 +56,7 @@
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"d MMM yyyy"];
-	[dateFormatter setShortMonthSymbols:[NSArray arrayWithObjects:@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec", nil]];
+    [dateFormatter setShortMonthSymbols:[NSArray arrayWithObjects:@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC", nil]];
 	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
 	[timeFormatter setDateFormat:@"HH:mm:ss"];
     
@@ -65,11 +65,11 @@
 	
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE" 
                                      value:[dateFormatter stringFromDate:date]
-                                  subNodes:[NSArray arrayWithObject:timeNode]];
+                                  subNodes:[NSOrderedSet orderedSetWithObject:timeNode]];
     
     return [GCNode nodeWithTag:@"CHAN" 
                          value:nil 
-                      subNodes:[NSArray arrayWithObject:dateNode]];
+                      subNodes:[NSOrderedSet orderedSetWithObject:dateNode]];
     
     return nil;
 }

@@ -22,7 +22,7 @@
     STAssertNil([ctx xrefForEntity:nil], nil);
 }
 
-- (void)testObjectValues
+- (void)testAttributeValues
 {
     GCAttribute *date = [GCAttribute attributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
@@ -68,7 +68,7 @@
                          @"2 DATE 1 JAN 1901\n"
                          @"1 DEAT Y\n"
                          @"1 CHAN\n"
-                         @"2 DATE 1 Jan 2000\n"
+                         @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
     
@@ -146,7 +146,7 @@
                          @"1 WIFE @INDI2@\n"
                          @"1 CHIL @INDI3@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 1 Jan 2000\n"
+                         @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 	
@@ -156,7 +156,7 @@
 						 @"1 SEX M\n"
 						 @"1 FAMS @FAM1@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 1 Jan 2000\n"
+                         @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 	
@@ -166,7 +166,7 @@
 						 @"1 SEX F\n"
 						 @"1 FAMS @FAM1@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 1 Jan 2000\n"
+                         @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 	
@@ -176,7 +176,7 @@
 						 @"1 SEX M\n"
 						 @"1 FAMC @FAM1@\n"
                          @"1 CHAN\n"
-                         @"2 DATE 1 Jan 2000\n"
+                         @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
 }
@@ -258,17 +258,17 @@
     // Submitter that's missing a required property NAME.
     [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
                                              @"1 LANG English\n"
-                                             @"1 LANG English\n"
-                                             @"1 LANG English"
+                                             @"1 LANG Swedish\n"
+                                             @"1 LANG Spanish"
                                exceptedError:@"Too few values for key name"];
     
     // Submitter with too many LANG properties.
     [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
                                              @"1 NAME John Doe\n"
                                              @"1 LANG English\n"
-                                             @"1 LANG English\n"
-                                             @"1 LANG English\n"
-                                             @"1 LANG English"
+                                             @"1 LANG Swedish\n"
+                                             @"1 LANG Spanish\n"
+                                             @"1 LANG German"
                                exceptedError:@"Too many values for key language"];
 }
 
