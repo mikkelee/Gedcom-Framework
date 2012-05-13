@@ -18,6 +18,8 @@
 
 #import "GCMutableOrderedSetProxy.h"
 
+#import "GCFileDelegate.h"
+
 @interface GCTrailer : NSObject
 @end
 @implementation GCTrailer
@@ -29,6 +31,18 @@
 
 #pragma mark Initialization
 
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _context = [GCContext context];
+		_entities = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
 - (id)initWithContext:(GCContext *)context gedcomNodes:(NSArray *)nodes;
 {
 	self = [super init];
@@ -37,23 +51,7 @@
 		_context = context;
 		_entities = [NSMutableArray arrayWithCapacity:[nodes count]];
 		
-		for (GCNode *node in nodes) {
-            GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
-            Class objectClass = [tag objectClass];
-            
-            if ([objectClass isEqual:[GCHeader class]]) {
-                if (_header) {
-                    NSLog(@"Multiple headers!?");
-                }
-                _header = [GCHeader headerWithGedcomNode:node inContext:context];
-            } else if ([objectClass isEqual:[GCEntity class]]) {
-                [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:context]];
-            } else if ([objectClass isEqual:[GCTrailer class]]) {
-                continue; //ignore trailer... 
-            } else {
-                NSLog(@"Shouldn't happen! %@ unknown class: %@", node, objectClass);
-            }
-		}
+        [self parseNodes:nodes];
 	}
 	
 	return self;
@@ -87,6 +85,37 @@
 	return [[self alloc] initWithContext:[GCContext context] gedcomNodes:nodes];
 }
 
+#pragma mark Node access
+
+- (void)parseNodes:(NSArray *)nodes
+{
+    for (GCNode *node in nodes) {
+        GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
+        Class objectClass = [tag objectClass];
+        
+        if ([objectClass isEqual:[GCHeader class]]) {
+            if (_header) {
+                NSLog(@"Multiple headers!?");
+            }
+            _header = [GCHeader headerWithGedcomNode:node inContext:_context];
+        } else if ([objectClass isEqual:[GCEntity class]]) {
+            [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:_context]];
+        } else if ([objectClass isEqual:[GCTrailer class]]) {
+            continue; //ignore trailer... 
+        } else {
+            NSLog(@"Shouldn't happen! %@ unknown class: %@", node, objectClass);
+        }
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
+            [_delegate file:self updatedEntityCount:[_entities count]];
+        }
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
+        [_delegate file:self didFinishWithEntityCount:[_entities count]];
+    }
+}
+
 #pragma mark Entity access
 
 - (void)addEntity:(GCEntity *)entity
@@ -94,11 +123,19 @@
     NSParameterAssert([[entity context] isEqual:_context]);
     
     [_entities addObject:entity];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
+        [_delegate file:self updatedEntityCount:[_entities count]];
+    }
 }
 
 - (void)removeEntity:(GCEntity *)entity
 {
     [_entities removeObject:entity];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
+        [_delegate file:self updatedEntityCount:[_entities count]];
+    }
 }
 
 #pragma mark Equality
@@ -169,6 +206,8 @@
     
     return [gedcomStrings componentsJoinedByString:@"\n"];
 }
+
+@synthesize delegate = _delegate;
 
 @end
 

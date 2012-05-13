@@ -11,13 +11,14 @@
 
 @implementation Document {
     GCFile *gedcomFile;
+    BOOL _isEntireFileLoaded;
 }
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        // Add your subclass-specific initialization here.
+        _isEntireFileLoaded = NO;
     }
     return self;
 }
@@ -51,24 +52,52 @@
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
+    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
+    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
+    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
+    
+    [currentlyLoadingSpinner setUsesThreadedAnimation:YES];
+    [currentlyLoadingSpinner startAnimation:nil];
+    
     NSParameterAssert([typeName isEqualToString:@"Gedcom .ged file"]);
     
     NSString *gedcomString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    gedcomFile = [GCFile fileWithGedcomNodes:[GCNode arrayOfNodesFromString:gedcomString]];
+    gedcomFile = [[GCFile alloc] init];
     
-    //[recordCountField setIntegerValue:[[gedcomFile entities] count]];
+    [gedcomFile setDelegate:self];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [gedcomFile parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
+    });
     
     return YES;
-    
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
 }
+
+- (BOOL)isEntireFileLoaded
+{
+    return _isEntireFileLoaded;
+}
+
+#pragma mark IBActions
 
 - (IBAction)testLog:(id)sender
 {
     NSLog(@"entityCount: %lu, header: %@", [[gedcomFile entities] count], [gedcomFile header]);
+}
+
+#pragma mark GCFileDelegate methods
+
+- (void)file:(GCFile *)file updatedEntityCount:(int)entityCount
+{
+    [recordCountField setIntegerValue:entityCount];
+}
+
+- (void)file:(GCFile *)file didFinishWithEntityCount:(int)entityCount
+{
+    [recordCountField setIntegerValue:entityCount];
+    [currentlyLoadingSpinner stopAnimation:nil];
+    _isEntireFileLoaded = YES;
 }
 
 @end

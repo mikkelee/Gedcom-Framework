@@ -53,6 +53,10 @@
  */
 + (id)fileWithGedcomNodes:(NSArray *)nodes;
 
+#pragma mark Node access
+
+- (void)parseNodes:(NSArray *)nodes;
+
 #pragma mark Entity access
 
 /// @name Accessing entities
@@ -89,6 +93,8 @@
 
 /// The receiver as a Gedcom string.
 @property (readonly) NSString *gedcomString;
+
+@property (weak) id delegate;
 
 @end
 

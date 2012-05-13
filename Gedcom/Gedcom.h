@@ -30,3 +30,5 @@
 #import "GCBool.h"
 
 #import "GCValueFormatter.h"
+
+#import "GCFileDelegate.h"

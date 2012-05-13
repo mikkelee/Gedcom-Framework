@@ -10,6 +10,7 @@
 
 @interface Document : NSDocument {
     IBOutlet NSTextField *recordCountField;
+    IBOutlet NSProgressIndicator *currentlyLoadingSpinner;
 }
 
 - (IBAction)testLog:(id)sender;

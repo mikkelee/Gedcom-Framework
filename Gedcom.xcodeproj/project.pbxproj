@@ -203,6 +203,7 @@
 		3EB5ABD1153615E10036B4D5 /* GCMutableOrderedSetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMutableOrderedSetProxy.h; sourceTree = "<group>"; };
 		3EB5ABD2153615E10036B4D5 /* GCMutableOrderedSetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMutableOrderedSetProxy.m; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
+		3EC7FF24155FA09500801306 /* GCFileDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCFileDelegate.h; sourceTree = "<group>"; };
 		3EDDB426154EC63C0068E85F /* GCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCString.h; sourceTree = "<group>"; };
 		3EDDB427154EC63C0068E85F /* GCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCString.m; sourceTree = "<group>"; };
 		3EDDB42B154EC6470068E85F /* GCBool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCBool.h; sourceTree = "<group>"; };
@@ -500,6 +501,7 @@
 				3EB5ABD2153615E10036B4D5 /* GCMutableOrderedSetProxy.m */,
 				3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */,
 				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
+				3EC7FF24155FA09500801306 /* GCFileDelegate.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1115,6 +1117,7 @@
 				3E3995D4155DE4B500228946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E3995D8155DE4B500228946 /* Build configuration list for PBXNativeTarget "GedcomGUITests" */ = {
 			isa = XCConfigurationList;
@@ -1123,6 +1126,7 @@
 				3E3995D6155DE4B500228946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
