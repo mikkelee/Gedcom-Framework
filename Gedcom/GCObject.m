@@ -197,7 +197,11 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
             obj = [_properties objectForKey:key];
         }
         
-        return [obj copy]; //immutable
+        if ([self allowsMultiplePropertiesOfType:key]) {
+            return [obj copy]; //immutable
+        } else {
+            return obj;
+        }
     } else {
         return [super valueForKey:key];
     }
@@ -240,7 +244,11 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
         }
         
         if ([keys count] == 0) {
-            return [obj copy]; //immutable
+            if ([self allowsMultiplePropertiesOfType:firstKey]) {
+                return [obj copy]; //immutable
+            } else {
+                return obj;
+            }
         }
         
         if ([obj isKindOfClass:[NSOrderedSet class]]) {
