@@ -119,11 +119,4 @@
     [loadingSheet orderOut:nil];
 }
 
-#pragma mark -
-
-- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
-{
-    
-}
-
 @end
