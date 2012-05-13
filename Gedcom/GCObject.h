@@ -156,7 +156,7 @@
 
 /** Creates a collection of GCProperties based on the nodes and adds them to the receiver via addProperty:
  
- @param node An array of nodes.
+ @param nodes An array of nodes.
  */
 - (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes;
 
