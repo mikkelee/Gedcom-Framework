@@ -123,19 +123,19 @@
     NSParameterAssert([[entity context] isEqual:_context]);
     
     [_entities addObject:entity];
-    
+    /*
     if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
         [_delegate file:self updatedEntityCount:[_entities count]];
-    }
+    }*/
 }
 
 - (void)removeEntity:(GCEntity *)entity
 {
     [_entities removeObject:entity];
-    
+    /*
     if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
         [_delegate file:self updatedEntityCount:[_entities count]];
-    }
+    }*/
 }
 
 #pragma mark Equality
@@ -246,37 +246,37 @@
 
 - (id)families
 {
-	return [self entitiesOfType:@"Family record"];
+	return [self entitiesOfType:@"familyRecord"];
 }
 
 - (id)individuals
 {
-	return [self entitiesOfType:@"Individual record"];
+	return [self entitiesOfType:@"individualRecord"];
 }
 
 - (id)multimediaObjects
 {
-	return [self entitiesOfType:@"Multimedia record"];
+	return [self entitiesOfType:@"multimediaRecord"];
 }
 
 - (id)notes
 {
-	return [self entitiesOfType:@"Note record"];
+	return [self entitiesOfType:@"noteRecord"];
 }
 
 - (id)repositories
 {
-	return [self entitiesOfType:@"Repository record"];
+	return [self entitiesOfType:@"repositoryRecord"];
 }
 
 - (id)sources
 {
-	return [self entitiesOfType:@"Source record"];
+	return [self entitiesOfType:@"sourceRecord"];
 }
 
 - (id)submitters 
 {
-	return [self entitiesOfType:@"Submitter record"];
+	return [self entitiesOfType:@"submitterRecord"];
 }
 
 @end

@@ -32,6 +32,13 @@
 
 #pragma mark Initialization
 
+- (id)init
+{
+    NSLog(@"You must use -initWithType: to initialize!");
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 - (id)initWithType:(NSString *)type
 {
     self = [super init];
@@ -191,7 +198,11 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 - (id)valueForKey:(NSString *)key
 {
-    if ([[self validProperties] containsObject:key]) {
+    if ([key hasPrefix:@"primary@"]) {
+        NSString *cleanKey = [key substringFromIndex:8];
+        
+        return [[self valueForKey:cleanKey] objectAtIndex:0];
+    } else if ([[self validProperties] containsObject:key]) {
         id obj = nil;
         @synchronized(_properties) {
             obj = [_properties objectForKey:key];
@@ -227,28 +238,53 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
                                                                    [self removeProperty:obj];
                                                                }];
     } else {
-        return [super valueForKey:key];
+        return [super mutableOrderedSetValueForKey:key];
+    }
+}
+/*
+- (id)valueForKeyPath:(NSString *)keyPath
+{
+    NSMutableArray *keys = [[keyPath componentsSeparatedByString:@"."] mutableCopy];
+    
+    if ([keys count] >= 3 && [[keys objectAtIndex:1] isEqualToString:@"%first"]) {
+        NSString *firstKey = [keys objectAtIndex:0];
+        [keys removeObjectAtIndex:0];
+        [keys removeObjectAtIndex:0]; //%first
+        
+        if ([self allowsMultiplePropertiesOfType:firstKey]) {
+            id obj = nil;
+            @synchronized(_properties) {
+                obj = [_properties objectForKey:firstKey];
+            }
+            
+            if (obj == nil) {
+                obj = [NSOrderedSet orderedSet];
+            }
+            
+            return [[obj objectAtIndex:0] valueForKeyPath:[keys componentsJoinedByString:@"."]];
+        } else {
+            return nil;
+        }
+    } else {
+        return [super valueForKeyPath:keyPath];
     }
 }
 
+/*
 - (id)valueForKeyPath:(NSString *)keyPath
 {
     NSMutableArray *keys = [[keyPath componentsSeparatedByString:@"."] mutableCopy];
     NSString *firstKey = [keys objectAtIndex:0];
     [keys removeObjectAtIndex:0];
     
+    if ([keys count] == 0) {
+        return [self valueForKey:firstKey];
+    }
+    
     if ([[self validProperties] containsObject:firstKey]) {
         id obj = nil;
         @synchronized(_properties) {
             obj = [_properties objectForKey:firstKey];
-        }
-        
-        if ([keys count] == 0) {
-            if ([self allowsMultiplePropertiesOfType:firstKey]) {
-                return [obj copy]; //immutable
-            } else {
-                return obj;
-            }
         }
         
         if ([obj isKindOfClass:[NSOrderedSet class]]) {
@@ -269,6 +305,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
         return [super valueForKeyPath:keyPath];
     }
 }
+*/
 
 #pragma mark Gedcom access
 

@@ -91,16 +91,20 @@
 
 - (NSString *)editingStringForObjectValue:(id)anObject
 {
-    NSParameterAssert([anObject isKindOfClass:[self classToFormat]]);
+    if ([anObject class] != [self classToFormat]) {
+        return nil;
+    }
     
 	return [anObject gedcomString];
 }
 
 - (NSString *)stringForObjectValue:(id)anObject;
 {
-    NSParameterAssert([anObject isKindOfClass:[self classToFormat]]);
+	if ([anObject class] != [self classToFormat]) {
+        return nil;
+    }
     
-	return [anObject displayString];
+    return [anObject displayString];
 }
 
 - (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error

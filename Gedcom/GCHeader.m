@@ -26,7 +26,7 @@
 {
     NSParameterAssert([[node gedTag] isEqualToString:@"HEAD"]);
     
-	GCHeader *head = [[self alloc] init];
+	GCHeader *head = [[self alloc] initWithType:@"headerRecord"];
 	
 	[head setGedcomNode:node]; //TODO
 	

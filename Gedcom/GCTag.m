@@ -178,7 +178,7 @@ __strong static NSMutableDictionary *tagInfo;
     NSParameterAssert(code != nil);
     
     NSDictionary *tmp = [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"header", @"HEAD",
+                         @"headerRecord", @"HEAD",
                          @"submissionRecord", @"SUBN",
                          @"familyRecord", @"FAM",
                          @"individualRecord", @"INDI",

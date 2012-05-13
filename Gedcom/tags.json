@@ -1,13 +1,13 @@
 {
 	"@rootObject": {
 		"variants": [
-                     "header",
+                     "headerRecord",
 					 "@record",
 					 "trailer"
                      ]
 	},
 	
-	"header": {
+	"headerRecord": {
 		"code": "HEAD",
 		"objectType": "header",
 		"validSubTags": [

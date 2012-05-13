@@ -63,11 +63,6 @@
     return YES;
 }
 
-- (NSWindow *)windowForSheet
-{
-    return mainWindow;
-}
-
 - (BOOL)isEntireFileLoaded
 {
     return _isEntireFileLoaded;
@@ -77,8 +72,6 @@
 
 - (void)parseData:(NSData *)data
 {
-    NSLog(@"windowForSheet: %@", [self windowForSheet]);
-    
     [NSApp beginSheet:loadingSheet modalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:NULL contextInfo:nil];
     
     [currentlyLoadingSpinner setUsesThreadedAnimation:YES];
@@ -106,7 +99,9 @@
 
 - (void)file:(GCFile *)file updatedEntityCount:(int)entityCount
 {
-    [recordCountField setIntegerValue:entityCount];
+    if (entityCount < 100 || entityCount % 100 == 0) {
+        [recordCountField setIntegerValue:entityCount];
+    }
 }
 
 - (void)file:(GCFile *)file didFinishWithEntityCount:(int)entityCount
@@ -117,6 +112,12 @@
     
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
+    
+    [self setIndividuals:[[gedcomFile individuals] array]];
+    
+    //[individualsController setContent:[gedcomFile individuals]];
 }
+
+@synthesize individuals = _individuals;
 
 @end
