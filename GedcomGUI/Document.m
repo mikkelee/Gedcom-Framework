@@ -56,10 +56,33 @@
     // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
     
+    NSParameterAssert([typeName isEqualToString:@"Gedcom .ged file"]);
+    
+    [self performSelector:@selector(parseData:) withObject:data afterDelay:0.0f];
+    
+    return YES;
+}
+
+- (NSWindow *)windowForSheet
+{
+    return mainWindow;
+}
+
+- (BOOL)isEntireFileLoaded
+{
+    return _isEntireFileLoaded;
+}
+
+#pragma mark -
+
+- (void)parseData:(NSData *)data
+{
+    NSLog(@"windowForSheet: %@", [self windowForSheet]);
+    
+    [NSApp beginSheet:loadingSheet modalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:NULL contextInfo:nil];
+    
     [currentlyLoadingSpinner setUsesThreadedAnimation:YES];
     [currentlyLoadingSpinner startAnimation:nil];
-    
-    NSParameterAssert([typeName isEqualToString:@"Gedcom .ged file"]);
     
     NSString *gedcomString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
@@ -70,13 +93,6 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [gedcomFile parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
     });
-    
-    return YES;
-}
-
-- (BOOL)isEntireFileLoaded
-{
-    return _isEntireFileLoaded;
 }
 
 #pragma mark IBActions
@@ -98,6 +114,16 @@
     [recordCountField setIntegerValue:entityCount];
     [currentlyLoadingSpinner stopAnimation:nil];
     _isEntireFileLoaded = YES;
+    
+    [NSApp endSheet:loadingSheet];
+    [loadingSheet orderOut:nil];
+}
+
+#pragma mark -
+
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+{
+    
 }
 
 @end

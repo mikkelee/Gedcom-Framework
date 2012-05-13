@@ -9,8 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 @interface Document : NSDocument {
+    IBOutlet NSWindow *mainWindow;
+    IBOutlet NSWindow *loadingSheet;
+    
     IBOutlet NSTextField *recordCountField;
     IBOutlet NSProgressIndicator *currentlyLoadingSpinner;
+    
+    
 }
 
 - (IBAction)testLog:(id)sender;
