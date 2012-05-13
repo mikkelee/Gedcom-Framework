@@ -15,7 +15,8 @@
                          { "name": "gedcom", "min": "1", "max": "1" },
                          { "name": "characterSet", "min": "1", "max": "1" },
                          { "name": "submitterReference", "min": "1", "max": "1" },
-                         { "name": "submissionReference", "min": "0", "max": "M" }
+                         { "name": "submissionReference", "min": "0", "max": "M" },
+                         { "name": "noteEmbedded", "min": "0", "max": "1" }
                          ]
 	},
 	
@@ -76,7 +77,7 @@
 		"objectType": "entity",
 		"validSubTags": [
                          { "name": "restrictionNotice", "min": "0", "max": "1" },
-                         { "name": "name", "min": "0", "max": "M" },
+                         { "name": "personalName", "min": "0", "max": "M" },
                          { "name": "sex", "min": "0", "max": "M" },
                          { "name": "@individualEvent", "min": "0", "max": "M" },
                          { "name": "@individualAttribute", "min": "0", "max": "M" },
@@ -301,7 +302,7 @@
                      ]
     },
     
-    "name": {
+    "personalName": {
         "code": "NAME",
 		"objectType": "attribute",
         "valueType": "string",
@@ -390,7 +391,10 @@
 		"objectType": "attribute",
 		"valueType": "string",
 		"validSubTags": [
-                         { "name": "version", "min": "0", "max": "1" }
+                         { "name": "version", "min": "0", "max": "1" },
+                         { "name": "name", "min": "0", "max": "1" },
+                         { "name": "corporation", "min": "0", "max": "1" },
+                         { "name": "data", "min": "0", "max": "1" }
                          ]
 	},
     
@@ -637,10 +641,14 @@
 		"objectType": "attribute",
         "valueType": "string"
     },
-    "corporate": {
+    "corporation": {
         "code": "CORP",
 		"objectType": "attribute",
-        "valueType": "string"
+        "valueType": "string",
+		"validSubTags": [
+                         { "name": "address", "min": "0", "max": "1" },
+                         { "name": "phoneNumber", "min": "0", "max": "3" }
+                         ]
     },
     "country": {
         "code": "CTRY",
@@ -812,6 +820,11 @@
     },
     "media": {
         "code": "MEDI",
+		"objectType": "attribute",
+        "valueType": "string"
+    },
+    "name": {
+        "code": "NAME",
 		"objectType": "attribute",
         "valueType": "string"
     },

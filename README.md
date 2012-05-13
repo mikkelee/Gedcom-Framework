@@ -46,10 +46,10 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
                       nil];
     
     [indi setValue:names 
-            forKey:@"name"];
+            forKey:@"personalName"];
 	
     //alternately:
-    // [indi addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+    // [indi addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"birth"];
     
@@ -105,15 +105,15 @@ Relationship example:
 	GCContext *ctx = [GCContext context];
 	
 	GCEntity *husb = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[husb addAttributeWithType:@"name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+	[husb addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
 	GCEntity *wife = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[wife addAttributeWithType:@"name" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
+	[wife addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
 	GCEntity *chil = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[chil addAttributeWithType:@"name" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
+	[chil addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
     GCEntity *fam = [GCEntity entityWithType:@"familyRecord" inContext:ctx];

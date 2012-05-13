@@ -198,8 +198,8 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 - (id)valueForKey:(NSString *)key
 {
-    if ([key hasPrefix:@"primary@"]) {
-        NSString *cleanKey = [key substringFromIndex:8];
+    if ([key hasSuffix:@"@primary"]) {
+        NSString *cleanKey = [[key componentsSeparatedByString:@"@"] objectAtIndex:0];
         
         return [[self valueForKey:cleanKey] objectAtIndex:0];
     } else if ([[self validProperties] containsObject:key]) {
