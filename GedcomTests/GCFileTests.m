@@ -29,6 +29,11 @@
     BOOL result = [file validateFile:&error];
     
     STAssertTrue(result, nil);
+    
+    if (!result) {
+        NSLog(@"error: %@", error);
+    }
+    
     STAssertNil(error, nil);
 }
 

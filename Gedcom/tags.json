@@ -388,6 +388,7 @@
 	"headerSource": {
 		"code": "SOUR",
 		"objectType": "attribute",
+		"valueType": "string",
 		"validSubTags": [
                          { "name": "version", "min": "0", "max": "1" }
                          ]
