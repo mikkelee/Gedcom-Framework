@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'GedcomGUI' target in the 'GedcomGUI' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

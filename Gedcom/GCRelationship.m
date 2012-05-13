@@ -20,14 +20,11 @@
 
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag]];
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute")];
     
     GCRelationship *relationship = [[self alloc] initWithType:[tag name]];
     
-    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        GCNode *subNode = (GCNode *)obj;
-        [relationship addPropertyWithGedcomNode:subNode];
-    }];
+    [relationship addPropertiesWithGedcomNodes:[node subNodes]];
     
     [object addProperty:relationship];
     

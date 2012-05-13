@@ -52,12 +52,13 @@ typedef struct {
 
 /// @name Accessing subtags
 
-/** Returns the subtag of the receiver with the given code.
+/** Returns the subtag of the receiver with the given code and type. The type can be `attribute` or `relationship`.
  
  @param code The name of the requested subtag.
+ @param type The type of the requested subtag.
  @return A tag or `nil` if none exists.
  */
-- (GCTag *)subTagWithCode:(NSString *)code;
+- (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type;
 
 /** Returns the subtag of the receiver with the given name.
  

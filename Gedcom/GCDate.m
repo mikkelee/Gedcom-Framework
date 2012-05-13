@@ -500,6 +500,16 @@
 
 @implementation GCPlaceholderDate
 
++ (id)allocWithZone:(NSZone *)zone
+{
+    static dispatch_once_t predDate = 0;
+    __strong static id _sharedDatePlaceholder = nil;
+    dispatch_once(&predDate, ^{
+        _sharedDatePlaceholder = [super allocWithZone:zone];
+    });
+    return _sharedDatePlaceholder;
+}
+
 - (id)initWithSimpleDate:(NSDateComponents *)co
 {
 	id date = [[GCSimpleDate alloc] init];
@@ -841,9 +851,9 @@
 
 + (id)sharedDateParser // fancy new ARC/GCD singleton!
 {
-    static dispatch_once_t pred = 0;
+    static dispatch_once_t predDateParser = 0;
     __strong static id _sharedGCDateParser = nil;
-    dispatch_once(&pred, ^{
+    dispatch_once(&predDateParser, ^{
         _sharedGCDateParser = [[self alloc] init];
     });
     return _sharedGCDateParser;

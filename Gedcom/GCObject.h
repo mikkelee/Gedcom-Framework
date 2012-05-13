@@ -103,7 +103,10 @@
 @property (readonly) NSString *type;
 
 /// An ordered collection of all properties on the receiver.
-@property NSMutableOrderedSet *properties;
+@property NSOrderedSet *properties;
+
+/// An ordered collection of all properties on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
+@property (readonly) NSMutableOrderedSet *mutableProperties;
 
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
@@ -151,11 +154,23 @@
  */
 - (void)addPropertyWithGedcomNode:(GCNode *)node;
 
+/** Creates a collection of GCProperties based on the nodes and adds them to the receiver via addProperty:
+ 
+ @param node An array of nodes.
+ */
+- (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes;
+
 /// An ordered collection of the receiver's attributes.
-@property (readonly) NSMutableOrderedSet *attributes;
+@property (readonly) NSOrderedSet *attributes;
+
+/// An ordered collection of all attributes on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
+@property (readonly) NSMutableOrderedSet *mutableAttributes;
 
 /// An ordered collection of the receiver's relationships.
-@property (readonly) NSMutableOrderedSet *relationships;
+@property (readonly) NSOrderedSet *relationships;
+
+/// An ordered collection of all relationships on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
+@property (readonly) NSMutableOrderedSet *mutableRelationships;
 
 @end
 

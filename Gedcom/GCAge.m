@@ -274,6 +274,16 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @implementation GCPlaceholderAge
 
++ (id)allocWithZone:(NSZone *)zone
+{
+    static dispatch_once_t predAge = 0;
+    __strong static id _sharedAgePlaceholder = nil;
+    dispatch_once(&predAge, ^{
+        _sharedAgePlaceholder = [super allocWithZone:zone];
+    });
+    return _sharedAgePlaceholder;
+}
+
 - (id)initWithSimpleAge:(NSDateComponents *)c;
 {
 	id age = [[GCSimpleAge alloc] init];
@@ -435,9 +445,9 @@ NSString * const GCAgeQualifier_toString[] = {
 
 + (id)sharedAgeParser // fancy new ARC/GCD singleton!
 {
-    static dispatch_once_t pred = 0;
+    static dispatch_once_t predAgeParser = 0;
     __strong static id _sharedAgeParser = nil;
-    dispatch_once(&pred, ^{
+    dispatch_once(&predAgeParser, ^{
         _sharedAgeParser = [[self alloc] init];
     });
     return _sharedAgeParser;

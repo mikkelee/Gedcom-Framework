@@ -42,7 +42,9 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-    //NSLog(@"selector: %@", NSStringFromSelector(aSelector));
+#ifdef DEBUGLEVEL
+    NSLog(@"methodSignatureForSelector: %@", NSStringFromSelector(aSelector));
+#endif
     
     return [NSMutableOrderedSet instanceMethodSignatureForSelector:aSelector];
 }
@@ -50,13 +52,19 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
-    //NSLog(@"invocation: %@", invocation);
-    
+#ifdef DEBUGLEVEL
+    NSLog(@"forwardInvocation: %@", invocation);
+#endif    
     //TODO could probably run _addBlock & _removeBlock here with some state-checking code and get rid of the overrides below.
     
     [invocation setTarget:_set];
     [invocation invoke];
     return;
+}
+
+- (void)dealloc
+{
+    NSLog(@"dealloc");
 }
 
 #pragma mark Primitive overrides

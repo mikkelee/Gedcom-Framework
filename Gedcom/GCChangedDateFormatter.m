@@ -15,9 +15,9 @@
 
 + (id)sharedFormatter // fancy new ARC/GCD singleton!
 {
-    static dispatch_once_t pred = 0;
+    static dispatch_once_t predChangedDate = 0;
     __strong static id _sharedGCChangedDateFormatter = nil;
-    dispatch_once(&pred, ^{
+    dispatch_once(&predChangedDate, ^{
         _sharedGCChangedDateFormatter = [[self alloc] init];
     });
     return _sharedGCChangedDateFormatter;

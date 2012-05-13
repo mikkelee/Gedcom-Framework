@@ -51,6 +51,8 @@
         [gc_outputLines addObjectsFromArray:[node gedcomLines]];
     }
     
+    //STAssertEqualObjects([NSSet setWithArray:nodes], [NSSet setWithArray:[file gedcomNodes]], nil);
+    
     //NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
     
     int errorCount = 0;
@@ -66,6 +68,20 @@
 - (void)testSimpleGed
 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
+    
+    [self testFileAtPath:path];
+}
+
+- (void)AtestAllGed
+{
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
+    
+    [self testFileAtPath:path];
+}
+
+- (void)testPrivate
+{
+    NSString *path = @"/Volumes/raid/Genealogy/Database 20120424.gedpkg/Database.ged";
     
     [self testFileAtPath:path];
 }

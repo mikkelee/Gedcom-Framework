@@ -50,7 +50,7 @@
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
-    [[indi properties] addObject:birt];
+    [[indi mutableProperties] addObject:birt];
     
     //alternately:
     // [indi addProperty:birt];

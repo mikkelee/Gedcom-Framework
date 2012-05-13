@@ -19,6 +19,11 @@
 	NSDictionary *_settings;
     
     NSOrderedSet *_cachedValidSubTags;
+    NSDictionary *_cachedSubTagsByName;
+    NSDictionary *_cachedSubTagsByCode;
+    NSDictionary *_cachedOccurencesDicts;
+    Class _cachedValueClass;
+    Class _cachedObjectClass;
 }
 
 #pragma mark Constants
@@ -85,9 +90,9 @@ __strong static NSMutableDictionary *tagInfo;
 
 + (void)setupTagInfo
 {
-    static dispatch_once_t pred = 0;
+    static dispatch_once_t predTag = 0;
     
-    dispatch_once(&pred, ^{
+    dispatch_once(&predTag, ^{
         
         NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags" 
                                                                               ofType:@"json"];
@@ -190,7 +195,7 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Subtags
 
-- (GCTag *)subTagWithCode:(NSString *)code
+- (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
     if ([code hasPrefix:@"_"]) {
         NSString *tagName = [NSString stringWithFormat:@"Custom %@ tag", code];
@@ -201,7 +206,7 @@ __strong static NSMutableDictionary *tagInfo;
                                         settings:[NSDictionary dictionaryWithObjectsAndKeys:
                                                   code, kCode,
                                                   @"stringValue", kValueType,
-                                                  @"attribute", kObjectType,
+                                                  type, kObjectType,
                                                   [NSOrderedSet orderedSet], kValidSubTags,
                                                   nil]];
         NSLog(@"Created custom %@ tag: %@", code, tag);
@@ -210,24 +215,38 @@ __strong static NSMutableDictionary *tagInfo;
         return tag;
     }
     
-    for (GCTag *subTag in [self validSubTags]) {
-        if ([[subTag code] isEqualToString:code]) {
-            return subTag;
+    if (!_cachedSubTagsByCode) {
+        NSMutableDictionary *byCode = [NSMutableDictionary dictionary];
+        NSMutableDictionary *byName = [NSMutableDictionary dictionary];
+        
+        for (GCTag *subTag in [self validSubTags]) {
+            [byCode setObject:subTag forKey:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([subTag objectClass]), [subTag code]]];
+            [byName setObject:subTag forKey:[subTag name]];
         }
+        
+        _cachedSubTagsByCode = [byCode copy];
+        _cachedSubTagsByName = [byName copy];
     }
     
-    return nil;
+    return [_cachedSubTagsByCode objectForKey:[NSString stringWithFormat:@"GC%@:%@", [type capitalizedString], code]];
 }
 
 - (GCTag *)subTagWithName:(NSString *)name
 {
-    for (GCTag *subTag in [self validSubTags]) {
-        if ([[subTag name] isEqualToString:name]) {
-            return subTag;
+    if (!_cachedSubTagsByName) {
+        NSMutableDictionary *byCode = [NSMutableDictionary dictionary];
+        NSMutableDictionary *byName = [NSMutableDictionary dictionary];
+        
+        for (GCTag *subTag in [self validSubTags]) {
+            [byCode setObject:subTag forKey:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([subTag objectClass]), [subTag code]]];
+            [byName setObject:subTag forKey:[subTag name]];
         }
+        
+        _cachedSubTagsByCode = [byCode copy];
+        _cachedSubTagsByName = [byName copy];
     }
     
-    return nil;
+    return [_cachedSubTagsByName objectForKey:name];
 }
 
 - (BOOL)isValidSubTag:(GCTag *)tag
@@ -241,32 +260,33 @@ __strong static NSMutableDictionary *tagInfo;
         return (GCAllowedOccurrences){0, NSIntegerMax};
     }
     
-    //TODO cache this:
-    
     if ([_settings objectForKey:kValidSubTags] == nil) {
         return (GCAllowedOccurrences){0, 0};
     }
     
-    NSDictionary *validDict = nil;
-    for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
-        if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
-            for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {
-                if ([variantName isEqual:[tag name]]) {
-                    validDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 variantName, kName, 
-                                 [valid objectForKey:@"min"], @"min",
-                                 [valid objectForKey:@"max"], @"max",
-                                 nil];
-                    break;
+    if (!_cachedOccurencesDicts) {
+        NSMutableDictionary *occurrencesDicts = [NSMutableDictionary dictionary];
+        
+        for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
+            if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
+                for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {
+                    NSDictionary *validDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               variantName, kName, 
+                                               [valid objectForKey:@"min"], @"min",
+                                               [valid objectForKey:@"max"], @"max",
+                                               nil];
+                    [occurrencesDicts setObject:validDict forKey:variantName];
                 }
-            }
-        } else {
-            if ([[valid objectForKey:kName] isEqual:[tag name]]) {
-                validDict = valid;
-                break;
+            } else {
+                [occurrencesDicts setObject:valid forKey:[valid objectForKey:kName]];
             }
         }
+        
+        _cachedOccurencesDicts = [occurrencesDicts copy];
     }
+    
+    NSDictionary *validDict = [_cachedOccurencesDicts objectForKey:[tag name]];
+    
     NSParameterAssert(validDict);
     
     NSInteger min = [[validDict objectForKey:@"min"] integerValue];
@@ -318,20 +338,24 @@ __strong static NSMutableDictionary *tagInfo;
 
 - (Class)valueType
 {
-	NSString *valueTypeString = [_settings objectForKey:kValueType];
+    if (!_cachedValueClass) {
+        NSString *valueTypeString = [_settings objectForKey:kValueType];
+        
+        _cachedValueClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [valueTypeString capitalizedString]]);
+    }
     
-    Class valueClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [valueTypeString capitalizedString]]);
-    
-	return valueClass;
+	return _cachedValueClass;
 }
 
 - (Class)objectClass
 {
-	NSString *objectClassString = [_settings objectForKey:kObjectType];
+    if (!_cachedObjectClass) {
+        NSString *objectClassString = [_settings objectForKey:kObjectType];
+        
+        _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
+    }
     
-	Class objectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
-		
-	return objectClass;
+	return _cachedObjectClass;
 }
 
 - (NSOrderedSet *)validSubTags

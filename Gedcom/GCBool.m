@@ -17,9 +17,9 @@ __strong static NSDictionary *boolStore;
 
 + (void)initialize
 {
-    static dispatch_once_t pred = 0;
+    static dispatch_once_t predBool = 0;
     
-    dispatch_once(&pred, ^{
+    dispatch_once(&predBool, ^{
         boolStore = [NSDictionary dictionaryWithObjectsAndKeys:
                        [[GCBool alloc] initWithGedcomString:@"Y" displayString:@"Yes"], @"Y",
                        [[GCBool alloc] initWithGedcomString:nil displayString:@"No"], @"N",

@@ -56,16 +56,22 @@
     
 	[context setXref:[node xref] forEntity:entity];
 	
+    //clean up this part:
     __block GCNode *changeNode = nil;
     
-    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         GCNode *subNode = (GCNode *)obj;
         if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
             changeNode = subNode;
-        } else {
-            [entity addPropertyWithGedcomNode:subNode];
+            *stop = YES;
         }
     }];
+    
+    NSMutableOrderedSet *subNodesWithoutChan = [[node subNodes] mutableCopy];
+    
+    [subNodesWithoutChan removeObject:changeNode];
+
+    [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
     
     if (changeNode) {
         [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode]];

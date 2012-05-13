@@ -26,7 +26,7 @@
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag]];
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute")];
     
 	if ([tag objectClass] == [GCAttribute class]) {
 		return [GCAttribute attributeForObject:object withGedcomNode:node];

@@ -17,9 +17,9 @@ __strong static NSDictionary *genderStore;
 
 + (void)initialize
 {
-    static dispatch_once_t pred = 0;
+    static dispatch_once_t predGender = 0;
     
-    dispatch_once(&pred, ^{
+    dispatch_once(&predGender, ^{
         genderStore = [NSDictionary dictionaryWithObjectsAndKeys:
                        [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"], @"M",
                        [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"], @"F",

@@ -15,6 +15,8 @@
 	NSMutableDictionary *xrefStore;
 	NSMutableDictionary *xrefBlocks;
     NSMutableSet *storedEntities; //to avoid expensive allKeysForObject: calls if we don't have it stored
+    
+    NSLock *callbackLock;
 }
 
 - (id)init
@@ -25,6 +27,8 @@
         xrefStore = [NSMutableDictionary dictionary];
         xrefBlocks = [NSMutableDictionary dictionary];
         storedEntities = [NSMutableSet set];
+        
+        callbackLock = [[NSLock alloc] init];
 	}
 	
 	return self;
@@ -50,12 +54,14 @@
     [xrefStore setObject:obj forKey:xref];
     [storedEntities addObject:obj];
 	
+    [callbackLock lock];
 	if ([xrefBlocks objectForKey:xref]) {
 		for (void (^block) (NSString *) in [xrefBlocks objectForKey:xref]) {
 			block(xref);
 		}
 		[xrefBlocks removeObjectForKey:xref];
 	}
+    [callbackLock unlock];
 }
 
 - (NSString *)xrefForEntity:(GCEntity *)obj
@@ -98,13 +104,17 @@
 {
     NSParameterAssert(xref);
     
+    [callbackLock lock];
+    
 	if ([self entityForXref:xref]) {
 		block(xref);
 	} else	if ([xrefBlocks objectForKey:xref]) {
-		[[xrefBlocks objectForKey:xref] addObject:block];
+		[[xrefBlocks objectForKey:xref] addObject:[block copy]];
 	} else {
-		[xrefBlocks setObject:[NSMutableSet setWithObject:block] forKey:xref];
+		[xrefBlocks setObject:[NSMutableSet setWithObject:[block copy]] forKey:xref];
 	}
+    
+    [callbackLock unlock];
 }
 
 #pragma mark NSCoding conformance
@@ -116,6 +126,9 @@
     if (self) {
         xrefStore = [aDecoder decodeObjectForKey:@"xrefStore"];
         xrefBlocks = [aDecoder decodeObjectForKey:@"xrefBlocks"];
+        storedEntities = [NSSet setWithArray:[xrefStore allKeys]];
+        
+        callbackLock = [[NSLock alloc] init];
 	}
     
     return self;

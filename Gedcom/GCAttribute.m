@@ -25,7 +25,7 @@
 
 + (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag]];
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute")];
     
     GCAttribute *attribute = [[self alloc] initWithType:[tag name]];
     
@@ -33,10 +33,7 @@
         [attribute setValue:[[tag valueType] valueWithGedcomString:[node gedValue]]];
     }
     
-    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        GCNode *subNode = (GCNode *)obj;
-        [attribute addPropertyWithGedcomNode:subNode];
-    }];
+    [attribute addPropertiesWithGedcomNodes:[node subNodes]];
     
     [object addProperty:attribute];
     
