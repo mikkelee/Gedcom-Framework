@@ -79,7 +79,7 @@
     [self testFileAtPath:path];
 }
 
-- (void)testPrivate
+- (void)AtestPrivate
 {
     NSString *path = @"/Volumes/raid/Genealogy/Database 20120424.gedpkg/Database.ged";
     

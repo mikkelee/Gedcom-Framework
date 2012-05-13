@@ -141,7 +141,7 @@
     //TODO should this fire something too?
     [[[indi valueForKey:@"name"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
     
-    [[indi valueForKey:@"name"] removeObjectAtIndex:0];
+    [[indi mutableOrderedSetValueForKey:@"name"] removeObjectAtIndex:0];
     
     NSArray *observations = [NSArray arrayWithObjects:
                              // NSKeyValueChange : old : new
