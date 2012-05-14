@@ -25,6 +25,7 @@
 #import "GCAge.h"
 #import "GCDate.h"
 #import "GCString.h"
+#import "GCNamestring.h"
 #import "GCNumber.h"
 #import "GCGender.h"
 #import "GCBool.h"

@@ -53,18 +53,20 @@
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
 #ifdef DEBUGLEVEL
+    unsigned int numberOfArgs = [[invocation methodSignature] numberOfArguments];
     NSLog(@"forwardInvocation: %@", invocation);
+    NSLog(@"selector: %@", NSStringFromSelector([invocation selector]));
+    for (int i = 2; i < numberOfArgs; i++) {
+        id param = nil;
+        [invocation getArgument:&param atIndex:i];
+        NSLog(@"param %d: %@", i, param);
+    }
 #endif    
     //TODO could probably run _addBlock & _removeBlock here with some state-checking code and get rid of the overrides below.
     
     [invocation setTarget:_set];
     [invocation invoke];
     return;
-}
-
-- (void)dealloc
-{
-    NSLog(@"dealloc");
 }
 
 #pragma mark Primitive overrides

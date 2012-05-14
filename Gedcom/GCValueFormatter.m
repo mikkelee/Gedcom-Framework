@@ -77,7 +77,7 @@
 
 @end
 
-
+#pragma mark Actual formatter
 
 @implementation GCValueFormatter 
 
@@ -91,8 +91,9 @@
 
 - (NSString *)editingStringForObjectValue:(id)anObject
 {
-    if ([anObject class] != [self classToFormat]) {
-        return nil;
+	if (![anObject isKindOfClass:[self classToFormat]]) {
+        NSLog(@"%@ -- %@ is not kind of %@", anObject, NSStringFromClass([anObject class]), NSStringFromClass([self classToFormat]));
+        return [anObject description];
     }
     
 	return [anObject gedcomString];
@@ -100,8 +101,9 @@
 
 - (NSString *)stringForObjectValue:(id)anObject;
 {
-	if ([anObject class] != [self classToFormat]) {
-        return nil;
+	if (![anObject isKindOfClass:[self classToFormat]]) {
+        NSLog(@"%@ -- %@ is not kind of %@", anObject, NSStringFromClass([anObject class]), NSStringFromClass([self classToFormat]));
+        return [anObject description];
     }
     
     return [anObject displayString];

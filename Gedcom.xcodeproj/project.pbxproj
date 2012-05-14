@@ -36,6 +36,8 @@
 		3E29DB1E154A405100756CF4 /* GCMutableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB1C154A405100756CF4 /* GCMutableNode.m */; };
 		3E29DB36154E622700756CF4 /* GCGender.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E29DB34154E622500756CF4 /* GCGender.h */; };
 		3E29DB37154E622700756CF4 /* GCGender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB35154E622600756CF4 /* GCGender.m */; };
+		3E39506A1560DFFC00FEEA9F /* GCNamestring.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3950681560DFFC00FEEA9F /* GCNamestring.h */; };
+		3E39506B1560DFFC00FEEA9F /* GCNamestring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3950691560DFFC00FEEA9F /* GCNamestring.m */; };
 		3E3969FF154F34E600AE8636 /* GCFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3969FE154F34E600AE8636 /* GCFormatterTests.m */; };
 		3E396A03154F375400AE8636 /* GCValueFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E396A01154F375400AE8636 /* GCValueFormatter.h */; };
 		3E396A04154F375400AE8636 /* GCValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A02154F375400AE8636 /* GCValueFormatter.m */; };
@@ -160,6 +162,8 @@
 		3E29DB1C154A405100756CF4 /* GCMutableNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMutableNode.m; sourceTree = "<group>"; };
 		3E29DB34154E622500756CF4 /* GCGender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGender.h; sourceTree = "<group>"; };
 		3E29DB35154E622600756CF4 /* GCGender.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = GCGender.m; sourceTree = "<group>"; };
+		3E3950681560DFFC00FEEA9F /* GCNamestring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNamestring.h; sourceTree = "<group>"; };
+		3E3950691560DFFC00FEEA9F /* GCNamestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNamestring.m; sourceTree = "<group>"; };
 		3E3969FE154F34E600AE8636 /* GCFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFormatterTests.m; sourceTree = "<group>"; };
 		3E396A01154F375400AE8636 /* GCValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValueFormatter.h; sourceTree = "<group>"; };
 		3E396A02154F375400AE8636 /* GCValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValueFormatter.m; sourceTree = "<group>"; };
@@ -408,6 +412,8 @@
 			children = (
 				3EDDB426154EC63C0068E85F /* GCString.h */,
 				3EDDB427154EC63C0068E85F /* GCString.m */,
+				3E3950681560DFFC00FEEA9F /* GCNamestring.h */,
+				3E3950691560DFFC00FEEA9F /* GCNamestring.m */,
 				3EDDB42F154EC6550068E85F /* GCNumber.h */,
 				3EDDB430154EC6550068E85F /* GCNumber.m */,
 				3E29DB34154E622500756CF4 /* GCGender.h */,
@@ -535,6 +541,7 @@
 				3EDDB42D154EC6470068E85F /* GCBool.h in Headers */,
 				3EDDB431154EC6550068E85F /* GCNumber.h in Headers */,
 				3E396A03154F375400AE8636 /* GCValueFormatter.h in Headers */,
+				3E39506A1560DFFC00FEEA9F /* GCNamestring.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +765,7 @@
 				3EDDB42E154EC6470068E85F /* GCBool.m in Sources */,
 				3EDDB432154EC6550068E85F /* GCNumber.m in Sources */,
 				3E396A04154F375400AE8636 /* GCValueFormatter.m in Sources */,
+				3E39506B1560DFFC00FEEA9F /* GCNamestring.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

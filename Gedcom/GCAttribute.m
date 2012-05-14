@@ -108,6 +108,11 @@
 
 @synthesize value = _value;
 
+- (NSString *)displayValue
+{
+    return [[self value] displayString];
+}
+
 @end
 
 @implementation GCAttribute (GCConvenienceMethods)

@@ -89,7 +89,9 @@
 
 - (void)parseNodes:(NSArray *)nodes
 {
-    for (GCNode *node in nodes) {
+    [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        GCNode *node = (GCNode *)obj;
+        
         GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
         Class objectClass = [tag objectClass];
         
@@ -101,15 +103,17 @@
         } else if ([objectClass isEqual:[GCEntity class]]) {
             [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:_context]];
         } else if ([objectClass isEqual:[GCTrailer class]]) {
-            continue; //ignore trailer... 
+            return; //ignore trailer... 
         } else {
             NSLog(@"Shouldn't happen! %@ unknown class: %@", node, objectClass);
         }
         
-        if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
-            [_delegate file:self updatedEntityCount:[_entities count]];
-        }
-    }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
+                [_delegate file:self updatedEntityCount:[_entities count]];
+            }
+        });
+    }];
     
     if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
         [_delegate file:self didFinishWithEntityCount:[_entities count]];

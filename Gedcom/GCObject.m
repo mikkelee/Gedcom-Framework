@@ -71,6 +71,8 @@
     
     [property setValue:self forKey:@"primitiveDescribedObject"];
     
+    [self willChangeValueForKey:@"gedcomString"];
+    
     @synchronized(_properties) {
         if ([self allowsMultiplePropertiesOfType:[property type]]) {
             NSMutableOrderedSet *set = [_properties objectForKey:[property type]];
@@ -96,6 +98,8 @@
             [self didChangeValueForKey:[property type]];
         }
     }
+    
+    [self didChangeValueForKey:@"gedcomString"];
 }
 
 - (void)removeProperty:(GCProperty *)property
@@ -106,6 +110,8 @@
     
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert([property describedObject] == self);
+    
+    [self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_properties) {
         if ([self allowsMultiplePropertiesOfType:[property type]]) {
@@ -127,6 +133,8 @@
     }
     
     [property setValue:nil forKey:@"primitiveDescribedObject"];
+    
+    [self didChangeValueForKey:@"gedcomString"];
 }
 
 - (NSOrderedSet *)validProperties
@@ -331,6 +339,11 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     return [_tag name];
 }
 
+- (BOOL)allowsProperties
+{
+    return ([[self validProperties] count] > 0); //TODO (see cocoa-dev reply)
+}
+
 - (id)properties
 {
 	NSMutableOrderedSet *properties = [NSMutableOrderedSet orderedSet];
@@ -348,6 +361,8 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
             }
         }
     }
+    
+    //NSLog(@"properties: %lu", [properties count]);
     
 	return [properties copy];
 }
@@ -373,6 +388,16 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
                                                            removeBlock:^(id obj) {
                                                                [self removeProperty:obj];
                                                            }];
+}
+
+- (id)propertiesSet
+{
+    return [[self properties] set];
+}
+
+- (NSNumber *)propertyCount
+{
+    return [NSNumber numberWithInteger:[[self properties] count]];
 }
 
 - (NSString *)gedcomString
@@ -415,6 +440,14 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 @dynamic context;
 @dynamic gedcomNode;
+@dynamic displayValue;
+
+/*
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
+    
+}
+*/
 
 @end
 

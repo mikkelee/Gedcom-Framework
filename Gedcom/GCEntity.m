@@ -55,29 +55,31 @@
     GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:[node gedTag]] name] inContext:context];
     
 	[context setXref:[node xref] forEntity:entity];
-	
-    //clean up this part:
-    __block GCNode *changeNode = nil;
-    
-    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        GCNode *subNode = (GCNode *)obj;
-        if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
-            changeNode = subNode;
-            *stop = YES;
+	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        
+        //clean up this part:
+        __block GCNode *changeNode = nil;
+        
+        [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            GCNode *subNode = (GCNode *)obj;
+            if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
+                changeNode = subNode;
+                *stop = YES;
+            }
+        }];
+        
+        NSMutableOrderedSet *subNodesWithoutChan = [[node subNodes] mutableCopy];
+        
+        [subNodesWithoutChan removeObject:changeNode];
+        
+        [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
+        
+        if (changeNode) {
+            [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode]];
+        } else {
+            [entity setLastModified:nil];
         }
-    }];
-    
-    NSMutableOrderedSet *subNodesWithoutChan = [[node subNodes] mutableCopy];
-    
-    [subNodesWithoutChan removeObject:changeNode];
-
-    [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
-    
-    if (changeNode) {
-        [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode]];
-    } else {
-        [entity setLastModified:nil];
-    }
+    });
     
     return entity;
 }
@@ -152,6 +154,11 @@
 								 value:nil
 								  xref:[[self context] xrefForEntity:self]
 							  subNodes:[self subNodes]];
+}
+
+- (NSString *)displayValue
+{
+    return [[self context] xrefForEntity:self];
 }
 
 @synthesize context = _context;

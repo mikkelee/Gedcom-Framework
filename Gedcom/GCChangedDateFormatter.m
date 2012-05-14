@@ -11,7 +11,7 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
-@implementation GCChangedDateFormatter 
+@implementation GCChangedDateFormatter
 
 + (id)sharedFormatter // fancy new ARC/GCD singleton!
 {
@@ -29,6 +29,7 @@
 	
     if (self) {
         [self setDateFormat:@"d MMM yyyy HH:mm:ss"];
+        [self setShortMonthSymbols:[NSArray arrayWithObjects:@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC", nil]];
     }
 	
 	return self;
@@ -45,7 +46,11 @@
     
     NSParameterAssert(dateString);
     
-    NSDate *date = [NSDate dateWithNaturalLanguageString:dateString];
+    NSDate *date = nil;
+    
+    @synchronized(self) {
+        date = [self dateFromString:dateString];
+    }
     
     NSParameterAssert(date);
     

@@ -98,8 +98,8 @@
 	
     GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
-    GCProperty *name1 = [GCAttribute attributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
-    GCProperty *name2 = [GCAttribute attributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Jensen/"]];
+    GCProperty *name1 = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    GCProperty *name2 = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Jensen/"]];
     
     GCProperty *nickname = [GCAttribute attributeWithType:@"nickname" value:[GCString valueWithGedcomString:@"Store Jens"]];
     

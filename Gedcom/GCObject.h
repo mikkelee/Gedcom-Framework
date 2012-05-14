@@ -102,8 +102,15 @@
 /// The type of the receiver.
 @property (readonly) NSString *type;
 
+/// Returns whether the receiver can have properties itself.
+@property (readonly) BOOL allowsProperties;
+
 /// An ordered collection of all properties on the receiver.
 @property NSOrderedSet *properties;
+
+@property (readonly) NSSet *propertiesSet;
+
+@property (readonly) NSNumber *propertyCount;
 
 /// An ordered collection of all properties on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
 @property (readonly) NSMutableOrderedSet *mutableProperties;
@@ -123,6 +130,8 @@
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
 @property (readonly) GCContext *context;
+
+@property (readonly) NSString *displayValue;
 
 @end
 

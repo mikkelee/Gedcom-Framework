@@ -12,6 +12,7 @@
 @implementation Document {
     GCFile *gedcomFile;
     BOOL _isEntireFileLoaded;
+    NSMutableArray *_individuals;
 }
 
 - (id)init
@@ -19,6 +20,7 @@
     self = [super init];
     if (self) {
         _isEntireFileLoaded = NO;
+        _individuals = [NSMutableArray array];
     }
     return self;
 }
@@ -72,6 +74,7 @@
 
 - (void)parseData:(NSData *)data
 {
+    //TODO sheet is broken with multiple docs open; should probably be moved to its own .nib
     [NSApp beginSheet:loadingSheet modalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:NULL contextInfo:nil];
     
     [currentlyLoadingSpinner setUsesThreadedAnimation:YES];

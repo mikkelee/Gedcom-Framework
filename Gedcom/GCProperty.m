@@ -34,7 +34,7 @@
 		return [GCRelationship relationshipForObject:object withGedcomNode:node];
 	} else {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
-														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' on %@", [tag objectClass], node]
+														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' on %@ for %@", [tag objectClass], node, object]
 													   userInfo:nil];
 		@throw exception;
 	}

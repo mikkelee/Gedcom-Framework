@@ -195,6 +195,25 @@ __strong static NSMutableDictionary *tagInfo;
 
 #pragma mark Subtags
 
+- (void)buildSubTagCaches
+{
+    NSMutableDictionary *byCode = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   [NSMutableDictionary dictionary], @"attribute",
+                                   [NSMutableDictionary dictionary], @"relationship",
+                                   nil];
+    NSMutableDictionary *byName = [NSMutableDictionary dictionary];
+    
+    for (GCTag *subTag in [self validSubTags]) {
+        NSString *typeKey = [[NSStringFromClass([subTag objectClass]) substringFromIndex:2] lowercaseString];
+        
+        [[byCode objectForKey:typeKey] setObject:subTag forKey:[subTag code]];
+        [byName setObject:subTag forKey:[subTag name]];
+    }
+    
+    _cachedSubTagsByCode = [byCode copy];
+    _cachedSubTagsByName = [byName copy];
+}
+
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
     if ([code hasPrefix:@"_"]) {
@@ -216,34 +235,16 @@ __strong static NSMutableDictionary *tagInfo;
     }
     
     if (!_cachedSubTagsByCode) {
-        NSMutableDictionary *byCode = [NSMutableDictionary dictionary];
-        NSMutableDictionary *byName = [NSMutableDictionary dictionary];
-        
-        for (GCTag *subTag in [self validSubTags]) {
-            [byCode setObject:subTag forKey:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([subTag objectClass]), [subTag code]]];
-            [byName setObject:subTag forKey:[subTag name]];
-        }
-        
-        _cachedSubTagsByCode = [byCode copy];
-        _cachedSubTagsByName = [byName copy];
+        [self buildSubTagCaches];
     }
     
-    return [_cachedSubTagsByCode objectForKey:[NSString stringWithFormat:@"GC%@:%@", [type capitalizedString], code]];
+    return [[_cachedSubTagsByCode objectForKey:type] objectForKey:code];
 }
 
 - (GCTag *)subTagWithName:(NSString *)name
 {
     if (!_cachedSubTagsByName) {
-        NSMutableDictionary *byCode = [NSMutableDictionary dictionary];
-        NSMutableDictionary *byName = [NSMutableDictionary dictionary];
-        
-        for (GCTag *subTag in [self validSubTags]) {
-            [byCode setObject:subTag forKey:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([subTag objectClass]), [subTag code]]];
-            [byName setObject:subTag forKey:[subTag name]];
-        }
-        
-        _cachedSubTagsByCode = [byCode copy];
-        _cachedSubTagsByName = [byName copy];
+        [self buildSubTagCaches];
     }
     
     return [_cachedSubTagsByName objectForKey:name];

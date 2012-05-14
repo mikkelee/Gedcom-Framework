@@ -138,6 +138,11 @@
     _target = target;
 }
 
+- (NSString *)displayValue
+{
+    return [[self context] xrefForEntity:_target];
+}
+
 @end
 
 @implementation GCRelationship (GCConvenienceMethods)

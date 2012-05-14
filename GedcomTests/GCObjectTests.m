@@ -27,6 +27,10 @@
     GCAttribute *date = [GCAttribute attributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     STAssertEqualObjects([[date value] gedcomString], @"1 JAN 1901", nil);
+    
+    GCAttribute *name = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
+    
+    STAssertEqualObjects([[name value] displayString], @"Hansen, Jens (Smed)", nil);
 }
 
 - (void)testSimpleObjects
@@ -36,8 +40,8 @@
     GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
-                      [GCString valueWithGedcomString:@"Jens /Hansen/"], 
-                      [GCString valueWithGedcomString:@"Jens /Hansen/ Smed"], 
+                      [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
+                      [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"], 
                       nil];
     
     [indi setValue:names 
@@ -111,15 +115,15 @@
 	GCContext *ctx = [GCContext context];
 	
 	GCEntity *husb = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[husb addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
 	GCEntity *wife = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[wife addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
+	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
 	GCEntity *chil = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[chil addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
+	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
     GCEntity *fam = [GCEntity entityWithType:@"familyRecord" inContext:ctx];

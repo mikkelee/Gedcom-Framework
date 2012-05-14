@@ -97,9 +97,17 @@
 
 - (NSString *)displayString
 {
+    if ([[self dateComponents] day] < 1 || [[self dateComponents] day] > 31) {
+        if ([[self dateComponents] month] < 1 || [[self dateComponents] month] > 12) {
+            return [NSString stringWithFormat:@"%d", [[self dateComponents] year]];
+        }
+    }
+    
+    //TODO
+    
     return [NSDateFormatter localizedStringFromDate:[[self calendar] dateFromComponents:[self dateComponents]]
-                                          dateStyle:NSDateFormatterShortStyle
-                                          timeStyle:NSDateFormatterShortStyle];
+                                          dateStyle:NSDateFormatterMediumStyle
+                                          timeStyle:NSDateFormatterNoStyle];
 }
 
 - (NSDate *)minDate
@@ -259,12 +267,12 @@
 
 - (NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"INT %@ (%@)]", [[self simpleDate] gedcomString], [[self datePhrase] gedcomString]];
+	return [NSString stringWithFormat:@"INT %@ %@", [[self simpleDate] gedcomString], [[self datePhrase] gedcomString]];
 }
 
 - (NSString *)displayString
 {
-	return [NSString stringWithFormat:@"\"%@\" (%@)]", [[self simpleDate] displayString], [[self datePhrase] displayString]];
+	return [NSString stringWithFormat:@"\"%@\" %@", [[self simpleDate] displayString], [[self datePhrase] displayString]];
 }
 
 @synthesize datePhrase;
@@ -384,9 +392,9 @@
 - (NSString *)displayString
 {
 	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"– %@", [[self dateB] displayString]];
+		return [NSString stringWithFormat:@"… %@", [[self dateB] displayString]];
 	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"%@ –", [[self dateA] displayString]];
+		return [NSString stringWithFormat:@"%@ …", [[self dateA] displayString]];
 	} else {
 		return [NSString stringWithFormat:@"%@ … %@", [[self dateA] displayString], [[self dateB] displayString]];
 	}
@@ -500,12 +508,15 @@
 
 @implementation GCPlaceholderDate
 
+static NSCalendar *_gregorianCalendar = nil;
+
 + (id)allocWithZone:(NSZone *)zone
 {
     static dispatch_once_t predDate = 0;
     __strong static id _sharedDatePlaceholder = nil;
     dispatch_once(&predDate, ^{
         _sharedDatePlaceholder = [super allocWithZone:zone];
+        _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     });
     return _sharedDatePlaceholder;
 }
@@ -515,7 +526,7 @@
 	id date = [[GCSimpleDate alloc] init];
 	
 	[date setDateComponents:co];
-	[date setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]];
+	[date setCalendar:_gregorianCalendar];
 	
 	return date;
 }
