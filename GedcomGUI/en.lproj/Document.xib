@@ -68,6 +68,7 @@
 							<string key="NSFrame">{{624, 12}, {88, 32}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="766449340">
@@ -777,6 +778,7 @@
 								<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 								<reference key="NSSuperview" ref="587820660"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<int key="NSsFlags">1</int>
 								<reference key="NSTarget" ref="587820660"/>
@@ -916,6 +918,7 @@
 							<string key="NSFrame">{{157, 20}, {51, 17}}</string>
 							<reference key="NSSuperview" ref="1014780201"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="105237952">
@@ -973,7 +976,7 @@
 				<bool key="NSAvoidsEmptySelection">YES</bool>
 				<bool key="NSPreservesSelection">YES</bool>
 				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<string key="NSTreeContentChildrenKey">propertiesSet</string>
+				<string key="NSTreeContentChildrenKey">properties</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

@@ -103,21 +103,22 @@
     
     GCProperty *nickname = [GCAttribute attributeWithType:@"nickname" value:[GCString valueWithGedcomString:@"Store Jens"]];
     
-    [name1 addProperty:nickname];
+    [[name1 mutableArrayValueForKey:@"properties"] addObject:nickname];
     
     STAssertEqualObjects([nickname describedObject], name1, nil);
-    STAssertTrue([[name1 properties] containsObject:nickname], nil);
-    STAssertFalse([[name2 properties] containsObject:nickname], nil);
+    STAssertTrue([[name1 valueForKey:@"properties"] containsObject:nickname], nil);
+    STAssertFalse([[name2 valueForKey:@"properties"] containsObject:nickname], nil);
     
-    [name2 addProperty:nickname];
+    [[name2 mutableArrayValueForKey:@"properties"] addObject:nickname];
     
     STAssertEqualObjects([nickname describedObject], name2, nil);
-    STAssertTrue([[name2 properties] containsObject:nickname], nil);
-    STAssertFalse([[name1 properties] containsObject:nickname], nil);
+    STAssertTrue([[name2 valueForKey:@"properties"] containsObject:nickname], nil);
+    STAssertFalse([[name1 valueForKey:@"properties"] containsObject:nickname], nil);
     
     [indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"personalName"];
     
-    STAssertEqualObjects([indi valueForKeyPath:@"personalName.nickname"], [NSOrderedSet orderedSetWithObject:nickname], nil);
+    NSArray *expectedObjects = [NSArray arrayWithObjects:[NSNull null], nickname, nil];
+    STAssertEqualObjects([indi valueForKeyPath:@"personalName.nickname"], expectedObjects, nil);
 }
 
 -(void)testKVO
@@ -130,28 +131,36 @@
     
     [observer setEntity:indi];
     
-    NSArray *names = [NSArray arrayWithObjects:
-                      [GCString valueWithGedcomString:@"Jens /Hansen/"], 
-                      [GCString valueWithGedcomString:@"Jens /Hansen/ Smed"], 
-                      nil];
-    
-    [indi setValue:names 
-            forKey:@"personalName"];
+    [[indi mutableArrayValueForKey:@"personalName"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    [[indi mutableArrayValueForKey:@"personalName"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
     
     //TODO should this fire something too?
     [[[indi valueForKey:@"personalName"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
     
     [[indi mutableOrderedSetValueForKey:@"personalName"] removeObjectAtIndex:0];
     
-    NSArray *observations = [NSArray arrayWithObjects:
+    NSArray *expectedObservations = [NSArray arrayWithObjects:
                              // NSKeyValueChange : old : new
                              @"2 : (null) : 0 NAME Jens /Hansen/",
                              @"2 : (null) : 0 NAME Jens /Hansen/ Smed",
                              @"3 : 0 NAME Jens /Hansen/ : (null)",
                              nil];
     STAssertEqualObjects([observer observations], 
-                         observations,
+                         expectedObservations,
                          nil);
+}
+
+- (void)testExperiment
+{
+	GCContext *ctx = [GCContext context];
+	
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    
+    [[indi mutablePropertiesSet] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
+    
+    NSLog(@"valueForKey properties: %@", [indi valueForKey:@"properties"]);
+    NSLog(@"propertiesSet: %@", [indi propertiesSet]);
+    
 }
 
 @end

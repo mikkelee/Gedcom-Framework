@@ -43,8 +43,8 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
     GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
-                      [GCString valueWithGedcomString:@"Jens /Hansen/"], 
-                      [GCString valueWithGedcomString:@"Jens /Hansen/ Smed"], 
+                      [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
+                      [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"], 
                       nil];
     
     [indi setValue:names 
@@ -57,11 +57,7 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
-    [[indi properties] addObject:birt];
-    
-    //alternately:
-    // [indi addProperty:birt];
-    // [[indi valueForKey:[birt type]] addObject:birt];
+    [[indi mutableArrayValueForKey:@"properties"] addObject:birt];
     
     [indi addAttributeWithType:@"death" value:[GCBool yes]];
 ```

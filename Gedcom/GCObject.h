@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GCValue.h"
-
 @class GCContext;
 @class GCNode;
 @class GCTag;
@@ -46,26 +44,6 @@
  @return `YES` if the receiver allows multiple properties of the given type, otherwise `NO`.
  */
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type;
-
-/** Adds the given property to the receiver's collection of properties.
- 
- The property's type must be in the receiver's validProperties.
- 
- If the receiver allows multiple properties of that type, it will add it to its collection, otherwise the property will override the previous property of that type.
- 
- The property's describedObject is updated to reflect the receiver.
- 
- @param property A given property.
- */
-- (void)addProperty:(GCProperty *)property;
-
-/** Removes the given property to the receiver's collection of properties.
- 
- The property's describedObject is set to `nil`.
- 
- @param property A given property.
- */
-- (void)removeProperty:(GCProperty *)property;
 
 #pragma mark Gedcom access
 
@@ -105,16 +83,6 @@
 /// Returns whether the receiver can have properties itself.
 @property (readonly) BOOL allowsProperties;
 
-/// An ordered collection of all properties on the receiver.
-@property NSOrderedSet *properties;
-
-@property (readonly) NSSet *propertiesSet;
-
-@property (readonly) NSNumber *propertyCount;
-
-/// An ordered collection of all properties on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
-@property (readonly) NSMutableOrderedSet *mutableProperties;
-
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
 
@@ -135,51 +103,43 @@
 
 @end
 
+@class GCValue;
 @class GCEntity;
-@class GCAge;
-@class GCDate;
 
 @interface GCObject (GCConvenienceMethods)
 
 /// @name Accessing GCProperties
 
-/** Creates a GCAttribute with the given type and value and adds it to the receiver via addProperty:
+/** Creates a GCAttribute with the given type and value and adds it to the receiver via Key-Value coding.
  
  @param type The type of the attribute.
  @param value The value of the attribute.
  */
 - (void)addAttributeWithType:(NSString *)type value:(GCValue *)value;
 
-/** Creates a GCRelationship with the given type and target and adds it to the receiver via addProperty:
+/** Creates a GCRelationship with the given type and target and adds it to the receiver via Key-Value coding.
  
  @param type The type of the relationship.
  @param target The target of the relationship.
  */
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target;
 
-/** Creates a GCProperty based on the node and adds it to the receiver via addProperty:
+/** Creates a GCProperty based on the node and adds it to the receiver via Key-Value coding.
  
  @param node A node.
  */
 - (void)addPropertyWithGedcomNode:(GCNode *)node;
 
-/** Creates a collection of GCProperties based on the nodes and adds them to the receiver via addProperty:
+/** Creates a collection of GCProperties based on the nodes and adds them to the receiver via Key-Value coding.
  
  @param nodes An array of nodes.
  */
 - (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes;
 
-/// An ordered collection of the receiver's attributes.
-@property (readonly) NSOrderedSet *attributes;
-
-/// An ordered collection of all attributes on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
-@property (readonly) NSMutableOrderedSet *mutableAttributes;
-
-/// An ordered collection of the receiver's relationships.
-@property (readonly) NSOrderedSet *relationships;
-
-/// An ordered collection of all relationships on the receiver. Adding properties to the set will ensure integrity regarding two-way relationships, etc.
-@property (readonly) NSMutableOrderedSet *mutableRelationships;
+@property (readonly) NSSet *propertiesSet;
+@property (readonly) NSMutableSet *mutablePropertiesSet;
+@property (readonly) NSArray *propertiesArray;
+@property (readonly) NSMutableArray *mutablePropertiesArray;
 
 @end
 

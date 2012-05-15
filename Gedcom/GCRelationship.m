@@ -26,7 +26,7 @@
     
     [relationship addPropertiesWithGedcomNodes:[node subNodes]];
     
-    [object addProperty:relationship];
+    [[object mutableArrayValueForKey:@"properties"] addObject:relationship];
     
 	[[object context] registerBlock:^(NSString *xref) {
 		GCEntity *target = [[object context] entityForXref:xref];
@@ -114,15 +114,21 @@
     
     if ([[self gedTag] reverseRelationshipTag]) {
         //remove previous reverse relationship before changing target.
-        for (GCRelationship *relationship in [_target relationships]) {
+        for (GCRelationship *relationship in [_target valueForKey:@"properties"]) {
+            if (![relationship isKindOfClass:[GCRelationship class]]) {
+                continue;
+            }
             if ([[relationship target] isEqual:[self describedObject]]) {
-                [_target removeProperty:relationship];
+                [[_target mutableArrayValueForKey:@"properties"] removeObject:relationship];
             }
         }
         if (target != nil) {
             //set up new reverse relationship
             BOOL relationshipExists = NO;
-            for (GCRelationship *relationship in [target relationships]) {
+            for (GCRelationship *relationship in [target valueForKey:@"properties"]) {
+                if (![relationship isKindOfClass:[GCRelationship class]]) {
+                    continue;
+                }
                 if ([[relationship target] isEqual:[self describedObject]]) {
                     //NSLog(@"relationship: %@", relationship);
                     relationshipExists = YES;

@@ -18,14 +18,12 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCMutableOrderedSetProxy.h"
-
 @interface GCObject () 
 
 @end
 
 @implementation GCObject {
-    NSMutableDictionary *_properties;
+    NSMutableOrderedSet *_propertyStore;
     
     NSOrderedSet *_cachedValidProperties;
 }
@@ -48,94 +46,13 @@
     
     if (self) {
         _tag = [GCTag tagNamed:type];
-        _properties = [NSMutableDictionary dictionary];
+        _propertyStore = [NSMutableOrderedSet orderedSet];
     }
     
     return self;    
 }
 
 #pragma mark GCProperty access
-
-- (void)addProperty:(GCProperty *)property
-{
-    NSParameterAssert(property);
-    NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    //NSParameterAssert([[property gedTag] isCustom] || [[self validProperties] containsObject:[property type]]);
-    
-    if ([property describedObject]) {
-        if ([property describedObject] == self) {
-            return;
-        }
-        [[property describedObject] removeProperty:property];
-    }
-    
-    [property setValue:self forKey:@"primitiveDescribedObject"];
-    
-    [self willChangeValueForKey:@"gedcomString"];
-    
-    @synchronized(_properties) {
-        if ([self allowsMultiplePropertiesOfType:[property type]]) {
-            NSMutableOrderedSet *set = [_properties objectForKey:[property type]];
-            
-            if (!set) {
-                set = [NSMutableOrderedSet orderedSet];
-                [_properties setObject:set forKey:[property type]];
-            }
-            
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[set count]];
-            
-            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
-            
-            [set addObject:property];
-            
-            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexSet forKey:[property type]];
-        } else {
-            [self willChangeValueForKey:[property type]];
-            
-            [self removeProperty:[_properties objectForKey:[property type]]];
-            [_properties setObject:property forKey:[property type]];
-            
-            [self didChangeValueForKey:[property type]];
-        }
-    }
-    
-    [self didChangeValueForKey:@"gedcomString"];
-}
-
-- (void)removeProperty:(GCProperty *)property
-{
-    if (property == nil) {
-        return;
-    }
-    
-    NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    NSParameterAssert([property describedObject] == self);
-    
-    [self willChangeValueForKey:@"gedcomString"];
-    
-    @synchronized(_properties) {
-        if ([self allowsMultiplePropertiesOfType:[property type]]) {
-            NSMutableOrderedSet *set = [_properties objectForKey:[property type]];
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[set indexOfObject:property]];
-            
-            [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexSet forKey:[property type]];
-            
-            [set removeObject:property];
-            
-            [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexSet forKey:[property type]];
-        } else {
-            [self willChangeValueForKey:[property type]];
-            
-            [_properties removeObjectForKey:[property type]];
-            
-            [self didChangeValueForKey:[property type]];
-        }
-    }
-    
-    [property setValue:nil forKey:@"primitiveDescribedObject"];
-    
-    [self didChangeValueForKey:@"gedcomString"];
-}
 
 - (NSOrderedSet *)validProperties
 {
@@ -161,13 +78,13 @@
 
 #pragma mark NSKeyValueCoding overrides
 
-void setValueForKeyHelper(id obj, NSString *key, id value) {
+- (void)_internalSetValue:(id)value forKey:(NSString *)key {
     if ([value isKindOfClass:[GCProperty class]]) {
-        [obj addProperty:value];
+        [[self mutableArrayValueForKey:@"properties"] addObject:value];
     } else if ([value isKindOfClass:[GCValue class]]) {
-        [obj addAttributeWithType:key value:value];
+        [self addAttributeWithType:key value:value];
     } else if ([value isKindOfClass:[GCEntity class]]) {
-        [obj addRelationshipWithType:key target:value];
+        [self addRelationshipWithType:key target:value];
     } else {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
 														 reason:[NSString stringWithFormat:@"Invalid value %@ for setValue:forKey:", value]
@@ -183,10 +100,10 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
             for (id item in value) {
-                setValueForKeyHelper(self, key, item);
+                [self _internalSetValue:item forKey:key];
             }
         } else {
-            setValueForKeyHelper(self, key, value);
+            [self _internalSetValue:value forKey:key];
         }
     } else {
         [super setValue:value forKey:key];
@@ -196,9 +113,10 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 - (void)setNilValueForKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
-        @synchronized(_properties) {
-            [_properties removeObjectForKey:key];
-        }
+        NSIndexSet *indexesForRemoval = [_propertyStore indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return [[(GCProperty *)obj type] isEqualToString:key];
+        }];
+        [_propertyStore removeObjectsAtIndexes:indexesForRemoval];
     } else {
         [super setNilValueForKey:key];
     }
@@ -209,46 +127,141 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     if ([key hasSuffix:@"@primary"]) {
         NSString *cleanKey = [[key componentsSeparatedByString:@"@"] objectAtIndex:0];
         
-        return [[self valueForKey:cleanKey] objectAtIndex:0];
-    } else if ([[self validProperties] containsObject:key]) {
-        id obj = nil;
-        @synchronized(_properties) {
-            obj = [_properties objectForKey:key];
-        }
-        
-        if ([self allowsMultiplePropertiesOfType:key]) {
-            return [obj copy]; //immutable
+        if ([[self valueForKey:cleanKey] count] > 0) {
+            return [[self valueForKey:cleanKey] objectAtIndex:0];
         } else {
-            return obj;
+            return nil;
+        }
+    } else if ([[self validProperties] containsObject:key]) {
+        @synchronized(_propertyStore) {
+            NSIndexSet *indexes = [_propertyStore indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                return [[(GCProperty *)obj type] isEqualToString:key];
+            }];
+            
+            if ([self allowsMultiplePropertiesOfType:key]) {
+                return [_propertyStore objectsAtIndexes:indexes];
+            } else {
+                return [[_propertyStore objectsAtIndexes:indexes] lastObject];
+            }
         }
     } else {
         return [super valueForKey:key];
     }
 }
 
-- (id)mutableOrderedSetValueForKey:(NSString *)key
+#pragma mark GCProperty collection accessors
+
+- (void)setDescribedObjectForProperty:(GCProperty *)property
 {
-    if ([self allowsMultiplePropertiesOfType:key]) {
-        id obj = nil;
-        @synchronized(_properties) {
-            obj = [_properties objectForKey:key];
+    if ([property describedObject]) {
+        [[[property describedObject] mutableArrayValueForKey:@"properties"] removeObject:property];
+    }
+    
+    [property setValue:self forKey:@"primitiveDescribedObject"];
+}
+
+- (NSUInteger)countOfProperties
+{
+    return [_propertyStore count];
+}
+
+- (id)objectInPropertiesAtIndex:(NSUInteger)index
+{
+    return [_propertyStore objectAtIndex:index];
+}
+
+/*
+ - (void)getProperties:(GCProperty **)buffer range:(NSRange)inRange
+ {
+ [_propertyStore getObjects:buffer range:inRange];
+ }
+ */
+
+- (void)insertObject:(GCProperty *)object inPropertiesAtIndex:(NSUInteger)index
+{
+    [self setDescribedObjectForProperty:object];
+    [_propertyStore insertObject:object atIndex:index];
+}
+
+- (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
+{
+    [[_propertyStore objectAtIndex:index] setValue:nil forKey:@"primitiveDescribedObject"];
+    [_propertyStore removeObjectAtIndex:index];
+}
+
+/* //Optional. Implement if benchmarking indicates that performance is an issue.
+ - (void)replaceObjectInPropertiesAtIndex:(NSUInteger)index withObject:(id)object
+ {
+ 
+ }
+ */
+
+- (NSEnumerator *)enumeratorOfProperties
+{
+    return [_propertyStore objectEnumerator];
+}
+
+- (GCProperty *)memberOfProperties:(GCProperty *)object
+{
+    return [_propertyStore containsObject:object] ? object : nil;
+}
+
+- (void)addPropertiesObject:(GCProperty *)property
+{
+    NSParameterAssert(property);
+    NSParameterAssert([property isKindOfClass:[GCProperty class]]);
+    //NSParameterAssert([[property gedTag] isCustom] || [[self validProperties] containsObject:[property type]]);
+    
+    [self setDescribedObjectForProperty:property];
+    
+    [self willChangeValueForKey:@"gedcomString"];
+    
+    @synchronized(_propertyStore) {
+        __block GCObject *existingPropertyOfType = nil;
+        
+        [_propertyStore enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([[(GCObject *)obj type] isEqualToString:[property type]]) {
+                existingPropertyOfType = obj;
+                *stop = YES;
+            }
+        }];
+        
+        if (existingPropertyOfType && ![self allowsMultiplePropertiesOfType:[property type]]) {
+            [_propertyStore removeObject:property];
         }
         
-        if (obj == nil) {
-            obj = [NSMutableOrderedSet orderedSet];
-        }
-        //return a fresh proxy that will act when added to/removed from.
-        return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:obj
-                                                                  addBlock:^(id obj) {
-                                                                      [self addProperty:obj];
-                                                                  }
-                                                               removeBlock:^(id obj) {
-                                                                   [self removeProperty:obj];
-                                                               }];
-    } else {
-        return [super mutableOrderedSetValueForKey:key];
+        [_propertyStore addObject:property];
     }
+    
+    [self didChangeValueForKey:@"gedcomString"];
 }
+
+- (void)removePropertiesObject:(GCProperty *)property
+{
+    if (property == nil) {
+        return;
+    }
+    
+    NSParameterAssert([property isKindOfClass:[GCProperty class]]);
+    NSParameterAssert([property describedObject] == self);
+    
+    [self willChangeValueForKey:@"gedcomString"];
+    
+    @synchronized(_propertyStore) {
+        [_propertyStore removeObject:property];
+    }
+    
+    [property setValue:nil forKey:@"primitiveDescribedObject"];
+    
+    [self didChangeValueForKey:@"gedcomString"];
+}
+
+/* //Optional. Implement if benchmarking indicates that performance is an issue.
+ - (void)intersectProperties:(NSSet *)objects
+ {
+ 
+ }
+ */
 
 #pragma mark Gedcom access
 
@@ -256,26 +269,25 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 {
     NSMutableArray *subNodes = [NSMutableArray array];
     
-    for (NSString *propertyName in [self validProperties]) {
-        id obj;
-        @synchronized(_properties) {
-            obj = [_properties objectForKey:propertyName];
-        }
-        
-        if (obj) {
-            if ([obj isKindOfClass:[NSOrderedSet class]]) {
-                NSArray *sorted = [obj sortedArrayUsingComparator:^(id obj1, id obj2) {
-                    return [obj1 compare:obj2];
-                }];
-                for (GCProperty *subObj in sorted) {
-                    [subNodes addObject:[subObj gedcomNode]];
-                }
-            } else {
-                [subNodes addObject:[obj gedcomNode]];
+    @synchronized(_propertyStore) {
+        NSArray *sortedProperties = [_propertyStore sortedArrayUsingComparator:^NSComparisonResult(GCProperty *obj1, GCProperty *obj2) {
+            NSNumber *obj1index = [NSNumber numberWithInt:[[self validProperties] indexOfObject:[obj1 type]]];
+            NSNumber *obj2index = [NSNumber numberWithInt:[[self validProperties] indexOfObject:[obj2 type]]];
+            
+            NSComparisonResult result = [obj1index compare:obj2index];
+            
+            if (result == NSOrderedSame) {
+                result = [obj1 compare:obj2];
             }
+            
+            return result;
+        }];
+        
+        for (GCProperty *property in sortedProperties) {
+            [subNodes addObject:[property gedcomNode]];
         }
     }
-	
+    
 	return subNodes;
 }
 
@@ -344,62 +356,6 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     return ([[self validProperties] count] > 0); //TODO (see cocoa-dev reply)
 }
 
-- (id)properties
-{
-	NSMutableOrderedSet *properties = [NSMutableOrderedSet orderedSet];
-	
-    @synchronized(_properties) {
-        if ([_properties count] > 0) {
-            for (id property in [_properties allValues]) {
-                if ([property respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]) {
-                    for (id p in property) {
-                        [properties addObject:p];
-                    }
-                } else {
-                    [properties addObject:property];
-                }
-            }
-        }
-    }
-    
-    //NSLog(@"properties: %lu", [properties count]);
-    
-	return [properties copy];
-}
-
-- (void)setProperties:(NSMutableOrderedSet *)properties
-{
-    @synchronized(_properties) {
-        _properties = [NSMutableDictionary dictionary];
-    }
-    
-    for (id property in properties) {
-        NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-        [self addProperty:property];
-    }
-}
-
-- (id)mutableProperties
-{
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:[[self properties] mutableCopy]
-                                                              addBlock:^(id obj) {
-                                                                  [self addProperty:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeProperty:obj];
-                                                           }];
-}
-
-- (id)propertiesSet
-{
-    return [[self properties] set];
-}
-
-- (NSNumber *)propertyCount
-{
-    return [NSNumber numberWithInteger:[[self properties] count]];
-}
-
 - (NSString *)gedcomString
 {
     return [[self gedcomNode] gedcomString];
@@ -419,7 +375,9 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
         NSParameterAssert([[node xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);
     }
     
-    NSMutableOrderedSet *originalProperties = [[self properties] mutableCopy];
+    //TODO clean this up:
+    
+    NSMutableOrderedSet *originalProperties = [[self mutableArrayValueForKey:@"properties"] mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
     
@@ -432,7 +390,7 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     
     //remove the left over objects:
     for (GCProperty *property in originalProperties) {
-        [self removeProperty:property];
+        [[self mutableArrayValueForKey:@"properties"] removeObject:property];
     }
 }
 
@@ -442,31 +400,22 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 @dynamic gedcomNode;
 @dynamic displayValue;
 
-/*
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
-{
-    
-}
-*/
-
 @end
 
 @implementation GCObject (GCConvenienceMethods)
 
 - (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
 {
-    [self addProperty:[GCAttribute attributeWithType:type value:value]];
+    [[self mutableArrayValueForKey:@"properties"] addObject:[GCAttribute attributeWithType:type value:value]];
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
     GCRelationship *relationship = [GCRelationship relationshipWithType:type];
     
-    [self addProperty:relationship];
+    [[self mutableArrayValueForKey:@"properties"] addObject:relationship];
     
     [relationship setTarget:target];
-    
-	//[self addProperty:[GCRelationship relationshipWithType:type target:target]];
 }
 
 - (void)addPropertyWithGedcomNode:(GCNode *)node
@@ -481,54 +430,24 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
     }];
 }
 
-- (NSOrderedSet *)propertiesFulfillingBlock:(BOOL (^)(GCProperty *property))block
+- (NSSet *)propertiesSet
 {
-	NSMutableOrderedSet *properties = [NSMutableOrderedSet orderedSet];
-	
-	for (id property in [self properties]) {
-		if (block(property)) {
-			[properties addObject:property];
-		}
-	}
-	
-	return [properties copy];
+    return [self valueForKey:@"properties"];
 }
 
-
-- (NSOrderedSet *)attributes
+- (NSMutableSet *)mutablePropertiesSet
 {
-    return [self propertiesFulfillingBlock:^BOOL(GCProperty *property) {
-        return [property isKindOfClass:[GCAttribute class]];
-    }];
+    return [self mutableSetValueForKey:@"properties"];
 }
 
-- (id)mutableAttributes
+- (NSArray *)propertiesArray
 {
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:[[self attributes] mutableCopy]
-                                                              addBlock:^(id obj) {
-                                                                  [self addProperty:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeProperty:obj];
-                                                           }];
+    return [self valueForKey:@"properties"];
 }
 
-- (NSOrderedSet *)relationships
+- (NSMutableArray *)mutablePropertiesArray
 {
-    return [self propertiesFulfillingBlock:^BOOL(GCProperty *property) {
-        return [property isKindOfClass:[GCRelationship class]];
-    }];
-}
-
-- (id)mutableRelationships
-{
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:[[self relationships] mutableCopy]
-                                                              addBlock:^(id obj) {
-                                                                  [self addProperty:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeProperty:obj];
-                                                           }];
+    return [self mutableArrayValueForKey:@"properties"];
 }
 
 @end
@@ -537,15 +456,15 @@ void setValueForKeyHelper(id obj, NSString *key, id value) {
 
 - (void)decodeProperties:(NSCoder *)aDecoder
 {
-    @synchronized(_properties) {
-        _properties = [aDecoder decodeObjectForKey:@"properties"];
+    @synchronized(_propertyStore) {
+        _propertyStore = [aDecoder decodeObjectForKey:@"propertyStore"];
     }
 }
 
 - (void)encodeProperties:(NSCoder *)aCoder
 {
-    @synchronized(_properties) {
-        [aCoder encodeObject:_properties forKey:@"properties"];
+    @synchronized(_propertyStore) {
+        [aCoder encodeObject:_propertyStore forKey:@"propertyStore"];
     }
 }
 

@@ -48,17 +48,13 @@
             forKey:@"personalName"];
 	
     //alternately:
-    // [indi addAttributeWithType:@"Name" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+    // [indi addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
     
 	GCAttribute *birt = [GCAttribute attributeWithType:@"birth"];
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
-    [[indi mutableProperties] addObject:birt];
-    
-    //alternately:
-    // [indi addProperty:birt];
-    // [[indi valueForKey:[birt type]] addObject:birt];
+    [[indi mutableArrayValueForKey:@"properties"] addObject:birt];
     
     [indi addAttributeWithType:@"death" value:[GCBool yes]];
     
@@ -219,7 +215,7 @@
     
     //NSLog(@"[indi properties]: %@", [indi properties]);
     
-    STAssertEquals([[indi properties] count], (NSUInteger)4, nil);
+    STAssertEquals([[indi valueForKey:@"properties"] count], (NSUInteger)4, nil);
 }
 
 - (void)testCoding

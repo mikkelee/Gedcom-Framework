@@ -75,10 +75,10 @@
         if (_describedObject == self) {
             return;
         }
-        [_describedObject removeProperty:self];
+        [[_describedObject valueForKey:@"properties"] removeObject:self];
     }
     [self setPrimitiveDescribedObject:describedObject];
-    [_describedObject addProperty:self];
+    [[_describedObject mutableArrayValueForKey:@"properties"] addObject:self];
     [self didChangeValueForKey:@"describedObject"];
 }
 

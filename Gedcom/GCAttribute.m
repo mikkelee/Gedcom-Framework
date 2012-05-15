@@ -35,7 +35,7 @@
     
     [attribute addPropertiesWithGedcomNodes:[node subNodes]];
     
-    [object addProperty:attribute];
+    [[object mutableArrayValueForKey:@"properties"] addObject:attribute];
     
     return attribute;
 }

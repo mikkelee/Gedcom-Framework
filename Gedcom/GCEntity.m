@@ -131,7 +131,7 @@
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (properties: %@)", [super description], [self properties]];
+    return [NSString stringWithFormat:@"%@ (properties: %@)", [super description], [self valueForKey:@"properties"]];
 }
 //COV_NF_END
 
