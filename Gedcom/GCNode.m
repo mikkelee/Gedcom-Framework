@@ -278,18 +278,24 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
 
 - (id)valueForKey:(NSString *)key
 {
-	NSMutableArray *subNodes = [NSMutableArray array];
-	
-    for (id subNode in [self subNodes]) {
-		if ([[subNode gedTag] isEqualTo:key]) {
-			[subNodes addObject:subNode];
-		}
-	}
-	
-	if ([subNodes count] > 1) {
-		return subNodes;
-	} else if ([subNodes count] == 1) {
-		return [subNodes lastObject];
+    BOOL isTagKey = [[key uppercaseString] isEqualToString:key] && ([key length] == 4 || [key length] == 3 || [key hasPrefix:@"_"]);
+    
+    if (isTagKey) {
+        NSMutableArray *subNodes = [NSMutableArray array];
+        
+        for (id subNode in [self subNodes]) {
+            if ([[subNode gedTag] isEqualTo:key]) {
+                [subNodes addObject:subNode];
+            }
+        }
+        
+        if ([subNodes count] > 1) {
+            return [subNodes copy];
+        } else if ([subNodes count] == 1) {
+            return [subNodes lastObject];
+        } else {
+            return nil;
+        }
 	} else {
         return [super valueForKey:key];
 	}
@@ -395,8 +401,6 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
     
     [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
     
-    [copy setSubNodes:[NSMutableOrderedSet orderedSetWithCapacity:[_subNodes count]]];
-
     for (id subNode in _subNodes) {
         [copy addSubNode:[subNode mutableCopy]];
     }

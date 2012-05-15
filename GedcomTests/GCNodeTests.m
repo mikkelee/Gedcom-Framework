@@ -90,7 +90,7 @@
     
     STAssertEquals([[mutableNode subNodes] count], (NSUInteger)0, nil);
 
-    [mutableNode addSubNode:nickname];
+    [[mutableNode subNodes] addObject:nickname];
     
     STAssertEquals([[mutableNode subNodes] count], (NSUInteger)1, nil);
 }

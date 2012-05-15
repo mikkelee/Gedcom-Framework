@@ -8,27 +8,27 @@
 
 #import "GCMutableNode.h"
 
-#import "GCMutableOrderedSetProxy.h"
-
 @interface GCMutableNode ()
 
 @property (weak) GCNode *parent;
 
+@property (readonly) NSMutableOrderedSet *internalSubNodes;
+
 @end;
 
 @implementation GCMutableNode {
-    NSMutableOrderedSet *_subNodes;
+    NSMutableOrderedSet *_internalSubNodes;
 }
 
 #pragma mark Initialization
 
-- (id)init
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
 {
-    self = [super init];
+    self = [super initWithTag:tag value:value xref:xref subNodes:nil];
     
 	if (self) {
         [self setLineSeparator:@"\n"];
-        _subNodes = [NSMutableOrderedSet orderedSet];
+        _internalSubNodes = [NSMutableOrderedSet orderedSet];
 	}
     
 	return self;
@@ -43,35 +43,38 @@
 }
 //COV_NF_END
 
-#pragma mark Adding subnodes
+#pragma mark Internal SubNode accessors
 
-- (void)addSubNode:(GCMutableNode *)node
+- (NSUInteger)countOfInternalSubNodes
+{
+    return [_internalSubNodes count];
+}
+
+- (id)objectInInternalSubNodesAtIndex:(NSUInteger)index
+{
+    return [_internalSubNodes objectAtIndex:index];
+}
+
+- (void)insertObject:(GCMutableNode *)node inInternalSubNodesAtIndex:(NSUInteger)index
 {
 	NSParameterAssert(self != node);
     NSParameterAssert([node isKindOfClass:[GCMutableNode class]]);
     
-    if (!_subNodes) {
-        _subNodes = [NSMutableOrderedSet orderedSet];
+    if (!_internalSubNodes) {
+        _internalSubNodes = [NSMutableOrderedSet orderedSet];
     }
     
-    [_subNodes addObject:node];
+    [_internalSubNodes insertObject:node atIndex:index];
     [node setParent:self];
 }
 
-- (void)removeSubNode: (GCMutableNode *) node
+- (void)removeObjectFromSubNodesAtIndex:(NSUInteger)index
 {
-    NSParameterAssert([node parent] == self);
-    
-    [_subNodes removeObject:node];
-    [node setParent:nil];
+    [[_internalSubNodes objectAtIndex:index] setParent:nil];
+    [_internalSubNodes removeObjectAtIndex:index];
 }
 
-- (void)addSubNodes:(NSArray *)subNodes
-{
-	for (id subNode in subNodes) {
-		[self addSubNode:subNode];
-	}
-}
+@synthesize internalSubNodes = _internalSubNodes;
 
 #pragma mark Objective-C properties
 
@@ -83,24 +86,7 @@
 
 - (id)subNodes
 {
-    return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:_subNodes
-                                                              addBlock:^(id obj) {
-                                                                  [self addSubNode:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeSubNode:obj];
-                                                           }];
-
-}
-
-- (void)setSubNodes:(NSOrderedSet *)subNodes
-{
-    _subNodes = [NSMutableOrderedSet orderedSetWithCapacity:[subNodes count]];
-    
-    for (id subNode in subNodes) {
-        [self addSubNode:subNode];
-    }
-
+    return [self mutableOrderedSetValueForKey:@"internalSubNodes"];
 }
 
 @end
