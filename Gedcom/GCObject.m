@@ -477,7 +477,25 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (NSAttributedString *)attributedGedcomString
 {
-    return [[self gedcomNode] attributedGedcomString];
+    NSMutableAttributedString *gedcomString = [[[self gedcomNode] attributedGedcomString] mutableCopy];
+    
+    [gedcomString enumerateAttribute:GCXrefAttributeName
+                             inRange:NSMakeRange(0, [gedcomString length])
+                             options:(kNilOptions)
+                          usingBlock:^(id value, NSRange range, BOOL *stop) {
+                              if (!value) {
+                                  return;
+                              }
+                              NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
+                                                                          @"xref",
+                                                                          [[self context] name],
+                                                                          value]];
+                              
+                              //[gedcomString removeAttribute:GCXrefAttributeName range:range];
+                              [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
+                          }];
+    
+    return gedcomString;
 }
 
 - (void)setAttributedGedcomString:(NSAttributedString *)attributedGedcomString

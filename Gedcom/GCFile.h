@@ -123,6 +123,8 @@
 /// An ordered collection of the receiver's submitters.
 @property (readonly) NSMutableOrderedSet *submitters;
 
+@property (readonly) GCContext *context;
+
 @end
 
 @interface GCFile (GCValidationMethods)

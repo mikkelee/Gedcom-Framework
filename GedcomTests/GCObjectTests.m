@@ -20,6 +20,11 @@
     GCContext *ctx = [GCContext context];
     
     STAssertNil([ctx xrefForEntity:nil], nil);
+    
+    GCContext *a = [GCContext contextWithName:@"a"];
+    GCContext *b = [GCContext contextWithName:@"a"];
+    
+    STAssertEqualObjects(a, b, nil);
 }
 
 - (void)testAttributeValues

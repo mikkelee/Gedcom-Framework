@@ -259,11 +259,11 @@ void contConcHelper(BOOL attributed, int level, NSString *inLine, NSString **out
                                             color, NSForegroundColorAttributeName,\
                                             nil]])
 
-#define coloredLinkString(color, link, string) \
+#define coloredXrefString(color, link, string) \
 ([[NSAttributedString alloc] initWithString:string\
                                  attributes:[NSDictionary dictionaryWithObjectsAndKeys:\
                                             color, NSForegroundColorAttributeName,\
-                                            link, NSLinkAttributeName,\
+                                            link, GCXrefAttributeName,\
                                             nil]])
 
 NSAttributedString * joinedAttributedString(NSArray *components) {
@@ -313,7 +313,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
             [lineComponents addObject:coloredString([NSColor darkGrayColor], [self gedTag])];
             if (firstLine) {
                 if ([firstLine hasPrefix:@"@"] && [firstLine hasSuffix:@"@"]) {
-                    [lineComponents addObject:coloredLinkString([NSColor blueColor], firstLine, firstLine)];
+                    [lineComponents addObject:coloredXrefString([NSColor blueColor], firstLine, firstLine)];
                 } else {
                     [lineComponents addObject:[[NSAttributedString alloc] initWithString:firstLine]];
                 }
@@ -541,3 +541,5 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 }
 
 @end
+
+NSString *GCXrefAttributeName = @"GCXrefAttributeName";

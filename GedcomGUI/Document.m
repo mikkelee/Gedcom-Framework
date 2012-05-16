@@ -85,6 +85,7 @@
     gedcomFile = [[GCFile alloc] init];
     
     [gedcomFile setDelegate:self];
+    [[gedcomFile context] setDelegate:self];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [gedcomFile parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
@@ -96,6 +97,17 @@
 - (IBAction)testLog:(id)sender
 {
     NSLog(@"entityCount: %lu, header: %@", [[gedcomFile entities] count], [gedcomFile header]);
+}
+
+#pragma mark NSTextViewDelegate methods
+
+- (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
+{
+    GCContext *context = [gedcomFile context];
+    
+    GCEntity *entity = [context entityForXref:[[link path] lastPathComponent]];
+    
+    return [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:[NSArray arrayWithObject:entity]];
 }
 
 #pragma mark GCFileDelegate methods
@@ -120,6 +132,15 @@
     
     //[individualsController setContent:[gedcomFile individuals]];
 }
+
+#pragma mark GCContextDelegate methods
+
+- (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity
+{
+    NSLog(@"Clicked: %@", entity);
+}
+
+#pragma mark Objective-C properties
 
 @synthesize individuals = _individuals;
 

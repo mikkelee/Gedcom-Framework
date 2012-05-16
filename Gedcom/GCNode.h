@@ -116,3 +116,6 @@
 + (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes;
 
 @end
+
+extern NSString *GCXrefAttributeName;
+

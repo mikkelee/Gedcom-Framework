@@ -22,6 +22,8 @@
 /// Creates a new context.
 + (id)context;
 
++ (id)contextWithName:(NSString *)name;
+
 /// @name Translating Xrefs
 
 /** Returns an xref for the given entity.
@@ -61,5 +63,16 @@
  @param entity An entity to be associated with the xref.
  */
 - (void)setXref:(NSString *)xref forEntity:(GCEntity *)entity;
+
+#pragma mark Xref link methods
+
+//TODO find better name:
+- (void)activateXref:(NSString *)xref;
+
+#pragma mark Objective-C properties
+
+@property (readonly) NSString *name;
+
+@property (weak) id delegate;
 
 @end

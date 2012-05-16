@@ -279,6 +279,11 @@
 	return [self entitiesOfType:@"submitterRecord"];
 }
 
+- (GCContext *)context
+{
+    return _context;
+}
+
 @end
 
 @implementation GCFile (GCValidationMethods)

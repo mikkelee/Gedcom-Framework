@@ -10,13 +10,13 @@
 
 @interface Document : NSDocument {
     IBOutlet NSWindow *mainWindow;
+    
+    IBOutlet NSArrayController *individualsController;
 
     IBOutlet NSWindow *loadingSheet;
     
     IBOutlet NSTextField *recordCountField;
     IBOutlet NSProgressIndicator *currentlyLoadingSpinner;
-    
-    
 }
 
 - (IBAction)testLog:(id)sender;

@@ -11,6 +11,8 @@
 #import "GCEntity.h"
 #import "GCTag.h"
 
+#import "GCContextDelegate.h"
+
 @implementation GCContext {
 	NSMutableDictionary *xrefStore;
 	NSMutableDictionary *xrefBlocks;
@@ -19,24 +21,55 @@
     NSLock *callbackLock;
 }
 
+static __strong NSMutableDictionary *_contexts = nil;
+
 - (id)init
 {
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+- (id)initWithName:(NSString *)name
+{
+    NSParameterAssert(![_contexts objectForKey:name]);
+    
 	self = [super init];
 	
 	if (self) {
+        _name = name;
+        
         xrefStore = [NSMutableDictionary dictionary];
         xrefBlocks = [NSMutableDictionary dictionary];
         storedEntities = [NSMutableSet set];
         
         callbackLock = [[NSLock alloc] init];
 	}
+    
+    if (!_contexts) {
+        _contexts = [NSMutableDictionary dictionary];
+    }
+    
+    [_contexts setObject:self forKey:name];
 	
 	return self;
 }
 
 + (id)context
 {
-	return [[self alloc] init];
+    NSString *uuid = (__bridge NSString *)CFUUIDCreateString( NULL, CFUUIDCreate( NULL ) );
+    
+	return [self contextWithName:uuid];
+}
+
++ (id)contextWithName:(NSString *)name
+{
+    GCContext *context = [_contexts objectForKey:name];
+    
+    if (!context) {
+        context = [[self alloc] initWithName:name];
+    }
+    
+    return context;
 }
 
 - (void)setXref:(NSString *)xref forEntity:(GCEntity *)obj
@@ -145,8 +178,22 @@
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"%@ (xrefStore: %@)", [super description], xrefStore];
+	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, xrefStore];
 }
 //COV_NF_END
+
+#pragma mark Xref link methods
+
+- (void)activateXref:(NSString *)xref
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForEntity:)]) {
+        [_delegate context:self didReceiveActionForEntity:[self entityForXref:xref]];
+    }
+}
+
+#pragma mark Objective-C properties
+
+@synthesize name = _name;
+@synthesize delegate = _delegate;
 
 @end
