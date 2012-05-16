@@ -10,7 +10,7 @@
 
 /**
  
- A Gedcom boolean value.
+ A Gedcom boolean value. Note that there is no explicit "false" in the Gedcom specification, only yes(true) and undecided.
  
  */
 @interface GCBool : GCValue
@@ -21,11 +21,11 @@
  */
 + (id)yes;
 
-/** Returns a singleton instance representing a false value.
+/** Returns a singleton instance representing an undecided value.
  
- @return A singleton instance representing a false value.
+ @return A singleton instance representing an undecided value.
  */
-+ (id)no;
++ (id)undecided;
 
 /// The receiver's value as a BOOL.
 @property (readonly) BOOL boolValue;
