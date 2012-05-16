@@ -117,5 +117,8 @@
 
 @end
 
+extern NSString *GCLevelAttributeName;
 extern NSString *GCXrefAttributeName;
-
+extern NSString *GCTagAttributeName;
+extern NSString *GCValueAttributeName;
+extern NSString *GCLinkAttributeName;

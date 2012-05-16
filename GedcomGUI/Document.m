@@ -103,11 +103,17 @@
 
 - (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
 {
-    GCContext *context = [gedcomFile context];
-    
-    GCEntity *entity = [context entityForXref:[[link path] lastPathComponent]];
-    
-    return [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:[NSArray arrayWithObject:entity]];
+    if ([[link scheme] isEqualToString:@"xref"]) {
+        GCContext *context = [gedcomFile context];
+        
+        GCEntity *entity = [context entityForXref:[[link path] lastPathComponent]];
+        
+        return [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:[NSArray arrayWithObject:entity]];
+    } else {
+        [[NSWorkspace sharedWorkspace] openURL:link];
+        
+        return YES;
+    }
 }
 
 #pragma mark GCFileDelegate methods
@@ -138,6 +144,8 @@
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity
 {
     NSLog(@"Clicked: %@", entity);
+    
+    [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:[NSArray arrayWithObject:entity]];
 }
 
 #pragma mark Objective-C properties

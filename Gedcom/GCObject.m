@@ -479,21 +479,26 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 {
     NSMutableAttributedString *gedcomString = [[[self gedcomNode] attributedGedcomString] mutableCopy];
     
-    [gedcomString enumerateAttribute:GCXrefAttributeName
-                             inRange:NSMakeRange(0, [gedcomString length])
-                             options:(kNilOptions)
-                          usingBlock:^(id value, NSRange range, BOOL *stop) {
-                              if (!value) {
-                                  return;
-                              }
-                              NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
-                                                                          @"xref",
-                                                                          [[self context] name],
-                                                                          value]];
-                              
-                              //[gedcomString removeAttribute:GCXrefAttributeName range:range];
-                              [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
-                          }];
+    [gedcomString enumerateAttributesInRange:NSMakeRange(0, [gedcomString length])
+                                     options:(kNilOptions) 
+                                  usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+                                      if ([attrs objectForKey:GCLevelAttributeName]) {
+                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:range];
+                                      } else if ([attrs objectForKey:GCXrefAttributeName]) {
+                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:range];
+                                      } else if ([attrs objectForKey:GCTagAttributeName]) {
+                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor darkGrayColor] range:range];
+                                      } else if ([attrs objectForKey:GCLinkAttributeName]) {
+                                          NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
+                                                                                      @"xref",
+                                                                                      [[self context] name],
+                                                                                      [attrs objectForKey:GCLinkAttributeName]]];
+                                          
+                                          [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
+                                      } else if ([attrs objectForKey:GCValueAttributeName]) {
+                                          //nothing
+                                      }
+                                  }];
     
     return gedcomString;
 }
