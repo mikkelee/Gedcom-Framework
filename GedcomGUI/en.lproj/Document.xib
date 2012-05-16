@@ -1254,7 +1254,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">100550</int>
+					<int key="connectionID">100553</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1274,19 +1274,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">attributedString: selection.gedcomString</string>
+						<string key="label">attributedString: selection.attributedGedcomString</string>
 						<reference key="source" ref="671912389"/>
 						<reference key="destination" ref="1060706041"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="671912389"/>
 							<reference key="NSDestination" ref="1060706041"/>
-							<string key="NSLabel">attributedString: selection.gedcomString</string>
+							<string key="NSLabel">attributedString: selection.attributedGedcomString</string>
 							<string key="NSBinding">attributedString</string>
-							<string key="NSKeyPath">selection.gedcomString</string>
+							<string key="NSKeyPath">selection.attributedGedcomString</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">100412</int>
+					<int key="connectionID">100552</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2539,7 +2539,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100550</int>
+			<int key="maxID">100553</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

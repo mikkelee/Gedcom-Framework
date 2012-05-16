@@ -24,8 +24,6 @@
 
 @implementation GCObject {
     NSMutableOrderedSet *_propertyStore;
-    
-    NSOrderedSet *_cachedValidProperties;
 }
 
 #pragma mark Initialization
@@ -54,19 +52,31 @@
 
 #pragma mark GCProperty access
 
+static __strong NSMutableDictionary *_validPropertiesByType;
+
 - (NSOrderedSet *)validProperties
 {
-    if (!_cachedValidProperties) {
-        NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
-        
-        for (id subTag in [_tag validSubTags]) {
-            [valid addObject:[subTag name]];
+    @synchronized(_validPropertiesByType) {
+        if (!_validPropertiesByType) {
+            _validPropertiesByType = [NSMutableDictionary dictionary];
         }
         
-        _cachedValidProperties = [valid copy];
+        NSOrderedSet *_validProperties = [_validPropertiesByType objectForKey:[self type]];
+        
+        if (!_validProperties) {
+            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
+            
+            for (id subTag in [_tag validSubTags]) {
+                [valid addObject:[subTag name]];
+            }
+            
+            _validProperties = [valid copy];
+            
+            [_validPropertiesByType setObject:_validProperties forKey:[self type]];
+        }
+        
+        return _validProperties;
     }
-	
-	return _cachedValidProperties;
 }
 
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
@@ -149,32 +159,46 @@
     }
 }
 
+#pragma mark NSKeyValueObserving overrides
+
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
 {
     NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
     
     [keyPaths addObject:@"gedcomString"];
     [keyPaths addObject:@"gedcomNode"];
+    [keyPaths addObject:@"properties"];
     
     GCTag *tag = [[GCTag tagsByName] objectForKey:key];
     
     if (tag != nil) {
         for (GCTag *subTag in [tag validSubTags]) {
-            [keyPaths addObject:[subTag name]];
+            NSString *keyPath = [subTag name];
+            [keyPaths addObject:keyPath];
+            /*
+            GCTag *subSubTag = subTag;
+            while ([[subSubTag validSubTags] count] > 0) {
+                for (GCTag *subSubSubTag in [subSubTag validSubTags]) {
+                    
+                }
+            }*/
         }
     } else if ([key isEqualToString:@"properties"]) {
-        for (NSString *key in [GCTag tagsByName]) {
-            if ([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound) {
-                continue;
-            }
-            [keyPaths addObject:key];
-        }
-        
+        [keyPaths addObjectsFromArray:[[GCTag tagsByName] allKeys]];
     }
     
     [keyPaths removeObject:key];
     
     return keyPaths;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
+{
+    if ([key isEqualToString:@"gedcomNode"] || [key isEqualToString:@"gedcomString"]) {
+        return NO;
+    } else {
+        return [super automaticallyNotifiesObserversForKey:key];
+    }
 }
 
 #pragma mark GCProperty collection accessors
@@ -242,7 +266,7 @@
     
     [self setDescribedObjectForProperty:property];
     
-    [self willChangeValueForKey:@"gedcomString"];
+    //[self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_propertyStore) {
         __block GCObject *existingPropertyOfType = nil;
@@ -261,7 +285,7 @@
         [_propertyStore addObject:property];
     }
     
-    [self didChangeValueForKey:@"gedcomString"];
+    //[self didChangeValueForKey:@"gedcomString"];
 }
 
 - (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
@@ -275,7 +299,7 @@
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert([property describedObject] == self);
     
-    [self willChangeValueForKey:@"gedcomString"];
+    //[self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_propertyStore) {
         [_propertyStore removeObject:property];
@@ -283,7 +307,7 @@
     
     [property setValue:nil forKey:@"primitiveDescribedObject"];
     
-    [self didChangeValueForKey:@"gedcomString"];
+    //[self didChangeValueForKey:@"gedcomString"];
 }
 
 /* //Optional. Implement if benchmarking indicates that performance is an issue.
@@ -391,9 +415,12 @@
 @dynamic context;
 @dynamic gedcomNode;
 @dynamic displayValue;
+@dynamic attributedDisplayValue;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
+    //TODO willChangeValue for gedcomString?
+    
     NSMutableArray *originalProperties = [[self propertiesArray] mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
@@ -446,6 +473,16 @@
     NSParameterAssert([[[self gedTag] code] isEqualToString:[node gedTag]]);
     
     [self setGedcomNode:node];
+}
+
+- (NSAttributedString *)attributedGedcomString
+{
+    return [[self gedcomNode] attributedGedcomString];
+}
+
+- (void)setAttributedGedcomString:(NSAttributedString *)attributedGedcomString
+{
+    [self setGedcomString:[attributedGedcomString string]];
 }
 
 @end

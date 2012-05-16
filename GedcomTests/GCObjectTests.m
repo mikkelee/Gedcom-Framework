@@ -47,9 +47,6 @@
     [indi setValue:names 
             forKey:@"personalName"];
 	
-    //alternately:
-    // [indi addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
-    
 	GCAttribute *birt = [GCAttribute attributeWithType:@"birth"];
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
@@ -129,9 +126,9 @@
     [fam setValue:[NSArray arrayWithObject:chil] forKey:@"child"];
     
     //alternately:
-	// [fam addRelationshipWithType:@"Husband" target:husb];
-	// [fam addRelationshipWithType:@"Wife" target:wife];
-	// [fam addRelationshipWithType:@"Child" target:chil];
+	// [fam addRelationshipWithType:@"husband" target:husb];
+	// [fam addRelationshipWithType:@"wife" target:wife];
+	// [fam addRelationshipWithType:@"child" target:chil];
 	
     //Setting known dates
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"];

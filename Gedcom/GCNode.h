@@ -47,6 +47,9 @@
 /// The receiver including its subnodes as a string.
 - (NSString *)gedcomString;
 
+/// The receiver including its subnodes as an attributed string.
+- (NSAttributedString *)attributedGedcomString;
+
 /// The receiver including its subnodes as an array of strings.
 - (NSArray *)gedcomLines;
 

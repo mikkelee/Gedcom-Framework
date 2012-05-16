@@ -132,6 +132,11 @@
     return [[self value] displayString];
 }
 
+- (NSAttributedString *)attributedDisplayValue
+{
+    return [[NSAttributedString alloc] initWithString:[self displayValue]];
+}
+
 - (void)setValueWithGedcomString:(NSString *)string
 {
     [self setValue:[[[self gedTag] valueType] valueWithGedcomString:string]];

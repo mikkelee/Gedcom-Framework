@@ -44,6 +44,7 @@ const NSString *kValueType = @"valueType";
 
 __strong static NSMutableDictionary *tagStore;
 __strong static NSMutableDictionary *tagInfo;
+__strong static NSDictionary *_tagsByName;
 
 + (void)recurse:(NSString *)key
 {
@@ -130,7 +131,21 @@ __strong static NSMutableDictionary *tagInfo;
 
 + (NSDictionary *)tagsByName
 {
-    return [tagStore copy];
+    if (!_tagsByName) {
+        NSSet *keys = [tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id key, id obj, BOOL *stop) {
+            return !([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound);
+        }];
+        
+        NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
+        
+        for (NSString *key in keys) {
+            [tmpTags setObject:[tagStore objectForKey:key] forKey:key];
+        }
+        
+        _tagsByName = [tmpTags copy];
+    }
+    
+    return [_tagsByName copy];
 }
 
 

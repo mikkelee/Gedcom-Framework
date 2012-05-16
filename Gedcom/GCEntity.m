@@ -160,12 +160,21 @@
 {
     NSParameterAssert([[gedcomNode xref] isEqualToString:[[self context] xrefForEntity:self]]);
     
+    //TODO actually call up the context and change the xref?
+    
     [super setGedcomNode:gedcomNode];
 }    
 
 - (NSString *)displayValue
 {
     return [[self context] xrefForEntity:self];
+}
+
+- (NSAttributedString *)attributedDisplayValue
+{
+    return [[NSAttributedString alloc] initWithString:[self displayValue] 
+                                           attributes:[NSDictionary dictionaryWithObject:[[self context] xrefForEntity:self]
+                                                                                  forKey:NSLinkAttributeName]];
 }
 
 @synthesize context = _context;

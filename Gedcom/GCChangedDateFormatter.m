@@ -46,15 +46,11 @@
     
     NSParameterAssert(dateString);
     
-    NSDate *date = nil;
-    
     @synchronized(self) {
-        date = [self dateFromString:dateString];
+        NSDate *date = [self dateFromString:dateString];
+        
+        return date;
     }
-    
-    NSParameterAssert(date);
-    
-	return date;
 }
 
 - (GCNode *)nodeWithDate:(NSDate *)date

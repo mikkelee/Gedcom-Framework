@@ -168,6 +168,13 @@
     return [[self context] xrefForEntity:_target];
 }
 
+- (NSAttributedString *)attributedDisplayValue
+{
+    return [[NSAttributedString alloc] initWithString:[self displayValue] 
+                                           attributes:[NSDictionary dictionaryWithObject:[[self context] xrefForEntity:_target]
+                                                                                  forKey:NSLinkAttributeName]];
+}
+
 @end
 
 @implementation GCRelationship (GCConvenienceMethods)

@@ -16,11 +16,9 @@
 #import "GCHeader.h"
 #import "GCEntity.h"
 
-#import "GCMutableOrderedSetProxy.h"
-
 #import "GCFileDelegate.h"
 
-@interface GCTrailer : NSObject
+@interface GCTrailer : NSObject //empty class to match trailer objects
 @end
 @implementation GCTrailer
 @end
@@ -103,7 +101,8 @@
         } else if ([objectClass isEqual:[GCEntity class]]) {
             [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:_context]];
         } else if ([objectClass isEqual:[GCTrailer class]]) {
-            return; //ignore trailer... 
+            *stop = YES;
+            return;
         } else {
             NSLog(@"Shouldn't happen! %@ unknown class: %@", node, objectClass);
         }
@@ -114,6 +113,8 @@
             }
         });
     }];
+    
+    //TODO verify that node count == entity count, ie that no data came after trailer.
     
     if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
         [_delegate file:self didFinishWithEntityCount:[_entities count]];
@@ -232,13 +233,8 @@
         idx = [indexes indexGreaterThanIndex:idx];
     }
 	
-	return [[GCMutableOrderedSetProxy alloc] initWithMutableOrderedSet:entities
-                                                              addBlock:^(id obj) {
-                                                                  [self addEntity:obj];
-                                                              }
-                                                           removeBlock:^(id obj) {
-                                                               [self removeEntity:obj];
-                                                           }];
+    
+    return entities; //TODO KVC
 }
 
 - (id)entitiesOfType:(NSString *)type

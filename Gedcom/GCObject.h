@@ -86,20 +86,20 @@
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
 
-/// The receiver as a GCNode.
+/// The receiver as a GCNode.  Setting this property will cause the receiver to interpret the node and add new properties and remove those that no longer exist.
 @property GCNode *gedcomNode;
 
-/** The reeciver as a string of Gedcom data.
- 
- Setting this property will cause the receiver to interpret the Gedcom data and add new properties and remove those that no longer exist.
- 
- */
+/// The reeciver as a string of Gedcom data. Setting it will interpret the string as a GCNode and set it to the receiver's gedcomNode property.
 @property NSString *gedcomString;
+
+@property NSAttributedString *attributedGedcomString;
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
 @property (readonly) GCContext *context;
 
 @property (readonly) NSString *displayValue;
+
+@property (readonly) NSAttributedString *attributedDisplayValue;
 
 @end
 

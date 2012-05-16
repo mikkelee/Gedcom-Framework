@@ -15,8 +15,6 @@
 
 - (void)addSubNode: (GCNode *) n;
 
-- (NSArray *)gedcomLinesAtLevel:(int) level;
-
 @property (weak) GCNode *parent;
 @property NSString *gedTag;
 @property NSString *gedValue;
@@ -180,17 +178,7 @@ static NSString *concSeparator;
 
 #pragma mark Gedcom output
 
-- (NSString *)gedcomString
-{
-	return [[self gedcomLinesAtLevel:0] componentsJoinedByString:[self lineSeparator]];
-}
-
-- (NSArray *)gedcomLines
-{
-	return [self gedcomLinesAtLevel:0];
-}
-
-void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray **outSubLines) {
+void contConcHelper(BOOL attributed, int level, NSString *inLine, NSString **outInitial, NSArray **outSubLines) {
 	NSMutableArray *lines = [[inLine componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
     
     NSString *initial = nil;
@@ -204,7 +192,11 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
                 initial = line;
             } else {
                 //we already set the first line so make a CONT node
-                [subLines addObject:[NSString stringWithFormat:@"%d CONT %@", level+1, line]];
+                [subLines addObject:[NSArray arrayWithObjects:
+                                     [NSNumber numberWithInt:level+1],
+                                     @"CONT",
+                                     line,
+                                     nil]];
             }
         } else {
             //we need to split the line on >248 or concSeparator
@@ -228,17 +220,29 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
                     if (initial == nil) {
                         initial = bite;
                     } else {
-                        [subLines addObject:[NSString stringWithFormat:@"%d CONT %@", level+1, bite]];
+                        [subLines addObject:[NSArray arrayWithObjects:
+                                             [NSNumber numberWithInt:level+1],
+                                             @"CONT",
+                                             bite,
+                                             nil]];
                     }
                 } else {
                     //we already set the first line so make a CONC node
-                    [subLines addObject:[NSString stringWithFormat:@"%d CONC %@", level+1, bite]];
+                    [subLines addObject:[NSArray arrayWithObjects:
+                                         [NSNumber numberWithInt:level+1],
+                                         @"CONC",
+                                         bite,
+                                         nil]];
                 }
                 
                 firstPass = NO;
             }
             
-            [subLines addObject:[NSString stringWithFormat:@"%d CONC %@", level+1, leftover]];
+            [subLines addObject:[NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:level+1],
+                                 @"CONC",
+                                 leftover,
+                                 nil]];
         }
     }
     
@@ -249,35 +253,124 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
     //NSLog(@"outSubLines: %@", *outSubLines);
 }
 
-- (NSArray *)gedcomLinesAtLevel:(int) level
+#define coloredString(color, string) \
+([[NSAttributedString alloc] initWithString:string\
+                                 attributes:[NSDictionary dictionaryWithObjectsAndKeys:\
+                                            color, NSForegroundColorAttributeName,\
+                                            nil]])
+
+#define coloredLinkString(color, link, string) \
+([[NSAttributedString alloc] initWithString:string\
+                                 attributes:[NSDictionary dictionaryWithObjectsAndKeys:\
+                                            color, NSForegroundColorAttributeName,\
+                                            link, NSLinkAttributeName,\
+                                            nil]])
+
+NSAttributedString * joinedAttributedString(NSArray *components) {
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
+    
+    NSAttributedString *space = [[NSAttributedString alloc] initWithString:@" "];
+    
+    for (NSAttributedString *component in components) {
+        [result appendAttributedString:component];
+        [result appendAttributedString:space];
+    }
+    
+    [result deleteCharactersInRange:NSMakeRange([result length]-1, 1)];
+    
+    return result;
+}
+
+- (NSArray *)gedcomLinesAtLevel:(int) level attributed:(BOOL)attributed
 {
 	NSMutableArray *gedLines = [NSMutableArray array];
     
     NSString *firstLine = nil;
     NSArray *subLineNodes = nil;
 	
-    contConcHelper(level, [self gedValue], &firstLine, &subLineNodes);
+    contConcHelper(attributed, level, [self gedValue], &firstLine, &subLineNodes);
+    
+    NSMutableArray *lineComponents = [NSMutableArray array];
+    
+    NSString *levelString = [NSString stringWithFormat:@"%d", level];
+    
+    if (attributed) {
+        [lineComponents addObject:coloredString([NSColor redColor], levelString)];
+    } else {
+        [lineComponents addObject:levelString];
+    }
     
     if ([self xref] && ![[self xref] isEqualToString:@""]) {
-        [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self xref], [self gedTag]]];
-		if (firstLine && ![firstLine isEqualToString:@""]) {
-            [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], firstLine]];
+        if (attributed) {
+            [lineComponents addObject:coloredString([NSColor blueColor], [self xref])];
+            [lineComponents addObject:coloredString([NSColor darkGrayColor], [self gedTag])];
+        } else {
+            [lineComponents addObject:[self xref]];
+            [lineComponents addObject:[self gedTag]];
         }
 	} else {
-		if (firstLine && ![firstLine isEqualToString:@""]) {
-            [gedLines addObject:[NSString stringWithFormat:@"%d %@ %@", level, [self gedTag], firstLine]];
+        if (attributed) {
+            [lineComponents addObject:coloredString([NSColor darkGrayColor], [self gedTag])];
+            if (firstLine) {
+                if ([firstLine hasPrefix:@"@"] && [firstLine hasSuffix:@"@"]) {
+                    [lineComponents addObject:coloredLinkString([NSColor blueColor], firstLine, firstLine)];
+                } else {
+                    [lineComponents addObject:[[NSAttributedString alloc] initWithString:firstLine]];
+                }
+            }
         } else {
-            [gedLines addObject:[NSString stringWithFormat:@"%d %@", level, [self gedTag]]];
+            [lineComponents addObject:[self gedTag]];
+            if (firstLine) {
+                [lineComponents addObject:firstLine];
+            }
         }
     }
     
-    [gedLines addObjectsFromArray:subLineNodes];
+    if (attributed) {
+        [gedLines addObject:joinedAttributedString(lineComponents)];
+    } else {
+        [gedLines addObject:[lineComponents componentsJoinedByString:@" "]];
+    }
+    
+    for (NSArray *subLine in subLineNodes) {
+        if (attributed) {
+            [gedLines addObject:joinedAttributedString(subLine)];
+        } else {
+            [gedLines addObject:[subLine componentsJoinedByString:@" "]];
+        }
+    }
     
 	for (id subNode in [self subNodes] ) {
-		[gedLines addObjectsFromArray:[subNode gedcomLinesAtLevel:level+1]];
+		[gedLines addObjectsFromArray:[subNode gedcomLinesAtLevel:level+1 attributed:attributed]];
 	}
 	
 	return gedLines;
+}
+
+- (NSArray *)gedcomLines
+{
+	return [self gedcomLinesAtLevel:0 attributed:NO];
+}
+
+- (NSString *)gedcomString
+{
+	return [[self gedcomLines] componentsJoinedByString:[self lineSeparator]];
+}
+
+- (NSAttributedString *)attributedGedcomString
+{
+    NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] init];
+    
+    NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:[self lineSeparator]];
+    
+    for (NSAttributedString *line in [self gedcomLinesAtLevel:0 attributed:YES]) {
+        [lines appendAttributedString:line];
+        [lines appendAttributedString:lineFeed];
+    }
+    
+    [lines addAttribute:NSFontAttributeName value:[NSFont userFixedPitchFontOfSize:12.0f] range:NSMakeRange(0, [lines length])];
+    
+	return lines;
 }
 
 #pragma mark NSKeyValueCoding overrides

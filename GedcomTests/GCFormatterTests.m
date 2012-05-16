@@ -61,7 +61,7 @@
     
     [formatter getObjectValue:&obj forString:@"" errorDescription:&error];
     
-    STAssertEqualObjects(obj, [GCBool no], nil);
+    STAssertEqualObjects(obj, [GCBool undecided], nil);
 }
 
 @end
