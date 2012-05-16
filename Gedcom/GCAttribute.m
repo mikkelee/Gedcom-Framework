@@ -45,6 +45,18 @@
     return [[self alloc] initWithType:type];
 }
 
+#pragma mark NSKeyValueCoding overrides
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
+    NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
+    
+    [keyPaths addObject:@"value"];
+    [keyPaths removeObject:key];
+    
+    return keyPaths;
+}
+
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
@@ -53,6 +65,13 @@
 								 value:[_value gedcomString]
 								  xref:nil
 							  subNodes:[self subNodes]];
+}
+
+- (void)setGedcomNode:(GCNode *)gedcomNode
+{
+    [self setValueWithGedcomString:[gedcomNode gedValue]];
+    
+    [super setGedcomNode:gedcomNode];       
 }
 
 #pragma mark Comparison

@@ -156,6 +156,13 @@
 							  subNodes:[self subNodes]];
 }
 
+- (void)setGedcomNode:(GCNode *)gedcomNode
+{
+    NSParameterAssert([[gedcomNode xref] isEqualToString:[[self context] xrefForEntity:self]]);
+    
+    [super setGedcomNode:gedcomNode];
+}    
+
 - (NSString *)displayValue
 {
     return [[self context] xrefForEntity:self];

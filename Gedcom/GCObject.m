@@ -394,22 +394,6 @@
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    if ([gedcomNode xref]) {
-        if ([self isKindOfClass:[GCEntity class]]) {
-            NSParameterAssert([[gedcomNode xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);
-        }
-    }
-    
-    if ([gedcomNode gedValue]) {
-        if ([self isKindOfClass:[GCAttribute class]]) {
-            [(GCAttribute *)self setValueWithGedcomString:[gedcomNode gedValue]];            
-        } else if ([self isKindOfClass:[GCRelationship class]]) {
-            [(GCRelationship *)self setTarget:[[self context] entityForXref:[gedcomNode gedValue]]];
-        } else {
-            NSLog(@"WTF");
-        }
-    }
-    
     NSMutableArray *originalProperties = [[self propertiesArray] mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
