@@ -9,6 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import "Gedcom.h"
+#import <objc/runtime.h>
 
 @interface GCTestObserver : NSObject
 
@@ -53,11 +54,13 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     //NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
-    [_observations addObject:
-     [NSString stringWithFormat:@"%@ : %@ : %@", 
-      [change valueForKey:NSKeyValueChangeKindKey], 
-      [[[change valueForKey:NSKeyValueChangeOldKey] lastObject] gedcomString], 
-      [[[change valueForKey:NSKeyValueChangeNewKey] lastObject] gedcomString]]];
+    NSArray *observation = [NSArray arrayWithObjects:keyPath,
+                            [change valueForKey:NSKeyValueChangeKindKey], 
+                            [change valueForKey:NSKeyValueChangeOldKey] ? [[[change valueForKey:NSKeyValueChangeOldKey] lastObject] gedcomString] : @"(null)", 
+                            [change valueForKey:NSKeyValueChangeNewKey] ? [[[change valueForKey:NSKeyValueChangeNewKey] lastObject] gedcomString] : @"(null)", 
+                            nil];
+    NSString *observationString = [observation componentsJoinedByString:@" : "];
+    [_observations addObject:observationString];
 }
 
 - (NSArray *)observations
@@ -92,7 +95,28 @@
 	STAssertEqualObjects(aNode, [bNode valueForKey:@"NAME"], nil);
 }
 
-- (void)testKVC
+- (void)testKVC1
+{
+	GCContext *ctx = [GCContext context];
+	
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    
+    [[indi propertiesArray] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
+    
+    NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"];
+    [indi setValue:knownDate forKey:@"lastModified"];
+    
+    STAssertEqualObjects([indi gedcomString], 
+                         @"0 @INDI1@ INDI\n"
+                         @"1 NAME Jens /Hansen/\n"
+                         @"1 CHAN\n"
+                         @"2 DATE 1 JAN 2000\n"
+                         @"3 TIME 12:00:00"
+                         , nil);
+    
+}
+
+- (void)testKVC2
 {
 	GCContext *ctx = [GCContext context];
 	
@@ -140,27 +164,60 @@
     [[indi mutableOrderedSetValueForKey:@"personalName"] removeObjectAtIndex:0];
     
     NSArray *expectedObservations = [NSArray arrayWithObjects:
-                             // NSKeyValueChange : old : new
-                             @"2 : (null) : 0 NAME Jens /Hansen/",
-                             @"2 : (null) : 0 NAME Jens /Hansen/ Smed",
-                             @"3 : 0 NAME Jens /Hansen/ : (null)",
-                             nil];
+                                     // NSKeyValueChange : old : new
+                                     @"personalName : 2 : (null) : 0 NAME Jens /Hansen/",
+                                     @"personalName : 2 : (null) : 0 NAME Jens /Hansen/ Smed",
+                                     @"personalName : 3 : 0 NAME Jens /Hansen/ : (null)",
+                                     nil];
     STAssertEqualObjects([observer observations], 
                          expectedObservations,
                          nil);
 }
 
-- (void)testExperiment
+- (void)testSetGedcomString
 {
+    GCTestObserver *observer = [[GCTestObserver alloc] init];
+
 	GCContext *ctx = [GCContext context];
 	
     GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
-    [[indi mutablePropertiesSet] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
+    [indi setGedcomString:@"0 @INDI1@ INDI\n"
+     @"1 NAME Jens /Hansen/\n"
+     @"1 NAME Jens /Hansen/ Smed\n"
+     @"1 BIRT\n"
+     @"2 DATE 1 JAN 1901\n"
+     @"1 DEAT Y"];
     
-    NSLog(@"valueForKey properties: %@", [indi valueForKey:@"properties"]);
-    NSLog(@"propertiesSet: %@", [indi propertiesSet]);
+    [observer setEntity:indi];
     
+    [indi setGedcomString:@"0 @INDI1@ INDI\n"
+     @"1 NAME Jens /Hansen/\n"
+     @"1 NAME Jens /Hansen/ Smed\n"
+     @"1 DEAT\n"
+     @"2 DATE 1 JAN 1930"];
+    
+    NSArray *expectedObservations = [NSArray arrayWithObjects:
+                                     // NSKeyValueChange : old : new
+                                     @"birth : 2 : (null) : 0 BIRT",
+                                     @"death : 2 : (null) : 0 DEAT Y",
+                                     @"death : 3 : 0 DEAT : (null)",
+                                     nil];
+    STAssertEqualObjects([observer observations], 
+                         expectedObservations,
+                         nil);
 }
+/*
+- (void)testAAA
+{
+    unsigned int methodCount = 0;
+    Method * methods = class_copyMethodList(NSClassFromString(@"NSKeyValueFastMutableSet1"), &methodCount);
+    for (int i = 0; i < methodCount; ++i) {
+        Method m = methods[i];
+        NSLog(@"%@", NSStringFromSelector(method_getName(m)));
+    }
+    free(methods);
+    
+}*/
 
 @end

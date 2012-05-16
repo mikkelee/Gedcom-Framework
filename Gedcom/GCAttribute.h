@@ -53,6 +53,8 @@
  */
 @property GCValue *value;
 
+- (void)setValueWithGedcomString:(NSString *)string;
+
 @end
 
 @interface GCAttribute (GCConvenienceMethods)

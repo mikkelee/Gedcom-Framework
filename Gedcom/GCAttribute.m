@@ -113,6 +113,11 @@
     return [[self value] displayString];
 }
 
+- (void)setValueWithGedcomString:(NSString *)string
+{
+    [self setValue:[[[self gedTag] valueType] valueWithGedcomString:string]];
+}
+
 @end
 
 @implementation GCAttribute (GCConvenienceMethods)

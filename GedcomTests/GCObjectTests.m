@@ -181,43 +181,6 @@
                          , nil);
 }
 
-- (void)testSetGedcomString
-{
-	GCContext *ctx = [GCContext context];
-	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-    
-    [indi setGedcomString:@"0 @INDI1@ INDI\n"
-                         @"1 NAME Jens /Hansen/\n"
-                         @"1 NAME Jens /Hansen/ Smed\n"
-                         @"1 BIRT\n"
-                         @"2 DATE 1 JAN 1901\n"
-                         @"1 DEAT Y"];
-    
-    GCAttribute *birt1 = [[indi valueForKey:@"birth"] lastObject];
-    GCAttribute *deat1 = [[indi valueForKey:@"death"] lastObject];
-    
-    //NSLog(@"[indi properties]: %@", [indi properties]);
-    
-    [indi setGedcomString:@"0 @INDI1@ INDI\n"
-                         @"1 NAME Jens /Hansen/\n"
-                         @"1 NAME Jens /Hansen/ Smed\n"
-                         @"1 BIRT\n"
-                         @"2 DATE 1 JAN 1901\n"
-                         @"1 DEAT\n"
-                         @"2 DATE 1 JAN 1930"];
-    
-    GCAttribute *birt2 = [[indi valueForKey:@"birth"] lastObject];
-    GCAttribute *deat2 = [[indi valueForKey:@"death"] lastObject];
-    
-    STAssertTrue([birt1 isEqualTo:birt2], nil);
-    STAssertFalse([deat1 isEqual:deat2], nil);
-    
-    //NSLog(@"[indi properties]: %@", [indi properties]);
-    
-    STAssertEquals([[indi valueForKey:@"properties"] count], (NSUInteger)4, nil);
-}
-
 - (void)testCoding
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];

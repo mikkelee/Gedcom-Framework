@@ -69,8 +69,14 @@ static NSString *concSeparator;
 
 #pragma mark Convenience constructors
 
-+ (NSArray*)arrayOfNodesFromString:(NSString*) gedString
++ (NSArray*)arrayOfNodesFromString:(id)gedString
 {
+    if ([gedString isKindOfClass:[NSAttributedString class]]) {
+        gedString = [gedString string];
+    }
+    
+    NSParameterAssert([gedString isKindOfClass:[NSString class]]);
+    
 	NSMutableArray *gedArray = [NSMutableArray array];
 	
 	__block int currentLevel = 0;

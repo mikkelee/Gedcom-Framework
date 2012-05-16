@@ -87,7 +87,7 @@
 @property (readonly) GCTag *gedTag;
 
 /// The receiver as a GCNode.
-@property (readonly) GCNode *gedcomNode;
+@property GCNode *gedcomNode;
 
 /** The reeciver as a string of Gedcom data.
  
@@ -136,10 +136,8 @@
  */
 - (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes;
 
-@property (readonly) NSSet *propertiesSet;
-@property (readonly) NSMutableSet *mutablePropertiesSet;
-@property (readonly) NSArray *propertiesArray;
-@property (readonly) NSMutableArray *mutablePropertiesArray;
+//@property (readonly) NSMutableSet *propertiesSet;
+@property (readonly) NSMutableArray *propertiesArray;
 
 @end
 

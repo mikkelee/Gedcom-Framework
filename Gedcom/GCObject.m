@@ -149,6 +149,34 @@
     }
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
+    NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
+    
+    [keyPaths addObject:@"gedcomString"];
+    [keyPaths addObject:@"gedcomNode"];
+    
+    GCTag *tag = [[GCTag tagsByName] objectForKey:key];
+    
+    if (tag != nil) {
+        for (GCTag *subTag in [tag validSubTags]) {
+            [keyPaths addObject:[subTag name]];
+        }
+    } else if ([key isEqualToString:@"properties"]) {
+        for (NSString *key in [GCTag tagsByName]) {
+            if ([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound) {
+                continue;
+            }
+            [keyPaths addObject:key];
+        }
+        
+    }
+    
+    [keyPaths removeObject:key];
+    
+    return keyPaths;
+}
+
 #pragma mark GCProperty collection accessors
 
 - (void)setDescribedObjectForProperty:(GCProperty *)property
@@ -176,7 +204,7 @@
  [_propertyStore getObjects:buffer range:inRange];
  }
  */
-
+/*
 - (void)insertObject:(GCProperty *)object inPropertiesAtIndex:(NSUInteger)index
 {
     [self setDescribedObjectForProperty:object];
@@ -188,25 +216,25 @@
     [[_propertyStore objectAtIndex:index] setValue:nil forKey:@"primitiveDescribedObject"];
     [_propertyStore removeObjectAtIndex:index];
 }
-
+*/
 /* //Optional. Implement if benchmarking indicates that performance is an issue.
  - (void)replaceObjectInPropertiesAtIndex:(NSUInteger)index withObject:(id)object
  {
  
  }
  */
-
+/*
 - (NSEnumerator *)enumeratorOfProperties
 {
     return [_propertyStore objectEnumerator];
-}
-
+}*/
+/*
 - (GCProperty *)memberOfProperties:(GCProperty *)object
 {
     return [_propertyStore containsObject:object] ? object : nil;
 }
-
-- (void)addPropertiesObject:(GCProperty *)property
+*/
+- (void)insertObject:(GCProperty *)property inPropertiesAtIndex:(NSUInteger)index
 {
     NSParameterAssert(property);
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
@@ -236,8 +264,10 @@
     [self didChangeValueForKey:@"gedcomString"];
 }
 
-- (void)removePropertiesObject:(GCProperty *)property
+- (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
 {
+    GCProperty *property = [_propertyStore objectAtIndex:index];
+    
     if (property == nil) {
         return;
     }
@@ -356,6 +386,66 @@
     return ([[self validProperties] count] > 0); //TODO (see cocoa-dev reply)
 }
 
+@synthesize gedTag = _tag;
+
+@dynamic context;
+@dynamic gedcomNode;
+@dynamic displayValue;
+
+- (void)setGedcomNode:(GCNode *)gedcomNode
+{
+    if ([gedcomNode xref]) {
+        if ([self isKindOfClass:[GCEntity class]]) {
+            NSParameterAssert([[gedcomNode xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);
+        }
+    }
+    
+    if ([gedcomNode gedValue]) {
+        if ([self isKindOfClass:[GCAttribute class]]) {
+            [(GCAttribute *)self setValueWithGedcomString:[gedcomNode gedValue]];            
+        } else if ([self isKindOfClass:[GCRelationship class]]) {
+            [(GCRelationship *)self setTarget:[[self context] entityForXref:[gedcomNode gedValue]]];
+        } else {
+            NSLog(@"WTF");
+        }
+    }
+    
+    NSMutableArray *originalProperties = [[self propertiesArray] mutableCopy];
+    
+    //NSLog(@"originalProperties: %@", originalProperties);
+    
+    for (GCNode *subNode in [gedcomNode subNodes]) {
+        if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
+            continue; //TODO ?
+        }
+        
+        NSIndexSet *matches = [originalProperties indexesOfObjectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return [[[(GCProperty *)obj gedTag] code] isEqualToString:[subNode gedTag]];
+        }];
+        
+        if ([matches count] < 1) {
+            //NSLog(@"adding new property for %@", subNode);
+            [GCProperty propertyForObject:self withGedcomNode:subNode];
+        } else {
+            GCProperty *property = [originalProperties objectAtIndex:[matches firstIndex]];
+            [originalProperties removeObject:property];
+            //NSLog(@"modifying property %@ with %@", property, subNode);
+            [property setGedcomNode:subNode];
+        }
+    }
+    
+    //NSLog(@"after adding to propertiesArray: %@", [self propertiesArray]);
+    
+    //NSLog(@"removing originalProperties: %@", originalProperties);
+    
+    //remove the left over objects:
+    for (GCProperty *property in originalProperties) {
+        [[self propertiesArray] removeObject:property];
+    }
+    
+    //NSLog(@"propertiesArray: %@", [self propertiesArray]);
+}
+
 - (NSString *)gedcomString
 {
     return [[self gedcomNode] gedcomString];
@@ -371,34 +461,8 @@
     
     NSParameterAssert([[[self gedTag] code] isEqualToString:[node gedTag]]);
     
-    if ([node xref]) {
-        NSParameterAssert([[node xref] isEqualToString:[[self context] xrefForEntity:(GCEntity *)self]]);
-    }
-    
-    //TODO clean this up:
-    
-    NSMutableOrderedSet *originalProperties = [[self mutableArrayValueForKey:@"properties"] mutableCopy];
-    
-    //NSLog(@"originalProperties: %@", originalProperties);
-    
-    for (GCNode *subNode in [node subNodes]) {
-        GCProperty *property = [GCProperty propertyForObject:self withGedcomNode:subNode];
-        [originalProperties removeObject:property];
-    }
-    
-    //NSLog(@"originalProperties: %@", originalProperties);
-    
-    //remove the left over objects:
-    for (GCProperty *property in originalProperties) {
-        [[self mutableArrayValueForKey:@"properties"] removeObject:property];
-    }
+    [self setGedcomNode:node];
 }
-
-@synthesize gedTag = _tag;
-
-@dynamic context;
-@dynamic gedcomNode;
-@dynamic displayValue;
 
 @end
 
@@ -430,22 +494,12 @@
     }];
 }
 
-- (NSSet *)propertiesSet
-{
-    return [self valueForKey:@"properties"];
-}
-
-- (NSMutableSet *)mutablePropertiesSet
+- (NSMutableSet *)propertiesSet
 {
     return [self mutableSetValueForKey:@"properties"];
 }
 
-- (NSArray *)propertiesArray
-{
-    return [self valueForKey:@"properties"];
-}
-
-- (NSMutableArray *)mutablePropertiesArray
+- (NSMutableArray *)propertiesArray
 {
     return [self mutableArrayValueForKey:@"properties"];
 }
