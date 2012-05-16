@@ -137,11 +137,6 @@
     return [[NSAttributedString alloc] initWithString:[self displayValue]];
 }
 
-- (void)setValueWithGedcomString:(NSString *)string
-{
-    [self setValue:[[[self gedTag] valueType] valueWithGedcomString:string]];
-}
-
 @end
 
 @implementation GCAttribute (GCConvenienceMethods)
@@ -153,6 +148,11 @@
     [attribute setValue:value];
     
     return attribute;
+}
+
+- (void)setValueWithGedcomString:(NSString *)string
+{
+    [self setValue:[[[self gedTag] valueType] valueWithGedcomString:string]];
 }
 
 @end

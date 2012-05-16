@@ -12,8 +12,22 @@
 
 @class GCEntity;
 
+/**
+ 
+ A set of optional methods that can be implemented by an object.
+ 
+ If a GCContext has a delegate, it will call these if they are implemented.
+ 
+ */
 @interface NSObject (GCContextDelegate)
 
+/** Will be called...
+ 
+ TODO rename...
+ 
+ @param context The context... 
+ @param entity The entity.
+ */
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity;
 
 @end

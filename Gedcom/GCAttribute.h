@@ -53,8 +53,6 @@
  */
 @property GCValue *value;
 
-- (void)setValueWithGedcomString:(NSString *)string;
-
 @end
 
 @interface GCAttribute (GCConvenienceMethods)
@@ -68,5 +66,14 @@
  
  */
 + (id)attributeWithType:(NSString *)type value:(GCValue *)value;
+
+/** Convenience method for setting the attribute's value with a given string.
+ 
+ The attribute will create an appropiate GCValue subclass object.
+ 
+ @param string The string value to use.
+ */
+
+- (void)setValueWithGedcomString:(NSString *)string;
 
 @end

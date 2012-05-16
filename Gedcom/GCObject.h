@@ -92,13 +92,20 @@
 /// The reeciver as a string of Gedcom data. Setting it will interpret the string as a GCNode and set it to the receiver's gedcomNode property.
 @property NSString *gedcomString;
 
+/// The receiver as an attributed string of Gedcom data.
 @property NSAttributedString *attributedGedcomString;
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
 @property (readonly) GCContext *context;
 
+/** The value of the receiver appropiate for displaying in the user interface.
+ 
+ For entities, it will be their xref; for attributes, their value; and for relationships, the target's xref.
+
+ */
 @property (readonly) NSString *displayValue;
 
+/// The displayValue of the receiver, with attributes.
 @property (readonly) NSAttributedString *attributedDisplayValue;
 
 @end
@@ -137,6 +144,7 @@
 - (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes;
 
 //@property (readonly) NSMutableSet *propertiesSet;
+/// The properties of the receiver as a KVC-compliant mutable array.
 @property (readonly) NSMutableArray *propertiesArray;
 
 @end

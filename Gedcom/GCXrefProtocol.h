@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 
+ Handles URLs of of the form xref://contextName/@xref@
+ 
+ See GCContext's delegate.
+ 
+ */
 @interface GCXrefProtocol : NSURLProtocol
 
 @end

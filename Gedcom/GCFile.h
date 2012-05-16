@@ -55,6 +55,12 @@
 
 #pragma mark Node access
 
+/** Causes the receiver to parse the nodes.
+ 
+ TODO: should empty current nodes?
+ 
+ @param nodes A collection of nodes.
+ */
 - (void)parseNodes:(NSArray *)nodes;
 
 #pragma mark Entity access
@@ -94,6 +100,7 @@
 /// The receiver as a Gedcom string.
 @property (readonly) NSString *gedcomString;
 
+/// The receiver's delegate. See GCFileDelegate.
 @property (weak) id delegate;
 
 @end
@@ -123,6 +130,7 @@
 /// An ordered collection of the receiver's submitters.
 @property (readonly) NSMutableOrderedSet *submitters;
 
+/// The receiver's context.
 @property (readonly) GCContext *context;
 
 @end

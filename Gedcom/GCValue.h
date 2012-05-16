@@ -17,7 +17,7 @@
  Use one of the following subclasses:
  
  GCString,
- GCNameString,
+ GCNamestring,
  GCNumber,
  GCDate,
  GCAge,
