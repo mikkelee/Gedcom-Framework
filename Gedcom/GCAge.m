@@ -19,6 +19,7 @@
 
 typedef enum {
     GCAgeLessThan,
+    GCAgeNoQualifier,
     GCAgeGreaterThan
 } GCAgeQualifier;
 
@@ -68,6 +69,10 @@ typedef enum {
 		[stringComponents addObject:[NSString stringWithFormat:@"%dd", [[self ageComponents] day]]];
 	}
     
+    if ([stringComponents count] == 0) {
+        [stringComponents addObject:@"0y"];
+    }
+    
     return [stringComponents componentsJoinedByString:@" "];
 }
 
@@ -94,6 +99,10 @@ typedef enum {
 	} else if ([[self ageComponents] day] > 1) {
 		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d days" value:@"%d days" table:@"Formatting"], [[self ageComponents] day]]];
 	}
+    
+    if ([stringComponents count] == 0) {
+        [stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Formatting"], 0]];
+    }
     
     return [stringComponents componentsJoinedByString:@", "];
 }
@@ -135,23 +144,35 @@ typedef enum {
 @implementation GCQualifiedAge
 
 NSString * const GCAgeQualifier_toString[] = {
-    @"<",
-    @">"
+    @"< ",
+    @"",
+    @"> "
 };
 
 - (NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"%@ %@", GCAgeQualifier_toString[[self qualifier]], [[self age] gedcomString]];
+	return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[[self qualifier]], [[self age] gedcomString]];
 }
 
 - (NSString *)displayString
 {
-    return [self gedcomString];
+	return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[[self qualifier]], [[self age] displayString]];
 }
 
 - (GCSimpleAge *)refAge
 {
 	return [[self age] refAge];
+}
+
+- (NSComparisonResult)compare:(id)other
+{
+    NSComparisonResult result = [[self age] compare:[other refAge]];
+    
+    if (result != NSOrderedSame) {
+        return result;
+    }
+    
+    return [[NSNumber numberWithInt:[self qualifier]] compare:[NSNumber numberWithInt:[other qualifier]]];
 }
 
 @synthesize age;
@@ -190,7 +211,7 @@ NSString * const GCAgeQualifier_toString[] = {
     
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init]; 
     
-    GCAgeQualifier qualifier = 0;
+    GCAgeQualifier qualifier = GCAgeNoQualifier;
     
     if ([[self keyword] isEqualToString:@"CHILD"]) {
         [ageComponents setYear:8];
@@ -209,11 +230,7 @@ NSString * const GCAgeQualifier_toString[] = {
     
 	[age setAgeComponents:ageComponents];
     
-    if (qualifier) {
-        return [GCAge ageWithAge:age withQualifier:qualifier];
-    } else {
-        return age;
-    }
+    return [GCAge ageWithAge:age withQualifier:qualifier];
 }
 
 @synthesize keyword;
@@ -378,7 +395,8 @@ NSString * const GCAgeQualifier_toString[] = {
 - (void)didMatchSimpleAge:(PKAssembly *)a
 {
 	DebugLog(@"%s (line %d) stack: %@", __FUNCTION__, __LINE__, [a stack]);
-	[a push:[GCAge ageWithSimpleAge:currentAgeComponents]];
+	id anAge = [GCAge ageWithSimpleAge:currentAgeComponents];
+    [a push:[GCAge ageWithAge:anAge withQualifier:GCAgeNoQualifier]];
 }
 
 - (void)didMatchQualifiedAge:(PKAssembly *)a

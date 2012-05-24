@@ -73,7 +73,7 @@
         return;
     }
     
-    NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
+    //NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
     
     NSArray *observation = [NSArray arrayWithObjects:keyPath,
                             [change valueForKey:NSKeyValueChangeKindKey], 
@@ -233,7 +233,7 @@
                          nil);*/
 }
 
-- (void)testAAA
+- (void)AtestAAA
 {
 	GCContext *ctx = [GCContext context];
 	

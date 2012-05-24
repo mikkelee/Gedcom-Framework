@@ -34,6 +34,7 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **Unit tests**: Better (full) code coverage
 * **GCValue**: more helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
 * **GCDate**: sort should take into account qualifiers.
+* **Handlers**: special cases; see SOURCE_CITATION in spec.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
 
 # Examples #

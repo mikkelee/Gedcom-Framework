@@ -16,17 +16,6 @@
 
 @implementation GCAgeTests
 
-- (void)testSimpleAge
-{
-	GCAge *age = [GCAge valueWithGedcomString:@"3y 1m 2d"];
-	
-	STAssertEqualObjects(NSStringFromClass([age class]), @"GCSimpleAge", nil);
-	STAssertEqualObjects([age gedcomString], @"3y 1m 2d", nil);
-	
-    //will only pass if localization isn't changed from English:
-    STAssertEqualObjects([age displayString], @"3 years, 1 month, 2 days", nil);
-}
-
 - (void)testAgeKeyword
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"INFANT"];
@@ -43,12 +32,50 @@
 	STAssertEqualObjects([age gedcomString], @"< 10d", nil);
 }
 
+- (void)testUnqualifiedAge
+{
+	GCAge *age = [GCAge valueWithGedcomString:@"3y 1m 2d"];
+	
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCQualifiedAge", nil);
+	STAssertEqualObjects([age gedcomString], @"3y 1m 2d", nil);
+	
+    //will only pass if localization isn't changed from English:
+    STAssertEqualObjects([age displayString], @"3 years, 1 month, 2 days", nil);
+}
+
+- (void)testInvalidAge
+{
+	GCAge *age = [GCAge valueWithGedcomString:@"Not an age"];
+	
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCInvalidAge", nil);
+	STAssertEqualObjects([age gedcomString], @"Not an age", nil);
+}
+
 - (void)testAgeSort
 {
-	GCAge *age1 = [GCAge valueWithGedcomString:@"1y 20d"];
-	GCAge *age2 = [GCAge valueWithGedcomString:@"4y 1m"];
-	
-	STAssertEquals((NSInteger)NSOrderedAscending, [age1 compare:age2], nil);
+    NSMutableArray *ages = [NSMutableArray array];
+    
+    GCPlacestring *a = [GCAge valueWithGedcomString:@"INFANT"];
+    GCPlacestring *b = [GCAge valueWithGedcomString:@"STILLBORN"];
+    GCPlacestring *c = [GCAge valueWithGedcomString:@"0y"];
+    GCPlacestring *d = [GCAge valueWithGedcomString:@"5y"];
+    GCPlacestring *e = [GCAge valueWithGedcomString:@"6y"];
+    GCPlacestring *f = [GCAge valueWithGedcomString:@"< 6y"];
+    GCPlacestring *g = [GCAge valueWithGedcomString:@"1y"];
+    
+    [ages addObject:a];
+    [ages addObject:b];
+    [ages addObject:c];
+    [ages addObject:d];
+    [ages addObject:e];
+    [ages addObject:f];
+    [ages addObject:g];
+    
+    [ages sortUsingSelector:@selector(compare:)];
+    
+    NSArray *expectedOrder = [NSArray arrayWithObjects:b, c, a, g, d, f, e, nil];
+    
+    STAssertEqualObjects(ages, expectedOrder, nil);
 }
 
 @end

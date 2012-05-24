@@ -16,7 +16,7 @@
 
 @implementation GCPlacestringTests
 
-- (void)testPlacestring
+- (void)testPlacestringSort
 {
     NSMutableArray *placeStrings = [NSMutableArray array];
     
