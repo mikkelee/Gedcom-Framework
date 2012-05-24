@@ -78,7 +78,7 @@
 		"validSubTags": [
                          { "name": "restrictionNotice", "min": "0", "max": "1" },
                          { "name": "personalName", "min": "0", "max": "M" },
-                         { "name": "sex", "min": "0", "max": "M" },
+                         { "name": "sex", "min": "0", "max": "1" },
                          { "name": "@individualEvent", "min": "0", "max": "M" },
                          { "name": "@individualAttribute", "min": "0", "max": "M" },
                          { "name": "@individualLDSOrdinance", "min": "0", "max": "M" },
@@ -875,7 +875,7 @@
     "place": {
         "code": "PLAC",
 		"objectType": "attribute",
-        "valueType": "string"
+        "valueType": "placestring"
     },
     "postalCode": {
         "code": "POST",

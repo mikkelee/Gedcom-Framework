@@ -124,7 +124,11 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 {
     if ([[self validProperties] containsObject:key]) {
         NSIndexSet *indexesForRemoval = [_propertyStore indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [[(GCProperty *)obj type] isEqualToString:key];
+            BOOL shouldRemove = [[(GCProperty *)obj type] isEqualToString:key];
+            if (shouldRemove) {
+                [obj setValue:nil forKey:@"primitiveDescribedObject"];
+            }
+            return shouldRemove;
         }];
         [_propertyStore removeObjectsAtIndexes:indexesForRemoval];
     } else {
@@ -317,6 +321,43 @@ static __strong NSMutableDictionary *_validPropertiesByType;
  }
  */
 
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    NSLog(@"respondsToSelector: %@", NSStringFromSelector(aSelector));
+    
+    return [super respondsToSelector:aSelector];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+#ifdef DEBUGLEVEL
+    NSLog(@"methodSignatureForSelector: %@", NSStringFromSelector(aSelector));
+#endif
+    
+    return nil;
+    
+    //return [NSMutableOrderedSet instanceMethodSignatureForSelector:aSelector];
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation
+{
+#ifdef DEBUGLEVEL
+    unsigned int numberOfArgs = [[invocation methodSignature] numberOfArguments];
+    NSLog(@"forwardInvocation: %@", invocation);
+    NSLog(@"selector: %@", NSStringFromSelector([invocation selector]));
+    for (int i = 2; i < numberOfArgs; i++) {
+        id param = nil;
+        [invocation getArgument:&param atIndex:i];
+        NSLog(@"param %d: %@", i, param);
+    }
+#endif    
+    //TODO could probably run _addBlock & _removeBlock here with some state-checking code and get rid of the overrides below.
+    
+    //[invocation setTarget:_set];
+    //[invocation invoke];
+    return;
+}
+
 #pragma mark Gedcom access
 
 - (NSArray *)subNodes
@@ -421,7 +462,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 {
     //TODO willChangeValue for gedcomString?
     
-    NSMutableArray *originalProperties = [[self propertiesArray] mutableCopy];
+    NSMutableArray *originalProperties = [[self allProperties] mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
     
@@ -451,7 +492,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     
     //remove the left over objects:
     for (GCProperty *property in originalProperties) {
-        [[self propertiesArray] removeObject:property];
+        [[self allProperties] removeObject:property];
     }
     
     //NSLog(@"propertiesArray: %@", [self propertiesArray]);
@@ -538,12 +579,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     }];
 }
 
-- (NSMutableSet *)propertiesSet
-{
-    return [self mutableSetValueForKey:@"properties"];
-}
-
-- (NSMutableArray *)propertiesArray
+- (NSMutableArray *)allProperties
 {
     return [self mutableArrayValueForKey:@"properties"];
 }

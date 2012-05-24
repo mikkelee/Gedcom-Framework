@@ -56,7 +56,9 @@ static __strong NSMutableDictionary *_contexts = nil;
 
 + (id)context
 {
-    NSString *uuid = (__bridge NSString *)CFUUIDCreateString( NULL, CFUUIDCreate( NULL ) );
+    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+    NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
+    CFRelease(uuidRef);
     
 	return [self contextWithName:uuid];
 }

@@ -71,13 +71,6 @@
 	}
 }
 
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCSimpleDate (%@) %d %d %d]", [[self calendar] calendarIdentifier], [[self dateComponents] year], [[self dateComponents] month], [[self dateComponents] day]];
-}
-//COV_NF_END
-
 - (NSString *)gedcomString
 {
 	NSArray *monthNames = [@"JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC" componentsSeparatedByString:@" "];
@@ -140,13 +133,6 @@
 @end
 
 @implementation GCDatePhrase
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCDatePhrase '%@']", [self phrase]];
-}
-//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -227,13 +213,6 @@
 
 @implementation GCApproximateDate
 
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCApproximateDate '%@' %@]", [self dateType], [self simpleDate]];
-}
-//COV_NF_END
-
 - (NSString *)gedcomString
 {
 	return [NSString stringWithFormat:@"%@ %@", [self dateType], [[self simpleDate] gedcomString]];
@@ -257,13 +236,6 @@
 @end
 
 @implementation GCInterpretedDate
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCInterpretedDate %@ %@]", [self simpleDate], [self datePhrase]];
-}
-//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -365,19 +337,6 @@
 
 @implementation GCDatePeriod
 
-//COV_NF_START
-- (NSString *)description
-{
-	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"[GCDateRange TO %@]", [self dateB]];
-	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"[GCDateRange FROM %@]", [self dateA]];
-	} else {
-		return [NSString stringWithFormat:@"[GCDatePeriod FROM %@ TO %@]", [self dateA], [self dateB]];
-	}
-}
-//COV_NF_END
-
 - (NSString *)gedcomString
 {
 	if ([self dateA] == nil) {
@@ -409,19 +368,6 @@
 @end
 
 @implementation GCDateRange
-
-//COV_NF_START
-- (NSString *)description
-{
-	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"[GCDateRange BEF %@]", [self dateB]];
-	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"[GCDateRange AFT %@]", [self dateA]];
-	} else {
-		return [NSString stringWithFormat:@"[GCDateRange BET %@ AND %@]", [self dateA], [self dateB]];
-	}
-}
-//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -457,13 +403,6 @@
 @end
 
 @implementation GCInvalidDate
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCInvalidDate '%@']", [self string]];
-}
-//COV_NF_END
 
 - (NSString *)gedcomString
 {

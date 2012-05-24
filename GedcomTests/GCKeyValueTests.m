@@ -122,7 +122,7 @@
 	
     GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
-    [[indi propertiesArray] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
+    [[indi allProperties] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
     
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"];
     [indi setValue:knownDate forKey:@"lastModified"];
@@ -232,17 +232,41 @@
                          expectedObservations,
                          nil);*/
 }
-/*
+
 - (void)testAAA
 {
-    unsigned int methodCount = 0;
-    Method * methods = class_copyMethodList(NSClassFromString(@"NSKeyValueFastMutableSet1"), &methodCount);
-    for (int i = 0; i < methodCount; ++i) {
-        Method m = methods[i];
-        NSLog(@"%@", NSStringFromSelector(method_getName(m)));
-    }
-    free(methods);
+	GCContext *ctx = [GCContext context];
+	
+    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
     
-}*/
+    [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
+    
+    NSMutableArray *names = [indi mutableArrayValueForKey:@"personalName"];
+    
+    GCAttribute *name = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    
+    NSLog(@"PRIOR ******");
+    
+    NSLog(@"name describedObject: %@", [name describedObject]);
+    NSLog(@"indi: %@", indi);
+    NSLog(@"names: %@", names);
+    
+    NSLog(@"ADDING ******");
+    
+    [names addObject:name];
+    
+    NSLog(@"name describedObject: %@", [name describedObject]);
+    NSLog(@"indi: %@", indi);
+    NSLog(@"names: %@", names);
+    
+    NSLog(@"REMOVING ******");
+    
+    [names removeObject:name];
+    
+    NSLog(@"name describedObject: %@", [name describedObject]);
+    NSLog(@"indi: %@", indi);
+    NSLog(@"names: %@", names);
+    
+}
 
 @end

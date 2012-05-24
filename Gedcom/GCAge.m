@@ -52,41 +52,50 @@ typedef enum {
 
 @implementation GCSimpleAge
 
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCSimpleAge (%d years, %d months, %d days)]", [[self ageComponents] year], [[self ageComponents] month], [[self ageComponents] day]];
-}
-//COV_NF_END
-
 - (NSString *)gedcomString
 {
-	NSString *months = @"";
+    NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:3];
+	
+	if ([[self ageComponents] year] >= 1) {
+        [stringComponents addObject:[NSString stringWithFormat:@"%dy", [[self ageComponents] year]]];
+    }
+    
 	if ([[self ageComponents] month] >= 1) {
-		months = [NSString stringWithFormat:@" %dm", [[self ageComponents] month]];
+		[stringComponents addObject:[NSString stringWithFormat:@"%dm", [[self ageComponents] month]]];
 	}
 	
-	NSString *days = @"";
 	if ([[self ageComponents] day] >= 1) {
-		days = [NSString stringWithFormat:@" %dd", [[self ageComponents] day]];
+		[stringComponents addObject:[NSString stringWithFormat:@"%dd", [[self ageComponents] day]]];
 	}
-	
-	return [NSString stringWithFormat:@"%dy%@%@", [[self ageComponents] year], months, days];
+    
+    return [stringComponents componentsJoinedByString:@" "];
 }
 
 - (NSString *)displayString
 {
-	NSString *months = @"";
-	if ([[self ageComponents] month] >= 1) {
-		months = [NSString stringWithFormat:@", %d months", [[self ageComponents] month]];
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:3];
+	
+	if ([[self ageComponents] year] == 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d year" value:@"%d year" table:@"Formatting"], [[self ageComponents] year]]];
+	} else if ([[self ageComponents] year] > 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Formatting"], [[self ageComponents] year]]];
+	}
+    
+	if ([[self ageComponents] month] == 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d month" value:@"%d month" table:@"Formatting"], [[self ageComponents] month]]];
+	} else if ([[self ageComponents] month] > 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d months" value:@"%d months" table:@"Formatting"], [[self ageComponents] month]]];
 	}
 	
-	NSString *days = @"";
-	if ([[self ageComponents] day] >= 1) {
-		days = [NSString stringWithFormat:@", %d days", [[self ageComponents] day]];
+	if ([[self ageComponents] day] == 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d day" value:@"%d day" table:@"Formatting"], [[self ageComponents] day]]];
+	} else if ([[self ageComponents] day] > 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d days" value:@"%d days" table:@"Formatting"], [[self ageComponents] day]]];
 	}
-	
-	return [NSString stringWithFormat:@"%d years%@%@", [[self ageComponents] year], months, days];
+    
+    return [stringComponents componentsJoinedByString:@", "];
 }
 
 - (GCSimpleAge *)refAge
@@ -130,16 +139,9 @@ NSString * const GCAgeQualifier_toString[] = {
     @">"
 };
 
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCQualifiedAge %@ %@]", GCAgeQualifier_toString[[self qualifier]], [self age]];
-}
-//COV_NF_END
-
 - (NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"%@ %@", GCAgeQualifier_toString[[self qualifier]], [self age]];
+	return [NSString stringWithFormat:@"%@ %@", GCAgeQualifier_toString[[self qualifier]], [[self age] gedcomString]];
 }
 
 - (NSString *)displayString
@@ -166,13 +168,6 @@ NSString * const GCAgeQualifier_toString[] = {
 @end
 
 @implementation GCAgeKeyword
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCAgeKeyword '%@']", [self keyword]];
-}
-//COV_NF_END
 
 - (NSString *)gedcomString
 {
@@ -234,13 +229,6 @@ NSString * const GCAgeQualifier_toString[] = {
 @end
 
 @implementation GCInvalidAge
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCInvalidAge '%@']", [self string]];
-}
-//COV_NF_END
 
 - (NSString *)gedcomString
 {

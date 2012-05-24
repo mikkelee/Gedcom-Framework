@@ -33,6 +33,7 @@ Full AppleDoc documentation in the headers, can be built with the Documentation 
 * **tags.json**: refactor @shortcuts to enable searching for & sorting @events seperately, etc.
 * **Unit tests**: Better (full) code coverage
 * **GCValue**: more helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
+* **GCDate**: sort should take into account qualifiers.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
 
 # Examples #

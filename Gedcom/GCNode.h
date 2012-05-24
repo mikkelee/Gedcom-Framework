@@ -47,7 +47,17 @@
 /// The receiver including its subnodes as a string.
 - (NSString *)gedcomString;
 
-/// The receiver including its subnodes as an attributed string.
+/** The receiver including its subnodes as an attributed string.
+ 
+ The string will have substrings marked with one of the following attributes: 
+ 
+ GCLevelAttributeName,
+ GCXrefAttributeName,
+ GCTagAttributeName,
+ GCValueAttributeName, or
+ GCLinkAttributeName
+ 
+ */
 - (NSAttributedString *)attributedGedcomString;
 
 /// The receiver including its subnodes as an array of strings.

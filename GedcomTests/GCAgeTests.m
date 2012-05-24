@@ -18,23 +18,29 @@
 
 - (void)testSimpleAge
 {
-	GCAge *age = [GCAge valueWithGedcomString:@"3y 2d"];
+	GCAge *age = [GCAge valueWithGedcomString:@"3y 1m 2d"];
 	
-	STAssertEqualObjects(@"[GCSimpleAge (3 years, 0 months, 2 days)]", [age description], nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCSimpleAge", nil);
+	STAssertEqualObjects([age gedcomString], @"3y 1m 2d", nil);
+	
+    //will only pass if localization isn't changed from English:
+    STAssertEqualObjects([age displayString], @"3 years, 1 month, 2 days", nil);
 }
 
 - (void)testAgeKeyword
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"INFANT"];
 	
-	STAssertEqualObjects(@"[GCAgeKeyword 'INFANT']", [age description], nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCAgeKeyword", nil);
+	STAssertEqualObjects([age gedcomString], @"INFANT", nil);
 }
 
 - (void)testQualifiedAge
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"< 10d"];
 	
-	STAssertEqualObjects(@"[GCQualifiedAge < [GCSimpleAge (0 years, 0 months, 10 days)]]", [age description], nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCQualifiedAge", nil);
+	STAssertEqualObjects([age gedcomString], @"< 10d", nil);
 }
 
 - (void)testAgeSort
