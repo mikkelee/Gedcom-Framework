@@ -55,8 +55,6 @@ static GCPlacestring *_rootPlace = nil;
             }
         }
         
-        NSLog(@"_rootPlace: %@", _rootPlace);
-        
         return parent;
     }
 }

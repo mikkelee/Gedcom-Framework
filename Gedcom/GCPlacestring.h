@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCValue.h"
+#import "GCString.h"
 
-@interface GCPlacestring : GCValue
+@interface GCPlacestring : GCString
 
 @property (readonly) NSString *name;
 
