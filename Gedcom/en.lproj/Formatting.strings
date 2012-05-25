@@ -14,7 +14,22 @@
 "%d day" = "%d day";
 "%d days" = "%d days";
 
-/* GCAge keywords: */
+/* GCAge keywords */
 "CHILD" = "Child";
 "STILLBORN" = "Stillborn";
 "INFANT" = "Infant";
+
+/* GCDate keywords */
+"FROM %@ TO %@" = "%$1@ … %$2@";
+"FROM %@" = "%@ …";
+"TO %@" = "… %@";
+
+"BET %@ AND %@" = "%$1@ – %$2@";
+"BEF %@" = "< %@";
+"AFT %@" = "> %@";
+
+"ABT %@" = "~ %@";
+"EST %@" = "~ %@"; //TODO
+"CAL %@" = "= %@";
+
+"INT %@ (%@)" = "\"%$1@\" %$2@";

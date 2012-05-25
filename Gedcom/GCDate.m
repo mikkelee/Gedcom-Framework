@@ -220,7 +220,11 @@
 
 - (NSString *)displayString
 {
-	return [NSString stringWithFormat:@"~ %@", [[self simpleDate] displayString]];
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *key = [NSString stringWithFormat:@"%@ %%@", [self dateType]];
+    
+	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:key value:@"~ %@" table:@"Formatting"], [[self simpleDate] displayString]];
 }
 
 @synthesize dateType;
@@ -244,7 +248,9 @@
 
 - (NSString *)displayString
 {
-	return [NSString stringWithFormat:@"\"%@\" %@", [[self simpleDate] displayString], [[self datePhrase] displayString]];
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"INT %@ %@" value:@"\"%@\" %@" table:@"Formatting"], [[self simpleDate] displayString], [[self datePhrase] displayString]];
 }
 
 @synthesize datePhrase;
@@ -350,12 +356,14 @@
 
 - (NSString *)displayString
 {
-	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"… %@", [[self dateB] displayString]];
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    if ([self dateA] == nil) {
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"TO %@" value:@"… %@" table:@"Formatting"], [[self dateB] displayString]];
 	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"%@ …", [[self dateA] displayString]];
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"FROM %@" value:@"%@ …" table:@"Formatting"], [[self dateA] displayString]];
 	} else {
-		return [NSString stringWithFormat:@"%@ … %@", [[self dateA] displayString], [[self dateB] displayString]];
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"FROM %@ TO %@" value:@"%@ … %@" table:@"Formatting"], [[self dateA] displayString], [[self dateB] displayString]];
 	}
 }
 
@@ -382,12 +390,14 @@
 
 - (NSString *)displayString
 {
-	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"< %@", [[self dateB] displayString]];
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    if ([self dateA] == nil) {
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"BEF %@" value:@"< %@" table:@"Formatting"], [[self dateB] displayString]];
 	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"> %@", [[self dateA] displayString]];
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"AFT %@" value:@"> %@" table:@"Formatting"], [[self dateA] displayString]];
 	} else {
-		return [NSString stringWithFormat:@"%@ – %@", [[self dateA] displayString], [[self dateB] displayString]];
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"BET %@ AND %@" value:@"%@ – %@" table:@"Formatting"], [[self dateA] displayString], [[self dateB] displayString]];
 	}
 }
 
