@@ -93,10 +93,12 @@ static GCPlacestring *_rootPlace = nil;
     return [self gedcomString];
 }
 
+//COV_NF_START
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (%@: %@)", [super description], [self name], [self subPlaces]];
 }
+//COV_NF_END
 
 @synthesize name = _name;
 

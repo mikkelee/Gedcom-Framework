@@ -25,8 +25,11 @@ static __strong NSMutableDictionary *_contexts = nil;
 
 - (id)init
 {
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
+    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+    NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
+    CFRelease(uuidRef);
+    
+	return [self initWithName:uuid];
 }
 
 - (id)initWithName:(NSString *)name
@@ -56,11 +59,7 @@ static __strong NSMutableDictionary *_contexts = nil;
 
 + (id)context
 {
-    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-    NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
-    CFRelease(uuidRef);
-    
-	return [self contextWithName:uuid];
+	return [[self alloc] init];
 }
 
 + (id)contextWithName:(NSString *)name

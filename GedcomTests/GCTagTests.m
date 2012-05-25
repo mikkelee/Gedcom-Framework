@@ -33,4 +33,9 @@
     STAssertEquals([[indi1 subTagWithCode:@"BIRT" type:@"attribute"] valueType], [GCBool class], nil);
 }
 
+- (void)testInvalidTagName
+{
+    STAssertThrowsSpecificNamed([GCTag tagNamed:@"INVALID TAG NAME"], NSException, @"GCInvalidTagNameException", nil);
+}
+
 @end
