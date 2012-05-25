@@ -24,6 +24,7 @@
     NSDictionary *_cachedOccurencesDicts;
     Class _cachedValueClass;
     Class _cachedObjectClass;
+    NSString *_cachedTargetType;
 }
 
 #pragma mark Constants
@@ -39,6 +40,7 @@ const NSString *kName = @"name";
 const NSString *kVariants = @"variants";
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
+const NSString *kTargetType = @"target";
 
 #pragma mark Setup
 
@@ -46,7 +48,7 @@ __strong static NSMutableDictionary *tagStore;
 __strong static NSMutableDictionary *tagInfo;
 __strong static NSDictionary *_tagsByName;
 
-+ (void)recurse:(NSString *)key
++ (void)setupTagStoreForKey:(NSString *)key
 {
     NSMutableDictionary *tagDict = [tagInfo objectForKey:key];
     NSParameterAssert(tagDict);
@@ -69,7 +71,7 @@ __strong static NSDictionary *_tagsByName;
             [variant setObject:[tagDict objectForKey:kValueType] forKey:kValueType];
         }
         if (![tagStore objectForKey:variantName]) {
-            [self recurse:variantName];
+            [self setupTagStoreForKey:variantName];
         }
     }
     
@@ -84,7 +86,7 @@ __strong static NSDictionary *_tagsByName;
     
     for (NSDictionary *subTag in [tagDict objectForKey:kValidSubTags]) {
         if (![tagStore objectForKey:[subTag objectForKey:kName]]) {
-            [self recurse:[subTag objectForKey:kName]];
+            [self setupTagStoreForKey:[subTag objectForKey:kName]];
         }
     }
 }
@@ -109,23 +111,7 @@ __strong static NSDictionary *_tagsByName;
         NSAssert(tagInfo != nil, @"error: %@", err);
         
         tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
-        [self recurse:@"@rootObject"];
-        
-        //TODO get rid of this when tags.json is finalized:
-        for (NSString *key in [tagInfo keyEnumerator]) {
-            if (![tagStore objectForKey:key]) {
-                NSMutableDictionary *tagDict = [tagInfo objectForKey:key];
-                if (![tagDict objectForKey:kCode]) {
-                    continue;
-                }
-                GCTag *tag = [[GCTag alloc] initWithName:key
-                                                settings:tagDict];
-                
-                NSParameterAssert([tagStore objectForKey:key] == nil);
-                [tagStore setObject:tag 
-                             forKey:key];
-            }
-        }
+        [self setupTagStoreForKey:@"@rootObject"];
     });
 }
 
@@ -372,6 +358,15 @@ __strong static NSDictionary *_tagsByName;
     }
     
 	return _cachedObjectClass;
+}
+
+- (NSString *)targetType
+{
+    if (!_cachedTargetType) {
+        _cachedTargetType = [_settings objectForKey:kTargetType];
+    }
+    
+	return _cachedTargetType;
 }
 
 - (NSOrderedSet *)validSubTags

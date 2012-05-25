@@ -179,6 +179,20 @@
         ]
 	},
     
+    "childInFamily": {
+        "code": "FAMC",
+		"objectType": "relationship",
+		"target": "familyRecord",
+		"validSubTags": [
+                         { "name": "pedigree", "min": "0", "max": "1" }
+                         ]
+    },
+    "spouseInFamily": {
+        "code": "FAMS",
+		"objectType": "relationship",
+		"target": "familyRecord"
+    },
+    
 	"submitterReference": {
 		"code": "SUBM",
 		"objectType": "relationship",
@@ -346,18 +360,6 @@
         "code": "NSFX",
 		"objectType": "attribute",
         "valueType": "string"
-    },
-    
-    "childInFamily": {
-        "code": "FAMC",
-		"objectType": "relationship",
-		"validSubTags": [
-                         { "name": "pedigree", "min": "0", "max": "1" }
-                         ]
-    },
-    "spouseInFamily": {
-        "code": "FAMS",
-		"objectType": "relationship"
     },
     
     "@source": {

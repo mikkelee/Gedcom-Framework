@@ -131,6 +131,7 @@
 - (void)setTarget:(GCEntity *)target
 {
     NSParameterAssert([self describedObject]);
+    NSParameterAssert([[[self gedTag] targetType] isEqualToString:[target type]]);
     
     if ([[self gedTag] reverseRelationshipTag]) {
         //remove previous reverse relationship before changing target.

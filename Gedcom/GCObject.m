@@ -351,7 +351,6 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         NSLog(@"param %d: %@", i, param);
     }
 #endif    
-    //TODO could probably run _addBlock & _removeBlock here with some state-checking code and get rid of the overrides below.
     
     //[invocation setTarget:_set];
     //[invocation invoke];
@@ -628,8 +627,8 @@ BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **erro
     }
 }
 
-BOOL validateTargetTypeHelper(NSString *key, id target, Class type, NSError **error) {
-    if (![target isKindOfClass:type]) {
+BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, NSString *type, NSError **error) {
+    if (![target isKindOfClass:[GCEntity class]] || ![[target type] isEqualToString:type]) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
                                          code:-1 
@@ -654,8 +653,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
     }
     
     if ([tag objectClass] == [GCRelationship class]) {
-        //TODO 
-        if (!validateValueTypeHelper(key, [(GCRelationship *)property target], [GCEntity class], error)) {
+        if (!validateTargetTypeHelper(key, [(GCRelationship *)property target], [tag targetType], error)) {
             return NO;
         }
     }
