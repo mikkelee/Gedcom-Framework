@@ -93,6 +93,9 @@ typedef struct {
 /// The human readable name of the receiver.
 @property (readonly) NSString *name;
 
+/// The localized name of the receiver.
+@property (readonly) NSString *localizedName;
+
 /// Whether the tag is custom or not.
 @property (readonly) BOOL isCustom;
 

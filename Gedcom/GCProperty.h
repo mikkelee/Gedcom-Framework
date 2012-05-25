@@ -18,15 +18,23 @@
 
 #pragma mark Initialization
 
+/// @name Creating and initializing properties
+
+/** Initializes and creates a property whose type and properties reflect the GCNode.
+ 
+ Cannot be used to initialize the GCProperty superclass, but must be used on the GCAttribute and GCRelationship subclasses.
+ 
+ @param object The object being described.
+ @param node A GCNode. Its tag code must correspond to a valid property on the object.
+ @return A new attribute.
+ */
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
 #pragma mark Convenience constructor
 
-/// @name Creating properties
-
 /** Returns a property whose type and properties reflect the GCNode.
  
- Will return either an attribute or a relationship depending on the node.
+ Will inspect the node and determine whether to return an attribute or a relationship.
  
  @param object The object being described.
  @param node A GCNode. Its tag code must correspond to a valid property on the object.

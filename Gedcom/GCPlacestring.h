@@ -15,9 +15,15 @@
  */
 @interface GCPlacestring : GCString
 
++ (id)rootPlace;
+
+/// The name of the place string.
 @property (readonly) NSString *name;
 
+/// The jurisdiction containing the place.
 @property (readonly) GCPlacestring *superPlace;
+
+/// 
 @property (readonly) NSDictionary *subPlaces;
 
 @end

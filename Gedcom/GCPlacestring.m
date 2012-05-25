@@ -19,7 +19,15 @@
     NSMutableDictionary *_subPlaces;
 }
 
-static GCPlacestring *_rootPlace = nil;
++ (id)rootPlace
+{
+    static dispatch_once_t predRootPlace = 0;
+    __strong static id _rootPlace = nil;
+    dispatch_once(&predRootPlace, ^{
+        _rootPlace = [[self alloc] initWithValue:@"@ROOT"];
+    });
+    return _rootPlace;
+}
 
 - (id)initWithValue:(NSString *)value
 {
@@ -35,14 +43,10 @@ static GCPlacestring *_rootPlace = nil;
 
 + (id)valueWithGedcomString:(NSString *)gedcomString
 {
-    @synchronized(_rootPlace) {
-        if (_rootPlace == nil) {
-            _rootPlace = [[self alloc] initWithValue:@"@ROOT"];
-        }
-        
+    @synchronized([self rootPlace]) {
         NSArray *places = [gedcomString componentsSeparatedByString:@","];
         
-        GCPlacestring *parent = _rootPlace;
+        GCPlacestring *parent = [self rootPlace];
         for (NSString *place in [places reverseObjectEnumerator]) {
             NSString *cleanPlace = [place stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             
@@ -81,7 +85,7 @@ static GCPlacestring *_rootPlace = nil;
     NSMutableArray *placeComponents = [NSMutableArray arrayWithObject:[self name]];
     
     id place = self;
-    while ((place = [place superPlace]) && place != _rootPlace) {
+    while ((place = [place superPlace]) && place != [[self class] rootPlace]) {
         [placeComponents addObject:[place name]];
     }
     

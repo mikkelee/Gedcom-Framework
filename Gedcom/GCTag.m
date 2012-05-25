@@ -333,6 +333,13 @@ __strong static NSDictionary *_tagsByName;
 
 @synthesize name = _name;
 
+- (NSString *)localizedName
+{
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    return [frameworkBundle localizedStringForKey:_name value:_name table:@"Tags"];
+}
+
 - (NSString *)code
 {
     return [_settings objectForKey:kCode];
