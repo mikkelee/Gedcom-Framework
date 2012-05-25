@@ -68,6 +68,12 @@ __strong static NSDictionary *genderStore;
 }
 
 @synthesize gedcomString = _gedcomString;
-@synthesize displayString = _displayString;
+
+- (NSString *)displayString
+{
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    return [frameworkBundle localizedStringForKey:_displayString value:_displayString table:@"Formatting"];
+}
 
 @end

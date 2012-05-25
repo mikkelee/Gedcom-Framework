@@ -22,7 +22,7 @@ __strong static NSDictionary *boolStore;
     dispatch_once(&predBool, ^{
         boolStore = [NSDictionary dictionaryWithObjectsAndKeys:
                      [[GCBool alloc] initWithGedcomString:@"Y" displayString:@"Yes"], @"Y",
-                     [[GCBool alloc] initWithGedcomString:nil displayString:@""], @"",
+                     [[GCBool alloc] initWithGedcomString:nil displayString:@"Undecided"], @"",
                      nil];
     });
 }
@@ -80,7 +80,13 @@ __strong static NSDictionary *boolStore;
 }
 
 @synthesize gedcomString = _gedcomString;
-@synthesize displayString = _displayString;
+
+- (NSString *)displayString
+{
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    return [frameworkBundle localizedStringForKey:_displayString value:_displayString table:@"Formatting"];
+}
 
 - (BOOL)boolValue
 {

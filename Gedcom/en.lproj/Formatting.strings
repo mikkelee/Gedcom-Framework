@@ -32,4 +32,14 @@
 "EST %@" = "~ %@"; //TODO
 "CAL %@" = "= %@";
 
-"INT %@ (%@)" = "\"%$1@\" %$2@";
+"INT %@ %@" = "\"%$1@\" %$2@";
+
+/* GCGender keywords */
+"Male" = "Male";
+"Female" = "Female";
+"Unknown" = "Unknown";
+
+/* GCBool keywords */
+"Yes" = "Yes";
+"Undecided" = "Undecided";
+
