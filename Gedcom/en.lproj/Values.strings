@@ -41,5 +41,5 @@
 
 /* GCBool keywords */
 "Yes" = "Yes";
-"Undecided" = "Undecided";
+"Undecided" = "";
 

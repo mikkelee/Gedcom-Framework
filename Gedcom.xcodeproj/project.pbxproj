@@ -49,10 +49,6 @@
 		3E3995B9155DE4B500228946 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3995B8155DE4B500228946 /* Document.m */; };
 		3E3995BC155DE4B500228946 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3995BA155DE4B500228946 /* Document.xib */; };
 		3E3995BF155DE4B500228946 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3995BD155DE4B500228946 /* MainMenu.xib */; };
-		3E3995C6155DE4B500228946 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */; };
-		3E3995C7155DE4B500228946 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
-		3E3995CF155DE4B500228946 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E3995CD155DE4B500228946 /* InfoPlist.strings */; };
-		3E3995D2155DE4B500228946 /* GedcomGUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3995D1155DE4B500228946 /* GedcomGUITests.m */; };
 		3E3995DA155DE57000228946 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E3995DF155DE69200228946 /* Gedcom.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E4373551521CB7200BA362F /* GCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4373531521CB7200BA362F /* GCAttribute.h */; };
@@ -80,7 +76,7 @@
 		3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */; };
 		3ED92D401563C70500E53E47 /* GCXrefProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */; };
 		3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D421563D78C00E53E47 /* GCContextDelegate.h */; };
-		3EDD4114156D022200002352 /* Formatting.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD4112156D022200002352 /* Formatting.strings */; };
+		3EDD4114156D022200002352 /* Values.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD4112156D022200002352 /* Values.strings */; };
 		3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDD4116156D8EE200002352 /* GCPlacestring.h */; };
 		3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD4117156D8EE200002352 /* GCPlacestring.m */; };
 		3EDD411D156E335000002352 /* GCPlacestringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD411C156E335000002352 /* GCPlacestringTests.m */; };
@@ -116,13 +112,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3E1C3E65151C319C005E09E1;
 			remoteInfo = Gedcom;
-		};
-		3E3995C8155DE4B500228946 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E3995A7155DE4B500228946;
-			remoteInfo = GedcomGUI;
 		};
 		3E3995DC155DE57F00228946 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -184,11 +173,6 @@
 		3E3995B8155DE4B500228946 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		3E3995BB155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		3E3995BE155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		3E3995C5155DE4B500228946 /* GedcomGUITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GedcomGUITests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E3995CC155DE4B500228946 /* GedcomGUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomGUITests-Info.plist"; sourceTree = "<group>"; };
-		3E3995CE155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3E3995D0155DE4B500228946 /* GedcomGUITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomGUITests.h; sourceTree = "<group>"; };
-		3E3995D1155DE4B500228946 /* GedcomGUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GedcomGUITests.m; sourceTree = "<group>"; };
 		3E4373531521CB7200BA362F /* GCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GCAttribute.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3E4373541521CB7200BA362F /* GCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValue.h; sourceTree = "<group>"; };
@@ -215,7 +199,7 @@
 		3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCXrefProtocol.h; sourceTree = "<group>"; };
 		3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCXrefProtocol.m; sourceTree = "<group>"; };
 		3ED92D421563D78C00E53E47 /* GCContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContextDelegate.h; sourceTree = "<group>"; };
-		3EDD4113156D022200002352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Formatting.strings; sourceTree = "<group>"; };
+		3EDD4113156D022200002352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Values.strings; sourceTree = "<group>"; };
 		3EDD4116156D8EE200002352 /* GCPlacestring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlacestring.h; sourceTree = "<group>"; };
 		3EDD4117156D8EE200002352 /* GCPlacestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlacestring.m; sourceTree = "<group>"; };
 		3EDD411C156E335000002352 /* GCPlacestringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlacestringTests.m; sourceTree = "<group>"; };
@@ -273,15 +257,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E3995C1155DE4B500228946 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E3995C6155DE4B500228946 /* SenTestingKit.framework in Frameworks */,
-				3E3995C7155DE4B500228946 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -314,7 +289,6 @@
 				3E1C3E6F151C319C005E09E1 /* Gedcom */,
 				3E1C3E85151C319D005E09E1 /* GedcomTests */,
 				3E3995AB155DE4B500228946 /* GedcomGUI */,
-				3E3995CA155DE4B500228946 /* GedcomGUITests */,
 				3E1C3E68151C319C005E09E1 /* Frameworks */,
 				3E1C3E67151C319C005E09E1 /* Products */,
 			);
@@ -326,7 +300,6 @@
 				3E1C3E66151C319C005E09E1 /* Gedcom.framework */,
 				3E1C3E7E151C319D005E09E1 /* GedcomTests.octest */,
 				3E3995A8155DE4B500228946 /* GedcomGUI.app */,
-				3E3995C5155DE4B500228946 /* GedcomGUITests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -378,7 +351,7 @@
 				3E1C3E72151C319C005E09E1 /* InfoPlist.strings */,
 				3E1C3E75151C319C005E09E1 /* Gedcom-Prefix.pch */,
 				3EB5ABD5153619280036B4D5 /* tags.json */,
-				3EDD4112156D022200002352 /* Formatting.strings */,
+				3EDD4112156D022200002352 /* Values.strings */,
 				3EDD411E156F047A00002352 /* Tags.strings */,
 			);
 			name = "Supporting Files";
@@ -465,25 +438,6 @@
 				3E3995B1155DE4B500228946 /* main.m */,
 				3E3995B3155DE4B500228946 /* GedcomGUI-Prefix.pch */,
 				3E3995B4155DE4B500228946 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3E3995CA155DE4B500228946 /* GedcomGUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3E3995D0155DE4B500228946 /* GedcomGUITests.h */,
-				3E3995D1155DE4B500228946 /* GedcomGUITests.m */,
-				3E3995CB155DE4B500228946 /* Supporting Files */,
-			);
-			path = GedcomGUITests;
-			sourceTree = "<group>";
-		};
-		3E3995CB155DE4B500228946 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3E3995CC155DE4B500228946 /* GedcomGUITests-Info.plist */,
-				3E3995CD155DE4B500228946 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -632,25 +586,6 @@
 			productReference = 3E3995A8155DE4B500228946 /* GedcomGUI.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3E3995C4155DE4B500228946 /* GedcomGUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3E3995D8155DE4B500228946 /* Build configuration list for PBXNativeTarget "GedcomGUITests" */;
-			buildPhases = (
-				3E3995C0155DE4B500228946 /* Sources */,
-				3E3995C1155DE4B500228946 /* Frameworks */,
-				3E3995C2155DE4B500228946 /* Resources */,
-				3E3995C3155DE4B500228946 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3E3995C9155DE4B500228946 /* PBXTargetDependency */,
-			);
-			name = GedcomGUITests;
-			productName = GedcomGUITests;
-			productReference = 3E3995C5155DE4B500228946 /* GedcomGUITests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -675,7 +610,6 @@
 				3E1C3E65151C319C005E09E1 /* Gedcom */,
 				3E1C3E7D151C319D005E09E1 /* GedcomTests */,
 				3E3995A7155DE4B500228946 /* GedcomGUI */,
-				3E3995C4155DE4B500228946 /* GedcomGUITests */,
 				3E29DB2F154AE1F100756CF4 /* Documentation */,
 			);
 		};
@@ -691,7 +625,7 @@
 				3EF7A1C1151C36DD004A8540 /* gedcom.date.grammar in Resources */,
 				3E5F5098151DCC7B00A433A6 /* README.md in Resources */,
 				3EB5ABD6153619280036B4D5 /* tags.json in Resources */,
-				3EDD4114156D022200002352 /* Formatting.strings in Resources */,
+				3EDD4114156D022200002352 /* Values.strings in Resources */,
 				3EDD411F156F047A00002352 /* Tags.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,14 +648,6 @@
 				3E3995B6155DE4B500228946 /* Credits.rtf in Resources */,
 				3E3995BC155DE4B500228946 /* Document.xib in Resources */,
 				3E3995BF155DE4B500228946 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3E3995C2155DE4B500228946 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E3995CF155DE4B500228946 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,19 +679,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Mikkel Eide Eriksen\" --company-id dk.kildekort --output $SOURCE_ROOT/Documentation --logformat Xcode --keep-intermediate-files --warn-undocumented-object --warn-undocumented-member --keep-undocumented-objects --keep-undocumented-members --keep-merged-sections --prefix-merged-sections --no-repeat-first-par Gedcom/*.h";
-		};
-		3E3995C3155DE4B500228946 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -826,14 +739,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E3995C0155DE4B500228946 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E3995D2155DE4B500228946 /* GedcomGUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -841,11 +746,6 @@
 			isa = PBXTargetDependency;
 			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
 			targetProxy = 3E1C3E82151C319D005E09E1 /* PBXContainerItemProxy */;
-		};
-		3E3995C9155DE4B500228946 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E3995A7155DE4B500228946 /* GedcomGUI */;
-			targetProxy = 3E3995C8155DE4B500228946 /* PBXContainerItemProxy */;
 		};
 		3E3995DD155DE57F00228946 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -903,20 +803,12 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		3E3995CD155DE4B500228946 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E3995CE155DE4B500228946 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3EDD4112156D022200002352 /* Formatting.strings */ = {
+		3EDD4112156D022200002352 /* Values.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3EDD4113156D022200002352 /* en */,
 			);
-			name = Formatting.strings;
+			name = Values.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1091,34 +983,6 @@
 			};
 			name = Release;
 		};
-		3E3995D5155DE4B500228946 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GedcomGUI.app/Contents/MacOS/GedcomGUI";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GedcomGUI/GedcomGUI-Prefix.pch";
-				INFOPLIST_FILE = "GedcomGUITests/GedcomGUITests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		3E3995D6155DE4B500228946 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GedcomGUI.app/Contents/MacOS/GedcomGUI";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GedcomGUI/GedcomGUI-Prefix.pch";
-				INFOPLIST_FILE = "GedcomGUITests/GedcomGUITests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1163,15 +1027,6 @@
 			buildConfigurations = (
 				3E3995D3155DE4B500228946 /* Debug */,
 				3E3995D4155DE4B500228946 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3E3995D8155DE4B500228946 /* Build configuration list for PBXNativeTarget "GedcomGUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E3995D5155DE4B500228946 /* Debug */,
-				3E3995D6155DE4B500228946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

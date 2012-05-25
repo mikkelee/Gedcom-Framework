@@ -73,7 +73,7 @@ __strong static NSDictionary *genderStore;
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-    return [frameworkBundle localizedStringForKey:_displayString value:_displayString table:@"Formatting"];
+    return [frameworkBundle localizedStringForKey:_displayString value:_displayString table:@"Values"];
 }
 
 @end
