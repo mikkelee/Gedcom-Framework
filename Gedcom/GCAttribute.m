@@ -21,23 +21,32 @@
     GCValue *_value;
 }
 
+#pragma mark Initialization
+
+- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
+{
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:@"attribute"];
+    
+    self = [super initWithType:[tag name]];
+    
+    if (self) {
+        if ([node gedValue] != nil) {
+            [self setValue:[[tag valueType] valueWithGedcomString:[node gedValue]]];
+        }
+        
+        [self addPropertiesWithGedcomNodes:[node subNodes]];
+        
+        [[object mutableArrayValueForKey:@"properties"] addObject:self];
+    }
+    
+    return self;
+}
+
 #pragma mark Convenience constructors
 
 + (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute")];
-    
-    GCAttribute *attribute = [[self alloc] initWithType:[tag name]];
-    
-    if ([node gedValue] != nil) {
-        [attribute setValue:[[tag valueType] valueWithGedcomString:[node gedValue]]];
-    }
-    
-    [attribute addPropertiesWithGedcomNodes:[node subNodes]];
-    
-    [[object mutableArrayValueForKey:@"properties"] addObject:attribute];
-    
-    return attribute;
+    return [[self alloc] initForObject:object withGedcomNode:node];
 }
 
 + (id)attributeWithType:(NSString *)type

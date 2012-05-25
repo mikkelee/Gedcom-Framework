@@ -483,7 +483,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         
         if ([matches count] < 1) {
             //NSLog(@"adding new property for %@", subNode);
-            [GCProperty propertyForObject:self withGedcomNode:subNode];
+            [self addPropertyWithGedcomNode:subNode];
         } else {
             GCProperty *property = [originalProperties objectAtIndex:[matches firstIndex]];
             [originalProperties removeObject:property];

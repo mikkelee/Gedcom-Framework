@@ -20,24 +20,23 @@
 
 @end
 
-@implementation GCProperty 
+@implementation GCProperty
+
+#pragma mark Initialization
+
+- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
 
 #pragma mark Convenience constructors
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute")];
+    Class propertySubClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute") capitalizedString]]);
     
-	if ([tag objectClass] == [GCAttribute class]) {
-		return [GCAttribute attributeForObject:object withGedcomNode:node];
-	} else if ([tag objectClass] == [GCRelationship class]) {
-		return [GCRelationship relationshipForObject:object withGedcomNode:node];
-	} else {
-		NSException *exception = [NSException exceptionWithName:@"GCInvalidObjectClassException"
-														 reason:[NSString stringWithFormat:@"Invalid <objectClass> '%@' on %@ for %@", [tag objectClass], node, object]
-													   userInfo:nil];
-		@throw exception;
-	}
+    return [[propertySubClass alloc] initForObject:object withGedcomNode:node];
 }
 
 #pragma mark Comparison

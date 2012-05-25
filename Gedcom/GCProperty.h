@@ -16,6 +16,10 @@
  */
 @interface GCProperty : GCObject
 
+#pragma mark Initialization
+
+- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
+
 #pragma mark Convenience constructor
 
 /// @name Creating properties

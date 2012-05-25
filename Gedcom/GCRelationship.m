@@ -17,25 +17,34 @@
 	GCEntity *_target;
 }
 
+#pragma mark Initialization
+
+- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
+{
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:@"relationship"];
+    
+    self = [super initWithType:[tag name]];
+    
+    if (self) {
+        [self addPropertiesWithGedcomNodes:[node subNodes]];
+        
+        [[object mutableArrayValueForKey:@"properties"] addObject:self];
+        
+        [[object context] registerBlock:^(NSString *xref) {
+            GCEntity *target = [[object context] entityForXref:xref];
+            //NSLog(@"Set %@ => %@ on %@", xref, target, relationship);
+            [self setTarget:target];
+        } forXref:[node gedValue]];
+    }
+    
+    return self;
+}
+
 #pragma mark Convenience constructors
 
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute")];
-    
-    GCRelationship *relationship = [[self alloc] initWithType:[tag name]];
-    
-    [relationship addPropertiesWithGedcomNodes:[node subNodes]];
-    
-    [[object mutableArrayValueForKey:@"properties"] addObject:relationship];
-    
-	[[object context] registerBlock:^(NSString *xref) {
-		GCEntity *target = [[object context] entityForXref:xref];
-		//NSLog(@"Set %@ => %@ on %@", xref, target, relationship);
-		[relationship setTarget:target];
-	} forXref:[node gedValue]];
-    
-    return relationship;
+    return [[self alloc] initForObject:object withGedcomNode:node];
 }
 
 + (id)relationshipWithType:(NSString *)type
