@@ -18,6 +18,7 @@
  
  GCString,
  GCNamestring,
+ GCPlacestring,
  GCNumber,
  GCDate,
  GCAge,

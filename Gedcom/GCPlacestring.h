@@ -8,6 +8,11 @@
 
 #import "GCString.h"
 
+/**
+ 
+ A Gedcom place string value. Provides a hierarchy of places. Sorting ... TODO desc
+ 
+ */
 @interface GCPlacestring : GCString
 
 @property (readonly) NSString *name;

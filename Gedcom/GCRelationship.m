@@ -8,6 +8,7 @@
 
 #import "GCRelationship.h"
 
+#import "GCEntity.h"
 #import "GCNode.h"
 #import "GCTag.h"
 #import "GCContext.h"

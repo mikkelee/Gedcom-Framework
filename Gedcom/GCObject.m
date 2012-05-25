@@ -446,6 +446,13 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     return [_tag name];
 }
 
+- (NSString *)localizedType
+{
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    return [frameworkBundle localizedStringForKey:[self type] value:[self type] table:@"Tags"];
+}
+
 - (BOOL)allowsProperties
 {
     return ([[self validProperties] count] > 0); //TODO (see cocoa-dev reply)

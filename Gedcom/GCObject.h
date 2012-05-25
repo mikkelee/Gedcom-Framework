@@ -80,6 +80,9 @@
 /// The type of the receiver.
 @property (readonly) NSString *type;
 
+/// The localized type of the receiver.
+@property (readonly) NSString *localizedType;
+
 /// Returns whether the receiver can have properties itself.
 @property (readonly) BOOL allowsProperties;
 

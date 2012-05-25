@@ -23,7 +23,7 @@
  
  @param node A GCNode. Its tag code must be @"HEAD".
  @param context The context of the header.
- @return A new attribute.
+ @return A new header.
  */
 + (id)headerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 

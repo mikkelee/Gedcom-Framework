@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "GCProperty.h"
 
-#import "GCEntity.h"
+@class GCEntity;
 
 /**
  
- Relationships are properties that define a relationship between a GCObject and a GCEntity. For example, the child of a family or the source of a citation.
+ Relationships are properties that define a relationship between a GCObject and a GCEntity. For example, from a child to a family or from a citation to a source.
  
  */
 @interface GCRelationship : GCProperty

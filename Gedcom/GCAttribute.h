@@ -9,8 +9,6 @@
 #import "GCProperty.h"
 
 @class GCValue;
-@class GCAge;
-@class GCDate;
 
 /**
  
