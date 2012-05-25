@@ -58,10 +58,11 @@
     GCPlacestring *a = [GCAge valueWithGedcomString:@"INFANT"];
     GCPlacestring *b = [GCAge valueWithGedcomString:@"STILLBORN"];
     GCPlacestring *c = [GCAge valueWithGedcomString:@"0y"];
-    GCPlacestring *d = [GCAge valueWithGedcomString:@"5y"];
+    GCPlacestring *d = [GCAge valueWithGedcomString:@"> 5y"];
     GCPlacestring *e = [GCAge valueWithGedcomString:@"6y"];
     GCPlacestring *f = [GCAge valueWithGedcomString:@"< 6y"];
     GCPlacestring *g = [GCAge valueWithGedcomString:@"1y"];
+    GCPlacestring *h = [GCAge valueWithGedcomString:@"CHILD"];
     
     [ages addObject:a];
     [ages addObject:b];
@@ -70,10 +71,11 @@
     [ages addObject:e];
     [ages addObject:f];
     [ages addObject:g];
+    [ages addObject:h];
     
     [ages sortUsingSelector:@selector(compare:)];
     
-    NSArray *expectedOrder = [NSArray arrayWithObjects:b, c, a, g, d, f, e, nil];
+    NSArray *expectedOrder = [NSArray arrayWithObjects:b, c, a, g, d, f, e, h, nil];
     
     STAssertEqualObjects(ages, expectedOrder, nil);
 }

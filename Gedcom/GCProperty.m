@@ -11,9 +11,6 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
-#import "GCAttribute.h"
-#import "GCRelationship.h"
-
 @interface GCProperty ()
 
 @property (weak) GCObject *primitiveDescribedObject;
@@ -34,6 +31,7 @@
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
+    //TODO cache?
     Class propertySubClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute") capitalizedString]]);
     
     return [[propertySubClass alloc] initForObject:object withGedcomNode:node];

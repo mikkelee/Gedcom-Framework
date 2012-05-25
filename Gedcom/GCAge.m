@@ -197,7 +197,9 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (NSString *)displayString
 {
-    return [[self keyword] capitalizedString];
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    return [frameworkBundle localizedStringForKey:[self gedcomString] value:[self gedcomString] table:@"Formatting"];
 }
 
 /*
