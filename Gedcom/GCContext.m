@@ -73,6 +73,11 @@ static __strong NSMutableDictionary *_contexts = nil;
     return context;
 }
 
++ (NSDictionary *)contextsByName
+{
+    return [_contexts copy];
+}
+
 - (void)setXref:(NSString *)xref forEntity:(GCEntity *)obj
 {
     NSParameterAssert(xref);
@@ -134,7 +139,7 @@ static __strong NSMutableDictionary *_contexts = nil;
     return [xrefStore objectForKey:xref];
 }
 
-- (void)registerBlock:(void (^)(NSString *xref))block forXref:(NSString *)xref
+- (void)registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block
 {
     NSParameterAssert(xref);
     

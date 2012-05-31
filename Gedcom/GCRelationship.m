@@ -30,11 +30,11 @@
         
         [[object mutableArrayValueForKey:@"properties"] addObject:self];
         
-        [[object context] registerBlock:^(NSString *xref) {
+        [[object context] registerCallbackForXref:[node gedValue] usingBlock:^(NSString *xref) {
             GCEntity *target = [[object context] entityForXref:xref];
             //NSLog(@"Set %@ => %@ on %@", xref, target, relationship);
             [self setTarget:target];
-        } forXref:[node gedValue]];
+        }];
     }
     
     return self;

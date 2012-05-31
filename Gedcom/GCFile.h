@@ -57,7 +57,7 @@
 
 /** Causes the receiver to parse the nodes.
  
- TODO: should empty current nodes?
+ Will throw an exception if the receiver already contains entities.
  
  @param nodes A collection of nodes.
  */

@@ -2,18 +2,18 @@
 
 **Note**: A work in progress. Selectors & classes may change name / appear / disappear.
 
-A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction:
+A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction. The intent is to hide the GEDCOM specifics, but to allow access if required. A short summary of the functionality follows:
 
-* GEDCOM text <=> GCNode <=> GCObject
+* GEDCOM is parsed and serialized in layers: text <=> GCNode <=> GCObject.
 * Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
 * Above GCNodes are GCObjects, which allow for more abstracted data access. There are two basic types of GCObject:
     - GCEntity: Root level records - INDI, FAM, etc.
-    - GCProperty: Describes an entity. There are two kinds of properties:
+    - GCProperty: Objects can have a number of properties of which there are two kinds:
         * GCAttribute: Any node that describes an object - NAME, DATE, PLAC, etc.
-        * GCRelationship: References to other entities - FAMC, HUSB, etc.
+        * GCRelationship: Any node that references other entities - FAMC, HUSB, ASSO, etc.
 * Mapping between GCNodes and GCObjects is helped by GCTags which know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
-* Xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
-* Attribute values are handled via subclasses of GCValue, which can be hold one of many types (like NSValue). Sorting and formatters are provided. The types are:
+* Relationship xrefs are handled with a GCContext that ensures that all GCEntities have a 1-to-1 mapping with an xref.
+* Attribute values are handled via subclasses of GCValue, which can be one of several types (like NSValue). Sorting and formatters are provided. The types are:
     - GCGender
     - GCAge (parsed via ParseKit)
     - GCDate (parsed via ParseKit)
@@ -24,9 +24,9 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
     - GCBool
 * Eventually, there may be another layer with things like GCIndividual, GCFamily (this is undecided at the moment).
 
-The intent is to hide the GEDCOM specifics, but to allow access if required.
-
 Full AppleDoc documentation in the headers, can be built with the Documentation target.
+
+A simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structure, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png Screenshot as of May 31, 2012]
 
 # TODO #
 

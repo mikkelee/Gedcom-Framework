@@ -464,15 +464,13 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    //TODO willChangeValue for gedcomString?
-    
     NSMutableArray *originalProperties = [[self allProperties] mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
     
     for (GCNode *subNode in [gedcomNode subNodes]) {
         if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
-            continue; //TODO ?
+            continue; //we ignore the CHAN node, it shouldn't be changed via setGedcomNode:
         }
         
         NSIndexSet *matches = [originalProperties indexesOfObjectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {

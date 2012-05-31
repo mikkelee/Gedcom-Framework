@@ -160,8 +160,6 @@
 {
     NSParameterAssert([[gedcomNode xref] isEqualToString:[[self context] xrefForEntity:self]]);
     
-    //TODO actually call up the context and change the xref?
-    
     [super setGedcomNode:gedcomNode];
 }    
 

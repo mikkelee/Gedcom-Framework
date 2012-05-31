@@ -31,6 +31,9 @@
  */
 + (id)contextWithName:(NSString *)name;
 
+/// Returns a dictionary containing all current contexts, keyed by name.
++ (NSDictionary *)contextsByName;
+
 /// @name Translating Xrefs
 
 /** Returns an xref for the given entity.
@@ -56,15 +59,15 @@
  @param xref A string containing an xref.
  @param block A block that will be called as soon as an entity exists.
  */
-- (void)registerBlock:(void (^)(NSString *xref))block forXref:(NSString *)xref;
+- (void)registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block;
 
 /// @name Registering Xrefs
 
 /** Stores an xref for an entity.
  
- If a callback has been registered for the xref, it is issued.
+ If one or more callbacks has been registered for the xref, they are issued.
  
- Used during import from Gedcom data.
+ Generally only used during import from Gedcom data.
  
  @param xref A string containing an xref.
  @param entity An entity to be associated with the xref.

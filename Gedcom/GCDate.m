@@ -96,8 +96,6 @@
         }
     }
     
-    //TODO
-    
     return [NSDateFormatter localizedStringFromDate:[[self calendar] dateFromComponents:[self dateComponents]]
                                           dateStyle:NSDateFormatterMediumStyle
                                           timeStyle:NSDateFormatterNoStyle];

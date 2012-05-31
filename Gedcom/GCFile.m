@@ -87,6 +87,8 @@
 
 - (void)parseNodes:(NSArray *)nodes
 {
+    NSParameterAssert([_entities count] == 0);
+    
     [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         GCNode *node = (GCNode *)obj;
         
@@ -114,7 +116,7 @@
         });
     }];
     
-    //TODO verify that node count == entity count, ie that no data came after trailer.
+    //TODO react in some way if node count != entity count, ie nodes array contained malformed root nodes.
     
     if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
         [_delegate file:self didFinishWithEntityCount:[_entities count]];

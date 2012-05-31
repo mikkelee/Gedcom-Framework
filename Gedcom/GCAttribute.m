@@ -159,6 +159,15 @@
     return attribute;
 }
 
++ (id)attributeWithType:(NSString *)type gedcomStringValue:(NSString *)value
+{
+    GCAttribute *attribute = [self attributeWithType:type];
+    
+    [attribute setValueWithGedcomString:value];
+    
+    return attribute;
+}
+
 - (void)setValueWithGedcomString:(NSString *)string
 {
     [self setValue:[[[self gedTag] valueType] valueWithGedcomString:string]];
