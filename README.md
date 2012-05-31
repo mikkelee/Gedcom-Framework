@@ -36,6 +36,7 @@ Loosely prioritized in order of importance:
 * **tags.json**: refactor @shortcuts to enable searching for & sorting @events seperately, etc.
 * **GCDate**: Comparison should take into account qualifiers.
 * **GCValue**: More helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
+* **GCObject**: Rethink setValue:forKey:
 * **Unit tests**: Full code coverage
 * **Misc**: Handle special cases; see SOURCE_CITATION in spec. Probably retool reverseRelationship HUSB/WIFE logic.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
