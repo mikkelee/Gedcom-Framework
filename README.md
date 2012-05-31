@@ -2,7 +2,7 @@
 
 **Note**: A work in progress. Selectors & classes may change name / appear / disappear.
 
-A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of abstraction. The intent is to hide the GEDCOM specifics, but to allow access if required. A short summary of the functionality follows:
+A number of classes to ease [GEDCOM 5.5](http://www.gedcom.net/0g/gedcom55/)-manipulation in Cocoa through layers of abstraction. The intent is to hide the GEDCOM specifics, but to allow access if required. A short summary of the functionality follows:
 
 * GEDCOM is parsed and serialized in layers: text <=> GCNode <=> GCObject.
 * Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data.
@@ -26,7 +26,7 @@ A number of classes to ease GEDCOM 5.5-manipulation in Cocoa through layers of a
 
 Full AppleDoc documentation in the headers, can be built with the Documentation target.
 
-A simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structure, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png Screenshot as of May 31, 2012]
+A simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structure, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [Screenshot as of May 31, 2012](https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png)
 
 # TODO #
 
