@@ -37,6 +37,7 @@ Loosely prioritized in order of importance:
 * **GCDate**: Comparison should take into account qualifiers.
 * **GCValue**: More helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
 * **GCObject**: Rethink setValue:forKey:
+* **GCNode**: Tabs in attributedGedomString?
 * **Unit tests**: Full code coverage
 * **Misc**: Handle special cases; see SOURCE_CITATION in spec. Probably retool reverseRelationship HUSB/WIFE logic.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
@@ -67,7 +68,7 @@ Showing some different ways to add attributes to an object:
     [indi addAttributeWithType:@"death" value:[GCBool yes]];
 ```
 
-The above equivalent to the following GCNode:
+The above is equivalent to the following GCNode:
 
 ``` objective-c
     GCNode *node = [[GCNode alloc] initWithTag:@"INDI" 
@@ -102,7 +103,7 @@ And both are equivalent to the following Gedcom string:
 1 DEAT Y
 ```
 
-Relationship example:
+Similarly, for relationships, the following:
 
 ```objective-c
 	GCContext *ctx = [GCContext context];
@@ -140,15 +141,18 @@ is equivalent to:
 1 CHIL @INDI3@
 0 @INDI1@ INDI
 1 NAME Jens /Hansen/
+1 SEX M
 1 FAMS @FAM1@
 0 @INDI2@ INDI
 1 NAME Anne /Larsdatter/
+1 SEX F
 1 FAMS @FAM1@
 0 @INDI3@ INDI
 1 NAME Hans /Jensen/
+1 SEX M
 1 FAMC @FAM1@"
 ```
 
 ======
 
-Test files for GEDCOM compliance are from http://www.heiner-eichmann.de/gedcom/gedcom.htm (with minor modifications: node order, trailing space on CHAN, etc)
+Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with minor modifications: node order, removed trailing space on CHAN, etc.
