@@ -599,7 +599,10 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 @implementation GCObject (GCValidationMethods)
 
 BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
-    if (![value isKindOfClass:type]) {
+    if (value == nil) {
+        //TODO check if value is required
+        return YES;
+    } else if (![value isKindOfClass:type]) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
                                          code:-1 
@@ -630,10 +633,7 @@ BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, NSString *type, N
 
 BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
     if ([tag objectClass] == [GCAttribute class]) {
-        if ([(GCAttribute *)property value] == nil) {
-            //TODO check if value is required
-            return YES;
-        } else if (!validateValueTypeHelper(key, [(GCAttribute *)property value], [tag valueType], error)) {
+        if (!validateValueTypeHelper(key, [(GCAttribute *)property value], [tag valueType], error)) {
             return NO;
         }
     }
@@ -699,22 +699,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
 {
     GCTag *subTag = [[self gedTag] subTagWithName:inKey];
     
-    validatePropertyHelper(inKey, [self valueForKey:inKey], subTag, outError);
-    
-    if ([self allowsMultiplePropertiesOfType:inKey]) {
-        if ([[self valueForKey:inKey] count] + 1 > [[self gedTag] allowedOccurrencesOfSubTag:subTag].max) {
-            if (NULL != outError) {
-                *outError = [NSError errorWithDomain:@"GCErrorDoman" 
-                                                code:-1 
-                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      [NSString stringWithFormat:@"Too many values for key %@", inKey], NSLocalizedDescriptionKey,
-                                                      nil]];
-            }
-            return NO;
-        }
-    }
-    
-    return YES;
+    return validatePropertyHelper(inKey, *ioValue, subTag, outError);
 }
 
 @end
