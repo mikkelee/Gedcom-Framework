@@ -416,18 +416,26 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 #pragma mark NSCoding conformance
 
-//COV_NF_START
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    [self doesNotRecognizeSelector:_cmd];    
-    return nil;
+	self = [self initWithType:[aDecoder decodeObjectForKey:@"type"]];
+    
+    if (self) {
+        @synchronized(_propertyStore) {
+            _propertyStore = [aDecoder decodeObjectForKey:@"propertyStore"];
+        }
+	}
+    
+    return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [self doesNotRecognizeSelector:_cmd];    
+    [aCoder encodeObject:[self type] forKey:@"type"];
+    @synchronized(_propertyStore) {
+        [aCoder encodeObject:_propertyStore forKey:@"propertyStore"];
+    }
 }
-//COV_NF_END
 
 #pragma mark Description
 
@@ -584,24 +592,6 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 - (NSMutableArray *)allProperties
 {
     return [self mutableArrayValueForKey:@"properties"];
-}
-
-@end
-
-@implementation GCObject (GCCodingHelpers)
-
-- (void)decodeProperties:(NSCoder *)aDecoder
-{
-    @synchronized(_propertyStore) {
-        _propertyStore = [aDecoder decodeObjectForKey:@"propertyStore"];
-    }
-}
-
-- (void)encodeProperties:(NSCoder *)aCoder
-{
-    @synchronized(_propertyStore) {
-        [aCoder encodeObject:_propertyStore forKey:@"propertyStore"];
-    }
 }
 
 @end

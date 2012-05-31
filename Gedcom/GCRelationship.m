@@ -111,12 +111,10 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	self = [super initWithType:[aDecoder decodeObjectForKey:@"type"]];
+	self = [super initWithCoder:aDecoder];
     
     if (self) {
-        [self setDescribedObject:[aDecoder decodeObjectForKey:@"describedObject"]];
         _target = [aDecoder decodeObjectForKey:@"target"];
-        [self decodeProperties:aDecoder];
 	}
     
     return self;
@@ -124,10 +122,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:[self type] forKey:@"type"];
-    [aCoder encodeObject:[self describedObject] forKey:@"describedObject"];
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_target forKey:@"target"];
-    [self encodeProperties:aCoder];
 }
 
 #pragma mark Objective-C properties

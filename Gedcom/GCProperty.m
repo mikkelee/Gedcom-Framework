@@ -56,6 +56,25 @@
     return NSOrderedSame;
 }
 
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        [self setValue:[aDecoder decodeObjectForKey:@"describedObject"] forKey:@"primitiveDescribedObject"];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:[self describedObject] forKey:@"describedObject"];
+}
+
 #pragma mark Objective-C properties
 
 @synthesize primitiveDescribedObject = _describedObject;

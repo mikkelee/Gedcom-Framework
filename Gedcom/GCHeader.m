@@ -46,11 +46,10 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	self = [super initWithType:@"headerRecord"];
+	self = [super initWithCoder:aDecoder];
     
     if (self) {
         _context = [aDecoder decodeObjectForKey:@"context"];
-        [self decodeProperties:aDecoder];
 	}
     
     return self;
@@ -58,8 +57,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_context forKey:@"context"];
-    [self encodeProperties:aCoder];
 }
 
 #pragma mark Objective-C Properties

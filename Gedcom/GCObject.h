@@ -151,26 +151,6 @@
 
 @end
 
-@interface GCObject (GCCodingHelpers)
-
-//TODO should probably not be documented at all...
-
-/// @name Internal methods
-
-/** Used internally.
- 
- @param aDecoder Used internally.
- */
-- (void)decodeProperties:(NSCoder *)aDecoder;
-
-/** Used internally.
- 
- @param aCoder Used internally.
- */
-- (void)encodeProperties:(NSCoder *)aCoder;
-
-@end
-
 @interface GCObject (GCValidationMethods)
 
 /// @name Validating objects

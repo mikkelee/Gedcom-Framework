@@ -105,13 +105,10 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	self = [super initWithType:[aDecoder decodeObjectForKey:@"type"]];
+	self = [super initWithCoder:aDecoder];
     
     if (self) {
         _context = [aDecoder decodeObjectForKey:@"context"];
-        
-        [self decodeProperties:aDecoder];
-        
         _lastModified = [aDecoder decodeObjectForKey:@"lastModified"];
 	}
     
@@ -120,10 +117,9 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:[self type] forKey:@"type"];
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_context forKey:@"context"];
     [aCoder encodeObject:_lastModified forKey:@"lastModified"];
-    [self encodeProperties:aCoder];
 }
 
 #pragma mark Description
