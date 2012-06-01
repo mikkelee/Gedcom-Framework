@@ -225,7 +225,7 @@ __strong static NSDictionary *_tagsByName;
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:[NSDictionary dictionaryWithObjectsAndKeys:
                                                   code, kCode,
-                                                  @"stringValue", kValueType,
+                                                  @"string", kValueType,
                                                   type, kObjectType,
                                                   [NSOrderedSet orderedSet], kValidSubTags,
                                                   nil]];

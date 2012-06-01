@@ -89,6 +89,8 @@
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
 
+@property (readonly) GCObject *rootObject;
+
 /// The receiver as a GCNode.  Setting this property will cause the receiver to interpret the node and add new properties and remove those that no longer exist.
 @property GCNode *gedcomNode;
 

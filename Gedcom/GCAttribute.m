@@ -23,18 +23,12 @@
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:@"attribute"];
-    
-    self = [super initWithType:[tag name]];
+    self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
         if ([node gedValue] != nil) {
-            [self setValue:[[tag valueType] valueWithGedcomString:[node gedValue]]];
+            [self setValueWithGedcomString:[node gedValue]];
         }
-        
-        [self addPropertiesWithGedcomNodes:[node subNodes]];
-        
-        [[object mutableArrayValueForKey:@"properties"] addObject:self];
     }
     
     return self;

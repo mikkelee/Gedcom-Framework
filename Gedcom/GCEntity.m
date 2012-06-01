@@ -171,6 +171,11 @@
                                                                                   forKey:NSLinkAttributeName]];
 }
 
+- (GCObject *)rootObject
+{
+    return self;
+}
+
 @synthesize context = _context;
 
 @synthesize lastModified = _lastModified;

@@ -465,6 +465,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 @synthesize gedTag = _tag;
 
+@dynamic rootObject;
 @dynamic context;
 @dynamic gedcomNode;
 @dynamic displayValue;

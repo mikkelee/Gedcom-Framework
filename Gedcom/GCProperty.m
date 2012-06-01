@@ -23,9 +23,26 @@
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
+    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    
+    if (!tag) {
+        // for debugging; TODO remove when tags.json is complete.
+        NSLog(@"rootObject: %@", [object rootObject]);
+        NSLog(@"object: %@", object);
+        NSLog(@"node: %@", node);
+    }
+    
+    self = [super initWithType:[tag name]];
+    
+    if (self) {
+        [self addPropertiesWithGedcomNodes:[node subNodes]];
+        
+        [[object mutableArrayValueForKey:@"properties"] addObject:self];
+    }
+    
+    return self;
 }
+
 
 #pragma mark Convenience constructors
 
@@ -95,6 +112,11 @@
     [self setPrimitiveDescribedObject:describedObject];
     [[_describedObject mutableArrayValueForKey:@"properties"] addObject:self];
     [self didChangeValueForKey:@"describedObject"];
+}
+
+- (GCObject *)rootObject
+{
+    return [[self describedObject] rootObject];
 }
 
 - (GCContext *)context
