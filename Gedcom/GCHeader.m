@@ -35,11 +35,28 @@
 {
     NSParameterAssert([[node gedTag] isEqualToString:@"HEAD"]);
     
-	GCHeader *head = [[self alloc] initInContext:context];
+	GCHeader *header = [[self alloc] initInContext:context];
 	
-	[head addPropertiesWithGedcomNodes:[node subNodes]];
-	
-	return head;
+    //TODO clean up this part:
+    __block GCNode *dateNode = nil;
+    
+    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        GCNode *subNode = (GCNode *)obj;
+        if ([[subNode gedTag] isEqualToString:@"DATE"]) {
+            dateNode = subNode;
+            *stop = YES;
+        }
+    }];
+    
+    NSMutableOrderedSet *subNodesWithoutDate = [[node subNodes] mutableCopy];
+    
+    [subNodesWithoutDate removeObject:dateNode];
+    
+    [header addPropertiesWithGedcomNodes:subNodesWithoutDate];
+    
+    //TODO actually use dateNode (see GCEntity for example)
+    
+	return header;
 }
 
 #pragma mark NSCoding conformance

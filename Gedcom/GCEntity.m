@@ -57,7 +57,7 @@
 	[context setXref:[node xref] forEntity:entity];
 	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         
-        //clean up this part:
+        //TODO clean up this part:
         __block GCNode *changeNode = nil;
         
         [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

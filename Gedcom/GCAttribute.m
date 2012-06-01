@@ -17,9 +17,7 @@
 #import "GCAge.h"
 #import "GCDate.h"
 
-@implementation GCAttribute{
-    GCValue *_value;
-}
+@implementation GCAttribute
 
 #pragma mark Initialization
 

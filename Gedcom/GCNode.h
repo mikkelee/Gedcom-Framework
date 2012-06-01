@@ -76,6 +76,9 @@
 /// The value of the receiver; may be `nil`.
 @property (readonly) NSString *gedValue;
 
+/// `TRUE` the value is non-nil and starts and ends with a `@`. Otherwise `NO`
+@property (readonly) BOOL valueIsXref;
+
 /// The xref of the receiver; may be `nil`.
 @property (readonly) NSString *xref;
 

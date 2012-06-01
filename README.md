@@ -41,6 +41,7 @@ Loosely prioritized in order of importance:
 * **Unit tests**: Full code coverage
 * **Misc**: Handle special cases; see SOURCE_CITATION in spec. Probably retool reverseRelationship HUSB/WIFE logic.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
+* **GCTag**: Some handling of custom tags. Encountered so far: FAM._UMR (unmarried), OBJE._FILE (file path).
 
 # Examples #
 

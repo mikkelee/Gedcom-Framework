@@ -31,8 +31,7 @@
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    //TODO cache? also improve heuristic
-    Class propertySubClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [([[node gedValue] hasPrefix:@"@"] ? @"relationship" : @"attribute") capitalizedString]]);
+    Class propertySubClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [([node valueIsXref] ? @"relationship" : @"attribute") capitalizedString]]);
     
     return [[propertySubClass alloc] initForObject:object withGedcomNode:node];
 }

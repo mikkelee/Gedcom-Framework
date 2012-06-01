@@ -80,7 +80,7 @@ static NSString *concSeparator;
 	__block int currentLevel = 0;
 	__block GCNode *currentNode = nil;
 	
-	NSLog(@"Began parsing gedcom.");
+	//NSLog(@"Began parsing gedcom.");
 	
 	NSRegularExpression *levelXrefTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (?:(\\@[A-Z_]+\\d*\\@) )?([A-Z]{3,4}[0-9]?|_[A-Z][A-Z0-9]*)(?: (.*))?$"
                                                                                             options:kNilOptions 
@@ -496,6 +496,11 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 @synthesize xref = _xref;
 @synthesize lineSeparator = _lineSeparator;
 @synthesize subNodes = _subNodes;
+
+- (BOOL)valueIsXref
+{
+    return _gedValue != nil && [_gedValue hasSuffix:@"@"] && [_gedValue hasPrefix:@"@"];
+}
 
 @end
 
