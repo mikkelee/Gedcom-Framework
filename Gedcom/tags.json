@@ -12,10 +12,16 @@
 		"objectType": "header",
 		"validSubTags": [
                          { "name": "headerSource", "min": "1", "max": "1" },
-                         { "name": "gedcom", "min": "1", "max": "1" },
-                         { "name": "characterSet", "min": "1", "max": "1" },
+                         { "name": "destination", "min": "0", "max": "1" },
+                         { "name": "date", "min": "0", "max": "1" },
                          { "name": "submitterReference", "min": "1", "max": "1" },
                          { "name": "submissionReference", "min": "0", "max": "M" },
+                         { "name": "file", "min": "0", "max": "1" },
+                         { "name": "copyright", "min": "0", "max": "1" },
+                         { "name": "gedcom", "min": "1", "max": "1" },
+                         { "name": "characterSet", "min": "1", "max": "1" },
+                         { "name": "language", "min": "1", "max": "1" },
+                         { "name": "place", "min": "1", "max": "1" },
                          { "name": "noteEmbedded", "min": "0", "max": "1" }
                          ]
 	},
@@ -184,13 +190,17 @@
 		"objectType": "relationship",
 		"target": "familyRecord",
 		"validSubTags": [
-                         { "name": "pedigree", "min": "0", "max": "1" }
+                         { "name": "pedigree", "min": "0", "max": "1" },
+                         { "name": "@note", "min": "0", "max": "M" }
                          ]
     },
     "spouseInFamily": {
         "code": "FAMS",
 		"objectType": "relationship",
-		"target": "familyRecord"
+		"target": "familyRecord",
+		"validSubTags": [
+                         { "name": "@note", "min": "0", "max": "M" }
+                         ]
     },
     
 	"submitterReference": {
@@ -225,7 +235,7 @@
                      "adultChristening",
                      "confirmation",
                      "firstCommunion",
-                     "ordinance",
+                     "ordination",
                      "naturalization",
                      "emigration",
                      "immigration",
@@ -668,7 +678,8 @@
         "valueType": "string",
 		"validSubTags": [
                          { "name": "date", "min": "0", "max": "1" },
-                         { "name": "text", "min": "0", "max": "M" }
+                         { "name": "text", "min": "0", "max": "M" },
+                         { "name": "copyright", "min": "0", "max": "1" }
                          ]
     },
     "sourceData": {
