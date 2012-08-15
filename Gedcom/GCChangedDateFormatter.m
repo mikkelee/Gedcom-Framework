@@ -29,7 +29,7 @@
 	
     if (self) {
         [self setDateFormat:@"d MMM yyyy HH:mm:ss"];
-        [self setShortMonthSymbols:[NSArray arrayWithObjects:@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC", nil]];
+        [self setShortMonthSymbols:@[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"]];
     }
 	
 	return self;
@@ -57,7 +57,7 @@
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"d MMM yyyy"];
-    [dateFormatter setShortMonthSymbols:[NSArray arrayWithObjects:@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC", nil]];
+    [dateFormatter setShortMonthSymbols:@[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"]];
 	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
 	[timeFormatter setDateFormat:@"HH:mm:ss"];
     

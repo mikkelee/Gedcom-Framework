@@ -20,10 +20,8 @@ __strong static NSDictionary *boolStore;
     static dispatch_once_t predBool = 0;
     
     dispatch_once(&predBool, ^{
-        boolStore = [NSDictionary dictionaryWithObjectsAndKeys:
-                     [[GCBool alloc] initWithGedcomString:@"Y" displayString:@"Yes"], @"Y",
-                     [[GCBool alloc] initWithGedcomString:nil displayString:@"Undecided"], @"",
-                     nil];
+        boolStore = @{@"Y": [[GCBool alloc] initWithGedcomString:@"Y" displayString:@"Yes"],
+                     @"": [[GCBool alloc] initWithGedcomString:nil displayString:@"Undecided"]};
     });
 }
 

@@ -60,11 +60,11 @@
 			NSLog(@"WARNING: It is not safe at this moment to compare two GCDateSimples with different calendars.");
 		}
 		if ([[self dateComponents] year] != [[other dateComponents] year]) {
-			return [[NSNumber numberWithInt:[[self dateComponents] year]] compare:[NSNumber numberWithInt:[[other dateComponents] year]]];
+			return [[NSNumber numberWithInteger:[[self dateComponents] year]] compare:[NSNumber numberWithInteger:[[other dateComponents] year]]];
 		} else if ([[self dateComponents] month] != [[other dateComponents] month]) {
-			return [[NSNumber numberWithInt:[[self dateComponents] month]] compare:[NSNumber numberWithInt:[[other dateComponents] month]]];
+			return [[NSNumber numberWithInteger:[[self dateComponents] month]] compare:[NSNumber numberWithInteger:[[other dateComponents] month]]];
 		} else {
-			return [[NSNumber numberWithInt:[[self dateComponents] day]] compare:[NSNumber numberWithInt:[[other dateComponents] day]]];
+			return [[NSNumber numberWithInteger:[[self dateComponents] day]] compare:[NSNumber numberWithInteger:[[other dateComponents] day]]];
 		}
 	} else {
 		return [self compare:[other refDate]];
@@ -77,22 +77,22 @@
 	
 	NSString *month = @"";
 	if ([[self dateComponents] month] >= 1 && [[self dateComponents] month] <= 12) {
-		month = [NSString stringWithFormat:@"%@ ", [monthNames objectAtIndex:[[self dateComponents] month]-1]];
+		month = [NSString stringWithFormat:@"%@ ", monthNames[[[self dateComponents] month]-1]];
 	}
 	
 	NSString *day = @"";
 	if ([[self dateComponents] day] >= 1 && [[self dateComponents] day] <= 31) {
-		day = [NSString stringWithFormat:@"%d ", [[self dateComponents] day]];
+		day = [NSString stringWithFormat:@"%ld ", [[self dateComponents] day]];
 	}
 	
-	return [NSString stringWithFormat:@"%@%@%04d", day, month, [[self dateComponents] year]];
+	return [NSString stringWithFormat:@"%@%@%04ld", day, month, [[self dateComponents] year]];
 }
 
 - (NSString *)displayString
 {
     if ([[self dateComponents] day] < 1 || [[self dateComponents] day] > 31) {
         if ([[self dateComponents] month] < 1 || [[self dateComponents] month] > 12) {
-            return [NSString stringWithFormat:@"%d", [[self dateComponents] year]];
+            return [NSString stringWithFormat:@"%ld", [[self dateComponents] year]];
         }
     }
     
@@ -840,9 +840,9 @@ static NSCalendar *_gregorianCalendar = nil;
 
 - (GCDate *)parseGedcom:(NSString *)g
 {
-    if ([cache objectForKey:g]) {
+    if (cache[g]) {
         //NSLog(@"Getting cached date for %@", g);
-        return [[cache objectForKey:g] copy];
+        return [cache[g] copy];
     }
     
     [lock lock];
@@ -855,7 +855,7 @@ static NSCalendar *_gregorianCalendar = nil;
     if (date == nil) {
         date = [GCDate dateWithInvalidDateString:g];
     }
-    [cache setObject:date forKey:g];
+    cache[g] = date;
     
     [lock unlock];
     

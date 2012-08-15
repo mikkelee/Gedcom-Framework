@@ -225,7 +225,7 @@
                                              @"1 LANG English\n"
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish"
-                               exceptedError:@"Too few values for key name"];
+                               exceptedError:@"Too few values for key name on submitterRecord"];
     
     // Submitter with too many LANG properties.
     [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
@@ -234,7 +234,7 @@
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish\n"
                                              @"1 LANG German"
-                               exceptedError:@"Too many values for key language"];
+                               exceptedError:@"Too many values for key language on submitterRecord"];
 }
 
 @end

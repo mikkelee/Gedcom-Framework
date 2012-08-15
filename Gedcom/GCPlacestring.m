@@ -50,8 +50,8 @@
         for (NSString *place in [places reverseObjectEnumerator]) {
             NSString *cleanPlace = [place stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             
-            if ([[parent subPlaces] objectForKey:cleanPlace]) {
-                parent = [[parent subPlaces] objectForKey:cleanPlace];
+            if ([parent subPlaces][cleanPlace]) {
+                parent = [parent subPlaces][cleanPlace];
             } else {
                 GCPlacestring *place = [[self alloc] initWithValue:cleanPlace];
                 [parent addSubPlace:place];

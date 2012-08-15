@@ -58,15 +58,15 @@ typedef enum {
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:3];
 	
 	if ([[self ageComponents] year] >= 1) {
-        [stringComponents addObject:[NSString stringWithFormat:@"%dy", [[self ageComponents] year]]];
+        [stringComponents addObject:[NSString stringWithFormat:@"%ldy", [[self ageComponents] year]]];
     }
     
 	if ([[self ageComponents] month] >= 1) {
-		[stringComponents addObject:[NSString stringWithFormat:@"%dm", [[self ageComponents] month]]];
+		[stringComponents addObject:[NSString stringWithFormat:@"%ldm", [[self ageComponents] month]]];
 	}
 	
 	if ([[self ageComponents] day] >= 1) {
-		[stringComponents addObject:[NSString stringWithFormat:@"%dd", [[self ageComponents] day]]];
+		[stringComponents addObject:[NSString stringWithFormat:@"%ldd", [[self ageComponents] day]]];
 	}
     
     if ([stringComponents count] == 0) {
@@ -117,11 +117,11 @@ typedef enum {
 		return NSOrderedAscending;
 	} else if ([other isKindOfClass:[GCSimpleAge class]]) {
 		if ([[self ageComponents] year] != [[other ageComponents] year]) {
-			return [[NSNumber numberWithInt:[[self ageComponents] year]] compare:[NSNumber numberWithInt:[[other ageComponents] year]]];
+			return [[NSNumber numberWithInteger:[[self ageComponents] year]] compare:[NSNumber numberWithInteger:[[other ageComponents] year]]];
 		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
-			return [[NSNumber numberWithInt:[[self ageComponents] month]] compare:[NSNumber numberWithInt:[[other ageComponents] month]]];
+			return [[NSNumber numberWithInteger:[[self ageComponents] month]] compare:[NSNumber numberWithInteger:[[other ageComponents] month]]];
 		} else {
-			return [[NSNumber numberWithInt:[[self ageComponents] day]] compare:[NSNumber numberWithInt:[[other ageComponents] day]]];
+			return [[NSNumber numberWithInteger:[[self ageComponents] day]] compare:[NSNumber numberWithInteger:[[other ageComponents] day]]];
 		}
 	} else {
 		return [self compare:[other refAge]];
@@ -484,9 +484,9 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (GCAge *)parseGedcom:(NSString *)g
 {
-	if ([cache objectForKey:g]) {
+	if (cache[g]) {
         //NSLog(@"Getting cached age for %@", g);
-		return [[cache objectForKey:g] copy];
+		return [cache[g] copy];
 	}
 	
 	[lock lock];
@@ -499,7 +499,7 @@ NSString * const GCAgeQualifier_toString[] = {
 		age = [GCAge ageWithInvalidAgeString:g];
 	}
     
-	[cache setObject:age forKey:g];
+	cache[g] = age;
 	
 	[lock unlock];
 	

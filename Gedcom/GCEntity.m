@@ -167,8 +167,7 @@
 - (NSAttributedString *)attributedDisplayValue
 {
     return [[NSAttributedString alloc] initWithString:[self displayValue] 
-                                           attributes:[NSDictionary dictionaryWithObject:[[self context] xrefForEntity:self]
-                                                                                  forKey:NSLinkAttributeName]];
+                                           attributes:@{NSLinkAttributeName: [[self context] xrefForEntity:self]}];
 }
 
 - (GCObject *)rootObject

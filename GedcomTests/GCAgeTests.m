@@ -75,7 +75,7 @@
     
     [ages sortUsingSelector:@selector(compare:)];
     
-    NSArray *expectedOrder = [NSArray arrayWithObjects:b, c, a, g, d, f, e, h, nil];
+    NSArray *expectedOrder = [NSArray arrayWithObjects:c, b, g, a, d, f, e, h, nil];
     
     STAssertEqualObjects(ages, expectedOrder, nil);
 }

@@ -108,7 +108,7 @@
         
         GCEntity *entity = [context entityForXref:[[link path] lastPathComponent]];
         
-        return [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:[NSArray arrayWithObject:entity]];
+        return [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:@[entity]];
     } else {
         [[NSWorkspace sharedWorkspace] openURL:link];
         
@@ -145,7 +145,7 @@
 {
     NSLog(@"Clicked: %@", entity);
     
-    [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:[NSArray arrayWithObject:entity]];
+    [[entity type] isEqualToString:@"individualRecord"] && [individualsController setSelectedObjects:@[entity]];
 }
 
 #pragma mark Objective-C properties

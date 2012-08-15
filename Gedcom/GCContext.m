@@ -52,7 +52,7 @@ static __strong NSMutableDictionary *_contexts = nil;
         _contexts = [NSMutableDictionary dictionary];
     }
     
-    [_contexts setObject:self forKey:name];
+    _contexts[name] = self;
 	
 	return self;
 }
@@ -64,7 +64,7 @@ static __strong NSMutableDictionary *_contexts = nil;
 
 + (id)contextWithName:(NSString *)name
 {
-    GCContext *context = [_contexts objectForKey:name];
+    GCContext *context = _contexts[name];
     
     if (!context) {
         context = [[self alloc] initWithName:name];
@@ -90,12 +90,12 @@ static __strong NSMutableDictionary *_contexts = nil;
     
     //NSLog(@"Storing %@ for %@", xref, obj);
     
-    [xrefStore setObject:obj forKey:xref];
+    xrefStore[xref] = obj;
     [storedEntities addObject:obj];
 	
     [callbackLock lock];
-	if ([xrefBlocks objectForKey:xref]) {
-		for (void (^block) (NSString *) in [xrefBlocks objectForKey:xref]) {
+	if (xrefBlocks[xref]) {
+		for (void (^block) (NSString *) in xrefBlocks[xref]) {
 			block(xref);
 		}
 		[xrefBlocks removeObjectForKey:xref];
@@ -115,7 +115,7 @@ static __strong NSMutableDictionary *_contexts = nil;
     NSString *xref = nil;
     for (NSString *key in [xrefStore allKeys]) {
         //NSLog(@"%@: %@", key, [xrefStore objectForKey:key]);
-        if ([xrefStore objectForKey:key] == obj) {
+        if (xrefStore[key] == obj) {
             xref = key;
         }
     }
@@ -124,7 +124,7 @@ static __strong NSMutableDictionary *_contexts = nil;
         int i = 0;
         do {
             xref = [NSString stringWithFormat:@"@%@%d@", [[obj gedTag] code], ++i]; 
-        } while ([xrefStore objectForKey:xref]);
+        } while (xrefStore[xref]);
         
         [self setXref:xref forEntity:obj];
     }
@@ -136,7 +136,7 @@ static __strong NSMutableDictionary *_contexts = nil;
 
 - (GCEntity *)entityForXref:(NSString *)xref
 {
-    return [xrefStore objectForKey:xref];
+    return xrefStore[xref];
 }
 
 - (void)registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block
@@ -147,10 +147,10 @@ static __strong NSMutableDictionary *_contexts = nil;
     
 	if ([self entityForXref:xref]) {
 		block(xref);
-	} else	if ([xrefBlocks objectForKey:xref]) {
-		[[xrefBlocks objectForKey:xref] addObject:[block copy]];
+	} else	if (xrefBlocks[xref]) {
+		[xrefBlocks[xref] addObject:[block copy]];
 	} else {
-		[xrefBlocks setObject:[NSMutableSet setWithObject:[block copy]] forKey:xref];
+		xrefBlocks[xref] = [NSMutableSet setWithObject:[block copy]];
 	}
     
     [callbackLock unlock];

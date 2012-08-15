@@ -592,7 +592,7 @@
 		3E1C3E5C151C319C005E09E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Mikkel Eide Eriksen";
 			};
 			buildConfigurationList = 3E1C3E5F151C319C005E09E1 /* Build configuration list for PBXProject "Gedcom" */;
@@ -864,6 +864,7 @@
 		3E1C3E91151C319D005E09E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -877,10 +878,6 @@
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
 				INFOPLIST_FILE = "Gedcom/Gedcom-Info.plist";
 				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lprofile_rt",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -889,6 +886,7 @@
 		3E1C3E92151C319D005E09E1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -902,10 +900,6 @@
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
 				INFOPLIST_FILE = "Gedcom/Gedcom-Info.plist";
 				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lprofile_rt",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -914,6 +908,7 @@
 		3E1C3E94151C319D005E09E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
@@ -927,6 +922,7 @@
 		3E1C3E95151C319D005E09E1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gedcom/Gedcom-Prefix.pch";
@@ -940,6 +936,7 @@
 		3E29DB31154AE1F100756CF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -947,6 +944,7 @@
 		3E29DB32154AE1F100756CF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -954,6 +952,7 @@
 		3E3995D3155DE4B500228946 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -970,6 +969,7 @@
 		3E3995D4155DE4B500228946 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

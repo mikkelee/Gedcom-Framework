@@ -61,7 +61,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
             _validPropertiesByType = [NSMutableDictionary dictionary];
         }
         
-        NSOrderedSet *_validProperties = [_validPropertiesByType objectForKey:[self type]];
+        NSOrderedSet *_validProperties = _validPropertiesByType[[self type]];
         
         if (!_validProperties) {
             NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
@@ -72,7 +72,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
             
             _validProperties = [valid copy];
             
-            [_validPropertiesByType setObject:_validProperties forKey:[self type]];
+            _validPropertiesByType[[self type]] = _validProperties;
         }
         
         return _validProperties;
@@ -139,10 +139,10 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 - (id)valueForKey:(NSString *)key
 {
     if ([key hasSuffix:@"@primary"]) {
-        NSString *cleanKey = [[key componentsSeparatedByString:@"@"] objectAtIndex:0];
+        NSString *cleanKey = [key componentsSeparatedByString:@"@"][0];
         
         if ([[self valueForKey:cleanKey] count] > 0) {
-            return [[self valueForKey:cleanKey] objectAtIndex:0];
+            return [self valueForKey:cleanKey][0];
         } else {
             return nil;
         }
@@ -173,7 +173,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     [keyPaths addObject:@"gedcomNode"];
     [keyPaths addObject:@"properties"];
     
-    GCTag *tag = [[GCTag tagsByName] objectForKey:key];
+    GCTag *tag = [GCTag tagsByName][key];
     
     if (tag != nil) {
         for (GCTag *subTag in [tag validSubTags]) {
@@ -342,7 +342,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
 #ifdef DEBUGLEVEL
-    unsigned int numberOfArgs = [[invocation methodSignature] numberOfArguments];
+    NSInteger numberOfArgs = [[invocation methodSignature] numberOfArguments];
     NSLog(@"forwardInvocation: %@", invocation);
     NSLog(@"selector: %@", NSStringFromSelector([invocation selector]));
     for (int i = 2; i < numberOfArgs; i++) {
@@ -365,8 +365,8 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     
     @synchronized(_propertyStore) {
         NSArray *sortedProperties = [_propertyStore sortedArrayUsingComparator:^NSComparisonResult(GCProperty *obj1, GCProperty *obj2) {
-            NSNumber *obj1index = [NSNumber numberWithInt:[[self validProperties] indexOfObject:[obj1 type]]];
-            NSNumber *obj2index = [NSNumber numberWithInt:[[self validProperties] indexOfObject:[obj2 type]]];
+            NSNumber *obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj1 type]]];
+            NSNumber *obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj2 type]]];
             
             NSComparisonResult result = [obj1index compare:obj2index];
             
@@ -490,7 +490,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
             //NSLog(@"adding new property for %@", subNode);
             [self addPropertyWithGedcomNode:subNode];
         } else {
-            GCProperty *property = [originalProperties objectAtIndex:[matches firstIndex]];
+            GCProperty *property = originalProperties[[matches firstIndex]];
             [originalProperties removeObject:property];
             //NSLog(@"modifying property %@ with %@", property, subNode);
             [property setGedcomNode:subNode];
@@ -534,20 +534,20 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     [gedcomString enumerateAttributesInRange:NSMakeRange(0, [gedcomString length])
                                      options:(kNilOptions) 
                                   usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-                                      if ([attrs objectForKey:GCLevelAttributeName]) {
+                                      if (attrs[GCLevelAttributeName]) {
                                           [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:range];
-                                      } else if ([attrs objectForKey:GCXrefAttributeName]) {
+                                      } else if (attrs[GCXrefAttributeName]) {
                                           [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:range];
-                                      } else if ([attrs objectForKey:GCTagAttributeName]) {
+                                      } else if (attrs[GCTagAttributeName]) {
                                           [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor darkGrayColor] range:range];
-                                      } else if ([attrs objectForKey:GCLinkAttributeName]) {
+                                      } else if (attrs[GCLinkAttributeName]) {
                                           NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
                                                                                       @"xref",
                                                                                       [[self context] name],
-                                                                                      [attrs objectForKey:GCLinkAttributeName]]];
+                                                                                      attrs[GCLinkAttributeName]]];
                                           
                                           [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
-                                      } else if ([attrs objectForKey:GCValueAttributeName]) {
+                                      } else if (attrs[GCValueAttributeName]) {
                                           //nothing
                                       }
                                   }];
@@ -599,6 +599,8 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 @implementation GCObject (GCValidationMethods)
 
+//TODO actual error codes
+
 BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
     if (value == nil) {
         //TODO check if value is required
@@ -607,9 +609,7 @@ BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **erro
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
                                          code:-1 
-                                     userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                               [NSString stringWithFormat:@"Value %@ is incorrect type for key %@ (should be %@)", value, key, type], NSLocalizedDescriptionKey,
-                                               nil]];
+                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for key %@ (should be %@)", value, key, type]}];
         }
         return NO;
     } else {
@@ -622,9 +622,7 @@ BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, NSString *type, N
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
                                          code:-1 
-                                     userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                               [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", target, key, type], NSLocalizedDescriptionKey,
-                                               nil]];
+                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", target, key, type]}];
         }
         return NO;
     } else {
@@ -672,9 +670,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
             if (NULL != outError) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
                                                 code:-1 
-                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      [NSString stringWithFormat:@"Too many values for key %@", propertyKey], NSLocalizedDescriptionKey,
-                                                      nil]];
+                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, [self type]]}];
             }
             
             return NO;
@@ -684,9 +680,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
             if (NULL != outError) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
                                                 code:-1 
-                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      [NSString stringWithFormat:@"Too few values for key %@", propertyKey], NSLocalizedDescriptionKey,
-                                                      nil]];
+                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, [self type]]}];
             }
             
             return NO;

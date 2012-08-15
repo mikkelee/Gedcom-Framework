@@ -50,43 +50,41 @@ __strong static NSDictionary *_tagsByName;
 
 + (void)setupTagStoreForKey:(NSString *)key
 {
-    NSMutableDictionary *tagDict = [tagInfo objectForKey:key];
+    NSMutableDictionary *tagDict = tagInfo[key];
     NSParameterAssert(tagDict);
     
-    for (NSString *variantName in [tagDict objectForKey:kVariants]) {
-        id variant = [tagInfo objectForKey:variantName];
+    for (NSString *variantName in tagDict[kVariants]) {
+        id variant = tagInfo[variantName];
         NSParameterAssert(variant);
         
-        if ([tagDict objectForKey:kValidSubTags]) {
-            NSMutableArray *_validSubTags = [variant objectForKey:kValidSubTags];
+        if (tagDict[kValidSubTags]) {
+            NSMutableArray *_validSubTags = variant[kValidSubTags];
             if (_validSubTags == nil) {
-                _validSubTags = [[tagDict objectForKey:kValidSubTags] mutableCopy];
+                _validSubTags = [tagDict[kValidSubTags] mutableCopy];
             } else {
-                [_validSubTags addObjectsFromArray:[tagDict objectForKey:kValidSubTags]];
+                [_validSubTags addObjectsFromArray:tagDict[kValidSubTags]];
             }
             
-            [variant setObject:_validSubTags forKey:kValidSubTags];
+            variant[kValidSubTags] = _validSubTags;
         }
-        if ([tagDict objectForKey:kValueType] && ![variant objectForKey:kValueType]) {
-            [variant setObject:[tagDict objectForKey:kValueType] forKey:kValueType];
+        if (tagDict[kValueType] && !variant[kValueType]) {
+            variant[kValueType] = tagDict[kValueType];
         }
-        if (![tagStore objectForKey:variantName]) {
+        if (!tagStore[variantName]) {
             [self setupTagStoreForKey:variantName];
         }
     }
     
-    if ([tagDict objectForKey:kCode] != nil) {
+    if (tagDict[kCode] != nil) {
         GCTag *tag = [[GCTag alloc] initWithName:key
                                         settings:tagDict];
-        [tagStore setObject:tag 
-                     forKey:key];
-        [tagStore setObject:tag
-                     forKey:[NSString stringWithFormat:@"%@:%@", [tagDict objectForKey:kObjectType], [tagDict objectForKey:kCode]]];
+        tagStore[key] = tag;
+        tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
     }
     
-    for (NSDictionary *subTag in [tagDict objectForKey:kValidSubTags]) {
-        if (![tagStore objectForKey:[subTag objectForKey:kName]]) {
-            [self setupTagStoreForKey:[subTag objectForKey:kName]];
+    for (NSDictionary *subTag in tagDict[kValidSubTags]) {
+        if (!tagStore[subTag[kName]]) {
+            [self setupTagStoreForKey:subTag[kName]];
         }
     }
 }
@@ -125,7 +123,7 @@ __strong static NSDictionary *_tagsByName;
         NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
         
         for (NSString *key in keys) {
-            [tmpTags setObject:[tagStore objectForKey:key] forKey:key];
+            tmpTags[key] = tagStore[key];
         }
         
         _tagsByName = [tmpTags copy];
@@ -160,7 +158,7 @@ __strong static NSDictionary *_tagsByName;
     
     NSParameterAssert(name != nil);
     
-    GCTag *tag = [tagStore objectForKey:name];
+    GCTag *tag = tagStore[name];
     
     if (tag == nil) {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidTagNameException"
@@ -178,20 +176,18 @@ __strong static NSDictionary *_tagsByName;
     
     NSParameterAssert(code != nil);
     
-    NSDictionary *tmp = [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"headerRecord", @"HEAD",
-                         @"submissionRecord", @"SUBN",
-                         @"familyRecord", @"FAM",
-                         @"individualRecord", @"INDI",
-                         @"multimediaRecord", @"OBJE",
-                         @"noteRecord", @"NOTE",
-                         @"repositoryRecord", @"REPO",
-                         @"sourceRecord", @"SOUR",
-                         @"submitterRecord", @"SUBM",
-                         @"trailer", @"TRLR",
-                         nil];
+    NSDictionary *tmp = @{@"HEAD": @"headerRecord",
+                         @"SUBN": @"submissionRecord",
+                         @"FAM": @"familyRecord",
+                         @"INDI": @"individualRecord",
+                         @"OBJE": @"multimediaRecord",
+                         @"NOTE": @"noteRecord",
+                         @"REPO": @"repositoryRecord",
+                         @"SOUR": @"sourceRecord",
+                         @"SUBM": @"submitterRecord",
+                         @"TRLR": @"trailer"};
     
-    return [tagStore objectForKey:[tmp valueForKey:code]];
+    return tagStore[[tmp valueForKey:code]];
 }
 
 #pragma mark Subtags
@@ -207,8 +203,8 @@ __strong static NSDictionary *_tagsByName;
     for (GCTag *subTag in [self validSubTags]) {
         NSString *typeKey = [[NSStringFromClass([subTag objectClass]) substringFromIndex:2] lowercaseString];
         
-        [[byCode objectForKey:typeKey] setObject:subTag forKey:[subTag code]];
-        [byName setObject:subTag forKey:[subTag name]];
+        byCode[typeKey][[subTag code]] = subTag;
+        byName[[subTag name]] = subTag;
     }
     
     _cachedSubTagsByCode = [byCode copy];
@@ -223,14 +219,12 @@ __strong static NSDictionary *_tagsByName;
             return [tagStore valueForKey:tagName];
         }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
-                                        settings:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                  code, kCode,
-                                                  @"string", kValueType,
-                                                  type, kObjectType,
-                                                  [NSOrderedSet orderedSet], kValidSubTags,
-                                                  nil]];
+                                        settings:@{kCode: code,
+                                                  kValueType: @"string",
+                                                  kObjectType: type,
+                                                  kValidSubTags: [NSOrderedSet orderedSet]}];
         NSLog(@"Created custom %@ tag: %@", code, tag);
-        [tagStore setObject:tag forKey:tagName];
+        tagStore[tagName] = tag;
         
         return tag;
     }
@@ -239,7 +233,7 @@ __strong static NSDictionary *_tagsByName;
         [self buildSubTagCaches];
     }
     
-    return [[_cachedSubTagsByCode objectForKey:type] objectForKey:code];
+    return _cachedSubTagsByCode[type][code];
 }
 
 - (GCTag *)subTagWithName:(NSString *)name
@@ -248,7 +242,7 @@ __strong static NSDictionary *_tagsByName;
         [self buildSubTagCaches];
     }
     
-    return [_cachedSubTagsByName objectForKey:name];
+    return _cachedSubTagsByName[name];
 }
 
 - (BOOL)isValidSubTag:(GCTag *)tag
@@ -262,40 +256,38 @@ __strong static NSDictionary *_tagsByName;
         return (GCAllowedOccurrences){0, NSIntegerMax};
     }
     
-    if ([_settings objectForKey:kValidSubTags] == nil) {
+    if (_settings[kValidSubTags] == nil) {
         return (GCAllowedOccurrences){0, 0};
     }
     
     if (!_cachedOccurencesDicts) {
         NSMutableDictionary *occurrencesDicts = [NSMutableDictionary dictionary];
         
-        for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
-            if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
-                for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {
-                    NSDictionary *validDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                               variantName, kName, 
-                                               [valid objectForKey:@"min"], @"min",
-                                               [valid objectForKey:@"max"], @"max",
-                                               nil];
-                    [occurrencesDicts setObject:validDict forKey:variantName];
+        for (NSDictionary *valid in _settings[kValidSubTags]) {
+            if ([valid[kName] hasPrefix:@"@"]) {
+                for (NSString *variantName in tagInfo[valid[kName]][kVariants]) {
+                    NSDictionary *validDict = @{kName: variantName, 
+                                               @"min": valid[@"min"],
+                                               @"max": valid[@"max"]};
+                    occurrencesDicts[variantName] = validDict;
                 }
             } else {
-                [occurrencesDicts setObject:valid forKey:[valid objectForKey:kName]];
+                occurrencesDicts[valid[kName]] = valid;
             }
         }
         
         _cachedOccurencesDicts = [occurrencesDicts copy];
     }
     
-    NSDictionary *validDict = [_cachedOccurencesDicts objectForKey:[tag name]];
+    NSDictionary *validDict = _cachedOccurencesDicts[[tag name]];
     
     NSParameterAssert(validDict);
     
-    NSInteger min = [[validDict objectForKey:@"min"] integerValue];
+    NSInteger min = [validDict[@"min"] integerValue];
     
-    NSInteger max = [[validDict objectForKey:@"max"] isEqual:@"M"]
+    NSInteger max = [validDict[@"max"] isEqual:@"M"]
                   ? NSIntegerMax
-                  : [[validDict objectForKey:@"max"] integerValue]
+                  : [validDict[@"max"] integerValue]
                   ;
 	
     return (GCAllowedOccurrences){min, max};
@@ -342,13 +334,13 @@ __strong static NSDictionary *_tagsByName;
 
 - (NSString *)code
 {
-    return [_settings objectForKey:kCode];
+    return _settings[kCode];
 }
 
 - (Class)valueType
 {
     if (!_cachedValueClass) {
-        NSString *valueTypeString = [_settings objectForKey:kValueType];
+        NSString *valueTypeString = _settings[kValueType];
         
         _cachedValueClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [valueTypeString capitalizedString]]);
     }
@@ -359,7 +351,7 @@ __strong static NSDictionary *_tagsByName;
 - (Class)objectClass
 {
     if (!_cachedObjectClass) {
-        NSString *objectClassString = [_settings objectForKey:kObjectType];
+        NSString *objectClassString = _settings[kObjectType];
         
         _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
     }
@@ -370,7 +362,7 @@ __strong static NSDictionary *_tagsByName;
 - (NSString *)targetType
 {
     if (!_cachedTargetType) {
-        _cachedTargetType = [_settings objectForKey:kTargetType];
+        _cachedTargetType = _settings[kTargetType];
     }
     
 	return _cachedTargetType;
@@ -379,14 +371,14 @@ __strong static NSDictionary *_tagsByName;
 - (NSOrderedSet *)validSubTags
 {
     if (!_cachedValidSubTags) {
-        NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[[_settings objectForKey:kValidSubTags] count]];
-        for (NSDictionary *valid in [_settings objectForKey:kValidSubTags]) {
-            if ([[valid objectForKey:kName] hasPrefix:@"@"]) {
-                for (NSString *variantName in [[tagInfo objectForKey:[valid objectForKey:kName]] objectForKey:kVariants]) {
+        NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
+        for (NSDictionary *valid in _settings[kValidSubTags]) {
+            if ([valid[kName] hasPrefix:@"@"]) {
+                for (NSString *variantName in tagInfo[valid[kName]][kVariants]) {
                     [set addObject:[GCTag tagNamed:variantName]];                
                 }
             } else {
-                [set addObject:[GCTag tagNamed:[valid objectForKey:kName]]];
+                [set addObject:[GCTag tagNamed:valid[kName]]];
             }
         }
         _cachedValidSubTags = [set copy];
@@ -397,7 +389,7 @@ __strong static NSDictionary *_tagsByName;
 
 - (GCTag *)reverseRelationshipTag
 {
-	NSString *name = [_settings objectForKey:kReverseRelationshipTag];
+	NSString *name = _settings[kReverseRelationshipTag];
 	
 	if (name != nil) {
 		return [GCTag tagNamed:name];

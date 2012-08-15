@@ -20,11 +20,9 @@ __strong static NSDictionary *genderStore;
     static dispatch_once_t predGender = 0;
     
     dispatch_once(&predGender, ^{
-        genderStore = [NSDictionary dictionaryWithObjectsAndKeys:
-                       [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"], @"M",
-                       [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"], @"F",
-                       [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"], @"U",
-                       nil];
+        genderStore = @{@"M": [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"],
+                       @"F": [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"],
+                       @"U": [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"]};
     });
 }
 

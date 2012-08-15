@@ -42,7 +42,8 @@ static NSString *concSeparator;
 - (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
 {
     if (!concSeparator) {
-        concSeparator = [NSString stringWithFormat:@"%C", 0x2060];
+        unichar wordJoiner = 0x2060;
+        concSeparator = [NSString stringWithCharacters:&wordJoiner length:1];
     }
     
     NSParameterAssert(tag != nil && ([tag length] <= 4 || [tag hasPrefix:@"_"]));
@@ -204,11 +205,9 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
                 initial = line;
             } else {
                 //we already set the first line so make a CONT node
-                [subLines addObject:[NSArray arrayWithObjects:
-                                     levelString,
+                [subLines addObject:@[levelString,
                                      contString,
-                                     attributedString(line, GCValueAttributeName, line),
-                                     nil]];
+                                     attributedString(line, GCValueAttributeName, line)]];
             }
         } else {
             //we need to split the line on >248 or concSeparator
@@ -232,29 +231,23 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
                     if (initial == nil) {
                         initial = bite;
                     } else {
-                        [subLines addObject:[NSArray arrayWithObjects:
-                                             levelString,
+                        [subLines addObject:@[levelString,
                                              contString,
-                                             attributedString(bite, GCValueAttributeName, bite),
-                                             nil]];
+                                             attributedString(bite, GCValueAttributeName, bite)]];
                     }
                 } else {
                     //we already set the first line so make a CONC node
-                    [subLines addObject:[NSArray arrayWithObjects:
-                                         levelString,
+                    [subLines addObject:@[levelString,
                                          concString,
-                                         attributedString(bite, GCValueAttributeName, bite),
-                                         nil]];
+                                         attributedString(bite, GCValueAttributeName, bite)]];
                 }
                 
                 firstPass = NO;
             }
             
-            [subLines addObject:[NSArray arrayWithObjects:
-                                 levelString,
+            [subLines addObject:@[levelString,
                                  concString,
-                                 attributedString(leftover, GCValueAttributeName, leftover),
-                                 nil]];
+                                 attributedString(leftover, GCValueAttributeName, leftover)]];
         }
     }
     

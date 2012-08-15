@@ -17,7 +17,7 @@
     self = [super init];
     
     if (self) {
-        _contents = [NSNumber numberWithInteger:[gedcomString integerValue]];
+        _contents = @([gedcomString integerValue]);
     }
     
     return self;

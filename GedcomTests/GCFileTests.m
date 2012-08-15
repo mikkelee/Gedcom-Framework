@@ -77,7 +77,7 @@
     [self testFileAtPath:path];
 }
 
-- (void)testAllGed
+- (void)AtestAllGed
 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
     

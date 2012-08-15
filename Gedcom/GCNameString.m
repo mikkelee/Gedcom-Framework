@@ -24,18 +24,18 @@
         
         switch ([nameParts count]) {
             case 1: // - no surname, "Jens"
-                _cachedDisplayString = [NSString stringWithFormat:@", %@", [nameParts objectAtIndex:0]];
+                _cachedDisplayString = [NSString stringWithFormat:@", %@", nameParts[0]];
                 break;
                 
             case 3: // - surname, "Jens /Hansen/ Smed"
             {
                 NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
                 
-                NSString *suffix = ![[[nameParts objectAtIndex:2] stringByTrimmingCharactersInSet:whitespace] isEqualToString:@""] ? [NSString stringWithFormat:@" (%@)", [[nameParts objectAtIndex:2] stringByTrimmingCharactersInSet:whitespace]] : @"";
+                NSString *suffix = ![[nameParts[2] stringByTrimmingCharactersInSet:whitespace] isEqualToString:@""] ? [NSString stringWithFormat:@" (%@)", [nameParts[2] stringByTrimmingCharactersInSet:whitespace]] : @"";
                 
                 _cachedDisplayString = [NSString stringWithFormat:@"%@, %@%@", 
-                                        [[nameParts objectAtIndex:1] stringByTrimmingCharactersInSet:whitespace],
-                                        [[nameParts objectAtIndex:0] stringByTrimmingCharactersInSet:whitespace],
+                                        [nameParts[1] stringByTrimmingCharactersInSet:whitespace],
+                                        [nameParts[0] stringByTrimmingCharactersInSet:whitespace],
                                         suffix
                                         ];
                 break;
