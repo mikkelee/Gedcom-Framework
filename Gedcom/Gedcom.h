@@ -20,6 +20,7 @@
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
+#import "GCObjects_generated.h"
 
 #import "GCValue.h"
 #import "GCAge.h"

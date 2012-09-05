@@ -42,7 +42,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
+    GCEntity *indi = [GCIndividualEntity individualInContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
                       [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 

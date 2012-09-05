@@ -76,6 +76,9 @@
 		3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */; };
 		3ED92D401563C70500E53E47 /* GCXrefProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */; };
 		3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D421563D78C00E53E47 /* GCContextDelegate.h */; };
+		3EDBBE6215F7EE15008C1E50 /* GCObjects_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDBBE5F15F7EE15008C1E50 /* GCObjects_generated.h */; };
+		3EDBBE6315F7EE15008C1E50 /* GCObjects_generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDBBE6015F7EE15008C1E50 /* GCObjects_generated.m */; };
+		3EDBBE6415F7EE15008C1E50 /* tags.py in Resources */ = {isa = PBXBuildFile; fileRef = 3EDBBE6115F7EE15008C1E50 /* tags.py */; };
 		3EDD4114156D022200002352 /* Values.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD4112156D022200002352 /* Values.strings */; };
 		3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDD4116156D8EE200002352 /* GCPlacestring.h */; };
 		3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD4117156D8EE200002352 /* GCPlacestring.m */; };
@@ -119,6 +122,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3E1C3E65151C319C005E09E1;
 			remoteInfo = Gedcom;
+		};
+		3E75835715F7F09F00A9B096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E75835315F7EEE500A9B096;
+			remoteInfo = "Generate GCObject Subclasses";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -199,6 +209,9 @@
 		3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCXrefProtocol.h; sourceTree = "<group>"; };
 		3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCXrefProtocol.m; sourceTree = "<group>"; };
 		3ED92D421563D78C00E53E47 /* GCContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContextDelegate.h; sourceTree = "<group>"; };
+		3EDBBE5F15F7EE15008C1E50 /* GCObjects_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjects_generated.h; sourceTree = "<group>"; };
+		3EDBBE6015F7EE15008C1E50 /* GCObjects_generated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjects_generated.m; sourceTree = "<group>"; };
+		3EDBBE6115F7EE15008C1E50 /* tags.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = tags.py; sourceTree = "<group>"; };
 		3EDD4113156D022200002352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Values.strings; sourceTree = "<group>"; };
 		3EDD4116156D8EE200002352 /* GCPlacestring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlacestring.h; sourceTree = "<group>"; };
 		3EDD4117156D8EE200002352 /* GCPlacestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlacestring.m; sourceTree = "<group>"; };
@@ -337,6 +350,7 @@
 				3E57558A15217C1600A918D1 /* Objects */,
 				3E14EDCC15230FE400080364 /* Values */,
 				3EB5ABCF153615CD0036B4D5 /* Helpers */,
+				3EDBBE5D15F7EE04008C1E50 /* Generated files */,
 				3E1C3E70151C319C005E09E1 /* Supporting Files */,
 			);
 			path = Gedcom;
@@ -492,6 +506,16 @@
 			name = "Delegate informal protocols";
 			sourceTree = "<group>";
 		};
+		3EDBBE5D15F7EE04008C1E50 /* Generated files */ = {
+			isa = PBXGroup;
+			children = (
+				3EDBBE5F15F7EE15008C1E50 /* GCObjects_generated.h */,
+				3EDBBE6015F7EE15008C1E50 /* GCObjects_generated.m */,
+				3EDBBE6115F7EE15008C1E50 /* tags.py */,
+			);
+			name = "Generated files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -524,10 +548,28 @@
 				3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */,
 				3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */,
 				3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */,
+				3EDBBE6215F7EE15008C1E50 /* GCObjects_generated.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = tags.py;
+			buildConfigurationList = 3E75835415F7EEE500A9B096 /* Build configuration list for PBXLegacyTarget "Generate GCObject Subclasses" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/python;
+			buildWorkingDirectory = Gedcom;
+			dependencies = (
+			);
+			name = "Generate GCObject Subclasses";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Generate GCObject Subclasses";
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		3E1C3E65151C319C005E09E1 /* Gedcom */ = {
@@ -542,6 +584,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3E75835815F7F09F00A9B096 /* PBXTargetDependency */,
 			);
 			name = Gedcom;
 			productName = Gedcom;
@@ -611,6 +654,7 @@
 				3E1C3E7D151C319D005E09E1 /* GedcomTests */,
 				3E3995A7155DE4B500228946 /* GedcomGUI */,
 				3E29DB2F154AE1F100756CF4 /* Documentation */,
+				3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */,
 			);
 		};
 /* End PBXProject section */
@@ -627,6 +671,7 @@
 				3EB5ABD6153619280036B4D5 /* tags.json in Resources */,
 				3EDD4114156D022200002352 /* Values.strings in Resources */,
 				3EDD411F156F047A00002352 /* Tags.strings in Resources */,
+				3EDBBE6415F7EE15008C1E50 /* tags.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +755,7 @@
 				3E39506B1560DFFC00FEEA9F /* GCNamestring.m in Sources */,
 				3ED92D401563C70500E53E47 /* GCXrefProtocol.m in Sources */,
 				3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */,
+				3EDBBE6315F7EE15008C1E50 /* GCObjects_generated.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +797,11 @@
 			isa = PBXTargetDependency;
 			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
 			targetProxy = 3E3995DC155DE57F00228946 /* PBXContainerItemProxy */;
+		};
+		3E75835815F7F09F00A9B096 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */;
+			targetProxy = 3E75835715F7F09F00A9B096 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -983,6 +1034,33 @@
 			};
 			name = Release;
 		};
+		3E75835515F7EEE500A9B096 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3E75835615F7EEE500A9B096 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1030,6 +1108,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3E75835415F7EEE500A9B096 /* Build configuration list for PBXLegacyTarget "Generate GCObject Subclasses" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E75835515F7EEE500A9B096 /* Debug */,
+				3E75835615F7EEE500A9B096 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
