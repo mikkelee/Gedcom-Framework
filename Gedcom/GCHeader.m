@@ -20,7 +20,7 @@
 
 - (id)initInContext:(GCContext *)context
 {
-    self = [super initWithType:@"headerRecord"];
+    self = [super initWithType:@"header"];
     
     if (self) {
         _context = context;

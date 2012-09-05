@@ -1,1030 +1,1020 @@
 {
 	"@rootObject": {
 		"variants": [
-                     "headerRecord",
-					 "@record",
-					 "trailer"
-                     ]
+			"header",
+			"@record",
+			"trailer"
+		]
 	},
-	
-	"headerRecord": {
+
+	"header": {
 		"code": "HEAD",
 		"objectType": "header",
 		"validSubTags": [
-                         { "name": "headerSource", "min": "1", "max": "1" },
-                         { "name": "destination", "min": "0", "max": "1" },
-                         { "name": "date", "min": "0", "max": "1" },
-                         { "name": "submitterReference", "min": "1", "max": "1" },
-                         { "name": "submissionReference", "min": "0", "max": "M" },
-                         { "name": "file", "min": "0", "max": "1" },
-                         { "name": "copyright", "min": "0", "max": "1" },
-                         { "name": "gedcom", "min": "1", "max": "1" },
-                         { "name": "characterSet", "min": "1", "max": "1" },
-                         { "name": "language", "min": "0", "max": "1" },
-                         { "name": "place", "min": "0", "max": "1" },
-                         { "name": "noteEmbedded", "min": "0", "max": "1" }
-                         ]
+			{ "name": "headerSource", "min": "1", "max": "1" },
+			{ "name": "gedcom", "min": "1", "max": "1" },
+			{ "name": "characterSet", "min": "1", "max": "1" },
+			{ "name": "submitterReference", "min": "1", "max": "1" },
+			{ "name": "submissionReference", "min": "0", "max": "M" },
+			{ "name": "noteEmbedded", "min": "0", "max": "1" }
+		]
 	},
-	
+
 	"@record": {
 		"variants": [
-					 "submissionRecord",
-					 "familyRecord",
-					 "individualRecord",
-					 "multimediaRecord",
-					 "noteRecord",
-					 "repositoryRecord",
-					 "sourceRecord",
-					 "submitterRecord"
-					 ],
+			"submission",
+			"family",
+			"individual",
+			"multimedia",
+			"note",
+			"repository",
+			"source",
+			"submitter"
+		],
 		"validSubTags": [
-                         { "name": "@source", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
+			{ "name": "@source", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" }
+		]
 	},
-	
+
 	"trailer": {
 		"code": "TRLR",
 		"objectType": "trailer"
 	},
-	
-	"submissionRecord": {
+
+	"submission": {
 		"code": "SUBN",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "submitterReference", "min": "0", "max": "1" },
-                         { "name": "familyFile", "min": "0", "max": "1" },
-                         { "name": "temple", "min": "0", "max": "1" },
-                         { "name": "ancestors", "min": "0", "max": "1" },
-                         { "name": "descendants", "min": "0", "max": "1" },
-                         { "name": "ordinance", "min": "0", "max": "1" },
-                         { "name": "recordIdNumber", "min": "0", "max": "1" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "submitterReference", "min": "0", "max": "1" },
+			{ "name": "familyFile", "min": "0", "max": "1" },
+			{ "name": "temple", "min": "0", "max": "1" },
+			{ "name": "generationsOfAncestors", "min": "0", "max": "1" },
+			{ "name": "generationsOfDescendants", "min": "0", "max": "1" },
+			{ "name": "ordinance", "min": "0", "max": "1" },
+			{ "name": "recordIdNumber", "min": "0", "max": "1" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	"familyRecord": {
+	"family": {
 		"code": "FAM",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "@familyEvent", "min": "0", "max": "M" },
-                         { "name": "husband", "min": "0", "max": "1" },
-                         { "name": "wife", "min": "0", "max": "1" },
-                         { "name": "child", "min": "0", "max": "M" },
-                         { "name": "numberOfChildren", "min": "0", "max": "1" },
-                         { "name": "submissionReference", "min": "0", "max": "M" },
-                         { "name": "@source", "min": "0", "max": "M" },
-                         { "name": "@multimedia", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "@familyEvent", "min": "0", "max": "M" },
+			{ "name": "husband", "min": "0", "max": "1" },
+			{ "name": "wife", "min": "0", "max": "1" },
+			{ "name": "child", "min": "0", "max": "M" },
+			{ "name": "numberOfChildren", "min": "0", "max": "1" },
+			{ "name": "submissionReference", "min": "0", "max": "M" },
+			{ "name": "@source", "min": "0", "max": "M" },
+			{ "name": "@multimedia", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	"individualRecord": {
+	"individual": {
 		"code": "INDI",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "restrictionNotice", "min": "0", "max": "1" },
-                         { "name": "personalName", "min": "0", "max": "M" },
-                         { "name": "sex", "min": "0", "max": "1" },
-                         { "name": "@individualEvent", "min": "0", "max": "M" },
-                         { "name": "@individualAttribute", "min": "0", "max": "M" },
-                         { "name": "@individualLDSOrdinance", "min": "0", "max": "M" },
-                         { "name": "childInFamily", "min": "0", "max": "M" },
-                         { "name": "spouseInFamily", "min": "0", "max": "M" },
-                         { "name": "submissionReference", "min": "0", "max": "M" },
-                         { "name": "association", "min": "0", "max": "M" },
-                         { "name": "alias", "min": "0", "max": "M" },
-                         { "name": "ancestorInterest", "min": "0", "max": "M" },
-                         { "name": "descendantInterest", "min": "0", "max": "M" },
-                         { "name": "@source", "min": "0", "max": "M" },
-                         { "name": "@multimedia", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "restrictionNotice", "min": "0", "max": "1" },
+			{ "name": "personalName", "min": "0", "max": "M" },
+			{ "name": "sex", "min": "0", "max": "1" },
+			{ "name": "@individualEvent", "min": "0", "max": "M" },
+			{ "name": "@individualAttribute", "min": "0", "max": "M" },
+			{ "name": "@individualLDSOrdinance", "min": "0", "max": "M" },
+			{ "name": "childInFamily", "min": "0", "max": "M" },
+			{ "name": "spouseInFamily", "min": "0", "max": "M" },
+			{ "name": "submissionReference", "min": "0", "max": "M" },
+			{ "name": "association", "min": "0", "max": "M" },
+			{ "name": "alias", "min": "0", "max": "M" },
+			{ "name": "ancestorInterest", "min": "0", "max": "M" },
+			{ "name": "descendantInterest", "min": "0", "max": "M" },
+			{ "name": "@source", "min": "0", "max": "M" },
+			{ "name": "@multimedia", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	"multimediaRecord": {
+	"multimedia": {
 		"code": "OBJE",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "format", "min": "1", "max": "1" },
-                         { "name": "title", "min": "0", "max": "1" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "format", "min": "1", "max": "1" },
+			{ "name": "title", "min": "0", "max": "1" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	"noteRecord": {
+	"note": {
 		"code": "NOTE",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "recordIdNumber", "min": "0", "max": "1" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "recordIdNumber", "min": "0", "max": "1" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	"repositoryRecord": {
+	"repository": {
 		"code": "REPO",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "name", "min": "0", "max": "1" },
-                         { "name": "address", "min": "0", "max": "1" },
-                         { "name": "phoneNumber", "min": "0", "max": "3" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "name", "min": "0", "max": "1" },
+			{ "name": "address", "min": "0", "max": "1" },
+			{ "name": "phoneNumber", "min": "0", "max": "3" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	"sourceRecord": {
+	"source": {
 		"code": "SOUR",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "sourceData", "min": "0", "max": "1" },
-                         { "name": "author", "min": "0", "max": "1" },
-                         { "name": "title", "min": "0", "max": "1" },
-                         { "name": "abbreviation", "min": "0", "max": "1" },
-                         { "name": "publicationFacts", "min": "0", "max": "1" },
-                         { "name": "text", "min": "0", "max": "1" },
-                         { "name": "repositoryCitation", "min": "0", "max": "1" },
-                         { "name": "@multimedia", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "1" },
-                         { "name": "recordIdNumber", "min": "0", "max": "1" }
-                         ]
+			{ "name": "sourceData", "min": "0", "max": "1" },
+			{ "name": "author", "min": "0", "max": "1" },
+			{ "name": "title", "min": "0", "max": "1" },
+			{ "name": "abbreviation", "min": "0", "max": "1" },
+			{ "name": "publicationFacts", "min": "0", "max": "1" },
+			{ "name": "text", "min": "0", "max": "1" },
+			{ "name": "repositoryCitation", "min": "0", "max": "1" },
+			{ "name": "@multimedia", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "1" },
+			{ "name": "recordIdNumber", "min": "0", "max": "1" }
+		]
 	},
-	"submitterRecord": {
+	"submitter": {
 		"code": "SUBM",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "name", "min": "1", "max": "1" },
-                         { "name": "address", "min": "0", "max": "1" },
-                         { "name": "phoneNumber", "min": "0", "max": "3" },
-                         { "name": "@multimedia", "min": "0", "max": "M" },
-                         { "name": "language", "min": "0", "max": "3" },
-                         { "name": "recordFileNumber", "min": "0", "max": "1" },
-                         { "name": "ancestralFileNumber", "min": "0", "max": "1" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "name", "min": "1", "max": "1" },
+			{ "name": "address", "min": "0", "max": "1" },
+			{ "name": "phoneNumber", "min": "0", "max": "3" },
+			{ "name": "@multimedia", "min": "0", "max": "M" },
+			{ "name": "language", "min": "0", "max": "3" },
+			{ "name": "recordFileNumber", "min": "0", "max": "1" },
+			{ "name": "ancestralFileNumber", "min": "0", "max": "1" },
+			{ "name": "userReferenceNumber", "min": "0", "max": "M" }
+		]
 	},
-	
+
 	"husband": {
 		"code": "HUSB",
 		"objectType": "relationship",
-		"target": "individualRecord",
-        "reverseRelationshipTag": "spouseInFamily",
-		"validSubTags": [
-        ]
+		"target": "individual",
+		"reverseRelationshipTag": "spouseInFamily"
 	},
 	"wife": {
 		"code": "WIFE",
 		"objectType": "relationship",
-		"target": "individualRecord",
-        "reverseRelationshipTag": "spouseInFamily",
-		"validSubTags": [
-        ]
+		"target": "individual",
+		"reverseRelationshipTag": "spouseInFamily",
+		"plural": "wives"
 	},
 	"child": {
 		"code": "CHIL",
 		"objectType": "relationship",
-		"target": "individualRecord",
-        "reverseRelationshipTag": "childInFamily",
-		"validSubTags": [
-        ]
+		"target": "individual",
+		"reverseRelationshipTag": "childInFamily",
+		"plural": "children"
 	},
-    
-    "childInFamily": {
-        "code": "FAMC",
+	
+	"childInFamily": {
+		"code": "FAMC",
 		"objectType": "relationship",
-		"target": "familyRecord",
+		"target": "family",
+		"plural": "childInFamilies",
 		"validSubTags": [
-                         { "name": "pedigree", "min": "0", "max": "1" },
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
-    },
-    "spouseInFamily": {
-        "code": "FAMS",
+			{ "name": "pedigree", "min": "0", "max": "1" }
+		]
+	},
+	"spouseInFamily": {
+		"code": "FAMS",
 		"objectType": "relationship",
-		"target": "familyRecord",
-		"validSubTags": [
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
-    },
-    
+		"target": "family",
+		"plural": "spouseInFamilies"
+	},
+	
 	"submitterReference": {
 		"code": "SUBM",
 		"objectType": "relationship",
-		"target": "submitterRecord",
-		"validSubTags": [
-        ]
+		"target": "submitter"
 	},
 	"submissionReference": {
 		"code": "SUBN",
 		"objectType": "relationship",
-		"target": "submissionRecord",
+		"target": "submission"
+	},
+
+	"@individualEvent": {
+		"objectType": "GCProperty",
+		"valueType": "bool",
+		"variants": [
+			"birth",
+			"christening",
+			"death",
+			"burial",
+			"cremation",
+			"adoption",
+			"baptism",
+			"barMitzvah",
+			"basMitzvah",
+			"blessing",
+			"adultChristening",
+			"confirmation",
+			"firstCommunion",
+			"ordinance",
+			"naturalization",
+			"emigration",
+			"immigration",
+			"census",
+			"probate",
+			"will",
+			"graduation",
+			"retirement",
+			"customEvent"
+		],
 		"validSubTags": [
-        ]
+			{ "name": "@eventDetail", "min": "0", "max": "M" }
+		]
+	},
+	"@individualAttribute": {
+		"objectType": "GCProperty",
+		"valueType": "string",
+		"variants": [
+			"caste",
+			"generationsOfDescendants",
+			"education",
+			"identNumber",
+			"nationality",
+			"numberOfChildren",
+			"numberOfMarriages",
+			"occupation",
+			"propertyOwned",
+			"religion",
+			"residence",
+			"socialSecurityNumber",
+			"title"
+		],
+		"validSubTags": [
+			{ "name": "@eventDetail", "min": "0", "max": "M" }
+		]
+	},
+	"@individualLDSOrdinance": {
+		"objectType": "GCProperty",
+		"variants": [
+			"lDSBaptism",
+			"lDSConfirmation",
+			"lDSEndowment",
+			"lDSSealingChild"
+		],
+		"validSubTags": [
+			{ "name": "state", "min": "0", "max": "1" },
+			{ "name": "date", "min": "0", "max": "1" },
+			{ "name": "temple", "min": "0", "max": "1" },
+			{ "name": "place", "min": "0", "max": "1" }
+		]
+	},
+	"@familyEvent": {
+		"objectType": "GCProperty",
+		"valueType": "bool",
+		"variants": [
+			"annulment",
+			"census",
+			"divorce",
+			"divorceFiled",
+			"engagement",
+			"marriage",
+			"marriageBann",
+			"marriageContract",
+			"marriageLicense",
+			"marriageSettlement",
+			"customEvent"
+		],
+		"validSubTags": [
+			{ "name": "@eventDetail", "min": "0", "max": "M" }
+		]
+	},
+	"@eventDetail": {
+		"objectType": "GCProperty",
+		"variants": [
+			"typeDescription",
+			"date",
+			"place",
+			"address",
+			"phoneNumber",
+			"age",
+			"cause",
+			"sourceCitation",
+			"sourceEmbedded",
+			"multimediaReference",
+			"multimediaEmbedded",
+			"noteReference",
+			"noteEmbedded"
+		]
 	},
 	
-    "@individualEvent": {
-		"objectType": "GCProperty",
-        "valueType": "bool",
-		"variants": [
-                     "birth",
-                     "christening",
-                     "death",
-                     "burial",
-                     "cremation",
-                     "adoption",
-                     "baptism",
-                     "barMitzvah",
-                     "basMitzvah",
-                     "blessing",
-                     "adultChristening",
-                     "confirmation",
-                     "firstCommunion",
-                     "ordination",
-                     "naturalization",
-                     "emigration",
-                     "immigration",
-                     "census",
-                     "probate",
-                     "will",
-                     "graduation",
-                     "retirement",
-                     "event"
-                     ],
-        "validSubTags": [
-                         { "name": "@eventDetail", "min": "0", "max": "M" }
-                         ]
-    },
-    "@individualAttribute": {
-		"objectType": "GCProperty",
-        "valueType": "string",
-		"variants": [
-                     "caste",
-                     "descendants",
-                     "education",
-                     "identNumber",
-                     "nationality",
-                     "numberOfChildren",
-                     "numberOfMarriages",
-                     "occupation",
-                     "propertyOwned",
-                     "religion",
-                     "residence",
-                     "socialSecurityNumber",
-                     "title"
-                     ],
-        "validSubTags": [
-                         { "name": "@eventDetail", "min": "0", "max": "M" }
-                         ]
-    },
-    "@individualLDSOrdinance": {
-		"objectType": "GCProperty",
-		"variants": [
-                     "lDSBaptism",
-                     "lDSConfirmation",
-                     "lDSEndowment",
-                     "lDSSealingChild"
-                     ],
+	"personalName": {
+		"code": "NAME",
+		"objectType": "attribute",
+		"valueType": "namestring",
 		"validSubTags": [
-                         { "name": "state", "min": "0", "max": "1" },
-                         { "name": "date", "min": "0", "max": "1" },
-                         { "name": "temple", "min": "0", "max": "1" },
-                         { "name": "place", "min": "0", "max": "1" }
-                         ]
-    },
-    "@familyEvent": {
-		"objectType": "GCProperty",
-        "valueType": "bool",
+			{ "name": "namePrefix", "min": "0", "max": "1" },
+			{ "name": "givenName", "min": "0", "max": "1" },
+			{ "name": "nickname", "min": "0", "max": "1" },
+			{ "name": "surnamePrefix", "min": "0", "max": "1" },
+			{ "name": "surname", "min": "0", "max": "1" },
+			{ "name": "nameSuffix", "min": "0", "max": "1" },
+			{ "name": "@source", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" }
+		]
+	},
+	"namePrefix": {
+		"code": "NPFX",
+		"objectType": "attribute",
+		"valueType": "string",
+		"plural": "namePrefixes"
+	},
+	"givenName": {
+		"code": "GIVN",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"nickname": {
+		"code": "NICK",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"surnamePrefix": {
+		"code": "SPFX",
+		"objectType": "attribute",
+		"valueType": "string",
+		"plural": "surnamePrefixes"
+	},
+	"surname": {
+		"code": "SURN",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"nameSuffix": {
+		"code": "NSFX",
+		"objectType": "attribute",
+		"valueType": "string",
+		"plural": "nameSuffixes"
+	},
+	
+	"@source": {
 		"variants": [
-                     "annulment",
-                     "census",
-                     "divorce",
-                     "divorceFiled",
-                     "engagement",
-                     "marriage",
-                     "marriageBann",
-                     "marriageContract",
-                     "marriageLicense",
-                     "marriageSettlement",
-                     "event"
-                     ],
-        "validSubTags": [
-                         { "name": "@eventDetail", "min": "0", "max": "M" }
-                         ]
-    },
-    "@eventDetail": {
-		"objectType": "GCProperty",
-		"variants": [
-                     "typeDescription",
-                     "date",
-                     "place",
-                     "address",
-                     "phoneNumber",
-                     "age",
-                     "cause",
-                     "sourceCitation",
-                     "sourceEmbedded",
-                     "multimediaReference",
-                     "multimediaEmbedded",
-                     "noteReference",
-                     "noteEmbedded"
-                     ]
-    },
-    
-    "personalName": {
-        "code": "NAME",
-		"objectType": "attribute",
-        "valueType": "namestring",
-        "validSubTags": [
-                         { "name": "namePrefix", "min": "0", "max": "1" },
-                         { "name": "givenName", "min": "0", "max": "1" },
-                         { "name": "nickname", "min": "0", "max": "1" },
-                         { "name": "surnamePrefix", "min": "0", "max": "1" },
-                         { "name": "surname", "min": "0", "max": "1" },
-                         { "name": "nameSuffix", "min": "0", "max": "1" },
-                         { "name": "@source", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
-    },
-    "namePrefix": {
-        "code": "NPFX",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "givenName": {
-        "code": "GIVN",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "nickname": {
-        "code": "NICK",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "surnamePrefix": {
-        "code": "SPFX",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "surname": {
-        "code": "SURN",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "nameSuffix": {
-        "code": "NSFX",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    
-    "@source": {
-        "variants": [
-                     "sourceCitation",
-                     "sourceEmbedded"
-                     ]
-    },
+			"sourceCitation",
+			"sourceEmbedded"
+		]
+	},
 	"sourceCitation": {
 		"code": "SOUR",
 		"objectType": "relationship",
-        "target": "sourceRecord",
+		"target": "source",
 		"validSubTags": [
-                         { "name": "page", "min": "0", "max": "1" },
-                         { "name": "data", "min": "0", "max": "1" },
-                         { "name": "qualityOfData", "min": "0", "max": "1" },
-                         { "name": "@multimedia", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
+			{ "name": "page", "min": "0", "max": "1" },
+			{ "name": "data", "min": "0", "max": "1" },
+			{ "name": "qualityOfData", "min": "0", "max": "1" },
+			{ "name": "@multimedia", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" }
+		]
 	},
 	"sourceEmbedded": {
 		"code": "SOUR",
 		"objectType": "attribute",
 		"validSubTags": [
-                         { "name": "text", "min": "0", "max": "M" },
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
+			{ "name": "text", "min": "0", "max": "M" },
+			{ "name": "@note", "min": "0", "max": "M" }
+		]
 	},
 	"headerSource": {
 		"code": "SOUR",
 		"objectType": "attribute",
 		"valueType": "string",
 		"validSubTags": [
-                         { "name": "version", "min": "0", "max": "1" },
-                         { "name": "name", "min": "0", "max": "1" },
-                         { "name": "corporation", "min": "0", "max": "1" },
-                         { "name": "data", "min": "0", "max": "1" }
-                         ]
+			{ "name": "version", "min": "0", "max": "1" },
+			{ "name": "name", "min": "0", "max": "1" },
+			{ "name": "corporation", "min": "0", "max": "1" },
+			{ "name": "data", "min": "0", "max": "1" }
+		]
 	},
-    
+	
 	"repositoryCitation": {
 		"code": "REPO",
 		"objectType": "relationship",
-		"target": "repositoryRecord",
+		"target": "repository",
 		"validSubTags": [
-                         { "name": "@note", "min": "0", "max": "M" },
-                         { "name": "callNumber", "min": "0", "max": "M" }
-                         ]
+			{ "name": "@note", "min": "0", "max": "M" },
+			{ "name": "callNumber", "min": "0", "max": "M" }
+		]
 	},
-    
-    "@note": {
-        "variants": [
-                     "noteReference",
-                     "noteEmbedded"
-                     ],
+	
+	"@note": {
+		"variants": [
+			"noteReference",
+			"noteEmbedded"
+		],
 		"validSubTags": [
-                         { "name": "@source", "min": "1", "max": "1" }
-                         ]
-    },
+			{ "name": "@source", "min": "1", "max": "1" }
+		]
+	},
 	"noteReference": {
 		"code": "NOTE",
 		"objectType": "relationship",
-        "target": "noteRecord"
+		"target": "note"
 	},
 	"noteEmbedded": {
 		"code": "NOTE",
 		"objectType": "attribute",
 		"valueType": "string"
 	},
-    
-    "@multimedia": {
-        "variants": [
-                     "multimediaReference",
-                     "multimediaEmbedded"
-                     ]
-    },
+	
+	"@multimedia": {
+		"variants": [
+			"multimediaReference",
+			"multimediaEmbedded"
+		]
+	},
 	"multimediaReference": {
 		"code": "OBJE",
 		"objectType": "relationship",
-        "target": "multimediaRecord"
+		"target": "multimedia"
 	},
 	"multimediaEmbedded": {
 		"code": "OBJE",
 		"objectType": "attribute",
 		"valueType": "string",
 		"validSubTags": [
-                         { "name": "format", "min": "1", "max": "1" },
-                         { "name": "title", "min": "0", "max": "1" },
-                         { "name": "file", "min": "0", "max": "1" },
-                         { "name": "@note", "min": "0", "max": "1" }
-                         ]
+			{ "name": "format", "min": "1", "max": "1" },
+			{ "name": "title", "min": "0", "max": "1" },
+			{ "name": "file", "min": "0", "max": "1" },
+			{ "name": "@note", "min": "0", "max": "1" }
+		]
 	},
-    
-    "@changed": {
-        "code": "CHAN",
+	
+	"@changed": {
+		"code": "CHAN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    
-    "abbreviation": {
-        "code": "ABBR",
+		"valueType": "string"
+	},
+	
+	"abbreviation": {
+		"code": "ABBR",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "address": {
-        "code": "ADDR",
+		"valueType": "string"
+	},
+	"address": {
+		"code": "ADDR",
 		"objectType": "attribute",
-        "valueType": "string",
+		"valueType": "string",
+		"plural": "addresses",
 		"validSubTags": [
-                         { "name": "addressLine1", "min": "0", "max": "1" },
-                         { "name": "addressLine2", "min": "0", "max": "1" },
-                         { "name": "city", "min": "0", "max": "1" },
-                         { "name": "state", "min": "0", "max": "1" },
-                         { "name": "postalCode", "min": "0", "max": "1" },
-                         { "name": "country", "min": "0", "max": "1" }
-                         ]
-    },
-    "addressLine1": {
-        "code": "ADR1",
+			{ "name": "addressLine1", "min": "0", "max": "1" },
+			{ "name": "addressLine2", "min": "0", "max": "1" },
+			{ "name": "city", "min": "0", "max": "1" },
+			{ "name": "state", "min": "0", "max": "1" },
+			{ "name": "postalCode", "min": "0", "max": "1" },
+			{ "name": "country", "min": "0", "max": "1" }
+		]
+	},
+	"addressLine1": {
+		"code": "ADR1",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "addressLine2": {
-        "code": "ADR2",
+		"valueType": "string"
+	},
+	"addressLine2": {
+		"code": "ADR2",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "adoption": {
-        "code": "ADOP",
+		"valueType": "string"
+	},
+	"adoption": {
+		"code": "ADOP",
 		"objectType": "attribute",
-        "validSubTags": [
-                          { "name": "childInFamily", "min": "0", "max": "1" }
-                          ]
-    },
-    "ancestralFileNumber": {
-        "code": "AFN",
+		"validSubTags": [
+			{ "name": "childInFamily", "min": "0", "max": "1" }
+		]
+	},
+	"ancestralFileNumber": {
+		"code": "AFN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "age": {
-        "code": "AGE",
+		"valueType": "string"
+	},
+	"age": {
+		"code": "AGE",
 		"objectType": "attribute",
-        "valueType": "age"
-    },
-    "responsibleAgency": {
-        "code": "AGNC",
+		"valueType": "age"
+	},
+	"responsibleAgency": {
+		"code": "AGNC",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "alias": {
-        "code": "ALIA",
+		"valueType": "string"
+	},
+	"alias": {
+		"code": "ALIA",
 		"objectType": "relationship",
-        "target": "individualRecord"
-    },
-    "ancestorInterest": {
-        "code": "ANCI",
+		"target": "individual",
+		"plural": "aliases"
+	},
+	"ancestorInterest": {
+		"code": "ANCI",
 		"objectType": "relationship",
-        "target": "submitterRecord"
-    },
-    "ancestors": {
-        "code": "ANCE",
+		"target": "submitter"
+	},
+	"generationsOfAncestors": {
+		"code": "ANCE",
 		"objectType": "attribute",
-        "valueType": "number"
-    },
-    "association": {
-        "code": "ASSO",
+		"valueType": "number"
+	},
+	"association": {
+		"code": "ASSO",
 		"objectType": "relationship",
-        "target": "individualRecord",
-        "validSubTags": [
-                          { "name": "typeDescription", "min": "1", "max": "1" },
-                          { "name": "relationshipDescriptor", "min": "1", "max": "1" },
-                          { "name": "@note", "min": "0", "max": "M" },
-                          { "name": "@source", "min": "0", "max": "M" }
-                          ]
-    },
-    "author": {
-        "code": "AUTH",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "adultChristening": {
-        "code": "CHRA",
-		"objectType": "attribute"
-    },
-    "annulment": {
-        "code": "ANUL",
-		"objectType": "attribute"
-    },
-    "baptism": {
-        "code": "BAPM",
-		"objectType": "attribute"
-    },
-    "lDSBaptism": {
-        "code": "BAPL",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "barMitzvah": {
-        "code": "BARM",
-		"objectType": "attribute"
-    },
-    "basMitzvah": {
-        "code": "BASM",
-		"objectType": "attribute"
-    },
-    "binaryObject": {
-        "code": "BLOB",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "birth": {
-        "code": "BIRT",
-		"objectType": "attribute",
-        "validSubTags": [
-                          { "name": "childInFamily", "min": "0", "max": "1" }
-                          ]
-    },
-    "blessing": {
-        "code": "BLES",
-		"objectType": "attribute"
-    },
-    "burial": {
-        "code": "BURI",
-		"objectType": "attribute"
-    },
-    "callNumber": {
-        "code": "CALN",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "caste": {
-        "code": "CAST",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "cause": {
-        "code": "CAUS",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "census": {
-        "code": "CENS",
-		"objectType": "attribute",
-    },
-    "characterSet": {
-        "code": "CHAR",
-		"objectType": "attribute",
-        "valueType": "string",
+		"target": "individual",
 		"validSubTags": [
-                         { "name": "version", "min": "0", "max": "1" }
-                         ]
-    },
-    "numberOfChildren": {
-        "code": "NCHI",
+			{ "name": "typeDescription", "min": "1", "max": "1" },
+			{ "name": "relationshipDescriptor", "min": "1", "max": "1" },
+			{ "name": "@note", "min": "0", "max": "M" },
+			{ "name": "@source", "min": "0", "max": "M" }
+		]
+	},
+	"author": {
+		"code": "AUTH",
 		"objectType": "attribute",
-        "valueType": "number"
-    },
-    "christening": {
-        "code": "CHR",
-		"objectType": "attribute",
-        "validSubTags": [
-                          { "name": "childInFamily", "min": "0", "max": "1" }
-                          ]
-    },
-    "city": {
-        "code": "CITY",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "lDSConfirmation": {
-        "code": "CONL",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "confirmation": {
-        "code": "CONF",
+		"valueType": "string"
+	},
+	"adultChristening": {
+		"code": "CHRA",
 		"objectType": "attribute"
-    },
-    "copyright": {
-        "code": "COPR",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "corporation": {
-        "code": "CORP",
-		"objectType": "attribute",
-        "valueType": "string",
-		"validSubTags": [
-                         { "name": "address", "min": "0", "max": "1" },
-                         { "name": "phoneNumber", "min": "0", "max": "3" }
-                         ]
-    },
-    "country": {
-        "code": "CTRY",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "cremation": {
-        "code": "CREM",
-		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "data": {
-        "code": "DATA",
-		"objectType": "attribute",
-        "valueType": "string",
-		"validSubTags": [
-                         { "name": "date", "min": "0", "max": "1" },
-                         { "name": "text", "min": "0", "max": "M" },
-                         { "name": "copyright", "min": "0", "max": "1" }
-                         ]
-    },
-    "sourceData": {
-        "code": "DATA",
-		"objectType": "attribute",
-        "valueType": "string",
-		"validSubTags": [
-                         { "name": "eventsRecorded", "min": "0", "max": "M" },
-                         { "name": "responsibleAgency", "min": "0", "max": "1" },
-                         { "name": "@note", "min": "0", "max": "M" }
-                         ]
-    },
-    "date": {
-        "code": "DATE",
-		"objectType": "attribute",
-        "valueType": "date"
-    },
-    "death": {
-        "code": "DEAT",
+	},
+	"annulment": {
+		"code": "ANUL",
 		"objectType": "attribute"
-    },
-    "descendantInterest": {
-        "code": "DESI",
+	},
+	"baptism": {
+		"code": "BAPM",
+		"objectType": "attribute"
+	},
+	"lDSBaptism": {
+		"code": "BAPL",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"barMitzvah": {
+		"code": "BARM",
+		"objectType": "attribute"
+	},
+	"basMitzvah": {
+		"code": "BASM",
+		"objectType": "attribute"
+	},
+	"binaryObject": {
+		"code": "BLOB",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"birth": {
+		"code": "BIRT",
+		"objectType": "attribute",
+		"validSubTags": [
+			{ "name": "childInFamily", "min": "0", "max": "1" }
+		]
+	},
+	"blessing": {
+		"code": "BLES",
+		"objectType": "attribute"
+	},
+	"burial": {
+		"code": "BURI",
+		"objectType": "attribute"
+	},
+	"callNumber": {
+		"code": "CALN",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"caste": {
+		"code": "CAST",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"cause": {
+		"code": "CAUS",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"census": {
+		"code": "CENS",
+		"objectType": "attribute",
+		"plural": "censuses"
+	},
+	"characterSet": {
+		"code": "CHAR",
+		"objectType": "attribute",
+		"valueType": "string",
+		"validSubTags": [
+			{ "name": "version", "min": "0", "max": "1" }
+		]
+	},
+	"numberOfChildren": {
+		"code": "NCHI",
+		"objectType": "attribute",
+		"valueType": "number"
+	},
+	"christening": {
+		"code": "CHR",
+		"objectType": "attribute",
+		"validSubTags": [
+			{ "name": "childInFamily", "min": "0", "max": "1" }
+		]
+	},
+	"city": {
+		"code": "CITY",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"lDSConfirmation": {
+		"code": "CONL",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"confirmation": {
+		"code": "CONF",
+		"objectType": "attribute"
+	},
+	"copyright": {
+		"code": "COPR",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"corporation": {
+		"code": "CORP",
+		"objectType": "attribute",
+		"valueType": "string",
+		"validSubTags": [
+			{ "name": "address", "min": "0", "max": "1" },
+			{ "name": "phoneNumber", "min": "0", "max": "3" }
+		]
+	},
+	"country": {
+		"code": "CTRY",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"cremation": {
+		"code": "CREM",
+		"objectType": "attribute",
+		"valueType": "string"
+	},
+	"data": {
+		"code": "DATA",
+		"objectType": "attribute",
+		"valueType": "string",
+		"validSubTags": [
+			{ "name": "date", "min": "0", "max": "1" },
+			{ "name": "text", "min": "0", "max": "M" }
+		]
+	},
+	"sourceData": {
+		"code": "DATA",
+		"objectType": "attribute",
+		"valueType": "string",
+		"validSubTags": [
+			{ "name": "eventsRecorded", "min": "0", "max": "M" },
+			{ "name": "responsibleAgency", "min": "0", "max": "1" },
+			{ "name": "@note", "min": "0", "max": "M" }
+		]
+	},
+	"date": {
+		"code": "DATE",
+		"objectType": "attribute",
+		"valueType": "date"
+	},
+	"death": {
+		"code": "DEAT",
+		"objectType": "attribute"
+	},
+	"descendantInterest": {
+		"code": "DESI",
 		"objectType": "relationship",
-        "target": "submitterRecord"
-    },
-    "descendants": {
-        "code": "DESC",
+		"target": "submitter"
+	},
+	"generationsOfDescendants": {
+		"code": "DESC",
 		"objectType": "attribute",
-        "valueType": "number"
-    },
-    "destination": {
-        "code": "DEST",
+		"valueType": "number"
+	},
+	"destination": {
+		"code": "DEST",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "divorceFiled": {
-        "code": "DIVF",
+		"valueType": "string"
+	},
+	"divorceFiled": {
+		"code": "DIVF",
 		"objectType": "attribute"
-    },
-    "divorce": {
-        "code": "DIV",
+	},
+	"divorce": {
+		"code": "DIV",
 		"objectType": "attribute"
-    },
-    "education": {
-        "code": "EDUC",
+	},
+	"education": {
+		"code": "EDUC",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "emigration": {
-        "code": "EMIG",
+		"valueType": "string"
+	},
+	"emigration": {
+		"code": "EMIG",
 		"objectType": "attribute"
-    },
-    "lDSEndowment": {
-        "code": "ENDL",
+	},
+	"lDSEndowment": {
+		"code": "ENDL",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "engagement": {
-        "code": "ENGA",
+		"valueType": "string"
+	},
+	"engagement": {
+		"code": "ENGA",
 		"objectType": "attribute"
-    },
-    "event": {
-        "code": "EVEN",
+	},
+	"customEvent": {
+		"code": "EVEN",
 		"objectType": "attribute"
-    },
-    "eventsRecorded": {
-        "code": "EVEN",
+	},
+	"eventsRecorded": {
+		"code": "EVEN",
 		"objectType": "attribute",
 		"validSubTags": [
-                         { "name": "date", "min": "0", "max": "1" },
-                         { "name": "place", "min": "0", "max": "1" }
-                         ]
-    },
-    "familyFile": {
-        "code": "FAMF",
+			{ "name": "date", "min": "0", "max": "1" },
+			{ "name": "place", "min": "0", "max": "1" }
+		]
+	},
+	"familyFile": {
+		"code": "FAMF",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "file": {
-        "code": "FILE",
+		"valueType": "string"
+	},
+	"file": {
+		"code": "FILE",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "firstCommunion": {
-        "code": "FCOM",
+		"valueType": "string"
+	},
+	"firstCommunion": {
+		"code": "FCOM",
 		"objectType": "attribute"
-    },
-    "format": {
-        "code": "FORM",
+	},
+	"format": {
+		"code": "FORM",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "gedcom": {
-        "code": "GEDC",
+		"valueType": "string"
+	},
+	"gedcom": {
+		"code": "GEDC",
 		"objectType": "attribute",
-        "valueType": "string",
+		"valueType": "string",
 		"validSubTags": [
-                         { "name": "version", "min": "1", "max": "1" },
-                         { "name": "format", "min": "1", "max": "1" }
-                         ]
-    },
-    "graduation": {
-        "code": "GRAD",
+			{ "name": "version", "min": "1", "max": "1" },
+			{ "name": "format", "min": "1", "max": "1" }
+		]
+	},
+	"graduation": {
+		"code": "GRAD",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "identNumber": {
-        "code": "IDNO",
+		"valueType": "string"
+	},
+	"identNumber": {
+		"code": "IDNO",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "immigration": {
-        "code": "IMMI",
+		"valueType": "string"
+	},
+	"immigration": {
+		"code": "IMMI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "language": {
-        "code": "LANG",
+		"valueType": "string"
+	},
+	"language": {
+		"code": "LANG",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "legatee": {
-        "code": "LEGA",
+		"valueType": "string"
+	},
+	"legatee": {
+		"code": "LEGA",
 		"objectType": "attribute"
-    },
-    "marriageContract": {
-        "code": "MARC",
+	},
+	"marriageContract": {
+		"code": "MARC",
 		"objectType": "attribute"
-    },
-    "marriageLicense": {
-        "code": "MARL",
+	},
+	"marriageLicense": {
+		"code": "MARL",
 		"objectType": "attribute"
-    },
-    "marriageSettlement": {
-        "code": "MARS",
+	},
+	"marriageSettlement": {
+		"code": "MARS",
 		"objectType": "attribute"
-    },
-    "marriageBann": {
-        "code": "MARB",
+	},
+	"marriageBann": {
+		"code": "MARB",
 		"objectType": "attribute"
-    },
-    "marriage": {
-        "code": "MARR",
+	},
+	"marriage": {
+		"code": "MARR",
 		"objectType": "attribute"
-    },
-    "numberOfMarriages": {
-        "code": "NMR",
+	},
+	"numberOfMarriages": {
+		"code": "NMR",
 		"objectType": "attribute",
-        "valueType": "number"
-    },
-    "media": {
-        "code": "MEDI",
+		"valueType": "number"
+	},
+	"media": {
+		"code": "MEDI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "name": {
-        "code": "NAME",
+		"valueType": "string"
+	},
+	"name": {
+		"code": "NAME",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "nationality": {
-        "code": "NATI",
+		"valueType": "string"
+	},
+	"nationality": {
+		"code": "NATI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "naturalization": {
-        "code": "NATU",
+		"valueType": "string",
+		"plural": "nationalities"
+	},
+	"naturalization": {
+		"code": "NATU",
 		"objectType": "attribute"
-    },
-    "occupation": {
-        "code": "OCCU",
+	},
+	"occupation": {
+		"code": "OCCU",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "ordinance": {
-        "code": "ORDI",
+		"valueType": "string"
+	},
+	"ordinance": {
+		"code": "ORDI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "ordination": {
-        "code": "ORDN",
+		"valueType": "string"
+	},
+	"ordination": {
+		"code": "ORDN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "page": {
-        "code": "PAGE",
+		"valueType": "string"
+	},
+	"page": {
+		"code": "PAGE",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "pedigree": {
-        "code": "PEDI",
+		"valueType": "string"
+	},
+	"pedigree": {
+		"code": "PEDI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "phoneNumber": {
-        "code": "PHON",
+		"valueType": "string"
+	},
+	"phoneNumber": {
+		"code": "PHON",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "phyDescription": {
-        "code": "DSCR",
+		"valueType": "string"
+	},
+	"physicalDescription": {
+		"code": "DSCR",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "place": {
-        "code": "PLAC",
+		"valueType": "string"
+	},
+	"place": {
+		"code": "PLAC",
 		"objectType": "attribute",
-        "valueType": "placestring"
-    },
-    "postalCode": {
-        "code": "POST",
+		"valueType": "placestring"
+	},
+	"postalCode": {
+		"code": "POST",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "probate": {
-        "code": "PROB",
+		"valueType": "string"
+	},
+	"probate": {
+		"code": "PROB",
 		"objectType": "attribute"
-    },
-    "propertyOwned": {
-        "code": "PROP",
+	},
+	"propertyOwned": {
+		"code": "PROP",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "publicationFacts": {
-        "code": "PUBL",
+		"valueType": "string"
+	},
+	"publicationFacts": {
+		"code": "PUBL",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "qualityOfData": {
-        "code": "QUAY",
+		"valueType": "string"
+	},
+	"qualityOfData": {
+		"code": "QUAY",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "recordFileNumber": {
-        "code": "RFN",
+		"valueType": "string"
+	},
+	"recordFileNumber": {
+		"code": "RFN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "recordIdNumber": {
-        "code": "RIN",
+		"valueType": "string"
+	},
+	"recordIdNumber": {
+		"code": "RIN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "userReferenceNumber": {
-        "code": "REFN",
+		"valueType": "string"
+	},
+	"userReferenceNumber": {
+		"code": "REFN",
 		"objectType": "attribute",
-        "valueType": "string",
+		"valueType": "string",
 		"validSubTags": [
-                         { "name": "typeDescription", "min": "0", "max": "1" },
-                         ]
-    },
-    "relationshipDescriptor": {
-        "code": "RELA",
+			{ "name": "typeDescription", "min": "0", "max": "1" }
+		]
+	},
+	"relationshipDescriptor": {
+		"code": "RELA",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "religion": {
-        "code": "RELI",
+		"valueType": "string"
+	},
+	"religion": {
+		"code": "RELI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "residence": {
-        "code": "RESI",
+		"valueType": "string"
+	},
+	"residence": {
+		"code": "RESI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "restrictionNotice": {
-        "code": "RESN",
+		"valueType": "string"
+	},
+	"restrictionNotice": {
+		"code": "RESN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "retirement": {
-        "code": "RETI",
+		"valueType": "string"
+	},
+	"retirement": {
+		"code": "RETI",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "role": {
-        "code": "ROLE",
+		"valueType": "string"
+	},
+	"role": {
+		"code": "ROLE",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "lDSSealingChild": {
-        "code": "SLGC",
+		"valueType": "string"
+	},
+	"lDSSealingChild": {
+		"code": "SLGC",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "sealingSpouse": {
-        "code": "SLGS",
+		"valueType": "string"
+	},
+	"sealingSpouse": {
+		"code": "SLGS",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "sex": {
-        "code": "SEX",
+		"valueType": "string"
+	},
+	"sex": {
+		"code": "SEX",
 		"objectType": "attribute",
-        "valueType": "gender"
-    },
-    "socialSecurityNumber": {
-        "code": "SSN",
+		"valueType": "gender"
+	},
+	"socialSecurityNumber": {
+		"code": "SSN",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "state": {
-        "code": "STAE",
+		"valueType": "string"
+	},
+	"state": {
+		"code": "STAE",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "status": {
-        "code": "STAT",
+		"valueType": "string"
+	},
+	"status": {
+		"code": "STAT",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "temple": {
-        "code": "TEMP",
+		"valueType": "string"
+	},
+	"temple": {
+		"code": "TEMP",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "text": {
-        "code": "TEXT",
+		"valueType": "string"
+	},
+	"text": {
+		"code": "TEXT",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "time": {
-        "code": "TIME",
+		"valueType": "string"
+	},
+	"time": {
+		"code": "TIME",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "title": {
-        "code": "TITL",
+		"valueType": "string"
+	},
+	"title": {
+		"code": "TITL",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "typeDescription": {
-        "code": "TYPE",
+		"valueType": "string"
+	},
+	"typeDescription": {
+		"code": "TYPE",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "version": {
-        "code": "VERS",
+		"valueType": "string"
+	},
+	"version": {
+		"code": "VERS",
 		"objectType": "attribute",
-        "valueType": "string"
-    },
-    "will": {
-        "code": "WILL",
+		"valueType": "string"
+	},
+	"will": {
+		"code": "WILL",
 		"objectType": "attribute",
-        "valueType": "string"
-    }
+		"valueType": "string"
+	}
 }

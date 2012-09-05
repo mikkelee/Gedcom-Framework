@@ -248,37 +248,37 @@
 
 - (id)families
 {
-	return [self entitiesOfType:@"familyRecord"];
+	return [self entitiesOfType:@"family"];
 }
 
 - (id)individuals
 {
-	return [self entitiesOfType:@"individualRecord"];
+	return [self entitiesOfType:@"individual"];
 }
 
 - (id)multimediaObjects
 {
-	return [self entitiesOfType:@"multimediaRecord"];
+	return [self entitiesOfType:@"multimedia"];
 }
 
 - (id)notes
 {
-	return [self entitiesOfType:@"noteRecord"];
+	return [self entitiesOfType:@"note"];
 }
 
 - (id)repositories
 {
-	return [self entitiesOfType:@"repositoryRecord"];
+	return [self entitiesOfType:@"repository"];
 }
 
 - (id)sources
 {
-	return [self entitiesOfType:@"sourceRecord"];
+	return [self entitiesOfType:@"source"];
 }
 
 - (id)submitters 
 {
-	return [self entitiesOfType:@"submitterRecord"];
+	return [self entitiesOfType:@"submitter"];
 }
 
 - (GCContext *)context

@@ -42,7 +42,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
                       [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
@@ -112,19 +112,19 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-	GCEntity *husb = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+	GCEntity *husb = [GCEntity entityWithType:@"individual" inContext:ctx];
 	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCEntity *wife = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+	GCEntity *wife = [GCEntity entityWithType:@"individual" inContext:ctx];
 	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCEntity *chil = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+	GCEntity *chil = [GCEntity entityWithType:@"individual" inContext:ctx];
 	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"familyRecord" inContext:ctx];
+    GCEntity *fam = [GCEntity entityWithType:@"family" inContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];
@@ -225,7 +225,7 @@
                                              @"1 LANG English\n"
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish"
-                               exceptedError:@"Too few values for key name on submitterRecord"];
+                               exceptedError:@"Too few values for key name on submitter"];
     
     // Submitter with too many LANG properties.
     [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
@@ -234,7 +234,7 @@
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish\n"
                                              @"1 LANG German"
-                               exceptedError:@"Too many values for key language on submitterRecord"];
+                               exceptedError:@"Too many values for key language on submitter"];
 }
 
 @end

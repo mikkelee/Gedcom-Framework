@@ -176,15 +176,16 @@ __strong static NSDictionary *_tagsByName;
     
     NSParameterAssert(code != nil);
     
-    NSDictionary *tmp = @{@"HEAD": @"headerRecord",
-                         @"SUBN": @"submissionRecord",
-                         @"FAM": @"familyRecord",
-                         @"INDI": @"individualRecord",
-                         @"OBJE": @"multimediaRecord",
-                         @"NOTE": @"noteRecord",
-                         @"REPO": @"repositoryRecord",
-                         @"SOUR": @"sourceRecord",
-                         @"SUBM": @"submitterRecord",
+    //TODO ??
+    NSDictionary *tmp = @{@"HEAD": @"header",
+                         @"SUBN": @"submission",
+                         @"FAM": @"family",
+                         @"INDI": @"individual",
+                         @"OBJE": @"multimedia",
+                         @"NOTE": @"note",
+                         @"REPO": @"repository",
+                         @"SOUR": @"source",
+                         @"SUBM": @"submitter",
                          @"TRLR": @"trailer"};
     
     return tagStore[[tmp valueForKey:code]];

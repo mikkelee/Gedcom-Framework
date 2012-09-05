@@ -120,7 +120,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     [[indi allProperties] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
     
@@ -141,7 +141,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     GCProperty *name1 = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
     GCProperty *name2 = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Jensen/"]];
@@ -172,7 +172,7 @@
     
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     [observer setEntity:indi];
     
@@ -203,7 +203,7 @@
 
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     [indi setGedcomString:@"0 @INDI1@ INDI\n"
      @"1 NAME Jens /Hansen/\n"
@@ -237,7 +237,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
     
