@@ -12,9 +12,12 @@
 
 /**
  
- A context provides lookup functionality related to xrefs.
+ A context provides lookup functionality related to xrefs. Generally, a context encompasses a single file; all entities (that is, individuals, families, etc) in the file will belong to the same context.
  
  */
+
+//TODO: merging contexts etc.
+
 @interface GCContext : NSObject <NSCoding>
 
 /// @name Obtaining a context
