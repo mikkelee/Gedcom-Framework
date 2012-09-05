@@ -74,15 +74,7 @@
     [_internalSubNodes removeObjectAtIndex:index];
 }
 
-@synthesize internalSubNodes = _internalSubNodes;
-
 #pragma mark Objective-C properties
-
-@synthesize parent = _parent;
-@synthesize gedTag = _gedTag;
-@synthesize gedValue = _gedValue;
-@synthesize xref = _xref;
-@synthesize lineSeparator = _lineSeparator;
 
 - (id)subNodes
 {

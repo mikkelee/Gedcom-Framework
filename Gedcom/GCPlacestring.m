@@ -15,8 +15,6 @@
 @end
 
 @implementation GCPlacestring {
-    NSString *_name;
-    NSMutableDictionary *_subPlaces;
 }
 
 + (id)rootPlace
@@ -103,10 +101,5 @@
     return [NSString stringWithFormat:@"%@ (%@: %@)", [super description], [self name], [self subPlaces]];
 }
 //COV_NF_END
-
-@synthesize name = _name;
-
-@synthesize superPlace = _superPlace;
-@synthesize subPlaces = _subPlaces;
 
 @end

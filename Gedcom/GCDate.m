@@ -116,9 +116,6 @@
 	return self;
 }
 
-@synthesize dateComponents;
-@synthesize calendar;
-
 @end
 
 #pragma mark GCDatePhrase
@@ -162,8 +159,6 @@
     return nil;
 }
 
-@synthesize phrase;
-
 @end
 
 #pragma mark GCAttributedDate
@@ -197,8 +192,6 @@
     return [[[self simpleDate] calendar] dateFromComponents:[[self simpleDate] dateComponents]];
 }
 
-@synthesize simpleDate;
-
 @end
 
 #pragma mark GCApproximateDate
@@ -225,8 +218,6 @@
 	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:key value:@"~ %@" table:@"Values"], [[self simpleDate] displayString]];
 }
 
-@synthesize dateType;
-
 @end
 
 #pragma mark GCInterpretedDate
@@ -250,8 +241,6 @@
     
 	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"INT %@ %@" value:@"\"%@\" %@" table:@"Values"], [[self simpleDate] displayString], [[self datePhrase] displayString]];
 }
-
-@synthesize datePhrase;
 
 @end
 
@@ -441,8 +430,6 @@
 {
     return nil;
 }
-
-@synthesize string;
 
 @end
 
@@ -785,8 +772,6 @@ static NSCalendar *_gregorianCalendar = nil;
     }
 }
 
-@synthesize date;
-
 @end
 
 #pragma mark GCDateParser
@@ -1046,9 +1031,6 @@ static NSCalendar *_gregorianCalendar = nil;
 
 @dynamic gedcomString;
 @dynamic displayString;
-
-@synthesize minDate;
-@synthesize maxDate;
 
 - (NSUInteger)year
 {

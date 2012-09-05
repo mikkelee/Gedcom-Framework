@@ -128,8 +128,6 @@ typedef enum {
 	}
 }
 
-@synthesize ageComponents;
-
 @end
 
 #pragma mark GCQualifiedAge
@@ -174,9 +172,6 @@ NSString * const GCAgeQualifier_toString[] = {
     
     return [[NSNumber numberWithInt:[self qualifier]] compare:[NSNumber numberWithInt:[other qualifier]]];
 }
-
-@synthesize age;
-@synthesize qualifier;
 
 @end
 
@@ -235,8 +230,6 @@ NSString * const GCAgeQualifier_toString[] = {
     return [GCAge ageWithAge:age withQualifier:qualifier];
 }
 
-@synthesize keyword;
-
 @end
 
 #pragma mark GCInvalidAge
@@ -267,8 +260,6 @@ NSString * const GCAgeQualifier_toString[] = {
     
     return m;
 }
-
-@synthesize string;
 
 @end
 
@@ -429,8 +420,6 @@ NSString * const GCAgeQualifier_toString[] = {
 		DebugLog(@"stack: %@", [a stack]);
 	}
 }
-
-@synthesize age;
 
 @end
 

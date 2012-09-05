@@ -324,8 +324,6 @@ __strong static NSDictionary *_tagsByName;
 
 #pragma mark Objective-C properties
 
-@synthesize name = _name;
-
 - (NSString *)localizedName
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];

@@ -483,13 +483,6 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 #pragma mark Objective-C properties
 
-@synthesize parent = _parent;
-@synthesize gedTag = _gedTag;
-@synthesize gedValue = _gedValue;
-@synthesize xref = _xref;
-@synthesize lineSeparator = _lineSeparator;
-@synthesize subNodes = _subNodes;
-
 - (BOOL)valueIsXref
 {
     return _gedValue != nil && [_gedValue hasSuffix:@"@"] && [_gedValue hasPrefix:@"@"];

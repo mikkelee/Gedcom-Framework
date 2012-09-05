@@ -43,7 +43,7 @@
     NSParameterAssert([self class] != [GCProperty class]);
     
     if (self) {
-        _tag = [GCTag tagNamed:type];
+        _gedTag = [GCTag tagNamed:type];
         _propertyStore = [NSMutableOrderedSet orderedSet];
     }
     
@@ -64,9 +64,9 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         NSOrderedSet *_validProperties = _validPropertiesByType[[self type]];
         
         if (!_validProperties) {
-            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_tag validSubTags] count]];
+            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_gedTag validSubTags] count]];
             
-            for (id subTag in [_tag validSubTags]) {
+            for (id subTag in [_gedTag validSubTags]) {
                 [valid addObject:[subTag name]];
             }
             
@@ -81,7 +81,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
 {
-    GCAllowedOccurrences occurrences = [_tag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
+    GCAllowedOccurrences occurrences = [_gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
     
     return occurrences.max > 1;
 }
@@ -450,20 +450,18 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (NSString *)type
 {
-    return [_tag name];
+    return [_gedTag name];
 }
 
 - (NSString *)localizedType
 {
-    return [_tag localizedName];
+    return [_gedTag localizedName];
 }
 
 - (BOOL)allowsProperties
 {
     return ([[self validProperties] count] > 0); //TODO (see cocoa-dev reply)
 }
-
-@synthesize gedTag = _tag;
 
 @dynamic rootObject;
 @dynamic context;

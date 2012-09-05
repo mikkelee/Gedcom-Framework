@@ -148,8 +148,4 @@
     [[entity type] isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
 }
 
-#pragma mark Objective-C properties
-
-@synthesize individuals = _individuals;
-
 @end

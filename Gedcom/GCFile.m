@@ -180,10 +180,6 @@
 
 #pragma mark Objective-C properties
 
-@synthesize header = _header;
-@synthesize submission = _submission;
-@synthesize entities = _entities;
-
 - (NSArray *)gedcomNodes
 {
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_entities count]+2];
@@ -213,8 +209,6 @@
     
     return [gedcomStrings componentsJoinedByString:@"\n"];
 }
-
-@synthesize delegate = _delegate;
 
 @end
 

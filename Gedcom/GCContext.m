@@ -197,9 +197,4 @@ static __strong NSMutableDictionary *_contexts = nil;
     }
 }
 
-#pragma mark Objective-C properties
-
-@synthesize name = _name;
-@synthesize delegate = _delegate;
-
 @end

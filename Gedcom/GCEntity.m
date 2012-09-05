@@ -177,8 +177,6 @@
 
 @synthesize context = _context;
 
-@synthesize lastModified = _lastModified;
-
 - (void)didChangeValueForKey:(NSString *)key
 {
     [self setLastModified:[NSDate date]];

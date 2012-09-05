@@ -122,8 +122,6 @@
 
 #pragma mark Objective-C properties
 
-@synthesize value = _value;
-
 - (NSString *)displayValue
 {
     return [[self value] displayString];
