@@ -203,7 +203,7 @@
 	},
 
 	"@individualEvent": {
-		"objectType": "GCProperty",
+		"objectType": "property",
 		"valueType": "bool",
 		"variants": [
 			"birth",
@@ -235,7 +235,7 @@
 		]
 	},
 	"@individualAttribute": {
-		"objectType": "GCProperty",
+		"objectType": "property",
 		"valueType": "string",
 		"variants": [
 			"caste",
@@ -257,7 +257,7 @@
 		]
 	},
 	"@individualLDSOrdinance": {
-		"objectType": "GCProperty",
+		"objectType": "property",
 		"variants": [
 			"lDSBaptism",
 			"lDSConfirmation",
@@ -272,7 +272,7 @@
 		]
 	},
 	"@familyEvent": {
-		"objectType": "GCProperty",
+		"objectType": "property",
 		"valueType": "bool",
 		"variants": [
 			"annulment",
@@ -292,7 +292,7 @@
 		]
 	},
 	"@eventDetail": {
-		"objectType": "GCProperty",
+		"objectType": "property",
 		"variants": [
 			"typeDescription",
 			"date",
@@ -413,7 +413,7 @@
 			"noteEmbedded"
 		],
 		"validSubTags": [
-			{ "name": "@source", "min": "1", "max": "1" }
+			{ "name": "@source", "min": "0", "max": "M" }
 		]
 	},
 	"noteReference": {
@@ -448,12 +448,6 @@
 			{ "name": "file", "min": "0", "max": "1" },
 			{ "name": "@note", "min": "0", "max": "M" }
 		]
-	},
-	
-	"@changed": {
-		"code": "CHAN",
-		"objectType": "attribute",
-		"valueType": "string"
 	},
 	
 	"abbreviation": {
