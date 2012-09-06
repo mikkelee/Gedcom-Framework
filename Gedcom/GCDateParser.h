@@ -8,18 +8,6 @@
 
 #import "GCDate.h"
 
-#pragma mark GCAgeAssembler
-
-@interface GCDateAssembler : NSObject
-
-- (void)initialize;
-
-@property GCDate *date;
-
-@end
-
-#pragma mark GCDateParser
-
 @interface GCDateParser : NSObject
 
 + (GCDateParser *)sharedDateParser;

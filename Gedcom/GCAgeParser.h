@@ -8,18 +8,6 @@
 
 #import "GCAge.h"
 
-#pragma mark GCAgeAssembler
-
-@interface GCAgeAssembler : NSObject
-
-- (void)initialize;
-
-@property (copy) GCAge *age;
-
-@end
-
-#pragma mark GCAgeParser
-
 @interface GCAgeParser : NSObject
 
 + (GCAgeParser *)sharedAgeParser;

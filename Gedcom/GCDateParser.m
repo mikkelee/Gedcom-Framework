@@ -10,11 +10,15 @@
 #import "GCDate_internal.h"
 #import <ParseKit/ParseKit.h>
 
-#pragma mark -
-#pragma mark Parsing
-#pragma mark -
-
 #pragma mark GCAgeAssembler
+
+@interface GCDateAssembler : NSObject
+
+- (void)initialize;
+
+@property GCDate *date;
+
+@end
 
 @implementation GCDateAssembler {
 	NSArray *monthNames;

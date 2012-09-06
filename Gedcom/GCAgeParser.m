@@ -12,6 +12,14 @@
 
 #pragma mark GCAgeAssembler
 
+@interface GCAgeAssembler : NSObject
+
+- (void)initialize;
+
+@property (copy) GCAge *age;
+
+@end
+
 @implementation GCAgeAssembler {
 	NSDateComponents *currentAgeComponents;
 }
