@@ -156,6 +156,20 @@
 
 // Properties:
 @dynamic childInFamily;
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -185,7 +199,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -321,7 +348,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -411,7 +451,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -441,7 +494,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -471,7 +537,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -532,6 +611,20 @@
 
 // Properties:
 @dynamic childInFamily;
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -561,7 +654,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -591,7 +697,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -651,7 +770,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -711,7 +843,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -818,6 +963,20 @@
 
 // Properties:
 @dynamic childInFamily;
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -877,7 +1036,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -998,7 +1170,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1028,7 +1213,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1119,7 +1317,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1202,7 +1413,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1232,7 +1456,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1262,7 +1499,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1292,7 +1542,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1322,7 +1585,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1485,7 +1761,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1606,7 +1895,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1666,7 +1968,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1752,7 +2067,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1782,7 +2110,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -1890,7 +2231,10 @@
 }
 
 // Properties:
-
+@dynamic state;
+@dynamic date;
+@dynamic temple;
+@dynamic place;
 
 @end
 
@@ -1920,7 +2264,10 @@
 }
 
 // Properties:
-
+@dynamic state;
+@dynamic date;
+@dynamic temple;
+@dynamic place;
 
 @end
 
@@ -1950,7 +2297,10 @@
 }
 
 // Properties:
-
+@dynamic state;
+@dynamic date;
+@dynamic temple;
+@dynamic place;
 
 @end
 
@@ -1980,7 +2330,10 @@
 }
 
 // Properties:
-
+@dynamic state;
+@dynamic date;
+@dynamic temple;
+@dynamic place;
 
 @end
 
@@ -2070,7 +2423,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2100,7 +2466,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2130,7 +2509,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2160,7 +2552,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2190,7 +2595,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2239,6 +2657,12 @@
 @dynamic format;
 @dynamic title;
 @dynamic userReferenceNumbers;
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic notes;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2416,7 +2840,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2446,7 +2883,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2494,6 +2944,12 @@
 // Properties:
 @dynamic recordIdNumber;
 @dynamic userReferenceNumbers;
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic notes;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2523,7 +2979,9 @@
 }
 
 // Properties:
-
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
 
 @end
 
@@ -2546,7 +3004,9 @@
 }
 
 // Properties:
-
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
 
 @end
 
@@ -2576,7 +3036,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2606,7 +3079,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2636,7 +3122,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2666,7 +3165,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2947,7 +3459,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -2977,7 +3502,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3157,7 +3695,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3177,6 +3728,12 @@
 @dynamic address;
 @dynamic phoneNumber;
 @dynamic userReferenceNumbers;
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic notes;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3232,7 +3789,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3322,7 +3892,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3442,7 +4025,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3473,6 +4069,9 @@
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumber;
 @dynamic recordIdNumber;
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
 
 @end
 
@@ -3677,6 +4276,12 @@
 @dynamic ordinance;
 @dynamic recordIdNumber;
 @dynamic userReferenceNumbers;
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic notes;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3725,6 +4330,12 @@
 @dynamic recordFileNumber;
 @dynamic ancestralFileNumber;
 @dynamic userReferenceNumbers;
+@dynamic sources;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic notes;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -3927,7 +4538,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 
@@ -4070,7 +4694,20 @@
 }
 
 // Properties:
-
+@dynamic eventDetails;
+@dynamic typeDescriptions;
+@dynamic dates;
+@dynamic places;
+@dynamic addresses;
+@dynamic phoneNumbers;
+@dynamic ages;
+@dynamic causes;
+@dynamic sourceCitations;
+@dynamic sourceEmbeddeds;
+@dynamic multimediaReferences;
+@dynamic multimediaEmbeddeds;
+@dynamic noteReferences;
+@dynamic noteEmbeddeds;
 
 @end
 

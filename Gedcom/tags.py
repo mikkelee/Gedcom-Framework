@@ -160,6 +160,15 @@ classDefinitions = []
 classImplementations = []
 
 for key in sorted(tags):
+	if key[0] == '@':
+		if not tags[key].has_key('validSubTags'):
+			continue
+		for variant_name in tags[key]['variants']:
+			if not tags[variant_name].has_key('validSubTags'):
+				tags[variant_name]['validSubTags'] = []
+			tags[variant_name]['validSubTags'].extend([x for x in tags[key]['validSubTags'] if x not in tags[variant_name]['validSubTags']])
+
+for key in sorted(tags):
 	if key in ['trailer', 'header']:
 		print 'SKIPPING KEY "%s"' % key 
 		continue
