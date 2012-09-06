@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCAge_internal.h"
 #import "GCAgeParser.h"
+#import "GCAge_internal.h"
 #import <ParseKit/ParseKit.h>
 
 #pragma mark GCAgeAssembler

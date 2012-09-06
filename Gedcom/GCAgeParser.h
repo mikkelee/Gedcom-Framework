@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "GCAge.h"
 
 #pragma mark GCAgeAssembler
