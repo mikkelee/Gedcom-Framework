@@ -98,7 +98,7 @@
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (%@: %@)", [super description], [self name], [self subPlaces]];
+    return [NSString stringWithFormat:@"%@ %@", [super description], [self subPlaces]];
 }
 //COV_NF_END
 
