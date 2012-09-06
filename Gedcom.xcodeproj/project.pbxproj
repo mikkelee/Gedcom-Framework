@@ -72,6 +72,8 @@
 		3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C7151E02C300A433A6 /* GCEntity.h */; };
 		3E5F50CA151E02C300A433A6 /* GCEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C8151E02C300A433A6 /* GCEntity.m */; };
 		3E5F50CD151E27BA00A433A6 /* GCObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */; };
+		3E75836315F8DD7F00A9B096 /* GCAgeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836115F8DD7F00A9B096 /* GCAgeParser.h */; };
+		3E75836415F8DD7F00A9B096 /* GCAgeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75836215F8DD7F00A9B096 /* GCAgeParser.m */; };
 		3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */; };
 		3EB5ABD6153619280036B4D5 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json */; };
 		3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */; };
@@ -211,6 +213,9 @@
 		3E5F50C7151E02C300A433A6 /* GCEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCEntity.h; sourceTree = "<group>"; };
 		3E5F50C8151E02C300A433A6 /* GCEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCEntity.m; sourceTree = "<group>"; };
 		3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjectTests.m; sourceTree = "<group>"; };
+		3E75836115F8DD7F00A9B096 /* GCAgeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAgeParser.h; sourceTree = "<group>"; };
+		3E75836215F8DD7F00A9B096 /* GCAgeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeParser.m; sourceTree = "<group>"; };
+		3E75836515F8DDF800A9B096 /* GCAge_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCAge_internal.h; sourceTree = "<group>"; };
 		3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCKeyValueTests.m; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
 		3EC7FF24155FA09500801306 /* GCFileDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCFileDelegate.h; sourceTree = "<group>"; };
@@ -436,6 +441,7 @@
 				3EECFD3B151C32630074E26C /* GCAge.m */,
 				3EECFD48151C32630074E26C /* GCDate.h */,
 				3EECFD49151C32630074E26C /* GCDate.m */,
+				3E75836015F8DC6D00A9B096 /* Parsers */,
 			);
 			name = Subclasses;
 			sourceTree = "<group>";
@@ -491,6 +497,16 @@
 				3E4373591521CF1400BA362F /* Properties */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		3E75836015F8DC6D00A9B096 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				3E75836515F8DDF800A9B096 /* GCAge_internal.h */,
+				3E75836115F8DD7F00A9B096 /* GCAgeParser.h */,
+				3E75836215F8DD7F00A9B096 /* GCAgeParser.m */,
+			);
+			name = Parsers;
 			sourceTree = "<group>";
 		};
 		3EB5ABCF153615CD0036B4D5 /* Helpers */ = {
@@ -557,6 +573,7 @@
 				3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */,
 				3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */,
 				3EDBBE6215F7EE15008C1E50 /* GCObjects_generated.h in Headers */,
+				3E75836315F8DD7F00A9B096 /* GCAgeParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +748,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Mikkel Eide Eriksen\" --company-id dk.kildekort --output $SOURCE_ROOT/Documentation --logformat Xcode --keep-intermediate-files --warn-undocumented-object --warn-undocumented-member --keep-undocumented-objects --keep-undocumented-members --keep-merged-sections --prefix-merged-sections --no-repeat-first-par Gedcom/*.h";
+			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Mikkel Eide Eriksen\" --company-id dk.kildekort --output $SOURCE_ROOT/Documentation --logformat Xcode --keep-intermediate-files --warn-undocumented-object --warn-undocumented-member --keep-undocumented-objects --keep-undocumented-members --keep-merged-sections --prefix-merged-sections --no-repeat-first-par --ignore *_internal.h Gedcom/*.h";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -764,6 +781,7 @@
 				3ED92D401563C70500E53E47 /* GCXrefProtocol.m in Sources */,
 				3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */,
 				3EDBBE6315F7EE15008C1E50 /* GCObjects_generated.m in Sources */,
+				3E75836415F8DD7F00A9B096 /* GCAgeParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
