@@ -13,6 +13,5 @@
 + (GCDateParser *)sharedDateParser;
 - (GCDate *)parseGedcom:(NSString *)g;
 
-
 @end
 
