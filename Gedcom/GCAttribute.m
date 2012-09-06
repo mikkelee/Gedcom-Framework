@@ -17,6 +17,8 @@
 #import "GCAge.h"
 #import "GCDate.h"
 
+#import "GCObject_internal.h"
+
 @implementation GCAttribute
 
 #pragma mark Initialization

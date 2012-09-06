@@ -13,6 +13,8 @@
 #import "GCTag.h"
 #import "GCContext.h"
 
+#import "GCObject_internal.h"
+
 @implementation GCRelationship {
 	GCEntity *_target;
 }

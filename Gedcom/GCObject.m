@@ -7,6 +7,7 @@
 //
 
 #import "GCObject.h"
+
 #import "GCNode.h"
 #import "GCTag.h"
 
@@ -18,9 +19,7 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-@interface GCObject () 
-
-@end
+#import "GCObject_internal.h"
 
 @implementation GCObject {
     NSMutableOrderedSet *_propertyStore;
@@ -446,6 +445,13 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 - (NSString *)description
 {
     return [self descriptionWithIndent:0];
+}
+
+- (NSString *)descriptionWithIndent:(NSUInteger)level
+{
+    NSLog(@"You override this method in your subclass!");
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 - (NSString *)propertyDescriptionWithIndent:(NSUInteger)level

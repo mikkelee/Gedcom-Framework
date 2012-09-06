@@ -18,6 +18,8 @@
 
 #import "GCChangedDateFormatter.h"
 
+#import "GCObject_internal.h"
+
 @interface GCEntity ()
 
 @property NSDate *lastModified;
