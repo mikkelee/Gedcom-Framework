@@ -42,7 +42,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
                       [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
@@ -52,7 +52,7 @@
     [indi setValue:names 
             forKey:@"personalName"];
 	
-	GCAttribute *birt = [GCAttribute attributeWithType:@"birth"];
+	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     

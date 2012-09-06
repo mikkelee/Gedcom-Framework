@@ -37,10 +37,13 @@
 
 - (id)initWithType:(NSString *)type
 {
-    self = [super init];
+    if ([self class] == [GCObject class] || [self class] == [GCProperty class] || [self class] == [GCAttribute class] || [self class] == [GCRelationship class]) {
+        NSString *className = [NSString stringWithFormat:@"GC%@%@%@", [[type substringToIndex:1] uppercaseString], [type substringFromIndex:1], [[self className] substringFromIndex:2]];
+        Class objectClass = NSClassFromString(className);
+        return [[objectClass alloc] initWithType:type];
+    }
     
-    NSParameterAssert([self class] != [GCObject class]);
-    NSParameterAssert([self class] != [GCProperty class]);
+    self = [super init];
     
     if (self) {
         _gedTag = [GCTag tagNamed:type];
@@ -442,7 +445,17 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (type: %@)", [super description], [self type]];
+    return [self descriptionWithIndent:0];
+}
+
+- (NSString *)propertyDescriptionWithIndent:(NSUInteger)level
+{
+    NSMutableString *out = [NSMutableString string];
+    for (GCObject *property in [self allProperties]) {
+        [out appendString:[property descriptionWithIndent:level+1]];
+    }
+    
+    return out;
 }
 //COV_NF_END
 

@@ -95,9 +95,14 @@
 #pragma mark Description
 
 //COV_NF_START
-- (NSString *)description
+- (NSString *)descriptionWithIndent:(NSUInteger)level
 {
-    return [NSString stringWithFormat:@"%@ (target: %@)", [super description], [[self context] xrefForEntity:[self target]]];
+    NSString *indent = @"";
+    for (NSUInteger i = 0; i < level; i++) {
+        indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
+    }
+    
+    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [[self context] xrefForEntity:[self target]], [self propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 

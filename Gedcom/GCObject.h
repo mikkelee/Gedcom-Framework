@@ -73,6 +73,11 @@
  */
 - (BOOL)isEqualTo:(id)other;
 
+#pragma mark Description helpers
+
+- (NSString *)descriptionWithIndent:(NSUInteger)level;
+- (NSString *)propertyDescriptionWithIndent:(NSUInteger)level;
+
 #pragma mark Objective-C properties
 
 /// @name Accessing properties
