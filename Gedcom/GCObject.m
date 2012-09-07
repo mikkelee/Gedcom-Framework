@@ -656,8 +656,6 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 @implementation GCObject (GCValidationMethods)
 
-//TODO actual error codes
-
 BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
     if (value == nil) {
         //TODO check if value is required
@@ -665,7 +663,7 @@ BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **erro
     } else if (![value isKindOfClass:type]) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
-                                         code:-1 
+                                         code:GCIncorrectValueTypeError 
                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for key %@ (should be %@)", value, key, type]}];
         }
         return NO;
@@ -678,7 +676,7 @@ BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, NSString *type, N
     if (![target isKindOfClass:[GCEntity class]] || ![[target type] isEqualToString:type]) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
-                                         code:-1 
+                                         code:GCIncorrectTargetTypeError 
                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", target, key, type]}];
         }
         return NO;
@@ -726,7 +724,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
         if (propertyCount > allowedOccurrences.max) {
             if (NULL != outError) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
-                                                code:-1 
+                                                code:GCTooManyValuesError 
                                             userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, [self type]]}];
             }
             
@@ -736,7 +734,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
         if (propertyCount < allowedOccurrences.min) {
             if (NULL != outError) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
-                                                code:-1 
+                                                code:GCTooFewValuesError 
                                             userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, [self type]]}];
             }
             

@@ -90,7 +90,7 @@
 @property (readonly) GCTag *gedTag;
 
 /// The root object of a given tree of GCObjects. Will usually be a GCEntity.
-@property (readonly) GCObject *rootObject;
+@property (readonly, nonatomic) GCObject *rootObject;
 
 /// The receiver as a GCNode.  Setting this property will cause the receiver to interpret the node and add new properties and remove those that no longer exist.
 @property GCNode *gedcomNode;
@@ -102,17 +102,17 @@
 @property NSAttributedString *attributedGedcomString;
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
-@property (readonly) GCContext *context;
+@property (readonly, nonatomic) GCContext *context;
 
 /** The value of the receiver appropiate for displaying in the user interface.
  
  For entities, it will be their xref; for attributes, their value; and for relationships, the target's xref.
 
  */
-@property (readonly) NSString *displayValue;
+@property (readonly, nonatomic) NSString *displayValue;
 
 /// The displayValue of the receiver, with attributes.
-@property (readonly) NSAttributedString *attributedDisplayValue;
+@property (readonly, nonatomic) NSAttributedString *attributedDisplayValue;
 
 @end
 
@@ -150,9 +150,16 @@
 - (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes;
 
 /// The properties of the receiver as a KVC-compliant mutable array. Functionally the same as calling -mutableArrayValueForKey:@"properties".
-@property (readonly) NSMutableArray *allProperties;
+@property (readonly, nonatomic) NSMutableArray *allProperties;
 
 @end
+
+typedef enum : NSInteger {
+    GCIncorrectValueTypeError = -101,
+    GCIncorrectTargetTypeError = -102,
+    GCTooManyValuesError = -201,
+    GCTooFewValuesError = -202
+} GCErrorCode;
 
 @interface GCObject (GCValidationMethods)
 

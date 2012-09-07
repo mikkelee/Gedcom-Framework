@@ -22,7 +22,7 @@
 
 @interface GCEntity ()
 
-@property NSDate *lastModified;
+@property (nonatomic) NSDate *lastModified;
 
 @end
 
