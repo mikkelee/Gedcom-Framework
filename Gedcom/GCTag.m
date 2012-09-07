@@ -29,6 +29,7 @@
 
 #pragma mark Constants
 
+const NSString *kRootObject = @"@rootObject";
 const NSString *kTags = @"tags";
 const NSString *kNameTags = @"nameTags";
 const NSString *kValidSubTags = @"validSubTags";
@@ -41,17 +42,27 @@ const NSString *kVariants = @"variants";
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
 const NSString *kTargetType = @"target";
+const NSString *kPlural = @"plural";
 
 #pragma mark Setup
 
 __strong static NSMutableDictionary *tagStore;
 __strong static NSMutableDictionary *tagInfo;
 __strong static NSDictionary *_tagsByName;
+__strong static NSMutableDictionary *_pluralToSingular;
 
 + (void)setupTagStoreForKey:(NSString *)key
 {
     NSMutableDictionary *tagDict = tagInfo[key];
     NSParameterAssert(tagDict);
+    
+    tagDict[kName] = key;
+    
+    if (tagDict[kPlural]) {
+        _pluralToSingular[tagDict[kPlural]] = key;
+    } else {
+        _pluralToSingular[[NSString stringWithFormat:@"%@s", key]] = key;
+    }
     
     for (NSString *variantName in tagDict[kVariants]) {
         id variant = tagInfo[variantName];
@@ -108,8 +119,9 @@ __strong static NSDictionary *_tagsByName;
         //NSLog(@"tagInfo: %@", tagInfo);
         NSAssert(tagInfo != nil, @"error: %@", err);
         
+        _pluralToSingular = [NSMutableDictionary dictionary];
         tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
-        [self setupTagStoreForKey:@"@rootObject"];
+        [self setupTagStoreForKey:(NSString *)kRootObject];
     });
 }
 
