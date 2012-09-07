@@ -14,7 +14,7 @@
 
 @class GCSimpleAge;
 
-typedef enum {
+typedef enum : NSInteger {
     GCAgeLessThan,
     GCAgeNoQualifier,
     GCAgeGreaterThan
