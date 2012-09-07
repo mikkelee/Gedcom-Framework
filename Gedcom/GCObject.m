@@ -93,7 +93,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 #pragma mark NSKeyValueCoding overrides
 
 - (void)_internalSetValue:(id)value forKey:(NSString *)key {
-    NSString *type = [GCTag canonicalNameForName:key];
+    NSString *type = [[GCTag tagNamed:key] name];
     
     if ([value isKindOfClass:[GCProperty class]]) {
         [[self mutableArrayValueForKey:@"properties"] addObject:value];

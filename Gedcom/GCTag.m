@@ -307,11 +307,6 @@ __strong static NSMutableDictionary *_singularToPlural;
     return (GCAllowedOccurrences){min, max};
 }
 
-+ (NSString *)canonicalNameForName:(NSString *)name
-{
-    return [[self tagNamed:name] name];
-}
-
 #pragma mark Description
 
 //COV_NF_START

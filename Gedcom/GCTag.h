@@ -83,8 +83,6 @@ typedef struct {
  */
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
-+ (NSString *)canonicalNameForName:(NSString *)name;
-
 #pragma mark Objective-C properties
 
 /// @name Accessing properties
