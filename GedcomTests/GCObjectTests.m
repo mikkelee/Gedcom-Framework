@@ -50,7 +50,7 @@
                       nil];
     
     [indi setValue:names 
-            forKey:@"personalName"];
+            forKey:@"personalNames"];
 	
 	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
@@ -73,6 +73,8 @@
                          @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
+    
+    NSLog(@"indi births: %@", [indi births]);
     
     ctx = [GCContext context]; //fresh context
 	
@@ -128,7 +130,7 @@
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];
-    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"child"];
+    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"children"];
     
     //alternately:
 	// [fam addRelationshipWithType:@"husband" target:husb];
@@ -234,7 +236,7 @@
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish\n"
                                              @"1 LANG German"
-                               exceptedError:@"Too many values for key language on submitter"];
+                               exceptedError:@"Too many values for key languages on submitter"];
 }
 
 @end

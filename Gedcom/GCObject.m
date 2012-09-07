@@ -69,7 +69,11 @@ static __strong NSMutableDictionary *_validPropertiesByType;
             NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_gedTag validSubTags] count]];
             
             for (id subTag in [_gedTag validSubTags]) {
-                [valid addObject:[subTag name]];
+                if ([_gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
+                    [valid addObject:[subTag pluralName]];
+                } else {
+                    [valid addObject:[subTag name]];
+                }
             }
             
             _validProperties = [valid copy];
@@ -91,12 +95,14 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 #pragma mark NSKeyValueCoding overrides
 
 - (void)_internalSetValue:(id)value forKey:(NSString *)key {
+    NSString *type = [GCTag canonicalNameForName:key];
+    
     if ([value isKindOfClass:[GCProperty class]]) {
         [[self mutableArrayValueForKey:@"properties"] addObject:value];
     } else if ([value isKindOfClass:[GCValue class]]) {
-        [self addAttributeWithType:key value:value];
+        [self addAttributeWithType:type value:value];
     } else if ([value isKindOfClass:[GCEntity class]]) {
-        [self addRelationshipWithType:key target:value];
+        [self addRelationshipWithType:type target:value];
     } else {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
 														 reason:[NSString stringWithFormat:@"Invalid value %@ for setValue:forKey:", value]
@@ -150,8 +156,8 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         }
     } else if ([[self validProperties] containsObject:key]) {
         @synchronized(_propertyStore) {
-            NSIndexSet *indexes = [_propertyStore indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                return [[(GCProperty *)obj type] isEqualToString:key];
+            NSIndexSet *indexes = [_propertyStore indexesOfObjectsPassingTest:^BOOL(GCObject *obj, NSUInteger idx, BOOL *stop) {
+                return [[[obj gedTag] name] isEqualToString:key] || [[[obj gedTag] pluralName] isEqualToString:key];
             }];
             
             if ([self allowsMultiplePropertiesOfType:key]) {
@@ -330,33 +336,61 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     return [super respondsToSelector:aSelector];
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
 #ifdef DEBUGLEVEL
-    NSLog(@"methodSignatureForSelector: %@", NSStringFromSelector(aSelector));
+    NSLog(@"methodSignatureForSelector: %@", NSStringFromSelector(sel));
 #endif
+	NSString *stringSelector = NSStringFromSelector(sel);
+	NSUInteger parameterCount = [[stringSelector componentsSeparatedByString:@":"] count]-1;
     
-    return nil;
+	// valueForKey:
+	if (parameterCount == 0 && [[self validProperties] containsObject:stringSelector]) {
+		return [super methodSignatureForSelector:@selector(valueForKey:)];
+    }
     
-    //return [NSMutableOrderedSet instanceMethodSignatureForSelector:aSelector];
+	// setValue:forKey:
+	if (parameterCount == 1 && [stringSelector hasPrefix:@"set"]) {
+		NSString *key = [NSString stringWithFormat:@"%@%@",
+                  [[stringSelector substringWithRange:NSMakeRange(3, 1)] lowercaseString],
+                  [stringSelector substringWithRange:NSMakeRange(4, [stringSelector length]-5)]];
+        NSLog(@"key: %@", key);
+        
+        if ([[self validProperties] containsObject:key])
+            return [super methodSignatureForSelector:@selector(setValue:forKey:)];
+    }
+    
+	// Discard the call
+	return nil;
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
+	NSString *stringSelector = NSStringFromSelector([invocation selector]);
+	NSUInteger parameterCount = [[stringSelector componentsSeparatedByString:@":"] count]-1;
 #ifdef DEBUGLEVEL
-    NSInteger numberOfArgs = [[invocation methodSignature] numberOfArguments];
     NSLog(@"forwardInvocation: %@", invocation);
-    NSLog(@"selector: %@", NSStringFromSelector([invocation selector]));
-    for (int i = 2; i < numberOfArgs; i++) {
-        id param = nil;
-        [invocation getArgument:&param atIndex:i];
-        NSLog(@"param %d: %@", i, param);
-    }
-#endif    
+    NSLog(@"selector: %@", stringSelector);
+#endif
     
-    //[invocation setTarget:_set];
-    //[invocation invoke];
-    return;
+	// valueForKey:
+	if (parameterCount == 0) {
+		id value = [self valueForKey:NSStringFromSelector([invocation selector])];
+		[invocation setReturnValue:&value];
+	}
+	// setValue:forKey:
+	if (parameterCount == 1) {
+		id value;
+		[invocation getArgument:&value atIndex:2];
+        
+		// Get key name by converting setMyValue: to myValue
+		id key = [NSString stringWithFormat:@"%@%@",
+                  [[stringSelector substringWithRange:NSMakeRange(3, 1)] lowercaseString],
+                  [stringSelector substringWithRange:NSMakeRange(4, [stringSelector length]-5)]];
+        NSLog(@"key: %@", key);
+        
+		[self setValue:value forKey:key];
+	}
 }
 
 #pragma mark Gedcom access
@@ -368,7 +402,13 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     @synchronized(_propertyStore) {
         NSArray *sortedProperties = [_propertyStore sortedArrayUsingComparator:^NSComparisonResult(GCProperty *obj1, GCProperty *obj2) {
             NSNumber *obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj1 type]]];
+            if ([obj1index unsignedIntegerValue] == NSNotFound) {
+                obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[[obj1 gedTag] pluralName]]];
+            }
             NSNumber *obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj2 type]]];
+            if ([obj2index unsignedIntegerValue] == NSNotFound) {
+                obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[[obj2 gedTag] pluralName]]];
+            }
             
             NSComparisonResult result = [obj1index compare:obj2index];
             

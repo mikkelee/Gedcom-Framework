@@ -42,7 +42,7 @@ Loosely prioritized in order of importance:
 * **Misc**: Handle special cases; see SOURCE_CITATION in spec. Probably retool reverseRelationship HUSB/WIFE logic.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
 * **GCTag**: Some handling of custom tags. Encountered so far: FAM._UMR (unmarried), OBJE._FILE (file path).
-* **GCObject**: Handle plural names of properties
+* **GCObject**: Clean up handling of plural names for properties (checking against both [obj type] and [[obj gedTag] pluralName] is too messy)
 * **tags.py**: convenience methods? (-[GCIndividualEntity addBirthWithValue:])
 
 # Examples #
@@ -52,7 +52,7 @@ Showing some different ways to add attributes to an object:
 ``` objective-c
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
+    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
     
     NSArray *names = [NSArray arrayWithObjects:
                       [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
@@ -60,9 +60,9 @@ Showing some different ways to add attributes to an object:
                       nil];
     
     [indi setValue:names 
-            forKey:@"personalName"];
+            forKey:@"personalNames"];
 	
-	GCAttribute *birt = [GCAttribute attributeWithType:@"birth"];
+	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
@@ -111,23 +111,23 @@ Similarly, for relationships, the following:
 ```objective-c
 	GCContext *ctx = [GCContext context];
 	
-	GCEntity *husb = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[husb addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Jens /Hansen/"]];
+	GCEntity *husb = [GCEntity entityWithType:@"individual" inContext:ctx];
+	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCEntity *wife = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[wife addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Anne /Larsdatter/"]];
+	GCEntity *wife = [GCEntity entityWithType:@"individual" inContext:ctx];
+	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCEntity *chil = [GCEntity entityWithType:@"individualRecord" inContext:ctx];
-	[chil addAttributeWithType:@"personalName" value:[GCString valueWithGedcomString:@"Hans /Jensen/"]];
+	GCEntity *chil = [GCEntity entityWithType:@"individual" inContext:ctx];
+	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"familyRecord" inContext:ctx];
+    GCEntity *fam = [GCEntity entityWithType:@"family" inContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];
-    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"child"];
+    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"children"];
     
     //alternately:
 	// [fam addRelationshipWithType:@"husband" target:husb];

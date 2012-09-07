@@ -50,6 +50,7 @@ __strong static NSMutableDictionary *tagStore;
 __strong static NSMutableDictionary *tagInfo;
 __strong static NSDictionary *_tagsByName;
 __strong static NSMutableDictionary *_pluralToSingular;
+__strong static NSMutableDictionary *_singularToPlural;
 
 + (void)setupTagStoreForKey:(NSString *)key
 {
@@ -58,11 +59,11 @@ __strong static NSMutableDictionary *_pluralToSingular;
     
     tagDict[kName] = key;
     
-    if (tagDict[kPlural]) {
-        _pluralToSingular[tagDict[kPlural]] = key;
-    } else {
-        _pluralToSingular[[NSString stringWithFormat:@"%@s", key]] = key;
+    if (!tagDict[kPlural]) {
+        tagDict[kPlural] = [NSString stringWithFormat:@"%@s", key];
     }
+    _pluralToSingular[tagDict[kPlural]] = key;
+    _singularToPlural[key] = tagDict[kPlural];
     
     for (NSString *variantName in tagDict[kVariants]) {
         id variant = tagInfo[variantName];
@@ -90,7 +91,8 @@ __strong static NSMutableDictionary *_pluralToSingular;
         GCTag *tag = [[GCTag alloc] initWithName:key
                                         settings:tagDict];
         tagStore[key] = tag;
-        tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
+        tagStore[tagDict[kPlural]] = tag;
+        //tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
     }
     
     for (NSDictionary *subTag in tagDict[kValidSubTags]) {
@@ -120,6 +122,7 @@ __strong static NSMutableDictionary *_pluralToSingular;
         NSAssert(tagInfo != nil, @"error: %@", err);
         
         _pluralToSingular = [NSMutableDictionary dictionary];
+        _singularToPlural = [NSMutableDictionary dictionary];
         tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
         [self setupTagStoreForKey:(NSString *)kRootObject];
     });
@@ -218,6 +221,7 @@ __strong static NSMutableDictionary *_pluralToSingular;
         
         byCode[typeKey][[subTag code]] = subTag;
         byName[[subTag name]] = subTag;
+        byName[[subTag pluralName]] = subTag;
     }
     
     _cachedSubTagsByCode = [byCode copy];
@@ -306,6 +310,11 @@ __strong static NSMutableDictionary *_pluralToSingular;
     return (GCAllowedOccurrences){min, max};
 }
 
++ (NSString *)canonicalNameForName:(NSString *)name
+{
+    return [[self tagNamed:name] name];
+}
+
 #pragma mark Description
 
 //COV_NF_START
@@ -343,6 +352,11 @@ __strong static NSMutableDictionary *_pluralToSingular;
     return [frameworkBundle localizedStringForKey:_name value:_name table:@"Tags"];
 }
 
+- (NSString *)pluralName
+{
+    return _settings[kPlural];
+}
+
 - (NSString *)code
 {
     return _settings[kCode];
@@ -363,8 +377,12 @@ __strong static NSMutableDictionary *_pluralToSingular;
 {
     if (!_cachedObjectClass) {
         NSString *objectClassString = _settings[kObjectType];
+        NSString *name = [self name];
         
         _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
+        if (!_cachedObjectClass) {
+            _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@%@%@", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1], [objectClassString capitalizedString]]);
+        }
     }
     
 	return _cachedObjectClass;
@@ -374,6 +392,8 @@ __strong static NSMutableDictionary *_pluralToSingular;
 {
     if (!_cachedTargetType) {
         _cachedTargetType = _settings[kTargetType];
+        
+        //TODO classify
     }
     
 	return _cachedTargetType;
@@ -384,12 +404,14 @@ __strong static NSMutableDictionary *_pluralToSingular;
     if (!_cachedValidSubTags) {
         NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
         for (NSDictionary *valid in _settings[kValidSubTags]) {
+            BOOL isPlural = [valid[@"max"] isEqualToString:@"M"];
+            
             if ([valid[kName] hasPrefix:@"@"]) {
                 for (NSString *variantName in tagInfo[valid[kName]][kVariants]) {
-                    [set addObject:[GCTag tagNamed:variantName]];                
+                    [set addObject:[GCTag tagNamed:isPlural ? _singularToPlural[variantName] : variantName]];
                 }
             } else {
-                [set addObject:[GCTag tagNamed:valid[kName]]];
+                [set addObject:[GCTag tagNamed:isPlural ? _singularToPlural[valid[kName]] : valid[kName]]];
             }
         }
         _cachedValidSubTags = [set copy];

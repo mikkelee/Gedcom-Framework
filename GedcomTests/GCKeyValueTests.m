@@ -160,10 +160,10 @@
     STAssertTrue([[name2 valueForKey:@"properties"] containsObject:nickname], nil);
     STAssertFalse([[name1 valueForKey:@"properties"] containsObject:nickname], nil);
     
-    [indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"personalName"];
+    [indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"personalNames"];
     
     NSArray *expectedObjects = [NSArray arrayWithObjects:[NSNull null], nickname, nil];
-    STAssertEqualObjects([indi valueForKeyPath:@"personalName.nickname"], expectedObjects, nil);
+    STAssertEqualObjects([indi valueForKeyPath:@"personalNames.nickname"], expectedObjects, nil);
 }
 
 -(void)testKVO
@@ -176,13 +176,13 @@
     
     [observer setEntity:indi];
     
-    [[indi mutableArrayValueForKey:@"personalName"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
-    [[indi mutableArrayValueForKey:@"personalName"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
+    [[indi mutableArrayValueForKey:@"personalNames"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    [[indi mutableArrayValueForKey:@"personalNames"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
     
     //TODO should this fire something too?
-    [[[indi valueForKey:@"personalName"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
+    [[[indi valueForKey:@"personalNames"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
     
-    [[indi mutableOrderedSetValueForKey:@"personalName"] removeObjectAtIndex:0];
+    [[indi mutableOrderedSetValueForKey:@"personalNames"] removeObjectAtIndex:0];
     
     //broken
     /*
@@ -241,7 +241,7 @@
     
     [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
     
-    NSMutableArray *names = [indi mutableArrayValueForKey:@"personalName"];
+    NSMutableArray *names = [indi mutableArrayValueForKey:@"personalNames"];
     
     GCAttribute *name = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
     

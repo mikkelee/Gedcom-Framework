@@ -83,6 +83,8 @@ typedef struct {
  */
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
++ (NSString *)canonicalNameForName:(NSString *)name;
+
 #pragma mark Objective-C properties
 
 /// @name Accessing properties
@@ -92,6 +94,8 @@ typedef struct {
 
 /// The human readable name of the receiver.
 @property (readonly) NSString *name;
+
+@property (readonly) NSString *pluralName;
 
 /// The localized name of the receiver.
 @property (readonly) NSString *localizedName;

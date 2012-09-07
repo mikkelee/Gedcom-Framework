@@ -8,6 +8,8 @@
 
 #import "GCHeader.h"
 
+#import "GCObject_internal.h"
+
 #import "GCNode.h"
 
 #import "GCContext.h"
@@ -77,6 +79,20 @@
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_context forKey:@"context"];
 }
+
+#pragma mark Description
+
+//COV_NF_START
+- (NSString *)descriptionWithIndent:(NSUInteger)level
+{
+    NSString *indent = @"";
+    for (NSUInteger i = 0; i < level; i++) {
+        indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
+    }
+    
+    return [NSString stringWithFormat:@"%@<%@: %p> {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [self propertyDescriptionWithIndent:level+1], indent];
+}
+//COV_NF_END
 
 #pragma mark Objective-C Properties
 
