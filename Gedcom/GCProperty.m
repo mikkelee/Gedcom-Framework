@@ -121,7 +121,7 @@
 
 - (GCContext *)context
 {
-    return [_describedObject context];
+    return [[self describedObject] context];
 }
 
 @end

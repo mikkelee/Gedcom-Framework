@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject.h"
+#import "GCEntity.h"
 
 /**
  
  A header holds information that describes a GCFile such as its author, what software produced it, etc.
  
  */
-@interface GCHeader : GCObject
+@interface GCHeader : GCEntity
 
 #pragma mark Convenience constructor
 

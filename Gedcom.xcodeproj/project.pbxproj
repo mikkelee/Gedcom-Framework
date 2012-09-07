@@ -522,10 +522,10 @@
 				3E57558615217C0D00A918D1 /* GCObject.h */,
 				3E09D18C15F9427C00BAA69E /* GCObject_internal.h */,
 				3E57558715217C0D00A918D1 /* GCObject.m */,
-				3E252F0D1523915900BAFCB1 /* GCHeader.h */,
-				3E252F0E1523915900BAFCB1 /* GCHeader.m */,
 				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
 				3E5F50C8151E02C300A433A6 /* GCEntity.m */,
+				3E252F0D1523915900BAFCB1 /* GCHeader.h */,
+				3E252F0E1523915900BAFCB1 /* GCHeader.m */,
 				3E4373591521CF1400BA362F /* Properties */,
 			);
 			name = Objects;
@@ -546,7 +546,7 @@
 		3EB5ABCF153615CD0036B4D5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3ED92D411563D76500E53E47 /* Delegate informal protocols */,
+				3ED92D411563D76500E53E47 /* Delegate protocols */,
 				3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */,
 				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
 				3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */,
@@ -555,13 +555,13 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		3ED92D411563D76500E53E47 /* Delegate informal protocols */ = {
+		3ED92D411563D76500E53E47 /* Delegate protocols */ = {
 			isa = PBXGroup;
 			children = (
 				3EC7FF24155FA09500801306 /* GCFileDelegate.h */,
 				3ED92D421563D78C00E53E47 /* GCContextDelegate.h */,
 			);
-			name = "Delegate informal protocols";
+			name = "Delegate protocols";
 			sourceTree = "<group>";
 		};
 		3EDBBE5D15F7EE04008C1E50 /* Generated files */ = {

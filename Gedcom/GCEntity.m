@@ -56,7 +56,9 @@
 {
     GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:[node gedTag]] name] inContext:context];
     
-	[context setXref:[node xref] forEntity:entity];
+    if ([node xref])
+        [context setXref:[node xref] forEntity:entity];
+    
 	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         
         //TODO clean up this part:

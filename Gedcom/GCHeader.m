@@ -11,73 +11,18 @@
 #import "GCObject_internal.h"
 
 #import "GCNode.h"
+#import "GCTag.h"
 
-#import "GCContext.h"
-
-@implementation GCHeader {
-    GCContext *_context;
-}
-
-#pragma mark Initialization
-
-- (id)initInContext:(GCContext *)context
-{
-    self = [super initWithType:@"header"];
-    
-    if (self) {
-        _context = context;
-    }
-    
-    return self;
-}
+@implementation GCHeader
 
 #pragma mark Convenience constructors
 
 + (id)headerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    NSParameterAssert([[node gedTag] isEqualToString:@"HEAD"]);
+    NSParameterAssert(context);
+    NSParameterAssert(node);
     
-	GCHeader *header = [[self alloc] initInContext:context];
-	
-    //TODO clean up this part:
-    __block GCNode *dateNode = nil;
-    
-    [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        GCNode *subNode = (GCNode *)obj;
-        if ([[subNode gedTag] isEqualToString:@"DATE"]) {
-            dateNode = subNode;
-            *stop = YES;
-        }
-    }];
-    
-    NSMutableOrderedSet *subNodesWithoutDate = [[node subNodes] mutableCopy];
-    
-    [subNodesWithoutDate removeObject:dateNode];
-    
-    [header addPropertiesWithGedcomNodes:subNodesWithoutDate];
-    
-    //TODO actually use dateNode (see GCEntity for example)
-    
-	return header;
-}
-
-#pragma mark NSCoding conformance
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-	self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-        _context = [aDecoder decodeObjectForKey:@"context"];
-	}
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:_context forKey:@"context"];
+	return [self entityWithGedcomNode:node inContext:context];
 }
 
 #pragma mark Description
@@ -96,19 +41,12 @@
 
 #pragma mark Objective-C Properties
 
-@synthesize context = _context;
-
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:@"HEAD"
+    return [[GCNode alloc] initWithTag:[[self gedTag] code]
 								 value:nil
 								  xref:nil
 							  subNodes:[self subNodes]];
-}
-
-- (GCObject *)rootObject
-{
-    return self;
 }
 
 @end

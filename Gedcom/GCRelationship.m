@@ -26,9 +26,9 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
-        [[object context] registerCallbackForXref:[node gedValue] usingBlock:^(NSString *xref) {
+        [[self context] registerCallbackForXref:[node gedValue] usingBlock:^(NSString *xref) {
             GCEntity *target = [[object context] entityForXref:xref];
-            //NSLog(@"Set %@ => %@ on %@", xref, target, relationship);
+            //NSLog(@"Set %@ => %@ on %@", xref, target, self);
             [self setTarget:target];
         }];
     }
@@ -64,6 +64,8 @@
 
 - (GCNode *)gedcomNode
 {
+    NSParameterAssert(_target);
+    
     return [[GCNode alloc] initWithTag:[[self gedTag] code]
 								 value:[[self context] xrefForEntity:_target]
 								  xref:nil
