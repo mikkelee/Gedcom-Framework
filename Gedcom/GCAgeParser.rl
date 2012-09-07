@@ -39,13 +39,13 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 	}
 	
 	action number {
-		int len = (fpc - data) - tag;
+		long len = (fpc - data) - tag;
 		number = [[[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding] integerValue];
 		//NSLog(@"%p num: %d", fpc, number);
 	}
 	
 	action word {
-		int len = (fpc - data) - tag;
+		long len = (fpc - data) - tag;
 		word = [[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding];
 		//NSLog(@"%p word: %@", fpc, word);
 	}
@@ -150,7 +150,7 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
     [currentAgeComponents setMonth:0];
     [currentAgeComponents setDay:0];
 	GCAgeQualifier qualifier = GCAgeNoQualifier;
-	int tag = 0;
+	long tag = 0;
 	NSInteger number = 0;
 	NSString *word = nil;
 	BOOL finished = NO;

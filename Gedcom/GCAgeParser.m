@@ -169,7 +169,7 @@ static const int age_en_main = 1;
     [currentAgeComponents setMonth:0];
     [currentAgeComponents setDay:0];
 	GCAgeQualifier qualifier = GCAgeNoQualifier;
-	int tag = 0;
+	long tag = 0;
 	NSInteger number = 0;
 	NSString *word = nil;
 	BOOL finished = NO;
@@ -271,7 +271,7 @@ _match:
 	case 1:
 #line 41 "GCAgeParser.rl"
 	{
-		int len = (p - data) - tag;
+		long len = (p - data) - tag;
 		number = [[[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding] integerValue];
 		//NSLog(@"%p num: %d", fpc, number);
 	}
@@ -323,7 +323,7 @@ _again:
 	case 2:
 #line 47 "GCAgeParser.rl"
 	{
-		int len = (p - data) - tag;
+		long len = (p - data) - tag;
 		word = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
 		//NSLog(@"%p word: %@", fpc, word);
 	}
