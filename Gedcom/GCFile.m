@@ -16,6 +16,8 @@
 #import "GCHeader.h"
 #import "GCEntity.h"
 
+#import "GCObjects_generated.h"
+
 #import "GCFileDelegate.h"
 
 @interface GCTrailer : NSObject //empty class to match trailer objects
@@ -95,14 +97,16 @@
         GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
         Class objectClass = [tag objectClass];
         
-        if ([objectClass isEqual:[GCHeader class]]) {
+        if ([objectClass isSubclassOfClass:[GCHeader class]]) {
             if (_header) {
                 NSLog(@"Multiple headers!?");
             }
             _header = [GCHeader headerWithGedcomNode:node inContext:_context];
-        } else if ([objectClass isEqual:[GCEntity class]]) {
+        } else if ([objectClass isSubclassOfClass:[GCSubmissionEntity class]]) {
+            _submission = [GCEntity entityWithGedcomNode:node inContext:_context];
+        } else if ([objectClass isSubclassOfClass:[GCEntity class]]) {
             [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:_context]];
-        } else if ([objectClass isEqual:[GCTrailer class]]) {
+        } else if ([objectClass isSubclassOfClass:[GCTrailer class]]) {
             *stop = YES;
             return;
         } else {
@@ -116,7 +120,7 @@
         });
     }];
     
-    //TODO react in some way if node count != entity count, ie nodes array contained malformed root nodes.
+    //TODO react in some way if node count != entity count, ie nodes array contained malformed root nodes or premature trailer.
     
     if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
         [_delegate file:self didFinishWithEntityCount:[_entities count]];
@@ -165,6 +169,7 @@
     if (self) {
         _context = [aDecoder decodeObjectForKey:@"context"];
         _header = [aDecoder decodeObjectForKey:@"header"];
+        _submission = [aDecoder decodeObjectForKey:@"submission"];
         _entities = [aDecoder decodeObjectForKey:@"entities"];
 	}
     
@@ -175,6 +180,7 @@
 {
     [aCoder encodeObject:_context forKey:@"context"];
     [aCoder encodeObject:_header forKey:@"header"];
+    [aCoder encodeObject:_submission forKey:@"submission"];
     [aCoder encodeObject:_entities forKey:@"entities"];
 }
 

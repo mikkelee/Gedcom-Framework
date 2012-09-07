@@ -12,6 +12,7 @@
 
 @class GCHeader;
 @class GCEntity;
+@class GCSubmissionEntity;
 
 /**
  
@@ -85,7 +86,7 @@
 @property GCHeader *header;
 
 /// An optional submission entity.
-@property GCEntity *submission; //optional
+@property GCSubmissionEntity *submission;
 
 /// @name Accessing entities
 

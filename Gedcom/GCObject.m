@@ -36,9 +36,10 @@
 
 - (id)initWithType:(NSString *)type
 {
-    if ([self class] == [GCObject class] || [self class] == [GCProperty class] || [self class] == [GCAttribute class] || [self class] == [GCRelationship class]) {
+    if ([self class] == [GCObject class] || [self class] == [GCEntity class] || [self class] == [GCProperty class] || [self class] == [GCAttribute class] || [self class] == [GCRelationship class]) {
         NSString *className = [NSString stringWithFormat:@"GC%@%@%@", [[type substringToIndex:1] uppercaseString], [type substringFromIndex:1], [[self className] substringFromIndex:2]];
         Class objectClass = NSClassFromString(className);
+        
         return [[objectClass alloc] initWithType:type];
     }
     
@@ -672,8 +673,15 @@ BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **erro
     }
 }
 
-BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, NSString *type, NSError **error) {
-    if (![target isKindOfClass:[GCEntity class]] || ![[target type] isEqualToString:type]) {
+BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Class type, NSError **error) {
+    if (target == nil) {
+        if (NULL != error) {
+            *error = [NSError errorWithDomain:@"GCErrorDoman"
+                                         code:GCTargetMissingError
+                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target is missing for key %@ (should be a %@)",  key, type]}];
+        }
+        return NO;
+    } else if (![target isKindOfClass:type]) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman" 
                                          code:GCIncorrectTargetTypeError 

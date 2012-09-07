@@ -106,4 +106,9 @@
 							  subNodes:[self subNodes]];
 }
 
+- (GCObject *)rootObject
+{
+    return self;
+}
+
 @end

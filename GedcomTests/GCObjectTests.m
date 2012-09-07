@@ -74,7 +74,7 @@
                          @"3 TIME 12:00:00"
                          , nil);
     
-    NSLog(@"indi births: %@", [indi births]);
+    //NSLog(@"indi births: %@", [indi births]);
     
     ctx = [GCContext context]; //fresh context
 	
@@ -204,7 +204,7 @@
     STAssertTrue([file isEqualTo:decodedFile], nil);
 }
 
-- (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedError:(NSString *)errorString
+- (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedErrorCode:(GCErrorCode)errorCode string:(NSString *)errorString
 {
     GCContext *ctx = [GCContext context];
     
@@ -218,6 +218,7 @@
     
     STAssertFalse(result, nil);
     STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], errorString, nil);
+    STAssertEquals([error code], errorCode, nil);
 }
 
 - (void)testObjectValidation
@@ -227,7 +228,8 @@
                                              @"1 LANG English\n"
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish"
-                               exceptedError:@"Too few values for key name on submitter"];
+                           exceptedErrorCode:GCTooFewValuesError
+                                      string:@"Too few values for key name on submitter"];
     
     // Submitter with too many LANG properties.
     [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
@@ -236,7 +238,8 @@
                                              @"1 LANG Swedish\n"
                                              @"1 LANG Spanish\n"
                                              @"1 LANG German"
-                               exceptedError:@"Too many values for key languages on submitter"];
+                           exceptedErrorCode:GCTooManyValuesError
+                                      string:@"Too many values for key languages on submitter"];
 }
 
 @end

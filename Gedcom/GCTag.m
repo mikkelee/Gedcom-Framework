@@ -24,7 +24,7 @@
     NSDictionary *_cachedOccurencesDicts;
     Class _cachedValueClass;
     Class _cachedObjectClass;
-    NSString *_cachedTargetType;
+    Class _cachedTargetType;
 }
 
 #pragma mark Constants
@@ -217,7 +217,7 @@ __strong static NSMutableDictionary *_singularToPlural;
     NSMutableDictionary *byName = [NSMutableDictionary dictionary];
     
     for (GCTag *subTag in [self validSubTags]) {
-        NSString *typeKey = [[NSStringFromClass([subTag objectClass]) substringFromIndex:2] lowercaseString];
+        NSString *typeKey = [NSStringFromClass([subTag objectClass]) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
         
         byCode[typeKey][[subTag code]] = subTag;
         byName[[subTag name]] = subTag;
@@ -379,21 +379,21 @@ __strong static NSMutableDictionary *_singularToPlural;
         NSString *objectClassString = _settings[kObjectType];
         NSString *name = [self name];
         
-        _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
+        _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@%@%@", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1], [objectClassString capitalizedString]]);
         if (!_cachedObjectClass) {
-            _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@%@%@", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1], [objectClassString capitalizedString]]);
+            _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
         }
     }
     
 	return _cachedObjectClass;
 }
 
-- (NSString *)targetType
+- (Class)targetType
 {
     if (!_cachedTargetType) {
-        _cachedTargetType = _settings[kTargetType];
+        NSString *targetTypeString = _settings[kTargetType];
         
-        //TODO classify
+        _cachedTargetType = NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [targetTypeString capitalizedString]]);
     }
     
 	return _cachedTargetType;
