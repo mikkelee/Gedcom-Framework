@@ -405,13 +405,19 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     
     @synchronized(_propertyStore) {
         NSArray *sortedProperties = [_propertyStore sortedArrayUsingComparator:^NSComparisonResult(GCProperty *obj1, GCProperty *obj2) {
-            NSNumber *obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj1 type]]];
-            if ([obj1index unsignedIntegerValue] == NSNotFound) {
+            NSNumber *obj1index = nil;
+            NSNumber *obj2index = nil;
+            
+            if ([[self gedTag] allowedOccurrencesOfSubTag:[obj1 gedTag]].max > 1) {
                 obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[[obj1 gedTag] pluralName]]];
+            } else {
+                obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj1 type]]];
             }
-            NSNumber *obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj2 type]]];
-            if ([obj2index unsignedIntegerValue] == NSNotFound) {
+            
+            if ([[self gedTag] allowedOccurrencesOfSubTag:[obj2 gedTag]].max > 1) {
                 obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[[obj2 gedTag] pluralName]]];
+            } else {
+                obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj2 type]]];
             }
             
             NSComparisonResult result = [obj1index compare:obj2index];
