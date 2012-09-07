@@ -147,7 +147,6 @@ static const int age_en_main = 1;
     
     if (self) {
         _cache = [NSMutableDictionary dictionary];
-        _lock = [NSLock new];
     }
 	
 	return self;
@@ -155,39 +154,38 @@ static const int age_en_main = 1;
 
 - (GCAge *)parseGedcom:(NSString *)str
 {
-	if (_cache[str]) {
-        //NSLog(@"Getting cached age for %@", str);
-		return [_cache[str] copy];
-	}
-	
-	[_lock lock];
-	
-	GCAge *age = nil;
-    NSDateComponents *currentAgeComponents = [[NSDateComponents alloc] init];
-    [currentAgeComponents setYear:0];
-    [currentAgeComponents setMonth:0];
-    [currentAgeComponents setDay:0];
-	GCAgeQualifier qualifier = GCAgeNoQualifier;
-	long tag = 0;
-	NSInteger number = 0;
-	NSString *word = nil;
-	BOOL finished = NO;
-	
-	int cs = 0;
-	const char *data = [str UTF8String];
-	const char *p = data;
-	const char *pe = p + [str length];
-	const char *eof = pe;
-    
-	
-#line 184 "GCAgeParser.m"
+    @synchronized(_cache) {
+        if (_cache[str]) {
+            //NSLog(@"Getting cached age for %@", str);
+            return [_cache[str] copy];
+        }
+        
+        GCAge *age = nil;
+        NSDateComponents *currentAgeComponents = [[NSDateComponents alloc] init];
+        [currentAgeComponents setYear:0];
+        [currentAgeComponents setMonth:0];
+        [currentAgeComponents setDay:0];
+        GCAgeQualifier qualifier = GCAgeNoQualifier;
+        long tag = 0;
+        NSInteger number = 0;
+        NSString *word = nil;
+        BOOL finished = NO;
+        
+        int cs = 0;
+        const char *data = [str UTF8String];
+        const char *p = data;
+        const char *pe = p + [str length];
+        const char *eof = pe;
+        
+        
+#line 182 "GCAgeParser.m"
 	{
 	cs = age_start;
 	}
 
-#line 164 "GCAgeParser.rl"
-	
-#line 191 "GCAgeParser.m"
+#line 162 "GCAgeParser.rl"
+        
+#line 189 "GCAgeParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -303,7 +301,7 @@ _match:
 		//NSLog(@"%p greaterThan", fpc);
 	}
 	break;
-#line 307 "GCAgeParser.m"
+#line 305 "GCAgeParser.m"
 		}
 	}
 
@@ -368,7 +366,7 @@ _again:
 		finished = YES;
 	}
 	break;
-#line 372 "GCAgeParser.m"
+#line 370 "GCAgeParser.m"
 		}
 	}
 	}
@@ -376,21 +374,20 @@ _again:
 	_out: {}
 	}
 
-#line 165 "GCAgeParser.rl"
-	
-	if (!finished) {
-		age = nil;
-	}
-	
-	if (age == nil) {
-		age = [GCAge ageWithInvalidAgeString:str];
-	}
-    
-	_cache[str] = age;
-	
-	[_lock unlock];
-	
-	return age;
+#line 163 "GCAgeParser.rl"
+        
+        if (!finished) {
+            age = nil;
+        }
+        
+        if (age == nil) {
+            age = [GCAge ageWithInvalidAgeString:str];
+        }
+        
+        _cache[str] = age;
+        
+        return age;
+    }
 }
 
 @end

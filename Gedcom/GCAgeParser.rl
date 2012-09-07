@@ -128,7 +128,6 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
     
     if (self) {
         _cache = [NSMutableDictionary dictionary];
-        _lock = [NSLock new];
     }
 	
 	return self;
@@ -136,46 +135,44 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 
 - (GCAge *)parseGedcom:(NSString *)str
 {
-	if (_cache[str]) {
-        //NSLog(@"Getting cached age for %@", str);
-		return [_cache[str] copy];
-	}
-	
-	[_lock lock];
-	
-	GCAge *age = nil;
-    NSDateComponents *currentAgeComponents = [[NSDateComponents alloc] init];
-    [currentAgeComponents setYear:0];
-    [currentAgeComponents setMonth:0];
-    [currentAgeComponents setDay:0];
-	GCAgeQualifier qualifier = GCAgeNoQualifier;
-	long tag = 0;
-	NSInteger number = 0;
-	NSString *word = nil;
-	BOOL finished = NO;
-	
-	int cs = 0;
-	const char *data = [str UTF8String];
-	const char *p = data;
-	const char *pe = p + [str length];
-	const char *eof = pe;
-    
-	%% write init;
-	%% write exec;
-	
-	if (!finished) {
-		age = nil;
-	}
-	
-	if (age == nil) {
-		age = [GCAge ageWithInvalidAgeString:str];
-	}
-    
-	_cache[str] = age;
-	
-	[_lock unlock];
-	
-	return age;
+    @synchronized(_cache) {
+        if (_cache[str]) {
+            //NSLog(@"Getting cached age for %@", str);
+            return [_cache[str] copy];
+        }
+        
+        GCAge *age = nil;
+        NSDateComponents *currentAgeComponents = [[NSDateComponents alloc] init];
+        [currentAgeComponents setYear:0];
+        [currentAgeComponents setMonth:0];
+        [currentAgeComponents setDay:0];
+        GCAgeQualifier qualifier = GCAgeNoQualifier;
+        long tag = 0;
+        NSInteger number = 0;
+        NSString *word = nil;
+        BOOL finished = NO;
+        
+        int cs = 0;
+        const char *data = [str UTF8String];
+        const char *p = data;
+        const char *pe = p + [str length];
+        const char *eof = pe;
+        
+        %% write init;
+        %% write exec;
+        
+        if (!finished) {
+            age = nil;
+        }
+        
+        if (age == nil) {
+            age = [GCAge ageWithInvalidAgeString:str];
+        }
+        
+        _cache[str] = age;
+        
+        return age;
+    }
 }
 
 @end
