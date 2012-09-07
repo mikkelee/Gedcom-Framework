@@ -9,7 +9,6 @@
 #import "GCObject.h"
 
 #import "GCNode.h"
-#import "GCTag.h"
 
 #import "GCContext.h"
 
@@ -86,11 +85,9 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     }
 }
 
-- (BOOL)allowsMultiplePropertiesOfType:(NSString *)type
+- (GCAllowedOccurrences)allowedOccurrencesPropertyType:(NSString *)type
 {
-    GCAllowedOccurrences occurrences = [_gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
-    
-    return occurrences.max > 1;
+    return [_gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
 
 #pragma mark NSKeyValueCoding overrides
@@ -115,7 +112,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 - (void)setValue:(id)value forKey:(NSString *)key
 {
     if ([[self validProperties] containsObject:key]) {
-        if ([self allowsMultiplePropertiesOfType:key]) {
+        if ([self allowedOccurrencesPropertyType:key].max > 1) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
             for (id item in value) {
@@ -157,11 +154,17 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         }
     } else if ([[self validProperties] containsObject:key]) {
         @synchronized(_propertyStore) {
+            BOOL allowsMultiple = [self allowedOccurrencesPropertyType:key].max > 1;
+            
             NSIndexSet *indexes = [_propertyStore indexesOfObjectsPassingTest:^BOOL(GCObject *obj, NSUInteger idx, BOOL *stop) {
-                return [[[obj gedTag] name] isEqualToString:key] || [[[obj gedTag] pluralName] isEqualToString:key];
+                if (allowsMultiple) {
+                    return [[[obj gedTag] pluralName] isEqualToString:key];
+                } else {
+                    return [[[obj gedTag] name] isEqualToString:key];
+                }
             }];
             
-            if ([self allowsMultiplePropertiesOfType:key]) {
+            if (allowsMultiple) {
                 return [_propertyStore objectsAtIndexes:indexes];
             } else {
                 return [[_propertyStore objectsAtIndexes:indexes] lastObject];
@@ -291,7 +294,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
             }
         }];
         
-        if (existingPropertyOfType && ![self allowsMultiplePropertiesOfType:[property type]]) {
+        if (existingPropertyOfType && [self allowedOccurrencesPropertyType:[property type]].max <= 1) {
             [_propertyStore removeObject:property];
         }
         
@@ -716,7 +719,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
         
         NSInteger propertyCount = 0;
         
-        if ([self allowsMultiplePropertiesOfType:propertyKey]) {
+        if ([self allowedOccurrencesPropertyType:propertyKey].max > 1) {
             propertyCount = [[self valueForKey:propertyKey] count];
             for (id property in [self valueForKey:propertyKey]) {
                 validatePropertyHelper(propertyKey, property, subTag, outError);

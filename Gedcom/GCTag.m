@@ -49,7 +49,6 @@ const NSString *kPlural = @"plural";
 __strong static NSMutableDictionary *tagStore;
 __strong static NSMutableDictionary *tagInfo;
 __strong static NSDictionary *_tagsByName;
-__strong static NSMutableDictionary *_pluralToSingular;
 __strong static NSMutableDictionary *_singularToPlural;
 
 + (void)setupTagStoreForKey:(NSString *)key
@@ -62,7 +61,6 @@ __strong static NSMutableDictionary *_singularToPlural;
     if (!tagDict[kPlural]) {
         tagDict[kPlural] = [NSString stringWithFormat:@"%@s", key];
     }
-    _pluralToSingular[tagDict[kPlural]] = key;
     _singularToPlural[key] = tagDict[kPlural];
     
     for (NSString *variantName in tagDict[kVariants]) {
@@ -121,7 +119,6 @@ __strong static NSMutableDictionary *_singularToPlural;
         //NSLog(@"tagInfo: %@", tagInfo);
         NSAssert(tagInfo != nil, @"error: %@", err);
         
-        _pluralToSingular = [NSMutableDictionary dictionary];
         _singularToPlural = [NSMutableDictionary dictionary];
         tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
         [self setupTagStoreForKey:(NSString *)kRootObject];

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GCTag.h"
+
 @class GCContext;
 @class GCNode;
-@class GCTag;
 @class GCProperty;
 
 /**
@@ -38,12 +39,14 @@
 /// An ordered collection of valid property types for the receiver.
 - (NSOrderedSet *)validProperties;
 
-/** Returns a boolean indicating whether the receiver accepts multiple properties of a given type.
+/** Returns a struct with the minimum and maximum allowed occurrences of a given type of property.
+ 
+ GCAllowedOccurrences is a { `min`, `max` } struct of two NSIntegers
  
  @param type A given type.
- @return `YES` if the receiver allows multiple properties of the given type, otherwise `NO`.
+ @return A GCAllowedOccurrences struct.
  */
-- (BOOL)allowsMultiplePropertiesOfType:(NSString *)type;
+- (GCAllowedOccurrences)allowedOccurrencesPropertyType:(NSString *)type;
 
 #pragma mark Gedcom access
 

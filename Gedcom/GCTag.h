@@ -90,21 +90,22 @@ typedef struct {
 /// @name Accessing properties
 
 /// The Gedcom code of the receiver.
-@property (readonly) NSString *code;
+@property (readonly, nonatomic) NSString *code;
 
 /// The human readable name of the receiver.
 @property (readonly) NSString *name;
 
-@property (readonly) NSString *pluralName;
+/// The human readable name of the receiver in plural.
+@property (readonly, nonatomic) NSString *pluralName;
 
 /// The localized name of the receiver.
-@property (readonly) NSString *localizedName;
+@property (readonly, nonatomic) NSString *localizedName;
 
 /// Whether the tag is custom or not.
-@property (readonly) BOOL isCustom;
+@property (readonly, nonatomic) BOOL isCustom;
 
 /// An ordered collection of valid subtags.
-@property (readonly) NSOrderedSet *validSubTags;
+@property (readonly, nonatomic) NSOrderedSet *validSubTags;
 
 /// The class type of the tag. Can be any subclass of GCObject.
 @property (readonly) Class objectClass;
@@ -116,6 +117,6 @@ typedef struct {
 @property (readonly) Class targetType;
 
 /// If the tag is a relationship-tag and the relationship is two-way (such as FAMC &lt;-&gt; CHIL) the reverse tag is provided. Can be `nil`.
-@property (readonly) GCTag *reverseRelationshipTag;
+@property (readonly, nonatomic) GCTag *reverseRelationshipTag;
 
 @end
