@@ -120,7 +120,14 @@
         });
     }];
     
-    //TODO react in some way if node count != entity count, ie nodes array contained malformed root nodes or premature trailer.
+    NSInteger count = [_entities count];
+    if (_header)
+        count++;
+    if (_submission)
+        count++;
+    count++; //trailer
+    
+    NSParameterAssert(count == [nodes count]);
     
     if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
         [_delegate file:self didFinishWithEntityCount:[_entities count]];
