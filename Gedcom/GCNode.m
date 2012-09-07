@@ -333,6 +333,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (NSAttributedString *)attributedGedcomString
 {
+    //TODO tabs?
     NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] init];
     
     NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:[self lineSeparator]];

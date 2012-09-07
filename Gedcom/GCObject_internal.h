@@ -10,9 +10,8 @@
 
 @interface GCObject ()
 
-#pragma mark Description helpers
+#pragma mark Description helper
 
-- (NSString *)descriptionWithIndent:(NSUInteger)level;
 - (NSString *)propertyDescriptionWithIndent:(NSUInteger)level;
 
 @end
