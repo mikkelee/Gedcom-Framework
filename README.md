@@ -40,7 +40,6 @@ Loosely prioritized in order of importance:
 * **Misc**: Handle special cases; see SOURCE_CITATION in spec. Probably retool reverseRelationship HUSB/WIFE logic.
 * **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
 * **GCTag**: Some handling of custom tags. Encountered so far: FAM._UMR (unmarried), OBJE._FILE (file path).
-* **GCObject**: Clean up handling of plural names for properties (checking against both [obj type] and [[obj gedTag] pluralName] is too messy)
 * **tags.py**: convenience methods? (-[GCIndividualEntity addBirthWithValue:])
 
 # Examples #
