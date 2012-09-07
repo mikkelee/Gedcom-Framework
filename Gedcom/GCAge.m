@@ -181,7 +181,7 @@ NSString * const GCAgeQualifier_toString[] = {
     
 	[age setAgeComponents:ageComponents];
     
-    return [GCAge ageWithAge:age withQualifier:qualifier];
+    return [GCAge ageWithAge:age qualifier:qualifier];
 }
 
 @end
@@ -337,7 +337,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	return [[self alloc] initWithInvalidAgeString:s];
 }
 
-+ (id)ageWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q
++ (id)ageWithAge:(GCAge *)a qualifier:(GCAgeQualifier)q
 {
 	return [[self alloc] initWithAge:a withQualifier:q];
 }

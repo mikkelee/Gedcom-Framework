@@ -30,7 +30,7 @@ typedef enum {
 + (id)ageWithSimpleAge:(NSDateComponents *)c;
 + (id)ageWithAgeKeyword:(NSString *)p;
 + (id)ageWithInvalidAgeString:(NSString *)s;
-+ (id)ageWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
++ (id)ageWithAge:(GCAge *)a qualifier:(GCAgeQualifier)q;
 
 @property (readonly) GCSimpleAge *refAge; //used for sorting, etc.
 

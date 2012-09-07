@@ -20,7 +20,7 @@
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"INFANT"];
 	
-	STAssertEqualObjects(NSStringFromClass([age class]), @"GCAgeKeyword", nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCQualifiedAge", nil);
 	STAssertEqualObjects([age gedcomString], @"INFANT", nil);
 }
 
