@@ -69,3 +69,11 @@ typedef enum {
 
 @end
 
+#pragma mark GCAgeParser
+
+@interface GCAgeParser : NSObject
+
++ (GCAgeParser *)sharedAgeParser;
+- (GCAge *)parseGedcom:(NSString *)g;
+
+@end

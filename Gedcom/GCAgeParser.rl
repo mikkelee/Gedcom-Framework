@@ -23,7 +23,6 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 
 */
 
-#import "GCAgeParser.h"
 #import "GCAge_internal.h"
 
 %%{

@@ -25,15 +25,14 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 
 */
 
-#import "GCAgeParser.h"
 #import "GCAge_internal.h"
 
 
-#line 107 "GCAgeParser.rl"
+#line 106 "GCAgeParser.rl"
 
 
 
-#line 37 "GCAgeParser.m"
+#line 36 "GCAgeParser.m"
 static const char _age_actions[] = {
 	0, 1, 0, 1, 1, 1, 4, 1, 
 	5, 1, 8, 1, 9, 2, 4, 0, 
@@ -125,7 +124,7 @@ static const int age_error = 0;
 static const int age_en_main = 1;
 
 
-#line 110 "GCAgeParser.rl"
+#line 109 "GCAgeParser.rl"
 
 @implementation GCAgeParser {
 	NSMutableDictionary *_cache;
@@ -181,14 +180,14 @@ static const int age_en_main = 1;
 	const char *eof = pe;
     
 	
-#line 185 "GCAgeParser.m"
+#line 184 "GCAgeParser.m"
 	{
 	cs = age_start;
 	}
 
-#line 165 "GCAgeParser.rl"
+#line 164 "GCAgeParser.rl"
 	
-#line 192 "GCAgeParser.m"
+#line 191 "GCAgeParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -262,14 +261,14 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-#line 36 "GCAgeParser.rl"
+#line 35 "GCAgeParser.rl"
 	{
 		tag = p - data;
 		//NSLog(@"%p     TAG: %d", fpc, tag);
 	}
 	break;
 	case 1:
-#line 41 "GCAgeParser.rl"
+#line 40 "GCAgeParser.rl"
 	{
 		long len = (p - data) - tag;
 		number = [[[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding] integerValue];
@@ -277,34 +276,34 @@ _match:
 	}
 	break;
 	case 4:
-#line 58 "GCAgeParser.rl"
+#line 57 "GCAgeParser.rl"
 	{
         [currentAgeComponents setMonth:number];
 		//NSLog(@"%p saveMonths: %d", fpc, number);
 	}
 	break;
 	case 5:
-#line 63 "GCAgeParser.rl"
+#line 62 "GCAgeParser.rl"
 	{
         [currentAgeComponents setYear:number];
 		//NSLog(@"%p saveYears: %d", fpc, number);
 	}
 	break;
 	case 8:
-#line 76 "GCAgeParser.rl"
+#line 75 "GCAgeParser.rl"
 	{
 		qualifier = GCAgeLessThan;
 		//NSLog(@"%p lessThan", fpc);
 	}
 	break;
 	case 9:
-#line 81 "GCAgeParser.rl"
+#line 80 "GCAgeParser.rl"
 	{
 		qualifier = GCAgeGreaterThan;
 		//NSLog(@"%p greaterThan", fpc);
 	}
 	break;
-#line 308 "GCAgeParser.m"
+#line 307 "GCAgeParser.m"
 		}
 	}
 
@@ -321,7 +320,7 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 2:
-#line 47 "GCAgeParser.rl"
+#line 46 "GCAgeParser.rl"
 	{
 		long len = (p - data) - tag;
 		word = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
@@ -329,47 +328,47 @@ _again:
 	}
 	break;
 	case 3:
-#line 53 "GCAgeParser.rl"
+#line 52 "GCAgeParser.rl"
 	{
         [currentAgeComponents setDay:number];
 		//NSLog(@"%p saveDays: %d", fpc, number);
 	}
 	break;
 	case 4:
-#line 58 "GCAgeParser.rl"
+#line 57 "GCAgeParser.rl"
 	{
         [currentAgeComponents setMonth:number];
 		//NSLog(@"%p saveMonths: %d", fpc, number);
 	}
 	break;
 	case 5:
-#line 63 "GCAgeParser.rl"
+#line 62 "GCAgeParser.rl"
 	{
         [currentAgeComponents setYear:number];
 		//NSLog(@"%p saveYears: %d", fpc, number);
 	}
 	break;
 	case 6:
-#line 68 "GCAgeParser.rl"
+#line 67 "GCAgeParser.rl"
 	{
         age = [GCAge ageWithSimpleAge:currentAgeComponents];
     }
 	break;
 	case 7:
-#line 72 "GCAgeParser.rl"
+#line 71 "GCAgeParser.rl"
 	{
 		age = [GCAge ageWithAgeKeyword:word];
 	}
 	break;
 	case 10:
-#line 86 "GCAgeParser.rl"
+#line 85 "GCAgeParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
         age = [GCAge ageWithAge:age qualifier:qualifier];
 		finished = YES;
 	}
 	break;
-#line 373 "GCAgeParser.m"
+#line 372 "GCAgeParser.m"
 		}
 	}
 	}
@@ -377,7 +376,7 @@ _again:
 	_out: {}
 	}
 
-#line 166 "GCAgeParser.rl"
+#line 165 "GCAgeParser.rl"
 	
 	if (!finished) {
 		age = nil;

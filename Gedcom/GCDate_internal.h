@@ -109,3 +109,11 @@
 
 @end
 
+#pragma mark GCDateParser
+
+@interface GCDateParser : NSObject
+
++ (GCDateParser *)sharedDateParser;
+- (GCDate *)parseGedcom:(NSString *)g;
+
+@end

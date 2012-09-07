@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCDateParser.h"
 #import "GCDate_internal.h"
 #import <ParseKit/ParseKit.h>
 
