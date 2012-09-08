@@ -48,6 +48,8 @@
  */
 - (GCAllowedOccurrences)allowedOccurrencesPropertyType:(NSString *)type;
 
+- (NSArray *)propertyTypesInGroup:(NSString *)groupName;
+
 #pragma mark Gedcom access
 
 /// @name Gedcom access

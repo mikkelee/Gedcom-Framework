@@ -21,6 +21,7 @@
     NSOrderedSet *_cachedValidSubTags;
     NSDictionary *_cachedSubTagsByName;
     NSDictionary *_cachedSubTagsByCode;
+    NSDictionary *_cachedSubTagsByGroup;
     NSDictionary *_cachedOccurencesDicts;
     Class _cachedValueClass;
     Class _cachedObjectClass;
@@ -59,9 +60,9 @@ __strong static NSMutableDictionary *_singularToPlural;
     tagDict[kName] = key;
     
     if (!tagDict[kPlural]) {
-        tagDict[kPlural] = [NSString stringWithFormat:@"%@s", key];
+        tagDict[kPlural] = [NSString stringWithFormat:@"%@s", [key hasPrefix:@"@"] ? [key substringFromIndex:1] : key];
     }
-    _singularToPlural[key] = tagDict[kPlural];
+    _singularToPlural[[key hasPrefix:@"@"] ? [key substringFromIndex:1] : key] = tagDict[kPlural];
     
     for (NSString *variantName in tagDict[kVariants]) {
         id variant = tagInfo[variantName];
@@ -212,6 +213,7 @@ __strong static NSMutableDictionary *_singularToPlural;
                                    [NSMutableDictionary dictionary], @"relationship",
                                    nil];
     NSMutableDictionary *byName = [NSMutableDictionary dictionary];
+    NSMutableDictionary *byVariant = [NSMutableDictionary dictionary];
     
     for (GCTag *subTag in [self validSubTags]) {
         NSString *typeKey = [NSStringFromClass([subTag objectClass]) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
@@ -221,8 +223,26 @@ __strong static NSMutableDictionary *_singularToPlural;
         byName[[subTag pluralName]] = subTag;
     }
     
+    [tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *tagDict, BOOL *stop) {
+        if ([key hasPrefix:@"@"]) {
+            NSString *variantGroupName = tagDict[kPlural];
+            
+            for (NSString *variantName in tagDict[kVariants]) {
+                if (![variantName hasPrefix:@"@"] && [[self validSubTags] containsObject:[GCTag tagNamed:variantName]]) {
+                    if (!byVariant[variantGroupName]) {
+                        byVariant[variantGroupName] = [NSMutableArray array];
+                    }
+                    [byVariant[variantGroupName] addObject:[GCTag tagNamed:variantName]];
+                }
+            }
+            
+            //byName[variantGroupName] = byName[tagDict[kName]];
+        }
+    }];
+    
     _cachedSubTagsByCode = [byCode copy];
     _cachedSubTagsByName = [byName copy];
+    _cachedSubTagsByGroup = [byVariant copy];
 }
 
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
@@ -257,6 +277,15 @@ __strong static NSMutableDictionary *_singularToPlural;
     }
     
     return _cachedSubTagsByName[name];
+}
+
+- (NSArray *)subTagsInGroup:(NSString *)groupName
+{
+    if (!_cachedSubTagsByGroup) {
+        [self buildSubTagCaches];
+    }
+    
+    return _cachedSubTagsByGroup[groupName];
 }
 
 - (BOOL)isValidSubTag:(GCTag *)tag

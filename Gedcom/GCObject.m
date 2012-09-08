@@ -90,6 +90,17 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     return [_gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
 
+- (NSArray *)propertyTypesInGroup:(NSString *)groupName
+{
+    NSMutableArray *propertyTypes = [NSMutableArray array];
+    
+    for (GCTag *tag in [_gedTag subTagsInGroup:groupName]) {
+        [propertyTypes addObject:[tag pluralName]];
+    }
+    
+    return [propertyTypes copy];
+}
+
 #pragma mark NSKeyValueCoding overrides
 
 - (void)_internalSetValue:(id)value forKey:(NSString *)key {
@@ -128,7 +139,11 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (void)setNilValueForKey:(NSString *)key
 {
-    if ([[self validProperties] containsObject:key]) {
+    if ([[self propertyTypesInGroup:key] count] > 0) {
+        for (NSString *propertyType in [self propertyTypesInGroup:key]) {
+            [self setNilValueForKey:propertyType];
+        }
+    } else if ([[self validProperties] containsObject:key]) {
         NSIndexSet *indexesForRemoval = [_propertyStore indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             BOOL shouldRemove = [[(GCProperty *)obj type] isEqualToString:key];
             if (shouldRemove) {
@@ -152,6 +167,14 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         } else {
             return nil;
         }
+    } else if ([[self propertyTypesInGroup:key] count] > 0) {
+        NSMutableArray *values = [NSMutableArray array];
+        
+        for (NSString *propertyType in [self propertyTypesInGroup:key]) {
+            [values addObjectsFromArray:[self valueForKey:propertyType]];
+        }
+        
+        return values;
     } else if ([[self validProperties] containsObject:key]) {
         @synchronized(_propertyStore) {
             BOOL allowsMultiple = [self allowedOccurrencesPropertyType:key].max > 1;
@@ -349,7 +372,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 	NSUInteger parameterCount = [[stringSelector componentsSeparatedByString:@":"] count]-1;
     
 	// valueForKey:
-	if (parameterCount == 0 && [[self validProperties] containsObject:stringSelector]) {
+	if (parameterCount == 0 && ([[self validProperties] containsObject:stringSelector] || [[self propertyTypesInGroup:stringSelector] count] > 0)) {
 		return [super methodSignatureForSelector:@selector(valueForKey:)];
     }
     
@@ -360,7 +383,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
                   [stringSelector substringWithRange:NSMakeRange(4, [stringSelector length]-5)]];
         NSLog(@"key: %@", key);
         
-        if ([[self validProperties] containsObject:key])
+        if ([[self validProperties] containsObject:key] || [[self propertyTypesInGroup:key] count] > 0)
             return [super methodSignatureForSelector:@selector(setValue:forKey:)];
     }
     

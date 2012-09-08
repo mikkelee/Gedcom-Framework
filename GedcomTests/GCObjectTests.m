@@ -74,7 +74,7 @@
                          @"3 TIME 12:00:00"
                          , nil);
     
-    //NSLog(@"indi births: %@", [indi births]);
+    //NSLog(@"indi individualEvents: %@", [indi individualEvents]);
     
     ctx = [GCContext context]; //fresh context
 	

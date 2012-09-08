@@ -67,6 +67,8 @@ typedef struct {
  */
 - (GCTag *)subTagWithName:(NSString *)name;
 
+- (NSArray *)subTagsInGroup:(NSString *)groupName;
+
 /** Returns whether a given subtag is a valid subtag of the receiver.
  
  @param tag A GCTag object.
