@@ -114,8 +114,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
-                [_delegate file:self updatedEntityCount:[_entities count]];
+            if (_delegate && [_delegate respondsToSelector:@selector(file:didUpdateEntityCount:)]) {
+                [_delegate file:self didUpdateEntityCount:[_entities count]];
             }
         });
     }];

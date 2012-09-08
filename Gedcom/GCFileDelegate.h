@@ -22,7 +22,7 @@
  @param file The file whose entity count changed.
  @param entityCount The new count.
  */
-- (void)file:(GCFile *)file updatedEntityCount:(NSInteger)entityCount;
+- (void)file:(GCFile *)file didUpdateEntityCount:(NSInteger)entityCount;
 
 /** Will be called when a GCFile's is done parsing.
  

@@ -118,7 +118,7 @@
 
 #pragma mark GCFileDelegate methods
 
-- (void)file:(GCFile *)file updatedEntityCount:(int)entityCount
+- (void)file:(GCFile *)file didUpdateEntityCount:(int)entityCount
 {
     if (entityCount < 100 || entityCount % 100 == 0) {
         [recordCountField setIntegerValue:entityCount];
