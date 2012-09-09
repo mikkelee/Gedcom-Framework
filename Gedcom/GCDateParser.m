@@ -26,11 +26,12 @@
 
 - (GCDateAssembler *)init
 {
-    if (![super init])
-        return nil;
+    self = [super init];
     
-    monthNames = [@"JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC" componentsSeparatedByString:@" "];
-    [self initialize];
+    if (self) {
+        monthNames = [@"JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC" componentsSeparatedByString:@" "];
+        [self initialize];
+    }
     
     return self;
 }
@@ -266,21 +267,22 @@
 
 - (GCDateParser *)init
 {
-    if (![super init])
-        return nil;
+    self = [super init];
     
-    cache = [NSMutableDictionary dictionary];
-    
-    NSString *grammarPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gedcom.date" ofType:@"grammar"];
-    
-    NSString *grammar = [NSString stringWithContentsOfFile:grammarPath encoding:NSUTF8StringEncoding error:nil];
-    
-    assembler = [[GCDateAssembler alloc] init];
-    //NSLog(@"Began creating dateParser.");
-    dateParser = [[PKParserFactory factory] parserFromGrammar:grammar assembler:assembler];
-    //NSLog(@"Finished creating dateParser.");
-    
-    lock = [NSLock new];
+    if (self) {
+        cache = [NSMutableDictionary dictionary];
+        
+        NSString *grammarPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gedcom.date" ofType:@"grammar"];
+        
+        NSString *grammar = [NSString stringWithContentsOfFile:grammarPath encoding:NSUTF8StringEncoding error:nil];
+        
+        assembler = [[GCDateAssembler alloc] init];
+        //NSLog(@"Began creating dateParser.");
+        dateParser = [[PKParserFactory factory] parserFromGrammar:grammar assembler:assembler];
+        //NSLog(@"Finished creating dateParser.");
+        
+        lock = [NSLock new];
+    }
     
     return self;
 }

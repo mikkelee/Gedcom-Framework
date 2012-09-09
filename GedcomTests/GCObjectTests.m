@@ -82,11 +82,11 @@
                                          value:nil
                                           xref:@"@INDI1@"
                                       subNodes:[NSArray arrayWithObjects:
-                                                [GCNode nodeWithTag:@"NAME" 
-                                                              value:@"Jens /Hansen/ Smed"],
-                                                [GCNode nodeWithTag:@"NAME" 
+                                                [GCNode nodeWithTag:@"NAME"
                                                               value:@"Jens /Hansen/"],
-                                                [[GCNode alloc] initWithTag:@"BIRT" 
+                                                [GCNode nodeWithTag:@"NAME"
+                                                              value:@"Jens /Hansen/ Smed"],
+                                                [[GCNode alloc] initWithTag:@"BIRT"
                                                                       value:nil
                                                                        xref:nil
                                                                    subNodes:[NSArray arrayWithObjects:

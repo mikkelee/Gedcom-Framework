@@ -172,17 +172,17 @@
     
 	GCContext *ctx = [GCContext context];
 	
-    GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
+    GCIndividualEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
     [observer setEntity:indi];
     
     [[indi mutableArrayValueForKey:@"personalNames"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
-    [[indi mutableArrayValueForKey:@"personalNames"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
+    [indi.personalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"]];
     
     //TODO should this fire something too?
     [[[indi valueForKey:@"personalNames"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
     
-    [[indi mutableOrderedSetValueForKey:@"personalNames"] removeObjectAtIndex:0];
+    [[indi mutableArrayValueForKey:@"personalNames"] removeObjectAtIndex:0];
     
     //broken
     /*

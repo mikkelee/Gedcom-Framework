@@ -21,7 +21,7 @@
 #import "GCObject_internal.h"
 
 @implementation GCObject {
-    NSMutableOrderedSet *_propertyStore;
+    NSMutableDictionary *_propertyStore;
 }
 
 #pragma mark Initialization
@@ -46,7 +46,7 @@
     
     if (self) {
         _gedTag = [GCTag tagNamed:type];
-        _propertyStore = [NSMutableOrderedSet orderedSet];
+        _propertyStore = [NSMutableDictionary dictionary];
     }
     
     return self;    
@@ -144,14 +144,9 @@ static __strong NSMutableDictionary *_validPropertiesByType;
             [self setNilValueForKey:propertyType];
         }
     } else if ([[self validProperties] containsObject:key]) {
-        NSIndexSet *indexesForRemoval = [_propertyStore indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            BOOL shouldRemove = [[(GCProperty *)obj type] isEqualToString:key];
-            if (shouldRemove) {
-                [obj setValue:nil forKey:@"primitiveDescribedObject"];
-            }
-            return shouldRemove;
-        }];
-        [_propertyStore removeObjectsAtIndexes:indexesForRemoval];
+        @synchronized(_propertyStore) {
+            [_propertyStore removeObjectForKey:key];
+        }
     } else {
         [super setNilValueForKey:key];
     }
@@ -177,21 +172,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
         return values;
     } else if ([[self validProperties] containsObject:key]) {
         @synchronized(_propertyStore) {
-            BOOL allowsMultiple = [self allowedOccurrencesPropertyType:key].max > 1;
-            
-            NSIndexSet *indexes = [_propertyStore indexesOfObjectsPassingTest:^BOOL(GCObject *obj, NSUInteger idx, BOOL *stop) {
-                if (allowsMultiple) {
-                    return [[[obj gedTag] pluralName] isEqualToString:key];
-                } else {
-                    return [[[obj gedTag] name] isEqualToString:key];
-                }
-            }];
-            
-            if (allowsMultiple) {
-                return [_propertyStore objectsAtIndexes:indexes];
-            } else {
-                return [[_propertyStore objectsAtIndexes:indexes] lastObject];
-            }
+            return [_propertyStore objectForKey:key];
         }
     } else {
         return [super valueForKey:key];
@@ -253,50 +234,16 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (NSUInteger)countOfProperties
 {
-    return [_propertyStore count];
+    @synchronized(_propertyStore) {
+        return [[_propertyStore allValues] count];
+    }
 }
 
 - (id)objectInPropertiesAtIndex:(NSUInteger)index
 {
-    return [_propertyStore objectAtIndex:index];
+    return [[self orderedProperties] objectAtIndex:index];
 }
 
-/*
- - (void)getProperties:(GCProperty **)buffer range:(NSRange)inRange
- {
- [_propertyStore getObjects:buffer range:inRange];
- }
- */
-/*
-- (void)insertObject:(GCProperty *)object inPropertiesAtIndex:(NSUInteger)index
-{
-    [self setDescribedObjectForProperty:object];
-    [_propertyStore insertObject:object atIndex:index];
-}
-
-- (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
-{
-    [[_propertyStore objectAtIndex:index] setValue:nil forKey:@"primitiveDescribedObject"];
-    [_propertyStore removeObjectAtIndex:index];
-}
-*/
-/* //Optional. Implement if benchmarking indicates that performance is an issue.
- - (void)replaceObjectInPropertiesAtIndex:(NSUInteger)index withObject:(id)object
- {
- 
- }
- */
-/*
-- (NSEnumerator *)enumeratorOfProperties
-{
-    return [_propertyStore objectEnumerator];
-}*/
-/*
-- (GCProperty *)memberOfProperties:(GCProperty *)object
-{
-    return [_propertyStore containsObject:object] ? object : nil;
-}
-*/
 - (void)insertObject:(GCProperty *)property inPropertiesAtIndex:(NSUInteger)index
 {
     NSParameterAssert(property);
@@ -308,20 +255,17 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     //[self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_propertyStore) {
-        __block GCObject *existingPropertyOfType = nil;
-        
-        [_propertyStore enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if ([[(GCObject *)obj type] isEqualToString:[property type]]) {
-                existingPropertyOfType = obj;
-                *stop = YES;
+        if ([self allowedOccurrencesPropertyType:[property type]].max > 1) {
+            NSString *key = [[property gedTag] pluralName];
+            
+            if (!_propertyStore[key]) {
+                _propertyStore[key] = [NSMutableArray array];
             }
-        }];
-        
-        if (existingPropertyOfType && [self allowedOccurrencesPropertyType:[property type]].max <= 1) {
-            [_propertyStore removeObject:property];
+            
+            [_propertyStore[key] addObject:property];
+        } else {
+            _propertyStore[[property type]] = property;
         }
-        
-        [_propertyStore addObject:property];
     }
     
     //[self didChangeValueForKey:@"gedcomString"];
@@ -329,7 +273,7 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 - (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
 {
-    GCProperty *property = [_propertyStore objectAtIndex:index];
+    GCProperty *property = [[self orderedProperties] objectAtIndex:index];
     
     if (property == nil) {
         return;
@@ -341,7 +285,17 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     //[self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_propertyStore) {
-        [_propertyStore removeObject:property];
+        if ([self allowedOccurrencesPropertyType:[property type]].max > 1) {
+            NSString *key = [[property gedTag] pluralName];
+            
+            if (!_propertyStore[key]) {
+                _propertyStore[key] = [NSMutableArray array];
+            }
+            
+            [_propertyStore[key] removeObject:property];
+        } else {
+            [_propertyStore removeObjectForKey:[property type]];
+        }
     }
     
     [property setValue:nil forKey:@"primitiveDescribedObject"];
@@ -422,39 +376,31 @@ static __strong NSMutableDictionary *_validPropertiesByType;
 
 #pragma mark Gedcom access
 
+- (NSArray *)orderedProperties
+{
+    NSMutableArray *orderedProperties = [NSMutableArray array];
+    
+    @synchronized(_propertyStore) {
+        for (NSString *propertyType in [self validProperties]) {
+            if ([self allowedOccurrencesPropertyType:propertyType].max > 1) {
+                [orderedProperties addObjectsFromArray:[_propertyStore valueForKey:propertyType]];
+            } else {
+                if ([_propertyStore valueForKey:propertyType]) {
+                    [orderedProperties addObject:[_propertyStore valueForKey:propertyType]];
+                }
+            }
+        }
+    }
+    
+	return orderedProperties;
+}
+
 - (NSArray *)subNodes
 {
     NSMutableArray *subNodes = [NSMutableArray array];
     
-    @synchronized(_propertyStore) {
-        NSArray *sortedProperties = [_propertyStore sortedArrayUsingComparator:^NSComparisonResult(GCProperty *obj1, GCProperty *obj2) {
-            NSNumber *obj1index = nil;
-            NSNumber *obj2index = nil;
-            
-            if ([[self gedTag] allowedOccurrencesOfSubTag:[obj1 gedTag]].max > 1) {
-                obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[[obj1 gedTag] pluralName]]];
-            } else {
-                obj1index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj1 type]]];
-            }
-            
-            if ([[self gedTag] allowedOccurrencesOfSubTag:[obj2 gedTag]].max > 1) {
-                obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[[obj2 gedTag] pluralName]]];
-            } else {
-                obj2index = [NSNumber numberWithInteger:[[self validProperties] indexOfObject:[obj2 type]]];
-            }
-            
-            NSComparisonResult result = [obj1index compare:obj2index];
-            
-            if (result == NSOrderedSame) {
-                result = [obj1 compare:obj2];
-            }
-            
-            return result;
-        }];
-        
-        for (GCProperty *property in sortedProperties) {
-            [subNodes addObject:[property gedcomNode]];
-        }
+    for (GCProperty *property in [self orderedProperties]) {
+        [subNodes addObject:[property gedcomNode]];
     }
     
 	return subNodes;
