@@ -9,7 +9,7 @@
 
 	"header": {
 		"code": "HEAD",
-		"objectType": "header",
+		"objectType": "entity",
 		"validSubTags": [
 			{ "name": "headerSource", "min": "1", "max": "1" },
 			{ "name": "gedcom", "min": "1", "max": "1" },
@@ -39,7 +39,7 @@
 
 	"trailer": {
 		"code": "TRLR",
-		"objectType": "trailer"
+		"objectType": "entity"
 	},
 
 	"submission": {

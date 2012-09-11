@@ -10,7 +10,7 @@
 
 @class GCContext;
 
-@class GCHeader;
+@class GCHeaderEntity;
 @class GCEntity;
 @class GCSubmissionEntity;
 
@@ -41,7 +41,7 @@
  @param entities A collection of entities.
  @return A new file.
  */
-- (id)initWithHeader:(GCHeader *)header entities:(NSArray *)entities;
+- (id)initWithHeader:(GCHeaderEntity *)header entities:(NSArray *)entities;
 
 #pragma mark Convenience constructor
 
@@ -83,15 +83,10 @@
 #pragma mark Objective-C properties
 
 /// The header of the receiver.
-@property GCHeader *header;
+@property GCHeaderEntity *header;
 
 /// An optional submission entity.
 @property GCSubmissionEntity *submission;
-
-/// @name Accessing entities
-
-/// An ordered collection of all the receiver's entities.
-@property (readonly) NSMutableOrderedSet *entities;
 
 /// @name Gedcom output
 
@@ -104,32 +99,30 @@
 /// The receiver's delegate. See GCFileDelegate.
 @property (weak) id delegate;
 
-@end
-
-@interface GCFile (GCConvenienceMethods)
-
 /// @name Accessing entities
 
 /// An ordered collection of the receiver's families.
-@property (readonly) NSMutableOrderedSet *families;
+@property (readonly) NSMutableArray *families;
 
 /// An ordered collection of the receiver's individuals.
-@property (readonly) NSMutableOrderedSet *individuals;
+@property (readonly) NSMutableArray *individuals;
 
 /// An ordered collection of the receiver's multimedia objects.
-@property (readonly) NSMutableOrderedSet *multimediaObjects;
+@property (readonly) NSMutableArray *multimediaObjects;
 
 /// An ordered collection of the receiver's notes.
-@property (readonly) NSMutableOrderedSet *notes;
+@property (readonly) NSMutableArray *notes;
 
 /// An ordered collection of the receiver's repositories.
-@property (readonly) NSMutableOrderedSet *repositories;
+@property (readonly) NSMutableArray *repositories;
 
 /// An ordered collection of the receiver's sources.
-@property (readonly) NSMutableOrderedSet *sources;
+@property (readonly) NSMutableArray *sources;
 
 /// An ordered collection of the receiver's submitters.
-@property (readonly) NSMutableOrderedSet *submitters;
+@property (readonly) NSMutableArray *submitters;
+
+/// @name Accessing the context
 
 /// The receiver's context.
 @property (readonly) GCContext *context;

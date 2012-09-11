@@ -77,6 +77,7 @@ static __strong NSMutableDictionary *_contexts = nil;
 - (void)setXref:(NSString *)xref forEntity:(GCEntity *)obj
 {
     NSParameterAssert(xref);
+    NSParameterAssert(obj);
     
     if ([storedEntities containsObject:obj]) {
         for (NSString *key in [xrefStore allKeysForObject:obj]) {
@@ -84,7 +85,7 @@ static __strong NSMutableDictionary *_contexts = nil;
         }
     }
     
-    //NSLog(@"Storing %@ for %@", xref, obj);
+    //NSLog(@"%p: setting xref %@ on %p", self, xref, obj);
     
     xrefStore[xref] = obj;
     [storedEntities addObject:obj];

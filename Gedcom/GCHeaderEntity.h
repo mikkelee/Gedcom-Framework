@@ -13,7 +13,7 @@
  A header holds information that describes a GCFile such as its author, what software produced it, etc.
  
  */
-@interface GCHeader : GCEntity
+@interface GCHeaderEntity : GCEntity
 
 #pragma mark Convenience constructor
 

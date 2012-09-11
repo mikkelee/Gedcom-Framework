@@ -96,7 +96,7 @@
 
 - (IBAction)testLog:(id)sender
 {
-    NSLog(@"entityCount: %lu, header: %@", [[gedcomFile entities] count], [gedcomFile header]);
+    NSLog(@"header: %@", [gedcomFile header]);
 }
 
 #pragma mark NSTextViewDelegate methods
@@ -134,7 +134,7 @@
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
     
-    [self setIndividuals:[[gedcomFile individuals] array]];
+    [self setIndividuals:[gedcomFile individuals]];
     
     //[individualsController setContent:[gedcomFile individuals]];
 }

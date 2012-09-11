@@ -397,13 +397,11 @@ __strong static NSMutableDictionary *_singularToPlural;
 - (Class)objectClass
 {
     if (!_cachedObjectClass) {
-        NSString *objectClassString = _settings[kObjectType];
-        NSString *name = [self name];
+        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[[self name] substringToIndex:1] uppercaseString], [[self name] substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
         
-        _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@%@%@", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1], [objectClassString capitalizedString]]);
-        if (!_cachedObjectClass) {
-            _cachedObjectClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [objectClassString capitalizedString]]);
-        }
+        _cachedObjectClass = NSClassFromString(objectClassString);
+        
+        //NSLog(@"objectClassString: %@ => %@", objectClassString, _cachedObjectClass);
     }
     
 	return _cachedObjectClass;

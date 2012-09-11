@@ -26,6 +26,7 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
+        //NSLog(@"%p: registering callback for %p on %@", [self context], self, [node gedValue]);
         [[self context] registerCallbackForXref:[node gedValue] usingBlock:^(NSString *xref) {
             GCEntity *target = [[object context] entityForXref:xref];
             //NSLog(@"Set %@ => %@ on %@", xref, target, self);
@@ -106,7 +107,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [[self context] xrefForEntity:[self target]], [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [[self context] xrefForEntity:_target], [self propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -141,31 +142,29 @@
     NSParameterAssert([self describedObject]);
     NSParameterAssert([[self gedTag] targetType] == [target class]);
     
+    //NSLog(@"self: %@", self);
+    
     if ([[self gedTag] reverseRelationshipTag]) {
         //remove previous reverse relationship before changing target.
-        for (GCRelationship *relationship in [_target valueForKey:@"properties"]) {
-            if (![relationship isKindOfClass:[GCRelationship class]]) {
-                continue;
-            }
-            if ([[relationship target] isEqual:[self describedObject]]) {
+        for (GCRelationship *relationship in [_target valueForKey:[[[self gedTag] reverseRelationshipTag] pluralName]]) {
+            //NSLog(@"%p: %@", [self describedObject], relationship);
+            if ([[relationship target] isEqual:[self rootObject]]) {
                 [[_target mutableArrayValueForKey:@"properties"] removeObject:relationship];
             }
         }
         if (target != nil) {
             //set up new reverse relationship
             BOOL relationshipExists = NO;
-            for (GCRelationship *relationship in [target valueForKey:@"properties"]) {
-                if (![relationship isKindOfClass:[GCRelationship class]]) {
-                    continue;
-                }
-                if ([[relationship target] isEqual:[self describedObject]]) {
+            for (GCRelationship *relationship in [target valueForKey:[[[self gedTag] reverseRelationshipTag] pluralName]]) {
+                //NSLog(@"%p: %@", [self describedObject], relationship);
+                if ([[relationship target] isEqual:[self rootObject]]) {
                     //NSLog(@"relationship: %@", relationship);
                     relationshipExists = YES;
                 }
             }
             if (!relationshipExists) {
-                [target addRelationshipWithType:[[[self gedTag] reverseRelationshipTag] name] 
-                                         target:(GCEntity *)[self describedObject]];
+                [target addRelationshipWithType:[[[self gedTag] reverseRelationshipTag] name]
+                                         target:(GCEntity *)[self rootObject]];
             }
         }
     }

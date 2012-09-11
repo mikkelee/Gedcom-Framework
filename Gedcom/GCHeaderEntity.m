@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCHeader.h"
+#import "GCHeaderEntity.h"
 
 #import "GCObject_internal.h"
 
 #import "GCNode.h"
 #import "GCTag.h"
 
-@implementation GCHeader
+@implementation GCHeaderEntity
 
 #pragma mark Convenience constructors
 

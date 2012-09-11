@@ -13,7 +13,6 @@
 #import "GCContext.h"
 
 #import "GCEntity.h"
-#import "GCHeader.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
@@ -191,6 +190,21 @@ static __strong NSMutableDictionary *_validPropertiesByType;
     
     GCTag *tag = [GCTag tagsByName][key];
     
+    if ([key isEqualToString:@"properties"]) {
+        NSString *cleanName = [[self className] substringFromIndex:2];
+        
+        if ([cleanName hasSuffix:@"Entity"])
+            cleanName = [cleanName substringToIndex:[cleanName length] - 6];
+        if ([cleanName hasSuffix:@"Attribute"])
+            cleanName = [cleanName substringToIndex:[cleanName length] - 9];
+        if ([cleanName hasSuffix:@"Relationship"])
+            cleanName = [cleanName substringToIndex:[cleanName length] - 12];
+        
+//        NSLog(@"cleanName: %@", cleanName);
+        
+        tag = [GCTag tagNamed:[NSString stringWithFormat:@"%@%@", [[cleanName substringToIndex:1] lowercaseString], [cleanName substringFromIndex:1]]];
+    }
+    
     if (tag != nil) {
         for (GCTag *subTag in [tag validSubTags]) {
             NSString *keyPath = [subTag name];
@@ -203,11 +217,11 @@ static __strong NSMutableDictionary *_validPropertiesByType;
                 }
             }*/
         }
-    } else if ([key isEqualToString:@"properties"]) {
-        [keyPaths addObjectsFromArray:[[GCTag tagsByName] allKeys]];
     }
     
     [keyPaths removeObject:key];
+    
+//    NSLog(@"keyPaths on %@: %@ => %@", [self className], key, keyPaths);
     
     return keyPaths;
 }

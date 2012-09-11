@@ -173,7 +173,7 @@ for key in sorted(tags):
 for key in sorted(tags):
 	print 'PROCESSING KEY "%s": %s' % (key, tags[key])
 	if key[0] != '@':
-		if not tags[key]['objectType'] in ['entity', 'attribute', 'relationship']:
+		if not tags[key]['objectType'] in ['entity', 'attribute', 'relationship'] or key in ['trailer', 'header']:
 			print 'SKIPPING KEY "%s"' % key
 			continue
 		cons = constructors(key, tags[key]['objectType'])

@@ -34,6 +34,7 @@
 
 - (id)initWithType:(NSString *)type inContext:(GCContext *)context
 {
+    NSParameterAssert(type);
     NSParameterAssert(context);
     
     self = [super initWithType:type];
@@ -55,6 +56,8 @@
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
     GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:[node gedTag]] name] inContext:context];
+    
+    NSParameterAssert(entity);
     
     if ([node xref])
         [context setXref:[node xref] forEntity:entity];

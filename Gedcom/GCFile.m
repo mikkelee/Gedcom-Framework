@@ -13,20 +13,20 @@
 
 #import "GCContext.h"
 
-#import "GCHeader.h"
+#import "GCHeaderEntity.h"
 #import "GCEntity.h"
 
 #import "GCObjects_generated.h"
 
 #import "GCFileDelegate.h"
 
-@interface GCTrailer : NSObject //empty class to match trailer objects
+@interface GCTrailerEntity : NSObject //empty class to match trailer objects
 @end
-@implementation GCTrailer
+@implementation GCTrailerEntity
 @end
 
 @implementation GCFile {
-	GCContext *_context;
+    NSMutableDictionary *_entityStore;
 }
 
 #pragma mark Initialization
@@ -37,7 +37,7 @@
     
     if (self) {
         _context = [GCContext context];
-		_entities = [NSMutableArray array];
+        _entityStore = [NSMutableDictionary dictionaryWithCapacity:7];
     }
     
     return self;
@@ -49,7 +49,7 @@
 	
 	if (self) {
 		_context = context;
-		_entities = [NSMutableArray arrayWithCapacity:[nodes count]];
+        _entityStore = [NSMutableDictionary dictionaryWithCapacity:7];
 		
         [self parseNodes:nodes];
 	}
@@ -57,26 +57,24 @@
 	return self;
 }
 
-- (id)initWithHeader:(GCHeader *)header entities:(NSArray *)entities
+- (id)initWithHeader:(GCHeaderEntity *)header entities:(NSArray *)entities
 {
     self = [super init];
     
     if (self) {
         _header = header;
         _context = [header context];
-        
-        _entities = [NSMutableOrderedSet orderedSetWithCapacity:[entities count]];
+        _entityStore = [NSMutableDictionary dictionaryWithCapacity:7];
         
         for (GCEntity *entity in entities) {
             NSParameterAssert(_context == [entity context]);
             
-            [_entities addObject:entity];
+            [self addEntity:entity];
         }
     }
     
     return self;
 }
-
 
 #pragma mark Convenience constructor
 
@@ -89,48 +87,32 @@
 
 - (void)parseNodes:(NSArray *)nodes
 {
-    NSParameterAssert([_entities count] == 0);
+    NSParameterAssert([self countOfEntities] == 0);
     
-    [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        GCNode *node = (GCNode *)obj;
-        
+    [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
         GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
-        Class objectClass = [tag objectClass];
         
-        if ([objectClass isSubclassOfClass:[GCHeader class]]) {
-            if (_header) {
-                NSLog(@"Multiple headers!?");
-            }
-            _header = [GCHeader headerWithGedcomNode:node inContext:_context];
-        } else if ([objectClass isSubclassOfClass:[GCSubmissionEntity class]]) {
-            _submission = [GCEntity entityWithGedcomNode:node inContext:_context];
-        } else if ([objectClass isSubclassOfClass:[GCEntity class]]) {
-            [_entities addObject:[GCEntity entityWithGedcomNode:node inContext:_context]];
-        } else if ([objectClass isSubclassOfClass:[GCTrailer class]]) {
+        if ([[tag objectClass] isSubclassOfClass:[GCTrailerEntity class]]) {
             *stop = YES;
             return;
         } else {
-            NSLog(@"Shouldn't happen! %@ unknown class: %@", node, objectClass);
+            GCEntity *entity = [GCEntity entityWithGedcomNode:node inContext:_context];
+            
+            [self addEntity:entity];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (_delegate && [_delegate respondsToSelector:@selector(file:didUpdateEntityCount:)]) {
-                [_delegate file:self didUpdateEntityCount:[_entities count]];
+                [_delegate file:self didUpdateEntityCount:[self countOfEntities]];
             }
         });
     }];
     
-    NSInteger count = [_entities count];
-    if (_header)
-        count++;
-    if (_submission)
-        count++;
-    count++; //trailer
     
-    NSParameterAssert(count == [nodes count]);
+    NSParameterAssert([self countOfEntities] == [nodes count]-1); //dont count trailer
     
     if (_delegate && [_delegate respondsToSelector:@selector(file:didFinishWithEntityCount:)]) {
-        [_delegate file:self didFinishWithEntityCount:[_entities count]];
+        [_delegate file:self didFinishWithEntityCount:[self countOfEntities]];
     }
 }
 
@@ -140,7 +122,21 @@
 {
     NSParameterAssert([[entity context] isEqual:_context]);
     
-    [_entities addObject:entity];
+    if ([entity isKindOfClass:[GCHeaderEntity class]]) {
+        if (_header) {
+            NSLog(@"Multiple headers!?");
+        }
+        _header = (GCHeaderEntity *)entity;
+    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
+        _submission = (GCSubmissionEntity *)entity;
+    } else if ([entity isKindOfClass:[GCEntity class]]) {
+        if (!_entityStore[[entity type]]) {
+            _entityStore[[entity type]] = [NSMutableArray array];
+        }
+        [_entityStore[[entity type]] addObject:entity];
+    } else {
+        NSLog(@"Unknown class: %@", entity);
+    }
     /*
     if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
         [_delegate file:self updatedEntityCount:[_entities count]];
@@ -149,11 +145,27 @@
 
 - (void)removeEntity:(GCEntity *)entity
 {
-    [_entities removeObject:entity];
+    //TODO
     /*
     if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
         [_delegate file:self updatedEntityCount:[_entities count]];
     }*/
+}
+
+- (NSInteger)countOfEntities
+{
+    __block NSInteger count = 0;
+    
+    if (_header)
+        count++;
+    if (_submission)
+        count++;
+    
+    [_entityStore enumerateKeysAndObjectsWithOptions:(kNilOptions) usingBlock:^(id key, NSMutableArray *obj, BOOL *stop) {
+        count += [obj count];
+    }];
+    
+    return count;
 }
 
 #pragma mark Equality
@@ -177,7 +189,7 @@
         _context = [aDecoder decodeObjectForKey:@"context"];
         _header = [aDecoder decodeObjectForKey:@"header"];
         _submission = [aDecoder decodeObjectForKey:@"submission"];
-        _entities = [aDecoder decodeObjectForKey:@"entities"];
+        _entityStore = [aDecoder decodeObjectForKey:@"entityStore"];
 	}
     
     return self;
@@ -188,14 +200,14 @@
     [aCoder encodeObject:_context forKey:@"context"];
     [aCoder encodeObject:_header forKey:@"header"];
     [aCoder encodeObject:_submission forKey:@"submission"];
-    [aCoder encodeObject:_entities forKey:@"entities"];
+    [aCoder encodeObject:_entityStore forKey:@"entityStore"];
 }
 
 #pragma mark Objective-C properties
 
 - (NSArray *)gedcomNodes
 {
-	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[_entities count]+2];
+	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[self countOfEntities]];
 	
 	[nodes addObject:[_header gedcomNode]];
     
@@ -203,9 +215,11 @@
         [nodes addObject:[_submission gedcomNode]];
     }
 	
-	for (id entity in _entities) {
-		[nodes addObject:[entity gedcomNode]];
-	}
+    for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
+        for (GCEntity *entity in _entityStore[key]) {
+            [nodes addObject:[entity gedcomNode]];
+        }
+    }
 	
     [nodes addObject:[GCNode nodeWithTag:@"TRLR" value:nil]];
     
@@ -223,74 +237,39 @@
     return [gedcomStrings componentsJoinedByString:@"\n"];
 }
 
-@end
-
-@implementation GCFile (GCConvenienceMethods)
-
-- (id)entitiesPassingTest:(BOOL (^)(id obj))block
-{
-	NSMutableOrderedSet *entities = [NSMutableOrderedSet orderedSet];
-	
-    NSIndexSet *indexes = [_entities indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        return block(obj);
-    }];
-    
-    NSUInteger idx = [indexes firstIndex];
-    
-    while(idx != NSNotFound) {
-		[entities addObject:[_entities objectAtIndex:idx]];
-        idx = [indexes indexGreaterThanIndex:idx];
-    }
-	
-    
-    return entities; //TODO KVC
-}
-
-- (id)entitiesOfType:(NSString *)type
-{
-    return [self entitiesPassingTest:^BOOL(id obj) {
-        return [[(GCEntity *)obj type] isEqualToString:type];
-    }];
-}
-
 - (id)families
 {
-	return [self entitiesOfType:@"family"];
+	return _entityStore[@"family"];
 }
 
 - (id)individuals
 {
-	return [self entitiesOfType:@"individual"];
+	return _entityStore[@"individual"];
 }
 
 - (id)multimediaObjects
 {
-	return [self entitiesOfType:@"multimedia"];
+	return _entityStore[@"multimedia"];
 }
 
 - (id)notes
 {
-	return [self entitiesOfType:@"note"];
+	return _entityStore[@"note"];
 }
 
 - (id)repositories
 {
-	return [self entitiesOfType:@"repository"];
+	return _entityStore[@"repository"];
 }
 
 - (id)sources
 {
-	return [self entitiesOfType:@"source"];
+	return _entityStore[@"source"];
 }
 
-- (id)submitters 
+- (id)submitters
 {
-	return [self entitiesOfType:@"submitter"];
-}
-
-- (GCContext *)context
-{
-    return _context;
+	return _entityStore[@"submitter"];
 }
 
 @end
@@ -307,9 +286,11 @@
         return NO;
     }
     
-    for (GCEntity *entity in _entities) {
-        if (![entity validateObject:error]) {
-            return NO;
+    for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
+        for (GCEntity *entity in _entityStore[key]) {
+            if (![entity validateObject:error]) {
+                return NO;
+            }
         }
     }
     

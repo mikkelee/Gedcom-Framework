@@ -13,7 +13,7 @@
 
 #import "GCContext.h"
 #import "GCFile.h"
-#import "GCHeader.h"
+#import "GCHeaderEntity.h"
 
 #import "GCObject.h"
 #import "GCEntity.h"
