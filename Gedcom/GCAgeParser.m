@@ -28,7 +28,7 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 #import "GCAge_internal.h"
 
 
-#line 106 "GCAgeParser.rl"
+#line 105 "GCAgeParser.rl"
 
 
 
@@ -124,7 +124,7 @@ static const int age_error = 0;
 static const int age_en_main = 1;
 
 
-#line 109 "GCAgeParser.rl"
+#line 108 "GCAgeParser.rl"
 
 @implementation GCAgeParser {
 	NSMutableDictionary *_cache;
@@ -167,8 +167,8 @@ static const int age_en_main = 1;
         [currentAgeComponents setDay:0];
         GCAgeQualifier qualifier = GCAgeNoQualifier;
         long tag = 0;
-        NSInteger number = 0;
-        NSString *word = nil;
+        NSInteger currentNumber = 0;
+        NSString *currentWord = nil;
         BOOL finished = NO;
         
         int cs = 0;
@@ -183,7 +183,7 @@ static const int age_en_main = 1;
 	cs = age_start;
 	}
 
-#line 162 "GCAgeParser.rl"
+#line 161 "GCAgeParser.rl"
         
 #line 189 "GCAgeParser.m"
 	{
@@ -269,22 +269,22 @@ _match:
 #line 40 "GCAgeParser.rl"
 	{
 		long len = (p - data) - tag;
-		number = [[[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding] integerValue];
+		currentNumber = [[[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding] integerValue];
 		//NSLog(@"%p num: %d", fpc, number);
 	}
 	break;
 	case 4:
 #line 57 "GCAgeParser.rl"
 	{
-        [currentAgeComponents setMonth:number];
-		//NSLog(@"%p saveMonths: %d", fpc, number);
+        [currentAgeComponents setMonth:currentNumber];
+		//NSLog(@"%p saveMonths: %d", fpc, currentNumber);
 	}
 	break;
 	case 5:
 #line 62 "GCAgeParser.rl"
 	{
-        [currentAgeComponents setYear:number];
-		//NSLog(@"%p saveYears: %d", fpc, number);
+        [currentAgeComponents setYear:currentNumber];
+		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
 	break;
 	case 8:
@@ -321,52 +321,51 @@ _again:
 #line 46 "GCAgeParser.rl"
 	{
 		long len = (p - data) - tag;
-		word = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
+		currentWord = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
 		//NSLog(@"%p word: %@", fpc, word);
 	}
 	break;
 	case 3:
 #line 52 "GCAgeParser.rl"
 	{
-        [currentAgeComponents setDay:number];
-		//NSLog(@"%p saveDays: %d", fpc, number);
+        [currentAgeComponents setDay:currentNumber];
+		//NSLog(@"%p saveDays: %d", fpc, currentNumber);
 	}
 	break;
 	case 4:
 #line 57 "GCAgeParser.rl"
 	{
-        [currentAgeComponents setMonth:number];
-		//NSLog(@"%p saveMonths: %d", fpc, number);
+        [currentAgeComponents setMonth:currentNumber];
+		//NSLog(@"%p saveMonths: %d", fpc, currentNumber);
 	}
 	break;
 	case 5:
 #line 62 "GCAgeParser.rl"
 	{
-        [currentAgeComponents setYear:number];
-		//NSLog(@"%p saveYears: %d", fpc, number);
+        [currentAgeComponents setYear:currentNumber];
+		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
 	break;
 	case 6:
 #line 67 "GCAgeParser.rl"
 	{
-        age = [GCAge ageWithSimpleAge:currentAgeComponents];
+        age = [GCAge ageWithSimpleAge:currentAgeComponents qualifier:qualifier];
     }
 	break;
 	case 7:
 #line 71 "GCAgeParser.rl"
 	{
-		age = [GCAge ageWithAgeKeyword:word];
+		age = [GCAge ageWithAgeKeyword:currentWord qualifier:qualifier];
 	}
 	break;
 	case 10:
 #line 85 "GCAgeParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
-        age = [GCAge ageWithAge:age qualifier:qualifier];
 		finished = YES;
 	}
 	break;
-#line 370 "GCAgeParser.m"
+#line 369 "GCAgeParser.m"
 		}
 	}
 	}
@@ -374,7 +373,7 @@ _again:
 	_out: {}
 	}
 
-#line 163 "GCAgeParser.rl"
+#line 162 "GCAgeParser.rl"
         
         if (!finished) {
             age = nil;

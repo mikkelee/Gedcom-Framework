@@ -22,15 +22,13 @@ typedef enum : NSInteger {
 
 @interface GCAge ()
 
-- (id)initWithSimpleAge:(NSDateComponents *)c;
-- (id)initWithAgeKeyword:(NSString *)s;
+- (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
+- (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q;
 - (id)initWithInvalidAgeString:(NSString *)s;
-- (id)initWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q;
 
-+ (id)ageWithSimpleAge:(NSDateComponents *)c;
-+ (id)ageWithAgeKeyword:(NSString *)p;
++ (id)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
++ (id)ageWithAgeKeyword:(NSString *)p qualifier:(GCAgeQualifier)q;
 + (id)ageWithInvalidAgeString:(NSString *)s;
-+ (id)ageWithAge:(GCAge *)a qualifier:(GCAgeQualifier)q;
 
 @property (readonly) GCSimpleAge *refAge; //used for sorting, etc.
 
@@ -40,16 +38,8 @@ typedef enum : NSInteger {
 
 @interface GCSimpleAge : GCAge
 
-@property NSDateComponents *ageComponents;
-
-@end
-
-#pragma mark GCQualifiedAge
-
-@interface GCQualifiedAge : GCAge
-
-@property GCAge * age;
 @property GCAgeQualifier qualifier;
+@property NSDateComponents *ageComponents;
 
 @end
 
@@ -57,6 +47,7 @@ typedef enum : NSInteger {
 
 @interface GCAgeKeyword : GCAge
 
+@property GCAgeQualifier qualifier;
 @property (copy) NSString *keyword;
 
 @end

@@ -20,7 +20,7 @@
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"INFANT"];
 	
-	STAssertEqualObjects(NSStringFromClass([age class]), @"GCQualifiedAge", nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCAgeKeyword", nil);
 	STAssertEqualObjects([age gedcomString], @"INFANT", nil);
 }
 
@@ -28,7 +28,7 @@
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"< 10d"];
 	
-	STAssertEqualObjects(NSStringFromClass([age class]), @"GCQualifiedAge", nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCSimpleAge", nil);
 	STAssertEqualObjects([age gedcomString], @"< 10d", nil);
 }
 
@@ -36,7 +36,7 @@
 {
 	GCAge *age = [GCAge valueWithGedcomString:@"3y 1m 2d"];
 	
-	STAssertEqualObjects(NSStringFromClass([age class]), @"GCQualifiedAge", nil);
+	STAssertEqualObjects(NSStringFromClass([age class]), @"GCSimpleAge", nil);
 	STAssertEqualObjects([age gedcomString], @"3y 1m 2d", nil);
 	
     //will only pass if localization isn't changed from English:

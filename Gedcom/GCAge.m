@@ -15,6 +15,12 @@
 #pragma mark Concrete subclasses
 #pragma mark -
 
+NSString * const GCAgeQualifier_toString[] = {
+    @"< ",
+    @"",
+    @"> "
+};
+
 #pragma mark GCSimpleAge
 
 @implementation GCSimpleAge
@@ -39,7 +45,7 @@
         [stringComponents addObject:@"0y"];
     }
     
-    return [stringComponents componentsJoinedByString:@" "];
+    return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[_qualifier], [stringComponents componentsJoinedByString:@" "]];
 }
 
 - (NSString *)displayString
@@ -70,7 +76,7 @@
         [stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Values"], 0]];
     }
     
-    return [stringComponents componentsJoinedByString:@", "];
+    return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[_qualifier], [stringComponents componentsJoinedByString:@", "]];
 }
 
 - (GCSimpleAge *)refAge
@@ -86,50 +92,14 @@
 			return [[NSNumber numberWithInteger:[[self ageComponents] year]] compare:[NSNumber numberWithInteger:[[other ageComponents] year]]];
 		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
 			return [[NSNumber numberWithInteger:[[self ageComponents] month]] compare:[NSNumber numberWithInteger:[[other ageComponents] month]]];
-		} else {
+		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
 			return [[NSNumber numberWithInteger:[[self ageComponents] day]] compare:[NSNumber numberWithInteger:[[other ageComponents] day]]];
-		}
+		} else {
+            return [[NSNumber numberWithInteger:[self qualifier]] compare:[NSNumber numberWithInteger:[other qualifier]]];
+        }
 	} else {
 		return [self compare:[other refAge]];
 	}
-}
-
-@end
-
-#pragma mark GCQualifiedAge
-
-@implementation GCQualifiedAge
-
-NSString * const GCAgeQualifier_toString[] = {
-    @"< ",
-    @"",
-    @"> "
-};
-
-- (NSString *)gedcomString
-{
-	return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[[self qualifier]], [[self age] gedcomString]];
-}
-
-- (NSString *)displayString
-{
-	return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[[self qualifier]], [[self age] displayString]];
-}
-
-- (GCSimpleAge *)refAge
-{
-	return [[self age] refAge];
-}
-
-- (NSComparisonResult)compare:(id)other
-{
-    NSComparisonResult result = [[self age] compare:[other refAge]];
-    
-    if (result != NSOrderedSame) {
-        return result;
-    }
-    
-    return [[NSNumber numberWithInt:[self qualifier]] compare:[NSNumber numberWithInt:[other qualifier]]];
 }
 
 @end
@@ -140,7 +110,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (NSString *)gedcomString
 {
-	return [self keyword];
+    return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[_qualifier], [self keyword]];
 }
 
 - (NSString *)displayString
@@ -157,8 +127,6 @@ NSString * const GCAgeQualifier_toString[] = {
  */
 - (GCSimpleAge *)refAge
 {
-	GCSimpleAge *age = [[GCSimpleAge alloc] init];
-    
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init]; 
     
     GCAgeQualifier qualifier = GCAgeNoQualifier;
@@ -178,9 +146,7 @@ NSString * const GCAgeQualifier_toString[] = {
 		@throw exception;
     }
     
-	[age setAgeComponents:ageComponents];
-    
-    return [GCAge ageWithAge:age qualifier:qualifier];
+    return [GCAge ageWithSimpleAge:ageComponents qualifier:qualifier];
 }
 
 @end
@@ -229,20 +195,22 @@ NSString * const GCAgeQualifier_toString[] = {
     return _sharedAgePlaceholder;
 }
 
-- (id)initWithSimpleAge:(NSDateComponents *)c;
+- (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
 	id age = [[GCSimpleAge alloc] init];
 	
 	[age setAgeComponents:c];
+    [age setQualifier:q];
 	
 	return age;
 }
 
-- (id)initWithAgeKeyword:(NSString *)s
+- (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
 	id age = [[GCAgeKeyword alloc] init];
 	
 	[age setKeyword:s];
+    [age setQualifier:q];
 	
 	return age;
 }
@@ -252,16 +220,6 @@ NSString * const GCAgeQualifier_toString[] = {
 	id age = [[GCInvalidAge alloc] init];
 	
 	[age setString:s];
-	
-	return age;
-}
-
-- (id)initWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q
-{
-	id age = [[GCQualifiedAge alloc] init];
-	
-	[age setAge:a];
-	[age setQualifier:q];
 	
 	return age;
 }
@@ -289,25 +247,19 @@ NSString * const GCAgeQualifier_toString[] = {
 }
 
 //COV_NF_START
-- (id)initWithSimpleAge:(NSDateComponents *)c
+- (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithAgeKeyword:(NSString *)s
+- (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
 - (id)initWithInvalidAgeString:(NSString *)s
-{
-    [self doesNotRecognizeSelector:_cmd];    
-    return nil;
-}
-
-- (id)initWithAge:(GCAge *)a withQualifier:(GCAgeQualifier)q
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
@@ -321,24 +273,19 @@ NSString * const GCAgeQualifier_toString[] = {
 	return [[self alloc] initWithGedcom:gedcom];
 }
 
-+ (id)ageWithSimpleAge:(NSDateComponents *)c;
++ (id)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
-	return [[self alloc] initWithSimpleAge:c];
+	return [[self alloc] initWithSimpleAge:c qualifier:q];
 }
 
-+ (id)ageWithAgeKeyword:(NSString *)s
++ (id)ageWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
-	return [[self alloc] initWithAgeKeyword:s];
+	return [[self alloc] initWithAgeKeyword:s qualifier:q];
 }
 
 + (id)ageWithInvalidAgeString:(NSString *)s
 {
 	return [[self alloc] initWithInvalidAgeString:s];
-}
-
-+ (id)ageWithAge:(GCAge *)a qualifier:(GCAgeQualifier)q
-{
-	return [[self alloc] initWithAge:a withQualifier:q];
 }
 
 #pragma mark Helpers
@@ -352,7 +299,7 @@ NSString * const GCAgeQualifier_toString[] = {
                                                     toDate:[toDate maxDate] 
                                                    options:NO];
     
-    return [GCAge ageWithSimpleAge:ageComponents];
+    return [GCAge ageWithSimpleAge:ageComponents qualifier:GCAgeNoQualifier];
 }
 
 #pragma mark Comparison

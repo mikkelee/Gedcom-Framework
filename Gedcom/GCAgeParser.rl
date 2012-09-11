@@ -39,37 +39,37 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 	
 	action number {
 		long len = (fpc - data) - tag;
-		number = [[[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding] integerValue];
+		currentNumber = [[[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding] integerValue];
 		//NSLog(@"%p num: %d", fpc, number);
 	}
 	
 	action word {
 		long len = (fpc - data) - tag;
-		word = [[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding];
+		currentWord = [[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding];
 		//NSLog(@"%p word: %@", fpc, word);
 	}
 	
 	action saveDays {
-        [currentAgeComponents setDay:number];
-		//NSLog(@"%p saveDays: %d", fpc, number);
+        [currentAgeComponents setDay:currentNumber];
+		//NSLog(@"%p saveDays: %d", fpc, currentNumber);
 	}
 	
 	action saveMonths {
-        [currentAgeComponents setMonth:number];
-		//NSLog(@"%p saveMonths: %d", fpc, number);
+        [currentAgeComponents setMonth:currentNumber];
+		//NSLog(@"%p saveMonths: %d", fpc, currentNumber);
 	}
 	
 	action saveYears {
-        [currentAgeComponents setYear:number];
-		//NSLog(@"%p saveYears: %d", fpc, number);
+        [currentAgeComponents setYear:currentNumber];
+		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
     
     action saveSimpleDate {
-        age = [GCAge ageWithSimpleAge:currentAgeComponents];
+        age = [GCAge ageWithSimpleAge:currentAgeComponents qualifier:qualifier];
     }
 	
 	action saveKeyword {
-		age = [GCAge ageWithAgeKeyword:word];
+		age = [GCAge ageWithAgeKeyword:currentWord qualifier:qualifier];
 	}
 	
 	action lessThan {
@@ -84,7 +84,6 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 	
 	action finish {
 		//NSLog(@"%p finish.", fpc);
-        age = [GCAge ageWithAge:age qualifier:qualifier];
 		finished = YES;
 	}
 	
@@ -148,8 +147,8 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
         [currentAgeComponents setDay:0];
         GCAgeQualifier qualifier = GCAgeNoQualifier;
         long tag = 0;
-        NSInteger number = 0;
-        NSString *word = nil;
+        NSInteger currentNumber = 0;
+        NSString *currentWord = nil;
         BOOL finished = NO;
         
         int cs = 0;
