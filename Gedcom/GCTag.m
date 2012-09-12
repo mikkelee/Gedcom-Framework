@@ -248,7 +248,7 @@ __strong static NSMutableDictionary *_singularToPlural;
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
     if ([code hasPrefix:@"_"]) {
-        NSString *tagName = [NSString stringWithFormat:@"Custom %@ tag", code];
+        NSString *tagName = [NSString stringWithFormat:@"custom%@Tag", code];
         if ([tagStore valueForKey:tagName]) {
             return [tagStore valueForKey:tagName];
         }
@@ -257,7 +257,7 @@ __strong static NSMutableDictionary *_singularToPlural;
                                                   kValueType: @"string",
                                                   kObjectType: type,
                                                   kValidSubTags: [NSOrderedSet orderedSet]}];
-        NSLog(@"Created custom %@ tag: %@", code, tag);
+        NSLog(@"Created custom%@Tag: %@", code, tag);
         tagStore[tagName] = tag;
         
         return tag;
@@ -452,7 +452,7 @@ __strong static NSMutableDictionary *_singularToPlural;
 
 - (BOOL)isCustom
 {
-    return [_name hasPrefix:@"Custom "];
+    return [_name hasPrefix:@"custom"];
 }
 
 @end

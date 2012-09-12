@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @class GCEntity;
+@class GCObject;
+@class GCNode;
+@class GCTag;
 
 /**
  
@@ -88,6 +91,10 @@
  @param xref A string containing an xref.
  */
 - (void)activateXref:(NSString *)xref;
+
+#pragma mark Unknown tag methods
+
+- (void)encounteredUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 #pragma mark Objective-C properties
 

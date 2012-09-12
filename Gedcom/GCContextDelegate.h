@@ -11,6 +11,9 @@
 #import "GCContext.h"
 
 @class GCEntity;
+@class GCNode;
+@class GCTag;
+@class GCObject;
 
 /**
  
@@ -29,5 +32,7 @@
  @param entity The entity.
  */
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity;
+
+- (void)context:(GCContext *)context didEncounterUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 @end

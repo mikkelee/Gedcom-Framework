@@ -10,6 +10,7 @@
 
 #import "GCNode.h"
 #import "GCTag.h"
+#import "GCContext.h"
 
 @interface GCProperty ()
 
@@ -24,6 +25,10 @@
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
     GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    
+    if ([tag isCustom]) {
+        [[object context] encounteredUnknownTag:tag forNode:node onObject:object];
+    }
     
     if (!tag) {
         // for debugging; TODO remove when tags.json is complete.

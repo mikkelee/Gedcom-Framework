@@ -194,4 +194,13 @@ static __strong NSMutableDictionary *_contexts = nil;
     }
 }
 
+#pragma mark Unknown tag methods
+
+- (void)encounteredUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(context:didEncounterUnknownTag:forNode:onObject:)]) {
+        [_delegate context:self didEncounterUnknownTag:tag forNode:node onObject:object];
+    }
+}
+
 @end
