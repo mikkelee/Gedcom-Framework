@@ -47,14 +47,20 @@ const NSString *kPlural = @"plural";
 
 #pragma mark Setup
 
-__strong static NSMutableDictionary *tagStore;
-__strong static NSMutableDictionary *tagInfo;
+__strong static NSMutableDictionary *_tagStore;
+__strong static NSMutableDictionary *_tagInfo;
 __strong static NSDictionary *_tagsByName;
 __strong static NSMutableDictionary *_singularToPlural;
 
++ (void)initialize
+{
+    _singularToPlural = [NSMutableDictionary dictionary];
+    _tagStore = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+}
+
 + (void)setupTagStoreForKey:(NSString *)key
 {
-    NSMutableDictionary *tagDict = tagInfo[key];
+    NSMutableDictionary *tagDict = _tagInfo[key];
     NSParameterAssert(tagDict);
     
     tagDict[kName] = key;
@@ -65,7 +71,7 @@ __strong static NSMutableDictionary *_singularToPlural;
     _singularToPlural[[key hasPrefix:@"@"] ? [key substringFromIndex:1] : key] = tagDict[kPlural];
     
     for (NSString *variantName in tagDict[kVariants]) {
-        id variant = tagInfo[variantName];
+        id variant = _tagInfo[variantName];
         NSParameterAssert(variant);
         
         if (tagDict[kValidSubTags]) {
@@ -81,7 +87,7 @@ __strong static NSMutableDictionary *_singularToPlural;
         if (tagDict[kValueType] && !variant[kValueType]) {
             variant[kValueType] = tagDict[kValueType];
         }
-        if (!tagStore[variantName]) {
+        if (!_tagStore[variantName]) {
             [self setupTagStoreForKey:variantName];
         }
     }
@@ -89,13 +95,13 @@ __strong static NSMutableDictionary *_singularToPlural;
     if (tagDict[kCode] != nil) {
         GCTag *tag = [[GCTag alloc] initWithName:key
                                         settings:tagDict];
-        tagStore[key] = tag;
-        tagStore[tagDict[kPlural]] = tag;
+        _tagStore[key] = tag;
+        _tagStore[tagDict[kPlural]] = tag;
         //tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
     }
     
     for (NSDictionary *subTag in tagDict[kValidSubTags]) {
-        if (!tagStore[subTag[kName]]) {
+        if (!_tagStore[subTag[kName]]) {
             [self setupTagStoreForKey:subTag[kName]];
         }
     }
@@ -113,15 +119,13 @@ __strong static NSMutableDictionary *_singularToPlural;
         
         NSError *err = nil;
         
-        tagInfo = [NSJSONSerialization JSONObjectWithData:jsonData 
+        _tagInfo = [NSJSONSerialization JSONObjectWithData:jsonData 
                                                   options:NSJSONReadingMutableContainers
                                                     error:&err];
         
         //NSLog(@"tagInfo: %@", tagInfo);
-        NSAssert(tagInfo != nil, @"error: %@", err);
+        NSAssert(_tagInfo != nil, @"error: %@", err);
         
-        _singularToPlural = [NSMutableDictionary dictionary];
-        tagStore = [NSMutableDictionary dictionaryWithCapacity:[tagInfo count]*2];
         [self setupTagStoreForKey:(NSString *)kRootObject];
     });
 }
@@ -129,14 +133,14 @@ __strong static NSMutableDictionary *_singularToPlural;
 + (NSDictionary *)tagsByName
 {
     if (!_tagsByName) {
-        NSSet *keys = [tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id key, id obj, BOOL *stop) {
+        NSSet *keys = [_tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id key, id obj, BOOL *stop) {
             return !([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound);
         }];
         
         NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
         
         for (NSString *key in keys) {
-            tmpTags[key] = tagStore[key];
+            tmpTags[key] = _tagStore[key];
         }
         
         _tagsByName = [tmpTags copy];
@@ -171,7 +175,7 @@ __strong static NSMutableDictionary *_singularToPlural;
     
     NSParameterAssert(name != nil);
     
-    GCTag *tag = tagStore[name];
+    GCTag *tag = _tagStore[name];
     
     if (tag == nil) {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidTagNameException"
@@ -201,7 +205,7 @@ __strong static NSMutableDictionary *_singularToPlural;
                          @"SUBM": @"submitter",
                          @"TRLR": @"trailer"};
     
-    return tagStore[[tmp valueForKey:code]];
+    return _tagStore[[tmp valueForKey:code]];
 }
 
 #pragma mark Subtags
@@ -223,7 +227,7 @@ __strong static NSMutableDictionary *_singularToPlural;
         byName[[subTag pluralName]] = subTag;
     }
     
-    [tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *tagDict, BOOL *stop) {
+    [_tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *tagDict, BOOL *stop) {
         if ([key hasPrefix:@"@"]) {
             NSString *variantGroupName = tagDict[kPlural];
             
@@ -249,8 +253,8 @@ __strong static NSMutableDictionary *_singularToPlural;
 {
     if ([code hasPrefix:@"_"]) {
         NSString *tagName = [NSString stringWithFormat:@"custom%@Tag", code];
-        if ([tagStore valueForKey:tagName]) {
-            return [tagStore valueForKey:tagName];
+        if ([_tagStore valueForKey:tagName]) {
+            return [_tagStore valueForKey:tagName];
         }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:@{kCode: code,
@@ -258,7 +262,7 @@ __strong static NSMutableDictionary *_singularToPlural;
                                                   kObjectType: type,
                                                   kValidSubTags: [NSOrderedSet orderedSet]}];
         NSLog(@"Created custom%@Tag: %@", code, tag);
-        tagStore[tagName] = tag;
+        _tagStore[tagName] = tag;
         
         return tag;
     }
@@ -308,7 +312,7 @@ __strong static NSMutableDictionary *_singularToPlural;
         
         for (NSDictionary *valid in _settings[kValidSubTags]) {
             if ([valid[kName] hasPrefix:@"@"]) {
-                for (NSString *variantName in tagInfo[valid[kName]][kVariants]) {
+                for (NSString *variantName in _tagInfo[valid[kName]][kVariants]) {
                     NSDictionary *validDict = @{kName: variantName, 
                                                @"min": valid[@"min"],
                                                @"max": valid[@"max"]};
@@ -426,7 +430,7 @@ __strong static NSMutableDictionary *_singularToPlural;
             BOOL isPlural = [valid[@"max"] isEqualToString:@"M"];
             
             if ([valid[kName] hasPrefix:@"@"]) {
-                for (NSString *variantName in tagInfo[valid[kName]][kVariants]) {
+                for (NSString *variantName in _tagInfo[valid[kName]][kVariants]) {
                     [set addObject:[GCTag tagNamed:isPlural ? _singularToPlural[variantName] : variantName]];
                 }
             } else {

@@ -25,6 +25,13 @@
 
 #pragma mark Initialization
 
+__strong static NSMutableDictionary *_validPropertiesByType;
+
++ (void)initialize
+{
+    _validPropertiesByType = [NSMutableDictionary dictionary];
+}
+
 - (id)init
 {
     NSLog(@"You must use -initWithType: to initialize!");
@@ -53,15 +60,9 @@
 
 #pragma mark GCProperty access
 
-static __strong NSMutableDictionary *_validPropertiesByType;
-
 - (NSOrderedSet *)validProperties
 {
     @synchronized(_validPropertiesByType) {
-        if (!_validPropertiesByType) {
-            _validPropertiesByType = [NSMutableDictionary dictionary];
-        }
-        
         NSOrderedSet *_validProperties = _validPropertiesByType[[self type]];
         
         if (!_validProperties) {

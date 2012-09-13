@@ -13,16 +13,12 @@
     NSString *_displayString;
 }
 
-__strong static NSDictionary *boolStore;
+__strong static NSDictionary *_boolStore;
 
 + (void)initialize
 {
-    static dispatch_once_t predBool = 0;
-    
-    dispatch_once(&predBool, ^{
-        boolStore = @{@"Y": [[GCBool alloc] initWithGedcomString:@"Y" displayString:@"Yes"],
-                     @"": [[GCBool alloc] initWithGedcomString:nil displayString:@"Undecided"]};
-    });
+    _boolStore = @{@"Y": [[GCBool alloc] initWithGedcomString:@"Y" displayString:@"Yes"],
+                    @"": [[GCBool alloc] initWithGedcomString:nil displayString:@"Undecided"]};
 }
 
 - (id)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
@@ -39,12 +35,10 @@ __strong static NSDictionary *boolStore;
 
 + (id)valueWithGedcomString:(NSString *)string
 {
-    [self initialize];
-    
-    GCBool *value = [boolStore valueForKey:string];
+    GCBool *value = [_boolStore valueForKey:string];
     
     if (value == nil) {
-        value = [boolStore valueForKey:@""];
+        value = [_boolStore valueForKey:@""];
     }
     
     return value;

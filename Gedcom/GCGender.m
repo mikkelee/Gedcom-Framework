@@ -17,13 +17,9 @@ __strong static NSDictionary *genderStore;
 
 + (void)initialize
 {
-    static dispatch_once_t predGender = 0;
-    
-    dispatch_once(&predGender, ^{
-        genderStore = @{@"M": [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"],
-                       @"F": [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"],
-                       @"U": [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"]};
-    });
+    genderStore = @{@"M": [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"],
+                    @"F": [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"],
+                    @"U": [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"]};
 }
 
 - (id)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
@@ -40,8 +36,6 @@ __strong static NSDictionary *genderStore;
 
 + (id)valueWithGedcomString:(NSString *)string
 {
-    [self initialize];
-    
     return [genderStore valueForKey:string];
 }
 
