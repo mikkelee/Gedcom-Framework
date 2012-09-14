@@ -181,11 +181,23 @@ __strong static NSDictionary *_defaultColors;
         return values;
     } else if ([[self validProperties] containsObject:key]) {
         @synchronized(_propertyStore) {
-            return [_propertyStore objectForKey:key];
+            return _propertyStore[key];
         }
     } else {
         return [super valueForKey:key];
     }
+}
+
+#pragma mark Subscript accessors
+
+- (id)objectForKeyedSubscript:(id)key
+{
+    return [self valueForKey:key];
+}
+
+- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key
+{
+    return [self setValue:object forKey:(NSString *)key];
 }
 
 #pragma mark NSKeyValueObserving overrides
@@ -265,7 +277,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (id)objectInPropertiesAtIndex:(NSUInteger)index
 {
-    return [[self orderedProperties] objectAtIndex:index];
+    return [self orderedProperties][index];
 }
 
 - (void)insertObject:(GCProperty *)property inPropertiesAtIndex:(NSUInteger)index
@@ -297,7 +309,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
 {
-    GCProperty *property = [[self orderedProperties] objectAtIndex:index];
+    GCProperty *property = [self orderedProperties][index];
     
     if (property == nil) {
         return;

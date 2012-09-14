@@ -46,7 +46,8 @@
     
     [[indi mutableArrayValueForKey:@"properties"] addObject:birt];
     
-    [indi addAttributeWithType:@"death" value:[GCBool yes]];
+    //[indi addAttributeWithType:@"death" value:[GCBool yes]];
+    indi[@"deaths"] = @[[GCBool yes]];
     
     [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00"] forKey:@"lastModified"]; //Setting a known date so output is known
     

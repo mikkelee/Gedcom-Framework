@@ -14,5 +14,10 @@
 
 - (NSString *)propertyDescriptionWithIndent:(NSUInteger)level;
 
+#pragma mark Keyed subscript accessors
+
+- (id)objectForKeyedSubscript:(id)key;
+- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
+
 @end
 

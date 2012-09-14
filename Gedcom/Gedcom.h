@@ -38,3 +38,5 @@
 #import "GCContextDelegate.h"
 
 #import "GCXrefProtocol.h"
+
+#import "GCObject_internal.h"

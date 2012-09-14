@@ -89,13 +89,13 @@ NSString * const GCAgeQualifier_toString[] = {
 		return NSOrderedAscending;
 	} else if ([other isKindOfClass:[GCSimpleAge class]]) {
 		if ([[self ageComponents] year] != [[other ageComponents] year]) {
-			return [[NSNumber numberWithInteger:[[self ageComponents] year]] compare:[NSNumber numberWithInteger:[[other ageComponents] year]]];
+			return [@([[self ageComponents] year]) compare:@([[other ageComponents] year])];
 		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
-			return [[NSNumber numberWithInteger:[[self ageComponents] month]] compare:[NSNumber numberWithInteger:[[other ageComponents] month]]];
+			return [@([[self ageComponents] month]) compare:@([[other ageComponents] month])];
 		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
-			return [[NSNumber numberWithInteger:[[self ageComponents] day]] compare:[NSNumber numberWithInteger:[[other ageComponents] day]]];
+			return [@([[self ageComponents] day]) compare:@([[other ageComponents] day])];
 		} else {
-            return [[NSNumber numberWithInteger:[self qualifier]] compare:[NSNumber numberWithInteger:[other qualifier]]];
+            return [@([self qualifier]) compare:@([other qualifier])];
         }
 	} else {
 		return [self compare:[other refAge]];

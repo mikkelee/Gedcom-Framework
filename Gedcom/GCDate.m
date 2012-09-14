@@ -28,11 +28,11 @@
 			NSLog(@"WARNING: It is not safe at this moment to compare two GCDateSimples with different calendars.");
 		}
 		if ([[self dateComponents] year] != [[other dateComponents] year]) {
-			return [[NSNumber numberWithInteger:[[self dateComponents] year]] compare:[NSNumber numberWithInteger:[[other dateComponents] year]]];
+			return [@([[self dateComponents] year]) compare:@([[other dateComponents] year])];
 		} else if ([[self dateComponents] month] != [[other dateComponents] month]) {
-			return [[NSNumber numberWithInteger:[[self dateComponents] month]] compare:[NSNumber numberWithInteger:[[other dateComponents] month]]];
+			return [@([[self dateComponents] month]) compare:@([[other dateComponents] month])];
 		} else {
-			return [[NSNumber numberWithInteger:[[self dateComponents] day]] compare:[NSNumber numberWithInteger:[[other dateComponents] day]]];
+			return [@([[self dateComponents] day]) compare:@([[other dateComponents] day])];
 		}
 	} else {
 		return [self compare:[other refDate]];
