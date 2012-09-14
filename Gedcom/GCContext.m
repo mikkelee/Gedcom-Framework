@@ -136,10 +136,12 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
         _submission = (GCSubmissionEntity *)entity;
     } else if ([entity isKindOfClass:[GCEntity class]]) {
-        if (!_entityStore[entity.type]) {
-            _entityStore[entity.type] = [NSMutableArray array];
+        @synchronized (_entityStore) {
+            if (!_entityStore[entity.type]) {
+                _entityStore[entity.type] = [NSMutableArray array];
+            }
+            [_entityStore[entity.type] addObject:entity];
         }
-        [_entityStore[entity.type] addObject:entity];
     } else {
         NSLog(@"Unknown class: %@", entity);
     }
@@ -167,9 +169,11 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     if (_submission)
         count++;
     
-    [_entityStore enumerateKeysAndObjectsWithOptions:(kNilOptions) usingBlock:^(id key, NSMutableArray *obj, BOOL *stop) {
-        count += [obj count];
-    }];
+    @synchronized (_entityStore) {
+        [_entityStore enumerateKeysAndObjectsWithOptions:(kNilOptions) usingBlock:^(id key, NSMutableArray *obj, BOOL *stop) {
+            count += [obj count];
+        }];
+    }
     
     count++; //trailer
     
@@ -193,17 +197,21 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     NSParameterAssert(xref);
     NSParameterAssert(obj);
     
-    if ([_entityStore[obj.type] containsObject:obj]) {
-        for (NSString *key in [_xrefStore allKeysForObject:obj]) {
-            [_xrefStore removeObjectForKey:key];
+    @synchronized (_entityStore) {
+        if ([_entityStore[obj.type] containsObject:obj]) {
+            for (NSString *key in [_xrefStore allKeysForObject:obj]) {
+                [_xrefStore removeObjectForKey:key];
+            }
         }
     }
     
     //NSLog(@"%p: setting xref %@ on %p", self, xref, obj);
     
-    _xrefStore[xref] = obj;
-	
-    @synchronized(_xrefBlocks) {
+    @synchronized (_xrefStore) {
+        _xrefStore[xref] = obj;
+    }
+    
+    @synchronized (_xrefBlocks) {
         if (_xrefBlocks[xref]) {
             for (void (^block) (NSString *) in _xrefBlocks[xref]) {
                 block(xref);
@@ -223,20 +231,22 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     //NSLog(@"looking for %@ in %@", obj, self);
     
     NSString *xref = nil;
-    for (NSString *key in [_xrefStore allKeys]) {
-        //NSLog(@"%@: %@", key, [xrefStore objectForKey:key]);
-        if (_xrefStore[key] == obj) {
-            xref = key;
+    @synchronized (_xrefStore) {
+        for (NSString *key in [_xrefStore allKeys]) {
+            //NSLog(@"%@: %@", key, [xrefStore objectForKey:key]);
+            if (_xrefStore[key] == obj) {
+                xref = key;
+            }
         }
-    }
-    
-    if (xref == nil) {
-        int i = 0;
-        do {
-            xref = [NSString stringWithFormat:@"@%@%d@", obj.gedTag.code, ++i];
-        } while (_xrefStore[xref]);
         
-        [self setXref:xref forEntity:obj];
+        if (xref == nil) {
+            int i = 0;
+            do {
+                xref = [NSString stringWithFormat:@"@%@%d@", obj.gedTag.code, ++i];
+            } while (_xrefStore[xref]);
+            
+            [self setXref:xref forEntity:obj];
+        }
     }
     
     //NSLog(@"xref: %@", xref);
@@ -246,14 +256,16 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 
 - (GCEntity *)entityForXref:(NSString *)xref
 {
-    return _xrefStore[xref];
+    @synchronized (_xrefStore) {
+        return _xrefStore[xref];
+    }
 }
 
 - (void)registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block
 {
     NSParameterAssert(xref);
     
-    @synchronized (_xrefStore) {
+    @synchronized (_xrefBlocks) {
         if ([self entityForXref:xref]) {
             block(xref);
         } else	if (_xrefBlocks[xref]) {
@@ -276,12 +288,14 @@ __strong static NSMutableDictionary *_contextsByName = nil;
         [nodes addObject:_submission.gedcomNode];
     }
 	
-    for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
-        for (GCEntity *entity in _entityStore[key]) {
-            [nodes addObject:entity.gedcomNode];
+    @synchronized (_entityStore) {
+        for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
+            for (GCEntity *entity in _entityStore[key]) {
+                [nodes addObject:entity.gedcomNode];
+            }
         }
-    }
-	
+	}
+    
     [nodes addObject:[GCNode nodeWithTag:@"TRLR" value:nil]];
     
 	return nodes;
