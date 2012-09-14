@@ -7,7 +7,7 @@
 //
 
 #import "GCXrefProtocol.h"
-#import "GCContext.h"
+#import "GCContext_internal.h"
 
 //example URL xref://4E7DDC24-FD65-4A48-B2B2-DC88112BCD3A/@F977@
 

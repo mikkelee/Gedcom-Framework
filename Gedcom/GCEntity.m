@@ -14,7 +14,7 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCContext.h"
+#import "GCContext_internal.h"
 
 #import "GCChangedDateFormatter.h"
 

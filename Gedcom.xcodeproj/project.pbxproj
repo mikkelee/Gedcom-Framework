@@ -187,6 +187,7 @@
 		3E14EDC815230DAE00080364 /* GCContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContext.h; sourceTree = "<group>"; };
 		3E14EDC915230DAE00080364 /* GCContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContext.m; sourceTree = "<group>"; };
 		3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDelegateTests.m; sourceTree = "<group>"; };
+		3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCContext_internal.h; sourceTree = "<group>"; };
 		3E1C3E66151C319C005E09E1 /* Gedcom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gedcom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1C3E69151C319C005E09E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3E1C3E6C151C319C005E09E1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -409,6 +410,7 @@
 				3E5F50C0151DF2E800A433A6 /* Gedcom.h */,
 				3E14EDC715230A3000080364 /* Nodes */,
 				3E14EDC815230DAE00080364 /* GCContext.h */,
+				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,
 				3E14EDC915230DAE00080364 /* GCContext.m */,
 				3E57558A15217C1600A918D1 /* Objects */,
 				3E14EDCC15230FE400080364 /* Values */,

@@ -10,7 +10,7 @@
 
 #import "GCNode.h"
 #import "GCTag.h"
-#import "GCContext.h"
+#import "GCContext_internal.h"
 
 @interface GCProperty ()
 

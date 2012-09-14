@@ -11,7 +11,7 @@
 #import "GCEntity.h"
 #import "GCNode.h"
 #import "GCTag.h"
-#import "GCContext.h"
+#import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
 
