@@ -70,22 +70,18 @@
     GCNode *node = [[GCNode alloc] initWithTag:@"INDI" 
                                          value:nil
                                           xref:@"@INDI1@"
-                                      subNodes:[NSArray arrayWithObjects:
+                                      subNodes:@[
                                                 [GCNode nodeWithTag:@"NAME"
                                                               value:@"Jens /Hansen/"],
                                                 [GCNode nodeWithTag:@"NAME"
                                                               value:@"Jens /Hansen/ Smed"],
-                                                [[GCNode alloc] initWithTag:@"BIRT"
-                                                                      value:nil
-                                                                       xref:nil
-                                                                   subNodes:[NSArray arrayWithObjects:
-                                                                             [GCNode nodeWithTag:@"DATE"
-                                                                                           value:@"1 JAN 1901"],
-                                                                              nil]
-                                                                             ],
+                                                [GCNode nodeWithTag:@"BIRT"
+                                                              value:nil
+                                                           subNodes:@[ [GCNode nodeWithTag:@"DATE"
+                                                                                     value:@"1 JAN 1901"] ]],
                                                 [GCNode nodeWithTag:@"DEAT" 
                                                               value:@"Y"],
-                                                 nil]];
+                                                ]];
     
     GCEntity *object = [GCEntity entityWithGedcomNode:node inContext:ctx];
     

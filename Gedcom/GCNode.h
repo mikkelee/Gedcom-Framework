@@ -26,10 +26,10 @@
  @param tag A letter string such as @"INDI" or @"NOTE"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
  @param value An optional value.
  @param xref An optional xref.
- @param subNodes A collection of nodes. If `nil`, the node will create an empty collection.
+ @param subNodes An ordered collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes;
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(id)subNodes;
 
 #pragma mark Convenience constructors
 
@@ -45,7 +45,7 @@
 /// @name Gedcom output
 
 /// The receiver including its subnodes as a string.
-- (NSString *)gedcomString;
+@property (readonly) NSString *gedcomString;
 
 /** The receiver including its subnodes as an attributed string.
  
@@ -58,10 +58,10 @@
  GCLinkAttributeName
  
  */
-- (NSAttributedString *)attributedGedcomString;
+@property (readonly) NSAttributedString *attributedGedcomString;
 
 /// The receiver including its subnodes as an array of strings.
-- (NSArray *)gedcomLines;
+@property (readonly) NSArray *gedcomLines;
 
 #pragma mark Objective-C properties
 
@@ -96,7 +96,7 @@
 
 /** Returns a node with the specified properties.
  
- @param tag A four letter string such as @"INDI" or @"NOTE"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
+ @param tag A three or four letter string such as @"INDI" or @"FAM"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
  @param value An optional value.
  @return A new node.
  */
@@ -104,7 +104,7 @@
 
 /** Returns a node with the specified properties.
  
- @param tag A four letter string such as @"INDI" or @"NOTE"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
+ @param tag A three or four letter string such as @"INDI" or @"FAM"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
  @param xref An optional xref.
  @return A new node.
  */
@@ -112,21 +112,21 @@
 
 /** Returns a node with the specified properties.
  
- @param tag A four letter string such as @"INDI" or @"NOTE"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
+ @param tag A three or four letter string such as @"INDI" or @"FAM"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
  @param value An optional value.
- @param subNodes An array of nodes. If `nil`, the node will create an empty collection.
+ @param subNodes An ordered collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSOrderedSet *)subNodes;
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(id)subNodes;
 
 /** Returns a node with the specified properties.
  
- @param tag A four letter string such as @"INDI" or @"NOTE"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
+ @param tag A three or four letter string such as @"INDI" or @"FAM"; alternately an underscore-prefixed string such as @"_CUSTOMTAG".
  @param xref An optional xref.
- @param subNodes An array of nodes. If `nil`, the node will create an empty collection.
+ @param subNodes An ordered collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes;
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(id)subNodes;
 
 @end
 

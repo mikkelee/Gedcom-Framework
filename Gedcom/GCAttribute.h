@@ -85,6 +85,4 @@
  */
 - (void)setValueWithGedcomString:(NSString *)string;
 
-
-
 @end

@@ -36,8 +36,8 @@
 
 /// @name Accessing GCProperties
 
-/// An ordered collection of valid property types for the receiver.
-- (NSOrderedSet *)validProperties;
+/// Returns an ordered collection of valid property types for the receiver.
+@property (readonly) NSOrderedSet *validProperties;
 
 /** Returns a struct with the minimum and maximum allowed occurrences of a given type of property.
  
@@ -61,7 +61,7 @@
 
 /// The properties of the receiver as a collection of nodes.
 /// @see GCNode
-- (NSOrderedSet *)subNodes;
+@property (readonly) NSOrderedSet *subNodes;
 
 #pragma mark Comparison
 
