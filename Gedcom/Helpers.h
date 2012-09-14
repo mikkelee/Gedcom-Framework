@@ -44,8 +44,10 @@ static inline GCNode * nodeFromDate(NSDate *date) {
                                                                     length:lengthOfTimePart
                                                                   encoding:NSASCIIStringEncoding]];
 	
+    bool leadingSpace = strncmp(timeResult, " ", 1) == 0;
+    
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE"
-                                     value:[[[NSString alloc] initWithBytes:(strncmp(timeResult, " ", 1) == 0) ? timeResult+1 : timeResult
+                                     value:[[[NSString alloc] initWithBytes:leadingSpace ? timeResult+1 : timeResult
                                                                     length:strlen(timeResult)-(lengthOfTimePart+2)
                                                                   encoding:NSASCIIStringEncoding] uppercaseString]
                                   subNodes:@[timeNode]];
