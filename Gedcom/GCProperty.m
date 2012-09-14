@@ -24,15 +24,15 @@
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
     if (tag.isCustom) {
-        [[object context] encounteredUnknownTag:tag forNode:node onObject:object];
+        [object.context encounteredUnknownTag:tag forNode:node onObject:object];
     }
     
     if (!tag) {
         // for debugging; TODO remove when tags.json is complete.
-        NSLog(@"rootObject: %@", [object rootObject]);
+        NSLog(@"rootObject: %@", object.rootObject);
         NSLog(@"object: %@", object);
         NSLog(@"node: %@", node);
     }
@@ -40,9 +40,9 @@
     self = [super initWithType:[tag name]];
     
     if (self) {
-        [self addPropertiesWithGedcomNodes:[node subNodes]];
-        
         [[object mutableArrayValueForKey:@"properties"] addObject:self];
+        
+        [self addPropertiesWithGedcomNodes:node.subNodes];
     }
     
     return self;

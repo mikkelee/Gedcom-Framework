@@ -26,8 +26,9 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
+        NSParameterAssert(object.context);
         //NSLog(@"%p: registering callback for %p on %@", self.context, self, [node gedValue]);
-        [self.context registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
+        [object.context registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
             GCEntity *target = [object.context entityForXref:xref];
             //NSLog(@"Set %@ => %@ on %@", xref, target, self);
             self.target = target;
