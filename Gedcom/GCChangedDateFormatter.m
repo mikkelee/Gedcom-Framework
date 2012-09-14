@@ -11,6 +11,8 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
+#include <time.h>
+
 @implementation GCChangedDateFormatter
 
 + (id)sharedFormatter // fancy new ARC/GCD singleton!
@@ -47,7 +49,11 @@
     NSParameterAssert(dateString);
     
     @synchronized(self) {
-        NSDate *date = [self dateFromString:dateString];
+        struct tm  sometime;
+        const char *formatString = "%d %b %Y %H:%M:%S";
+        strptime([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &sometime);
+
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970: mktime(&sometime)]; //[self dateFromString:dateString];
         
         return date;
     }
