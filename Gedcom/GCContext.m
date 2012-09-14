@@ -25,8 +25,9 @@
 @end
 
 @implementation GCContext {
-	NSMutableDictionary *_xrefStore;
-	NSMutableDictionary *_xrefBlocks;
+	NSMutableDictionary *_xrefToEntityMap;
+    NSMutableDictionary *_entityToXrefMap;
+	NSMutableDictionary *_xrefToBlockMap;
     NSMutableDictionary *_entityStore;
 }
 
@@ -44,8 +45,9 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 	if (self) {
         _name = [[NSUUID UUID] UUIDString];
         
-        _xrefStore = [NSMutableDictionary dictionary];
-        _xrefBlocks = [NSMutableDictionary dictionary];
+        _xrefToEntityMap = [NSMutableDictionary dictionary];
+        _entityToXrefMap = [NSMutableDictionary dictionary];
+        _xrefToBlockMap = [NSMutableDictionary dictionary];
         _entityStore = [NSMutableDictionary dictionary];
         
         _contextsByName[_name] = self;
@@ -190,72 +192,79 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 }
 
 
-- (void)setXref:(NSString *)xref forEntity:(GCEntity *)obj
+- (void)setXref:(NSString *)xref forEntity:(GCEntity *)entity
 {
     NSParameterAssert(xref);
-    NSParameterAssert(obj);
+    NSParameterAssert(entity);
+    
+    NSString *pointer = [NSString stringWithFormat:@"%p", entity];
     
     @synchronized (_entityStore) {
-        if ([_entityStore[obj.type] containsObject:obj]) {
-            for (NSString *key in [_xrefStore allKeysForObject:obj]) {
-                [_xrefStore removeObjectForKey:key];
+        if ([_entityStore[entity.type] containsObject:entity]) {
+            @synchronized (_entityToXrefMap) {
+                @synchronized (_xrefToEntityMap) {
+                    if (_entityToXrefMap[pointer]) {
+                        [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[pointer]];
+                        [_entityToXrefMap removeObjectForKey:pointer];
+                    }
+                }
             }
         }
     }
     
-    //NSLog(@"%p: setting xref %@ on %p", self, xref, obj);
+    //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
     
-    @synchronized (_xrefStore) {
-        _xrefStore[xref] = obj;
+    @synchronized (_xrefToEntityMap) {
+        _xrefToEntityMap[xref] = entity;
     }
     
-    @synchronized (_xrefBlocks) {
-        if (_xrefBlocks[xref]) {
-            for (void (^block) (NSString *) in _xrefBlocks[xref]) {
+    @synchronized (_entityToXrefMap) {
+        _entityToXrefMap[pointer] = xref;
+    }
+    
+    @synchronized (_xrefToBlockMap) {
+        if (_xrefToBlockMap[xref]) {
+            for (void (^block) (NSString *) in _xrefToBlockMap[xref]) {
                 block(xref);
             }
-            [_xrefBlocks removeObjectForKey:xref];
+            [_xrefToBlockMap removeObjectForKey:xref];
         }
     }
 }
 
-- (NSString *)xrefForEntity:(GCEntity *)obj
+- (NSString *)xrefForEntity:(GCEntity *)entity
 {
-    if (!obj) {
-        return nil;
-    }
-    NSParameterAssert(obj.gedTag.code);
+    NSParameterAssert(entity);
+    NSParameterAssert(entity.gedTag.code);
     
-    //NSLog(@"looking for %@ in %@", obj, self);
+    NSString *pointer = [NSString stringWithFormat:@"%p", entity];
     
     NSString *xref = nil;
-    @synchronized (_xrefStore) {
-        for (NSString *key in [_xrefStore allKeys]) {
-            //NSLog(@"%@: %@", key, [xrefStore objectForKey:key]);
-            if (_xrefStore[key] == obj) {
-                xref = key;
-            }
-        }
-        
-        if (xref == nil) {
+    
+    @synchronized (_entityToXrefMap) {
+        xref = _entityToXrefMap[pointer];
+    }
+    
+    if (!xref) {
+        @synchronized (_xrefToEntityMap) {
             int i = 0;
             do {
-                xref = [NSString stringWithFormat:@"@%@%d@", obj.gedTag.code, ++i];
-            } while (_xrefStore[xref]);
+                xref = [NSString stringWithFormat:@"@%@%d@", entity.gedTag.code, ++i];
+            } while (_xrefToEntityMap[xref]);
             
-            [self setXref:xref forEntity:obj];
+            [self setXref:xref forEntity:entity];
         }
     }
     
-    //NSLog(@"xref: %@", xref);
+    //NSLog(@"%p found %@ for %p in %@", self, xref, entity, _entityToXrefMap);
     
     return xref;
 }
 
 - (GCEntity *)entityForXref:(NSString *)xref
 {
-    @synchronized (_xrefStore) {
-        return _xrefStore[xref];
+    @synchronized (_xrefToEntityMap) {
+        return _xrefToEntityMap[xref];
     }
 }
 
@@ -263,13 +272,13 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 {
     NSParameterAssert(xref);
     
-    @synchronized (_xrefBlocks) {
+    @synchronized (_xrefToBlockMap) {
         if ([self entityForXref:xref]) {
             block(xref);
-        } else	if (_xrefBlocks[xref]) {
-            [_xrefBlocks[xref] addObject:[block copy]];
+        } else	if (_xrefToBlockMap[xref]) {
+            [_xrefToBlockMap[xref] addObject:[block copy]];
         } else {
-            _xrefBlocks[xref] = [NSMutableSet setWithObject:[block copy]];
+            _xrefToBlockMap[xref] = [NSMutableSet setWithObject:[block copy]];
         }
     }
 }
@@ -355,13 +364,19 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     
     if (self) {
         _name = [aDecoder decodeObjectForKey:@"name"];
-        _xrefStore = [aDecoder decodeObjectForKey:@"xrefStore"];
-        _xrefBlocks = [aDecoder decodeObjectForKey:@"xrefBlocks"];
+        _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
+        _xrefToBlockMap = [aDecoder decodeObjectForKey:@"xrefBlocks"];
         _entityStore = [aDecoder decodeObjectForKey:@"entityStore"];
         _header = [aDecoder decodeObjectForKey:@"header"];
         _submission = [aDecoder decodeObjectForKey:@"submission"];
         
         _contextsByName[_name] = self;
+        
+        _entityToXrefMap = [NSMutableDictionary dictionary];
+        [_xrefToEntityMap enumerateKeysAndObjectsUsingBlock:^(id xref, id entity, BOOL *stop) {
+            NSString *pointer = [NSString stringWithFormat:@"%p", entity];
+            _entityToXrefMap[pointer] = xref;
+        }];
 	}
     
     return self;
@@ -370,8 +385,8 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_xrefStore forKey:@"xrefStore"];
-    [aCoder encodeObject:_xrefBlocks forKey:@"xrefBlocks"];
+    [aCoder encodeObject:_xrefToEntityMap forKey:@"xrefStore"];
+    [aCoder encodeObject:_xrefToBlockMap forKey:@"xrefBlocks"];
     [aCoder encodeObject:_header forKey:@"header"];
     [aCoder encodeObject:_submission forKey:@"submission"];
     [aCoder encodeObject:_entityStore forKey:@"entityStore"];
@@ -382,7 +397,7 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefStore];
+	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToEntityMap];
 }
 //COV_NF_END
 

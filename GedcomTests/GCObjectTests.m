@@ -186,14 +186,14 @@
 	
 	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
     
-    NSData *fileData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
+    NSData *ctxData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
     
-    GCContext *decodedFile = [NSKeyedUnarchiver unarchiveObjectWithData:fileData];
+    GCContext *decodedCtx = [NSKeyedUnarchiver unarchiveObjectWithData:ctxData];
     
     //NSLog(@"file: %@", [file gedcomString]);
     //NSLog(@"decodedFile: %@", [decodedFile gedcomString]);
     
-    STAssertTrue([ctx isEqualTo:decodedFile], nil);
+    STAssertTrue([ctx isEqualTo:decodedCtx], nil);
 }
 
 - (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedErrorCode:(GCErrorCode)errorCode string:(NSString *)errorString
