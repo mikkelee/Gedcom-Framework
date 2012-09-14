@@ -35,6 +35,8 @@
     NSArray *expectedOrder = [NSArray arrayWithObjects:b, d, c, a, nil];
     
     STAssertEqualObjects(placeStrings, expectedOrder, nil);
+    
+    STAssertEqualObjects([a displayString], @"Fuglafjør∂ur, Eysturoy, Eysturoyar sýsla, Færøerne", nil);
 }
 
 @end
