@@ -67,24 +67,27 @@
         
         //TODO clean up this part:
         __block GCNode *changeNode = nil;
+        __block NSUInteger changeNodeIndex = -1;
         
-        [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            GCNode *subNode = (GCNode *)obj;
+        [node.subNodes enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(GCNode *subNode, NSUInteger idx, BOOL *stop) {
             if ([subNode.gedTag isEqualToString:@"CHAN"]) {
                 changeNode = subNode;
+                changeNodeIndex = idx;
                 *stop = YES;
             }
         }];
         
-        NSMutableOrderedSet *subNodesWithoutChan = [[node subNodes] mutableCopy];
-        
-        [subNodesWithoutChan removeObject:changeNode];
-        
-        [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
-        
         if (changeNode) {
+            NSMutableOrderedSet *subNodesWithoutChan = [node.subNodes mutableCopy];
+            
+            [subNodesWithoutChan removeObjectAtIndex:changeNodeIndex];
+            
+            [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
+            
             entity.lastModified = [[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode];
         } else {
+            [entity addPropertiesWithGedcomNodes:node.subNodes];
+            
             entity.lastModified = nil;
         }
     });
