@@ -101,6 +101,12 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 {
     NSParameterAssert([self countOfEntities] == 1);
     
+#ifdef DEBUGLEVEL
+    clock_t start, end;
+    double elapsed;
+    start = clock();
+#endif
+    
     [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
         GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
         
@@ -111,6 +117,12 @@ __strong static NSMutableDictionary *_contextsByName = nil;
             [GCEntity entityWithGedcomNode:node inContext:self];
         }
     }];
+    
+#ifdef DEBUGLEVEL
+    end = clock();
+    elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+    NSLog(@"parseNodes - Time: %f seconds",elapsed);
+#endif
     
     //Note: >= instead of ==... there may be things added during parsing (TODO make this less ugly!)
     NSParameterAssert([self countOfEntities] >= [nodes count]); //dont count trailer
