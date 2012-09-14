@@ -65,19 +65,13 @@
     
 	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         
-        //TODO clean up this part:
-        __block GCNode *changeNode = nil;
-        __block NSUInteger changeNodeIndex = -1;
-        
-        [node.subNodes enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(GCNode *subNode, NSUInteger idx, BOOL *stop) {
-            if ([subNode.gedTag isEqualToString:@"CHAN"]) {
-                changeNode = subNode;
-                changeNodeIndex = idx;
-                *stop = YES;
-            }
+        NSUInteger changeNodeIndex = [node.subNodes indexOfObjectWithOptions:(NSEnumerationReverse) passingTest:^(GCNode *subNode, NSUInteger idx, BOOL *stop) {
+            return [subNode.gedTag isEqualToString:@"CHAN"];
         }];
         
-        if (changeNode) {
+        if (changeNodeIndex != NSNotFound) {
+            GCNode *changeNode = [node.subNodes objectAtIndex:changeNodeIndex];
+            
             NSMutableOrderedSet *subNodesWithoutChan = [node.subNodes mutableCopy];
             
             [subNodesWithoutChan removeObjectAtIndex:changeNodeIndex];
