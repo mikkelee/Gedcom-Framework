@@ -19,7 +19,7 @@
 {
     GCNoteEntity *note = [GCNoteEntity noteInContext:context];
     
-    //[note setGedValue]
+    //note.gedValue = @"Umarried.";
     
     [object addRelationshipWithType:@"noteReference" target:note];
 }
@@ -36,7 +36,7 @@
     GCContextDelegateTester *delegate = [[GCContextDelegateTester alloc] init];
     GCContext *ctx = [[GCContext alloc] init];
     
-    [ctx setDelegate:delegate];
+    ctx.delegate = delegate;
     
     NSString *gedcomString =
     @"0 HEAD\n"
@@ -54,7 +54,7 @@
     
     [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
     
-    STAssertEqualObjects([ctx gedcomString], expected, nil);
+    STAssertEqualObjects(ctx.gedcomString, expected, nil);
 }
 
 @end

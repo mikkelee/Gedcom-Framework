@@ -24,9 +24,9 @@
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [[object gedTag] subTagWithCode:[node gedTag] type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    GCTag *tag = [[object gedTag] subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
-    if ([tag isCustom]) {
+    if (tag.isCustom) {
         [[object context] encounteredUnknownTag:tag forNode:node onObject:object];
     }
     
@@ -66,12 +66,12 @@
         return NSOrderedAscending;
     }
     
-    if ([self describedObject] != [(GCProperty *)other describedObject]) {
-        return [[self describedObject] compare:[(GCProperty *)other describedObject]];
+    if (self.describedObject != [(GCProperty *)other describedObject]) {
+        return [self.describedObject compare:[(GCProperty *)other describedObject]];
     }
     
-    if ([self type] != [(GCProperty *)other type]) {
-        return [[self type] compare:[(GCProperty *)other type]];
+    if (self.type != [(GCProperty *)other type]) {
+        return [self.type compare:[(GCProperty *)other type]];
     }
     
     return NSOrderedSame;
@@ -84,7 +84,7 @@
 	self = [super initWithCoder:aDecoder];
     
     if (self) {
-        [self setValue:[aDecoder decodeObjectForKey:@"describedObject"] forKey:@"primitiveDescribedObject"];
+        _primitiveDescribedObject = [aDecoder decodeObjectForKey:@"describedObject"];
 	}
     
     return self;
@@ -93,40 +93,38 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:[self describedObject] forKey:@"describedObject"];
+    [aCoder encodeObject:self.describedObject forKey:@"describedObject"];
 }
 
 #pragma mark Objective-C properties
 
-@synthesize primitiveDescribedObject = _describedObject;
-
 - (GCObject *)describedObject
 {
-    return [self primitiveDescribedObject];
+    return self.primitiveDescribedObject;
 }
 
 - (void)setDescribedObject:(GCObject *)describedObject
 {
     [self willChangeValueForKey:@"describedObject"];
-    if (_describedObject) {
-        if (_describedObject == self) {
+    if (_primitiveDescribedObject) {
+        if (_primitiveDescribedObject == self) {
             return;
         }
-        [[_describedObject valueForKey:@"properties"] removeObject:self];
+        [[_primitiveDescribedObject valueForKey:@"properties"] removeObject:self];
     }
-    [self setPrimitiveDescribedObject:describedObject];
-    [[_describedObject mutableArrayValueForKey:@"properties"] addObject:self];
+    self.primitiveDescribedObject = describedObject;
+    [[_primitiveDescribedObject mutableArrayValueForKey:@"properties"] addObject:self];
     [self didChangeValueForKey:@"describedObject"];
 }
 
 - (GCObject *)rootObject
 {
-    return [[self describedObject] rootObject];
+    return self.describedObject.rootObject;
 }
 
 - (GCContext *)context
 {
-    return [[self describedObject] context];
+    return self.describedObject.context;
 }
 
 @end

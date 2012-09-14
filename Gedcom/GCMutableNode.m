@@ -27,7 +27,7 @@
     self = [super initWithTag:tag value:value xref:xref subNodes:nil];
     
 	if (self) {
-        [self setLineSeparator:@"\n"];
+        self.lineSeparator = @"\n";
         _internalSubNodes = [NSMutableOrderedSet orderedSet];
 	}
     
@@ -39,7 +39,7 @@
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"[GCMutableNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
+	return [NSString stringWithFormat:@"[GCMutableNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", self.gedTag, [self xref], [self gedValue], self.subNodes];
 }
 //COV_NF_END
 

@@ -29,16 +29,16 @@ NSString * const GCAgeQualifier_toString[] = {
 {
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:3];
 	
-	if ([[self ageComponents] year] >= 1) {
-        [stringComponents addObject:[NSString stringWithFormat:@"%ldy", [[self ageComponents] year]]];
+	if ([self.ageComponents year] >= 1) {
+        [stringComponents addObject:[NSString stringWithFormat:@"%ldy", [self.ageComponents year]]];
     }
     
-	if ([[self ageComponents] month] >= 1) {
-		[stringComponents addObject:[NSString stringWithFormat:@"%ldm", [[self ageComponents] month]]];
+	if ([self.ageComponents month] >= 1) {
+		[stringComponents addObject:[NSString stringWithFormat:@"%ldm", [self.ageComponents month]]];
 	}
 	
-	if ([[self ageComponents] day] >= 1) {
-		[stringComponents addObject:[NSString stringWithFormat:@"%ldd", [[self ageComponents] day]]];
+	if ([self.ageComponents day] >= 1) {
+		[stringComponents addObject:[NSString stringWithFormat:@"%ldd", [self.ageComponents day]]];
 	}
     
     if ([stringComponents count] == 0) {
@@ -54,22 +54,22 @@ NSString * const GCAgeQualifier_toString[] = {
     
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:3];
 	
-	if ([[self ageComponents] year] == 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d year" value:@"%d year" table:@"Values"], [[self ageComponents] year]]];
-	} else if ([[self ageComponents] year] > 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Values"], [[self ageComponents] year]]];
+	if ([self.ageComponents year] == 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d year" value:@"%d year" table:@"Values"], [self.ageComponents year]]];
+	} else if ([self.ageComponents year] > 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Values"], [self.ageComponents year]]];
 	}
     
-	if ([[self ageComponents] month] == 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d month" value:@"%d month" table:@"Values"], [[self ageComponents] month]]];
-	} else if ([[self ageComponents] month] > 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d months" value:@"%d months" table:@"Values"], [[self ageComponents] month]]];
+	if ([self.ageComponents month] == 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d month" value:@"%d month" table:@"Values"], [self.ageComponents month]]];
+	} else if ([self.ageComponents month] > 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d months" value:@"%d months" table:@"Values"], [self.ageComponents month]]];
 	}
 	
-	if ([[self ageComponents] day] == 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d day" value:@"%d day" table:@"Values"], [[self ageComponents] day]]];
-	} else if ([[self ageComponents] day] > 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d days" value:@"%d days" table:@"Values"], [[self ageComponents] day]]];
+	if ([self.ageComponents day] == 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d day" value:@"%d day" table:@"Values"], [self.ageComponents day]]];
+	} else if ([self.ageComponents day] > 1) {
+		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d days" value:@"%d days" table:@"Values"], [self.ageComponents day]]];
 	}
     
     if ([stringComponents count] == 0) {
@@ -88,12 +88,12 @@ NSString * const GCAgeQualifier_toString[] = {
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else if ([other isKindOfClass:[GCSimpleAge class]]) {
-		if ([[self ageComponents] year] != [[other ageComponents] year]) {
-			return [@([[self ageComponents] year]) compare:@([[other ageComponents] year])];
-		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
-			return [@([[self ageComponents] month]) compare:@([[other ageComponents] month])];
-		} else if ([[self ageComponents] month] != [[other ageComponents] month]) {
-			return [@([[self ageComponents] day]) compare:@([[other ageComponents] day])];
+		if ([self.ageComponents year] != [[other ageComponents] year]) {
+			return [@([self.ageComponents year]) compare:@([[other ageComponents] year])];
+		} else if ([self.ageComponents month] != [[other ageComponents] month]) {
+			return [@([self.ageComponents month]) compare:@([[other ageComponents] month])];
+		} else if ([self.ageComponents month] != [[other ageComponents] month]) {
+			return [@([self.ageComponents day]) compare:@([[other ageComponents] day])];
 		} else {
             return [@([self qualifier]) compare:@([other qualifier])];
         }
@@ -117,7 +117,7 @@ NSString * const GCAgeQualifier_toString[] = {
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-    return [frameworkBundle localizedStringForKey:[self gedcomString] value:[self gedcomString] table:@"Values"];
+    return [frameworkBundle localizedStringForKey:self.gedcomString value:self.gedcomString table:@"Values"];
 }
 
 /*
@@ -131,13 +131,13 @@ NSString * const GCAgeQualifier_toString[] = {
     
     GCAgeQualifier qualifier = GCAgeNoQualifier;
     
-    if ([[self keyword] isEqualToString:@"CHILD"]) {
+    if ([self.keyword isEqualToString:@"CHILD"]) {
         [ageComponents setYear:8];
         qualifier = GCAgeLessThan;
-    } else if ([[self keyword] isEqualToString:@"INFANT"]) {
+    } else if ([self.keyword isEqualToString:@"INFANT"]) {
         [ageComponents setYear:1];
         qualifier = GCAgeLessThan;
-    } else if ([[self keyword] isEqualToString:@"STILLBORN"]) {
+    } else if ([self.keyword isEqualToString:@"STILLBORN"]) {
         [ageComponents setYear:0];
     } else {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidAgeKeywordException"
@@ -157,21 +157,21 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (NSString *)gedcomString
 {
-	return [self string];
+	return self.string;
 }
 
 - (NSString *)displayString
 {
-    return [self gedcomString];
+    return self.gedcomString;
 }
 
 - (GCSimpleAge *)refAge
 {
-	GCSimpleAge *m = [[GCSimpleAge alloc] init];
+	GCSimpleAge *age = [[GCSimpleAge alloc] init];
     
-	[m setAgeComponents:[[NSDateComponents alloc] init]];
+	age.ageComponents = [[NSDateComponents alloc] init];
     
-    return m;
+    return age;
 }
 
 @end
@@ -197,31 +197,31 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
-	id age = [[GCSimpleAge alloc] init];
+	GCSimpleAge *age = [[GCSimpleAge alloc] init];
 	
-	[age setAgeComponents:c];
-    [age setQualifier:q];
+	age.ageComponents = c;
+    age.qualifier = q;
 	
-	return age;
+	return (id)age;
 }
 
 - (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
-	id age = [[GCAgeKeyword alloc] init];
+	GCAgeKeyword *age = [[GCAgeKeyword alloc] init];
 	
-	[age setKeyword:s];
-    [age setQualifier:q];
+    age.keyword = s;
+    age.qualifier = q;
 	
-	return age;
+	return (id)age;
 }
 
 - (id)initWithInvalidAgeString:(NSString *)s
 {
-	id age = [[GCInvalidAge alloc] init];
+	GCInvalidAge *age = [[GCInvalidAge alloc] init];
 	
-	[age setString:s];
+	age.string = s;
 	
-	return age;
+	return (id)age;
 }
 
 @end

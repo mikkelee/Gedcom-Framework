@@ -26,11 +26,11 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
-        //NSLog(@"%p: registering callback for %p on %@", [self context], self, [node gedValue]);
-        [[self context] registerCallbackForXref:[node gedValue] usingBlock:^(NSString *xref) {
-            GCEntity *target = [[object context] entityForXref:xref];
+        //NSLog(@"%p: registering callback for %p on %@", self.context, self, [node gedValue]);
+        [self.context registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
+            GCEntity *target = [object.context entityForXref:xref];
             //NSLog(@"Set %@ => %@ on %@", xref, target, self);
-            [self setTarget:target];
+            self.target = target;
         }];
     }
     
@@ -67,15 +67,15 @@
 {
     NSParameterAssert(_target);
     
-    return [[GCNode alloc] initWithTag:[[self gedTag] code]
-								 value:[[self context] xrefForEntity:_target]
+    return [[GCNode alloc] initWithTag:self.gedTag.code
+								 value:[self.context xrefForEntity:_target]
 								  xref:nil
-							  subNodes:[self subNodes]];
+							  subNodes:self.subNodes];
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    [self setTarget:[[self context] entityForXref:[gedcomNode gedValue]]];
+    self.target = [self.context entityForXref:gedcomNode.gedValue];
     
     [super setGedcomNode:gedcomNode];
 }
@@ -90,8 +90,8 @@
         return result;
     }
     
-    if ([self target] != [(GCRelationship *)other target]) {
-        return [[self target] compare:[(GCRelationship *)other target]];
+    if (self.target != [(GCRelationship *)other target]) {
+        return [self.target compare:[(GCRelationship *)other target]];
     }
     
     return NSOrderedSame;
@@ -107,7 +107,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [[self context] xrefForEntity:_target], [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [self.context xrefForEntity:_target], [self propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -139,32 +139,32 @@
 
 - (void)setTarget:(GCEntity *)target
 {
-    NSParameterAssert([self describedObject]);
-    NSParameterAssert([[self gedTag] targetType] == [target class]);
+    NSParameterAssert(self.describedObject);
+    NSParameterAssert(self.gedTag.targetType == [target class]);
     
     //NSLog(@"self: %@", self);
     
-    if ([[self gedTag] reverseRelationshipTag]) {
+    if (self.gedTag.reverseRelationshipTag) {
         //remove previous reverse relationship before changing target.
-        for (GCRelationship *relationship in [_target valueForKey:[[[self gedTag] reverseRelationshipTag] pluralName]]) {
-            //NSLog(@"%p: %@", [self describedObject], relationship);
-            if ([[relationship target] isEqual:[self rootObject]]) {
+        for (GCRelationship *relationship in [_target valueForKey:self.gedTag.reverseRelationshipTag.pluralName]) {
+            //NSLog(@"%p: %@", self.describedObject, relationship);
+            if ([relationship.target isEqual:self.rootObject]) {
                 [[_target mutableArrayValueForKey:@"properties"] removeObject:relationship];
             }
         }
         if (target != nil) {
             //set up new reverse relationship
             BOOL relationshipExists = NO;
-            for (GCRelationship *relationship in [target valueForKey:[[[self gedTag] reverseRelationshipTag] pluralName]]) {
-                //NSLog(@"%p: %@", [self describedObject], relationship);
-                if ([[relationship target] isEqual:[self rootObject]]) {
+            for (GCRelationship *relationship in [target valueForKey:self.gedTag.reverseRelationshipTag.pluralName]) {
+                //NSLog(@"%p: %@", self.describedObject, relationship);
+                if ([relationship.target isEqual:self.rootObject]) {
                     //NSLog(@"relationship: %@", relationship);
                     relationshipExists = YES;
                 }
             }
             if (!relationshipExists) {
-                [target addRelationshipWithType:[[[self gedTag] reverseRelationshipTag] name]
-                                         target:(GCEntity *)[self rootObject]];
+                [target addRelationshipWithType:self.gedTag.reverseRelationshipTag.name
+                                         target:(GCEntity *)self.rootObject];
             }
         }
     }
@@ -174,13 +174,13 @@
 
 - (NSString *)displayValue
 {
-    return [[self context] xrefForEntity:_target];
+    return [self.context xrefForEntity:_target];
 }
 
 - (NSAttributedString *)attributedDisplayValue
 {
-    return [[NSAttributedString alloc] initWithString:[self displayValue] 
-                                           attributes:@{NSLinkAttributeName: [[self context] xrefForEntity:_target]}];
+    return [[NSAttributedString alloc] initWithString:self.displayValue 
+                                           attributes:@{NSLinkAttributeName: [self.context xrefForEntity:_target]}];
 }
 
 @end
@@ -191,7 +191,7 @@
 {
     GCRelationship *relationship = [[self alloc] initWithType:type];
     
-    [relationship setTarget:target];
+    relationship.target = target;
 	
     return relationship;
 }

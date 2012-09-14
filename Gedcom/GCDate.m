@@ -97,7 +97,7 @@
 
 - (NSString *)displayString
 {
-    return [self gedcomString];
+    return self.gedcomString;
 }
 
 - (NSCalendar *)calendar
@@ -325,7 +325,7 @@
 
 - (NSString *)displayString
 {
-    return [self gedcomString];
+    return self.gedcomString;
 }
 
 - (GCSimpleDate *)refDate

@@ -200,7 +200,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
     NSMutableDictionary *byName = [NSMutableDictionary dictionary];
     NSMutableDictionary *byVariant = [NSMutableDictionary dictionary];
     
-    for (GCTag *subTag in [self validSubTags]) {
+    for (GCTag *subTag in self.validSubTags) {
         NSString *typeKey = [NSStringFromClass([subTag objectClass]) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
         
         byCode[typeKey][[subTag code]] = subTag;
@@ -213,7 +213,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
             NSString *variantGroupName = tagDict[kPlural];
             
             for (NSString *variantName in tagDict[kVariants]) {
-                if (![variantName hasPrefix:@"@"] && [[self validSubTags] containsObject:[GCTag tagNamed:variantName]]) {
+                if (![variantName hasPrefix:@"@"] && [self.validSubTags containsObject:[GCTag tagNamed:variantName]]) {
                     if (!byVariant[variantGroupName]) {
                         byVariant[variantGroupName] = [NSMutableArray array];
                     }
@@ -275,12 +275,12 @@ __strong static NSMutableDictionary *_rootTagsByCode;
 
 - (BOOL)isValidSubTag:(GCTag *)tag
 {
-    return [tag isCustom] || [[self validSubTags] containsObject:tag];
+    return tag.isCustom || [self.validSubTags containsObject:tag];
 }
 
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag
 {
-    if ([tag isCustom]) {
+    if (tag.isCustom) {
         return (GCAllowedOccurrences){0, NSIntegerMax};
     }
     
@@ -307,7 +307,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
         _cachedOccurencesDicts = [occurrencesDicts copy];
     }
     
-    NSDictionary *validDict = _cachedOccurencesDicts[[tag name]];
+    NSDictionary *validDict = _cachedOccurencesDicts[tag.name];
     
     NSParameterAssert(validDict);
     
@@ -326,7 +326,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (%@ %@)", [super description], [self code], [self name]];
+    return [NSString stringWithFormat:@"%@ (%@ %@)", [super description], self.code, self.name];
 }
 //COV_NF_END
 
@@ -374,6 +374,8 @@ __strong static NSMutableDictionary *_rootTagsByCode;
         NSString *valueTypeString = _settings[kValueType];
         
         _cachedValueClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [valueTypeString capitalizedString]]);
+        
+        //NSLog(@"valueTypeString: %@ => %@", valueTypeString, _cachedValueClass);
     }
     
 	return _cachedValueClass;
@@ -382,7 +384,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
 - (Class)objectClass
 {
     if (!_cachedObjectClass) {
-        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[[self name] substringToIndex:1] uppercaseString], [[self name] substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
+        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[self.name substringToIndex:1] uppercaseString], [self.name substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
         
         _cachedObjectClass = NSClassFromString(objectClassString);
         

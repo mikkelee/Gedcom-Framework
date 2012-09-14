@@ -13,13 +13,13 @@
     NSString *_displayString;
 }
 
-__strong static NSDictionary *genderStore;
+__strong static NSDictionary *_genderStore;
 
 + (void)initialize
 {
-    genderStore = @{@"M": [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"],
-                    @"F": [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"],
-                    @"U": [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"]};
+    _genderStore = @{@"M": [[GCGender alloc] initWithGedcomString:@"M" displayString:@"Male"],
+                     @"F": [[GCGender alloc] initWithGedcomString:@"F" displayString:@"Female"],
+                     @"U": [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"]};
 }
 
 - (id)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
@@ -36,7 +36,13 @@ __strong static NSDictionary *genderStore;
 
 + (id)valueWithGedcomString:(NSString *)string
 {
-    return [genderStore valueForKey:string];
+    GCGender *value = _genderStore[string];
+    
+    if (value == nil) {
+        value = _genderStore[@"U"];
+    }
+    
+    return value;
 }
 
 + (id)maleGender
@@ -56,7 +62,7 @@ __strong static NSDictionary *genderStore;
 
 - (NSComparisonResult)compare:(id)other
 {
-    return [[self gedcomString] compare:[other gedcomString]];
+    return [_gedcomString compare:[other gedcomString]];
 }
 
 @synthesize gedcomString = _gedcomString;

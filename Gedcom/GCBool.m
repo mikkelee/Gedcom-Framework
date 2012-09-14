@@ -35,10 +35,10 @@ __strong static NSDictionary *_boolStore;
 
 + (id)valueWithGedcomString:(NSString *)string
 {
-    GCBool *value = [_boolStore valueForKey:string];
+    GCBool *value = _boolStore[string];
     
     if (value == nil) {
-        value = [_boolStore valueForKey:@""];
+        value = _boolStore[@""];
     }
     
     return value;

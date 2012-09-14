@@ -28,8 +28,8 @@
     self = [super init];
 	
     if (self) {
-        [self setDateFormat:@"d MMM yyyy HH:mm:ss"];
-        [self setShortMonthSymbols:@[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"]];
+        self.dateFormat = @"d MMM yyyy HH:mm:ss";
+        self.shortMonthSymbols = @[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"];
     }
 	
 	return self;
@@ -37,7 +37,7 @@
 
 - (NSDate *)dateWithNode:(GCNode *)node
 {
-    NSParameterAssert([[node gedTag] isEqualToString:@"CHAN"]);
+    NSParameterAssert([node.gedTag isEqualToString:@"CHAN"]);
     
     NSString *dateString = [NSString stringWithFormat:@"%@ %@", 
                             [[node valueForKey:@"DATE"] gedValue], 
@@ -56,21 +56,22 @@
 - (GCNode *)nodeWithDate:(NSDate *)date
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"d MMM yyyy"];
-    [dateFormatter setShortMonthSymbols:@[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"]];
+	dateFormatter.dateFormat = @"d MMM yyyy";
+    dateFormatter.shortMonthSymbols = @[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"];
+    
 	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-	[timeFormatter setDateFormat:@"HH:mm:ss"];
+	timeFormatter.dateFormat = @"HH:mm:ss";
     
     GCNode *timeNode = [GCNode nodeWithTag:@"TIME" 
                                      value:[timeFormatter stringFromDate:date]];
 	
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE" 
                                      value:[dateFormatter stringFromDate:date]
-                                  subNodes:[NSOrderedSet orderedSetWithObject:timeNode]];
+                                  subNodes:@[timeNode]];
     
     return [GCNode nodeWithTag:@"CHAN" 
                          value:nil 
-                      subNodes:[NSOrderedSet orderedSetWithObject:dateNode]];
+                      subNodes:@[dateNode]];
     
     return nil;
 }

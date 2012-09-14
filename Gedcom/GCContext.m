@@ -100,7 +100,7 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     NSParameterAssert([self countOfEntities] == 1);
     
     [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
-        GCTag *tag = [GCTag rootTagWithCode:[node gedTag]];
+        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
         
         if ([[tag objectClass] isSubclassOfClass:[GCTrailerEntity class]]) {
             *stop = YES;
@@ -136,10 +136,10 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
         _submission = (GCSubmissionEntity *)entity;
     } else if ([entity isKindOfClass:[GCEntity class]]) {
-        if (!_entityStore[[entity type]]) {
-            _entityStore[[entity type]] = [NSMutableArray array];
+        if (!_entityStore[entity.type]) {
+            _entityStore[entity.type] = [NSMutableArray array];
         }
-        [_entityStore[[entity type]] addObject:entity];
+        [_entityStore[entity.type] addObject:entity];
     } else {
         NSLog(@"Unknown class: %@", entity);
     }
@@ -184,7 +184,7 @@ __strong static NSMutableDictionary *_contextsByName = nil;
         return NO;
     }
     
-    return [[self gedcomString] isEqualToString:[object gedcomString]];
+    return [self.gedcomString isEqualToString:[(GCContext *)object gedcomString]];
 }
 
 
@@ -218,7 +218,7 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     if (!obj) {
         return nil;
     }
-    NSParameterAssert([[obj gedTag] code]);
+    NSParameterAssert(obj.gedTag.code);
     
     //NSLog(@"looking for %@ in %@", obj, self);
     
@@ -233,7 +233,7 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     if (xref == nil) {
         int i = 0;
         do {
-            xref = [NSString stringWithFormat:@"@%@%d@", [[obj gedTag] code], ++i];
+            xref = [NSString stringWithFormat:@"@%@%d@", obj.gedTag.code, ++i];
         } while (_xrefStore[xref]);
         
         [self setXref:xref forEntity:obj];
@@ -270,15 +270,15 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 {
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[self countOfEntities]];
 	
-	[nodes addObject:[_header gedcomNode]];
+	[nodes addObject:_header.gedcomNode];
     
     if (_submission) {
-        [nodes addObject:[_submission gedcomNode]];
+        [nodes addObject:_submission.gedcomNode];
     }
 	
     for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
         for (GCEntity *entity in _entityStore[key]) {
-            [nodes addObject:[entity gedcomNode]];
+            [nodes addObject:entity.gedcomNode];
         }
     }
 	
@@ -291,8 +291,8 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 {
     NSMutableArray *gedcomStrings = [NSMutableArray array];
     
-    for (GCNode *node in [self gedcomNodes]) {
-        [gedcomStrings addObjectsFromArray:[node gedcomLines]];
+    for (GCNode *node in self.gedcomNodes) {
+        [gedcomStrings addObjectsFromArray:node.gedcomLines];
     }
     
     return [gedcomStrings componentsJoinedByString:@"\n"];

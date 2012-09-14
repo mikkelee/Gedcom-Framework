@@ -82,7 +82,7 @@
     
     GCMutableNode *mutableNode = [node mutableCopy];
     
-    [mutableNode setGedValue:@"Jens /Hansen/ Smed"];
+    mutableNode.gedValue = @"Jens /Hansen/ Smed";
     
     STAssertEqualObjects([mutableNode gedValue], @"Jens /Hansen/ Smed", nil);
     

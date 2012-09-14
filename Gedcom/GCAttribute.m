@@ -28,8 +28,8 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
-        if ([node gedValue] != nil) {
-            [self setValueWithGedcomString:[node gedValue]];
+        if (node.gedValue != nil) {
+            [self setValueWithGedcomString:node.gedValue];
         }
     }
     
@@ -64,15 +64,15 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:[[self gedTag] code]
-								 value:[_value gedcomString]
+    return [[GCNode alloc] initWithTag:self.gedTag.code
+								 value:self.value.gedcomString
 								  xref:nil
-							  subNodes:[self subNodes]];
+							  subNodes:self.subNodes];
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    [self setValueWithGedcomString:[gedcomNode gedValue]];
+    [self setValueWithGedcomString:gedcomNode.gedValue];
     
     [super setGedcomNode:gedcomNode];       
 }
@@ -87,8 +87,8 @@
         return result;
     }
     
-    if ([self value] != [(GCAttribute *)other value]) {
-        return [[self value] compare:[(GCAttribute *)other value]];
+    if (self.value != [(GCAttribute *)other value]) {
+        return [self.value compare:[(GCAttribute *)other value]];
     }
     
     return NSOrderedSame;
@@ -123,7 +123,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (value: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [self value], [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (value: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, self.value, [self propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -131,12 +131,12 @@
 
 - (NSString *)displayValue
 {
-    return [[self value] displayString];
+    return self.value.displayString;
 }
 
 - (NSAttributedString *)attributedDisplayValue
 {
-    return [[NSAttributedString alloc] initWithString:[self displayValue]];
+    return [[NSAttributedString alloc] initWithString:self.displayValue];
 }
 
 @end
@@ -147,7 +147,7 @@
 {
     GCAttribute *attribute = [self attributeWithType:type];
     
-    [attribute setValue:value];
+    attribute.value = value;
     
     return attribute;
 }
@@ -163,7 +163,7 @@
 
 - (void)setValueWithGedcomString:(NSString *)string
 {
-    [self setValue:[[[self gedTag] valueType] valueWithGedcomString:string]];
+    self.value = [self.gedTag.valueType valueWithGedcomString:string];
 }
 
 @end

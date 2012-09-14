@@ -30,7 +30,7 @@
 
 - (NSComparisonResult)compare:(id)other
 {
-    return [[self gedcomString] compare:[other gedcomString]];
+    return [self.gedcomString compare:[other gedcomString]];
 }
 
 - (NSString *)gedcomString

@@ -25,8 +25,7 @@ __attribute__((destructor)) static void unregister_protocol() {
 #pragma mark NSURLProtocol overrides
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    NSString *urlScheme = [[request URL] scheme];
-    return [urlScheme isEqualToString:@"xref"];
+    return [request.URL.scheme isEqualToString:@"xref"];
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
@@ -38,8 +37,8 @@ __attribute__((destructor)) static void unregister_protocol() {
 {
     NSURLRequest *request = [self request];
     
-    GCContext *context = [GCContext contextsByName][[[request URL] host]];
-    NSString *xref = [[request URL] path];
+    GCContext *context = [GCContext contextsByName][request.URL.host];
+    NSString *xref = request.URL.path;
     
     [context activateXref:xref];
 }

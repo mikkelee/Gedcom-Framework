@@ -45,25 +45,33 @@ Additionally there are various minor TODOs scattered around the source files.
 Showing some different ways to add attributes to an object:
 
 ``` objective-c
+    // Create a context
 	GCContext *ctx = [GCContext context];
 	
+    // Create an individual entity in the context
     GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
     
-    NSArray *names = [NSArray arrayWithObjects:
-                      [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
-                      [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"], 
-                      nil];
+    // Create an array of names and set them on the individual for the property key "personalNames".
+    // When an object receives GCValues for a property key, it will implicitly create attributes.
+    // Likewise with GCEntities, creating relationships.
+    NSArray *names = @[
+        [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
+        [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"], 
+    ];
     
     [indi setValue:names 
             forKey:@"personalNames"];
 	
+    // Create a birth attribute, give it a date attribute and add it to the individual
 	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     [[indi mutableArrayValueForKey:@"properties"] addObject:birt];
     
-    [indi addAttributeWithType:@"death" value:[GCBool yes]];
+    // You can also use subscripted access, in this case adding a single death attribute
+    // with the value yes, indicating that the individual died.
+    indi[@"deaths"] = @[[GCBool yes]];
 ```
 
 The above is equivalent to the following GCNode:
@@ -72,22 +80,18 @@ The above is equivalent to the following GCNode:
     GCNode *node = [[GCNode alloc] initWithTag:@"INDI" 
                                          value:nil
                                           xref:@"@INDI1@"
-                                      subNodes:[NSArray arrayWithObjects:
-                                                [GCNode nodeWithTag:@"NAME" 
-                                                              value:@"Jens /Hansen/ Smed"],
-                                                [GCNode nodeWithTag:@"NAME" 
+                                      subNodes:@[
+                                                [GCNode nodeWithTag:@"NAME"
                                                               value:@"Jens /Hansen/"],
-                                                [[GCNode alloc] initWithTag:@"BIRT" 
-                                                                      value:nil
-                                                                       xref:nil
-                                                                   subNodes:[NSArray arrayWithObjects:
-                                                                             [GCNode nodeWithTag:@"DATE"
-                                                                                           value:@"1 JAN 1901"],
-                                                                              nil]
-                                                                             ],
+                                                [GCNode nodeWithTag:@"NAME"
+                                                              value:@"Jens /Hansen/ Smed"],
+                                                [GCNode nodeWithTag:@"BIRT"
+                                                              value:nil
+                                                           subNodes:@[ [GCNode nodeWithTag:@"DATE"
+                                                                                     value:@"1 JAN 1901"] ]],
                                                 [GCNode nodeWithTag:@"DEAT" 
                                                               value:@"Y"],
-                                                 nil]];
+                                                ]];
 ```
 
 And both are equivalent to the following Gedcom string:

@@ -105,7 +105,7 @@
     if ([[link scheme] isEqualToString:@"xref"]) {
         GCEntity *entity = [ctx entityForXref:[[link path] lastPathComponent]];
         
-        return [[entity type] isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
+        return [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
     } else {
         [[NSWorkspace sharedWorkspace] openURL:link];
         
@@ -140,7 +140,7 @@
 {
     NSLog(@"Clicked: %@", entity);
     
-    [[entity type] isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
+    [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
 }
 
 @end

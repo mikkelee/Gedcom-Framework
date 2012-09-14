@@ -64,7 +64,7 @@
 - (void)addSubPlace:(GCPlacestring *)subPlace
 {
     [_subPlaces setValue:subPlace forKey:[subPlace gedcomString]];
-    [subPlace setSuperPlace:self];
+    subPlace.superPlace = self;
 }
 
 - (NSComparisonResult)compare:(id)other
@@ -75,14 +75,14 @@
         return result;
     }
     
-    return [[self name] localizedCaseInsensitiveCompare:[other name]];
+    return [self.name localizedCaseInsensitiveCompare:[other name]];
 }
 
 - (NSString *)gedcomString
 {
-    NSMutableArray *placeComponents = [NSMutableArray arrayWithObject:[self name]];
+    NSMutableArray *placeComponents = [NSMutableArray arrayWithObject:self.name];
     
-    id place = self;
+    GCPlacestring *place = self;
     while ((place = [place superPlace]) && place != [[self class] rootPlace]) {
         [placeComponents addObject:[place name]];
     }
@@ -92,7 +92,7 @@
 
 - (NSString *)displayString
 {
-    return [self gedcomString];
+    return self.gedcomString;
 }
 
 //COV_NF_START

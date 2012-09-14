@@ -35,12 +35,12 @@
     return self;
 }
 
--(GCEntity *)entity
+- (GCEntity *)entity
 {
     return _entity;
 }
 
--(void)setEntity:(GCEntity *)entity
+- (void)setEntity:(GCEntity *)entity
 {
     [self willChangeValueForKey:@"entity"];
     _entity = entity;
@@ -89,7 +89,7 @@
     return [_observations copy];
 }
 
--(void)dealloc
+- (void)dealloc
 {
     for (NSString *key in [_entity validProperties]) {
         //NSLog(@"Deobserving: %@", key);
@@ -174,7 +174,7 @@
 	
     GCIndividualEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
-    [observer setEntity:indi];
+    observer.entity = indi;
     
     [[indi mutableArrayValueForKey:@"personalNames"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
     [indi.personalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"]];
@@ -205,20 +205,20 @@
 	
     GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
-    [indi setGedcomString:@"0 @INDI1@ INDI\n"
+    indi.gedcomString = @"0 @INDI1@ INDI\n"
      @"1 NAME Jens /Hansen/\n"
      @"1 NAME Jens /Hansen/ Smed\n"
      @"1 BIRT\n"
      @"2 DATE 1 JAN 1901\n"
-     @"1 DEAT Y"];
+     @"1 DEAT Y";
     
-    [observer setEntity:indi];
+    observer.entity = indi;
     
-    [indi setGedcomString:@"0 @INDI1@ INDI\n"
+    indi.gedcomString = @"0 @INDI1@ INDI\n"
      @"1 NAME Jens /Hansen/\n"
      @"1 NAME Jens /Hansen/ Smed\n"
      @"1 DEAT\n"
-     @"2 DATE 1 JAN 1930"];
+     @"2 DATE 1 JAN 1930";
     
     //broken
     /*

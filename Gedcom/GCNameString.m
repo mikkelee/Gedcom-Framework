@@ -14,7 +14,7 @@
 
 - (NSComparisonResult)compare:(id)other
 {
-    return [[self displayString] localizedCaseInsensitiveCompare:[other displayString]];
+    return [self.displayString localizedCaseInsensitiveCompare:[other displayString]];
 }
 
 - (NSString *)displayString

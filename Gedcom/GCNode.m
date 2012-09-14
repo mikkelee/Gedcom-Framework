@@ -51,10 +51,10 @@ static NSString *concSeparator;
     self = [super init];
     
 	if (self) {
-        [self setLineSeparator:@"\n"];
-        [self setGedTag:tag];
-        [self setXref:xref];
-        [self setGedValue:value];
+        self.lineSeparator = @"\n";
+        self.gedTag = tag;
+        self.xref = xref;
+        self.gedValue = value;
         
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
@@ -129,16 +129,16 @@ static NSString *concSeparator;
 			}
             
 			if ([code isEqualToString:@"CONT"]) {
-				if ([currentNode gedValue] == nil) {
-					[currentNode setGedValue:@""];
+				if (currentNode.gedValue == nil) {
+					currentNode.gedValue = @"";
 				}
-				[currentNode setGedValue:[NSString stringWithFormat:@"%@\n%@", [currentNode gedValue], val]];
+				[currentNode setGedValue:[NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, val]];
 				return;
 			} else if ([code isEqualToString:@"CONC"]) {
-				if ([currentNode gedValue] == nil) {
-					[currentNode setGedValue:@""];
+				if (currentNode.gedValue == nil) {
+					currentNode.gedValue = @"";
 				}
-				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@%@", [currentNode gedValue], concSeparator, val]];
+				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, val]];
 				return;
 			}
             
@@ -290,9 +290,9 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
     
     if ([self xref] && ![[self xref] isEqualToString:@""]) {
         [lineComponents addObject:attributedString([self xref], GCXrefAttributeName, [self xref])];
-        [lineComponents addObject:attributedString([self gedTag], GCTagAttributeName, [self gedTag])];
+        [lineComponents addObject:attributedString(self.gedTag, GCTagAttributeName, self.gedTag)];
 	} else {
-        [lineComponents addObject:attributedString([self gedTag], GCTagAttributeName, [self gedTag])];
+        [lineComponents addObject:attributedString(self.gedTag, GCTagAttributeName, self.gedTag)];
         if (firstLine) {
             if ([firstLine hasPrefix:@"@"] && [firstLine hasSuffix:@"@"]) {
                 [lineComponents addObject:attributedString(firstLine, GCLinkAttributeName, firstLine)];
@@ -308,7 +308,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
         [gedLines addObject:joinedAttributedString(subLine)];
     }
     
-	for (id subNode in [self subNodes] ) {
+	for (id subNode in self.subNodes ) {
 		[gedLines addObjectsFromArray:[subNode attributedGedcomLinesAtLevel:level+1]];
 	}
 	
@@ -328,7 +328,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (NSString *)gedcomString
 {
-	return [[self gedcomLines] componentsJoinedByString:[self lineSeparator]];
+	return [self.gedcomLines componentsJoinedByString:self.lineSeparator];
 }
 
 - (NSAttributedString *)attributedGedcomString
@@ -336,7 +336,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
     //TODO tabs?
     NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] init];
     
-    NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:[self lineSeparator]];
+    NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:self.lineSeparator];
     
     for (NSAttributedString *line in [self attributedGedcomLinesAtLevel:0]) {
         [lines appendAttributedString:line];
@@ -357,8 +357,8 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
     if (isTagKey) {
         NSMutableArray *subNodes = [NSMutableArray array];
         
-        for (id subNode in [self subNodes]) {
-            if ([[subNode gedTag] isEqualTo:key]) {
+        for (GCNode *subNode in self.subNodes) {
+            if ([subNode.gedTag isEqualTo:key]) {
                 [subNodes addObject:subNode];
             }
         }
@@ -390,7 +390,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (BOOL)isEqual:(GCNode *)other
 {
-    if (![[self gedTag] isEqualToString:[other gedTag]]) {
+    if (![self.gedTag isEqualToString:[other gedTag]]) {
         return NO;
     }
     
@@ -402,7 +402,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
         return NO;
     }
     
-    if (![[[self subNodes] set] isEqualToSet:[[other subNodes] set]]) {
+    if (![[self.subNodes set] isEqualToSet:[[other subNodes] set]]) {
         return NO;
     }
     
@@ -411,7 +411,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (NSUInteger)hash
 {
-    return [[self gedTag] hash] + [[self xref] hash] + [[self gedValue] hash] + [[[self subNodes] set] hash];
+    return [self.gedTag hash] + [[self xref] hash] + [[self gedValue] hash] + [[self.subNodes set] hash];
 }
 */
 
@@ -420,7 +420,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", [self gedTag], [self xref], [self gedValue], [self subNodes]];
+	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", self.gedTag, [self xref], [self gedValue], self.subNodes];
 }
 //COV_NF_END
 
@@ -428,11 +428,11 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:[self gedTag] forKey:@"gedTag"];
+    [encoder encodeObject:self.gedTag forKey:@"gedTag"];
     [encoder encodeObject:[self gedValue] forKey:@"gedValue"];
     [encoder encodeObject:[self xref] forKey:@"xref"];
     [encoder encodeObject:[self lineSeparator] forKey:@"lineSeparator"];
-    [encoder encodeObject:[self subNodes] forKey:@"subNodes"];
+    [encoder encodeObject:self.subNodes forKey:@"subNodes"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -440,10 +440,10 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 	self = [super init];
     
     if (self) {
-        [self setGedTag:[decoder decodeObjectForKey:@"gedTag"]];
-        [self setGedValue:[decoder decodeObjectForKey:@"gedValue"]];
-        [self setXref:[decoder decodeObjectForKey:@"xref"]];
-        [self setLineSeparator:[decoder decodeObjectForKey:@"lineSeparator"]];
+        self.gedTag = [decoder decodeObjectForKey:@"gedTag"];
+        self.gedValue = [decoder decodeObjectForKey:@"gedValue"];
+        self.xref = [decoder decodeObjectForKey:@"xref"];
+        self.lineSeparator = [decoder decodeObjectForKey:@"lineSeparator"];
         _subNodes = [decoder decodeObjectForKey:@"subNodes"];
 	}
     
@@ -454,12 +454,12 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    GCNode *copy = [[GCNode allocWithZone:zone] initWithTag:[self gedTag] 
+    GCNode *copy = [[GCNode allocWithZone:zone] initWithTag:self.gedTag 
                                                       value:[self gedValue] 
                                                        xref:[self xref] 
-                                                   subNodes:[self subNodes]];
+                                                   subNodes:self.subNodes];
     
-    [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
+    [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
     
     return copy;
 }
@@ -468,12 +468,12 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (id)mutableCopyWithZone:(NSZone *)zone
 {
-    GCMutableNode *copy = [[GCMutableNode allocWithZone:zone] initWithTag:[self gedTag] 
+    GCMutableNode *copy = [[GCMutableNode allocWithZone:zone] initWithTag:self.gedTag 
                                                                     value:[self gedValue] 
                                                                      xref:[self xref] 
                                                                  subNodes:nil];
     
-    [copy setValue:[self lineSeparator] forKey:@"lineSeparator"];
+    [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
     
     for (id subNode in _subNodes) {
         [copy addSubNode:[subNode mutableCopy]];

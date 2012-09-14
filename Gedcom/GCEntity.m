@@ -56,7 +56,7 @@
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:[node gedTag]] name] inContext:context];
+    GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:node.gedTag] name] inContext:context];
     
     NSParameterAssert(entity);
     
@@ -70,7 +70,7 @@
         
         [[node subNodes] enumerateObjectsWithOptions:(NSEnumerationReverse) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             GCNode *subNode = (GCNode *)obj;
-            if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
+            if ([subNode.gedTag isEqualToString:@"CHAN"]) {
                 changeNode = subNode;
                 *stop = YES;
             }
@@ -83,9 +83,9 @@
         [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
         
         if (changeNode) {
-            [entity setLastModified:[[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode]];
+            entity.lastModified = [[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode];
         } else {
-            [entity setLastModified:nil];
+            entity.lastModified = nil;
         }
     });
     
@@ -102,8 +102,8 @@
         return result;
     }
     
-    if ([self type] != [(GCProperty *)other type]) {
-        return [[self type] compare:[(GCProperty *)other type]];
+    if (self.type != [(GCProperty *)other type]) {
+        return [self.type compare:[(GCProperty *)other type]];
     }
     
     return NSOrderedSame;
@@ -159,28 +159,28 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:[[self gedTag] code]
+    return [[GCNode alloc] initWithTag:self.gedTag.code
 								 value:nil
-								  xref:[[self context] xrefForEntity:self]
-							  subNodes:[self subNodes]];
+								  xref:[self.context xrefForEntity:self]
+							  subNodes:self.subNodes];
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSParameterAssert([[gedcomNode xref] isEqualToString:[[self context] xrefForEntity:self]]);
+    NSParameterAssert([[gedcomNode xref] isEqualToString:[self.context xrefForEntity:self]]);
     
     [super setGedcomNode:gedcomNode];
 }    
 
 - (NSString *)displayValue
 {
-    return [[self context] xrefForEntity:self];
+    return [self.context xrefForEntity:self];
 }
 
 - (NSAttributedString *)attributedDisplayValue
 {
-    return [[NSAttributedString alloc] initWithString:[self displayValue] 
-                                           attributes:@{NSLinkAttributeName: [[self context] xrefForEntity:self]}];
+    return [[NSAttributedString alloc] initWithString:self.displayValue 
+                                           attributes:@{NSLinkAttributeName: [self.context xrefForEntity:self]}];
 }
 
 - (GCObject *)rootObject
@@ -192,13 +192,13 @@
 
 - (void)didChangeValueForKey:(NSString *)key
 {
-    [self setLastModified:[NSDate date]];
+    self.lastModified = [NSDate date];
     [super didChangeValueForKey:key];
 }
 
 - (void)didChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
 {
-    [self setLastModified:[NSDate date]];
+    self.lastModified = [NSDate date];
     [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
 }
 

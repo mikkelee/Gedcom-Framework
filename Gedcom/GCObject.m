@@ -72,22 +72,22 @@ __strong static NSDictionary *_defaultColors;
 - (NSOrderedSet *)validProperties
 {
     @synchronized(_validPropertiesByType) {
-        NSOrderedSet *_validProperties = _validPropertiesByType[[self type]];
+        NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
         
         if (!_validProperties) {
-            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[[_gedTag validSubTags] count]];
+            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[_gedTag.validSubTags count]];
             
-            for (id subTag in [_gedTag validSubTags]) {
+            for (GCTag *subTag in _gedTag.validSubTags) {
                 if ([_gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
-                    [valid addObject:[subTag pluralName]];
+                    [valid addObject:subTag.pluralName];
                 } else {
-                    [valid addObject:[subTag name]];
+                    [valid addObject:subTag.name];
                 }
             }
             
             _validProperties = [valid copy];
             
-            _validPropertiesByType[[self type]] = _validProperties;
+            _validPropertiesByType[self.type] = _validProperties;
         }
         
         return _validProperties;
@@ -104,7 +104,7 @@ __strong static NSDictionary *_defaultColors;
     NSMutableArray *propertyTypes = [NSMutableArray array];
     
     for (GCTag *tag in [_gedTag subTagsInGroup:groupName]) {
-        [propertyTypes addObject:[tag pluralName]];
+        [propertyTypes addObject:tag.pluralName];
     }
     
     return [propertyTypes count] > 0 ? [propertyTypes copy] : nil;
@@ -131,7 +131,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-    if ([[self validProperties] containsObject:key]) {
+    if ([self.validProperties containsObject:key]) {
         if ([self allowedOccurrencesPropertyType:key].max > 1) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
@@ -152,7 +152,7 @@ __strong static NSDictionary *_defaultColors;
         for (NSString *propertyType in [self propertyTypesInGroup:key]) {
             [self setNilValueForKey:propertyType];
         }
-    } else if ([[self validProperties] containsObject:key]) {
+    } else if ([self.validProperties containsObject:key]) {
         @synchronized(_propertyStore) {
             [_propertyStore removeObjectForKey:key];
         }
@@ -179,7 +179,7 @@ __strong static NSDictionary *_defaultColors;
         }
         
         return values;
-    } else if ([[self validProperties] containsObject:key]) {
+    } else if ([self.validProperties containsObject:key]) {
         @synchronized(_propertyStore) {
             return _propertyStore[key];
         }
@@ -222,15 +222,14 @@ __strong static NSDictionary *_defaultColors;
         if ([cleanName hasSuffix:@"Relationship"])
             cleanName = [cleanName substringToIndex:[cleanName length] - 12];
         
-//        NSLog(@"cleanName: %@", cleanName);
+        //NSLog(@"cleanName: %@", cleanName);
         
         tag = [GCTag tagNamed:[NSString stringWithFormat:@"%@%@", [[cleanName substringToIndex:1] lowercaseString], [cleanName substringFromIndex:1]]];
     }
     
     if (tag != nil) {
-        for (GCTag *subTag in [tag validSubTags]) {
-            NSString *keyPath = [subTag name];
-            [keyPaths addObject:keyPath];
+        for (GCTag *subTag in tag.validSubTags) {
+            [keyPaths addObject:subTag.name];
             /*
             GCTag *subSubTag = subTag;
             while ([[subSubTag validSubTags] count] > 0) {
@@ -243,7 +242,7 @@ __strong static NSDictionary *_defaultColors;
     
     [keyPaths removeObject:key];
     
-//    NSLog(@"keyPaths on %@: %@ => %@", [self className], key, keyPaths);
+    //NSLog(@"keyPaths on %@: %@ => %@", [self className], key, keyPaths);
     
     return keyPaths;
 }
@@ -277,22 +276,22 @@ __strong static NSDictionary *_defaultColors;
 
 - (id)objectInPropertiesAtIndex:(NSUInteger)index
 {
-    return [self orderedProperties][index];
+    return self.orderedProperties[index];
 }
 
 - (void)insertObject:(GCProperty *)property inPropertiesAtIndex:(NSUInteger)index
 {
     NSParameterAssert(property);
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    //NSParameterAssert([[property gedTag] isCustom] || [[self validProperties] containsObject:[property type]]);
+    //NSParameterAssert([[property gedTag] isCustom] || [self.validProperties containsObject:property.type]);
     
     [self setDescribedObjectForProperty:property];
     
     //[self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_propertyStore) {
-        if ([self allowedOccurrencesPropertyType:[property type]].max > 1) {
-            NSString *key = [[property gedTag] pluralName];
+        if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+            NSString *key = property.gedTag.pluralName;
             
             if (!_propertyStore[key]) {
                 _propertyStore[key] = [NSMutableArray array];
@@ -300,7 +299,7 @@ __strong static NSDictionary *_defaultColors;
             
             [_propertyStore[key] addObject:property];
         } else {
-            _propertyStore[[property type]] = property;
+            _propertyStore[property.type] = property;
         }
     }
     
@@ -309,7 +308,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
 {
-    GCProperty *property = [self orderedProperties][index];
+    GCProperty *property = self.orderedProperties[index];
     
     if (property == nil) {
         return;
@@ -321,8 +320,8 @@ __strong static NSDictionary *_defaultColors;
     //[self willChangeValueForKey:@"gedcomString"];
     
     @synchronized(_propertyStore) {
-        if ([self allowedOccurrencesPropertyType:[property type]].max > 1) {
-            NSString *key = [[property gedTag] pluralName];
+        if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+            NSString *key = property.gedTag.pluralName;
             
             if (!_propertyStore[key]) {
                 _propertyStore[key] = [NSMutableArray array];
@@ -330,7 +329,7 @@ __strong static NSDictionary *_defaultColors;
             
             [_propertyStore[key] removeObject:property];
         } else {
-            [_propertyStore removeObjectForKey:[property type]];
+            [_propertyStore removeObjectForKey:property.type];
         }
     }
     
@@ -362,7 +361,7 @@ __strong static NSDictionary *_defaultColors;
 	NSUInteger parameterCount = [[stringSelector componentsSeparatedByString:@":"] count]-1;
     
 	// valueForKey:
-	if (parameterCount == 0 && ([[self validProperties] containsObject:stringSelector] || [[self propertyTypesInGroup:stringSelector] count] > 0)) {
+	if (parameterCount == 0 && ([self.validProperties containsObject:stringSelector] || [[self propertyTypesInGroup:stringSelector] count] > 0)) {
 		return [super methodSignatureForSelector:@selector(valueForKey:)];
     }
     
@@ -373,7 +372,7 @@ __strong static NSDictionary *_defaultColors;
                   [stringSelector substringWithRange:NSMakeRange(4, [stringSelector length]-5)]];
         NSLog(@"key: %@", key);
         
-        if ([[self validProperties] containsObject:key] || [[self propertyTypesInGroup:key] count] > 0)
+        if ([self.validProperties containsObject:key] || [[self propertyTypesInGroup:key] count] > 0)
             return [super methodSignatureForSelector:@selector(setValue:forKey:)];
     }
     
@@ -417,7 +416,7 @@ __strong static NSDictionary *_defaultColors;
     NSMutableArray *orderedProperties = [NSMutableArray array];
     
     @synchronized(_propertyStore) {
-        for (NSString *propertyType in [self validProperties]) {
+        for (NSString *propertyType in self.validProperties) {
             if ([self allowedOccurrencesPropertyType:propertyType].max > 1) {
                 [orderedProperties addObjectsFromArray:[_propertyStore valueForKey:propertyType]];
             } else {
@@ -435,8 +434,8 @@ __strong static NSDictionary *_defaultColors;
 {
     NSMutableArray *subNodes = [NSMutableArray array];
     
-    for (GCProperty *property in [self orderedProperties]) {
-        [subNodes addObject:[property gedcomNode]];
+    for (GCProperty *property in self.orderedProperties) {
+        [subNodes addObject:property.gedcomNode];
     }
     
 	return subNodes;
@@ -454,7 +453,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (BOOL)isEqualTo:(id)other
 {
-    return [[self gedcomString] isEqualToString:[other gedcomString]];
+    return [self.gedcomString isEqualToString:[other gedcomString]];
 }
 /*
  - (BOOL)isEqual:(id)other
@@ -463,12 +462,12 @@ __strong static NSDictionary *_defaultColors;
  return YES;
  }
  
- return [[self gedcomString] isEqualToString:[other gedcomString]];
+ return [self.gedcomString isEqualToString:other.gedcomString];
  }
  
  - (NSUInteger)hash
  {
- return [[self gedcomString] hash];
+ return [self.gedcomString hash];
  }*/
 
 #pragma mark NSCoding conformance
@@ -488,7 +487,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:[self type] forKey:@"type"];
+    [aCoder encodeObject:self.type forKey:@"type"];
     @synchronized(_propertyStore) {
         [aCoder encodeObject:_propertyStore forKey:@"propertyStore"];
     }
@@ -512,7 +511,7 @@ __strong static NSDictionary *_defaultColors;
 - (NSString *)propertyDescriptionWithIndent:(NSUInteger)level
 {
     NSMutableString *out = [NSMutableString string];
-    for (GCObject *property in [self allProperties]) {
+    for (GCObject *property in self.allProperties) {
         [out appendString:[property descriptionWithIndent:level+1]];
     }
     
@@ -524,17 +523,17 @@ __strong static NSDictionary *_defaultColors;
 
 - (NSString *)type
 {
-    return [_gedTag name];
+    return _gedTag.name;
 }
 
 - (NSString *)localizedType
 {
-    return [_gedTag localizedName];
+    return _gedTag.localizedName;
 }
 
 - (BOOL)allowsProperties
 {
-    return ([[self validProperties] count] > 0); //TODO (see cocoa-dev reply)
+    return ([self.validProperties count] > 0); //TODO (see cocoa-dev reply)
 }
 
 @dynamic rootObject;
@@ -545,17 +544,17 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSMutableArray *originalProperties = [[self allProperties] mutableCopy];
+    NSMutableArray *originalProperties = [self.allProperties mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
     
     for (GCNode *subNode in [gedcomNode subNodes]) {
-        if ([[subNode gedTag] isEqualToString:@"CHAN"]) {
+        if ([subNode.gedTag isEqualToString:@"CHAN"]) {
             continue; //we ignore the CHAN node, it shouldn't be changed via setGedcomNode:
         }
         
-        NSIndexSet *matches = [originalProperties indexesOfObjectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [[[(GCProperty *)obj gedTag] code] isEqualToString:[subNode gedTag]];
+        NSIndexSet *matches = [originalProperties indexesOfObjectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(GCProperty *obj, NSUInteger idx, BOOL *stop) {
+            return [obj.gedTag.code isEqualToString:subNode.gedTag];
         }];
         
         if ([matches count] < 1) {
@@ -565,7 +564,7 @@ __strong static NSDictionary *_defaultColors;
             GCProperty *property = originalProperties[[matches firstIndex]];
             [originalProperties removeObject:property];
             //NSLog(@"modifying property %@ with %@", property, subNode);
-            [property setGedcomNode:subNode];
+            property.gedcomNode = subNode;
         }
     }
     
@@ -575,7 +574,7 @@ __strong static NSDictionary *_defaultColors;
     
     //remove the left over objects:
     for (GCProperty *property in originalProperties) {
-        [[self allProperties] removeObject:property];
+        [self.allProperties removeObject:property];
     }
     
     //NSLog(@"propertiesArray: %@", [self propertiesArray]);
@@ -583,7 +582,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (NSString *)gedcomString
 {
-    return [[self gedcomNode] gedcomString];
+    return [self.gedcomNode gedcomString];
 }
 
 - (void)setGedcomString:(NSString *)gedcomString
@@ -594,14 +593,14 @@ __strong static NSDictionary *_defaultColors;
     
     GCNode *node = [nodes lastObject];
     
-    NSParameterAssert([[[self gedTag] code] isEqualToString:[node gedTag]]);
+    NSParameterAssert([self.gedTag.code isEqualToString:node.gedTag]);
     
-    [self setGedcomNode:node];
+    self.gedcomNode = node;
 }
 
 - (NSAttributedString *)attributedGedcomString
 {
-    NSMutableAttributedString *gedcomString = [[[self gedcomNode] attributedGedcomString] mutableCopy];
+    NSMutableAttributedString *gedcomString = [self.gedcomNode.attributedGedcomString mutableCopy];
     
     NSDictionary *colors = _defaultColors; //[[NSUserDefaults standardUserDefaults] dictionaryForKey:(NSString *)GCColorPreferenceKey];
     
@@ -617,7 +616,7 @@ __strong static NSDictionary *_defaultColors;
                                       } else if (attrs[GCLinkAttributeName]) {
                                           NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
                                                                                       @"xref",
-                                                                                      [[self context] name],
+                                                                                      [self.context name],
                                                                                       attrs[GCLinkAttributeName]]];
                                           
                                           [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
@@ -631,7 +630,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setAttributedGedcomString:(NSAttributedString *)attributedGedcomString
 {
-    [self setGedcomString:[attributedGedcomString string]];
+    self.gedcomString = [attributedGedcomString string];
 }
 
 @end
@@ -649,7 +648,7 @@ __strong static NSDictionary *_defaultColors;
     
     [[self mutableArrayValueForKey:@"properties"] addObject:relationship];
     
-    [relationship setTarget:target];
+    relationship.target = target;
 }
 
 - (void)addPropertyWithGedcomNode:(GCNode *)node
@@ -711,13 +710,13 @@ BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Class type, NSErr
 
 BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
     if ([tag objectClass] == [GCAttribute class]) {
-        if (!validateValueTypeHelper(key, [(GCAttribute *)property value], [tag valueType], error)) {
+        if (!validateValueTypeHelper(key, [(GCAttribute *)property value], tag.valueType, error)) {
             return NO;
         }
     }
     
     if ([tag objectClass] == [GCRelationship class]) {
-        if (!validateTargetTypeHelper(key, [(GCRelationship *)property target], [tag targetType], error)) {
+        if (!validateTargetTypeHelper(key, [(GCRelationship *)property target], tag.targetType, error)) {
             return NO;
         }
     }
@@ -727,8 +726,8 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
 
 - (BOOL)validateObject:(NSError **)outError
 {
-    for (id propertyKey in [self validProperties]) {
-        GCTag *subTag = [[self gedTag] subTagWithName:propertyKey];
+    for (id propertyKey in self.validProperties) {
+        GCTag *subTag = [self.gedTag subTagWithName:propertyKey];
         
         NSInteger propertyCount = 0;
         
@@ -743,13 +742,13 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
             validatePropertyHelper(propertyKey, [self valueForKey:propertyKey], subTag, outError);
         }
         
-        GCAllowedOccurrences allowedOccurrences = [[self gedTag] allowedOccurrencesOfSubTag:subTag];
+        GCAllowedOccurrences allowedOccurrences = [self.gedTag allowedOccurrencesOfSubTag:subTag];
         
         if (propertyCount > allowedOccurrences.max) {
             if (NULL != outError) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
                                                 code:GCTooManyValuesError 
-                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, [self type]]}];
+                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, self.type]}];
             }
             
             return NO;
@@ -759,7 +758,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
             if (NULL != outError) {
                 *outError = [NSError errorWithDomain:@"GCErrorDoman" 
                                                 code:GCTooFewValuesError 
-                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, [self type]]}];
+                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, self.type]}];
             }
             
             return NO;
@@ -771,7 +770,7 @@ BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSE
 
 - (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
 {
-    GCTag *subTag = [[self gedTag] subTagWithName:inKey];
+    GCTag *subTag = [self.gedTag subTagWithName:inKey];
     
     return validatePropertyHelper(inKey, *ioValue, subTag, outError);
 }

@@ -34,7 +34,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:[self gedcomString] forKey:@"gedcomString"];
+    [aCoder encodeObject:self.gedcomString forKey:@"gedcomString"];
 }
 
 #pragma mark NSCopying conformance
@@ -59,7 +59,7 @@
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (%@)", [super description], [self gedcomString]];
+    return [NSString stringWithFormat:@"%@ (%@)", [super description], self.gedcomString];
 }
 //COV_NF_END
 

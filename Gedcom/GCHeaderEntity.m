@@ -43,10 +43,10 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:[[self gedTag] code]
+    return [[GCNode alloc] initWithTag:self.gedTag.code
 								 value:nil
 								  xref:nil
-							  subNodes:[self subNodes]];
+							  subNodes:self.subNodes];
 }
 
 @end
