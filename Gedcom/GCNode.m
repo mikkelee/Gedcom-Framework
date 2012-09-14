@@ -280,7 +280,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
     NSString *firstLine = nil;
     NSArray *subLineNodes = nil;
 	
-    contConcHelper(level, [self gedValue], &firstLine, &subLineNodes);
+    contConcHelper(level, self.gedValue, &firstLine, &subLineNodes);
     
     NSMutableArray *lineComponents = [NSMutableArray array];
     
@@ -288,8 +288,8 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
     
     [lineComponents addObject:attributedString(levelString, GCLevelAttributeName, levelString)];
     
-    if ([self xref] && ![[self xref] isEqualToString:@""]) {
-        [lineComponents addObject:attributedString([self xref], GCXrefAttributeName, [self xref])];
+    if (self.xref && ![self.xref isEqualToString:@""]) {
+        [lineComponents addObject:attributedString(self.xref, GCXrefAttributeName, self.xref)];
         [lineComponents addObject:attributedString(self.gedTag, GCTagAttributeName, self.gedTag)];
 	} else {
         [lineComponents addObject:attributedString(self.gedTag, GCTagAttributeName, self.gedTag)];
@@ -394,11 +394,11 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
         return NO;
     }
     
-    if ([self gedValue] && ![[self gedValue] isEqualToString:[other gedValue]]) {
+    if (self.gedValue && ![self.gedValue isEqualToString:[other gedValue]]) {
         return NO;
     }
     
-    if ([self xref] && ![[self xref] isEqualToString:[other xref]]) {
+    if (self.xref && ![self.xref isEqualToString:[other xref]]) {
         return NO;
     }
     
@@ -411,7 +411,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (NSUInteger)hash
 {
-    return [self.gedTag hash] + [[self xref] hash] + [[self gedValue] hash] + [[self.subNodes set] hash];
+    return [self.gedTag hash] + [self.xref hash] + [self.gedValue hash] + [[self.subNodes set] hash];
 }
 */
 
@@ -420,7 +420,7 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", self.gedTag, [self xref], [self gedValue], self.subNodes];
+	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", self.gedTag, self.xref, self.gedValue, self.subNodes];
 }
 //COV_NF_END
 
@@ -428,11 +428,11 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:self.gedTag forKey:@"gedTag"];
-    [encoder encodeObject:[self gedValue] forKey:@"gedValue"];
-    [encoder encodeObject:[self xref] forKey:@"xref"];
-    [encoder encodeObject:[self lineSeparator] forKey:@"lineSeparator"];
-    [encoder encodeObject:self.subNodes forKey:@"subNodes"];
+    [encoder encodeObject:_gedTag forKey:@"gedTag"];
+    [encoder encodeObject:_gedValue forKey:@"gedValue"];
+    [encoder encodeObject:_xref forKey:@"xref"];
+    [encoder encodeObject:_lineSeparator forKey:@"lineSeparator"];
+    [encoder encodeObject:_subNodes forKey:@"subNodes"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -440,10 +440,10 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 	self = [super init];
     
     if (self) {
-        self.gedTag = [decoder decodeObjectForKey:@"gedTag"];
-        self.gedValue = [decoder decodeObjectForKey:@"gedValue"];
-        self.xref = [decoder decodeObjectForKey:@"xref"];
-        self.lineSeparator = [decoder decodeObjectForKey:@"lineSeparator"];
+        _gedTag = [decoder decodeObjectForKey:@"gedTag"];
+        _gedValue = [decoder decodeObjectForKey:@"gedValue"];
+        _xref = [decoder decodeObjectForKey:@"xref"];
+        _lineSeparator = [decoder decodeObjectForKey:@"lineSeparator"];
         _subNodes = [decoder decodeObjectForKey:@"subNodes"];
 	}
     
@@ -455,8 +455,8 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 - (id)copyWithZone:(NSZone *)zone
 {
     GCNode *copy = [[GCNode allocWithZone:zone] initWithTag:self.gedTag 
-                                                      value:[self gedValue] 
-                                                       xref:[self xref] 
+                                                      value:self.gedValue 
+                                                       xref:self.xref 
                                                    subNodes:self.subNodes];
     
     [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
@@ -469,8 +469,8 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
 - (id)mutableCopyWithZone:(NSZone *)zone
 {
     GCMutableNode *copy = [[GCMutableNode allocWithZone:zone] initWithTag:self.gedTag 
-                                                                    value:[self gedValue] 
-                                                                     xref:[self xref] 
+                                                                    value:self.gedValue 
+                                                                     xref:self.xref 
                                                                  subNodes:nil];
     
     [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
