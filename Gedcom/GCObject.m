@@ -23,13 +23,22 @@
     NSMutableDictionary *_propertyStore;
 }
 
+static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
+
 #pragma mark Initialization
 
 __strong static NSMutableDictionary *_validPropertiesByType;
+__strong static NSDictionary *_defaultColors;
 
 + (void)initialize
 {
     _validPropertiesByType = [NSMutableDictionary dictionary];
+    
+    _defaultColors = @{
+        GCLevelAttributeName : [NSColor redColor],
+        GCXrefAttributeName : [NSColor blueColor],
+        GCTagAttributeName : [NSColor darkGrayColor]
+    };
 }
 
 - (id)init
@@ -582,16 +591,17 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 {
     NSMutableAttributedString *gedcomString = [[[self gedcomNode] attributedGedcomString] mutableCopy];
     
-    //TODO colors should be in NSUserDefaults
+    NSDictionary *colors = _defaultColors; //[[NSUserDefaults standardUserDefaults] dictionaryForKey:(NSString *)GCColorPreferenceKey];
+    
     [gedcomString enumerateAttributesInRange:NSMakeRange(0, [gedcomString length])
                                      options:(kNilOptions) 
                                   usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
                                       if (attrs[GCLevelAttributeName]) {
-                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:range];
+                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:colors[GCLevelAttributeName] range:range];
                                       } else if (attrs[GCXrefAttributeName]) {
-                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:range];
+                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:colors[GCXrefAttributeName] range:range];
                                       } else if (attrs[GCTagAttributeName]) {
-                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:[NSColor darkGrayColor] range:range];
+                                          [gedcomString addAttribute:NSForegroundColorAttributeName value:colors[GCTagAttributeName] range:range];
                                       } else if (attrs[GCLinkAttributeName]) {
                                           NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
                                                                                       @"xref",
