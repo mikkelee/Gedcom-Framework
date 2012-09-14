@@ -20,6 +20,7 @@
 @implementation GCSimpleDate
 
 - (NSComparisonResult)compare:(id)other {
+    //TODO properly compare BEF/AFT etc!
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else if ([other isKindOfClass:[GCSimpleDate class]]) {
