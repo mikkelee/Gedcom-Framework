@@ -152,7 +152,7 @@ is equivalent to:
 0 @INDI3@ INDI
 1 NAME Hans /Jensen/
 1 SEX M
-1 FAMC @FAM1@"
+1 FAMC @FAM1@
 ```
 
 ======
