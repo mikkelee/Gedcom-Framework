@@ -50,6 +50,7 @@
 + (NSDictionary *)contextsByName;
 
 #pragma mark Node access
+/// @name Parsing nodes
 
 /** Causes the receiver to parse the nodes.
  
