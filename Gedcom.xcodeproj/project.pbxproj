@@ -113,7 +113,6 @@
 		3EECFD8A151C32630074E26C /* GCNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5E151C32630074E26C /* GCNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EECFD8B151C32630074E26C /* GCNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5F151C32630074E26C /* GCNode.m */; };
 		3EF7A1BD151C3661004A8540 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF7A1BA151C363C004A8540 /* ParseKit.framework */; };
-		3EF7A1C0151C36DD004A8540 /* gedcom.age.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 3EF7A1BE151C36DD004A8540 /* gedcom.age.grammar */; };
 		3EF7A1C1151C36DD004A8540 /* gedcom.date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 3EF7A1BF151C36DD004A8540 /* gedcom.date.grammar */; };
 		3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C6151C3873004A8540 /* GCAgeTests.m */; };
 		3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C7151C3873004A8540 /* GCDateTests.m */; };
@@ -272,7 +271,6 @@
 		3EECFD5E151C32630074E26C /* GCNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNode.h; sourceTree = "<group>"; };
 		3EECFD5F151C32630074E26C /* GCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNode.m; sourceTree = "<group>"; };
 		3EF7A1BA151C363C004A8540 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseKit.framework; sourceTree = "<group>"; };
-		3EF7A1BE151C36DD004A8540 /* gedcom.age.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gedcom.age.grammar; path = Gedcom/gedcom.age.grammar; sourceTree = SOURCE_ROOT; };
 		3EF7A1BF151C36DD004A8540 /* gedcom.date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gedcom.date.grammar; path = Gedcom/gedcom.date.grammar; sourceTree = SOURCE_ROOT; };
 		3EF7A1C6151C3873004A8540 /* GCAgeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeTests.m; sourceTree = "<group>"; };
 		3EF7A1C7151C3873004A8540 /* GCDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateTests.m; sourceTree = "<group>"; };
@@ -423,7 +421,6 @@
 		3E1C3E70151C319C005E09E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3EF7A1BE151C36DD004A8540 /* gedcom.age.grammar */,
 				3EF7A1BF151C36DD004A8540 /* gedcom.date.grammar */,
 				3E1C3E71151C319C005E09E1 /* Gedcom-Info.plist */,
 				3E1C3E72151C319C005E09E1 /* InfoPlist.strings */,
@@ -755,7 +752,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */,
-				3EF7A1C0151C36DD004A8540 /* gedcom.age.grammar in Resources */,
 				3EF7A1C1151C36DD004A8540 /* gedcom.date.grammar in Resources */,
 				3E5F5098151DCC7B00A433A6 /* README.md in Resources */,
 				3EB5ABD6153619280036B4D5 /* tags.json in Resources */,
