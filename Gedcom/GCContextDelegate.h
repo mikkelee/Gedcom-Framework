@@ -24,9 +24,7 @@
  */
 @interface NSObject (GCContextDelegate)
 
-/** Will be called...
- 
- TODO rename...
+/** Will be called by the context if an entity was activated, for instance through the GCXrefProtocol.
  
  @param context The context that sent the message. 
  @param entity The entity.
