@@ -47,9 +47,9 @@ __strong static NSMutableDictionary *_contextsByName = nil;
         _xrefStore = [NSMutableDictionary dictionary];
         _xrefBlocks = [NSMutableDictionary dictionary];
         _entityStore = [NSMutableDictionary dictionary];
+        
+        _contextsByName[_name] = self;
 	}
-    
-    _contextsByName[_name] = self;
 	
 	return self;
 }
@@ -102,18 +102,12 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
         GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
         
-        if ([[tag objectClass] isSubclassOfClass:[GCTrailerEntity class]]) {
+        if ([tag.objectClass isSubclassOfClass:[GCTrailerEntity class]]) {
             *stop = YES;
             return;
         } else {
             [GCEntity entityWithGedcomNode:node inContext:self];
         }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-                [_delegate context:self didUpdateEntityCount:[self countOfEntities]];
-            }
-        });
     }];
     
     //Note: >= instead of ==... there may be things added during parsing (TODO make this less ugly!)
@@ -145,19 +139,23 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     } else {
         NSLog(@"Unknown class: %@", entity);
     }
-    /*
-     if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
-     [_delegate file:self updatedEntityCount:[_entities count]];
-     }*/
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
+            [_delegate context:self didUpdateEntityCount:[self countOfEntities]];
+        }
+    });
 }
 
 - (void)removeEntity:(GCEntity *)entity
 {
     //TODO
-    /*
-     if (_delegate && [_delegate respondsToSelector:@selector(file:updatedEntityCount:)]) {
-     [_delegate file:self updatedEntityCount:[_entities count]];
-     }*/
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
+            [_delegate context:self didUpdateEntityCount:[self countOfEntities]];
+        }
+    });
 }
 
 - (NSInteger)countOfEntities
