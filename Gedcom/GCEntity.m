@@ -16,7 +16,7 @@
 
 #import "GCContext_internal.h"
 
-#import "GCChangedDateFormatter.h"
+#import "Helpers.h"
 
 #import "GCObject_internal.h"
 
@@ -78,7 +78,7 @@
             
             [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
             
-            entity.lastModified = [[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode];
+            entity.lastModified = dateFromNode(changeNode);
         } else {
             [entity addPropertiesWithGedcomNodes:node.subNodes];
             
@@ -148,7 +148,7 @@
     NSMutableOrderedSet *subNodes = [[super subNodes] mutableCopy];
     
     if (_lastModified) {
-        [subNodes addObject:[[GCChangedDateFormatter sharedFormatter] nodeWithDate:_lastModified]];
+        [subNodes addObject:nodeFromDate(_lastModified)];
     }
     
     return subNodes;

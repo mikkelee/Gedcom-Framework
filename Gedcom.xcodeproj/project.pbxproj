@@ -71,8 +71,7 @@
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57557C15202A9600A918D1 /* GCValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557A15202A9600A918D1 /* GCValue.m */; };
-		3E575580152057B200A918D1 /* GCChangedDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E575581152057B200A918D1 /* GCChangedDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */; };
+		3E575580152057B200A918D1 /* Helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* Helpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57558815217C0E00A918D1 /* GCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558615217C0D00A918D1 /* GCObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57558915217C0E00A918D1 /* GCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57558715217C0D00A918D1 /* GCObject.m */; };
 		3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558B15217C2F00A918D1 /* GCProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -226,8 +225,7 @@
 		3E4373541521CB7200BA362F /* GCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValue.h; sourceTree = "<group>"; };
 		3E57557A15202A9600A918D1 /* GCValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValue.m; sourceTree = "<group>"; };
-		3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCChangedDateFormatter.h; sourceTree = "<group>"; };
-		3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCChangedDateFormatter.m; sourceTree = "<group>"; };
+		3E57557E152057B200A918D1 /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		3E57558615217C0D00A918D1 /* GCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObject.h; sourceTree = "<group>"; };
 		3E57558715217C0D00A918D1 /* GCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObject.m; sourceTree = "<group>"; };
 		3E57558B15217C2F00A918D1 /* GCProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCProperty.h; sourceTree = "<group>"; };
@@ -558,8 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				3ED92D411563D76500E53E47 /* Delegate protocols */,
-				3E57557E152057B200A918D1 /* GCChangedDateFormatter.h */,
-				3E57557F152057B200A918D1 /* GCChangedDateFormatter.m */,
+				3E57557E152057B200A918D1 /* Helpers.h */,
 				3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */,
 				3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */,
 			);
@@ -598,7 +595,7 @@
 				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
 				3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */,
 				3E57557B15202A9600A918D1 /* GCValue.h in Headers */,
-				3E575580152057B200A918D1 /* GCChangedDateFormatter.h in Headers */,
+				3E575580152057B200A918D1 /* Helpers.h in Headers */,
 				3E57558815217C0E00A918D1 /* GCObject.h in Headers */,
 				3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */,
 				3E57559115217C3B00A918D1 /* GCRelationship.h in Headers */,
@@ -824,7 +821,6 @@
 				3EF7A1CD151C57A4004A8540 /* GCTag.m in Sources */,
 				3E5F50CA151E02C300A433A6 /* GCEntity.m in Sources */,
 				3E57557C15202A9600A918D1 /* GCValue.m in Sources */,
-				3E575581152057B200A918D1 /* GCChangedDateFormatter.m in Sources */,
 				3E57558915217C0E00A918D1 /* GCObject.m in Sources */,
 				3E57558E15217C2F00A918D1 /* GCProperty.m in Sources */,
 				3E57559215217C3B00A918D1 /* GCRelationship.m in Sources */,

@@ -1,6 +1,6 @@
 //
 //  GCFormatterTests.m
-//  GCCoreData
+//  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 27/04/12
 //  Copyright 2012 Mikkel Eide Eriksen. All rights reserved.
@@ -10,7 +10,7 @@
 
 #import "Gedcom.h"
 
-#import "GCChangedDateFormatter.h"
+#import "Helpers.h"
 
 @interface GCFormatterTests : SenTestCase
 @end
@@ -30,13 +30,13 @@
     
     //NSLog(@"changeNode: %@", changeNode);
     
-    NSDate *changeDate = [[GCChangedDateFormatter sharedFormatter] dateWithNode:changeNode];
+    NSDate *changeDate = dateFromNode(changeNode);
     
     STAssertEqualObjects(changeDate, [NSDate dateWithNaturalLanguageString:@"2 May 2009 20:07:12"], nil);
     
     //and the reverse:
     
-    GCNode *newNode = [[GCChangedDateFormatter sharedFormatter] nodeWithDate:changeDate];
+    GCNode *newNode = nodeFromDate(changeDate);
 
     //NSLog(@"newNode: %@", newNode);
         
