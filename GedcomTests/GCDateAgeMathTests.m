@@ -1,6 +1,6 @@
 //
 //  GCDateAgeMathTests.m
-//  GCCoreData
+//  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 27/04/12
 //  Copyright 2012 Mikkel Eide Eriksen. All rights reserved.

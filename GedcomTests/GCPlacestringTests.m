@@ -1,6 +1,6 @@
 //
 //  GCPlacestringTests.m
-//  GCCoreData
+//  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 24/05/12.
 //  Copyright 2012 Mikkel Eide Eriksen. All rights reserved.

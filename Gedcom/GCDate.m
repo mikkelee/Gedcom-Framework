@@ -1,6 +1,6 @@
 // 
 //  GCDate.m
-//  GCCoreData
+//  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 12/02/11.
 //  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.

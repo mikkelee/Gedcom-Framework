@@ -1,6 +1,6 @@
 //
 //  GCNodeTests.m
-//  GCCoreData
+//  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 11/18/10.
 //  Copyright 2010 Mikkel Eide Eriksen. All rights reserved.
