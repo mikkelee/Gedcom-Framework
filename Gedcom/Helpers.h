@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #include <time.h>
+#include <xlocale.h>
 
 #import "GCNode.h"
 
@@ -23,7 +24,9 @@ static inline NSDate * dateFromNode(GCNode *node) {
                             ];
     
     struct tm  timeResult;
-    strptime([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &timeResult);
+    strptime_l([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &timeResult, LC_GLOBAL_LOCALE);
+    
+    assert(mktime(&timeResult) > 0);
     
     return [NSDate dateWithTimeIntervalSince1970: mktime(&timeResult)];
 }
@@ -35,7 +38,7 @@ static inline GCNode * nodeFromDate(NSDate *date) {
     struct tm timeStruct;
     localtime_r(&time, &timeStruct);
     
-    strftime(timeResult, MAXLEN, formatString, &timeStruct);
+    strftime_l(timeResult, MAXLEN, formatString, &timeStruct, LC_GLOBAL_LOCALE);
     
     //NSLog(@"result: %@ => %@", date, [[NSString alloc] initWithBytes:timeResult length:strlen(timeResult) encoding:NSASCIIStringEncoding]);
     
@@ -48,8 +51,8 @@ static inline GCNode * nodeFromDate(NSDate *date) {
     
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE"
                                      value:[[[NSString alloc] initWithBytes:leadingSpace ? timeResult+1 : timeResult
-                                                                    length:strlen(timeResult)-(lengthOfTimePart+2)
-                                                                  encoding:NSASCIIStringEncoding] uppercaseString]
+                                                                     length:strlen(timeResult)-(lengthOfTimePart + (leadingSpace ? 2 : 1))
+                                                                   encoding:NSASCIIStringEncoding] uppercaseString]
                                   subNodes:@[timeNode]];
     
     //NSLog(@"dateNode: %@", dateNode);

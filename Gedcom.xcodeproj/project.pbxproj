@@ -39,6 +39,7 @@
 		3E14EDCA15230DAF00080364 /* GCContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E14EDC815230DAE00080364 /* GCContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E14EDCB15230DAF00080364 /* GCContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14EDC915230DAE00080364 /* GCContext.m */; };
 		3E17B4B216014180009D2CCB /* GCDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */; };
+		3E17B4B61603F254009D2CCB /* GCHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4B51603F254009D2CCB /* GCHelperTests.m */; };
 		3E1C3E6A151C319C005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E72151C319C005E09E1 /* InfoPlist.strings */; };
 		3E1C3E80151C319D005E09E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */; };
@@ -186,6 +187,7 @@
 		3E14EDC915230DAE00080364 /* GCContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContext.m; sourceTree = "<group>"; };
 		3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDelegateTests.m; sourceTree = "<group>"; };
 		3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCContext_internal.h; sourceTree = "<group>"; };
+		3E17B4B51603F254009D2CCB /* GCHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelperTests.m; sourceTree = "<group>"; };
 		3E1C3E66151C319C005E09E1 /* Gedcom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gedcom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1C3E69151C319C005E09E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3E1C3E6C151C319C005E09E1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -444,6 +446,7 @@
 				3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */,
 				3E3969FE154F34E600AE8636 /* GCFormatterTests.m */,
 				3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */,
+				3E17B4B51603F254009D2CCB /* GCHelperTests.m */,
 				3E1C3E86151C319D005E09E1 /* Supporting Files */,
 			);
 			path = GedcomTests;
@@ -857,6 +860,7 @@
 				3E396A07155B43B600AE8636 /* GCFileTests.m in Sources */,
 				3EDD411D156E335000002352 /* GCPlacestringTests.m in Sources */,
 				3E17B4B216014180009D2CCB /* GCDelegateTests.m in Sources */,
+				3E17B4B61603F254009D2CCB /* GCHelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
