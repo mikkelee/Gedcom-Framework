@@ -37,7 +37,6 @@ Loosely prioritized in order of importance:
 * **Misc**: Handle special cases; see SOURCE_CITATION in spec (use callbacks?).
 * **GCValue**: More helpers & convenience methods (ie GCDate -containsDate:(GCDate *)date)
 * **tags.py**: convenience methods? (-[GCIndividualEntity addBirthWithValue:])
-* **Misc**: More delegates & customization (colors in attributed gedcom strings etc)
 * **Unit tests**: Full code coverage
 
 # Examples #

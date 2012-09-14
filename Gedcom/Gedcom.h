@@ -12,7 +12,6 @@
 #import "GCTag.h"
 
 #import "GCContext.h"
-#import "GCFile.h"
 #import "GCHeaderEntity.h"
 
 #import "GCObject.h"
@@ -36,7 +35,6 @@
 
 #import "GCValueFormatter.h"
 
-#import "GCFileDelegate.h"
 #import "GCContextDelegate.h"
 
 #import "GCXrefProtocol.h"

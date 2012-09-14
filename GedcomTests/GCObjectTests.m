@@ -15,18 +15,6 @@
 
 @implementation GCObjectTests
 
-- (void)testContext
-{
-    GCContext *ctx = [GCContext context];
-    
-    STAssertNil([ctx xrefForEntity:nil], nil);
-    
-    GCContext *a = [GCContext contextWithName:@"a"];
-    GCContext *b = [GCContext contextWithName:@"a"];
-    
-    STAssertEqualObjects(a, b, nil);
-}
-
 - (void)testAttributeValues
 {
     GCAttribute *date = [GCAttribute attributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
@@ -192,16 +180,16 @@
 	
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
-	GCFile *file = [GCFile fileWithGedcomNodes:nodes];
+	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
     
-    NSData *fileData = [NSKeyedArchiver archivedDataWithRootObject:file];
+    NSData *fileData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
     
-    GCFile *decodedFile = [NSKeyedUnarchiver unarchiveObjectWithData:fileData];
+    GCContext *decodedFile = [NSKeyedUnarchiver unarchiveObjectWithData:fileData];
     
     //NSLog(@"file: %@", [file gedcomString]);
     //NSLog(@"decodedFile: %@", [decodedFile gedcomString]);
     
-    STAssertTrue([file isEqualTo:decodedFile], nil);
+    STAssertTrue([ctx isEqualTo:decodedFile], nil);
 }
 
 - (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedErrorCode:(GCErrorCode)errorCode string:(NSString *)errorString

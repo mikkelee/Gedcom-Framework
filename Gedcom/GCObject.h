@@ -48,6 +48,11 @@
  */
 - (GCAllowedOccurrences)allowedOccurrencesPropertyType:(NSString *)type;
 
+/** Returns an array of the names of properties of a certain group, such as an individuals `individualEvent`s.
+ 
+ @param groupName The name of a group.
+ @return An array of property names or `nil` if there is no such group.
+ */
 - (NSArray *)propertyTypesInGroup:(NSString *)groupName;
 
 #pragma mark Gedcom access

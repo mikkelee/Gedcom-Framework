@@ -41,6 +41,7 @@
     
     if (self) {
 		_context = context;
+        [_context addEntity:self];
     }
     
     return self;    

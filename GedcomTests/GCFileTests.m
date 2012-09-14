@@ -22,11 +22,11 @@
 	
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
-	GCFile *file = [GCFile fileWithGedcomNodes:nodes];
+	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
     
     NSError *error = nil;
     
-    BOOL result = [file validateFile:&error];
+    BOOL result = [ctx validateContext:&error];
     
     STAssertTrue(result, nil);
     
@@ -49,10 +49,10 @@
     
     NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
     
-    GCFile *file = [GCFile fileWithGedcomNodes:nodes];
+	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
     
     NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:3];
-    for (GCNode *node in [file gedcomNodes]) {
+    for (GCNode *node in [ctx gedcomNodes]) {
         [gc_outputLines addObjectsFromArray:[node gedcomLines]];
     }
     

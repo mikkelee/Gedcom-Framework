@@ -10,7 +10,7 @@
 #import <Gedcom/Gedcom.h>
 
 @implementation Document {
-    GCFile *gedcomFile;
+    GCContext *ctx;
     BOOL _isEntireFileLoaded;
     NSMutableArray *_individuals;
 }
@@ -82,13 +82,12 @@
     
     NSString *gedcomString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    gedcomFile = [[GCFile alloc] init];
+    ctx = [[GCContext alloc] init];
     
-    [gedcomFile setDelegate:self];
-    [[gedcomFile context] setDelegate:self];
+    [ctx setDelegate:self];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [gedcomFile parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
+        [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
     });
 }
 
@@ -96,7 +95,7 @@
 
 - (IBAction)testLog:(id)sender
 {
-    NSLog(@"header: %@", [gedcomFile header]);
+    NSLog(@"header: %@", [ctx header]);
 }
 
 #pragma mark NSTextViewDelegate methods
@@ -104,9 +103,7 @@
 - (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
 {
     if ([[link scheme] isEqualToString:@"xref"]) {
-        GCContext *context = [gedcomFile context];
-        
-        GCEntity *entity = [context entityForXref:[[link path] lastPathComponent]];
+        GCEntity *entity = [ctx entityForXref:[[link path] lastPathComponent]];
         
         return [[entity type] isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
     } else {
@@ -116,16 +113,16 @@
     }
 }
 
-#pragma mark GCFileDelegate methods
+#pragma mark GCContextDelegate methods
 
-- (void)file:(GCFile *)file didUpdateEntityCount:(int)entityCount
+- (void)context:(GCContext *)context didUpdateEntityCount:(int)entityCount
 {
     if (entityCount < 100 || entityCount % 100 == 0) {
         [recordCountField setIntegerValue:entityCount];
     }
 }
 
-- (void)file:(GCFile *)file didFinishWithEntityCount:(int)entityCount
+- (void)context:(GCContext *)context didFinishWithEntityCount:(int)entityCount
 {
     [recordCountField setIntegerValue:entityCount];
     [currentlyLoadingSpinner stopAnimation:nil];
@@ -134,12 +131,10 @@
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
     
-    [self setIndividuals:[gedcomFile individuals]];
+    [self setIndividuals:[ctx individuals]];
     
-    //[individualsController setContent:[gedcomFile individuals]];
+    //[individualsController setContent:[ctx individuals]];
 }
-
-#pragma mark GCContextDelegate methods
 
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity
 {

@@ -10,7 +10,7 @@
 
 /**
  
- A header holds information that describes a GCFile such as its author, what software produced it, etc.
+ A header holds information that describes a GEDCOM file such as its author, what software produced it, etc.
  
  */
 @interface GCHeaderEntity : GCEntity

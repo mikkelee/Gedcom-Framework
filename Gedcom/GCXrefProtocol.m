@@ -38,7 +38,7 @@ __attribute__((destructor)) static void unregister_protocol() {
 {
     NSURLRequest *request = [self request];
     
-    GCContext *context = [GCContext contextWithName:[[request URL] host]];
+    GCContext *context = [GCContext contextsByName][[[request URL] host]];
     NSString *xref = [[request URL] path];
     
     [context activateXref:xref];

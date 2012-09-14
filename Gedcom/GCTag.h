@@ -67,6 +67,11 @@ typedef struct {
  */
 - (GCTag *)subTagWithName:(NSString *)name;
 
+/** Returns an array of the names of properties of a certain group, such as an individuals `individualEvent`s.
+ 
+ @param groupName The name of a group.
+ @return An array of tags or `nil` if there is no such group.
+ */
 - (NSArray *)subTagsInGroup:(NSString *)groupName;
 
 /** Returns whether a given subtag is a valid subtag of the receiver.

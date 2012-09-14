@@ -98,7 +98,7 @@ __strong static NSMutableDictionary *_validPropertiesByType;
         [propertyTypes addObject:[tag pluralName]];
     }
     
-    return [propertyTypes copy];
+    return [propertyTypes count] > 0 ? [propertyTypes copy] : nil;
 }
 
 #pragma mark NSKeyValueCoding overrides
@@ -582,6 +582,7 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 {
     NSMutableAttributedString *gedcomString = [[[self gedcomNode] attributedGedcomString] mutableCopy];
     
+    //TODO colors should be in NSUserDefaults
     [gedcomString enumerateAttributesInRange:NSMakeRange(0, [gedcomString length])
                                      options:(kNilOptions) 
                                   usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {

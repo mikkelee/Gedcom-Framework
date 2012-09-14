@@ -17,11 +17,11 @@
 
 - (void)context:(GCContext *)context didEncounterUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
 {
-    NSLog(@"context: %@", context);
-    NSLog(@"tag: %@", tag);
-    NSLog(@"node: %@", node);
-    NSLog(@"object: %@", object);
-    return;
+    GCNoteEntity *note = [GCNoteEntity noteInContext:context];
+    
+    //[note setGedValue]
+    
+    [object addRelationshipWithType:@"noteReference" target:note];
 }
 
 @end
@@ -34,14 +34,27 @@
 - (void)testUnknownTag
 {
     GCContextDelegateTester *delegate = [[GCContextDelegateTester alloc] init];
-    GCFile *gedcomFile = [[GCFile alloc] init];
+    GCContext *ctx = [[GCContext alloc] init];
     
-    [[gedcomFile context] setDelegate:delegate];
+    [ctx setDelegate:delegate];
     
-    NSString *gedcomString = @"0 @F1@ FAM\n"
-                             @"1 _UMR Y";
+    NSString *gedcomString =
+    @"0 HEAD\n"
+    @"0 @F1@ FAM\n"
+    @"1 _UMR Y\n"
+    @"0 TRLR";
     
-    [gedcomFile parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
+    NSString *expected =
+    @"0 HEAD\n"
+    @"0 @F1@ FAM\n"
+    @"1 NOTE @NOTE1@\n"
+    @"0 @NOTE1@ NOTE\n"
+    //@"1 CONC Unmarried.\n" //TODO note values not possible yet... :(
+    @"0 TRLR";
+    
+    [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
+    
+    STAssertEqualObjects([ctx gedcomString], expected, nil);
 }
 
 @end
