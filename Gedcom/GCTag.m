@@ -51,11 +51,28 @@ __strong static NSMutableDictionary *_tagStore;
 __strong static NSMutableDictionary *_tagInfo;
 __strong static NSDictionary *_tagsByName;
 __strong static NSMutableDictionary *_singularToPlural;
+__strong static NSMutableDictionary *_rootTagsByCode;
 
 + (void)initialize
 {
     _singularToPlural = [NSMutableDictionary dictionary];
     _tagStore = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+    _rootTagsByCode = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+    
+    NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags"
+                                                                          ofType:@"json"];
+    NSData *jsonData = [[NSFileManager defaultManager] contentsAtPath:jsonPath];
+    
+    NSError *err = nil;
+    
+    _tagInfo = [NSJSONSerialization JSONObjectWithData:jsonData
+                                               options:NSJSONReadingMutableContainers
+                                                 error:&err];
+    
+    //NSLog(@"tagInfo: %@", tagInfo);
+    NSAssert(_tagInfo != nil, @"error: %@", err);
+    
+    [self setupTagStoreForKey:(NSString *)kRootObject];
 }
 
 + (void)setupTagStoreForKey:(NSString *)key
@@ -97,6 +114,9 @@ __strong static NSMutableDictionary *_singularToPlural;
                                         settings:tagDict];
         _tagStore[key] = tag;
         _tagStore[tagDict[kPlural]] = tag;
+        if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
+            _rootTagsByCode[tagDict[kCode]] = tag;
+        }
         //tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
     }
     
@@ -105,29 +125,6 @@ __strong static NSMutableDictionary *_singularToPlural;
             [self setupTagStoreForKey:subTag[kName]];
         }
     }
-}
-
-+ (void)setupTagInfo
-{
-    static dispatch_once_t predTag = 0;
-    
-    dispatch_once(&predTag, ^{
-        
-        NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags" 
-                                                                              ofType:@"json"];
-        NSData *jsonData = [[NSFileManager defaultManager] contentsAtPath:jsonPath];
-        
-        NSError *err = nil;
-        
-        _tagInfo = [NSJSONSerialization JSONObjectWithData:jsonData 
-                                                  options:NSJSONReadingMutableContainers
-                                                    error:&err];
-        
-        //NSLog(@"tagInfo: %@", tagInfo);
-        NSAssert(_tagInfo != nil, @"error: %@", err);
-        
-        [self setupTagStoreForKey:(NSString *)kRootObject];
-    });
 }
 
 + (NSDictionary *)tagsByName
@@ -171,8 +168,6 @@ __strong static NSMutableDictionary *_singularToPlural;
 
 + (GCTag *)tagNamed:(NSString *)name
 {
-    [self setupTagInfo];
-    
     NSParameterAssert(name != nil);
     
     GCTag *tag = _tagStore[name];
@@ -189,23 +184,9 @@ __strong static NSMutableDictionary *_singularToPlural;
 
 + (GCTag *)rootTagWithCode:(NSString *)code
 {
-    [self setupTagInfo];
-    
     NSParameterAssert(code != nil);
     
-    //TODO ??
-    NSDictionary *tmp = @{@"HEAD": @"header",
-                         @"SUBN": @"submission",
-                         @"FAM": @"family",
-                         @"INDI": @"individual",
-                         @"OBJE": @"multimedia",
-                         @"NOTE": @"note",
-                         @"REPO": @"repository",
-                         @"SOUR": @"source",
-                         @"SUBM": @"submitter",
-                         @"TRLR": @"trailer"};
-    
-    return _tagStore[[tmp valueForKey:code]];
+    return _rootTagsByCode[code];
 }
 
 #pragma mark Subtags
