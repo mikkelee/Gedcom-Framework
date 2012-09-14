@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GCContextDelegate.h"
+
 @class GCHeaderEntity;
 @class GCEntity;
 @class GCSubmissionEntity;
@@ -123,7 +125,7 @@
 /// @name Setting the delegate
 
 /// The receiver's delegate. See GCContextDelegate.
-@property (weak) id delegate;
+@property (weak) id<NSObject, GCContextDelegate> delegate;
 
 @end
 

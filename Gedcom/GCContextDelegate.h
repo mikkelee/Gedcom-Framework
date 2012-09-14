@@ -1,5 +1,5 @@
 //
-//  NSObject+GCContextDelegate.h
+//  GCContextDelegate.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 16/05/12.
@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GCContext.h"
-
+@class GCContext;
 @class GCEntity;
 @class GCNode;
 @class GCTag;
@@ -22,7 +21,9 @@
  If a GCContext has a delegate, it will call these if they are implemented.
  
  */
-@interface NSObject (GCContextDelegate)
+@protocol GCContextDelegate
+
+@optional
 
 /** Will be called by the context if an entity was activated, for instance through the GCXrefProtocol.
  

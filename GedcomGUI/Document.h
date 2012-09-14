@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Gedcom/Gedcom.h>
 
-@interface Document : NSDocument {
+@interface Document : NSDocument <GCContextDelegate> {
     IBOutlet NSWindow *mainWindow;
     
     IBOutlet NSArrayController *individualsController;

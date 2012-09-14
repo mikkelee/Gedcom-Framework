@@ -558,8 +558,8 @@
 		3EB5ABCF153615CD0036B4D5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3ED92D411563D76500E53E47 /* Delegate protocols */,
 				3E57557E152057B200A918D1 /* Helpers.h */,
+				3ED92D411563D76500E53E47 /* Delegate protocols */,
 				3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */,
 				3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */,
 			);

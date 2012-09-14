@@ -10,7 +10,7 @@
 
 #import "Gedcom.h"
 
-@interface GCContextDelegateTester : NSObject
+@interface GCContextDelegateTester : NSObject <GCContextDelegate>
 @end
 
 @implementation GCContextDelegateTester
