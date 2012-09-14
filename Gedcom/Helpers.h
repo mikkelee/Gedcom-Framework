@@ -12,6 +12,10 @@
 
 #import "GCNode.h"
 
+const char *formatString = "%e %b %Y %H:%M:%S";
+const size_t MAXLEN = 80;
+const NSUInteger lengthOfTimePart = 8;
+
 static inline NSDate * dateFromNode(GCNode *node) {
     NSString *dateString = [NSString stringWithFormat:@"%@ %@",
                             [[node valueForKey:@"DATE"] gedValue],
@@ -19,27 +23,34 @@ static inline NSDate * dateFromNode(GCNode *node) {
                             ];
     
     struct tm  timeResult;
-    const char *formatString = "%d %b %Y %H:%M:%S";
     strptime([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &timeResult);
     
     return [NSDate dateWithTimeIntervalSince1970: mktime(&timeResult)];
 }
 
 static inline GCNode * nodeFromDate(NSDate *date) {
-    //TODO use strftime()?
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = @"d MMM yyyy";
-    dateFormatter.shortMonthSymbols = @[@"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC"];
+    char timeResult[80];
     
-	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-	timeFormatter.dateFormat = @"HH:mm:ss";
+    time_t time = [date timeIntervalSince1970];
+    struct tm timeStruct;
+    localtime_r(&time, &timeStruct);
+    
+    strftime(timeResult, MAXLEN, formatString, &timeStruct);
+    
+    //NSLog(@"result: %@ => %@", date, [[NSString alloc] initWithBytes:timeResult length:strlen(timeResult) encoding:NSASCIIStringEncoding]);
     
     GCNode *timeNode = [GCNode nodeWithTag:@"TIME"
-                                     value:[timeFormatter stringFromDate:date]];
+                                     value:[[NSString alloc] initWithBytes:timeResult + (strlen(timeResult)-lengthOfTimePart)
+                                                                    length:lengthOfTimePart
+                                                                  encoding:NSASCIIStringEncoding]];
 	
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE"
-                                     value:[dateFormatter stringFromDate:date]
+                                     value:[[[NSString alloc] initWithBytes:(strncmp(timeResult, " ", 1) == 0) ? timeResult+1 : timeResult
+                                                                    length:strlen(timeResult)-(lengthOfTimePart+2)
+                                                                  encoding:NSASCIIStringEncoding] uppercaseString]
                                   subNodes:@[timeNode]];
+    
+    //NSLog(@"dateNode: %@", dateNode);
     
     return [GCNode nodeWithTag:@"CHAN"
                          value:nil
