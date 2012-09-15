@@ -344,19 +344,42 @@
 				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
 				3E5F50C8151E02C300A433A6 /* GCEntity.m */,
 				3E4373591521CF1400BA362F /* Properties */,
-				3E17B4AF16013AFD009D2CCB /* Subclasses */,
+				3E17B4AF16013AFD009D2CCB /* Concrete subclasses */,
 			);
 			name = "Object hierarchy";
 			sourceTree = "<group>";
 		};
-		3E17B4AF16013AFD009D2CCB /* Subclasses */ = {
+		3E17B4AF16013AFD009D2CCB /* Concrete subclasses */ = {
 			isa = PBXGroup;
 			children = (
 				3E252F0D1523915900BAFCB1 /* GCHeaderEntity.h */,
 				3E252F0E1523915900BAFCB1 /* GCHeaderEntity.m */,
 				3EDBBE5D15F7EE04008C1E50 /* Generated files */,
 			);
-			name = Subclasses;
+			name = "Concrete subclasses";
+			sourceTree = "<group>";
+		};
+		3E17B4B716042E21009D2CCB /* Value tests */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1C6151C3873004A8540 /* GCAgeTests.m */,
+				3EF7A1C7151C3873004A8540 /* GCDateTests.m */,
+				3EDD411C156E335000002352 /* GCPlacestringTests.m */,
+				3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */,
+				3E3969FE154F34E600AE8636 /* GCFormatterTests.m */,
+			);
+			name = "Value tests";
+			sourceTree = "<group>";
+		};
+		3E17B4B816042E51009D2CCB /* Object tests */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F50C5151DFB0000A433A6 /* GCTagTests.m */,
+				3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */,
+				3E396A06155B43B600AE8636 /* GCFileTests.m */,
+				3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */,
+			);
+			name = "Object tests";
 			sourceTree = "<group>";
 		};
 		3E1C3E5A151C319B005E09E1 = {
@@ -436,15 +459,8 @@
 			isa = PBXGroup;
 			children = (
 				3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */,
-				3E5F50C5151DFB0000A433A6 /* GCTagTests.m */,
-				3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */,
-				3E396A06155B43B600AE8636 /* GCFileTests.m */,
-				3EF7A1C6151C3873004A8540 /* GCAgeTests.m */,
-				3EF7A1C7151C3873004A8540 /* GCDateTests.m */,
-				3EDD411C156E335000002352 /* GCPlacestringTests.m */,
-				3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */,
-				3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */,
-				3E3969FE154F34E600AE8636 /* GCFormatterTests.m */,
+				3E17B4B816042E51009D2CCB /* Object tests */,
+				3E17B4B716042E21009D2CCB /* Value tests */,
 				3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */,
 				3E17B4B51603F254009D2CCB /* GCHelperTests.m */,
 				3E1C3E86151C319D005E09E1 /* Supporting Files */,

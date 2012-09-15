@@ -672,7 +672,7 @@ __strong static NSDictionary *_defaultColors;
 
 @implementation GCObject (GCValidationMethods)
 
-BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
+static inline BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
     if (value == nil) {
         //TODO check if value is required
         return YES;
@@ -688,7 +688,7 @@ BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **erro
     }
 }
 
-BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Class type, NSError **error) {
+static inline BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Class type, NSError **error) {
     if (target == nil) {
         if (NULL != error) {
             *error = [NSError errorWithDomain:@"GCErrorDoman"
@@ -708,7 +708,7 @@ BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Class type, NSErr
     }
 }
 
-BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
+static inline BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
     if ([tag objectClass] == [GCAttribute class]) {
         if (!validateValueTypeHelper(key, [(GCAttribute *)property value], tag.valueType, error)) {
             return NO;
