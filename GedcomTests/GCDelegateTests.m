@@ -19,7 +19,7 @@
 {
     GCNoteEntity *note = [GCNoteEntity noteInContext:context];
     
-    //note.gedValue = @"Umarried.";
+    note.value = [GCString valueWithGedcomString:@"Unmarried."];
     
     [object addRelationshipWithType:@"noteReference" target:note];
 }
@@ -49,7 +49,7 @@
     @"0 @F1@ FAM\n"
     @"1 NOTE @NOTE1@\n"
     @"0 @NOTE1@ NOTE\n"
-    //@"1 CONC Unmarried.\n" //TODO note values not possible yet... :(
+    @"1 CONC Unmarried.\n"
     @"0 TRLR";
     
     [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
