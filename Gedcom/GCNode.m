@@ -179,11 +179,10 @@ static NSString *concSeparator;
 
 #pragma mark Gedcom output
 
-#define attributedString(string, attribute, value) \
-([[NSAttributedString alloc] initWithString:string\
-                                 attributes:[NSDictionary dictionaryWithObjectsAndKeys:\
-                                            value, attribute,\
-                                            nil]])
+static inline NSAttributedString * attributedString(NSString *string, NSString *attribute, NSString *value) {
+    return [[NSAttributedString alloc] initWithString:string
+                                           attributes:@{ attribute : value }];
+}
 
 void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray **outSubLines) {
 	NSMutableArray *lines = [[inLine componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
