@@ -18,6 +18,7 @@
 #import "GCRelationship.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 
 @implementation GCObject {
     NSMutableDictionary *_propertyStore;
@@ -653,7 +654,20 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)addPropertyWithGedcomNode:(GCNode *)node
 {
-    [GCProperty propertyForObject:self withGedcomNode:node];
+    GCTag *tag = [self.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    
+    if (tag.isCustom) {
+        [self.context encounteredUnknownTag:tag forNode:node onObject:self];
+    }
+    
+    if (!tag) {
+        // for debugging; TODO remove when tags.json is complete.
+        NSLog(@"rootObject: %@", self.rootObject);
+        NSLog(@"object: %@", self);
+        NSLog(@"node: %@", node);
+    }
+    
+    [tag.objectClass propertyForObject:self withGedcomNode:node];
 }
 
 - (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes

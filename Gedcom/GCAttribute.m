@@ -9,7 +9,6 @@
 #import "GCAttribute.h"
 
 #import "GCNode.h"
-#import "GCTag.h"
 
 #import "GCEntity.h"
 

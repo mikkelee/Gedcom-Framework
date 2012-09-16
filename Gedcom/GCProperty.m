@@ -9,8 +9,6 @@
 #import "GCProperty.h"
 
 #import "GCNode.h"
-#import "GCTag.h"
-#import "GCContext_internal.h"
 
 @interface GCProperty ()
 
@@ -24,20 +22,7 @@
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
-    
-    if (tag.isCustom) {
-        [object.context encounteredUnknownTag:tag forNode:node onObject:object];
-    }
-    
-    if (!tag) {
-        // for debugging; TODO remove when tags.json is complete.
-        NSLog(@"rootObject: %@", object.rootObject);
-        NSLog(@"object: %@", object);
-        NSLog(@"node: %@", node);
-    }
-    
-    self = [super initWithType:[tag name]];
+    self = [self init];
     
     if (self) {
         [[object mutableArrayValueForKey:@"properties"] addObject:self];
@@ -53,9 +38,7 @@
 
 + (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    Class propertySubClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [([node valueIsXref] ? @"relationship" : @"attribute") capitalizedString]]);
-    
-    return [[propertySubClass alloc] initForObject:object withGedcomNode:node];
+    return [[self alloc] initForObject:object withGedcomNode:node];
 }
 
 #pragma mark Comparison

@@ -65,6 +65,11 @@ $dynamics
 
 @end
 """)
+initT = Template("""- (id)init
+{
+	return [super initWithType:@"$type"];
+}
+""")
 
 def classify(name, type):
 	if type:
@@ -180,6 +185,8 @@ for key in sorted(tags):
 		
 		methodDefs = []
 		methodImps = []
+		
+		methodImps.append(initT.substitute(type=key))
 		
 		for declaration in sorted(cons):
 			methodDefs.append('%s;' % declaration)

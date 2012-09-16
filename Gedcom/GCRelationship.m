@@ -10,7 +10,6 @@
 
 #import "GCEntity.h"
 #import "GCNode.h"
-#import "GCTag.h"
 #import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
@@ -190,7 +189,7 @@
 
 + (id)relationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-    GCRelationship *relationship = [[self alloc] initWithType:type];
+    GCRelationship *relationship = [self relationshipWithType:type];
     
     relationship.target = target;
 	
