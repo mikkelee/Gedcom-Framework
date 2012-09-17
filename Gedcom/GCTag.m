@@ -31,27 +31,127 @@
 #pragma mark Constants
 
 const NSString *kRootObject = @"@rootObject";
-const NSString *kTags = @"tags";
-const NSString *kNameTags = @"nameTags";
-const NSString *kValidSubTags = @"validSubTags";
-const NSString *kRootTags = @"rootTags";
-const NSString *kAliases = @"aliases";
-const NSString *kReverseRelationshipTag = @"reverseRelationshipTag";
-const NSString *kCode = @"code";
+
 const NSString *kName = @"name";
+const NSString *kCode = @"code";
+
 const NSString *kVariants = @"variants";
+
+const NSString *kValidSubTags = @"validSubTags";
+const NSString *kGroupName = @"groupName";
+const NSString *kMin = @"min";
+const NSString *kMax = @"max";
+
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
 const NSString *kTargetType = @"target";
+const NSString *kReverseRelationshipTag = @"reverseRelationshipTag";
 const NSString *kPlural = @"plural";
 
-#pragma mark Setup
+#pragma mark Initialization
 
 __strong static NSMutableDictionary *_tagStore;
 __strong static NSMutableDictionary *_tagInfo;
 __strong static NSDictionary *_tagsByName;
 __strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
+
+// Propagate info from sourceDict to tagInfo[variantKey] where applicable
+static inline void propagate(NSString *variantKey, NSDictionary *sourceDict) {
+    id variantDict = _tagInfo[variantKey];
+    assert(variantDict != nil);
+    
+    if (sourceDict[kValidSubTags]) {
+        NSMutableArray *validSubTags = variantDict[kValidSubTags];
+        
+        if (validSubTags == nil) {
+            validSubTags = [sourceDict[kValidSubTags] mutableCopy];
+        } else {
+            [sourceDict[kValidSubTags] enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(NSDictionary *subTag, NSUInteger idx, BOOL *stop) {
+                BOOL subTagExists = NO;
+                
+                for (NSDictionary *existingTag in validSubTags) {
+                    subTagExists = [existingTag[kName] isEqualToString:subTag[kName]] || [existingTag[kGroupName] isEqualToString:subTag[kGroupName]];
+                    *stop = subTagExists;
+                }
+                
+                if (!subTagExists) {
+                    [validSubTags addObject:subTag];
+                }
+            }];
+        }
+        
+        variantDict[kValidSubTags] = validSubTags;
+    }
+    
+    if (sourceDict[kValueType] && !variantDict[kValueType]) {
+        variantDict[kValueType] = sourceDict[kValueType];
+    }
+    
+    if (sourceDict[kObjectType] && !variantDict[kObjectType]) {
+        variantDict[kObjectType] = sourceDict[kObjectType];
+    }
+}
+
+static inline void setupKey(NSString *key) {
+    if (_tagStore[key]) {
+        return;
+    }
+    
+    //NSLog(@"setupKey: %@", key);
+    
+    NSMutableDictionary *tagDict = _tagInfo[key];
+    assert(tagDict != nil);
+    
+    // name
+    tagDict[kName] = [key hasPrefix:@"@"] ? [key substringFromIndex:1] : key;
+    
+    // pluralName
+    if (!tagDict[kPlural]) {
+        tagDict[kPlural] = [NSString stringWithFormat:@"%@s", tagDict[kName]];
+    }
+    _singularToPlural[tagDict[kName]] = tagDict[kPlural];
+    
+    // propagate info to variants
+    for (NSDictionary *variant in tagDict[kVariants]) {
+        if (variant[kGroupName]) {
+            for (NSDictionary *subVariant in _tagInfo[variant[kGroupName]][kVariants]) {
+                propagate(subVariant[kName], tagDict);
+                
+                setupKey(subVariant[kName]);
+            }
+        } else {
+            propagate(variant[kName], tagDict);
+            
+            setupKey(variant[kName]);
+        }
+    }
+    
+    // store tags
+    if (tagDict[kCode] != nil) {
+        GCTag *tag = [[GCTag alloc] initWithName:key
+                                        settings:tagDict];
+        
+        _tagStore[key] = tag;
+        _tagStore[tagDict[kPlural]] = tag;
+        
+        if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
+            //NSLog(@"storing root tag: %@", tag);
+            _rootTagsByCode[tagDict[kCode]] = tag;
+        }
+        
+        //tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
+    }
+    
+    // set up subtags
+    for (NSDictionary *subTag in tagDict[kValidSubTags]) {
+        if (subTag[kGroupName]) {
+            setupKey(subTag[kGroupName]);
+        } else {
+            setupKey(subTag[kName]);
+        }
+    }
+}
 
 + (void)initialize
 {
@@ -72,82 +172,11 @@ __strong static NSMutableDictionary *_rootTagsByCode;
     //NSLog(@"tagInfo: %@", tagInfo);
     NSAssert(_tagInfo != nil, @"error: %@", err);
     
-    [self setupTagStoreForKey:(NSString *)kRootObject];
+    setupKey((NSString *)kRootObject);
+    
+    //NSLog(@"_tagInfo: %@", _tagInfo);
+    //NSLog(@"_tagStore: %@", _tagStore);
 }
-
-+ (void)setupTagStoreForKey:(NSString *)key
-{
-    NSMutableDictionary *tagDict = _tagInfo[key];
-    NSParameterAssert(tagDict);
-    
-    tagDict[kName] = key;
-    
-    if (!tagDict[kPlural]) {
-        tagDict[kPlural] = [NSString stringWithFormat:@"%@s", [key hasPrefix:@"@"] ? [key substringFromIndex:1] : key];
-    }
-    _singularToPlural[[key hasPrefix:@"@"] ? [key substringFromIndex:1] : key] = tagDict[kPlural];
-    
-    for (NSString *variantName in tagDict[kVariants]) {
-        id variant = _tagInfo[variantName];
-        NSParameterAssert(variant);
-        
-        if (tagDict[kValidSubTags]) {
-            NSMutableArray *_validSubTags = variant[kValidSubTags];
-            if (_validSubTags == nil) {
-                _validSubTags = [tagDict[kValidSubTags] mutableCopy];
-            } else {
-                [_validSubTags addObjectsFromArray:tagDict[kValidSubTags]];
-            }
-            
-            variant[kValidSubTags] = _validSubTags;
-        }
-        if (tagDict[kValueType] && !variant[kValueType]) {
-            variant[kValueType] = tagDict[kValueType];
-        }
-        if (!_tagStore[variantName]) {
-            [self setupTagStoreForKey:variantName];
-        }
-    }
-    
-    if (tagDict[kCode] != nil) {
-        GCTag *tag = [[GCTag alloc] initWithName:key
-                                        settings:tagDict];
-        _tagStore[key] = tag;
-        _tagStore[tagDict[kPlural]] = tag;
-        if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
-            _rootTagsByCode[tagDict[kCode]] = tag;
-        }
-        //tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
-    }
-    
-    for (NSDictionary *subTag in tagDict[kValidSubTags]) {
-        if (!_tagStore[subTag[kName]]) {
-            [self setupTagStoreForKey:subTag[kName]];
-        }
-    }
-}
-
-+ (NSDictionary *)tagsByName
-{
-    if (!_tagsByName) {
-        NSSet *keys = [_tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id key, id obj, BOOL *stop) {
-            return !([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound);
-        }];
-        
-        NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
-        
-        for (NSString *key in keys) {
-            tmpTags[key] = _tagStore[key];
-        }
-        
-        _tagsByName = [tmpTags copy];
-    }
-    
-    return [_tagsByName copy];
-}
-
-
-#pragma mark Initialization
 
 - (id)initWithName:(NSString *)name 
 		 settings:(NSDictionary *)settings
@@ -168,7 +197,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
 
 + (GCTag *)tagNamed:(NSString *)name
 {
-    NSParameterAssert(name != nil);
+    NSParameterAssert(name);
     
     GCTag *tag = _tagStore[name];
     
@@ -180,6 +209,25 @@ __strong static NSMutableDictionary *_rootTagsByCode;
     }
     
     return tag;
+}
+
++ (NSDictionary *)tagsByName
+{
+    if (!_tagsByName) {
+        NSSet *keys = [_tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id key, id obj, BOOL *stop) {
+            return !([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound);
+        }];
+        
+        NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
+        
+        for (NSString *key in keys) {
+            tmpTags[key] = _tagStore[key];
+        }
+        
+        _tagsByName = [tmpTags copy];
+    }
+    
+    return [_tagsByName copy];
 }
 
 + (GCTag *)rootTagWithCode:(NSString *)code
@@ -212,12 +260,12 @@ __strong static NSMutableDictionary *_rootTagsByCode;
         if ([key hasPrefix:@"@"]) {
             NSString *variantGroupName = tagDict[kPlural];
             
-            for (NSString *variantName in tagDict[kVariants]) {
-                if (![variantName hasPrefix:@"@"] && [self.validSubTags containsObject:[GCTag tagNamed:variantName]]) {
+            for (NSDictionary *variant in tagDict[kVariants]) {
+                if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kName]]]) {
                     if (!byVariant[variantGroupName]) {
                         byVariant[variantGroupName] = [NSMutableArray array];
                     }
-                    [byVariant[variantGroupName] addObject:[GCTag tagNamed:variantName]];
+                    [byVariant[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
                 }
             }
             
@@ -278,6 +326,16 @@ __strong static NSMutableDictionary *_rootTagsByCode;
     return tag.isCustom || [self.validSubTags containsObject:tag];
 }
 
+static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDictionary *subtag) {
+    if (subtag[kGroupName]) {
+        for (NSDictionary *variant in _tagInfo[subtag[kGroupName]][kVariants]) {
+            expandOccurences(occurrencesDicts, variant);
+        }
+    } else {
+        occurrencesDicts[subtag[kName]] = subtag;
+    }
+}
+
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag
 {
     if (tag.isCustom) {
@@ -291,17 +349,8 @@ __strong static NSMutableDictionary *_rootTagsByCode;
     if (!_cachedOccurencesDicts) {
         NSMutableDictionary *occurrencesDicts = [NSMutableDictionary dictionary];
         
-        for (NSDictionary *valid in _settings[kValidSubTags]) {
-            if ([valid[kName] hasPrefix:@"@"]) {
-                for (NSString *variantName in _tagInfo[valid[kName]][kVariants]) {
-                    NSDictionary *validDict = @{kName: variantName, 
-                                               @"min": valid[@"min"],
-                                               @"max": valid[@"max"]};
-                    occurrencesDicts[variantName] = validDict;
-                }
-            } else {
-                occurrencesDicts[valid[kName]] = valid;
-            }
+        for (NSDictionary *subtag in _settings[kValidSubTags]) {
+            expandOccurences(occurrencesDicts, subtag);
         }
         
         _cachedOccurencesDicts = [occurrencesDicts copy];
@@ -311,11 +360,11 @@ __strong static NSMutableDictionary *_rootTagsByCode;
     
     NSParameterAssert(validDict);
     
-    NSInteger min = [validDict[@"min"] integerValue];
+    NSInteger min = [validDict[kMin] integerValue];
     
-    NSInteger max = [validDict[@"max"] isEqual:@"M"]
+    NSInteger max = [validDict[kMax] isEqual:@"M"]
                   ? NSIntegerMax
-                  : [validDict[@"max"] integerValue]
+                  : [validDict[kMax] integerValue]
                   ;
 	
     return (GCAllowedOccurrences){min, max};
@@ -326,7 +375,7 @@ __strong static NSMutableDictionary *_rootTagsByCode;
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (%@ %@)", [super description], self.code, self.name];
+    return [NSString stringWithFormat:@"%@ (%@ %@ %@)", [super description], self.code, self.name, NSStringFromClass(self.objectClass)];
 }
 //COV_NF_END
 
@@ -405,20 +454,22 @@ __strong static NSMutableDictionary *_rootTagsByCode;
 	return _cachedTargetType;
 }
 
+static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
+    if (valid[kGroupName]) {
+        for (NSDictionary *variant in _tagInfo[valid[kGroupName]][kVariants]) {
+            expandSubtag(set, variant);
+        }
+    } else {
+        [set addObject:[GCTag tagNamed:[valid[kMax] isEqualToString:@"M"] ? _singularToPlural[valid[kName]] : valid[kName]]];
+    }
+}
+
 - (NSOrderedSet *)validSubTags
 {
     if (!_cachedValidSubTags) {
         NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
         for (NSDictionary *valid in _settings[kValidSubTags]) {
-            BOOL isPlural = [valid[@"max"] isEqualToString:@"M"];
-            
-            if ([valid[kName] hasPrefix:@"@"]) {
-                for (NSString *variantName in _tagInfo[valid[kName]][kVariants]) {
-                    [set addObject:[GCTag tagNamed:isPlural ? _singularToPlural[variantName] : variantName]];
-                }
-            } else {
-                [set addObject:[GCTag tagNamed:isPlural ? _singularToPlural[valid[kName]] : valid[kName]]];
-            }
+            expandSubtag(set, valid);
         }
         _cachedValidSubTags = [set copy];
     }

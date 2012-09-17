@@ -1391,19 +1391,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: arrangedObjects.births@primary.dates@primary.value</string>
+						<string key="label">value: arrangedObjects.births@primary.date.value</string>
 						<reference key="source" ref="1063856487"/>
 						<reference key="destination" ref="1060706041"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1063856487"/>
 							<reference key="NSDestination" ref="1060706041"/>
-							<string key="NSLabel">value: arrangedObjects.births@primary.dates@primary.value</string>
+							<string key="NSLabel">value: arrangedObjects.births@primary.date.value</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">arrangedObjects.births@primary.dates@primary.value</string>
+							<string key="NSKeyPath">arrangedObjects.births@primary.date.value</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">100841</int>
+					<int key="connectionID">100844</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1515,19 +1515,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: arrangedObjects.births@primary.places@primary.value</string>
+						<string key="label">value: arrangedObjects.births@primary.place.value</string>
 						<reference key="source" ref="450079265"/>
 						<reference key="destination" ref="1060706041"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="450079265"/>
 							<reference key="NSDestination" ref="1060706041"/>
-							<string key="NSLabel">value: arrangedObjects.births@primary.places@primary.value</string>
+							<string key="NSLabel">value: arrangedObjects.births@primary.place.value</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">arrangedObjects.births@primary.places@primary.value</string>
+							<string key="NSKeyPath">arrangedObjects.births@primary.place.value</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">100842</int>
+					<int key="connectionID">100843</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3140,7 +3140,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100842</int>
+			<int key="maxID">100844</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
