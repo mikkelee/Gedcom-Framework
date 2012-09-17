@@ -24,15 +24,14 @@
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else if ([other isKindOfClass:[GCSimpleDate class]]) {
-		if (![[self calendar] isEqual:[other calendar]]) {
-			NSLog(@"WARNING: It is not safe at this moment to compare two GCDateSimples with different calendars.");
-		}
-		if ([[self dateComponents] year] != [[other dateComponents] year]) {
-			return [@([[self dateComponents] year]) compare:@([[other dateComponents] year])];
-		} else if ([[self dateComponents] month] != [[other dateComponents] month]) {
-			return [@([[self dateComponents] month]) compare:@([[other dateComponents] month])];
+        NSParameterAssert([self.calendar isEqual:[other calendar]]);
+        
+		if ([self.dateComponents year] != [[other dateComponents] year]) {
+			return [@([self.dateComponents year]) compare:@([[other dateComponents] year])];
+		} else if ([self.dateComponents month] != [[other dateComponents] month]) {
+			return [@([self.dateComponents month]) compare:@([[other dateComponents] month])];
 		} else {
-			return [@([[self dateComponents] day]) compare:@([[other dateComponents] day])];
+			return [@([self.dateComponents day]) compare:@([[other dateComponents] day])];
 		}
 	} else {
 		return [self compare:[other refDate]];
@@ -44,39 +43,39 @@
 	NSArray *monthNames = [@"JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC" componentsSeparatedByString:@" "];
 	
 	NSString *month = @"";
-	if ([[self dateComponents] month] >= 1 && [[self dateComponents] month] <= 12) {
-		month = [NSString stringWithFormat:@"%@ ", monthNames[[[self dateComponents] month]-1]];
+	if ([self.dateComponents month] >= 1 && [self.dateComponents month] <= 12) {
+		month = [NSString stringWithFormat:@"%@ ", monthNames[[self.dateComponents month]-1]];
 	}
 	
 	NSString *day = @"";
-	if ([[self dateComponents] day] >= 1 && [[self dateComponents] day] <= 31) {
-		day = [NSString stringWithFormat:@"%ld ", [[self dateComponents] day]];
+	if ([self.dateComponents day] >= 1 && [self.dateComponents day] <= 31) {
+		day = [NSString stringWithFormat:@"%ld ", [self.dateComponents day]];
 	}
 	
-	return [NSString stringWithFormat:@"%@%@%04ld", day, month, [[self dateComponents] year]];
+	return [NSString stringWithFormat:@"%@%@%04ld", day, month, [self.dateComponents year]];
 }
 
 - (NSString *)displayString
 {
-    if ([[self dateComponents] day] < 1 || [[self dateComponents] day] > 31) {
-        if ([[self dateComponents] month] < 1 || [[self dateComponents] month] > 12) {
-            return [NSString stringWithFormat:@"%ld", [[self dateComponents] year]];
+    if ([self.dateComponents day] < 1 || [self.dateComponents day] > 31) {
+        if ([self.dateComponents month] < 1 || [self.dateComponents month] > 12) {
+            return [NSString stringWithFormat:@"%ld", [self.dateComponents year]];
         }
     }
     
-    return [NSDateFormatter localizedStringFromDate:[[self calendar] dateFromComponents:[self dateComponents]]
+    return [NSDateFormatter localizedStringFromDate:[self.calendar dateFromComponents:self.dateComponents]
                                           dateStyle:NSDateFormatterMediumStyle
                                           timeStyle:NSDateFormatterNoStyle];
 }
 
 - (NSDate *)minDate
 {
-    return [[self calendar] dateFromComponents:[self dateComponents]];
+    return [self.calendar dateFromComponents:self.dateComponents];
 }
 
 - (NSDate *)maxDate
 {
-    return [[self calendar] dateFromComponents:[self dateComponents]];
+    return [self.calendar dateFromComponents:self.dateComponents];
 }
 
 - (GCSimpleDate *)refDate
@@ -92,7 +91,7 @@
 
 - (NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"(%@)", [self phrase]];
+	return [NSString stringWithFormat:@"(%@)", self.phrase];
 }
 
 - (NSString *)displayString
@@ -128,22 +127,22 @@
 
 - (NSCalendar *)calendar
 {
-	return [[self simpleDate] calendar];
+	return [self.simpleDate calendar];
 }
 
 - (GCSimpleDate *)refDate
 {
-	return [self simpleDate];
+	return self.simpleDate;
 }
 
 - (NSDate *)minDate
 {
-    return [[[self simpleDate] calendar] dateFromComponents:[[self simpleDate] dateComponents]];
+    return [[self.simpleDate calendar] dateFromComponents:self.simpleDate.dateComponents];
 }
 
 - (NSDate *)maxDate
 {
-    return [[[self simpleDate] calendar] dateFromComponents:[[self simpleDate] dateComponents]];
+    return [[self.simpleDate calendar] dateFromComponents:self.simpleDate.dateComponents];
 }
 
 @end
@@ -154,16 +153,16 @@
 
 - (NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"%@ %@", [self dateType], [[self simpleDate] gedcomString]];
+	return [NSString stringWithFormat:@"%@ %@", self.dateType, self.simpleDate.gedcomString];
 }
 
 - (NSString *)displayString
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-    NSString *key = [NSString stringWithFormat:@"%@ %%@", [self dateType]];
+    NSString *key = [NSString stringWithFormat:@"%@ %%@", self.dateType];
     
-	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:key value:@"~ %@" table:@"Values"], [[self simpleDate] displayString]];
+	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:key value:@"~ %@" table:@"Values"], self.simpleDate.displayString];
 }
 
 @end
@@ -174,14 +173,14 @@
 
 - (NSString *)gedcomString
 {
-	return [NSString stringWithFormat:@"INT %@ %@", [[self simpleDate] gedcomString], [[self datePhrase] gedcomString]];
+	return [NSString stringWithFormat:@"INT %@ %@", self.simpleDate.gedcomString, self.datePhrase.gedcomString];
 }
 
 - (NSString *)displayString
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"INT %@ %@" value:@"\"%@\" %@" table:@"Values"], [[self simpleDate] displayString], [[self datePhrase] displayString]];
+	return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"INT %@ %@" value:@"\"%@\" %@" table:@"Values"], self.simpleDate.displayString, self.datePhrase.displayString];
 }
 
 @end
@@ -195,15 +194,15 @@
 
 - (GCSimpleDate *)refDate
 {
-	if ([self dateA] == nil) {
-		return [self dateB];
-	} else if ([self dateB] == nil) {
-		return [self dateA];
+	if (self.dateA == nil) {
+		return self.dateB;
+	} else if (self.dateB == nil) {
+		return self.dateA;
 	} else {
 		GCSimpleDate *m = [[GCSimpleDate alloc] init];
 		
-		[m setCalendar:[[self dateA] calendar]];
-		[m setDateComponents:[[[self dateA] calendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[[self minDate] dateByAddingTimeInterval:[[self maxDate] timeIntervalSinceDate:[self minDate]]/2]]];
+		[m setCalendar:self.dateA.calendar];
+		[m setDateComponents:[self.dateA.calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[[self minDate] dateByAddingTimeInterval:[[self maxDate] timeIntervalSinceDate:[self minDate]]/2]]];
         
 		return m;
 	}
@@ -211,10 +210,10 @@
 
 - (NSCalendar *)calendar
 {
-	if ([self dateA]) {
-		return [[self dateA] calendar];
+	if (self.dateA) {
+		return self.dateA.calendar;
 	} else {
-		return [[self dateB] calendar];
+		return self.dateB.calendar;
 	}
 }
 
@@ -225,7 +224,7 @@
 
 - (void)setDateA:(GCSimpleDate *)dateA
 {
-    NSParameterAssert(dateA == nil || _dateB == nil || [[dateA calendar] isEqual:[_dateB calendar]]);
+    NSParameterAssert(dateA == nil || _dateB == nil || [dateA.calendar isEqual:_dateB.calendar]);
     
     _dateA = dateA;
 }
@@ -237,19 +236,19 @@
 
 - (void)setDateB:(GCSimpleDate *)dateB
 {
-    NSParameterAssert(dateB == nil || _dateA == nil || [[_dateA calendar] isEqual:[dateB calendar]]);
+    NSParameterAssert(dateB == nil || _dateA == nil || [_dateA.calendar isEqual:dateB.calendar]);
     
     _dateB = dateB;
 }
 
 - (NSDate *)minDate
 {
-    return [[[self dateA] calendar] dateFromComponents:[[self dateA] dateComponents]];
+    return [self.dateA.calendar dateFromComponents:self.dateA.dateComponents];
 }
 
 - (NSDate *)maxDate
 {
-    return [[[self dateB] calendar] dateFromComponents:[[self dateB] dateComponents]];
+    return [self.dateB.calendar dateFromComponents:self.dateB.dateComponents];
 }
 
 @end
@@ -260,12 +259,12 @@
 
 - (NSString *)gedcomString
 {
-	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"TO %@", [[self dateB] gedcomString]];
-	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"FROM %@", [[self dateA] gedcomString]];
+	if (self.dateA == nil) {
+		return [NSString stringWithFormat:@"TO %@", self.dateB.gedcomString];
+	} else if (self.dateB == nil) {
+		return [NSString stringWithFormat:@"FROM %@", self.dateA.gedcomString];
 	} else {
-		return [NSString stringWithFormat:@"FROM %@ TO %@", [[self dateA] gedcomString], [[self dateB] gedcomString]];
+		return [NSString stringWithFormat:@"FROM %@ TO %@", self.dateA.gedcomString, self.dateB.gedcomString];
 	}
 }
 
@@ -273,12 +272,12 @@
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-    if ([self dateA] == nil) {
-        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"TO %@" value:@"… %@" table:@"Values"], [[self dateB] displayString]];
-	} else if ([self dateB] == nil) {
-        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"FROM %@" value:@"%@ …" table:@"Values"], [[self dateA] displayString]];
+    if (self.dateA == nil) {
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"TO %@" value:@"… %@" table:@"Values"], self.dateB.displayString];
+	} else if (self.dateB == nil) {
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"FROM %@" value:@"%@ …" table:@"Values"], self.dateA.displayString];
 	} else {
-        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"FROM %@ TO %@" value:@"%@ … %@" table:@"Values"], [[self dateA] displayString], [[self dateB] displayString]];
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"FROM %@ TO %@" value:@"%@ … %@" table:@"Values"], self.dateA.displayString, self.dateB.displayString];
 	}
 }
 
@@ -290,12 +289,12 @@
 
 - (NSString *)gedcomString
 {
-	if ([self dateA] == nil) {
-		return [NSString stringWithFormat:@"BEF %@", [[self dateB] gedcomString]];
-	} else if ([self dateB] == nil) {
-		return [NSString stringWithFormat:@"AFT %@", [[self dateA] gedcomString]];
+	if (self.dateA == nil) {
+		return [NSString stringWithFormat:@"BEF %@", self.dateB.gedcomString];
+	} else if (self.dateB == nil) {
+		return [NSString stringWithFormat:@"AFT %@", self.dateA.gedcomString];
 	} else {
-		return [NSString stringWithFormat:@"BET %@ AND %@", [[self dateA] gedcomString], [[self dateB] gedcomString]];
+		return [NSString stringWithFormat:@"BET %@ AND %@", self.dateA.gedcomString, self.dateB.gedcomString];
 	}
 }
 
@@ -303,12 +302,12 @@
 {
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-    if ([self dateA] == nil) {
-        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"BEF %@" value:@"< %@" table:@"Values"], [[self dateB] displayString]];
-	} else if ([self dateB] == nil) {
-        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"AFT %@" value:@"> %@" table:@"Values"], [[self dateA] displayString]];
+    if (self.dateA == nil) {
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"BEF %@" value:@"< %@" table:@"Values"], self.dateB.displayString];
+	} else if (self.dateB == nil) {
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"AFT %@" value:@"> %@" table:@"Values"], self.dateA.displayString];
 	} else {
-        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"BET %@ AND %@" value:@"%@ – %@" table:@"Values"], [[self dateA] displayString], [[self dateB] displayString]];
+        return [NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"BET %@ AND %@" value:@"%@ – %@" table:@"Values"], self.dateA.displayString, self.dateB.displayString];
 	}
 }
 

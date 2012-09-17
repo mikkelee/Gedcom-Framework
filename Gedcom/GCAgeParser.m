@@ -128,7 +128,6 @@ static const int age_en_main = 1;
 
 @implementation GCAgeParser {
 	NSMutableDictionary *_cache;
-	NSLock *_lock;
 }
 
 + (id)sharedAgeParser // fancy new ARC/GCD singleton!
@@ -168,7 +167,7 @@ static const int age_en_main = 1;
         GCAgeQualifier qualifier = GCAgeNoQualifier;
         long tag = 0;
         NSInteger currentNumber = 0;
-        NSString *currentWord = nil;
+        NSString *currentString = nil;
         BOOL finished = NO;
         
         int cs = 0;
@@ -178,14 +177,14 @@ static const int age_en_main = 1;
         const char *eof = pe;
         
         
-#line 182 "GCAgeParser.m"
+#line 181 "GCAgeParser.m"
 	{
 	cs = age_start;
 	}
 
-#line 161 "GCAgeParser.rl"
+#line 160 "GCAgeParser.rl"
         
-#line 189 "GCAgeParser.m"
+#line 188 "GCAgeParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -301,7 +300,7 @@ _match:
 		//NSLog(@"%p greaterThan", fpc);
 	}
 	break;
-#line 305 "GCAgeParser.m"
+#line 304 "GCAgeParser.m"
 		}
 	}
 
@@ -321,8 +320,8 @@ _again:
 #line 46 "GCAgeParser.rl"
 	{
 		long len = (p - data) - tag;
-		currentWord = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
-		//NSLog(@"%p word: %@", fpc, word);
+		currentString = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
+		//NSLog(@"%p string: %@", fpc, string);
 	}
 	break;
 	case 3:
@@ -355,7 +354,7 @@ _again:
 	case 7:
 #line 71 "GCAgeParser.rl"
 	{
-		age = [GCAge ageWithAgeKeyword:currentWord qualifier:qualifier];
+		age = [GCAge ageWithAgeKeyword:currentString qualifier:qualifier];
 	}
 	break;
 	case 10:
@@ -365,7 +364,7 @@ _again:
 		finished = YES;
 	}
 	break;
-#line 369 "GCAgeParser.m"
+#line 368 "GCAgeParser.m"
 		}
 	}
 	}
@@ -373,7 +372,7 @@ _again:
 	_out: {}
 	}
 
-#line 162 "GCAgeParser.rl"
+#line 161 "GCAgeParser.rl"
         
         if (!finished) {
             age = nil;

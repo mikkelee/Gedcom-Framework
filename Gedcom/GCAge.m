@@ -295,8 +295,8 @@ NSString * const GCAgeQualifier_toString[] = {
     NSCalendar *calendar = [[fromDate valueForKey:@"refDate"] calendar];
     
     NSDateComponents *ageComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                  fromDate:[fromDate minDate] 
-                                                    toDate:[toDate maxDate] 
+                                                  fromDate:fromDate.minDate
+                                                    toDate:toDate.maxDate
                                                    options:NO];
     
     return [GCAge ageWithSimpleAge:ageComponents qualifier:GCAgeNoQualifier];
@@ -308,7 +308,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else {
-		return [[self refAge] compare:[other refAge]];
+		return [self.refAge compare:[other refAge]];
 	}
 }
 
@@ -328,17 +328,17 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (NSUInteger)years
 {
-    return [[[self refAge] ageComponents] year];
+    return [self.refAge.ageComponents year];
 }
 
 - (NSUInteger)months
 {
-    return [[[self refAge] ageComponents] month];
+    return [self.refAge.ageComponents month];
 }
 
 - (NSUInteger)days
 {
-    return [[[self refAge] ageComponents] day];
+    return [self.refAge.ageComponents day];
 }
 
 @end

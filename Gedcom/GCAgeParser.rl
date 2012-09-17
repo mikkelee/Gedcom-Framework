@@ -26,7 +26,7 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 #import "GCAge_internal.h"
 
 %%{
-	machine age;
+    machine age;
 	
 	action log {
 		NSLog(@"%p log: %c", fpc, fc);
@@ -43,10 +43,10 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 		//NSLog(@"%p num: %d", fpc, number);
 	}
 	
-	action word {
+	action string {
 		long len = (fpc - data) - tag;
-		currentWord = [[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding];
-		//NSLog(@"%p word: %@", fpc, word);
+		currentString = [[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding];
+		//NSLog(@"%p string: %@", fpc, string);
 	}
 	
 	action saveDays {
@@ -64,12 +64,12 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
     
-    action saveSimpleDate {
+    action saveSimpleAge {
         age = [GCAge ageWithSimpleAge:currentAgeComponents qualifier:qualifier];
     }
 	
 	action saveKeyword {
-		age = [GCAge ageWithAgeKeyword:currentWord qualifier:qualifier];
+		age = [GCAge ageWithAgeKeyword:currentString qualifier:qualifier];
 	}
 	
 	action lessThan {
@@ -92,9 +92,9 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 	months					= number 'm' %saveMonths;
 	days					= number 'd' %saveDays;
 	
-	simpleAge				= ( ( years? ' '? months? ' '? days? ) & ascii+ ) %saveSimpleDate;
+	simpleAge				= ( ( years? ' '? months? ' '? days? ) & ascii+ ) %saveSimpleAge;
 	
-	ageKeyword				= ( ( 'INFANT' | 'STILLBORN' | 'CHILD' ) >tag %word ) %saveKeyword;
+	ageKeyword				= ( ( 'INFANT' | 'STILLBORN' | 'CHILD' ) >tag %string ) %saveKeyword;
     
 	lessThan				= '<' %lessThan;
 	greaterThan				= '>' %greaterThan;
@@ -108,7 +108,6 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 
 @implementation GCAgeParser {
 	NSMutableDictionary *_cache;
-	NSLock *_lock;
 }
 
 + (id)sharedAgeParser // fancy new ARC/GCD singleton!
@@ -148,7 +147,7 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
         GCAgeQualifier qualifier = GCAgeNoQualifier;
         long tag = 0;
         NSInteger currentNumber = 0;
-        NSString *currentWord = nil;
+        NSString *currentString = nil;
         BOOL finished = NO;
         
         int cs = 0;
