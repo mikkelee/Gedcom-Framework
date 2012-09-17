@@ -372,16 +372,6 @@ static NSCalendar *_gregorianCalendar = nil;
     return _sharedDatePlaceholder;
 }
 
-- (id)initWithSimpleDate:(NSDateComponents *)co
-{
-	GCSimpleDate *date = [[GCSimpleDate alloc] init];
-	
-	date.dateComponents = co;
-    date.calendar = _gregorianCalendar;
-	
-	return (id)date;
-}
-
 - (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
 	GCSimpleDate *date = [[GCSimpleDate alloc] init];
@@ -417,7 +407,7 @@ static NSCalendar *_gregorianCalendar = nil;
 	GCDatePeriod *date = [[GCDatePeriod alloc] init];
 	
     date.dateA = f;
-    date.dateB = f;
+    date.dateB = t;
 	
 	return (id)date;
 }
@@ -427,7 +417,7 @@ static NSCalendar *_gregorianCalendar = nil;
 	GCDateRange *date = [[GCDateRange alloc] init];
 	
     date.dateA = f;
-    date.dateB = f;
+    date.dateB = t;
 	
 	return (id)date;
 }
@@ -483,12 +473,6 @@ static NSCalendar *_gregorianCalendar = nil;
 }
 
 //COV_NF_START
-- (id)initWithSimpleDate:(NSDateComponents *)co
-{
-    [self doesNotRecognizeSelector:_cmd];    
-    return nil;
-}
-
 - (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
     [self doesNotRecognizeSelector:_cmd];    
@@ -542,11 +526,6 @@ static NSCalendar *_gregorianCalendar = nil;
 + (id)dateWithDate:(NSDate *)date
 {
     return [[self alloc] initWithDate:date];
-}
-
-+ (id)dateWithSimpleDate:(NSDateComponents *)co
-{
-	return [[self alloc] initWithSimpleDate:co];
 }
 
 + (id)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca

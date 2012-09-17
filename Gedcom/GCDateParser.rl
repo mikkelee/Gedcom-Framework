@@ -170,13 +170,16 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
         approximationQualifier = currentString;
     }
     
-    action saveDatePart {
+    action resetDate {
 		//NSLog(@"%p saveDatePart.", fpc);
+        
         previousDate = currentDate;
+        
         currentDateComponents = [[NSDateComponents alloc] init];
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        
         currentDate = nil;
     }
     
@@ -247,17 +250,17 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 	
 	datePhrase			= ( '(' any* >tag %string %saveDatePhrase ')' );
 	
-	dateInterpreted		= ( 'INT ' dateSimple %saveDatePart ' ' datePhrase ) %saveDateInterpreted;
+	dateInterpreted		= ( 'INT ' dateSimple %resetDate ' ' datePhrase ) %saveDateInterpreted;
 	
 	dateApproximated	= ( ('ABT' | 'CAL' | 'EST') >tag %string %saveApproximationQualifier ' ' dateSimple ) %saveDateApproximate;
 	
-	dateRange			= ( ('BET ' dateSimple %saveDatePart ' AND ' dateSimple)
-						  | ('BEF ' dateSimple %saveDatePart)
+	dateRange			= ( ('BET ' dateSimple %resetDate ' AND ' dateSimple)
+						  | ('BEF ' dateSimple %resetDate)
 						  | ('AFT ' dateSimple)
                           ) %saveDateRange ;
 	
-	datePeriod			= ( ('FROM ' dateSimple %saveDatePart ' TO ' dateSimple)
-						  | ('FROM ' dateSimple %saveDatePart)
+	datePeriod			= ( ('FROM ' dateSimple %resetDate ' TO ' dateSimple)
+						  | ('FROM ' dateSimple %resetDate)
 						  | ('TO ' dateSimple)
                           ) %saveDatePeriod ;
 	

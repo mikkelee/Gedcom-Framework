@@ -137,7 +137,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (xref: %@) {\n%@%@};\n", indent, NSStringFromClass([self class]), self, [_context xrefForEntity:self], [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (xref: %@) {\n%@%@};\n", indent, [self className], self, [_context xrefForEntity:self], [self propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 

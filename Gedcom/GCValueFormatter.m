@@ -92,7 +92,7 @@
 - (NSString *)editingStringForObjectValue:(id)anObject
 {
 	if (![anObject isKindOfClass:[self classToFormat]]) {
-        //NSLog(@"%@ -- %@ is not kind of %@ (editingStringForObjectValue)", anObject, NSStringFromClass([anObject class]), NSStringFromClass([self classToFormat]));
+        //NSLog(@"%@ -- %@ is not kind of %@ (editingStringForObjectValue)", anObject, [anObject className], NSStringFromClass([self classToFormat]));
         return [anObject description];
     }
     
@@ -102,7 +102,7 @@
 - (NSString *)stringForObjectValue:(id)anObject;
 {
 	if (![anObject isKindOfClass:[self classToFormat]]) {
-        //NSLog(@"%@ -- %@ is not kind of %@ (stringForObjectValue)", anObject, NSStringFromClass([anObject class]), NSStringFromClass([self classToFormat]));
+        //NSLog(@"%@ -- %@ is not kind of %@ (stringForObjectValue)", anObject, [anObject className], NSStringFromClass([self classToFormat]));
         return [anObject description];
     }
     

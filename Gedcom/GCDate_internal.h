@@ -16,7 +16,6 @@
 
 @interface GCDate ()
 
-+ (id)dateWithSimpleDate:(NSDateComponents *)co; //assumes Gregorian
 + (id)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca;
 
 + (id)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t;

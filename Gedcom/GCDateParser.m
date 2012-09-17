@@ -94,7 +94,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 #import "GCDate_internal.h"
 
 
-#line 272 "GCDateParser.rl"
+#line 275 "GCDateParser.rl"
 
 
 
@@ -2181,7 +2181,7 @@ static const int date_error = 0;
 static const int date_en_main = 1;
 
 
-#line 275 "GCDateParser.rl"
+#line 278 "GCDateParser.rl"
 
 @implementation GCDateParser {
 	NSMutableDictionary *_cache;
@@ -2247,7 +2247,7 @@ static const int date_en_main = 1;
 	cs = date_start;
 	}
 
-#line 335 "GCDateParser.rl"
+#line 338 "GCDateParser.rl"
         
 #line 2253 "GCDateParser.m"
 	{
@@ -2427,29 +2427,32 @@ _match:
 #line 173 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
+        
         previousDate = currentDate;
+        
         currentDateComponents = [[NSDateComponents alloc] init];
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        
         currentDate = nil;
     }
 	break;
 	case 15:
-#line 183 "GCDateParser.rl"
+#line 186 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 17:
-#line 193 "GCDateParser.rl"
+#line 196 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePhrase.", fpc);
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2453 "GCDateParser.m"
+#line 2456 "GCDateParser.m"
 		}
 	}
 
@@ -2510,58 +2513,61 @@ _again:
 #line 173 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
+        
         previousDate = currentDate;
+        
         currentDateComponents = [[NSDateComponents alloc] init];
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        
         currentDate = nil;
     }
 	break;
 	case 15:
-#line 183 "GCDateParser.rl"
+#line 186 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 16:
-#line 188 "GCDateParser.rl"
+#line 191 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateApproximate.", fpc);
         currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
 	break;
 	case 18:
-#line 198 "GCDateParser.rl"
+#line 201 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateInterpreted.", fpc);
         currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
 	break;
 	case 19:
-#line 203 "GCDateParser.rl"
+#line 206 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateRange.", fpc);
         currentDate = [GCDate dateWithRangeFrom:previousDate to:currentDate];
     }
 	break;
 	case 20:
-#line 208 "GCDateParser.rl"
+#line 211 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePeriod.", fpc);
         currentDate = [GCDate dateWithPeriodFrom:previousDate to:currentDate];
     }
 	break;
 	case 21:
-#line 213 "GCDateParser.rl"
+#line 216 "GCDateParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
         date = currentDate;
 		finished = YES;
 	}
 	break;
-#line 2565 "GCDateParser.m"
+#line 2571 "GCDateParser.m"
 		}
 	}
 	}
@@ -2569,7 +2575,7 @@ _again:
 	_out: {}
 	}
 
-#line 336 "GCDateParser.rl"
+#line 339 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

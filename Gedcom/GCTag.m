@@ -249,11 +249,11 @@ static inline void setupKey(NSString *key) {
     NSMutableDictionary *byVariant = [NSMutableDictionary dictionary];
     
     for (GCTag *subTag in self.validSubTags) {
-        NSString *typeKey = [NSStringFromClass([subTag objectClass]) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
+        NSString *typeKey = [NSStringFromClass(subTag.objectClass) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
         
-        byCode[typeKey][[subTag code]] = subTag;
-        byName[[subTag name]] = subTag;
-        byName[[subTag pluralName]] = subTag;
+        byCode[typeKey][subTag.code] = subTag;
+        byName[subTag.name] = subTag;
+        byName[subTag.pluralName] = subTag;
     }
     
     [_tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *tagDict, BOOL *stop) {
