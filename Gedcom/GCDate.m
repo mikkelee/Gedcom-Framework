@@ -202,7 +202,8 @@
 		GCSimpleDate *m = [[GCSimpleDate alloc] init];
 		
 		[m setCalendar:self.dateA.calendar];
-		[m setDateComponents:[self.dateA.calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[[self minDate] dateByAddingTimeInterval:[[self maxDate] timeIntervalSinceDate:[self minDate]]/2]]];
+		[m setDateComponents:[self.dateA.calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                    fromDate:[self.minDate dateByAddingTimeInterval:[self.maxDate timeIntervalSinceDate:self.minDate]/2]]];
         
 		return m;
 	}
@@ -319,7 +320,7 @@
 
 - (NSString *)gedcomString
 {
-	return [self string];
+	return self.string;
 }
 
 - (NSString *)displayString
@@ -587,7 +588,7 @@ static NSCalendar *_gregorianCalendar = nil;
 
 - (id)dateByAddingAge:(GCAge *)age
 {
-    NSDate *theDate = [self maxDate] ? [self maxDate] : [self minDate];
+    NSDate *theDate = self.maxDate ? self.maxDate : self.minDate;
     
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
     
@@ -595,17 +596,17 @@ static NSCalendar *_gregorianCalendar = nil;
     [ageComponents setMonth:[age months]];
     [ageComponents setDay:[age days]];
     
-    return [GCDate dateWithDate:[[[self refDate] calendar] dateByAddingComponents:ageComponents toDate:theDate options:0]];
+    return [GCDate dateWithDate:[self.refDate.calendar dateByAddingComponents:ageComponents toDate:theDate options:0]];
 }
 
 - (BOOL)containsDate:(NSDate *)date
 {
-    if ([self minDate] == nil) {
-        return ([[self maxDate] compare:date] == NSOrderedAscending);
-    } else if ([self maxDate] == nil) {
-        return ([[self minDate] compare:date] == NSOrderedDescending);
+    if (self.minDate == nil) {
+        return ([self.maxDate compare:date] == NSOrderedAscending);
+    } else if (self.maxDate == nil) {
+        return ([self.minDate compare:date] == NSOrderedDescending);
     } else {
-        return ([[self minDate] compare:date] == NSOrderedDescending) && ([[self maxDate] compare:date] == NSOrderedAscending);
+        return ([self.minDate compare:date] == NSOrderedDescending) && ([self.maxDate compare:date] == NSOrderedAscending);
     }
 }
 
@@ -616,7 +617,7 @@ static NSCalendar *_gregorianCalendar = nil;
 	if (other == nil) {
 		return NSOrderedAscending;
 	} else {
-		return [[self refDate] compare:[other refDate]];
+		return [self.refDate compare:[other refDate]];
 	}
 }
 
@@ -636,17 +637,17 @@ static NSCalendar *_gregorianCalendar = nil;
 
 - (NSUInteger)year
 {
-    return [[[self refDate] dateComponents] year];
+    return [self.refDate.dateComponents year];
 }
 
 - (NSUInteger)month
 {
-    return [[[self refDate] dateComponents] month];
+    return [self.refDate.dateComponents month];
 }
 
 - (NSUInteger)day
 {
-    return [[[self refDate] dateComponents] day];
+    return [self.refDate.dateComponents day];
 }
 
 @end
