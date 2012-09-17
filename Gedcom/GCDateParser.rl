@@ -182,12 +182,12 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
     
     action saveDateSimple {
 		//NSLog(@"%p saveDateSimple.", fpc);
-        currentDate = [GCDate dateWithSimpleDate:currentDateComponents withCalendar:calendar];
+        currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
     
     action saveDateApproximate {
 		//NSLog(@"%p saveDateApproximate.", fpc);
-        currentDate = [GCDate dateWithApproximateDate:currentDate withType:approximationQualifier];
+        currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
     
     action saveDatePhrase {
@@ -197,7 +197,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
     
     action saveDateInterpreted {
 		//NSLog(@"%p saveDateInterpreted.", fpc);
-        currentDate = [GCDate dateWithInterpretedDate:previousDate withPhrase:currentDate];
+        currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
     
     action saveDateRange {

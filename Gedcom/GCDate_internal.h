@@ -17,10 +17,10 @@
 @interface GCDate ()
 
 + (id)dateWithSimpleDate:(NSDateComponents *)co; //assumes Gregorian
-+ (id)dateWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca;
++ (id)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca;
 
-+ (id)dateWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t;
-+ (id)dateWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p;
++ (id)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t;
++ (id)dateWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p;
 
 + (id)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
 + (id)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;

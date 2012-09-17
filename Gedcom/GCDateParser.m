@@ -2439,7 +2439,7 @@ _match:
 #line 183 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
-        currentDate = [GCDate dateWithSimpleDate:currentDateComponents withCalendar:calendar];
+        currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 17:
@@ -2522,21 +2522,21 @@ _again:
 #line 183 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
-        currentDate = [GCDate dateWithSimpleDate:currentDateComponents withCalendar:calendar];
+        currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 16:
 #line 188 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateApproximate.", fpc);
-        currentDate = [GCDate dateWithApproximateDate:currentDate withType:approximationQualifier];
+        currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
 	break;
 	case 18:
 #line 198 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateInterpreted.", fpc);
-        currentDate = [GCDate dateWithInterpretedDate:previousDate withPhrase:currentDate];
+        currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
 	break;
 	case 19:

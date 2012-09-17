@@ -382,7 +382,7 @@ static NSCalendar *_gregorianCalendar = nil;
 	return date;
 }
 
-- (id)initWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
+- (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
 	id date = [[GCSimpleDate alloc] init];
 	
@@ -392,7 +392,7 @@ static NSCalendar *_gregorianCalendar = nil;
 	return date;
 }
 
-- (id)initWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t
+- (id)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
 	id date = [[GCApproximateDate alloc] init];
 	
@@ -402,7 +402,7 @@ static NSCalendar *_gregorianCalendar = nil;
 	return date;
 }
 
-- (id)initWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
+- (id)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
 	id date = [[GCInterpretedDate alloc] init];
 	
@@ -479,7 +479,7 @@ static NSCalendar *_gregorianCalendar = nil;
     NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                   fromDate:date];
     
-    return [GCDate dateWithSimpleDate:dateComponents withCalendar:calendar];
+    return [GCDate dateWithSimpleDate:dateComponents calendar:calendar];
 }
 
 //COV_NF_START
@@ -489,19 +489,19 @@ static NSCalendar *_gregorianCalendar = nil;
     return nil;
 }
 
-- (id)initWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
+- (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t
+- (id)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
+- (id)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
@@ -549,19 +549,19 @@ static NSCalendar *_gregorianCalendar = nil;
 	return [[self alloc] initWithSimpleDate:co];
 }
 
-+ (id)dateWithSimpleDate:(NSDateComponents *)co withCalendar:(NSCalendar *)ca
++ (id)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
-	return [[self alloc] initWithSimpleDate:co withCalendar:ca];
+	return [[self alloc] initWithSimpleDate:co calendar:ca];
 }
 
-+ (id)dateWithApproximateDate:(GCSimpleDate *)sd withType:(NSString *)t
++ (id)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
-	return [[self alloc] initWithApproximateDate:sd withType:t];
+	return [[self alloc] initWithApproximateDate:sd type:t];
 }
 
-+ (id)dateWithInterpretedDate:(GCSimpleDate *)sd withPhrase:(GCDatePhrase *)p
++ (id)dateWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
-    return [[self alloc] initWithInterpretedDate:sd withPhrase:p];
+    return [[self alloc] initWithInterpretedDate:sd phrase:p];
 }
 
 + (id)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
