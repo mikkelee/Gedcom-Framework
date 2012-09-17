@@ -374,80 +374,80 @@ static NSCalendar *_gregorianCalendar = nil;
 
 - (id)initWithSimpleDate:(NSDateComponents *)co
 {
-	id date = [[GCSimpleDate alloc] init];
+	GCSimpleDate *date = [[GCSimpleDate alloc] init];
 	
-	[date setDateComponents:co];
-	[date setCalendar:_gregorianCalendar];
+	date.dateComponents = co;
+    date.calendar = _gregorianCalendar;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
-	id date = [[GCSimpleDate alloc] init];
+	GCSimpleDate *date = [[GCSimpleDate alloc] init];
 	
-	[date setDateComponents:co];
-	[date setCalendar:ca];
+	date.dateComponents = co;
+    date.calendar = ca;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
-	id date = [[GCApproximateDate alloc] init];
+	GCApproximateDate *date = [[GCApproximateDate alloc] init];
 	
-	[date setSimpleDate:sd];
-	[date setDateType:t];
+    date.simpleDate = sd;
+    date.dateType = t;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
-	id date = [[GCInterpretedDate alloc] init];
+	GCInterpretedDate *date = [[GCInterpretedDate alloc] init];
 	
-	[date setSimpleDate:sd];
-	[date setDatePhrase:p];
+    date.simpleDate = sd;
+    date.datePhrase = p;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
-	id date = [[GCDatePeriod alloc] init];
+	GCDatePeriod *date = [[GCDatePeriod alloc] init];
 	
-	[date setDateA:f];
-	[date setDateB:t];
+    date.dateA = f;
+    date.dateB = f;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
-	id date = [[GCDateRange alloc] init];
+	GCDateRange *date = [[GCDateRange alloc] init];
 	
-	[date setDateA:f];
-	[date setDateB:t];
+    date.dateA = f;
+    date.dateB = f;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithDatePhrase:(NSString *)p
 {
-	id date = [[GCDatePhrase alloc] init];
+	GCDatePhrase *date = [[GCDatePhrase alloc] init];
 	
-	[date setPhrase:p];
+	date.phrase = p;
 	
-	return date;
+	return (id)date;
 }
 
 - (id)initWithInvalidDateString:(NSString *)s
 {
-	id date = [[GCInvalidDate alloc] init];
+	GCInvalidDate *date = [[GCInvalidDate alloc] init];
 	
-	[date setString:s];
+    date.string = s;
 	
-	return date;
+	return (id)date;
 }
 
 @end
