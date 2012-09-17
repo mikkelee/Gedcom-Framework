@@ -153,8 +153,8 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
     }
     
     action setCalendarJulian {
-        //TODO
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:nil];
+        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; 
     }
     
     action setCalendarHebrew {

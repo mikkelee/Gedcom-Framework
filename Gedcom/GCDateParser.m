@@ -2400,8 +2400,8 @@ _match:
 	case 10:
 #line 155 "GCDateParser.rl"
 	{
-        //TODO
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:nil];
+        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; 
     }
 	break;
 	case 11:
@@ -2492,8 +2492,8 @@ _again:
 	case 10:
 #line 155 "GCDateParser.rl"
 	{
-        //TODO
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:nil];
+        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; 
     }
 	break;
 	case 11:
