@@ -13,37 +13,44 @@
 
 #import "GCNode.h"
 
-const char *formatString = "%e %b %Y %H:%M:%S";
+const char *formatString = "%e %b %Y %H:%M:%S %z";
 const size_t MAXLEN = 80;
 const NSUInteger lengthOfTimePart = 8;
+const NSUInteger lengthOfTimezone = 6;
 
 static inline NSDate * dateFromNode(GCNode *node) {
-    NSString *dateString = [NSString stringWithFormat:@"%@ %@",
+    NSString *dateString = [NSString stringWithFormat:@"%@ %@ %@",
                             [[node valueForKey:@"DATE"] gedValue],
-                            [[node valueForKeyPath:@"DATE.TIME"] gedValue]
+                            [[node valueForKeyPath:@"DATE.TIME"] gedValue],
+                            @"+0000"
                             ];
     
     struct tm  timeResult;
-    strptime_l([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &timeResult, LC_GLOBAL_LOCALE);
+    
+    strptime_l([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &timeResult, NULL);
     
     assert(mktime(&timeResult) > 0);
     
-    return [NSDate dateWithTimeIntervalSince1970: mktime(&timeResult)];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970: mktime(&timeResult)];
+    
+    //NSLog(@"strptime_l: %@ => %ld => %@", dateString, mktime(&timeResult), date);
+    
+    return date;
 }
 
 static inline GCNode * nodeFromDate(NSDate *date) {
-    char timeResult[80];
+    char timeResult[MAXLEN];
     
     time_t time = [date timeIntervalSince1970];
     struct tm timeStruct;
-    localtime_r(&time, &timeStruct);
+    gmtime_r(&time, &timeStruct);
     
-    strftime_l(timeResult, MAXLEN, formatString, &timeStruct, LC_GLOBAL_LOCALE);
+    strftime_l(timeResult, MAXLEN, formatString, &timeStruct, NULL);
     
-    //NSLog(@"result: %@ => %@", date, [[NSString alloc] initWithBytes:timeResult length:strlen(timeResult) encoding:NSASCIIStringEncoding]);
+    //NSLog(@"strftime_l: %@ => %ld => %@", date, time, [[NSString alloc] initWithBytes:timeResult length:strlen(timeResult) encoding:NSASCIIStringEncoding]);
     
     GCNode *timeNode = [GCNode nodeWithTag:@"TIME"
-                                     value:[[NSString alloc] initWithBytes:timeResult + (strlen(timeResult)-lengthOfTimePart)
+                                     value:[[NSString alloc] initWithBytes:timeResult + (strlen(timeResult)-(lengthOfTimePart + lengthOfTimezone))
                                                                     length:lengthOfTimePart
                                                                   encoding:NSASCIIStringEncoding]];
 	
@@ -51,7 +58,7 @@ static inline GCNode * nodeFromDate(NSDate *date) {
     
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE"
                                      value:[[[NSString alloc] initWithBytes:leadingSpace ? timeResult+1 : timeResult
-                                                                     length:strlen(timeResult)-(lengthOfTimePart + (leadingSpace ? 2 : 1))
+                                                                     length:strlen(timeResult)-(lengthOfTimezone + lengthOfTimePart + (leadingSpace ? 2 : 1))
                                                                    encoding:NSASCIIStringEncoding] uppercaseString]
                                   subNodes:@[timeNode]];
     

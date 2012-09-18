@@ -34,7 +34,7 @@
     
     NSDate *changeDate = dateFromNode(changeNode);
     
-    NSDate *expectedDate = [NSDate dateWithNaturalLanguageString:[NSString stringWithFormat:@"%@ %@", date, time]];
+    NSDate *expectedDate = [NSDate dateWithNaturalLanguageString:[NSString stringWithFormat:@"%@ %@ +0000", date, time]];
     
     STAssertEqualObjects(changeDate, expectedDate, nil);
     
@@ -45,12 +45,17 @@
     //NSLog(@"newNode: %@", newNode);
     
     STAssertEqualObjects([changeNode gedcomString], [newNode gedcomString], nil);
+    
+    STAssertEqualObjects([changeNode gedcomString], [nodeFromDate(expectedDate) gedcomString], nil);
 }
 
 - (void)testDates
 {
-    [self testDate:@"2 MAY 2009" time:@"20:07:12"];
-    [self testDate:@"12 MAY 1999" time:@"01:02:03"];
+    // Test both summer & winter time, and single + two digit days/hours
+    
+    [self testDate:@"2 MAY 2009" time:@"01:07:12"];
+    [self testDate:@"11 NOV 2004" time:@"23:30:14"];
+    
 }
 
 @end
