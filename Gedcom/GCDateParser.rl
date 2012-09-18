@@ -255,8 +255,8 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 	dateApproximated	= ( ('ABT' | 'CAL' | 'EST') >tag %string %saveApproximationQualifier ' ' dateSimple ) %saveDateApproximate;
 	
 	dateRange			= ( ('BET ' dateSimple %resetDate ' AND ' dateSimple)
-						  | ('BEF ' dateSimple %resetDate)
-						  | ('AFT ' dateSimple)
+						  | ('BEF ' dateSimple)
+						  | ('AFT ' dateSimple %resetDate)
                           ) %saveDateRange ;
 	
 	datePeriod			= ( ('FROM ' dateSimple %resetDate ' TO ' dateSimple)

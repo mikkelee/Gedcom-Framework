@@ -53,6 +53,16 @@
 	
 	STAssertEqualObjects([result className], @"GCDatePeriod", nil);
 	STAssertEqualObjects([result gedcomString], @"FROM JUN 1920 TO 12 AUG 1935", nil);
+    
+    result = [GCDate valueWithGedcomString:@"FROM 2001"];
+	
+	STAssertEqualObjects([result className], @"GCDatePeriod", nil);
+	STAssertEqualObjects([result gedcomString], @"FROM 2001", nil);
+    
+    result = [GCDate valueWithGedcomString:@"TO 1 APR 1920"];
+	
+	STAssertEqualObjects([result className], @"GCDatePeriod", nil);
+	STAssertEqualObjects([result gedcomString], @"TO 1 APR 1920", nil);
 }
 
 -(void)testDateRange
@@ -61,6 +71,16 @@
 	
 	STAssertEqualObjects([result className], @"GCDateRange", nil);
 	STAssertEqualObjects([result gedcomString], @"BET 1840 AND 1845", nil);
+    
+    result = [GCDate valueWithGedcomString:@"BEF 1980"];
+	
+	STAssertEqualObjects([result className], @"GCDateRange", nil);
+	STAssertEqualObjects([result gedcomString], @"BEF 1980", nil);
+    
+    result = [GCDate valueWithGedcomString:@"AFT 1700"];
+	
+	STAssertEqualObjects([result className], @"GCDateRange", nil);
+	STAssertEqualObjects([result gedcomString], @"AFT 1700", nil);
 }
 
 -(void)testDatePhrase
