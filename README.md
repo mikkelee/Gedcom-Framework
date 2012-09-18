@@ -22,11 +22,11 @@ A number of classes to ease [GEDCOM 5.5](http://www.gedcom.net/0g/gedcom55/)-man
     - GCPlacestring
     - GCNumber
     - GCBool
-* Relationship integrity is handled with a GCContext that ensures that all GCEntities have an internal 1-to-1 mapping with an xref, used for serializing from/to GEDCOM.
+* Relationship integrity is handled with a GCContext (equivalent to a file) that ensures that all GCEntities have an internal 1-to-1 mapping with an xref, used for serializing from/to GEDCOM.
 
 Full AppleDoc documentation in the headers, can be built with the Documentation target.
 
-A simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structure, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [Screenshot as of May 31, 2012](https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png)
+A simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structures as gedcom strings as well as a hierarchy of display-formatted strings, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [Screenshot as of May 31, 2012](https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png)
 
 # TODO #
 
@@ -155,4 +155,4 @@ is equivalent to:
 
 ======
 
-Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with minor modifications: node order, removed trailing space on CHAN, etc.
+Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with minor modifications: node order, removed trailing space on CHAN, removed milliseconds from CHAN.DATE.TIME; etc.
