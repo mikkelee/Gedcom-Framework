@@ -14,9 +14,6 @@
 #import "GCNode.h"
 
 const char *formatString = "%e %b %Y %H:%M:%S %z";
-const size_t MAXLEN = 80;
-const NSUInteger lengthOfTimePart = 8;
-const NSUInteger lengthOfTimezone = 6;
 
 static inline NSDate * dateFromNode(GCNode *node) {
     NSString *dateString = [NSString stringWithFormat:@"%@ %@ %@",
@@ -38,6 +35,10 @@ static inline NSDate * dateFromNode(GCNode *node) {
     return date;
 }
 
+const size_t MAXLEN = 80;
+const NSUInteger lengthOfTimePart = 8;
+const NSUInteger lengthOfTimezone = 6;
+
 static inline GCNode * nodeFromDate(NSDate *date) {
     char timeResult[MAXLEN];
     
@@ -49,17 +50,23 @@ static inline GCNode * nodeFromDate(NSDate *date) {
     
     //NSLog(@"strftime_l: %@ => %ld => %@", date, time, [[NSString alloc] initWithBytes:timeResult length:strlen(timeResult) encoding:NSASCIIStringEncoding]);
     
-    GCNode *timeNode = [GCNode nodeWithTag:@"TIME"
-                                     value:[[NSString alloc] initWithBytes:timeResult + (strlen(timeResult)-(lengthOfTimePart + lengthOfTimezone))
-                                                                    length:lengthOfTimePart
-                                                                  encoding:NSASCIIStringEncoding]];
-	
     bool leadingSpace = strncmp(timeResult, " ", 1) == 0;
     
+    NSString *timeString = [[NSString alloc] initWithBytes:timeResult + (strlen(timeResult)-(lengthOfTimePart + lengthOfTimezone))
+                                                    length:lengthOfTimePart
+                                                  encoding:NSASCIIStringEncoding];
+    
+    
+    
+    NSString *dateString = [[[NSString alloc] initWithBytes:leadingSpace ? timeResult+1 : timeResult
+                                                     length:strlen(timeResult)-(lengthOfTimezone + lengthOfTimePart + (leadingSpace ? 2 : 1))
+                                                   encoding:NSASCIIStringEncoding] uppercaseString];
+    
+    GCNode *timeNode = [GCNode nodeWithTag:@"TIME"
+                                     value:timeString];
+	
     GCNode *dateNode = [GCNode nodeWithTag:@"DATE"
-                                     value:[[[NSString alloc] initWithBytes:leadingSpace ? timeResult+1 : timeResult
-                                                                     length:strlen(timeResult)-(lengthOfTimezone + lengthOfTimePart + (leadingSpace ? 2 : 1))
-                                                                   encoding:NSASCIIStringEncoding] uppercaseString]
+                                     value:dateString
                                   subNodes:@[timeNode]];
     
     //NSLog(@"dateNode: %@", dateNode);
