@@ -35,11 +35,7 @@
                      { "name": "repository", "min": "0", "max": "M" },
                      { "name": "source", "min": "0", "max": "M" },
                      { "name": "submitter", "min": "0", "max": "M" }
-                     ],
-		"validSubTags": [
-                         { "groupName": "@source" },
-                         { "groupName": "@note" }
-                         ]
+                     ]
 	},
     
 	"trailer": {
@@ -113,8 +109,9 @@
 		"code": "NOTE",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "recordIdNumber", "min": "0", "max": "1" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
+                         { "groupName": "@source" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" },
+                         { "name": "recordIdNumber", "min": "0", "max": "1" }
                          ]
 	},
 	"repository": {
