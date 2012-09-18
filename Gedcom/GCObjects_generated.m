@@ -3221,13 +3221,10 @@
 // Properties:
 @dynamic format;
 @dynamic title;
-@dynamic userReferenceNumbers;
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
 @dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
+@dynamic userReferenceNumbers;
 
 @end
 
@@ -4439,13 +4436,11 @@
 @dynamic name;
 @dynamic address;
 @dynamic phoneNumber;
-@dynamic userReferenceNumbers;
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
 @dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
+@dynamic userReferenceNumbers;
+@dynamic recordIdNumber;
 
 @end
 
@@ -4831,9 +4826,6 @@
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumber;
 @dynamic recordIdNumber;
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
 
 @end
 
@@ -5075,12 +5067,6 @@
 @dynamic ordinanceFlag;
 @dynamic recordIdNumber;
 @dynamic userReferenceNumbers;
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
 
 @end
 
@@ -5139,12 +5125,6 @@
 @dynamic recordFileNumber;
 @dynamic ancestralFileNumber;
 @dynamic userReferenceNumbers;
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
 
 @end
 

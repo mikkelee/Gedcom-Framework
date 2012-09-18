@@ -102,6 +102,7 @@
 		"validSubTags": [
                          { "name": "format", "min": "1", "max": "1" },
                          { "name": "title", "min": "0", "max": "1" },
+                         { "groupName": "@note" },
                          { "name": "userReferenceNumber", "min": "0", "max": "M" }
                          ]
 	},
@@ -121,7 +122,9 @@
                          { "name": "name", "min": "0", "max": "1" },
                          { "name": "address", "min": "0", "max": "1" },
                          { "name": "phoneNumber", "min": "0", "max": "3" },
-                         { "name": "userReferenceNumber", "min": "0", "max": "M" }
+                         { "groupName": "@note" },
+                         { "name": "userReferenceNumber", "min": "0", "max": "M" },
+                         { "name": "recordIdNumber", "min": "0", "max": "1" }
                          ]
 	},
 	"source": {
