@@ -51,17 +51,27 @@
     
 	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
     
+    NSError *error = nil;
+    
+    BOOL result = [ctx validateContext:&error];
+    
+    STAssertTrue(result, nil);
+    
+    if (!result) {
+        NSLog(@"error: %@", error);
+    }
+    
+    STAssertNil(error, nil);
+    
     NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:3];
     for (GCNode *node in [ctx gedcomNodes]) {
         [gc_outputLines addObjectsFromArray:[node gedcomLines]];
     }
     
-    //STAssertEqualObjects([NSSet setWithArray:nodes], [NSSet setWithArray:[file gedcomNodes]], nil);
-    
     //NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
     
     int errorCount = 0;
-    for (int i = 0; i < [gc_outputLines count]; i++) {
+    for (int i = 0; i < MIN([gc_outputLines count], [gc_inputLines count]); i++) {
         //NSLog(@"test: %@ - %@", [gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i]);
         STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], @"on line %d", i+1);
         if (![[gc_inputLines objectAtIndex:i] isEqualTo:[gc_outputLines objectAtIndex:i]] && ++errorCount > 20) {
