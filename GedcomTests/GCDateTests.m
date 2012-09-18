@@ -15,7 +15,7 @@
 
 @implementation GCDateTests
 
--(void)testSimpleDateNumeralMonth
+- (void)testSimpleDateNumeralMonth
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"05 12 1831"];
 	
@@ -23,7 +23,7 @@
 	STAssertEqualObjects([result gedcomString], @"5 DEC 1831", nil);
 }
 
--(void)testSimpleDate
+- (void)testSimpleDate
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"FEB 1765"];
 	
@@ -31,7 +31,15 @@
 	STAssertEqualObjects([result gedcomString], @"FEB 1765", nil);
 }
 
--(void)testApproximateDate
+- (void)testHebrewDate
+{
+	GCDate *result = [GCDate valueWithGedcomString:@"@#DHEBREW@ 2 TVT 5758"];
+	
+	STAssertEqualObjects([result className], @"GCSimpleDate", nil);
+	STAssertEqualObjects([result gedcomString], @"@#DHEBREW@ 2 TVT 5758", nil);
+}
+
+- (void)testApproximateDate
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"ABT 12 JAN 1900"];
 	
@@ -39,7 +47,7 @@
 	STAssertEqualObjects([result gedcomString], @"ABT 12 JAN 1900", nil);
 }
 
--(void)testInterpretedDate
+- (void)testInterpretedDate
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"INT 4 MAR 1799 (guesstimate)"];
 	
@@ -47,7 +55,7 @@
 	STAssertEqualObjects([result gedcomString], @"INT 4 MAR 1799 (guesstimate)", nil);
 }
 
--(void)testDatePeriod
+- (void)testDatePeriod
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"FROM JUN 1920 TO 12 AUG 1935"];
 	
@@ -65,7 +73,7 @@
 	STAssertEqualObjects([result gedcomString], @"TO 1 APR 1920", nil);
 }
 
--(void)testDateRange
+- (void)testDateRange
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"BET 1840 AND 1845"];
 	
@@ -83,7 +91,7 @@
 	STAssertEqualObjects([result gedcomString], @"AFT 1700", nil);
 }
 
--(void)testDatePhrase
+- (void)testDatePhrase
 {
 	GCDate *result = [GCDate valueWithGedcomString:@"(Dato ukendt)"];
 	

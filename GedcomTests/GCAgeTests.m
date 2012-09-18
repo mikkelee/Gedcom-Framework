@@ -29,7 +29,7 @@
 	GCAge *age = [GCAge valueWithGedcomString:@"< 10d"];
 	
 	STAssertEqualObjects([age className], @"GCSimpleAge", nil);
-	STAssertEqualObjects([age gedcomString], @"< 10d", nil);
+	STAssertEqualObjects([age gedcomString], @"<10d", nil);
 }
 
 - (void)testUnqualifiedAge

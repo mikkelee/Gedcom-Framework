@@ -16,9 +16,9 @@
 #pragma mark -
 
 NSString * const GCAgeQualifier_toString[] = {
-    @"< ",
+    @"<",
     @"",
-    @"> "
+    @">"
 };
 
 #pragma mark GCSimpleAge

@@ -40,7 +40,20 @@
 
 - (NSString *)gedcomString
 {
-	NSArray *monthNames = [@"JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC" componentsSeparatedByString:@" "];
+    NSString *calendarString = @"";
+    NSArray *monthNames = nil;
+    
+    if ([[_calendar calendarIdentifier] isEqualToString:NSGregorianCalendar]) {
+        monthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
+    } else if ([[_calendar calendarIdentifier] isEqualToString:NSHebrewCalendar]) {
+        monthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
+        calendarString = @"@#DHEBREW@ ";
+    } else if ([[_calendar calendarIdentifier] isEqualToString:nil]) { //TODO
+        monthNames = @[ @"VEND", @"BRUM", @"FRIM", @"NIVO", @"PLUV", @"VENT", @"GERM", @"FLOR", @"PRAI", @"MESS", @"THER", @"FRUC", @"COMP" ];
+        calendarString = @"@#DFRENCH R@ ";
+    }
+    
+    NSParameterAssert(monthNames);
 	
 	NSString *month = @"";
 	if ([self.dateComponents month] >= 1 && [self.dateComponents month] <= 12) {
@@ -52,7 +65,7 @@
 		day = [NSString stringWithFormat:@"%ld ", [self.dateComponents day]];
 	}
 	
-	return [NSString stringWithFormat:@"%@%@%04ld", day, month, [self.dateComponents year]];
+	return [NSString stringWithFormat:@"%@%@%@%04ld", calendarString, day, month, [self.dateComponents year]];
 }
 
 - (NSString *)displayString
