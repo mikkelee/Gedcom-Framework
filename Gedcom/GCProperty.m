@@ -22,7 +22,13 @@
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
-    self = [self init];
+    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    
+    if (!tag.isCustom) {
+        self = [self init];
+    } else {
+        self = [super initWithType:tag.name];
+    }
     
     if (self) {
         [[object mutableArrayValueForKey:@"properties"] addObject:self];

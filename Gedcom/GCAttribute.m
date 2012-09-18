@@ -162,6 +162,8 @@
 
 - (void)setValueWithGedcomString:(NSString *)string
 {
+    NSParameterAssert(self.gedTag.valueType);
+    
     self.value = [self.gedTag.valueType valueWithGedcomString:string];
 }
 
