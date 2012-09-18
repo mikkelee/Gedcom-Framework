@@ -422,16 +422,20 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     }
 }
 
-#pragma mark Unknown tag methods
+#pragma mark Custom tag methods
 
-- (void)encounteredUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
+- (BOOL)shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(context:didEncounterUnknownTag:forNode:onObject:)]) {
-        [_delegate context:self didEncounterUnknownTag:tag forNode:node onObject:object];
+    if (_delegate && [_delegate respondsToSelector:@selector(context:shouldHandleCustomTag:forNode:onObject:)]) {
+        return [_delegate context:self shouldHandleCustomTag:tag forNode:node onObject:object];
+    } else {
+        return YES;
     }
 }
 
 @end
+
+#pragma mark -
 
 @implementation GCContext (GCValidationMethods)
 

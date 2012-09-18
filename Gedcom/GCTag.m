@@ -234,6 +234,22 @@ static inline void setupKey(NSString *key) {
 {
     NSParameterAssert(code != nil);
     
+    if ([code hasPrefix:@"_"]) {
+        NSString *tagName = [NSString stringWithFormat:@"custom%@Entity", code];
+        if ([_tagStore valueForKey:tagName]) {
+            return [_tagStore valueForKey:tagName];
+        }
+        GCTag *tag = [[GCTag alloc] initWithName:tagName
+                                        settings:@{kCode: code,
+                                                  kName: tagName,
+                                                  kPlural: [NSString stringWithFormat:@"%@s", tagName],
+                                                  kObjectType: @"entity",
+                                                  kValidSubTags: [NSOrderedSet orderedSet]}];
+        NSLog(@"Created %@: %@", tagName, tag);
+        _rootTagsByCode[code] = tag;
+        _tagStore[tagName] = tag;
+    }
+    
     return _rootTagsByCode[code];
 }
 
@@ -281,16 +297,18 @@ static inline void setupKey(NSString *key) {
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
     if ([code hasPrefix:@"_"]) {
-        NSString *tagName = [NSString stringWithFormat:@"custom%@Tag", code];
+        NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
         if ([_tagStore valueForKey:tagName]) {
             return [_tagStore valueForKey:tagName];
         }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:@{kCode: code,
+                                                  kName: tagName,
+                                                  kPlural: [NSString stringWithFormat:@"%@s", tagName],
                                                   kValueType: @"string",
                                                   kObjectType: type,
                                                   kValidSubTags: [NSOrderedSet orderedSet]}];
-        NSLog(@"Created custom%@Tag: %@", code, tag);
+        NSLog(@"Created %@: %@", tagName, tag);
         _tagStore[tagName] = tag;
         
         return tag;
@@ -433,7 +451,11 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
 - (Class)objectClass
 {
     if (!_cachedObjectClass) {
-        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[self.name substringToIndex:1] uppercaseString], [self.name substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
+        NSString *lookupName = self.name;
+        if (self.isCustom) {
+            lookupName = @"custom";
+        }
+        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[lookupName substringToIndex:1] uppercaseString], [lookupName substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
         
         _cachedObjectClass = NSClassFromString(objectClassString);
         

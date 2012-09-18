@@ -32,7 +32,7 @@
  */
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity;
 
-/** Will be called when an unknown tag is encountered in a context.
+/** Will be called when a custom tag is encountered in a context.
  
  The delegate can choose to use the information contained in the node to alter the object, for instance the non-standard tag FAM._UMR could be used to add a note to the family entity that they were unmarried.
  
@@ -40,8 +40,9 @@
  @param tag The unknown tag.
  @param node The complete node including value and subnodes.
  @param object The object the node was intended for.
+ @return `YES` if the context should handle the tag itself, `NO` if the delegate handles it.
  */
-- (void)context:(GCContext *)context didEncounterUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
+- (BOOL)context:(GCContext *)context shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 /** Will be called when a GCContext's entity count changes during parsing.
  

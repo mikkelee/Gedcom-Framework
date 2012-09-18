@@ -15,13 +15,15 @@
 
 @implementation GCContextDelegateTester
 
-- (void)context:(GCContext *)context didEncounterUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
+- (BOOL)context:(GCContext *)context shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
 {
     GCNoteEntity *note = [GCNoteEntity noteInContext:context];
     
     note.value = [GCString valueWithGedcomString:@"Unmarried."];
     
     [object addRelationshipWithType:@"noteReference" target:note];
+    
+    return NO;
 }
 
 @end

@@ -53,8 +53,9 @@ __strong static NSDictionary *_defaultColors;
 - (id)initWithType:(NSString *)type
 {
     if ([self class] == [GCObject class] || [self class] == [GCEntity class] || [self class] == [GCProperty class] || [self class] == [GCAttribute class] || [self class] == [GCRelationship class]) {
-        NSString *className = [NSString stringWithFormat:@"GC%@%@%@", [[type substringToIndex:1] uppercaseString], [type substringFromIndex:1], [[self className] substringFromIndex:2]];
-        Class objectClass = NSClassFromString(className);
+        Class objectClass = [GCTag tagNamed:type].objectClass;
+        
+        NSParameterAssert(objectClass);
         
         return [[objectClass alloc] initWithType:type];
     }
@@ -285,7 +286,7 @@ __strong static NSDictionary *_defaultColors;
 {
     NSParameterAssert(property);
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    //NSParameterAssert([[property gedTag] isCustom] || [self.validProperties containsObject:property.type]);
+    //NSParameterAssert(property.gedTag.isCustom || [self.validProperties containsObject:property.type]);
     
     [self setDescribedObjectForProperty:property];
     
@@ -427,7 +428,12 @@ __strong static NSDictionary *_defaultColors;
                 }
             }
         }
+        
+        for (NSString *customType in [[_propertyStore allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",  self.validProperties]]) {
+            [orderedProperties addObjectsFromArray:[_propertyStore valueForKey:customType]];
+        }
     }
+    
     
 	return orderedProperties;
 }
@@ -658,14 +664,16 @@ __strong static NSDictionary *_defaultColors;
     GCTag *tag = [self.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
     if (tag.isCustom) {
-        [self.context encounteredUnknownTag:tag forNode:node onObject:self];
+        if (![self.context shouldHandleCustomTag:tag forNode:node onObject:self]) {
+            return;
+        }
     }
     
     if (!tag) {
         // for debugging; TODO remove when tags.json is complete.
-        NSLog(@"rootObject: %@", self.rootObject);
-        NSLog(@"object: %@", self);
+        NSLog(@"self.gedTag: %@", self.gedTag);
         NSLog(@"node: %@", node);
+        
     }
     
     [tag.objectClass propertyForObject:self withGedcomNode:node];

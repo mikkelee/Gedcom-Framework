@@ -20,6 +20,6 @@
 
 - (void)activateXref:(NSString *)xref;
 
-- (void)encounteredUnknownTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
+- (BOOL)shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 @end
