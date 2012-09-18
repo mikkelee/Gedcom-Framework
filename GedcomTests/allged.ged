@@ -1,6 +1,4 @@
 0 HEAD
-1 CHAR ASCII
-2 VERS Version number of ASCII (whatever it means) 
 1 SOUR APPROVED_SOURCE_NAME
 2 VERS Version number of source-program
 2 NAME Name of source-program
@@ -31,6 +29,8 @@
 1 GEDC
 2 VERS 5.5
 2 FORM LINEAGE-LINKED
+1 CHAR ASCII
+2 VERS Version number of ASCII (whatever it means) 
 1 LANG language
 1 NOTE A general note about this file:
 2 CONT It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1:
@@ -50,6 +50,14 @@
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
 1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
+0 @SUBMISSION@ SUBN
+1 SUBM @SUBMITTER@
+1 FAMF NameOfFamilyFile
+1 TEMP Abreviated temple code
+1 ANCE 1
+1 DESC 1
+1 ORDI yes
+1 _MYOWNTAG SUBN does not allow NOTE tags :-(( so, here is my not: SUBN seems to be LDS internal data. The sample data I put in here are probably nonsence.
 0 @SUBMITTER@ SUBM
 1 NAME /Submitter-Name/
 1 ADDR Submitter address line 1
@@ -66,21 +74,10 @@
 1 PHON Submitter phone number 2
 1 PHON Submitter phone number 3 (last one!)
 1 LANG English
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 19 JUN 2000
-3 TIME 12:34:56.789
-2 NOTE A note
-3 CONT Note continued here. The word TE
-3 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
-0 @SUBMISSION@ SUBN
-1 _MYOWNTAG SUBN does not allow NOTE tags :-(( so, here is my not: SUBN seems to be LDS internal data. The sample data I put in here are probably nonsence.
-1 SUBM @SUBMITTER@
-1 FAMF NameOfFamilyFile
-1 TEMP Abreviated temple code
-1 ANCE 1
-1 DESC 1
-1 ORDI yes
+3 TIME 12:34:56
 0 @PERSON1@ INDI
 1 NAME given name /surname/jr.
 2 SOUR @SOURCE1@
@@ -114,6 +111,7 @@
 3 CONC ST should not be broken!
 1 SEX M
 1 BIRT
+2 FAMC @PARENTS@
 2 DATE 31 DEC 1997
 2 PLAC The place
 2 SOUR @SOURCE1@
@@ -130,7 +128,6 @@
 2 NOTE BIRTH event note (the event of entering into life)
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
-2 FAMC @PARENTS@
 1 CHR
 2 DATE BEF 31 DEC 1997
 2 PLAC The place
@@ -215,6 +212,8 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 ADOP
+2 FAMC @ADOPTIVE_PARENTS@
+3 ADOP BOTH
 2 DATE CAL 31 DEC 1997
 2 PLAC The place
 2 SOUR @SOURCE1@
@@ -231,8 +230,6 @@
 2 NOTE ADOPTION event note (pertaining to creation of a child-parent relationship that does not exist biologically)
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
-2 FAMC @ADOPTIVE_PARENTS@
-3 ADOP BOTH
 1 BAPM
 2 DATE EST 31 DEC 1997
 2 PLAC The place
@@ -319,7 +316,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 CONF
-2 DATE @#DGREGORIAN@ 31 DEC 1997
+2 DATE @#DHEBREW@ 2 TVT 5758
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -805,13 +802,10 @@
 1 NOTE A note about the inidvidual
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 1 APR 1998
-3 TIME 12:34:56.789
-2 NOTE A note
-3 CONT Note continued here. The word TE
-3 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
+3 TIME 12:34:56
 0 @PERSON2@ INDI
 1 NAME /Wife/
 1 SEX F
@@ -1096,13 +1090,10 @@
 1 NOTE A note about the family
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 1 APR 1998
-3 TIME 12:34:56.789
-2 NOTE A note
-3 CONT Note continued here. The word TE
-3 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
+3 TIME 12:34:56
 0 @PARENTS@ FAM
 1 HUSB @PERSON5@
 1 CHIL @PERSON1@
@@ -1148,12 +1139,12 @@
 1 NOTE A note about the family
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 1 APR 1998
-3 TIME 12:34:56.789
+3 TIME 12:34:56
 2 NOTE A note
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 TRLR
