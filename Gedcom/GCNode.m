@@ -128,6 +128,7 @@ static NSString *concSeparator;
 				val = [gLine substringWithRange:[match rangeAtIndex:4]];
 			}
             
+            // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
 			if ([code isEqualToString:@"CONT"]) {
 				if (currentNode.gedValue == nil) {
 					currentNode.gedValue = @"";
@@ -168,12 +169,14 @@ static NSString *concSeparator;
             currentNode = node;
         } else {
 			NSLog(@"Unable to create node from gedcom: %@", gLine);
-			//throw?
+			// TODO throw?
 		}
 	}];
 	
+#ifdef DEBUG
 	NSLog(@"Finished parsing gedcom.");
-	
+#endif
+    
 	return [gedArray copy];
 }
 
