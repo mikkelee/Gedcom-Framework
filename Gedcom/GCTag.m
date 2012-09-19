@@ -139,8 +139,6 @@ static inline void setupKey(NSString *key) {
             //NSLog(@"storing root tag: %@", tag);
             _rootTagsByCode[tagDict[kCode]] = tag;
         }
-        
-        //tagStore[[NSString stringWithFormat:@"%@:%@", tagDict[kObjectType], tagDict[kCode]]] = tag;
     }
     
     // set up subtags
@@ -214,8 +212,8 @@ static inline void setupKey(NSString *key) {
 + (NSDictionary *)tagsByName
 {
     if (!_tagsByName) {
-        NSSet *keys = [_tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(id key, id obj, BOOL *stop) {
-            return !([key hasPrefix:@"@"] || [key rangeOfString:@":"].location != NSNotFound);
+        NSSet *keys = [_tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(NSString *key, GCTag *tag, BOOL *stop) {
+            return ![key hasPrefix:@"@"] && !tag.isCustom;
         }];
         
         NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
