@@ -130,13 +130,15 @@ static const int age_en_main = 1;
 	NSMutableDictionary *_cache;
 }
 
-+ (id)sharedAgeParser // fancy new ARC/GCD singleton!
+__strong static id _sharedAgeParser = nil;
+
++ (void)initialize
 {
-    static dispatch_once_t predAgeParser = 0;
-    __strong static id _sharedAgeParser = nil;
-    dispatch_once(&predAgeParser, ^{
-        _sharedAgeParser = [[self alloc] init];
-    });
+    _sharedAgeParser = [[self alloc] init];
+}
+
++ (id)sharedAgeParser
+{
     return _sharedAgeParser;
 }
 
@@ -177,14 +179,14 @@ static const int age_en_main = 1;
         const char *eof = pe;
         
         
-#line 181 "GCAgeParser.m"
+#line 183 "GCAgeParser.m"
 	{
 	cs = age_start;
 	}
 
-#line 160 "GCAgeParser.rl"
+#line 162 "GCAgeParser.rl"
         
-#line 188 "GCAgeParser.m"
+#line 190 "GCAgeParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -300,7 +302,7 @@ _match:
 		//NSLog(@"%p greaterThan", fpc);
 	}
 	break;
-#line 304 "GCAgeParser.m"
+#line 306 "GCAgeParser.m"
 		}
 	}
 
@@ -364,7 +366,7 @@ _again:
 		finished = YES;
 	}
 	break;
-#line 368 "GCAgeParser.m"
+#line 370 "GCAgeParser.m"
 		}
 	}
 	}
@@ -372,7 +374,7 @@ _again:
 	_out: {}
 	}
 
-#line 161 "GCAgeParser.rl"
+#line 163 "GCAgeParser.rl"
         
         if (!finished) {
             age = nil;

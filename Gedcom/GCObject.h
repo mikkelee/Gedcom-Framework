@@ -164,6 +164,8 @@
 
 @end
 
+extern NSString *GCErrorDoman;
+
 typedef enum : NSInteger {
     GCIncorrectValueTypeError = -101,
     GCIncorrectTargetTypeError = -102,

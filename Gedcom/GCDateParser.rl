@@ -280,13 +280,15 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 	NSMutableDictionary *_cache;
 }
 
-+ (id)sharedDateParser // fancy new ARC/GCD singleton!
+__strong static id _sharedDateParser = nil;
+
++ (void)initialize
 {
-    static dispatch_once_t predDateParser = 0;
-    __strong static id _sharedDateParser = nil;
-    dispatch_once(&predDateParser, ^{
-        _sharedDateParser = [[self alloc] init];
-    });
+    _sharedDateParser = [[self alloc] init];
+}
+
++ (id)sharedDateParser
+{
     return _sharedDateParser;
 }
 

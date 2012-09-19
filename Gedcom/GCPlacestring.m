@@ -17,13 +17,15 @@
 @implementation GCPlacestring {
 }
 
+__strong static id _rootPlace = nil;
+
++ (void)initialize
+{
+    _rootPlace = [[self alloc] initWithValue:@"@ROOT"];
+}
+
 + (id)rootPlace
 {
-    static dispatch_once_t predRootPlace = 0;
-    __strong static id _rootPlace = nil;
-    dispatch_once(&predRootPlace, ^{
-        _rootPlace = [[self alloc] initWithValue:@"@ROOT"];
-    });
     return _rootPlace;
 }
 
@@ -44,12 +46,12 @@
     @synchronized([self rootPlace]) {
         NSArray *places = [gedcomString componentsSeparatedByString:@","];
         
-        GCPlacestring *parent = [self rootPlace];
+        GCPlacestring *parent = self.rootPlace;
         for (NSString *place in [places reverseObjectEnumerator]) {
             NSString *cleanPlace = [place stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             
-            if ([parent subPlaces][cleanPlace]) {
-                parent = [parent subPlaces][cleanPlace];
+            if (parent.subPlaces[cleanPlace]) {
+                parent = parent.subPlaces[cleanPlace];
             } else {
                 GCPlacestring *place = [[self alloc] initWithValue:cleanPlace];
                 [parent addSubPlace:place];
@@ -63,7 +65,7 @@
 
 - (void)addSubPlace:(GCPlacestring *)subPlace
 {
-    [_subPlaces setValue:subPlace forKey:[subPlace gedcomString]];
+    [_subPlaces setValue:subPlace forKey:subPlace.gedcomString];
     subPlace.superPlace = self;
 }
 
@@ -83,8 +85,8 @@
     NSMutableArray *placeComponents = [NSMutableArray arrayWithObject:self.name];
     
     GCPlacestring *place = self;
-    while ((place = [place superPlace]) && place != [[self class] rootPlace]) {
-        [placeComponents addObject:[place name]];
+    while ((place = place.superPlace) && place != [[self class] rootPlace]) {
+        [placeComponents addObject:place.name];
     }
     
     return [placeComponents componentsJoinedByString:@", "];
@@ -98,7 +100,7 @@
 //COV_NF_START
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ %@", [super description], [self subPlaces]];
+    return [NSString stringWithFormat:@"%@ %@", [super description], self.subPlaces];
 }
 //COV_NF_END
 

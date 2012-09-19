@@ -693,15 +693,17 @@ __strong static NSDictionary *_defaultColors;
 
 @end
 
+NSString *GCErrorDoman = @"GCErrorDoman";
+
 @implementation GCObject (GCValidationMethods)
 
-static inline BOOL validateValueTypeHelper(NSString *key, id value, Class type, NSError **error) {
+static inline BOOL validateValue(NSString *key, id value, Class type, NSError **error) {
     if (value == nil) {
         //TODO check if value is required
         return YES;
     } else if (![value isKindOfClass:type]) {
         if (NULL != error) {
-            *error = [NSError errorWithDomain:@"GCErrorDoman" 
+            *error = [NSError errorWithDomain:GCErrorDoman
                                          code:GCIncorrectValueTypeError 
                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for key %@ (should be %@)", value, key, type]}];
         }
@@ -711,17 +713,17 @@ static inline BOOL validateValueTypeHelper(NSString *key, id value, Class type, 
     }
 }
 
-static inline BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Class type, NSError **error) {
+static inline BOOL validateTarget(NSString *key, GCEntity *target, Class type, NSError **error) {
     if (target == nil) {
         if (NULL != error) {
-            *error = [NSError errorWithDomain:@"GCErrorDoman"
+            *error = [NSError errorWithDomain:GCErrorDoman
                                          code:GCTargetMissingError
                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target is missing for key %@ (should be a %@)",  key, type]}];
         }
         return NO;
     } else if (![target isKindOfClass:type]) {
         if (NULL != error) {
-            *error = [NSError errorWithDomain:@"GCErrorDoman" 
+            *error = [NSError errorWithDomain:GCErrorDoman
                                          code:GCIncorrectTargetTypeError 
                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", target, key, type]}];
         }
@@ -731,15 +733,15 @@ static inline BOOL validateTargetTypeHelper(NSString *key, GCEntity *target, Cla
     }
 }
 
-static inline BOOL validatePropertyHelper(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
+static inline BOOL validateProperty(NSString *key, GCProperty *property, GCTag *tag, NSError **error) {
     if ([tag objectClass] == [GCAttribute class]) {
-        if (!validateValueTypeHelper(key, [(GCAttribute *)property value], tag.valueType, error)) {
+        if (!validateValue(key, [(GCAttribute *)property value], tag.valueType, error)) {
             return NO;
         }
     }
     
     if ([tag objectClass] == [GCRelationship class]) {
-        if (!validateTargetTypeHelper(key, [(GCRelationship *)property target], tag.targetType, error)) {
+        if (!validateTarget(key, [(GCRelationship *)property target], tag.targetType, error)) {
             return NO;
         }
     }
@@ -749,6 +751,8 @@ static inline BOOL validatePropertyHelper(NSString *key, GCProperty *property, G
 
 - (BOOL)validateObject:(NSError **)outError
 {
+    //TODO also check for disallowed properties that have snuck in
+    
     for (id propertyKey in self.validProperties) {
         GCTag *subTag = [self.gedTag subTagWithName:propertyKey];
         
@@ -757,19 +761,19 @@ static inline BOOL validatePropertyHelper(NSString *key, GCProperty *property, G
         if ([self allowedOccurrencesPropertyType:propertyKey].max > 1) {
             propertyCount = [[self valueForKey:propertyKey] count];
             for (id property in [self valueForKey:propertyKey]) {
-                validatePropertyHelper(propertyKey, property, subTag, outError);
+                validateProperty(propertyKey, property, subTag, outError);
             }
         } else {
             propertyCount = [self valueForKey:propertyKey] ? 1 : 0;
             
-            validatePropertyHelper(propertyKey, [self valueForKey:propertyKey], subTag, outError);
+            validateProperty(propertyKey, [self valueForKey:propertyKey], subTag, outError);
         }
         
         GCAllowedOccurrences allowedOccurrences = [self.gedTag allowedOccurrencesOfSubTag:subTag];
         
         if (propertyCount > allowedOccurrences.max) {
             if (NULL != outError) {
-                *outError = [NSError errorWithDomain:@"GCErrorDoman" 
+                *outError = [NSError errorWithDomain:GCErrorDoman
                                                 code:GCTooManyValuesError 
                                             userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, self.type]}];
             }
@@ -779,7 +783,7 @@ static inline BOOL validatePropertyHelper(NSString *key, GCProperty *property, G
         
         if (propertyCount < allowedOccurrences.min) {
             if (NULL != outError) {
-                *outError = [NSError errorWithDomain:@"GCErrorDoman" 
+                *outError = [NSError errorWithDomain:GCErrorDoman
                                                 code:GCTooFewValuesError 
                                             userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, self.type]}];
             }
@@ -795,7 +799,7 @@ static inline BOOL validatePropertyHelper(NSString *key, GCProperty *property, G
 {
     GCTag *subTag = [self.gedTag subTagWithName:inKey];
     
-    return validatePropertyHelper(inKey, *ioValue, subTag, outError);
+    return validateProperty(inKey, *ioValue, subTag, outError);
 }
 
 @end

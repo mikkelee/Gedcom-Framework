@@ -110,13 +110,15 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 	NSMutableDictionary *_cache;
 }
 
-+ (id)sharedAgeParser // fancy new ARC/GCD singleton!
+__strong static id _sharedAgeParser = nil;
+
++ (void)initialize
 {
-    static dispatch_once_t predAgeParser = 0;
-    __strong static id _sharedAgeParser = nil;
-    dispatch_once(&predAgeParser, ^{
-        _sharedAgeParser = [[self alloc] init];
-    });
+    _sharedAgeParser = [[self alloc] init];
+}
+
++ (id)sharedAgeParser
+{
     return _sharedAgeParser;
 }
 

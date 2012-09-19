@@ -257,7 +257,7 @@ void contConcHelper(int level, NSString *inLine, NSString **outInitial, NSArray 
     //NSLog(@"outSubLines: %@", *outSubLines);
 }
 
-NSAttributedString * joinedAttributedString(NSArray *components) {
+static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
     
     NSAttributedString *space = [[NSAttributedString alloc] initWithString:@" "];

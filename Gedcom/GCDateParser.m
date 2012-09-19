@@ -2187,13 +2187,15 @@ static const int date_en_main = 1;
 	NSMutableDictionary *_cache;
 }
 
-+ (id)sharedDateParser // fancy new ARC/GCD singleton!
+__strong static id _sharedDateParser = nil;
+
++ (void)initialize
 {
-    static dispatch_once_t predDateParser = 0;
-    __strong static id _sharedDateParser = nil;
-    dispatch_once(&predDateParser, ^{
-        _sharedDateParser = [[self alloc] init];
-    });
+    _sharedDateParser = [[self alloc] init];
+}
+
++ (id)sharedDateParser
+{
     return _sharedDateParser;
 }
 
@@ -2242,14 +2244,14 @@ static const int date_en_main = 1;
         const char *eof = pe;
         
         
-#line 2246 "GCDateParser.m"
+#line 2248 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 338 "GCDateParser.rl"
+#line 340 "GCDateParser.rl"
         
-#line 2253 "GCDateParser.m"
+#line 2255 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2452,7 +2454,7 @@ _match:
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2456 "GCDateParser.m"
+#line 2458 "GCDateParser.m"
 		}
 	}
 
@@ -2567,7 +2569,7 @@ _again:
 		finished = YES;
 	}
 	break;
-#line 2571 "GCDateParser.m"
+#line 2573 "GCDateParser.m"
 		}
 	}
 	}
@@ -2575,7 +2577,7 @@ _again:
 	_out: {}
 	}
 
-#line 339 "GCDateParser.rl"
+#line 341 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

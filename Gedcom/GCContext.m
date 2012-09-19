@@ -50,7 +50,9 @@ __strong static NSMutableDictionary *_contextsByName = nil;
         _xrefToBlockMap = [NSMutableDictionary dictionary];
         _entityStore = [NSMutableDictionary dictionary];
         
-        _contextsByName[_name] = self;
+        @synchronized (_contextsByName) {
+            _contextsByName[_name] = self;
+        }
 	}
 	
 	return self;
@@ -63,7 +65,9 @@ __strong static NSMutableDictionary *_contextsByName = nil;
 
 + (NSDictionary *)contextsByName
 {
-    return [_contextsByName copy];
+    @synchronized (_contextsByName) {
+        return [_contextsByName copy];
+    }
 }
 
 + (id)contextWithGedcomNodes:(NSArray *)nodes
