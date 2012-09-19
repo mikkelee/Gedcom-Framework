@@ -94,7 +94,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 #import "GCDate_internal.h"
 
 
-#line 275 "GCDateParser.rl"
+#line 274 "GCDateParser.rl"
 
 
 
@@ -2181,17 +2181,23 @@ static const int date_error = 0;
 static const int date_en_main = 1;
 
 
-#line 278 "GCDateParser.rl"
+#line 277 "GCDateParser.rl"
 
 @implementation GCDateParser {
 	NSMutableDictionary *_cache;
 }
 
 __strong static id _sharedDateParser = nil;
+__strong static NSCalendar *_gregorianCalendar;
+__strong static NSCalendar *_hebrewCalendar;
+__strong static NSCalendar *_frenchRevolutionaryCalendar;
 
 + (void)initialize
 {
     _sharedDateParser = [[self alloc] init];
+    _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+    _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
 }
 
 + (id)sharedDateParser
@@ -2225,7 +2231,7 @@ __strong static id _sharedDateParser = nil;
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSCalendar *calendar = _gregorianCalendar;
         
         long tag = 0;
         NSInteger currentNumber = 0;
@@ -2244,14 +2250,14 @@ __strong static id _sharedDateParser = nil;
         const char *eof = pe;
         
         
-#line 2248 "GCDateParser.m"
+#line 2254 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 340 "GCDateParser.rl"
+#line 345 "GCDateParser.rl"
         
-#line 2255 "GCDateParser.m"
+#line 2261 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2396,37 +2402,36 @@ _match:
 	case 9:
 #line 151 "GCDateParser.rl"
 	{
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar = _gregorianCalendar;
     }
 	break;
 	case 10:
 #line 155 "GCDateParser.rl"
 	{
         // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; 
+        calendar = _gregorianCalendar;
     }
 	break;
 	case 11:
 #line 160 "GCDateParser.rl"
 	{
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+        calendar = _hebrewCalendar;
     }
 	break;
 	case 12:
 #line 164 "GCDateParser.rl"
 	{
-        //TODO
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:nil];
+        calendar = _frenchRevolutionaryCalendar;
     }
 	break;
 	case 13:
-#line 169 "GCDateParser.rl"
+#line 168 "GCDateParser.rl"
 	{
         approximationQualifier = currentString;
     }
 	break;
 	case 14:
-#line 173 "GCDateParser.rl"
+#line 172 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
         
@@ -2441,20 +2446,20 @@ _match:
     }
 	break;
 	case 15:
-#line 186 "GCDateParser.rl"
+#line 185 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 17:
-#line 196 "GCDateParser.rl"
+#line 195 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePhrase.", fpc);
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2458 "GCDateParser.m"
+#line 2463 "GCDateParser.m"
 		}
 	}
 
@@ -2488,31 +2493,30 @@ _again:
 	case 9:
 #line 151 "GCDateParser.rl"
 	{
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar = _gregorianCalendar;
     }
 	break;
 	case 10:
 #line 155 "GCDateParser.rl"
 	{
         // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; 
+        calendar = _gregorianCalendar;
     }
 	break;
 	case 11:
 #line 160 "GCDateParser.rl"
 	{
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+        calendar = _hebrewCalendar;
     }
 	break;
 	case 12:
 #line 164 "GCDateParser.rl"
 	{
-        //TODO
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:nil];
+        calendar = _frenchRevolutionaryCalendar;
     }
 	break;
 	case 14:
-#line 173 "GCDateParser.rl"
+#line 172 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
         
@@ -2527,49 +2531,49 @@ _again:
     }
 	break;
 	case 15:
-#line 186 "GCDateParser.rl"
+#line 185 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 16:
-#line 191 "GCDateParser.rl"
+#line 190 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateApproximate.", fpc);
         currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
 	break;
 	case 18:
-#line 201 "GCDateParser.rl"
+#line 200 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateInterpreted.", fpc);
         currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
 	break;
 	case 19:
-#line 206 "GCDateParser.rl"
+#line 205 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateRange.", fpc);
         currentDate = [GCDate dateWithRangeFrom:previousDate to:currentDate];
     }
 	break;
 	case 20:
-#line 211 "GCDateParser.rl"
+#line 210 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePeriod.", fpc);
         currentDate = [GCDate dateWithPeriodFrom:previousDate to:currentDate];
     }
 	break;
 	case 21:
-#line 216 "GCDateParser.rl"
+#line 215 "GCDateParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
         date = currentDate;
 		finished = YES;
 	}
 	break;
-#line 2573 "GCDateParser.m"
+#line 2577 "GCDateParser.m"
 		}
 	}
 	}
@@ -2577,7 +2581,7 @@ _again:
 	_out: {}
 	}
 
-#line 341 "GCDateParser.rl"
+#line 346 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

@@ -149,21 +149,20 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 	}
     
     action setCalendarGregorian {
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar = _gregorianCalendar;
     }
     
     action setCalendarJulian {
         // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; 
+        calendar = _gregorianCalendar;
     }
     
     action setCalendarHebrew {
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+        calendar = _hebrewCalendar;
     }
     
     action setCalendarFrenchRevolutionary {
-        //TODO
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:nil];
+        calendar = _frenchRevolutionaryCalendar;
     }
     
     action saveApproximationQualifier {
@@ -281,10 +280,16 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 }
 
 __strong static id _sharedDateParser = nil;
+__strong static NSCalendar *_gregorianCalendar;
+__strong static NSCalendar *_hebrewCalendar;
+__strong static NSCalendar *_frenchRevolutionaryCalendar;
 
 + (void)initialize
 {
     _sharedDateParser = [[self alloc] init];
+    _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+    _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
 }
 
 + (id)sharedDateParser
@@ -318,7 +323,7 @@ __strong static id _sharedDateParser = nil;
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSCalendar *calendar = _gregorianCalendar;
         
         long tag = 0;
         NSInteger currentNumber = 0;
