@@ -65,6 +65,15 @@
 
 #pragma mark Comparison
 
+/** Compares the receiver to another node.
+ 
+ Equivalence is determined by comparing the tag, xref and value of the nodes, and comparing all subNodes in turn. The order of subNodes is disregarded.
+ 
+ Returns `YES` if the nodes are equivalent, otherwise `NO`.
+ 
+ @param other Another GCNode object.
+ @return A BOOL indicating equivalence.
+ */
 - (BOOL)isEquivalentTo:(GCNode *)other;
 
 #pragma mark Objective-C properties

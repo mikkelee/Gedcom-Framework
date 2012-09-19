@@ -398,64 +398,49 @@ NSAttributedString * joinedAttributedString(NSArray *components) {
     return [subTags copy];
 }
 
-static BOOL areNodesEquivalent(GCNode *a, GCNode *b) {
+- (BOOL)isEquivalentTo:(GCNode *)other
+{
+    if (![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
     //NSLog(@"Comparing %@ with %@", a.gedcomString, b.gedcomString);
     
-    if (![a.gedTag isEqualToString:b.gedTag])
+    if (![self.gedTag isEqualToString:other.gedTag])
         return NO;
-    if ((a.gedValue && ![a.gedValue isEqualToString:b.gedValue]) || (b.gedValue && ![b.gedValue isEqualToString:a.gedValue]))
+    if ((self.gedValue && ![self.gedValue isEqualToString:other.gedValue]) || (other.gedValue && ![other.gedValue isEqualToString:self.gedValue]))
         return NO;
-    if ((a.xref && ![a.xref isEqualToString:b.xref]) || (b.xref && ![b.xref isEqualToString:a.xref]))
+    if ((self.xref && ![self.xref isEqualToString:other.xref]) || (other.xref && ![other.xref isEqualToString:self.xref]))
         return NO;
     
-    NSSet *subTagIntersection = [a.allSubTags setByAddingObjectsFromSet:b.allSubTags];
+    NSSet *subTagIntersection = [self.allSubTags setByAddingObjectsFromSet:other.allSubTags];
     
     //NSLog(@"subTagIntersection: %@", subTagIntersection);
     
     for (NSString *tag in subTagIntersection) {
-        NSArray *subNodesA = a[tag];
-        NSArray *subNodesB = b[tag];
-        
-        //NSLog(@"%@ subNodesA: %@", tag, subNodesA);
-        //NSLog(@"%@ subNodesB: %@", tag, subNodesB);
+        NSArray *subNodesA = self[tag];
+        NSArray *subNodesB = other[tag];
         
         if ([subNodesA count] != [subNodesB count]) {
-            //NSLog(@"%@ NO (count)", tag);
-            return NO;
+            return NO; // the number of subnodes in A & B for the tag don't match
         } else {
-            if ([subNodesA count] == 1) {
-                if (!areNodesEquivalent(subNodesA[0], subNodesB[0])) {
-                    //NSLog(@"%@ NO (one)", tag);
-                   return NO;
-                }
-            } else {
-                NSMutableArray *leftoverA = [subNodesA mutableCopy];
-                
-                for (GCNode *aNode in subNodesA) {
-                    for (GCNode *bNode in subNodesB) {
-                        if (areNodesEquivalent(aNode, bNode)) {
-                            [leftoverA removeObject:aNode];
-                        }
+            NSMutableArray *leftoverA = [subNodesA mutableCopy];
+            
+            for (GCNode *aNode in subNodesA) {
+                for (GCNode *bNode in subNodesB) {
+                    if ([aNode isEquivalentTo:bNode]) {
+                        [leftoverA removeObject:aNode];
                     }
                 }
-                
-                if ([leftoverA count] != 0) {
-                    //NSLog(@"%@ NO (multiple: %ld)", tag, [leftoverA count]);
-                    
-                   return NO;
-                }
+            }
+            
+            if ([leftoverA count] != 0) {
+                return NO; // there are nodes left in A which don't have a match in B
             }
         }
     }
     
-    //NSLog(@"%@ (final) YES", a.gedTag);
-    
     return YES;
-}
-
-- (BOOL)isEquivalentTo:(GCNode *)other
-{
-    return areNodesEquivalent(self, other);
 }
 
 /*
