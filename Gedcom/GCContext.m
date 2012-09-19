@@ -215,14 +215,12 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     
     NSString *pointer = [NSString stringWithFormat:@"%p", entity];
     
-    @synchronized (_entityStore) {
-        if ([_entityStore[entity.type] containsObject:entity]) {
-            @synchronized (_entityToXrefMap) {
-                @synchronized (_xrefToEntityMap) {
-                    if (_entityToXrefMap[pointer]) {
-                        [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[pointer]];
-                        [_entityToXrefMap removeObjectForKey:pointer];
-                    }
+    @synchronized (_entityToXrefMap) {
+        if (_entityToXrefMap[entity]) {
+            @synchronized (_xrefToEntityMap) {
+                if (_entityToXrefMap[pointer]) {
+                    [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[pointer]];
+                    [_entityToXrefMap removeObjectForKey:pointer];
                 }
             }
         }

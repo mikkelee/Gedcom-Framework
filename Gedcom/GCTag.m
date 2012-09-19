@@ -480,7 +480,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
             expandSubtag(set, variant);
         }
     } else {
-        [set addObject:[GCTag tagNamed:[valid[kMax] isEqualToString:@"M"] ? _singularToPlural[valid[kName]] : valid[kName]]];
+        [set addObject:[GCTag tagNamed:[valid[kMax] isEqual:@"M"] ? _singularToPlural[valid[kName]] : valid[kName]]];
     }
 }
 

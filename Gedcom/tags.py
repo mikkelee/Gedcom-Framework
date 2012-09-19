@@ -193,7 +193,7 @@ def expand_group(group, properties, dynamics):
 			expand_group(variant['groupName'], properties, dynamics)
 			continue
 		print '		PROCESSING VARIANT "%s": %s' % (variant['name'], tags[variant['name']])
-		pro, dyn = property(variant['name'], tags[variant['name']]['objectType'], variant['max'] == 'M', variant['min'] == '1')
+		pro, dyn = property(variant['name'], tags[variant['name']]['objectType'], variant['max'] == 'M', variant['min'] == 1)
 		properties.append(pro)
 		dynamics.append(dyn)
 
@@ -230,7 +230,7 @@ for key in sorted(tags):
 					expand_group(prop['groupName'], properties, dynamics)
 					
 				else:
-					pro, dyn = property(prop['name'], tags[prop['name']]['objectType'], prop['max'] == 'M', prop['min'] == '1')
+					pro, dyn = property(prop['name'], tags[prop['name']]['objectType'], prop['max'] == 'M', prop['min'] == 1)
 					properties.append(pro)
 					dynamics.append(dyn)
 		
