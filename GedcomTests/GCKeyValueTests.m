@@ -113,7 +113,7 @@
 										   xref:@"@I1@" 
 									   subNodes:[NSArray arrayWithObject:aNode]];
 	
-	STAssertEqualObjects(aNode, [bNode valueForKey:@"NAME"], nil);
+	STAssertEqualObjects(aNode, [bNode valueForKey:@"NAME"][0], nil);
 }
 
 - (void)testKVC1

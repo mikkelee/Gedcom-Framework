@@ -63,6 +63,10 @@
 /// The receiver including its subnodes as an array of strings.
 @property (readonly) NSArray *gedcomLines;
 
+#pragma mark Comparison
+
+- (BOOL)isEquivalentTo:(GCNode *)other;
+
 #pragma mark Objective-C properties
 
 /// @name Accessing properties
@@ -85,8 +89,11 @@
 /// The line separator of the receiver; usually `\n`.
 @property (readonly) NSString *lineSeparator;
 
-/// An ordered collection containing the subnodes of the receiver; may not be `nil`.
+/// An ordered uniquing collection containing the subnodes of the receiver; may not be `nil`.
 @property (readonly) NSOrderedSet *subNodes;
+
+/// A uniquing collection containing the gedTags for all subNodes of the receiver.
+@property (readonly) NSSet *allSubTags;
 
 @end
 

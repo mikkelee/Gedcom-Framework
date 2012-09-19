@@ -108,4 +108,50 @@
 	[self testGedString:gedcom countShouldBe:1];
 }
 
+- (void)testEquivalence
+{
+    GCNode *original = [[GCNode arrayOfNodesFromString:
+                         @"0 @INDI1@ INDI\n"
+                         @"1 NAME Jens /Hansen/\n"
+                         @"1 NAME Jens /Hansen/ Smed\n"
+                         @"1 BIRT\n"
+                         @"2 DATE 1 JAN 1901\n"
+                         @"1 DEAT Y"] lastObject];
+    
+    GCNode *addition = [[GCNode arrayOfNodesFromString:
+                         @"0 @INDI1@ INDI\n"
+                         @"1 NAME Jens /Hansen/\n"
+                         @"1 NAME Jens /Hansen/ Smed\n"
+                         @"1 BIRT\n"
+                         @"2 DATE 1 JAN 1901\n"
+                         @"1 CHR\n"
+                         @"2 DATE 5 JAN 1901\n"
+                         @"1 DEAT Y"] lastObject];
+    
+    STAssertEquals([original isEquivalentTo:addition], NO, nil);
+    STAssertEquals([addition isEquivalentTo:original], NO, nil);
+    
+    GCNode *removal = [[GCNode arrayOfNodesFromString:
+                        @"0 @INDI1@ INDI\n"
+                        @"1 NAME Jens /Hansen/\n"
+                        @"1 BIRT\n"
+                        @"2 DATE 1 JAN 1901\n"
+                        @"1 DEAT Y"] lastObject];
+    
+    STAssertEquals([original isEquivalentTo:removal], NO, nil);
+    STAssertEquals([removal isEquivalentTo:original], NO, nil);
+    
+    GCNode *reorder = [[GCNode arrayOfNodesFromString:
+                        @"0 @INDI1@ INDI\n"
+                        @"1 NAME Jens /Hansen/ Smed\n"
+                        @"1 NAME Jens /Hansen/\n"
+                        @"1 BIRT\n"
+                        @"2 DATE 1 JAN 1901\n"
+                        @"1 DEAT Y"] lastObject];
+    
+    STAssertEquals([original isEquivalentTo:reorder], YES, nil);
+    STAssertEquals([reorder isEquivalentTo:original], YES, nil);
+    
+}
+
 @end
