@@ -16,9 +16,11 @@
 const char *formatString = "%e %b %Y %H:%M:%S %z";
 
 static inline NSDate * dateFromNode(GCNode *node) {
+    NSArray *timeParts = [[[node valueForKeyPath:@"TIME"][0] gedValue] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    
     NSString *dateString = [NSString stringWithFormat:@"%@ %@ %@",
                             [node gedValue],
-                            [[node valueForKeyPath:@"TIME"][0] gedValue],
+                            timeParts[0],
                             @"+0000"
                             ];
     
@@ -29,6 +31,12 @@ static inline NSDate * dateFromNode(GCNode *node) {
     assert(mktime(&timeResult) > 0);
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970: mktime(&timeResult)];
+    
+    if ([timeParts count] > 1) {
+        NSTimeInterval milliseconds = [timeParts[1] intValue] * 0.001;
+        
+        date = [date dateByAddingTimeInterval:milliseconds];
+    }
     
     //NSLog(@"strptime_l: %@ => %ld => %@", dateString, mktime(&timeResult), date);
     
@@ -56,6 +64,11 @@ static inline GCNode * nodeFromDate(NSDate *date) {
                                                     length:lengthOfTimePart
                                                   encoding:NSASCIIStringEncoding];
     
+    double fraction = [date timeIntervalSinceReferenceDate] - (long)[date timeIntervalSinceReferenceDate];
+    
+    if (fraction) {
+        timeString = [timeString stringByAppendingFormat:@".%03.0f", fraction * 1000];
+    }
     
     
     NSString *dateString = [[[NSString alloc] initWithBytes:leadingSpace ? timeResult+1 : timeResult
@@ -69,7 +82,7 @@ static inline GCNode * nodeFromDate(NSDate *date) {
                                      value:dateString
                                   subNodes:@[timeNode]];
     
-    //NSLog(@"dateNode: %@", dateNode);
+    //NSLog(@"date %@ => dateNode %@", date, dateNode);
     
     return dateNode;
 }

@@ -33,9 +33,19 @@
     
     NSDate *changeDate = dateFromNode(changeNode);
     
-    NSDate *expectedDate = [NSDate dateWithNaturalLanguageString:[NSString stringWithFormat:@"%@ %@ +0000", date, time]];
+    NSArray *timeParts = [time componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    
+    NSDate *expectedDate = [NSDate dateWithNaturalLanguageString:[NSString stringWithFormat:@"%@ %@ +0000", date, timeParts[0]]];
+    
+    if ([timeParts count] > 1) {
+        NSTimeInterval milliseconds = [timeParts[1] intValue] * 0.001;
+        
+        expectedDate = [expectedDate dateByAddingTimeInterval:milliseconds];
+    }
     
     STAssertEqualObjects(changeDate, expectedDate, nil);
+    
+    STAssertEqualObjects([changeNode gedcomString], [nodeFromDate(expectedDate) gedcomString], nil);
     
     //and the reverse:
     
@@ -44,17 +54,15 @@
     //NSLog(@"newNode: %@", newNode);
     
     STAssertEqualObjects([changeNode gedcomString], [newNode gedcomString], nil);
-    
-    STAssertEqualObjects([changeNode gedcomString], [nodeFromDate(expectedDate) gedcomString], nil);
 }
 
 - (void)testDates
 {
-    // Test both summer & winter time, and single + two digit days/hours
+    // Test both summer & winter time, and single + two digit days/hours, as well as different kinds of fractions
     
-    [self testDate:@"2 MAY 2009" time:@"01:07:12"];
-    [self testDate:@"11 NOV 2004" time:@"23:30:14"];
-    
+    [self testDate:@"11 NOV 2004" time:@"23:30:14.012"];
+    [self testDate:@"2 MAY 2009" time:@"01:07:12.765"];
+    [self testDate:@"25 JAN 1999" time:@"14:52:23"];
 }
 
 @end
