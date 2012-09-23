@@ -197,3 +197,41 @@
 }
 
 @end
+
+@implementation GCRelationship (GCValidationMethods)
+
+- (BOOL)validateObject:(NSError **)outError
+{
+    BOOL isValid = YES;
+    
+    NSError *returnError = nil;
+    
+    NSError *err = nil;
+    
+    BOOL superValid = [super validateObject:&err];
+    
+    if (!superValid) {
+        isValid &= NO;
+        returnError = combineErrors(returnError, err);
+    }
+    
+    if (_target == nil) {
+        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+                                                                   code:GCTargetMissingError
+                                                               userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target is missing for key %@ (should be a %@)",  self.type, self.gedTag.targetType], NSAffectedObjectsErrorKey: self}]);
+        isValid &= NO;
+    } else if (![_target isKindOfClass:self.gedTag.targetType]) {
+        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+                                                                     code:GCIncorrectTargetTypeError
+                                                                 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", _target, self.type, self.gedTag.targetType], NSAffectedObjectsErrorKey: self}]);
+        isValid &= NO;
+    }
+    
+    if (!isValid) {
+        *outError = returnError;
+    }
+    
+    return isValid;
+}
+
+@end

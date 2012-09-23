@@ -11,6 +11,8 @@
 static inline NSError * combineErrors(NSError *originalError, NSError *secondError) {
     if (!originalError) {
         return secondError;
+    } else if (!secondError) {
+        return originalError;
     }
     
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];

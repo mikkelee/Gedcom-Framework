@@ -8,6 +8,8 @@
 
 #import "GCObject.h"
 
+#import "ValidationHelpers.h"
+
 @interface GCObject ()
 
 #pragma mark Description helper

@@ -27,9 +27,7 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
-        if (node.gedValue != nil) {
-            [self setValueWithGedcomString:node.gedValue];
-        }
+        [self setValueWithGedcomString:node.gedValue];
     }
     
     return self;
@@ -165,6 +163,48 @@
     NSParameterAssert(self.gedTag.valueType);
     
     self.value = [self.gedTag.valueType valueWithGedcomString:string];
+}
+
+@end
+
+@implementation GCAttribute (GCValidationMethods)
+
+- (BOOL)validateObject:(NSError **)outError
+{
+    BOOL isValid = YES;
+    
+    NSError *returnError = nil;
+    
+    NSError *err = nil;
+    
+    BOOL superValid = [super validateObject:&err];
+    
+    if (!superValid) {
+        isValid &= NO;
+        returnError = combineErrors(returnError, err);
+    }
+    
+    returnError = combineErrors(returnError, err);
+    
+    if (self.gedTag.valueType) {
+        if (_value == nil) {
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+                                                                         code:GCValueMissingError
+                                                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value is missing for %@ (should be a %@)",  self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
+            isValid &= NO;
+        } else if (![_value isKindOfClass:self.gedTag.valueType]) {
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+                                                                         code:GCIncorrectValueTypeError
+                                                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for %@ (should be %@)", _value, self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
+            isValid &= NO;
+        }
+    }
+    
+    if (!isValid) {
+        *outError = returnError;
+    }
+    
+    return isValid;
 }
 
 @end

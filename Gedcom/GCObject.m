@@ -721,83 +721,6 @@ NSString *GCErrorDoman = @"GCErrorDoman";
 
 @implementation GCObject (GCValidationMethods)
 
-static inline BOOL validateValue(GCObject *obj, NSString *key, id value, Class type, NSError **error) {
-    if (value == nil) {
-        //TODO check if value is required
-        return YES;
-    } else if (![value isKindOfClass:type]) {
-        if (NULL != error) {
-            *error = [NSError errorWithDomain:GCErrorDoman
-                                         code:GCIncorrectValueTypeError 
-                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for key %@ (should be %@)", value, key, type], NSAffectedObjectsErrorKey: obj}];
-        }
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-static inline BOOL validateTarget(GCObject *obj, NSString *key, GCEntity *target, Class type, NSError **error) {
-    if (target == nil) {
-        if (NULL != error) {
-            *error = [NSError errorWithDomain:GCErrorDoman
-                                         code:GCTargetMissingError
-                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target is missing for key %@ (should be a %@)",  key, type], NSAffectedObjectsErrorKey: obj}];
-        }
-        return NO;
-    } else if (![target isKindOfClass:type]) {
-        if (NULL != error) {
-            *error = [NSError errorWithDomain:GCErrorDoman
-                                         code:GCIncorrectTargetTypeError 
-                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", target, key, type], NSAffectedObjectsErrorKey: obj}];
-        }
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-static inline BOOL validateProperty(GCObject *obj, NSString *key, GCProperty *property, GCTag *tag, NSError **outError) {
-    BOOL isValid = YES;
-    NSError *returnError = nil;
-    
-    if (!property) {
-        return isValid;
-    }
-    
-    if ([tag objectClass] == [GCAttribute class]) {
-        NSError *err = nil;
-        
-        isValid &= validateValue(obj, key, [(GCAttribute *)property value], tag.valueType, &err);
-        
-        if (err) {
-            returnError = combineErrors(returnError, err);
-        }
-    } else if ([tag objectClass] == [GCRelationship class]) {
-        NSError *err = nil;
-        
-        isValid &= validateTarget(obj, key, [(GCRelationship *)property target], tag.targetType, &err);
-        
-        if (err) {
-            returnError = combineErrors(returnError, err);
-        }
-    }
-    
-    NSError *err = nil;
-    
-    isValid &= [property validateObject:&err];
-    
-    if (err) {
-        returnError = combineErrors(returnError, err);
-    }
-    
-    if (!isValid) {
-        *outError = returnError;
-    }
-    
-    return isValid;
-}
-
 - (BOOL)validateObject:(NSError **)outError
 {
     //NSLog(@"validating: %@", self);
@@ -815,24 +738,29 @@ static inline BOOL validateProperty(GCObject *obj, NSString *key, GCProperty *pr
         
         if ([self allowedOccurrencesPropertyType:propertyKey].max > 1) {
             propertyCount = [[self valueForKey:propertyKey] count];
+            
             for (id property in [self valueForKey:propertyKey]) {
                 NSError *err = nil;
                 
-                isValid &= validateProperty(self, propertyKey, property, subTag, &err);
+                BOOL propertyValid = [property validateObject:&err];
                 
-                if (err) {
+                if (!propertyValid) {
+                    isValid &= NO;
                     returnError = combineErrors(returnError, err);
                 }
             }
         } else {
             propertyCount = [self valueForKey:propertyKey] ? 1 : 0;
             
-            NSError *err = nil;
-            
-            isValid &= validateProperty(self, propertyKey, [self valueForKey:propertyKey], subTag, &err);
-            
-            if (err) {
-                returnError = combineErrors(returnError, err);
+            if (propertyCount) {
+                NSError *err = nil;
+                
+                BOOL propertyValid = [[self valueForKey:propertyKey] validateObject:&err];
+                
+                if (!propertyValid) {
+                    isValid &= NO;
+                    returnError = combineErrors(returnError, err);
+                }
             }
         }
         
@@ -858,13 +786,6 @@ static inline BOOL validateProperty(GCObject *obj, NSString *key, GCProperty *pr
     }
     
     return isValid;
-}
-
-- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
-{
-    GCTag *subTag = [self.gedTag subTagWithName:inKey];
-    
-    return validateProperty(self, inKey, *ioValue, subTag, outError);
 }
 
 @end

@@ -23,6 +23,7 @@ A number of classes to ease [GEDCOM 5.5](http://www.gedcom.net/0g/gedcom55/)-man
     - GCNumber
     - GCBool
 * Relationship integrity is handled with a GCContext (equivalent to a file) that ensures that all GCEntities have an internal 1-to-1 mapping with an xref, used for serializing from/to GEDCOM.
+* Objects and contexts can be validated and will return detailed NSErrors.
 
 Full AppleDoc documentation in the headers, can be built with the Documentation target.
 
