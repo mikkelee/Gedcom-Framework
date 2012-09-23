@@ -199,9 +199,7 @@ __strong static NSArray *_rootKeys = nil;
 - (void)addEntitiesObject:(GCEntity *)entity
 {
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
-        if (_header) {
-            NSLog(@"Multiple headers!?");
-        }
+        NSParameterAssert(!_header);
         _header = (GCHeaderEntity *)entity;
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
         _submission = (GCSubmissionEntity *)entity;
@@ -213,7 +211,7 @@ __strong static NSArray *_rootKeys = nil;
             [_entityStore[entity.type] addObject:entity];
         }
     } else {
-        NSLog(@"Unknown class: %@", entity);
+        NSAssert(NO, @"Unknown class: %@", entity);
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -225,7 +223,23 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)removeEntitiesObject:(GCEntity *)entity
 {
-    //TODO
+    NSParameterAssert(entity.context == self);
+    
+    if ([entity isKindOfClass:[GCHeaderEntity class]]) {
+        if (_header == entity) {
+            _header = nil;
+        }
+    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
+        if (_submission == entity) {
+            _submission = nil;
+        }
+    } else if ([entity isKindOfClass:[GCEntity class]]) {
+        @synchronized (_entityStore) {
+            [_entityStore[entity.type] removeObject:entity];
+        }
+    } else {
+        NSAssert(NO, @"Unknown class: %@", entity);
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
