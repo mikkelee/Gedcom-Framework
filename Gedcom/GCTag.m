@@ -52,7 +52,7 @@ const NSString *kPlural = @"plural";
 
 __strong static NSMutableDictionary *_tagStore;
 __strong static NSMutableDictionary *_tagInfo;
-__strong static NSDictionary *_tagsByName;
+__strong static NSMutableDictionary *_tagsByName;
 __strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
 
@@ -197,16 +197,7 @@ static inline void setupKey(NSString *key) {
 {
     NSParameterAssert(name);
     
-    GCTag *tag = _tagStore[name];
-    
-    if (tag == nil) {
-		NSException *exception = [NSException exceptionWithName:@"GCInvalidTagNameException"
-														 reason:[NSString stringWithFormat:@"Invalid tag name '%@'", name]
-													   userInfo:nil];
-		@throw exception;
-    }
-    
-    return tag;
+    return _tagStore[name];
 }
 
 + (NSDictionary *)tagsByName
@@ -222,7 +213,7 @@ static inline void setupKey(NSString *key) {
             tmpTags[key] = _tagStore[key];
         }
         
-        _tagsByName = [tmpTags copy];
+        _tagsByName = tmpTags;
     }
     
     return [_tagsByName copy];
@@ -234,18 +225,23 @@ static inline void setupKey(NSString *key) {
     
     if ([code hasPrefix:@"_"]) {
         NSString *tagName = [NSString stringWithFormat:@"custom%@Entity", code];
+        NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
+        
         if ([_tagStore valueForKey:tagName]) {
             return [_tagStore valueForKey:tagName];
         }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:@{kCode: code,
                                                   kName: tagName,
-                                                  kPlural: [NSString stringWithFormat:@"%@s", tagName],
+                                                  kPlural: pluralName,
                                                   kObjectType: @"entity",
                                                   kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);
         _rootTagsByCode[code] = tag;
         _tagStore[tagName] = tag;
+        _tagStore[pluralName] = tag;
+        _tagsByName[tagName] = tag;
+        _tagsByName[pluralName] = tag;
     }
     
     return _rootTagsByCode[code];
@@ -294,26 +290,31 @@ static inline void setupKey(NSString *key) {
 
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
+    if (!_cachedSubTagsByCode) {
+        [self buildSubTagCaches];
+    }
+    
     if ([code hasPrefix:@"_"]) {
         NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
+        NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
+        
         if ([_tagStore valueForKey:tagName]) {
             return [_tagStore valueForKey:tagName];
         }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:@{kCode: code,
                                                   kName: tagName,
-                                                  kPlural: [NSString stringWithFormat:@"%@s", tagName],
+                                                  kPlural: pluralName,
                                                   kValueType: @"string",
                                                   kObjectType: type,
                                                   kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);
         _tagStore[tagName] = tag;
+        _tagStore[pluralName] = tag;
+        _tagsByName[tagName] = tag;
+        _tagsByName[pluralName] = tag;
         
         return tag;
-    }
-    
-    if (!_cachedSubTagsByCode) {
-        [self buildSubTagCaches];
     }
     
     return _cachedSubTagsByCode[type][code];

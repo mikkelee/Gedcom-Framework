@@ -136,7 +136,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-    if ([self.validPropertyTypes containsObject:key]) {
+    if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
         if ([self allowedOccurrencesPropertyType:key].max > 1) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
@@ -157,7 +157,7 @@ __strong static NSDictionary *_defaultColors;
         for (NSString *propertyType in [self propertyTypesInGroup:key]) {
             [self setNilValueForKey:propertyType];
         }
-    } else if ([self.validPropertyTypes containsObject:key]) {
+    } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
         @synchronized(_propertyStore) {
             [_propertyStore removeObjectForKey:key];
         }
@@ -184,7 +184,7 @@ __strong static NSDictionary *_defaultColors;
         }
         
         return values;
-    } else if ([self.validPropertyTypes containsObject:key]) {
+    } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
         @synchronized(_propertyStore) {
             return _propertyStore[key];
         }
@@ -802,14 +802,14 @@ static inline BOOL validateProperty(GCObject *obj, NSString *key, GCProperty *pr
 {
     //NSLog(@"validating: %@", self);
     
-    //TODO also check for disallowed properties that have snuck in
-    
     BOOL isValid = YES;
     
     NSError *returnError = nil;
     
-    for (id propertyKey in self.validPropertyTypes) {
-        GCTag *subTag = [self.gedTag subTagWithName:propertyKey];
+    NSSet *propertyKeys = [[NSSet setWithArray:[_propertyStore allKeys]] setByAddingObjectsFromSet:[self.validPropertyTypes set]];
+    
+    for (NSString *propertyKey in propertyKeys) {
+        GCTag *subTag = [GCTag tagNamed:propertyKey];
         
         NSInteger propertyCount = 0;
         
