@@ -19,6 +19,8 @@
 
 #import "GCContextDelegate.h"
 
+#import "ValidationHelpers.h"
+
 @interface GCTrailerEntity : NSObject //empty class to match trailer objects
 @end
 @implementation GCTrailerEntity
@@ -511,23 +513,26 @@ __strong static NSArray *_rootKeys = nil;
 
 - (BOOL)validateContext:(NSError *__autoreleasing *)error
 {
-    if (![_header validateObject:error]) {
-        return NO;
-    }
+    BOOL isValid = YES;
+    NSError *returnError = nil;
     
-    if (_submission && ![_submission validateObject:error]) {
-        return NO;
-    }
-    
-    for (NSString *key in _rootKeys) {
-        for (GCEntity *entity in _entityStore[key]) {
-            if (![entity validateObject:error]) {
-                return NO;
-            }
+    for (GCEntity *entity in self.allEntities) {
+        //NSLog(@"validating %@", [self xrefForEntity:entity]);
+        
+        NSError *err = nil;
+        
+        isValid &= [entity validateObject:&err];
+        
+        if (err) {
+            returnError = combineErrors(returnError, err);
         }
     }
     
-    return YES;
+    if (!isValid) {
+        *error = returnError;
+    }
+    
+    return isValid;
 }
 
 @end

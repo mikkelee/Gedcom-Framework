@@ -1,5 +1,5 @@
 //
-//  Helpers.h
+//  DateHelpers.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 05/03/11.

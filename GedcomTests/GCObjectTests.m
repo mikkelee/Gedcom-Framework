@@ -209,9 +209,18 @@
     
     BOOL result = [submitter validateObject:&error];
     
+    //NSLog(@"error: %@", error);
+    
     STAssertFalse(result, nil);
-    STAssertEqualObjects([[error userInfo] valueForKey:NSLocalizedDescriptionKey], errorString, nil);
-    STAssertEquals([error code], errorCode, nil);
+    STAssertEquals([error code], (NSInteger)NSValidationMultipleErrorsError, nil);
+    
+    STAssertEquals([(NSArray *)[error userInfo][NSDetailedErrorsKey] count], (NSUInteger)2, nil);
+    
+    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][0] code], GCTooManyValuesError, nil);
+    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][0] localizedDescription], @"Too many values for key languages on submitter", nil);
+    
+    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][1] code], GCTooFewValuesError, nil);
+    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][1] localizedDescription], @"Too few values for key name on submitter", nil);
 }
 
 - (void)testObjectValidation
@@ -220,19 +229,11 @@
     [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
                                              @"1 LANG English\n"
                                              @"1 LANG Swedish\n"
-                                             @"1 LANG Spanish"
+                                             @"1 LANG Spanish\n"
+                                             @"1 LANG German"
                            exceptedErrorCode:GCTooFewValuesError
                                       string:@"Too few values for key name on submitter"];
     
-    // Submitter with too many LANG properties.
-    [self testObjectValidationWithNodeString:@"0 @SUBM1@ SUBM\n"
-                                             @"1 NAME John Doe\n"
-                                             @"1 LANG English\n"
-                                             @"1 LANG Swedish\n"
-                                             @"1 LANG Spanish\n"
-                                             @"1 LANG German"
-                           exceptedErrorCode:GCTooManyValuesError
-                                      string:@"Too many values for key languages on submitter"];
 }
 
 @end

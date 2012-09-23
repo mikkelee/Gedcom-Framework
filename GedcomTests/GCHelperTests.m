@@ -10,7 +10,7 @@
 
 #import "Gedcom.h"
 
-#import "Helpers.h"
+#import "DateHelpers.h"
 
 @interface GCHelperTests : SenTestCase
 @end
