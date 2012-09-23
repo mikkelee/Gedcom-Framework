@@ -72,7 +72,7 @@ __strong static NSDictionary *_defaultColors;
 
 #pragma mark GCProperty access
 
-- (NSOrderedSet *)validProperties
+- (NSOrderedSet *)validPropertyTypes
 {
     @synchronized(_validPropertiesByType) {
         NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
@@ -134,7 +134,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-    if ([self.validProperties containsObject:key]) {
+    if ([self.validPropertyTypes containsObject:key]) {
         if ([self allowedOccurrencesPropertyType:key].max > 1) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
@@ -155,7 +155,7 @@ __strong static NSDictionary *_defaultColors;
         for (NSString *propertyType in [self propertyTypesInGroup:key]) {
             [self setNilValueForKey:propertyType];
         }
-    } else if ([self.validProperties containsObject:key]) {
+    } else if ([self.validPropertyTypes containsObject:key]) {
         @synchronized(_propertyStore) {
             [_propertyStore removeObjectForKey:key];
         }
@@ -182,7 +182,7 @@ __strong static NSDictionary *_defaultColors;
         }
         
         return values;
-    } else if ([self.validProperties containsObject:key]) {
+    } else if ([self.validPropertyTypes containsObject:key]) {
         @synchronized(_propertyStore) {
             return _propertyStore[key];
         }
@@ -269,6 +269,8 @@ __strong static NSDictionary *_defaultColors;
     
     [property setValue:self forKey:@"primitiveDescribedObject"];
 }
+
+//TODO countOfProperties is called a lot, and is slow.
 
 - (NSUInteger)countOfProperties
 {
@@ -364,7 +366,7 @@ __strong static NSDictionary *_defaultColors;
 	NSUInteger parameterCount = [[stringSelector componentsSeparatedByString:@":"] count]-1;
     
 	// valueForKey:
-	if (parameterCount == 0 && ([self.validProperties containsObject:stringSelector] || [[self propertyTypesInGroup:stringSelector] count] > 0)) {
+	if (parameterCount == 0 && ([self.validPropertyTypes containsObject:stringSelector] || [[self propertyTypesInGroup:stringSelector] count] > 0)) {
 		return [super methodSignatureForSelector:@selector(valueForKey:)];
     }
     
@@ -375,7 +377,7 @@ __strong static NSDictionary *_defaultColors;
                   [stringSelector substringWithRange:NSMakeRange(4, [stringSelector length]-5)]];
         NSLog(@"key: %@", key);
         
-        if ([self.validProperties containsObject:key] || [[self propertyTypesInGroup:key] count] > 0)
+        if ([self.validPropertyTypes containsObject:key] || [[self propertyTypesInGroup:key] count] > 0)
             return [super methodSignatureForSelector:@selector(setValue:forKey:)];
     }
     
@@ -419,7 +421,7 @@ __strong static NSDictionary *_defaultColors;
     NSMutableArray *orderedProperties = [NSMutableArray array];
     
     @synchronized(_propertyStore) {
-        for (NSString *propertyType in self.validProperties) {
+        for (NSString *propertyType in self.validPropertyTypes) {
             if ([self allowedOccurrencesPropertyType:propertyType].max > 1) {
                 [orderedProperties addObjectsFromArray:[_propertyStore valueForKey:propertyType]];
             } else {
@@ -429,7 +431,7 @@ __strong static NSDictionary *_defaultColors;
             }
         }
         
-        for (NSString *customType in [[_propertyStore allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",  self.validProperties]]) {
+        for (NSString *customType in [[_propertyStore allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",  self.validPropertyTypes]]) {
             [orderedProperties addObjectsFromArray:[_propertyStore valueForKey:customType]];
         }
     }
@@ -541,7 +543,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (BOOL)allowsProperties
 {
-    return ([self.validProperties count] > 0); //TODO (see cocoa-dev reply)
+    return ([self.validPropertyTypes count] > 0); //TODO (see cocoa-dev reply)
 }
 
 @dynamic rootObject;
@@ -753,7 +755,7 @@ static inline BOOL validateProperty(NSString *key, GCProperty *property, GCTag *
 {
     //TODO also check for disallowed properties that have snuck in
     
-    for (id propertyKey in self.validProperties) {
+    for (id propertyKey in self.validPropertyTypes) {
         GCTag *subTag = [self.gedTag subTagWithName:propertyKey];
         
         NSInteger propertyCount = 0;

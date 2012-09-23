@@ -37,7 +37,7 @@
 /// @name Accessing GCProperties
 
 /// Returns an ordered collection of valid property types for the receiver.
-@property (readonly) NSOrderedSet *validProperties;
+@property (readonly) NSOrderedSet *validPropertyTypes;
 
 /** Returns a struct with the minimum and maximum allowed occurrences of a given type of property.
  

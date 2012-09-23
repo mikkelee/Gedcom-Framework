@@ -44,7 +44,7 @@
 {
     [self willChangeValueForKey:@"entity"];
     _entity = entity;
-    for (NSString *key in [_entity validProperties]) {
+    for (NSString *key in [_entity validPropertyTypes]) {
         //NSLog(@"Observing: %@", key);
         [_entity addObserver:self forKeyPath:key options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     }
@@ -99,7 +99,7 @@
 
 - (void)dealloc
 {
-    for (NSString *key in [_entity validProperties]) {
+    for (NSString *key in [_entity validPropertyTypes]) {
         //NSLog(@"Deobserving: %@", key);
         [_entity removeObserver:self forKeyPath:key];
     }
