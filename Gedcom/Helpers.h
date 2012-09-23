@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GCNode.h"
+
 #include <time.h>
 #include <xlocale.h>
-
-#import "GCNode.h"
 
 const char *formatString = "%e %b %Y %H:%M:%S %z";
 
