@@ -119,7 +119,7 @@ __strong static NSDictionary *_defaultColors;
     NSString *type = [[GCTag tagNamed:key] name];
     
     if ([value isKindOfClass:[GCProperty class]]) {
-        [[self mutableArrayValueForKey:@"properties"] addObject:value];
+        [self.allProperties addObject:value];
     } else if ([value isKindOfClass:[GCValue class]]) {
         [self addAttributeWithType:type value:value];
     } else if ([value isKindOfClass:[GCEntity class]]) {
@@ -211,7 +211,7 @@ __strong static NSDictionary *_defaultColors;
     
     [keyPaths addObject:@"gedcomString"];
     [keyPaths addObject:@"gedcomNode"];
-    [keyPaths addObject:@"properties"];
+    [keyPaths addObject:@"allProperties"];
     
     GCTag *tag = [GCTag tagsByName][key];
     
@@ -263,14 +263,12 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setDescribedObjectForProperty:(GCProperty *)property
 {
-    if ([property describedObject]) {
-        [[[property describedObject] mutableArrayValueForKey:@"properties"] removeObject:property];
+    if (property.describedObject) {
+        [property.describedObject.allProperties removeObject:property];
     }
     
     [property setValue:self forKey:@"primitiveDescribedObject"];
 }
-
-//TODO countOfProperties is called a lot, and is slow.
 
 - (NSUInteger)countOfProperties
 {
@@ -279,16 +277,40 @@ __strong static NSDictionary *_defaultColors;
     }
 }
 
-- (id)objectInPropertiesAtIndex:(NSUInteger)index
+- (NSEnumerator *)enumeratorOfProperties
 {
-    return self.orderedProperties[index];
+    NSMutableSet *props = [NSMutableSet set];
+    
+    for (id prop in [_propertyStore allValues]) {
+        if ([prop isKindOfClass:[NSArray class]]) {
+            [props addObjectsFromArray:prop];
+        } else {
+            [props addObject:prop];
+        }
+    }
+    
+    NSLog(@"props: %@", props);
+    
+    return [props objectEnumerator];
 }
 
-- (void)insertObject:(GCProperty *)property inPropertiesAtIndex:(NSUInteger)index
+- (GCProperty *)memberOfProperties:(GCProperty *)property
+{
+    for (GCProperty *p in [_propertyStore allValues]) {
+        if ([p isEqual:property]) {
+            return p;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)addPropertiesObject:(GCProperty *)property
 {
     NSParameterAssert(property);
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    //NSParameterAssert(property.gedTag.isCustom || [self.validProperties containsObject:property.type]);
+    //TODO handle plural names:
+    //NSParameterAssert(property.gedTag.isCustom || [self.validPropertyTypes containsObject:property.type]);
     
     [self setDescribedObjectForProperty:property];
     
@@ -311,14 +333,9 @@ __strong static NSDictionary *_defaultColors;
     //[self didChangeValueForKey:@"gedcomString"];
 }
 
-- (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index
+- (void)removePropertiesObject:(GCProperty *)property
 {
-    GCProperty *property = self.orderedProperties[index];
-    
-    if (property == nil) {
-        return;
-    }
-    
+    NSParameterAssert(property);
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert([property describedObject] == self);
     
@@ -349,6 +366,8 @@ __strong static NSDictionary *_defaultColors;
  
  }
  */
+
+#pragma mark @selector trickery
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
@@ -554,7 +573,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSMutableArray *originalProperties = [self.allProperties mutableCopy];
+    NSMutableSet *originalProperties = [self.allProperties mutableCopy];
     
     //NSLog(@"originalProperties: %@", originalProperties);
     
@@ -563,7 +582,7 @@ __strong static NSDictionary *_defaultColors;
             continue; //we ignore the CHAN node, it shouldn't be changed via setGedcomNode:
         }
         
-        NSIndexSet *matches = [originalProperties indexesOfObjectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(GCProperty *obj, NSUInteger idx, BOOL *stop) {
+        NSSet *matches = [originalProperties objectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(GCProperty *obj, BOOL *stop) {
             return [obj.gedTag.code isEqualToString:subNode.gedTag];
         }];
         
@@ -571,7 +590,8 @@ __strong static NSDictionary *_defaultColors;
             //NSLog(@"adding new property for %@", subNode);
             [self addPropertyWithGedcomNode:subNode];
         } else {
-            GCProperty *property = originalProperties[[matches firstIndex]];
+            //TODO...
+            GCProperty *property = [matches anyObject];
             [originalProperties removeObject:property];
             //NSLog(@"modifying property %@ with %@", property, subNode);
             property.gedcomNode = subNode;
@@ -649,14 +669,14 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
 {
-    [[self mutableArrayValueForKey:@"properties"] addObject:[GCAttribute attributeWithType:type value:value]];
+    [self.allProperties addObject:[GCAttribute attributeWithType:type value:value]];
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
     GCRelationship *relationship = [GCRelationship relationshipWithType:type];
     
-    [[self mutableArrayValueForKey:@"properties"] addObject:relationship];
+    [self.allProperties addObject:relationship];
     
     relationship.target = target;
 }
@@ -688,9 +708,9 @@ __strong static NSDictionary *_defaultColors;
     }];
 }
 
-- (NSMutableArray *)allProperties
+- (NSMutableSet *)allProperties
 {
-    return [self mutableArrayValueForKey:@"properties"];
+    return [self mutableSetValueForKey:@"properties"];
 }
 
 @end

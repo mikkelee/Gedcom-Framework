@@ -31,7 +31,7 @@
     }
     
     if (self) {
-        [[object mutableArrayValueForKey:@"properties"] addObject:self];
+        [object.allProperties addObject:self];
         
         [self addPropertiesWithGedcomNodes:node.subNodes];
     }
@@ -99,10 +99,10 @@
         if (_primitiveDescribedObject == self) {
             return;
         }
-        [[_primitiveDescribedObject valueForKey:@"properties"] removeObject:self];
+        [_primitiveDescribedObject.allProperties removeObject:self];
     }
     self.primitiveDescribedObject = describedObject;
-    [[_primitiveDescribedObject mutableArrayValueForKey:@"properties"] addObject:self];
+    [_primitiveDescribedObject.allProperties addObject:self];
     [self didChangeValueForKey:@"describedObject"];
 }
 

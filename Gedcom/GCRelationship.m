@@ -149,7 +149,7 @@
         for (GCRelationship *relationship in [_target valueForKey:self.gedTag.reverseRelationshipTag.pluralName]) {
             //NSLog(@"%p: %@", self.describedObject, relationship);
             if ([relationship.target isEqual:self.rootObject]) {
-                [[_target mutableArrayValueForKey:@"properties"] removeObject:relationship];
+                [_target.allProperties removeObject:relationship];
             }
         }
         if (target != nil) {

@@ -154,8 +154,8 @@
  */
 - (void)addPropertiesWithGedcomNodes:(NSArray *)nodes;
 
-/// The properties of the receiver as a KVC-compliant mutable array. Functionally the same as calling -mutableArrayValueForKey:@"properties".
-@property (readonly, nonatomic) NSMutableArray *allProperties;
+/// The properties of the receiver as a KVC-compliant mutable array.
+@property (readonly, nonatomic) NSMutableSet *allProperties;
 
 @end
 

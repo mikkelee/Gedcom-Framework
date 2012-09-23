@@ -51,7 +51,7 @@
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
     //TODO [[indi births] addObject:]
-    [[indi mutableArrayValueForKey:@"properties"] addObject:birt];
+    [indi.allProperties addObject:birt];
     
     // You can also use subscripted access, in this case adding a single death attribute
     // with the value yes, indicating that the individual died.

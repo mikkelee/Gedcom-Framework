@@ -156,13 +156,13 @@
     
     GCProperty *nickname = [GCAttribute attributeWithType:@"nickname" value:[GCString valueWithGedcomString:@"Store Jens"]];
     
-    [[name1 mutableArrayValueForKey:@"properties"] addObject:nickname];
+    [[name1 mutableSetValueForKey:@"properties"] addObject:nickname];
     
     STAssertEqualObjects([nickname describedObject], name1, nil);
     STAssertTrue([[name1 valueForKey:@"properties"] containsObject:nickname], nil);
     STAssertFalse([[name2 valueForKey:@"properties"] containsObject:nickname], nil);
     
-    [[name2 mutableArrayValueForKey:@"properties"] addObject:nickname];
+    [[name2 mutableSetValueForKey:@"properties"] addObject:nickname];
     
     STAssertEqualObjects([nickname describedObject], name2, nil);
     STAssertTrue([[name2 valueForKey:@"properties"] containsObject:nickname], nil);

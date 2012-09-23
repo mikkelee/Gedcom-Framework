@@ -27,7 +27,7 @@
     self = [self init];
     
     if (self) {
-        [[object mutableArrayValueForKey:@"properties"] addObject:self];
+        [object.allProperties addObject:self];
         
         self.modificationDate = dateFromNode(node[@"DATE"][0]);
 		
