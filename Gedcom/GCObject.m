@@ -289,14 +289,14 @@ __strong static NSDictionary *_defaultColors;
         }
     }
     
-    NSLog(@"props: %@", props);
+    //NSLog(@"props: %@", props);
     
     return [props objectEnumerator];
 }
 
 - (GCProperty *)memberOfProperties:(GCProperty *)property
 {
-    for (GCProperty *p in [_propertyStore allValues]) {
+    for (GCProperty *p in [self enumeratorOfProperties]) {
         if ([p isEqual:property]) {
             return p;
         }

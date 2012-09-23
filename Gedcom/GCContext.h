@@ -62,22 +62,6 @@
  */
 - (void)parseNodes:(NSArray *)nodes;
 
-#pragma mark Entity access
-
-/// @name Accessing entities
-
-/** Adds the given entity to the receiver's collection of entities.
- 
- @param entity An entity.
- */
-- (void)addEntity:(GCEntity *)entity;
-
-/** Removes the given entity from the receiver's collection of entities.
- 
- @param entity An entity.
- */
-- (void)removeEntity:(GCEntity *)entity;
-
 #pragma mark Objective-C properties
 
 /// The header of the receiver.
@@ -106,6 +90,9 @@
 
 /// An ordered collection of the receiver's submitters.
 @property (readonly) NSMutableArray *submitters;
+
+/// A collection of all the receiver's entities.
+@property (readonly) NSMutableSet *allEntities;
 
 /// @name Gedcom output
 

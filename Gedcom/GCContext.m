@@ -37,7 +37,7 @@ __strong static NSArray *_rootKeys = nil;
 + (void)initialize
 {
     _contextsByName = [NSMutableDictionary dictionary];
-    _rootKeys = @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ];
+    _rootKeys = @[ @"submitter", @"individual", @"family", @"multimedia", @"note", @"repository", @"source" ];
 }
 
 - (id)init
@@ -131,16 +131,72 @@ __strong static NSArray *_rootKeys = nil;
 #endif
     
     //Note: >= instead of ==... there may be things added during parsing (TODO make this less ugly!)
-    NSParameterAssert([self countOfEntities] >= [nodes count]); //dont count trailer
+    NSParameterAssert(self.countOfEntities >= [nodes count]); //dont count trailer
     
     if (_delegate && [_delegate respondsToSelector:@selector(context:didFinishWithEntityCount:)]) {
-        [_delegate context:self didFinishWithEntityCount:[self countOfEntities]];
+        [_delegate context:self didFinishWithEntityCount:self.countOfEntities];
     }
 }
 
-#pragma mark Entity access
+#pragma mark GCEntity collection accessors
 
-- (void)addEntity:(GCEntity *)entity
+- (NSUInteger)countOfEntities
+{
+    __block NSUInteger count = 0;
+    
+    if (_header)
+        count++;
+    if (_submission)
+        count++;
+    
+    @synchronized (_entityStore) {
+        [_entityStore enumerateKeysAndObjectsWithOptions:(kNilOptions) usingBlock:^(id key, NSMutableArray *obj, BOOL *stop) {
+            count += [obj count];
+        }];
+    }
+    
+    count++; //trailer
+    
+    return count;
+}
+
+- (NSEnumerator *)enumeratorOfEntities
+{
+    NSMutableSet *ents = [NSMutableSet set];
+    
+    if (_header)
+        [ents addObject:_header];
+    
+    if (_submission)
+        [ents addObject:_submission];
+    
+    @synchronized (_entityStore) {
+        for (id ent in [_entityStore allValues]) {
+            if ([ent isKindOfClass:[NSArray class]]) {
+                [ents addObjectsFromArray:ent];
+            } else {
+                [ents addObject:ent];
+            }
+        }
+    }
+    
+    //NSLog(@"ents: %@", ents);
+    
+    return [ents objectEnumerator];
+}
+
+- (GCEntity *)memberOfEntities:(GCEntity *)entity
+{
+    for (GCEntity *e in [self enumeratorOfEntities]) {
+        if ([e isEqual:entity]) {
+            return e;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)addEntitiesObject:(GCEntity *)entity
 {
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         if (_header) {
@@ -162,40 +218,20 @@ __strong static NSArray *_rootKeys = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-            [_delegate context:self didUpdateEntityCount:[self countOfEntities]];
+            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
         }
     });
 }
 
-- (void)removeEntity:(GCEntity *)entity
+- (void)removeEntitiesObject:(GCEntity *)entity
 {
     //TODO
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-            [_delegate context:self didUpdateEntityCount:[self countOfEntities]];
+            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
         }
     });
-}
-
-- (NSInteger)countOfEntities
-{
-    __block NSInteger count = 0;
-    
-    if (_header)
-        count++;
-    if (_submission)
-        count++;
-    
-    @synchronized (_entityStore) {
-        [_entityStore enumerateKeysAndObjectsWithOptions:(kNilOptions) usingBlock:^(id key, NSMutableArray *obj, BOOL *stop) {
-            count += [obj count];
-        }];
-    }
-    
-    count++; //trailer
-    
-    return count;
 }
 
 #pragma mark Equality
@@ -209,6 +245,7 @@ __strong static NSArray *_rootKeys = nil;
     return [self.gedcomString isEqualToString:[(GCContext *)object gedcomString]];
 }
 
+#pragma mark Xref handling
 
 - (void)setXref:(NSString *)xref forEntity:(GCEntity *)entity
 {
@@ -380,6 +417,11 @@ __strong static NSArray *_rootKeys = nil;
 - (id)submitters
 {
 	return _entityStore[@"submitter"];
+}
+
+- (NSMutableSet *)allEntities
+{
+    return [self mutableSetValueForKey:@"entities"];
 }
 
 #pragma mark NSCoding conformance

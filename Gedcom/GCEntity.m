@@ -43,7 +43,7 @@
     if (self) {
 		_context = context;
         _isBuildingFromGedcom = NO;
-        [_context addEntity:self];
+        [_context.allEntities addObject:self];
     }
     
     return self;    
