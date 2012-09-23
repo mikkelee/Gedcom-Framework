@@ -21,9 +21,8 @@
 - (void)testDate:(NSString *)date time:(NSString *)time
 {
     NSString *gedcomString = [NSString stringWithFormat:
-                              @"1 CHAN\n"
-                              @"2 DATE %@\n"
-                              @"3 TIME %@",
+                              @"1 DATE %@\n"
+                              @"2 TIME %@",
                               date,
                               time
                               ];

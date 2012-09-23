@@ -74,10 +74,10 @@
 1 PHON Submitter phone number 2
 1 PHON Submitter phone number 3 (last one!)
 1 LANG English
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 19 JUN 2000
 3 TIME 12:34:56
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 @PERSON1@ INDI
 1 NAME given name /surname/jr.
 2 SOUR @SOURCE1@
@@ -333,7 +333,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 FCOM
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1991
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -350,7 +350,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 ORDN
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1992
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -367,7 +367,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 NATU
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1993
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -384,7 +384,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 EMIG
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1994
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -401,7 +401,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 IMMI
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1995
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -418,7 +418,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 CENS
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1996
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -452,7 +452,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 WILL
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1998
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -469,7 +469,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 GRAD
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 1999
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -486,7 +486,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 RETI
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2000
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -504,7 +504,7 @@
 3 CONC ST should not be broken!
 1 EVEN
 2 TYPE Event type
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2001
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -521,7 +521,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 CAST Cast name
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2002
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -538,7 +538,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 DSCR Physical description
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2003
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -555,7 +555,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 EDUC Education
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2004
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -573,7 +573,7 @@
 3 CONC ST should not be broken!
 1 IDNO 6942
 2 TYPE type of ID number
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2005
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -590,7 +590,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 NATI National or tribe origin
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2006
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -607,7 +607,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 NCHI 42
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2007
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -624,7 +624,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 NMR 42
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2008
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -641,7 +641,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 OCCU Occupation
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2009
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -675,7 +675,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 PROP Possessions
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2010
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -692,7 +692,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 RELI Religion
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2011
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -709,7 +709,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 RESI
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2012
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -726,7 +726,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 SSN 6942
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2013
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -743,7 +743,7 @@
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
 1 TITL Nobility title
-2 DATE 31 DEC 1997
+2 DATE 31 DEC 2014
 2 PLAC The place
 2 SOUR @SOURCE1@
 3 PAGE 42
@@ -802,10 +802,10 @@
 1 NOTE A note about the inidvidual
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 1 APR 1998
 3 TIME 12:34:56
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 @PERSON2@ INDI
 1 NAME /Wife/
 1 SEX F
@@ -1090,10 +1090,10 @@
 1 NOTE A note about the family
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 1 APR 1998
 3 TIME 12:34:56
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 @PARENTS@ FAM
 1 HUSB @PERSON5@
 1 CHIL @PERSON1@
@@ -1139,12 +1139,12 @@
 1 NOTE A note about the family
 2 CONT Note continued here. The word TE
 2 CONC ST should not be broken!
-1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 1 CHAN
 2 DATE 1 APR 1998
 3 TIME 12:34:56
 2 NOTE A note
 3 CONT Note continued here. The word TE
 3 CONC ST should not be broken!
+1 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 _MYOWNTAG This is a non-standard tag. Not recommended but allowed
 0 TRLR

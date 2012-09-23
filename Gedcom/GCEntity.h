@@ -51,6 +51,6 @@
 /// @name Accessing properties
 
 /// The last time the entity was modified.
-@property (readonly, nonatomic) NSDate *lastModified;
+@property (readonly, nonatomic) NSDate *modificationDate;
 
 @end

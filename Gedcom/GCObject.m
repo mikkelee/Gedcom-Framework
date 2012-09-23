@@ -126,7 +126,7 @@ __strong static NSDictionary *_defaultColors;
         [self addRelationshipWithType:type target:value];
     } else {
 		NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
-														 reason:[NSString stringWithFormat:@"Invalid value %@ for setValue:forKey:", value]
+														 reason:[NSString stringWithFormat:@"Invalid value %@ for _internalSetValue:forKey:", value]
 													   userInfo:nil];
 		@throw exception;
     }
@@ -679,7 +679,7 @@ __strong static NSDictionary *_defaultColors;
     [tag.objectClass propertyForObject:self withGedcomNode:node];
 }
 
-- (void)addPropertiesWithGedcomNodes:(NSOrderedSet *)nodes
+- (void)addPropertiesWithGedcomNodes:(NSArray *)nodes
 {
     [nodes enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self addPropertyWithGedcomNode:obj];

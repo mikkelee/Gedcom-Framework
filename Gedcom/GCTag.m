@@ -18,7 +18,7 @@
 @implementation GCTag {
 	NSDictionary *_settings;
     
-    NSOrderedSet *_cachedValidSubTags;
+    NSArray *_cachedValidSubTags;
     NSDictionary *_cachedSubTagsByName;
     NSDictionary *_cachedSubTagsByCode;
     NSDictionary *_cachedSubTagsByGroup;
@@ -242,7 +242,7 @@ static inline void setupKey(NSString *key) {
                                                   kName: tagName,
                                                   kPlural: [NSString stringWithFormat:@"%@s", tagName],
                                                   kObjectType: @"entity",
-                                                  kValidSubTags: [NSOrderedSet orderedSet]}];
+                                                  kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);
         _rootTagsByCode[code] = tag;
         _tagStore[tagName] = tag;
@@ -305,7 +305,7 @@ static inline void setupKey(NSString *key) {
                                                   kPlural: [NSString stringWithFormat:@"%@s", tagName],
                                                   kValueType: @"string",
                                                   kObjectType: type,
-                                                  kValidSubTags: [NSOrderedSet orderedSet]}];
+                                                  kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);
         _tagStore[tagName] = tag;
         
@@ -484,14 +484,14 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
     }
 }
 
-- (NSOrderedSet *)validSubTags
+- (NSArray *)validSubTags
 {
     if (!_cachedValidSubTags) {
-        NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
+        NSMutableOrderedSet *subTags = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
         for (NSDictionary *valid in _settings[kValidSubTags]) {
-            expandSubtag(set, valid);
+            expandSubtag(subTags, valid);
         }
-        _cachedValidSubTags = [set copy];
+        _cachedValidSubTags = [subTags copy];
     }
     
     return _cachedValidSubTags;

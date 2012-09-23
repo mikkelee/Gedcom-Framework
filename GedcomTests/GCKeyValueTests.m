@@ -55,8 +55,12 @@
 {
     id old = [NSNull null];
     if ([change valueForKey:NSKeyValueChangeOldKey]) {
-        if (![[change valueForKey:NSKeyValueChangeOldKey] isKindOfClass:[NSNull class]]) { 
-            old = [[[change valueForKey:NSKeyValueChangeOldKey] lastObject] gedcomString];
+        if (![[change valueForKey:NSKeyValueChangeOldKey] isKindOfClass:[NSNull class]]) {
+            id tmp = [change valueForKey:NSKeyValueChangeOldKey];
+            if ([tmp isKindOfClass:[NSArray class]]) {
+                tmp = [tmp lastObject];
+            }
+            old = [tmp gedcomString];
         }
         if (!old) old = [NSNull null];
     }
@@ -64,7 +68,11 @@
     id new = [NSNull null];
     if ([change valueForKey:NSKeyValueChangeNewKey]) {
         if (![[change valueForKey:NSKeyValueChangeNewKey] isKindOfClass:[NSNull class]]) { 
-            new = [[[change valueForKey:NSKeyValueChangeNewKey] lastObject] gedcomString];
+            id tmp = [change valueForKey:NSKeyValueChangeNewKey];
+            if ([tmp isKindOfClass:[NSArray class]]) {
+                tmp = [tmp lastObject];
+            }
+            new = [tmp gedcomString];
         }
         if (!new) new = [NSNull null];
     }
@@ -125,7 +133,7 @@
     [[indi allProperties] addObject:[GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
     
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"];
-    [indi setValue:knownDate forKey:@"lastModified"];
+    [indi setValue:knownDate forKey:@"modificationDate"];
     
     STAssertEqualObjects([indi gedcomString], 
                          @"0 @INDI1@ INDI\n"

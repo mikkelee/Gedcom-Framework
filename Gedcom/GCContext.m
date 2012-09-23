@@ -32,10 +32,12 @@
 }
 
 __strong static NSMutableDictionary *_contextsByName = nil;
+__strong static NSArray *_rootKeys = nil;
 
 + (void)initialize
 {
     _contextsByName = [NSMutableDictionary dictionary];
+    _rootKeys = @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ];
 }
 
 - (id)init
@@ -310,8 +312,18 @@ __strong static NSMutableDictionary *_contextsByName = nil;
     }
 	
     @synchronized (_entityStore) {
-        for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
+        for (NSString *key in _rootKeys) {
             for (GCEntity *entity in _entityStore[key]) {
+                [nodes addObject:entity.gedcomNode];
+            }
+        }
+        
+        NSMutableSet *presentKeys = [NSMutableSet setWithArray:[_entityStore allKeys]];
+        [presentKeys minusSet:[NSSet setWithArray:_rootKeys]];
+        
+        for (NSString *customKey in presentKeys) {
+            NSLog(@"Custom key: %@", customKey);
+            for (GCEntity *entity in _entityStore[customKey]) {
                 [nodes addObject:entity.gedcomNode];
             }
         }
@@ -451,7 +463,7 @@ __strong static NSMutableDictionary *_contextsByName = nil;
         return NO;
     }
     
-    for (NSString *key in @[ @"submitter", @"individual", @"family", @"multimediaObject", @"note", @"repository", @"source" ]) {
+    for (NSString *key in _rootKeys) {
         for (GCEntity *entity in _entityStore[key]) {
             if (![entity validateObject:error]) {
                 return NO;

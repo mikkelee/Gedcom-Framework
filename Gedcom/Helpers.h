@@ -17,8 +17,8 @@ const char *formatString = "%e %b %Y %H:%M:%S %z";
 
 static inline NSDate * dateFromNode(GCNode *node) {
     NSString *dateString = [NSString stringWithFormat:@"%@ %@ %@",
-                            [[node valueForKey:@"DATE"][0] gedValue],
-                            [[node valueForKeyPath:@"DATE.TIME"][0][0] gedValue],
+                            [node gedValue],
+                            [[node valueForKeyPath:@"TIME"][0] gedValue],
                             @"+0000"
                             ];
     
@@ -71,7 +71,5 @@ static inline GCNode * nodeFromDate(NSDate *date) {
     
     //NSLog(@"dateNode: %@", dateNode);
     
-    return [GCNode nodeWithTag:@"CHAN"
-                         value:nil
-                      subNodes:@[dateNode]];
+    return dateNode;
 }

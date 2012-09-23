@@ -14,20 +14,21 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCContext_internal.h"
+#import "GCChangeInfoAttribute.h"
 
-#import "Helpers.h"
+#import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
 
 @interface GCEntity ()
 
-@property (nonatomic) NSDate *lastModified;
+@property (nonatomic) NSDate *modificationDate;
 
 @end
 
 @implementation GCEntity {
     GCContext *_context;
+    BOOL _isBuildingFromGedcom;
 }
 
 #pragma mark Initialization
@@ -41,6 +42,7 @@
     
     if (self) {
 		_context = context;
+        _isBuildingFromGedcom = NO;
         [_context addEntity:self];
     }
     
@@ -56,37 +58,20 @@
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:node.gedTag] name] inContext:context];
+	GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:node.gedTag] name] inContext:context];
+	
+	NSParameterAssert(entity);
+	
+	entity->_isBuildingFromGedcom = YES;
     
-    NSParameterAssert(entity);
+	if ([node xref])
+		[context setXref:[node xref] forEntity:entity];
+	
+	[entity addPropertiesWithGedcomNodes:node.subNodes];
     
-    if ([node xref])
-        [context setXref:[node xref] forEntity:entity];
-    
-	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        
-        NSUInteger changeNodeIndex = [node.subNodes indexOfObjectWithOptions:(NSEnumerationReverse) passingTest:^(GCNode *subNode, NSUInteger idx, BOOL *stop) {
-            return [subNode.gedTag isEqualToString:@"CHAN"];
-        }];
-        
-        if (changeNodeIndex != NSNotFound) {
-            GCNode *changeNode = [node.subNodes objectAtIndex:changeNodeIndex];
-            
-            NSMutableOrderedSet *subNodesWithoutChan = [node.subNodes mutableCopy];
-            
-            [subNodesWithoutChan removeObjectAtIndex:changeNodeIndex];
-            
-            [entity addPropertiesWithGedcomNodes:subNodesWithoutChan];
-            
-            entity.lastModified = dateFromNode(changeNode);
-        } else {
-            [entity addPropertiesWithGedcomNodes:node.subNodes];
-            
-            entity.lastModified = nil;
-        }
-    });
-    
-    return entity;
+	entity->_isBuildingFromGedcom = NO;
+	
+	return entity;
 }
 
 #pragma mark Comparison
@@ -114,7 +99,6 @@
     
     if (self) {
         _context = [aDecoder decodeObjectForKey:@"context"];
-        _lastModified = [aDecoder decodeObjectForKey:@"lastModified"];
 	}
     
     return self;
@@ -124,7 +108,6 @@
 {
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_context forKey:@"context"];
-    [aCoder encodeObject:_lastModified forKey:@"lastModified"];
 }
 
 #pragma mark Description
@@ -142,17 +125,6 @@
 //COV_NF_END
 
 #pragma mark Objective-C properties
-
-- (NSOrderedSet *)subNodes
-{
-    NSMutableOrderedSet *subNodes = [[super subNodes] mutableCopy];
-    
-    if (_lastModified) {
-        [subNodes addObject:nodeFromDate(_lastModified)];
-    }
-    
-    return subNodes;
-}
 
 - (GCNode *)gedcomNode
 {
@@ -187,15 +159,38 @@
 
 @synthesize context = _context;
 
+- (NSDate *)modificationDate
+{
+    return self[@"changeInfo"][@"modificationDate"];
+}
+
+- (void)setModificationDate:(NSDate *)modificationDate
+{
+    GCChangeInfoAttribute *changeInfo = self[@"changeInfo"];
+    
+    if (!changeInfo) {
+        changeInfo = [[GCChangeInfoAttribute alloc] init];
+        self[@"changeInfo"] = changeInfo;
+    }
+    
+    [changeInfo setValue:modificationDate forKey:@"modificationDate"];
+}
+
 - (void)didChangeValueForKey:(NSString *)key
 {
-    self.lastModified = [NSDate date];
+    if (!_isBuildingFromGedcom) {
+        self.modificationDate = [NSDate date];
+    }
+    
     [super didChangeValueForKey:key];
 }
 
 - (void)didChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
 {
-    self.lastModified = [NSDate date];
+    if (!_isBuildingFromGedcom) {
+        self.modificationDate = [NSDate date];
+    }
+    
     [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
 }
 

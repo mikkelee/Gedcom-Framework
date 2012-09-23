@@ -50,13 +50,14 @@
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
+    //TODO [[indi births] addObject:]
     [[indi mutableArrayValueForKey:@"properties"] addObject:birt];
     
     // You can also use subscripted access, in this case adding a single death attribute
     // with the value yes, indicating that the individual died.
     indi[@"deaths"] = @[[GCBool yes]];
     
-    [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"lastModified"]; //Setting a known date so output is known
+    [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"modificationDate"]; //Setting a known date so output is known
     
     STAssertEqualObjects([indi gedcomString], 
                          @"0 @INDI1@ INDI\n"
@@ -131,10 +132,10 @@
 	
     //Setting known dates
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"];
-    [fam setValue:knownDate forKey:@"lastModified"];
-    [husb setValue:knownDate forKey:@"lastModified"];
-    [wife setValue:knownDate forKey:@"lastModified"];
-    [chil setValue:knownDate forKey:@"lastModified"];
+    [fam setValue:knownDate forKey:@"modificationDate"];
+    [husb setValue:knownDate forKey:@"modificationDate"];
+    [wife setValue:knownDate forKey:@"modificationDate"];
+    [chil setValue:knownDate forKey:@"modificationDate"];
 
     STAssertEqualObjects([fam gedcomString], 
                          @"0 @FAM1@ FAM\n"

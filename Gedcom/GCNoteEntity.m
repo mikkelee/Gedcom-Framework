@@ -37,9 +37,9 @@
 							  subNodes:self.subNodes];
 }
 
-- (NSOrderedSet *)subNodes
+- (NSArray *)subNodes
 {
-    NSMutableOrderedSet *subNodes = [[super subNodes] mutableCopy];
+    NSMutableArray *subNodes = [[super subNodes] mutableCopy];
     
     [subNodes insertObject:[GCNode nodeWithTag:@"CONC" value:self.value.gedcomString] atIndex:0];
     

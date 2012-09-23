@@ -24,12 +24,18 @@
 @end
 
 @implementation GCNode {
-    NSMutableOrderedSet *_subNodes;
+    NSMutableArray *_subNodes;
 }
 
 static NSString *concSeparator;
 
 #pragma mark Initialization
+
++ (void)initialize
+{
+    unichar wordJoiner = 0x2060;
+    concSeparator = [NSString stringWithCharacters:&wordJoiner length:1];
+}
 
 //COV_NF_START
 - (id)init
@@ -39,13 +45,8 @@ static NSString *concSeparator;
 }
 //COV_NF_END
 
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
-    if (!concSeparator) {
-        unichar wordJoiner = 0x2060;
-        concSeparator = [NSString stringWithCharacters:&wordJoiner length:1];
-    }
-    
     NSParameterAssert(tag != nil && ([tag length] <= 4 || [tag hasPrefix:@"_"]));
     
     self = [super init];
@@ -59,7 +60,7 @@ static NSString *concSeparator;
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
         } else {
-            _subNodes = [NSMutableOrderedSet orderedSet];
+            _subNodes = [NSMutableArray array];
         }
 	}
     
@@ -563,12 +564,12 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
 }
 
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSOrderedSet *)subNodes
++ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
 {
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
 }
 
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
++ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
 }

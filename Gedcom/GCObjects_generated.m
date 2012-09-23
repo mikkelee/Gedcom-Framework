@@ -1985,6 +1985,7 @@
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumbers;
+@dynamic changeInfo;
 
 @end
 
@@ -2692,6 +2693,7 @@
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumbers;
+@dynamic changeInfo;
 
 @end
 
@@ -3225,6 +3227,7 @@
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumbers;
+@dynamic changeInfo;
 
 @end
 
@@ -4441,6 +4444,7 @@
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumbers;
 @dynamic recordIdNumber;
+@dynamic changeInfo;
 
 @end
 
@@ -4826,6 +4830,7 @@
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumber;
 @dynamic recordIdNumber;
+@dynamic changeInfo;
 
 @end
 
@@ -5067,6 +5072,7 @@
 @dynamic ordinanceFlag;
 @dynamic recordIdNumber;
 @dynamic userReferenceNumbers;
+@dynamic changeInfo;
 
 @end
 
@@ -5125,6 +5131,7 @@
 @dynamic recordFileNumber;
 @dynamic ancestralFileNumber;
 @dynamic userReferenceNumbers;
+@dynamic changeInfo;
 
 @end
 

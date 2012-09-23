@@ -12,23 +12,23 @@
 
 @property (weak) GCNode *parent;
 
-@property (readonly) NSMutableOrderedSet *internalSubNodes;
+@property (readonly) NSMutableArray *internalSubNodes;
 
 @end;
 
 @implementation GCMutableNode {
-    NSMutableOrderedSet *_internalSubNodes;
+    NSMutableArray *_internalSubNodes;
 }
 
 #pragma mark Initialization
 
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSOrderedSet *)subNodes
+- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     self = [super initWithTag:tag value:value xref:xref subNodes:nil];
     
 	if (self) {
         self.lineSeparator = @"\n";
-        _internalSubNodes = [NSMutableOrderedSet orderedSet];
+        _internalSubNodes = [NSMutableArray array];
 	}
     
 	return self;
@@ -61,7 +61,7 @@
     NSParameterAssert([node isKindOfClass:[GCMutableNode class]]);
     
     if (!_internalSubNodes) {
-        _internalSubNodes = [NSMutableOrderedSet orderedSet];
+        _internalSubNodes = [NSMutableArray array];
     }
     
     [_internalSubNodes insertObject:node atIndex:index];

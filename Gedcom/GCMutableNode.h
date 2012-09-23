@@ -30,6 +30,6 @@
 @property NSString *lineSeparator;
 
 /// A KVC-compliant uniquing ordered collection containing the subnodes of the receiver.
-@property (readonly) NSMutableOrderedSet *subNodes;
+@property (readonly) NSMutableArray *subNodes;
 
 @end

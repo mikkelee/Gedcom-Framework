@@ -40,6 +40,10 @@
  */
 + (NSArray *)arrayOfNodesFromString:(NSString*) gedString;
 
+#pragma mark Subscript accessors
+
+- (id)objectForKeyedSubscript:(id)key;
+
 #pragma mark Gedcom output
 
 /// @name Gedcom output
@@ -99,7 +103,7 @@
 @property (readonly) NSString *lineSeparator;
 
 /// An ordered uniquing collection containing the subnodes of the receiver; may not be `nil`.
-@property (readonly) NSOrderedSet *subNodes;
+@property (readonly) NSArray *subNodes;
 
 /// A uniquing collection containing the gedTags for all subNodes of the receiver.
 @property (readonly) NSSet *allSubTags;
