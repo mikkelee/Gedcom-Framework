@@ -697,13 +697,6 @@ __strong static NSDictionary *_defaultColors;
         }
     }
     
-    if (!tag) {
-        // for debugging; TODO remove when tags.json is complete.
-        NSLog(@"self.gedTag: %@", self.gedTag);
-        NSLog(@"node: %@", node);
-        
-    }
-    
     [tag.objectClass propertyForObject:self withGedcomNode:node];
 }
 
