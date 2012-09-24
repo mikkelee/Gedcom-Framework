@@ -60,9 +60,9 @@
 {
     // Test both summer & winter time, and single + two digit days/hours, as well as different kinds of fractions
     
+    [self testDate:@"19 JUN 2000" time:@"12:34:56.789"];
     [self testDate:@"11 NOV 2004" time:@"23:30:14.012"];
-    [self testDate:@"2 MAY 2009" time:@"01:07:12.765"];
-    [self testDate:@"25 JAN 1999" time:@"14:52:23"];
+    [self testDate:@"25 JAN 1999" time:@"01:52:23"];
 }
 
 @end
