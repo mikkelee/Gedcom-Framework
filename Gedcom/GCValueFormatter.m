@@ -11,6 +11,7 @@
 #import "GCValue.h"
 
 #import "GCString.h"
+#import "GCList.h"
 #import "GCNumber.h"
 #import "GCDate.h"
 #import "GCAge.h"
@@ -28,6 +29,15 @@
 - (Class)classToFormat
 {
     return [GCString class];
+}
+
+@end
+
+@implementation GCListFormatter
+
+- (Class)classToFormat
+{
+    return [GCList class];
 }
 
 @end

@@ -13,6 +13,7 @@
  Abstract value formatter class. Use one of the subclasses instead:
  
  GCStringFormatter,
+ GCListFormatter,
  GCNumberFormatter,
  GCGenderFormatter,
  GCAgeFormatter,
@@ -26,6 +27,11 @@
 
 /// NSFormatter subclass for formatting NSStrings as Gedcom strings and vice versa. See GCString.
 @interface GCStringFormatter : GCValueFormatter
+
+@end
+
+/// NSFormatter subclass for formatting NSStrings as Gedcom lists and vice versa. See GCList.
+@interface GCListFormatter : GCValueFormatter
 
 @end
 
