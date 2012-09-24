@@ -311,8 +311,7 @@ __strong static NSDictionary *_defaultColors;
 {
     NSParameterAssert(property);
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
-    //TODO handle plural names:
-    //NSParameterAssert(property.gedTag.isCustom || [self.validPropertyTypes containsObject:property.type]);
+    NSParameterAssert(property.gedTag.isCustom || [self.validPropertyTypes containsObject:property.type] || [self.validPropertyTypes containsObject:property.gedTag.pluralName]);
     
     [self setDescribedObjectForProperty:property];
     
@@ -386,14 +385,14 @@ __strong static NSDictionary *_defaultColors;
 	NSString *stringSelector = NSStringFromSelector(sel);
 	NSUInteger parameterCount = [[stringSelector componentsSeparatedByString:@":"] count]-1;
     
-	// valueForKey:
 	if (parameterCount == 0 && ([self.validPropertyTypes containsObject:stringSelector] || [[self propertyTypesInGroup:stringSelector] count] > 0)) {
-		return [super methodSignatureForSelector:@selector(valueForKey:)];
-    }
-    
-	// setValue:forKey:
-	if (parameterCount == 1 && [stringSelector hasPrefix:@"set"]) {
-		NSString *key = [NSString stringWithFormat:@"%@%@",
+        // valueForKey:
+		
+        return [super methodSignatureForSelector:@selector(valueForKey:)];
+    } else if (parameterCount == 1 && [stringSelector hasPrefix:@"set"]) {
+        // setValue:forKey:
+		
+        NSString *key = [NSString stringWithFormat:@"%@%@",
                   [[stringSelector substringWithRange:NSMakeRange(3, 1)] lowercaseString],
                   [stringSelector substringWithRange:NSMakeRange(4, [stringSelector length]-5)]];
         NSLog(@"key: %@", key);
@@ -415,14 +414,24 @@ __strong static NSDictionary *_defaultColors;
     NSLog(@"selector: %@", stringSelector);
 #endif
     
-	// valueForKey:
 	if (parameterCount == 0) {
-		id value = [self valueForKey:NSStringFromSelector([invocation selector])];
+        // valueForKey:
+		
+        id value = nil;
+        
+        if ([self.validPropertyTypes containsObject:stringSelector]) {
+            if ([self allowedOccurrencesPropertyType:stringSelector].max > 1) {
+                value = [self mutableArrayValueForKey:stringSelector];
+            } else {
+                value = [self valueForKey:stringSelector];
+            }
+        }
+        
 		[invocation setReturnValue:&value];
-	}
-	// setValue:forKey:
-	if (parameterCount == 1) {
-		id value;
+	} else if (parameterCount == 1) {
+        // setValue:forKey:
+		
+        id value;
 		[invocation getArgument:&value atIndex:2];
         
 		// Get key name by converting setMyValue: to myValue
@@ -560,11 +569,6 @@ __strong static NSDictionary *_defaultColors;
 - (NSString *)localizedType
 {
     return _gedTag.localizedName;
-}
-
-- (BOOL)allowsProperties
-{
-    return ([self.validPropertyTypes count] > 0); //TODO (see cocoa-dev reply)
 }
 
 @dynamic rootObject;

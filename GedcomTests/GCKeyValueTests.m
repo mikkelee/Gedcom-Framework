@@ -192,17 +192,15 @@
     
     [[indi mutableArrayValueForKey:@"personalNames"] removeObjectAtIndex:0];
     
-    //broken
-    /*
     NSArray *expectedObservations = [NSArray arrayWithObjects:
                                      // NSKeyValueChange : old : new
-                                     @"personalName : 2 : <null> : 0 NAME Jens /Hansen/",
-                                     @"personalName : 2 : <null> : 0 NAME Jens /Hansen/ Smed",
-                                     @"personalName : 3 : 0 NAME Jens /Hansen/ : <null>",
+                                     @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/",
+                                     @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/ Smed",
+                                     @"personalNames : 3 : 0 NAME Jens /Hansen/ : <null>",
                                      nil];
     STAssertEqualObjects([observer observations], 
                          expectedObservations,
-                         nil);*/
+                         nil);
 }
 
 - (void)testSetGedcomString

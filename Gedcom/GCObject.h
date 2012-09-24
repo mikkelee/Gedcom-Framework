@@ -85,9 +85,6 @@
 /// The localized type of the receiver.
 @property (readonly) NSString *localizedType;
 
-/// Returns whether the receiver can have properties itself.
-@property (readonly) BOOL allowsProperties;
-
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
 
