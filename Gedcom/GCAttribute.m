@@ -197,6 +197,11 @@
                                                                          code:GCIncorrectValueTypeError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for %@ (should be %@)", _value, self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
             isValid &= NO;
+        } else if ([self.gedTag.allowedValues count] > 0 && ![_value isContainedInArray:self.gedTag.allowedValues]) {
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+                                                                         code:GCIncorrectValueTypeError
+                                                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is not allowed for %@ (should be one of %@)", _value, self.type, self.gedTag.allowedValues], NSAffectedObjectsErrorKey: self}]);
+            isValid &= NO;
         }
     }
     

@@ -726,7 +726,10 @@ NSString *GCErrorDoman = @"GCErrorDoman";
     
     NSError *returnError = nil;
     
-    NSSet *propertyKeys = [[NSSet setWithArray:[_propertyStore allKeys]] setByAddingObjectsFromSet:[self.validPropertyTypes set]];
+    NSSet *propertyKeys = nil;
+    @synchronized (_propertyStore) {
+        propertyKeys = [[NSSet setWithArray:[_propertyStore allKeys]] setByAddingObjectsFromSet:[self.validPropertyTypes set]];
+    }
     
     for (NSString *propertyKey in propertyKeys) {
         GCTag *subTag = [GCTag tagNamed:propertyKey];

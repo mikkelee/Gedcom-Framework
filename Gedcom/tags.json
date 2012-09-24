@@ -68,6 +68,7 @@
                          { "name": "child", "min": 0, "max": "M" },
                          { "name": "numberOfChildren", "min": 0, "max": 1 },
                          { "name": "submissionReference", "min": 0, "max": "M" },
+                         { "name": "lDSSealingSpouse", "min": 0, "max": "M" },
                          { "groupName": "@source" },
                          { "groupName": "@multimedia" },
                          { "groupName": "@note" },
@@ -318,10 +319,11 @@
                      { "name": "lDSSealingChild", "min": 0, "max": "M" }
                      ],
 		"validSubTags": [
-                         { "name": "state", "min": 0, "max": 1 },
                          { "name": "date", "min": 0, "max": 1 },
                          { "name": "temple", "min": 0, "max": 1 },
-                         { "name": "place", "min": 0, "max": 1 }
+                         { "name": "place", "min": 0, "max": 1 },
+                         { "groupName": "@source" },
+                         { "groupName": "@note" }
                          ]
 	},
 	"@familyEvent": {
@@ -541,7 +543,8 @@
 	"adoptedByWhichParent": {
 		"code": "ADOP",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "HUSB", "WIFE", "BOTH" ]
 	},
 	"ancestralFileNumber": {
 		"code": "AFN",
@@ -579,7 +582,7 @@
 		"objectType": "relationship",
 		"target": "individual",
 		"validSubTags": [
-                         { "name": "typeDescription", "min": 1, "max": 1 },
+                         { "name": "recordType", "min": 1, "max": 1 },
                          { "name": "relationshipDescriptor", "min": 1, "max": 1 },
                          { "groupName": "@note" },
                          { "groupName": "@source" }
@@ -605,7 +608,10 @@
 	"lDSBaptism": {
 		"code": "BAPL",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "validSubTags": [
+                         { "name": "lDSBaptismStatus", "min": 0, "max": 1 }
+                         ]
 	},
 	"barMitzvah": {
 		"code": "BARM",
@@ -638,7 +644,10 @@
 	"callNumber": {
 		"code": "CALN",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+		"validSubTags": [
+                         { "name": "mediaType", "min": 0, "max": 1 }
+                         ]
 	},
 	"caste": {
 		"code": "CAST",
@@ -659,6 +668,7 @@
 		"code": "CHAR",
 		"objectType": "attribute",
 		"valueType": "string",
+        "allowedValues": [ "ASCII", "ANSEL", "UNICODE" ],
 		"validSubTags": [
                          { "name": "version", "min": 0, "max": 1 }
                          ]
@@ -683,7 +693,10 @@
 	"lDSConfirmation": {
 		"code": "CONL",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "validSubTags": [
+                         { "name": "lDSBaptismStatus", "min": 0, "max": 1 }
+                         ]
 	},
 	"confirmation": {
 		"code": "CONF",
@@ -793,7 +806,10 @@
 	"lDSEndowment": {
 		"code": "ENDL",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "validSubTags": [
+                         { "name": "lDSEndowmentStatus", "min": 0, "max": 1 }
+                         ]
 	},
 	"engagement": {
 		"code": "ENGA",
@@ -806,7 +822,8 @@
 	"eventsRecorded": {
 		"code": "EVEN",
 		"objectType": "attribute",
-		"valueType": "string",
+		"valueType": "list",
+        "allowedValues": [ "ANUL", "CENS", "DIV", "DIVF", "ENGA", "MARR", "MARB", "MARC", "MARL", "MARS", "EVEN", "ADOP", "BIRT", "BAPM", "BARM", "BASM", "BLES", "BURI", "CENS", "CHR", "CHRA", "CONF", "CREM", "DEAT", "EMIG", "FCOM", "GRAD", "IMMI", "NATU", "ORDN", "RETI", "PROB", "WILL", "EVEN", "CAST", "EDUC", "NATI", "OCCU", "PROP", "RELI", "RESI", "TITL" ],
 		"validSubTags": [
                          { "name": "date", "min": 0, "max": 1 },
                          { "name": "place", "min": 0, "max": 1 }
@@ -829,7 +846,14 @@
 	"format": {
 		"code": "FORM",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "bmp", "gif", "jpeg", "ole", "pcx", "tiff", "wav" ]
+	},
+	"gedcomFormat": {
+		"code": "FORM",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "LINEAGE-LINKED" ]
 	},
 	"gedcom": {
 		"code": "GEDC",
@@ -837,7 +861,7 @@
 		"valueType": "string",
 		"validSubTags": [
                          { "name": "version", "min": 1, "max": 1 },
-                         { "name": "format", "min": 1, "max": 1 }
+                         { "name": "gedcomFormat", "min": 1, "max": 1 }
                          ]
 	},
 	"graduation": {
@@ -858,7 +882,8 @@
 	"language": {
 		"code": "LANG",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "Afrikaans", "Albanian", "Anglo-Saxon", "Catalan", "Catalan_Spn", "Czech", "Danish", "Dutch", "English", "Esperanto", "Estonian", "Faroese", "Finnish", "French", "German", "Hawaiian", "Hungarian", "Icelandic", "Indonesian", "Italian", "Latvian", "Lithuanian", "Navaho", "Norwegian", "Polish", "Portuguese", "Romanian", "Serbo_Croa", "Slovak", "Slovene", "Spanish", "Swedish", "Turkish", "Wendic", "Amharic", "Arabic", "Armenian", "Assamese", "Belorusian", "Bengali", "Braj", "Bulgarian", "Burmese", "Cantonese", "Church-Slavic", "Dogri", "Georgian", "Greek", "Gujarati", "Hebrew", "Hindi", "Japanese", "Kannada", "Khmer", "Konkani", "Korean", "Lahnda", "Lao", "Macedonian", "Maithili", "Malayalam", "Mandrin", "Manipuri", "Marathi", "Mewari", "Nepali", "Oriya", "Pahari", "Pali", "Panjabi", "Persian", "Prakrit", "Pusto", "Rajasthani", "Russian", "Sanskrit", "Serb", "Tagalog", "Tamil", "Telugu", "Thai", "Tibetan", "Ukrainian", "Urdu", "Vietnamese", "Yiddish" ]
 	},
 	"legatee": {
 		"code": "LEGA",
@@ -889,10 +914,11 @@
 		"objectType": "attribute",
 		"valueType": "number"
 	},
-	"media": {
+	"mediaType": {
 		"code": "MEDI",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "audio", "book", "card", "electronic", "fiche", "film", "magazine", "manuscript", "map", "newspaper", "photo", "tombstone", "video" ]
 	},
 	"name": {
 		"code": "NAME",
@@ -917,7 +943,8 @@
 	"ordinanceFlag": {
 		"code": "ORDI",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "yes", "no" ]
 	},
 	"ordination": {
 		"code": "ORDN",
@@ -933,6 +960,7 @@
 		"code": "PEDI",
 		"objectType": "attribute",
 		"valueType": "string",
+        "allowedValues": [ "adopted", "birth", "foster", "sealing" ],
 		"validSubTags": [
                          { "groupName": "@note" }
                          ]
@@ -974,7 +1002,8 @@
 	"qualityOfData": {
 		"code": "QUAY",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "number",
+        "allowedValues": [ "0", "1", "2", "3" ]
 	},
 	"recordFileNumber": {
 		"code": "RFN",
@@ -1012,7 +1041,8 @@
 	"restrictionNotice": {
 		"code": "RESN",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "locked", "privacy" ]
 	},
 	"retirement": {
 		"code": "RETI",
@@ -1027,12 +1057,23 @@
 	"lDSSealingChild": {
 		"code": "SLGC",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "validSubTags": [
+                         { "name": "lDSSealingChildStatus", "min": 0, "max": 1 }
+                         ]
 	},
-	"sealingSpouse": {
+	"lDSSealingSpouse": {
 		"code": "SLGS",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "validSubTags": [
+                         { "name": "lDSSealingSpouseStatus", "min": 0, "max": 1 },
+                         { "name": "date", "min": 0, "max": 1 },
+                         { "name": "temple", "min": 0, "max": 1 },
+                         { "name": "place", "min": 0, "max": 1 },
+                         { "groupName": "@source" },
+                         { "groupName": "@note" }
+                         ]
 	},
 	"sex": {
 		"code": "SEX",
@@ -1049,10 +1090,35 @@
 		"objectType": "attribute",
 		"valueType": "string"
 	},
-	"status": {
+	"lDSBaptismStatus": {
 		"code": "STAT",
 		"objectType": "attribute",
-		"valueType": "string"
+		"valueType": "string",
+        "allowedValues": [ "CHILD", "CLEARED", "COMPLETED", "INFANT", "QUALIFIED", "PRE-1970", "STILLBORN", "SUBMITTED", "UNCLEARED" ]
+	},
+	"lDSConfirmationStatus": {
+		"code": "STAT",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "CHILD", "CLEARED", "COMPLETED", "INFANT", "QUALIFIED", "PRE-1970", "STILLBORN", "SUBMITTED", "UNCLEARED" ]
+	},
+	"lDSSealingChildStatus": {
+		"code": "STAT",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "BIC", "CLEARED", "COMPLETED", "DNS", "QUALIFIED", "PRE-1970", "STILLBORN", "SUBMITTED", "UNCLEARED" ]
+	},
+	"lDSSealingSpouseStatus": {
+		"code": "STAT",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "CANCELED", "CLEARED", "COMPLETED", "DNS", "DNS/CAN", "QUALIFIED", "PRE-1970", "SUBMITTED", "UNCLEARED" ]
+	},
+	"lDSEndowmentStatus": {
+		"code": "STAT",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "CHILD", "CLEARED", "COMPLETED", "INFANT", "QUALIFIED", "PRE-1970", "STILLBORN", "SUBMITTED", "UNCLEARED" ]
 	},
 	"temple": {
 		"code": "TEMP",
@@ -1078,6 +1144,12 @@
 		"code": "TYPE",
 		"objectType": "attribute",
 		"valueType": "string"
+	},
+	"recordType": {
+		"code": "TYPE",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "FAM", "INDI", "NOTE", "OBJE", "REPO", "SOUR", "SUBM", "SUBN" ]
 	},
 	"version": {
 		"code": "VERS",

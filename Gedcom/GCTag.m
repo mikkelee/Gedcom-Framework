@@ -26,6 +26,7 @@
     Class _cachedValueClass;
     Class _cachedObjectClass;
     Class _cachedTargetType;
+    NSArray *_cachedAllowedValues;
 }
 
 #pragma mark Constants
@@ -44,6 +45,7 @@ const NSString *kMax = @"max";
 
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
+const NSString *kAllowedValues = @"allowedValues";
 const NSString *kTargetType = @"target";
 const NSString *kReverseRelationshipTag = @"reverseRelationshipTag";
 const NSString *kPlural = @"plural";
@@ -445,6 +447,21 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
     }
     
 	return _cachedValueClass;
+}
+
+- (NSArray *)allowedValues
+{
+    if (!_cachedAllowedValues) {
+        NSMutableArray *aVs = [NSMutableArray array];
+        
+        for (NSString *allowedValue in _settings[kAllowedValues]) {
+            [aVs addObject:[allowedValue uppercaseString]];
+        }
+        
+        _cachedAllowedValues = [aVs copy];
+    }
+    
+    return _cachedAllowedValues;
 }
 
 - (Class)objectClass

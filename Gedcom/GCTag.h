@@ -118,6 +118,9 @@ typedef struct {
 /// A class indicating which type its value is. Will be `nil` if the tag is not an attribute-tag. See GCValue.
 @property (readonly) Class valueType;
 
+/// A collection of allowed values; will be empty if the tag is not an attribute-tag or there are no restrictions on values.
+@property (readonly) NSArray *allowedValues;
+
 /// A class indicating which type its target is. Will be `nil` if the tag is not a relationship-tag.
 @property (readonly) Class targetType;
 

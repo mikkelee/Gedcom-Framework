@@ -10,6 +10,8 @@
 
 @implementation GCValue 
 
+#pragma mark Initialization
+
 - (id)init
 {
     NSParameterAssert([self class] != [GCValue class]);
@@ -24,6 +26,13 @@
     return nil;
 }
 //COV_NF_END
+
+#pragma mark Validation
+
+- (BOOL)isContainedInArray:(NSArray *)array
+{
+    return [array containsObject:[self.gedcomString uppercaseString]];
+}
 
 #pragma mark NSCoding conformance
 

@@ -40,6 +40,10 @@
  */
 + (id)valueWithGedcomString:(NSString *)gedcomString;
 
+/// @name Validation
+
+- (BOOL)isContainedInArray:(NSArray *)array;
+
 /// @name Comparing values
 
 /** Compares the receiver to another GCValue.
