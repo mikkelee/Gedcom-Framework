@@ -92,6 +92,14 @@
     
     STAssertEquals([leftoverInput count], (NSUInteger)0, nil);
     STAssertEquals([leftoverOutput count], (NSUInteger)0, nil);
+    
+    if ([leftoverInput count] > 0) {
+        NSLog(@"leftoverInput: %@", leftoverInput);
+    }
+    
+    if ([leftoverOutput count] > 0) {
+        NSLog(@"leftoverInput: %@", leftoverOutput);
+    }
 }
 
 - (void)testSimpleGed
@@ -101,7 +109,7 @@
     [self testFileAtPath:path];
 }
 
-- (void)AtestAllGed
+- (void)testAllGed
 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
     
