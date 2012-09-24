@@ -45,9 +45,9 @@ static inline GCFileEncoding encodingForDataWithEncoding(NSData *data, NSStringE
         NSLog(@"encoding: %@", characterSet);
         
         if ([characterSet caseInsensitiveCompare:@"UNICODE"] == NSOrderedSame) {
-            return GCUTF8FileEncoding;
+            return GCUTF16StringEncoding; // spec refers to UTF16 as "UNICODE": http://www.gedcom.net/0g/gedcom55/55gcch3.htm#S3
         } else if ([characterSet hasPrefix:@"UTF"]) {
-            return GCUTF8FileEncoding; //TODO handle UTF-16 etc?
+            return GCUTF8FileEncoding;
         } else if ([characterSet caseInsensitiveCompare:@"ANSEL"] == NSOrderedSame) {
             return GCANSELFileEncoding;
         } else if ([characterSet caseInsensitiveCompare:@"ASCII"] == NSOrderedSame) {
@@ -64,6 +64,8 @@ static inline GCFileEncoding encodingForDataWithEncoding(NSData *data, NSStringE
 static inline GCFileEncoding encodingForData(NSData *data) {
     return encodingForDataWithEncoding(data, NSASCIIStringEncoding);
 }
+
+// created by anselmap.py via ans2uni.out from http://www.heiner-eichmann.de/gedcom/charintr.htm
 
 static const unichar ansel2utf16[] = {
 	0,  	1,  	2,  	3,  	4,  	5,  	6,  	7,  	8,  	9,

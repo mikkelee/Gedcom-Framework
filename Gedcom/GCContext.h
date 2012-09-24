@@ -29,6 +29,7 @@ typedef enum : NSUInteger {
     GCUnknownFileEncoding = -1,
     GCASCIIFileEncoding = NSASCIIStringEncoding,
     GCUTF8FileEncoding = NSUTF8StringEncoding,
+    GCUTF16StringEncoding = NSUTF16StringEncoding,
     GCANSELFileEncoding = kCFStringEncodingANSEL
 } GCFileEncoding;
 
