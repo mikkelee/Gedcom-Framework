@@ -10,16 +10,16 @@
 
 @interface GCContext ()
 
-- (NSString *)xrefForEntity:(GCEntity *)entity;
+- (NSString *)_xrefForEntity:(GCEntity *)entity;
 
-- (GCEntity *)entityForXref:(NSString *)xref;
+- (GCEntity *)_entityForXref:(NSString *)xref;
 
-- (void)registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block;
+- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block;
 
-- (void)setXref:(NSString *)xref forEntity:(GCEntity *)entity;
+- (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity;
 
-- (void)activateXref:(NSString *)xref;
+- (void)_activateXref:(NSString *)xref;
 
-- (BOOL)shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
+- (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 @end

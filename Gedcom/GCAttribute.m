@@ -17,6 +17,7 @@
 #import "GCDate.h"
 
 #import "GCObject_internal.h"
+#import "GCValue_internal.h"
 
 @implementation GCAttribute
 
@@ -120,7 +121,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (value: %@) {\n%@%@};\n", indent, [self className], self, self.value, [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (value: %@) {\n%@%@};\n", indent, [self className], self, self.value, [self _propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -197,7 +198,7 @@
                                                                          code:GCIncorrectValueTypeError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for %@ (should be %@)", _value, self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
             isValid &= NO;
-        } else if ([self.gedTag.allowedValues count] > 0 && ![_value isContainedInArray:self.gedTag.allowedValues]) {
+        } else if ([self.gedTag.allowedValues count] > 0 && ![_value _isContainedInArray:self.gedTag.allowedValues]) {
             returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
                                                                          code:GCIncorrectValueTypeError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is not allowed for %@ (should be one of %@)", _value, self.type, self.gedTag.allowedValues], NSAffectedObjectsErrorKey: self}]);

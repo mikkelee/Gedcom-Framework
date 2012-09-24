@@ -14,12 +14,7 @@
 
 #pragma mark Description helper
 
-- (NSString *)propertyDescriptionWithIndent:(NSUInteger)level;
-
-#pragma mark Keyed subscript accessors
-
-- (id)objectForKeyedSubscript:(id)key;
-- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
+- (NSString *)_propertyDescriptionWithIndent:(NSUInteger)level;
 
 @end
 

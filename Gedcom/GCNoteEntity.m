@@ -42,7 +42,7 @@
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
 								 value:self.value.gedcomString
-								  xref:[self.context xrefForEntity:self]
+								  xref:[self.context _xrefForEntity:self]
 							  subNodes:self.subNodes];
 }
 
@@ -50,10 +50,8 @@
 
 @dynamic recordIdNumber;
 @dynamic userReferenceNumbers;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 

@@ -146,6 +146,8 @@ static NSString *concSeparator;
 				return;
 			}
             
+            //TODO values should have @@ => @ and vice versa when serializing
+            
             /*
              NSLog(@"level: %d", level);
              NSLog(@"xref: %@", xref);

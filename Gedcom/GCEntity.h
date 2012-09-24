@@ -50,7 +50,7 @@
 
 /// @name Accessing properties
 
-/// The last time the entity was modified.
+/// The last time the entity was modified. Will access the entity's GCChangeInfoAttribute to obtain the info. Note that every KVC-compliant change made to the entity will cause the change info to update.
 @property (readonly, nonatomic) NSDate *modificationDate;
 
 @end

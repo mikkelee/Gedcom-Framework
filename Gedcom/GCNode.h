@@ -42,6 +42,11 @@
 
 #pragma mark Subscript accessors
 
+/** Returns the subnodes with the given tag. Used like in NSDictionary.
+ 
+ @param key The requested tag.
+ @return An array of subnodes. Will be empty if none are found.
+ */
 - (id)objectForKeyedSubscript:(id)key;
 
 #pragma mark Gedcom output

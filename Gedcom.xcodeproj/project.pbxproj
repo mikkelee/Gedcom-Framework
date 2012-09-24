@@ -263,6 +263,7 @@
 		3E57559015217C3B00A918D1 /* GCRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRelationship.m; sourceTree = "<group>"; };
 		3E5A68611610A6E7005B2319 /* GCList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCList.h; sourceTree = "<group>"; };
 		3E5A68621610A6E8005B2319 /* GCList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCList.m; sourceTree = "<group>"; };
+		3E5A68661610B51B005B2319 /* GCValue_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCValue_internal.h; sourceTree = "<group>"; };
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3E5F50C0151DF2E800A433A6 /* Gedcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
 		3E5F50C5151DFB0000A433A6 /* GCTagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTagTests.m; sourceTree = "<group>"; };
@@ -358,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				3E57557915202A9600A918D1 /* GCValue.h */,
+				3E5A68661610B51B005B2319 /* GCValue_internal.h */,
 				3E57557A15202A9600A918D1 /* GCValue.m */,
 				3E396A05154F3A4A00AE8636 /* Subclasses */,
 				3E396A00154F374000AE8636 /* Formatters */,

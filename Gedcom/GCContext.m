@@ -263,7 +263,7 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Xref handling
 
-- (void)setXref:(NSString *)xref forEntity:(GCEntity *)entity
+- (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity
 {
     NSParameterAssert(xref);
     NSParameterAssert(entity);
@@ -301,7 +301,7 @@ __strong static NSArray *_rootKeys = nil;
     }
 }
 
-- (NSString *)xrefForEntity:(GCEntity *)entity
+- (NSString *)_xrefForEntity:(GCEntity *)entity
 {
     NSParameterAssert(entity);
     NSParameterAssert(entity.gedTag.code);
@@ -321,7 +321,7 @@ __strong static NSArray *_rootKeys = nil;
                 xref = [NSString stringWithFormat:@"@%@%d@", entity.gedTag.code, ++i];
             } while (_xrefToEntityMap[xref]);
             
-            [self setXref:xref forEntity:entity];
+            [self _setXref:xref forEntity:entity];
         }
     }
     
@@ -330,19 +330,19 @@ __strong static NSArray *_rootKeys = nil;
     return xref;
 }
 
-- (GCEntity *)entityForXref:(NSString *)xref
+- (GCEntity *)_entityForXref:(NSString *)xref
 {
     @synchronized (_xrefToEntityMap) {
         return _xrefToEntityMap[xref];
     }
 }
 
-- (void)registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block
+- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block
 {
     NSParameterAssert(xref);
     
     @synchronized (_xrefToBlockMap) {
-        if ([self entityForXref:xref]) {
+        if ([self _entityForXref:xref]) {
             block(xref);
         } else	if (_xrefToBlockMap[xref]) {
             [_xrefToBlockMap[xref] addObject:[block copy]];
@@ -487,16 +487,16 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Xref link methods
 
-- (void)activateXref:(NSString *)xref
+- (void)_activateXref:(NSString *)xref
 {
     if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForEntity:)]) {
-        [_delegate context:self didReceiveActionForEntity:[self entityForXref:xref]];
+        [_delegate context:self didReceiveActionForEntity:[self _entityForXref:xref]];
     }
 }
 
 #pragma mark Custom tag methods
 
-- (BOOL)shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
+- (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
 {
     if (_delegate && [_delegate respondsToSelector:@selector(context:shouldHandleCustomTag:forNode:onObject:)]) {
         return [_delegate context:self shouldHandleCustomTag:tag forNode:node onObject:object];

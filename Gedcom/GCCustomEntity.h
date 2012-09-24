@@ -8,8 +8,14 @@
 
 #import <Gedcom/Gedcom.h>
 
+/**
+ 
+ Used to handle entities for which no known tag exists. Should generally NOT be used in code, but exist to handle importing GEDCOM with unknown or custom tags.
+ 
+ */
 @interface GCCustomEntity : GCEntity
 
+/// Returns the value of the entity.
 @property GCString *value;
 
 @end

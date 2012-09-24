@@ -27,8 +27,8 @@
     if (self) {
         NSParameterAssert(object.context);
         //NSLog(@"%p: registering callback for %p on %@", self.context, self, [node gedValue]);
-        [object.context registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
-            GCEntity *target = [object.context entityForXref:xref];
+        [object.context _registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
+            GCEntity *target = [object.context _entityForXref:xref];
             //NSLog(@"Set %@ => %p on %p", xref, target, self);
             self.target = target;
         }];
@@ -68,14 +68,14 @@
     NSParameterAssert(_target);
     
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:[self.context xrefForEntity:_target]
+								 value:[self.context _xrefForEntity:_target]
 								  xref:nil
 							  subNodes:self.subNodes];
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    self.target = [self.context entityForXref:gedcomNode.gedValue];
+    self.target = [self.context _entityForXref:gedcomNode.gedValue];
     
     [super setGedcomNode:gedcomNode];
 }
@@ -107,7 +107,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, [self className], self, _target ? [self.context xrefForEntity:_target] : nil, [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, [self className], self, _target ? [self.context _xrefForEntity:_target] : nil, [self _propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -174,13 +174,13 @@
 
 - (NSString *)displayValue
 {
-    return [self.context xrefForEntity:_target];
+    return [self.context _xrefForEntity:_target];
 }
 
 - (NSAttributedString *)attributedDisplayValue
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue 
-                                           attributes:@{NSLinkAttributeName: [self.context xrefForEntity:_target]}];
+                                           attributes:@{NSLinkAttributeName: [self.context _xrefForEntity:_target]}];
 }
 
 @end

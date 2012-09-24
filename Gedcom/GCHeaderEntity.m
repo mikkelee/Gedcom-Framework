@@ -35,7 +35,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> {\n%@%@};\n", indent, [self className], self, [self propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> {\n%@%@};\n", indent, [self className], self, [self _propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 

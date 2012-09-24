@@ -55,6 +55,22 @@
  */
 - (NSArray *)propertyTypesInGroup:(NSString *)groupName;
 
+#pragma mark Keyed subscript accessors
+
+/** Returns the property/ies with the given type. Used like in NSMutableDictionary.
+ 
+ @param key The type of the property.
+ @return If the property allows multiple occurrences, will return a KVC-compliant NSMutableArray, otherwise the property itself.
+ */
+- (id)objectForKeyedSubscript:(id)key;
+
+/** Sets the property for the given type. Used like in NSMutableDictionary
+ 
+ @param object A collection for properties allowing multiple occurrences, otherwise a single property.
+ @param key The type of the property.
+ */
+- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
+
 #pragma mark Comparison
 
 /// @name Comparing objects

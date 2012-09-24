@@ -29,7 +29,7 @@
 
 #pragma mark Validation
 
-- (BOOL)isContainedInArray:(NSArray *)array
+- (BOOL)_isContainedInArray:(NSArray *)array
 {
     return [array containsObject:[self.gedcomString uppercaseString]];
 }

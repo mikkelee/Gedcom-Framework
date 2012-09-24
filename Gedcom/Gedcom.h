@@ -39,7 +39,3 @@
 #import "GCContextDelegate.h"
 
 #import "GCXrefProtocol.h"
-
-//TODO these probably shouldn't be included...
-#import "GCObject_internal.h"
-#import "GCContext_internal.h"

@@ -40,7 +40,7 @@ __attribute__((destructor)) static void unregister_protocol() {
     GCContext *context = [GCContext contextsByName][request.URL.host];
     NSString *xref = request.URL.path;
     
-    [context activateXref:xref];
+    [context _activateXref:xref];
 }
 
 - (void)stopLoading

@@ -38,7 +38,7 @@
     return [[self alloc] initWithElements:elements];
 }
 
-- (BOOL)isContainedInArray:(NSArray *)array
+- (BOOL)_isContainedInArray:(NSArray *)array
 {
     for (NSString *element in _elements) {
         if (![array containsObject:[element uppercaseString]]) {

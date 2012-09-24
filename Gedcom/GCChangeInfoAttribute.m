@@ -70,7 +70,6 @@
 
 
 // Properties:
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 

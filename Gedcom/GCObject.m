@@ -548,7 +548,7 @@ __strong static NSDictionary *_defaultColors;
     return nil;
 }
 
-- (NSString *)propertyDescriptionWithIndent:(NSUInteger)level
+- (NSString *)_propertyDescriptionWithIndent:(NSUInteger)level
 {
     NSMutableString *out = [NSMutableString string];
     for (GCObject *property in self.allProperties) {
@@ -692,7 +692,7 @@ __strong static NSDictionary *_defaultColors;
     GCTag *tag = [self.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
     if (tag.isCustom) {
-        if (![self.context shouldHandleCustomTag:tag forNode:node onObject:self]) {
+        if (![self.context _shouldHandleCustomTag:tag forNode:node onObject:self]) {
             return;
         }
     }
