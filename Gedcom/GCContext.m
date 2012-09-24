@@ -172,7 +172,7 @@ static inline GCFileEncoding encodingForData(NSData *data) {
 
 - (void)parseNodes:(NSArray *)nodes
 {
-    NSParameterAssert([self countOfEntities] == 1);
+    NSParameterAssert([self countOfEntities] == 1); // 1 for trailer
     
 #ifdef DEBUGLEVEL
     clock_t start, end;
@@ -180,8 +180,12 @@ static inline GCFileEncoding encodingForData(NSData *data) {
     start = clock();
 #endif
     
+    __block NSInteger handledNodes = 0;
+    
     [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
         GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+        
+        handledNodes++;
         
         if ([tag.objectClass isSubclassOfClass:[GCTrailerEntity class]]) {
             *stop = YES;
@@ -197,8 +201,7 @@ static inline GCFileEncoding encodingForData(NSData *data) {
     NSLog(@"parseNodes - Time: %f seconds",elapsed);
 #endif
     
-    //Note: >= instead of ==... there may be things added during parsing (TODO make this less ugly!)
-    NSParameterAssert(self.countOfEntities >= [nodes count]); //dont count trailer
+    NSParameterAssert(handledNodes == [nodes count]); //dont count trailer
     
     if (_delegate && [_delegate respondsToSelector:@selector(context:didFinishWithEntityCount:)]) {
         [_delegate context:self didFinishWithEntityCount:self.countOfEntities];
