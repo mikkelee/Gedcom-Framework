@@ -27,10 +27,9 @@
     if (self) {
         NSParameterAssert(object.context);
         //NSLog(@"%p: registering callback for %p on %@", self.context, self, [node gedValue]);
-        [object.context _registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
-            GCEntity *target = [object.context _entityForXref:xref];
-            //NSLog(@"Set %@ => %p on %p", xref, target, self);
-            self.target = target;
+        [object.context _registerCallbackForXref:node.gedValue usingBlock:^void(NSString *xref, GCEntity *entity) {
+            //NSLog(@"set %@ => %p on %p", xref, entity, self);
+            self.target = entity;
         }];
     }
     
@@ -140,7 +139,7 @@
 - (void)setTarget:(GCEntity *)target
 {
     NSParameterAssert(self.describedObject);
-    NSParameterAssert(self.gedTag.targetType == [target class]);
+    NSParameterAssert([[target class] isSubclassOfClass:self.gedTag.targetType]);
     
     //NSLog(@"self: %@", self);
     

@@ -303,11 +303,13 @@ static inline void setupKey(NSString *key) {
         if ([_tagStore valueForKey:tagName]) {
             return [_tagStore valueForKey:tagName];
         }
+        
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:@{kCode: code,
                                                   kName: tagName,
                                                   kPlural: pluralName,
                                                   kValueType: @"string",
+                                                  kTargetType: @"entity",
                                                   kObjectType: type,
                                                   kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);
@@ -484,9 +486,13 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
 - (Class)targetType
 {
     if (!_cachedTargetType) {
-        NSString *targetTypeString = _settings[kTargetType];
-        
-        _cachedTargetType = NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [targetTypeString capitalizedString]]);
+        if (self.isCustom) {
+            _cachedTargetType = NSClassFromString(@"GCEntity");
+        } else {
+            NSString *targetTypeString = _settings[kTargetType];
+            
+            _cachedTargetType = NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [targetTypeString capitalizedString]]);
+        }
     }
     
 	return _cachedTargetType;

@@ -20,6 +20,7 @@
 #import "GCContextDelegate.h"
 
 #import "ValidationHelpers.h"
+#import "EncodingHelpers.h"
 
 @interface GCTrailerEntity : NSObject //empty class to match trailer objects
 @end
@@ -27,6 +28,7 @@
 @end
 
 @implementation GCContext {
+    GCFileEncoding _encoding;
 	NSMutableDictionary *_xrefToEntityMap;
     NSMutableDictionary *_entityToXrefMap;
 	NSMutableDictionary *_xrefToBlockMap;
@@ -83,38 +85,6 @@ __strong static NSArray *_rootKeys = nil;
     return ctx;
 }
 
-static inline GCFileEncoding encodingForData(NSData *data) {
-    NSRegularExpression *characterSetRegex = [NSRegularExpression regularExpressionWithPattern:@"1 CHAR (ASCII|ANSEL|UNICODE|UTF-?8)"
-                                                                                            options:(NSRegularExpressionCaseInsensitive)
-                                                                                              error:nil];
-    
-    
-    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]; // try UTF8 first
-    
-    NSTextCheckingResult *match = [characterSetRegex firstMatchInString:dataString
-                                                                options:kNilOptions
-                                                                  range:NSMakeRange(0, [dataString length])];
-    
-    if (match) {
-        NSString *characterSet = [dataString substringWithRange:[match rangeAtIndex:1]];
-        
-        if ([characterSet caseInsensitiveCompare:@"UNICODE"] == NSOrderedSame) {
-            return GCUTF8FileEncoding;
-        } else if ([characterSet hasPrefix:@"UTF"]) {
-            return GCUTF8FileEncoding; //TODO handle UTF-16 etc?
-        } else if ([characterSet caseInsensitiveCompare:@"ANSEL"] == NSOrderedSame) {
-            return GCANSELFileEncoding;
-        } else if ([characterSet caseInsensitiveCompare:@"ASCII"] == NSOrderedSame) {
-            return GCASCIIFileEncoding;
-        } else {
-            NSLog(@"Unknown encoding: %@", characterSet);
-            return GCUnknownFileEncoding;
-        }
-    }
-    
-    return GCUnknownFileEncoding;
-}
-
 - (id)initWithData:(NSData *)data usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
 {
     GCFileEncoding fileEncoding = encodingForData(data);
@@ -127,19 +97,26 @@ static inline GCFileEncoding encodingForData(NSData *data) {
         }
         return nil;
     } else if (fileEncoding == GCANSELFileEncoding) {
-        if (error != NULL) {
-            *error = [NSError errorWithDomain:GCErrorDomain
-                                         code:GCUnhandledFileEncodingError
-                                     userInfo:@{NSLocalizedDescriptionKey: @"Cannot at the moment handle ANSEL-encoded files. Please use UNICODE or ASCII."}];
+        self = [self init];
+        
+        if (self) {
+            NSString *fileString = stringFromANSELData(data);
+            
+            *enc = fileEncoding;
+            _encoding = fileEncoding;
+            
+            [self parseNodes:[GCNode arrayOfNodesFromString:fileString]];
         }
-        return nil; //TODO handle ANSEL
+        
+        return self;
     } else {
-        self = [super init];
+        self = [self init];
         
         if (self) {
             NSString *fileString = [[NSString alloc] initWithData:data encoding:fileEncoding];
             
             *enc = fileEncoding;
+            _encoding = fileEncoding;
             
             [self parseNodes:[GCNode arrayOfNodesFromString:fileString]];
         }
@@ -172,6 +149,8 @@ static inline GCFileEncoding encodingForData(NSData *data) {
 
 - (void)parseNodes:(NSArray *)nodes
 {
+    NSParameterAssert(nodes);
+    NSParameterAssert([nodes count] > 0);
     NSParameterAssert([self countOfEntities] == 1); // 1 for trailer
     
 #ifdef DEBUGLEVEL
@@ -351,18 +330,19 @@ static inline GCFileEncoding encodingForData(NSData *data) {
     
     //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
     
+    // update maps:
     @synchronized (_xrefToEntityMap) {
         _xrefToEntityMap[xref] = entity;
     }
-    
     @synchronized (_entityToXrefMap) {
         _entityToXrefMap[pointer] = xref;
     }
     
+    // call any registered blocks:
     @synchronized (_xrefToBlockMap) {
         if (_xrefToBlockMap[xref]) {
-            for (void (^block) (NSString *) in _xrefToBlockMap[xref]) {
-                block(xref);
+            for (void (^block) (NSString *, GCEntity *) in _xrefToBlockMap[xref]) {
+                block(xref, entity);
             }
             [_xrefToBlockMap removeObjectForKey:xref];
         }
@@ -405,13 +385,13 @@ static inline GCFileEncoding encodingForData(NSData *data) {
     }
 }
 
-- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref))block
+- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref, GCEntity *entity))block
 {
     NSParameterAssert(xref);
     
     @synchronized (_xrefToBlockMap) {
         if ([self _entityForXref:xref]) {
-            block(xref);
+            block(xref, [self _entityForXref:xref]);
         } else	if (_xrefToBlockMap[xref]) {
             [_xrefToBlockMap[xref] addObject:[block copy]];
         } else {
@@ -421,6 +401,11 @@ static inline GCFileEncoding encodingForData(NSData *data) {
 }
 
 #pragma mark Objective-C properties
+
+- (GCFileEncoding)fileEncoding
+{
+    return _encoding;
+}
 
 - (NSArray *)gedcomNodes
 {

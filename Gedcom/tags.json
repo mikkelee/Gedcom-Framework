@@ -434,6 +434,7 @@
 	"sourceEmbedded": {
 		"code": "SOUR",
 		"objectType": "attribute",
+		"valueType": "string",
 		"validSubTags": [
                          { "name": "text", "min": 0, "max": "M" },
                          { "groupName": "@note" }

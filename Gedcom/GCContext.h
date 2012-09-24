@@ -111,6 +111,8 @@ typedef enum : NSUInteger {
 
 /// @name Accessing properties
 
+@property (readonly) GCFileEncoding fileEncoding;
+
 /// The name of the receiver.
 @property (readonly) NSString *name;
 

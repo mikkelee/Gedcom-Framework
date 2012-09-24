@@ -10,46 +10,41 @@
 
 #import "Gedcom.h"
 
+#import "EncodingHelpers.h"
+
 @interface GCFileTests : SenTestCase 
 @end
 
 @implementation GCFileTests
 
-- (void)testFileValidation
+- (void)testFile:(NSString *)path expectedEncoding:(GCFileEncoding)expectedEncoding
 {
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
-	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-	
-	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
-	
-	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
+    // open file:
     
-    NSError *error = nil;
+    GCFileEncoding fileEncoding;
     
-    BOOL result = [ctx validateContext:&error];
+	GCContext *ctx = [GCContext contextWithContentsOfFile:path usedEncoding:&fileEncoding error:nil];
     
-    STAssertTrue(result, nil);
+    STAssertNotNil(ctx, nil);
     
-    if (!result) {
-        NSLog(@"error: %@", error);
+    STAssertFalse(fileEncoding == GCUnknownFileEncoding, nil);
+    
+    // get pure nodes without touching the context:
+    
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *fileContents = nil;
+    
+    if (fileEncoding == GCANSELFileEncoding) {
+        fileContents = stringFromANSELData(data);
+    } else {
+        fileContents = [[NSString alloc] initWithData:data encoding:fileEncoding];
     }
-    
-    STAssertNil(error, nil);
-}
-
-- (void)testFileAtPath:(NSString *)path
-{
-    NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    
-    NSMutableArray *gc_inputLines = [NSMutableArray array];
-    
-    [fileContents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-        [gc_inputLines addObject:line];
-    }];
     
     NSArray *inputNodes = [GCNode arrayOfNodesFromString:fileContents];
     
-	GCContext *ctx = [GCContext contextWithGedcomNodes:inputNodes];
+    // validate encoding:
+    
+    STAssertEquals(ctx.fileEncoding, expectedEncoding, nil);
     
     // validate file:
     
@@ -65,7 +60,7 @@
     
     STAssertNil(error, nil);
     
-    // determine that input and output are equivalent:
+    // determine that pure nodes and context output are equivalent:
     
     NSArray *outputNodes = ctx.gedcomNodes;
     
@@ -106,21 +101,30 @@
 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
     
-    [self testFileAtPath:path];
+    [self testFile:path expectedEncoding:GCASCIIFileEncoding];
 }
 
 - (void)testAllGed
 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
     
-    [self testFileAtPath:path];
+    [self testFile:path expectedEncoding:GCASCIIFileEncoding];
+}
+
+- (void)AtestTortureGed
+{
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"TGC55" ofType:@"ged"];
+    
+    [self testFile:path expectedEncoding:GCANSELFileEncoding];
 }
 
 - (void)AtestPrivate
 {
     NSString *path = @"/Volumes/raid/Genealogy/dev/Gedcom/Database.ged";
     
-    [self testFileAtPath:path];
+    [self testFile:path expectedEncoding:GCUTF8FileEncoding];
 }
+
+
 
 @end
