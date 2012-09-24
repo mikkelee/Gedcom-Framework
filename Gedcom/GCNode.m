@@ -171,8 +171,13 @@ static NSString *concSeparator;
             currentLevel = level;
             currentNode = node;
         } else {
-			NSLog(@"Unable to create node from gedcom: %@", gLine);
-			// TODO throw?
+			NSLog(@"Unable to create node from gedcom: '%@' -- will assume faulty linefeed and append to value of previous node: %@", gLine, currentNode);
+            
+            if (currentNode.gedValue == nil) {
+                currentNode.gedValue = gLine;
+            } else {
+                currentNode.gedValue = [NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, gLine];
+            }
 		}
 	}];
 	
@@ -352,7 +357,6 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (NSAttributedString *)attributedGedcomString
 {
-    //TODO tabs?
     NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] init];
     
     NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:self.lineSeparator];
