@@ -291,8 +291,8 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     NSArray *subLineNodes = nil;
     
     NSString *gedVal = self.gedValue;
-    if (![gedVal hasPrefix:@"@"]) { // xrefs always start with @
-        gedVal = [gedVal stringByReplacingOccurrencesOfString:@"@" withString:@"@@"]; // escape @-sign
+    if (!self.valueIsXref && ![gedVal hasPrefix:@"@#"]) { // neither an xref nor a calendar escape
+        gedVal = [gedVal stringByReplacingOccurrencesOfString:@"@" withString:@"@@"]; // escape @-signs
     }
 	
     contConcHelper(level, gedVal, &firstLine, &subLineNodes);
@@ -583,7 +583,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (BOOL)valueIsXref
 {
-    return _gedValue != nil && [_gedValue hasSuffix:@"@"] && [_gedValue hasPrefix:@"@"];
+    return _gedValue != nil && [_gedValue hasSuffix:@"@"] && [_gedValue hasPrefix:@"@"] && ![_gedValue hasPrefix:@"@#"];
 }
 
 @end
