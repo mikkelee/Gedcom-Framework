@@ -126,7 +126,7 @@ static NSString *concSeparator;
             
 			NSString *val = nil;
 			if ([match rangeAtIndex:4].length > 0) {
-				val = [gLine substringWithRange:[match rangeAtIndex:4]];
+                val = [[gLine substringWithRange:[match rangeAtIndex:4]] stringByReplacingOccurrencesOfString:@"@@" withString:@"@"]; // unescape at-sign
 			}
             
             // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
@@ -145,8 +145,6 @@ static NSString *concSeparator;
                 }
 				return;
 			}
-            
-            //TODO values should have @@ => @ and vice versa when serializing
             
             /*
              NSLog(@"level: %d", level);
@@ -291,8 +289,13 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     
     NSString *firstLine = nil;
     NSArray *subLineNodes = nil;
+    
+    NSString *gedVal = self.gedValue;
+    if (![gedVal hasPrefix:@"@"]) { // xrefs always start with @
+        gedVal = [gedVal stringByReplacingOccurrencesOfString:@"@" withString:@"@@"]; // escape @-sign
+    }
 	
-    contConcHelper(level, self.gedValue, &firstLine, &subLineNodes);
+    contConcHelper(level, gedVal, &firstLine, &subLineNodes);
     
     NSMutableArray *lineComponents = [NSMutableArray array];
     
