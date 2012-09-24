@@ -47,9 +47,11 @@
         [gc_inputLines addObject:line];
     }];
     
-    NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
+    NSArray *inputNodes = [GCNode arrayOfNodesFromString:fileContents];
     
-	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
+	GCContext *ctx = [GCContext contextWithGedcomNodes:inputNodes];
+    
+    // validate file:
     
     NSError *error = nil;
     
@@ -63,21 +65,33 @@
     
     STAssertNil(error, nil);
     
-    NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:3];
-    for (GCNode *node in [ctx gedcomNodes]) {
-        [gc_outputLines addObjectsFromArray:[node gedcomLines]];
-    }
+    // determine that input and output are equivalent:
     
-    //NSLog(@"file: %@", [gc_outputLines componentsJoinedByString:@"\n"]);
+    NSArray *outputNodes = ctx.gedcomNodes;
     
-    int errorCount = 0;
-    for (int i = 0; i < MIN([gc_outputLines count], [gc_inputLines count]); i++) {
-        //NSLog(@"test (%d): %@ - %@", i, [gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i]);
-        STAssertEqualObjects([gc_inputLines objectAtIndex:i], [gc_outputLines objectAtIndex:i], @"on line %d", i+1);
-        if (![[gc_inputLines objectAtIndex:i] isEqualTo:[gc_outputLines objectAtIndex:i]] && ++errorCount > 20) {
-            break;
+    NSMutableArray *leftoverInput = [inputNodes mutableCopy];
+    NSMutableArray *leftoverOutput = [outputNodes mutableCopy];
+    
+    for (GCNode *inputNode in inputNodes) {
+        GCNode *matchingInputNode = nil;
+        GCNode *matchingOutputNode = nil;
+        
+        for (GCNode *outputNode in leftoverOutput) {
+            if ([inputNode isEquivalentTo:outputNode]) {
+                matchingInputNode = inputNode;
+                matchingOutputNode = outputNode;
+                break;
+            }
+        }
+        
+        if (matchingInputNode) {
+            [leftoverInput removeObject:matchingInputNode];
+            [leftoverOutput removeObject:matchingOutputNode];
         }
     }
+    
+    STAssertEquals([leftoverInput count], (NSUInteger)0, nil);
+    STAssertEquals([leftoverOutput count], (NSUInteger)0, nil);
 }
 
 - (void)testSimpleGed
@@ -96,7 +110,7 @@
 
 - (void)AtestPrivate
 {
-    NSString *path = @"/Volumes/raid/Genealogy/Database 20120424.gedpkg/Database.ged";
+    NSString *path = @"/Volumes/raid/Genealogy/dev/Gedcom/Database.ged";
     
     [self testFileAtPath:path];
 }
