@@ -10,4 +10,6 @@
 
 @interface GCCustomEntity : GCEntity
 
+@property GCString *value;
+
 @end
