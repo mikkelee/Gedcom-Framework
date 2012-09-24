@@ -29,7 +29,7 @@
         //NSLog(@"%p: registering callback for %p on %@", self.context, self, [node gedValue]);
         [object.context registerCallbackForXref:node.gedValue usingBlock:^(NSString *xref) {
             GCEntity *target = [object.context entityForXref:xref];
-            //NSLog(@"Set %@ => %@ on %@", xref, target, self);
+            //NSLog(@"Set %@ => %p on %p", xref, target, self);
             self.target = target;
         }];
     }

@@ -132,15 +132,17 @@ static NSString *concSeparator;
             // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
 			if ([code isEqualToString:@"CONT"]) {
 				if (currentNode.gedValue == nil) {
-					currentNode.gedValue = @"";
-				}
-				[currentNode setGedValue:[NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, val]];
+					currentNode.gedValue = val;
+				} else {
+                    currentNode.gedValue = [NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, val];
+                }
 				return;
 			} else if ([code isEqualToString:@"CONC"]) {
 				if (currentNode.gedValue == nil) {
-					currentNode.gedValue = @"";
-				}
-				[currentNode setGedValue:[NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, val]];
+					currentNode.gedValue = val;
+				} else {
+					currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, val];
+                }
 				return;
 			}
             
@@ -307,6 +309,20 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     
     [gedLines addObject:joinedAttributedString(lineComponents)];
     
+    if (self.xref && ![self.xref isEqualToString:@""] && firstLine) {
+        NSMutableArray *lineComponents = [NSMutableArray array];
+        
+        NSString *levelString = [NSString stringWithFormat:@"%d", level+1];
+        
+        [lineComponents addObject:attributedString(levelString, GCLevelAttributeName, levelString)];
+        
+        [lineComponents addObject:attributedString(@"CONC", GCTagAttributeName, @"CONC")];
+        
+        [lineComponents addObject:[[NSAttributedString alloc] initWithString:firstLine]];
+        
+        [gedLines addObject:joinedAttributedString(lineComponents)];
+    }
+    
     for (NSArray *subLine in subLineNodes) {
         [gedLines addObject:joinedAttributedString(subLine)];
     }
@@ -429,12 +445,23 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
             return NO; // the number of subnodes in A & B for the tag don't match
         } else {
             NSMutableArray *leftoverA = [subNodesA mutableCopy];
+            NSMutableArray *leftoverB = [subNodesB mutableCopy];
             
-            for (GCNode *aNode in subNodesA) {
-                for (GCNode *bNode in subNodesB) {
-                    if ([aNode isEquivalentTo:bNode]) {
-                        [leftoverA removeObject:aNode];
+            for (GCNode *nodeA in subNodesA) {
+                GCNode *matchingNodeA = nil;
+                GCNode *matchingNodeB = nil;
+                
+                for (GCNode *nodeB in subNodesB) {
+                    if ([nodeA isEquivalentTo:nodeB]) {
+                        matchingNodeA = nodeA;
+                        matchingNodeB = nodeB;
+                        break;
                     }
+                }
+                
+                if (matchingNodeA) {
+                    [leftoverA removeObject:matchingNodeA];
+                    [leftoverB removeObject:matchingNodeB];
                 }
             }
             

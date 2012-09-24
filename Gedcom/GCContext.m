@@ -122,7 +122,7 @@ __strong static NSArray *_rootKeys = nil;
             *stop = YES;
             return;
         } else {
-            [GCEntity entityWithGedcomNode:node inContext:self];
+            [tag.objectClass entityWithGedcomNode:node inContext:self];
         }
     }];
     
@@ -375,7 +375,7 @@ __strong static NSArray *_rootKeys = nil;
         [presentKeys minusSet:[NSSet setWithArray:_rootKeys]];
         
         for (NSString *customKey in presentKeys) {
-            NSLog(@"Custom key: %@", customKey);
+            //NSLog(@"Custom key: %@", customKey);
             for (GCEntity *entity in _entityStore[customKey]) {
                 [nodes addObject:entity.gedcomNode];
             }

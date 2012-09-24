@@ -57,7 +57,7 @@
 -(void)testSomeSimpleRecords
 {
 	[self testGedString:@"0 @I1@ INDI\n1 NAME John /Johnson/\n" countShouldBe:1];
-	[self testGedString:@"0 @N1@ NOTE\n1 CONT This is a test\n" countShouldBe:1];
+	[self testGedString:@"0 @N1@ NOTE\n1 CONC This is a test\n" countShouldBe:1];
 }
 
 -(void)testSimpleGed
@@ -99,8 +99,8 @@
 {
     NSString *gedcom = 
     @"0 @N1@ NOTE\n"
-    @"1 CONT abc\n"
-    @"1 CONC def\n"
+    @"1 CONC abc\n"
+    @"1 CONT def\n"
     @"1 CONC ghi\n"
     @"1 CONT A very very long line that needs to be broken up because it is more than 248 characters long resulting in some CONC nodes underneath the current node. They should be assembled and disassembled losslessly by the GCNode code without need for program\n"
     @"1 CONC mer- or user-intervention."

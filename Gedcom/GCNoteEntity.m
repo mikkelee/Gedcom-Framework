@@ -27,23 +27,23 @@
 	return [self entityWithType:@"note" inContext:context];
 }
 
++ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
+{
+	GCNoteEntity *note = [super entityWithGedcomNode:node inContext:context];
+	
+    note.value = [GCString valueWithGedcomString:node.gedValue];
+	
+	return note;
+}
+
 #pragma mark Gedcom access
 
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:nil
+								 value:self.value.gedcomString
 								  xref:[self.context xrefForEntity:self]
 							  subNodes:self.subNodes];
-}
-
-- (NSArray *)subNodes
-{
-    NSMutableArray *subNodes = [[super subNodes] mutableCopy];
-    
-    [subNodes insertObject:[GCNode nodeWithTag:@"CONC" value:self.value.gedcomString] atIndex:0];
-    
-    return [subNodes copy];
 }
 
 #pragma mark Objective-C properties
