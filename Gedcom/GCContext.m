@@ -101,7 +101,7 @@ static inline GCFileEncoding encodingForData(NSData *data) {
         if ([characterSet caseInsensitiveCompare:@"UNICODE"] == NSOrderedSame) {
             return GCUTF8FileEncoding;
         } else if ([characterSet hasPrefix:@"UTF"]) {
-            return GCUTF8FileEncoding;
+            return GCUTF8FileEncoding; //TODO handle UTF-16 etc?
         } else if ([characterSet caseInsensitiveCompare:@"ANSEL"] == NSOrderedSame) {
             return GCANSELFileEncoding;
         } else if ([characterSet caseInsensitiveCompare:@"ASCII"] == NSOrderedSame) {
@@ -119,13 +119,20 @@ static inline GCFileEncoding encodingForData(NSData *data) {
 {
     GCFileEncoding fileEncoding = encodingForData(data);
     
-    if (fileEncoding == GCUnknownFileEncoding || fileEncoding == GCANSELFileEncoding) {
+    if (fileEncoding == GCUnknownFileEncoding) {
         if (error != NULL) {
             *error = [NSError errorWithDomain:GCErrorDomain
                                          code:GCUnhandledFileEncodingError
-                                     userInfo:@{}];
+                                     userInfo:@{NSLocalizedDescriptionKey: @"Could not determine encoding for the file."}];
         }
-        return nil; //TODO
+        return nil;
+    } else if (fileEncoding == GCANSELFileEncoding) {
+        if (error != NULL) {
+            *error = [NSError errorWithDomain:GCErrorDomain
+                                         code:GCUnhandledFileEncodingError
+                                     userInfo:@{NSLocalizedDescriptionKey: @"Cannot at the moment handle ANSEL-encoded files. Please use UNICODE or ASCII."}];
+        }
+        return nil; //TODO handle ANSEL
     } else {
         self = [super init];
         
