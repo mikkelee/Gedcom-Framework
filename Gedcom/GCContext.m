@@ -98,13 +98,13 @@ static inline GCFileEncoding encodingForData(NSData *data) {
     if (match) {
         NSString *characterSet = [dataString substringWithRange:[match rangeAtIndex:1]];
         
-        if ([characterSet isEqualToString:@"UNICODE"]) {
+        if ([characterSet caseInsensitiveCompare:@"UNICODE"] == NSOrderedSame) {
             return GCUTF8FileEncoding;
         } else if ([characterSet hasPrefix:@"UTF"]) {
             return GCUTF8FileEncoding;
-        } else if ([characterSet isEqualToString:@"ANSEL"]) {
+        } else if ([characterSet caseInsensitiveCompare:@"ANSEL"] == NSOrderedSame) {
             return GCANSELFileEncoding;
-        } else if ([characterSet isEqualToString:@"ASCII"]) {
+        } else if ([characterSet caseInsensitiveCompare:@"ASCII"] == NSOrderedSame) {
             return GCASCIIFileEncoding;
         } else {
             NSLog(@"Unknown encoding: %@", characterSet);
