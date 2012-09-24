@@ -64,7 +64,7 @@ static inline GCNode * nodeFromDate(NSDate *date) {
                                                     length:lengthOfTimePart
                                                   encoding:NSASCIIStringEncoding];
     
-    double fraction = [date timeIntervalSinceReferenceDate] - (long)[date timeIntervalSinceReferenceDate];
+    double fraction = [date timeIntervalSince1970] - (long)[date timeIntervalSince1970];
     
     if (fraction) {
         timeString = [timeString stringByAppendingFormat:@".%03.0f", fraction * 1000];
