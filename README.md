@@ -156,4 +156,4 @@ is equivalent to:
 
 ======
 
-Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with minor modifications: node order, removed trailing space on CHAN, removed milliseconds from CHAN.DATE.TIME; etc.
+Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with one modification: allged.ged line 322 has a Hebrew date instead of the original Gregorian date.
