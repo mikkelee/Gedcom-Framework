@@ -714,7 +714,7 @@ __strong static NSDictionary *_defaultColors;
 
 @end
 
-NSString *GCErrorDoman = @"GCErrorDoman";
+NSString *GCErrorDomain = @"GCErrorDomain";
 
 @implementation GCObject (GCValidationMethods)
 
@@ -768,14 +768,14 @@ NSString *GCErrorDoman = @"GCErrorDoman";
         
         if (propertyCount > allowedOccurrences.max) {
             isValid &= NO;
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCTooManyValuesError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, self.type], NSAffectedObjectsErrorKey: self}]);
         }
         
         if (propertyCount < allowedOccurrences.min) {
             isValid &= NO;
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCTooFewValuesError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, self.type], NSAffectedObjectsErrorKey: self}]);
         }

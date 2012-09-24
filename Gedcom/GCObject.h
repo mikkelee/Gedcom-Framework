@@ -172,18 +172,6 @@
 
 @end
 
-extern NSString *GCErrorDoman;
-
-typedef enum : NSInteger {
-    GCIncorrectValueTypeError = -101,
-    GCIncorrectTargetTypeError = -102,
-    GCValueMissingError = -103,
-    GCTargetMissingError = -104,
-    
-    GCTooManyValuesError = -201,
-    GCTooFewValuesError = -202
-} GCErrorCode;
-
 @interface GCObject (GCValidationMethods)
 
 /// @name Validating objects

@@ -10,6 +10,8 @@
 
 #import "ValidationHelpers.h"
 
+#import "GedcomErrors.h"
+
 @interface GCObject ()
 
 #pragma mark Description helper

@@ -264,6 +264,7 @@
 		3E5A68611610A6E7005B2319 /* GCList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCList.h; sourceTree = "<group>"; };
 		3E5A68621610A6E8005B2319 /* GCList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCList.m; sourceTree = "<group>"; };
 		3E5A68661610B51B005B2319 /* GCValue_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCValue_internal.h; sourceTree = "<group>"; };
+		3E5A68671610CA16005B2319 /* GedcomErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomErrors.h; sourceTree = "<group>"; };
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3E5F50C0151DF2E800A433A6 /* Gedcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
 		3E5F50C5151DFB0000A433A6 /* GCTagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTagTests.m; sourceTree = "<group>"; };
@@ -465,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				3E5F50C0151DF2E800A433A6 /* Gedcom.h */,
+				3E5A68671610CA16005B2319 /* GedcomErrors.h */,
 				3E14EDC715230A3000080364 /* Nodes */,
 				3E14EDC815230DAE00080364 /* GCContext.h */,
 				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,

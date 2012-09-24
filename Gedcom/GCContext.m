@@ -83,24 +83,82 @@ __strong static NSArray *_rootKeys = nil;
     return ctx;
 }
 
-+ (id)contextWithContentsOfFile:(NSString *)path usedEncoding:(NSStringEncoding *)enc error:(NSError **)error
+static inline GCFileEncoding encodingForData(NSData *data) {
+    NSRegularExpression *characterSetRegex = [NSRegularExpression regularExpressionWithPattern:@"1 CHAR (ASCII|ANSEL|UNICODE|UTF-?8)"
+                                                                                            options:(NSRegularExpressionCaseInsensitive)
+                                                                                              error:nil];
+    
+    
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]; // try UTF8 first
+    
+    NSTextCheckingResult *match = [characterSetRegex firstMatchInString:dataString
+                                                                options:kNilOptions
+                                                                  range:NSMakeRange(0, [dataString length])];
+    
+    if (match) {
+        NSString *characterSet = [dataString substringWithRange:[match rangeAtIndex:1]];
+        
+        if ([characterSet isEqualToString:@"UNICODE"]) {
+            return GCUTF8FileEncoding;
+        } else if ([characterSet hasPrefix:@"UTF"]) {
+            return GCUTF8FileEncoding;
+        } else if ([characterSet isEqualToString:@"ANSEL"]) {
+            return GCANSELFileEncoding;
+        } else if ([characterSet isEqualToString:@"ASCII"]) {
+            return GCASCIIFileEncoding;
+        } else {
+            NSLog(@"Unknown encoding: %@", characterSet);
+            return GCUnknownFileEncoding;
+        }
+    }
+    
+    return GCUnknownFileEncoding;
+}
+
+- (id)initWithData:(NSData *)data usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
+{
+    GCFileEncoding fileEncoding = encodingForData(data);
+    
+    if (fileEncoding == GCUnknownFileEncoding || fileEncoding == GCANSELFileEncoding) {
+        if (error != NULL) {
+            *error = [NSError errorWithDomain:GCErrorDomain
+                                         code:GCUnhandledFileEncodingError
+                                     userInfo:@{}];
+        }
+        return nil; //TODO
+    } else {
+        self = [super init];
+        
+        if (self) {
+            NSString *fileString = [[NSString alloc] initWithData:data encoding:fileEncoding];
+            
+            *enc = fileEncoding;
+            
+            [self parseNodes:[GCNode arrayOfNodesFromString:fileString]];
+        }
+        
+        return self;
+    }
+}
+
+- (id)initWithContentsOfFile:(NSString *)path usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
+{
+    return [self initWithData:[NSData dataWithContentsOfFile:path] usedEncoding:enc error:error];
+}
+
+- (id)initWithContentsOfURL:(NSURL *)url usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
+{
+    return [self initWithData:[NSData dataWithContentsOfURL:url] usedEncoding:enc error:error];
+}
+
++ (id)contextWithContentsOfFile:(NSString *)path usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
 {
     return [[self alloc] initWithContentsOfFile:path usedEncoding:enc error:error];
 }
 
-+ (id)contextWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error
++ (id)contextWithContentsOfURL:(NSURL *)url usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
 {
-    return [[self alloc] initWithContentsOfURL:url encoding:enc error:error];
-}
-
-- (id)initWithContentsOfFile:(NSString *)path usedEncoding:(NSStringEncoding *)enc error:(NSError **)error
-{
-    return nil; //TODO
-}
-
-- (id)initWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error
-{
-    return nil; //TODO
+    return [[self alloc] initWithContentsOfURL:url usedEncoding:enc error:error];
 }
 
 #pragma mark Node access

@@ -25,6 +25,13 @@
 
 //TODO: merging contexts etc.
 
+typedef enum : NSUInteger {
+    GCUnknownFileEncoding = -1,
+    GCASCIIFileEncoding = NSASCIIStringEncoding,
+    GCUTF8FileEncoding = NSUTF8StringEncoding,
+    GCANSELFileEncoding = kCFStringEncodingANSEL
+} GCFileEncoding;
+
 @interface GCContext : NSObject <NSCoding>
 
 /// @name Obtaining a context
@@ -38,15 +45,13 @@
  */
 + (id)contextWithGedcomNodes:(NSArray *)nodes;
 
-/* TODO
-+ (id)contextWithContentsOfFile:(NSString *)path usedEncoding:(NSStringEncoding *)enc error:(NSError **)error;
++ (id)contextWithContentsOfFile:(NSString *)path usedEncoding:(GCFileEncoding *)enc error:(NSError **)error;
 
-+ (id)contextWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error;
++ (id)contextWithContentsOfURL:(NSURL *)url usedEncoding:(GCFileEncoding *)enc error:(NSError **)error;
 
-- (id)initWithContentsOfFile:(NSString *)path usedEncoding:(NSStringEncoding *)enc error:(NSError **)error;
+- (id)initWithContentsOfFile:(NSString *)path usedEncoding:(GCFileEncoding *)enc error:(NSError **)error;
 
-- (id)initWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error;
-*/
+- (id)initWithContentsOfURL:(NSURL *)url usedEncoding:(GCFileEncoding *)enc error:(NSError **)error;
 
 /// Returns a dictionary containing all current contexts, keyed by name.
 + (NSDictionary *)contextsByName;

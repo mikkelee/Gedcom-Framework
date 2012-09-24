@@ -39,3 +39,5 @@
 #import "GCContextDelegate.h"
 
 #import "GCXrefProtocol.h"
+
+#import "GedcomErrors.h"

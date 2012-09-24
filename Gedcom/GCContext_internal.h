@@ -8,6 +8,8 @@
 
 #import "GCContext.h"
 
+#import "GedcomErrors.h"
+
 @interface GCContext ()
 
 - (NSString *)_xrefForEntity:(GCEntity *)entity;

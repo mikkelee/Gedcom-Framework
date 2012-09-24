@@ -216,12 +216,12 @@
     }
     
     if (_target == nil) {
-        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                    code:GCTargetMissingError
                                                                userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target is missing for key %@ (should be a %@)",  self.type, self.gedTag.targetType], NSAffectedObjectsErrorKey: self}]);
         isValid &= NO;
     } else if (![_target isKindOfClass:self.gedTag.targetType]) {
-        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                      code:GCIncorrectTargetTypeError
                                                                  userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", _target, self.type, self.gedTag.targetType], NSAffectedObjectsErrorKey: self}]);
         isValid &= NO;

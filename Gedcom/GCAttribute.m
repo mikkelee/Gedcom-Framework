@@ -189,17 +189,17 @@
     
     if (self.gedTag.valueType) {
         if (_value == nil) {
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCValueMissingError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value is missing for %@ (should be a %@)",  self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
             isValid &= NO;
         } else if (![_value isKindOfClass:self.gedTag.valueType]) {
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCIncorrectValueTypeError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for %@ (should be %@)", _value, self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
             isValid &= NO;
         } else if ([self.gedTag.allowedValues count] > 0 && ![_value _isContainedInArray:self.gedTag.allowedValues]) {
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDoman
+            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCIncorrectValueTypeError
                                                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is not allowed for %@ (should be one of %@)", _value, self.type, self.gedTag.allowedValues], NSAffectedObjectsErrorKey: self}]);
             isValid &= NO;
