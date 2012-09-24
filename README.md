@@ -156,4 +156,6 @@ is equivalent to:
 
 ======
 
-Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with one modification: allged.ged line 322 has a Hebrew date instead of the original Gregorian date.
+Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) -- with two modifications to allged.ged:
+- line 34 has "English" instead of "language".
+- line 322 has a Hebrew date instead of the original Gregorian date.
