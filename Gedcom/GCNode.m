@@ -82,7 +82,12 @@ static NSString *concSeparator;
 	__block int currentLevel = 0;
 	__block GCNode *currentNode = nil;
 	
+#ifdef DEBUGLEVEL
+    clock_t start, end;
+    double elapsed;
+    start = clock();
 	//NSLog(@"Began parsing gedcom.");
+#endif
 	
 	NSRegularExpression *levelXrefTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (?:(\\@[A-Z_]+\\d*\\@) )?([A-Z]{3,4}[0-9]?|_[A-Z][A-Z0-9]*)(?: (.*))?$"
                                                                                             options:kNilOptions 
@@ -181,8 +186,10 @@ static NSString *concSeparator;
 		}
 	}];
 	
-#ifdef DEBUG
-	NSLog(@"Finished parsing gedcom.");
+#ifdef DEBUGLEVEL
+    end = clock();
+    elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+    NSLog(@"arrayOfNodesFromString - Time: %f seconds",elapsed);
 #endif
     
 	return [gedArray copy];
