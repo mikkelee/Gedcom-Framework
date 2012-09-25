@@ -46,6 +46,8 @@
     @"1 _UMR Y\n"
     @"0 TRLR";
     
+    [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString] error:nil];
+    
     NSString *expected =
     @"0 HEAD\n"
     @"0 @F1@ FAM\n"
@@ -53,8 +55,6 @@
     @"0 @NOTE1@ NOTE\n"
     @"1 CONC Unmarried.\n"
     @"0 TRLR";
-    
-    [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
     
     STAssertEqualObjects(ctx.gedcomString, expected, nil);
 }

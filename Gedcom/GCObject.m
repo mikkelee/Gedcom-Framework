@@ -714,8 +714,6 @@ __strong static NSDictionary *_defaultColors;
 
 @end
 
-NSString *GCErrorDomain = @"GCErrorDomain";
-
 @implementation GCObject (GCValidationMethods)
 
 - (BOOL)validateObject:(NSError **)outError

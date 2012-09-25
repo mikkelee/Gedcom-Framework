@@ -45,7 +45,7 @@ static inline GCFileEncoding encodingForDataWithEncoding(NSData *data, NSStringE
         NSLog(@"encoding: %@", characterSet);
         
         if ([characterSet caseInsensitiveCompare:@"UNICODE"] == NSOrderedSame) {
-            return GCUTF16StringEncoding; // spec refers to UTF16 as "UNICODE": http://www.gedcom.net/0g/gedcom55/55gcch3.htm#S3
+            return GCUTF16FileEncoding; // spec refers to UTF16 as "UNICODE": http://www.gedcom.net/0g/gedcom55/55gcch3.htm#S3
         } else if ([characterSet hasPrefix:@"UTF"]) {
             return GCUTF8FileEncoding;
         } else if ([characterSet caseInsensitiveCompare:@"ANSEL"] == NSOrderedSame) {

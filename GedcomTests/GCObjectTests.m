@@ -184,7 +184,9 @@
 	
 	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
 	
-	GCContext *ctx = [GCContext contextWithGedcomNodes:nodes];
+	GCContext *ctx = [GCContext context];
+    
+    [ctx parseNodes:nodes error:nil];
     
     NSData *ctxData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
     
@@ -232,6 +234,28 @@
                                              @"1 LANG German"
                            exceptedErrorCode:GCTooFewValuesError
                                       string:@"Too few values for key name on submitter"];
+    
+}
+
+- (void)AtestDescribedObject
+{
+	GCContext *ctx = [GCContext context];
+	
+    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    
+    [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
+    
+    GCAttribute *name = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    
+    STAssertNil(name.describedObject, nil);
+    
+    [indi.personalNames addObject:name];
+    
+    STAssertEqualObjects(name.describedObject, indi, nil);
+    
+    [indi.personalNames removeObject:name];
+    
+    STAssertNil(name.describedObject, nil);
     
 }
 

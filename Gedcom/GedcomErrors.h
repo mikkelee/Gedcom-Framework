@@ -11,13 +11,17 @@
 extern NSString *GCErrorDomain;
 
 typedef enum : NSInteger {
+    // context errors:
+    GCUnhandledFileEncodingError = -1,
+    GCParsingInconcistencyError = -2,
+    
+    // validation errors:
     GCIncorrectValueTypeError = -101,
     GCIncorrectTargetTypeError = -102,
     GCValueMissingError = -103,
     GCTargetMissingError = -104,
     
+    // validation errors cont'd:
     GCTooManyValuesError = -201,
-    GCTooFewValuesError = -202,
-    
-    GCUnhandledFileEncodingError = -301
+    GCTooFewValuesError = -202
 } GCErrorCode;

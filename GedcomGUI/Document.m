@@ -9,6 +9,8 @@
 #import "Document.h"
 #import <Gedcom/Gedcom.h>
 
+#import <Gedcom/GCContext_internal.h> //TODO move entityForXref back to GCContext.h???
+
 @implementation Document {
     GCContext *ctx;
     BOOL _isEntireFileLoaded;
@@ -80,14 +82,12 @@
     [currentlyLoadingSpinner setUsesThreadedAnimation:YES];
     [currentlyLoadingSpinner startAnimation:nil];
     
-    NSString *gedcomString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    ctx = [[GCContext alloc] init];
+    ctx = [GCContext context];
     
     [ctx setDelegate:self];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString]];
+        [ctx parseData:data error:nil];
     });
 }
 
@@ -103,7 +103,7 @@
 - (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
 {
     if ([[link scheme] isEqualToString:@"xref"]) {
-        GCEntity *entity = [ctx entityForXref:[[link path] lastPathComponent]];
+        GCEntity *entity = [ctx _entityForXref:[[link path] lastPathComponent]];
         
         return [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
     } else {

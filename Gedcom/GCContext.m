@@ -27,6 +27,8 @@
 @implementation GCTrailerEntity
 @end
 
+//TODO: merging contexts etc.
+
 @implementation GCContext {
     GCFileEncoding _encoding;
 	NSMutableDictionary *_xrefToEntityMap;
@@ -76,78 +78,9 @@ __strong static NSArray *_rootKeys = nil;
     }
 }
 
-+ (id)contextWithGedcomNodes:(NSArray *)nodes
-{
-    GCContext *ctx = [[GCContext alloc] init];
-    
-    [ctx parseNodes:nodes];
-    
-    return ctx;
-}
-
-- (id)initWithData:(NSData *)data usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
-{
-    GCFileEncoding fileEncoding = encodingForData(data);
-    
-    if (fileEncoding == GCUnknownFileEncoding) {
-        if (error != NULL) {
-            *error = [NSError errorWithDomain:GCErrorDomain
-                                         code:GCUnhandledFileEncodingError
-                                     userInfo:@{NSLocalizedDescriptionKey: @"Could not determine encoding for the file."}];
-        }
-        return nil;
-    } else if (fileEncoding == GCANSELFileEncoding) {
-        self = [self init];
-        
-        if (self) {
-            NSString *fileString = stringFromANSELData(data);
-            
-            *enc = fileEncoding;
-            _encoding = fileEncoding;
-            
-            [self parseNodes:[GCNode arrayOfNodesFromString:fileString]];
-        }
-        
-        return self;
-    } else {
-        self = [self init];
-        
-        if (self) {
-            NSString *fileString = [[NSString alloc] initWithData:data encoding:fileEncoding];
-            
-            *enc = fileEncoding;
-            _encoding = fileEncoding;
-            
-            [self parseNodes:[GCNode arrayOfNodesFromString:fileString]];
-        }
-        
-        return self;
-    }
-}
-
-- (id)initWithContentsOfFile:(NSString *)path usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
-{
-    return [self initWithData:[NSData dataWithContentsOfFile:path] usedEncoding:enc error:error];
-}
-
-- (id)initWithContentsOfURL:(NSURL *)url usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
-{
-    return [self initWithData:[NSData dataWithContentsOfURL:url] usedEncoding:enc error:error];
-}
-
-+ (id)contextWithContentsOfFile:(NSString *)path usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
-{
-    return [[self alloc] initWithContentsOfFile:path usedEncoding:enc error:error];
-}
-
-+ (id)contextWithContentsOfURL:(NSURL *)url usedEncoding:(GCFileEncoding *)enc error:(NSError **)error
-{
-    return [[self alloc] initWithContentsOfURL:url usedEncoding:enc error:error];
-}
-
 #pragma mark Node access
 
-- (void)parseNodes:(NSArray *)nodes
+- (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error
 {
     NSParameterAssert(nodes);
     NSParameterAssert([nodes count] > 0);
@@ -159,7 +92,7 @@ __strong static NSArray *_rootKeys = nil;
     start = clock();
 #endif
     
-    __block NSInteger handledNodes = 0;
+    __block NSUInteger handledNodes = 0;
     
     [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
         GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
@@ -180,11 +113,57 @@ __strong static NSArray *_rootKeys = nil;
     NSLog(@"parseNodes - Time: %f seconds",elapsed);
 #endif
     
-    NSParameterAssert(handledNodes == [nodes count]); //dont count trailer
+    if (handledNodes != [nodes count]) {
+        if (error != NULL) {
+            *error = [NSError errorWithDomain:GCErrorDomain
+                                         code:GCParsingInconcistencyError
+                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Inconsistent number of entities after handling nodes: %ld should be %ld (a misplaced TRLR?)", handledNodes, [nodes count]]}];
+        }
+        
+        return NO;
+    }
     
     if (_delegate && [_delegate respondsToSelector:@selector(context:didFinishWithEntityCount:)]) {
         [_delegate context:self didFinishWithEntityCount:self.countOfEntities];
     }
+    
+    return YES;
+}
+
+- (BOOL)parseData:(NSData *)data error:(NSError **)error
+{
+    GCFileEncoding fileEncoding = encodingForData(data);
+    
+    if (fileEncoding == GCUnknownFileEncoding) {
+        if (error != NULL) {
+            *error = [NSError errorWithDomain:GCErrorDomain
+                                         code:GCUnhandledFileEncodingError
+                                     userInfo:@{NSLocalizedDescriptionKey: @"Could not determine encoding for the file."}];
+        }
+        return NO;
+    } else if (fileEncoding == GCANSELFileEncoding) {
+        NSString *fileString = stringFromANSELData(data);
+        
+        _encoding = fileEncoding;
+        
+        return [self parseNodes:[GCNode arrayOfNodesFromString:fileString] error:error];
+    } else {
+        NSString *fileString = [[NSString alloc] initWithData:data encoding:fileEncoding];
+        
+        _encoding = fileEncoding;
+        
+        return [self parseNodes:[GCNode arrayOfNodesFromString:fileString] error:error];
+    }
+}
+
+- (BOOL)readContentsOfFile:(NSString *)path error:(NSError **)error
+{
+    return [self parseData:[NSData dataWithContentsOfFile:path] error:error];
+}
+
+- (BOOL)readContentsOfURL:(NSURL *)url error:(NSError **)error
+{
+    return [self parseData:[NSData dataWithContentsOfURL:url] error:error];
 }
 
 #pragma mark GCEntity collection accessors
@@ -561,6 +540,8 @@ __strong static NSArray *_rootKeys = nil;
 @end
 
 #pragma mark -
+
+NSString *GCErrorDomain = @"GCErrorDomain";
 
 @implementation GCContext (GCValidationMethods)
 

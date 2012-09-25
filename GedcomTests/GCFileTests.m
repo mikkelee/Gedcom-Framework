@@ -21,23 +21,21 @@
 {
     // open file:
     
-    GCFileEncoding fileEncoding;
+	GCContext *ctx = [GCContext context];
     
-	GCContext *ctx = [GCContext contextWithContentsOfFile:path usedEncoding:&fileEncoding error:nil];
+    [ctx readContentsOfFile:path error:nil];
     
-    STAssertNotNil(ctx, nil);
+    STAssertFalse(ctx.fileEncoding == GCUnknownFileEncoding, nil);
     
-    STAssertFalse(fileEncoding == GCUnknownFileEncoding, nil);
-    
-    // get pure nodes without touching the context:
+    // get pure nodes directly from file using encoding arrived at in context:
     
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSString *fileContents = nil;
     
-    if (fileEncoding == GCANSELFileEncoding) {
+    if (ctx.fileEncoding == GCANSELFileEncoding) {
         fileContents = stringFromANSELData(data);
     } else {
-        fileContents = [[NSString alloc] initWithData:data encoding:fileEncoding];
+        fileContents = [[NSString alloc] initWithData:data encoding:ctx.fileEncoding];
     }
     
     NSArray *inputNodes = [GCNode arrayOfNodesFromString:fileContents];
