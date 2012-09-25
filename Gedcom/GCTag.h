@@ -24,10 +24,10 @@ typedef struct {
  */
 @interface GCTag : NSObject <NSCopying, NSCoding>
 
-#pragma mark Entry points
-
+#pragma mark Obtaining tags
 /// @name Obtaining tags
 
+//TODO tagNamed:/tagsByName is confusing and redundant; clean up!
 /** Returns a dictionary of the available tags. The keys are the names of the tags.
  
  @return A dictionary of tags.
@@ -48,8 +48,7 @@ typedef struct {
  */
 + (GCTag *)rootTagWithCode:(NSString *)code;
 
-#pragma mark Subtags
-
+#pragma mark Accessing subtags
 /// @name Accessing subtags
 
 /** Returns the subtag of the receiver with the given code and type. The type can be `attribute` or `relationship`.
@@ -83,15 +82,18 @@ typedef struct {
 
 /** Returns a struct with the minimum and maximum allowed occurrences of a given subtag on the receiver.
  
- GCAllowedOccurrences is a { `min`, `max` } struct of two NSIntegers
+ GCAllowedOccurrences is a { `min`, `max` } struct of two NSIntegers.
+ 
+ * If the subtag is custom, the result will be { 0, NSIntegerMax }
+ * If the subtag is not allowed, the result willb e { 0, 0 } //TOOD verify
  
  @param tag A GCTag object.
  @return A GCAllowedOccurrences struct.
  */
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
-#pragma mark Objective-C properties
-
+#pragma mark - Objective-C properties -
+#pragma mark Accessing properties
 /// @name Accessing properties
 
 /// The Gedcom code of the receiver.
@@ -106,20 +108,26 @@ typedef struct {
 /// The localized name of the receiver.
 @property (readonly, nonatomic) NSString *localizedName;
 
-/// Whether the tag is custom or not.
+/// Returns whether the receiver is custom or not. Usually this is indicated by a leading underscore in its `code`.
 @property (readonly, nonatomic) BOOL isCustom;
 
 /// An ordered collection of valid subtags.
 @property (readonly, nonatomic) NSOrderedSet *validSubTags;
 
-/// The class type of the tag. Can be any subclass of GCObject.
+/// The GCTag's corresponding GCObject subclass.
 @property (readonly) Class objectClass;
+
+#pragma mark Attribute tags
+/// @name Attribute tags
 
 /// A class indicating which type its value is. Will be `nil` if the tag is not an attribute-tag. See GCValue.
 @property (readonly) Class valueType;
 
 /// A collection of allowed values; will be empty if the tag is not an attribute-tag or there are no restrictions on values.
 @property (readonly) NSArray *allowedValues;
+
+#pragma mark Relationship tags
+/// @name Relationship tags
 
 /// A class indicating which type its target is. Will be `nil` if the tag is not a relationship-tag.
 @property (readonly) Class targetType;

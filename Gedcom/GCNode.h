@@ -85,7 +85,7 @@
  */
 - (BOOL)isEquivalentTo:(GCNode *)other;
 
-#pragma mark Objective-C properties
+#pragma mark - Objective-C properties -
 
 /// @name Accessing properties
 
@@ -98,7 +98,7 @@
 /// The value of the receiver; may be `nil`.
 @property (readonly) NSString *gedValue;
 
-/// `TRUE` the value is non-nil and starts and ends with a `@`. Otherwise `NO`
+/// `TRUE` the value is non-nil and starts and ends with a `@`, otherwise `NO`.
 @property (readonly) BOOL valueIsXref;
 
 /// The xref of the receiver; may be `nil`.
@@ -107,7 +107,7 @@
 /// The line separator of the receiver; usually `\n`.
 @property (readonly) NSString *lineSeparator;
 
-/// An ordered uniquing collection containing the subnodes of the receiver; may not be `nil`.
+/// An ordered collection containing the subnodes of the receiver; may not be `nil`.
 @property (readonly) NSArray *subNodes;
 
 /// A uniquing collection containing the gedTags for all subNodes of the receiver.

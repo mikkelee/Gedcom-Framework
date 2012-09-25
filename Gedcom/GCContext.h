@@ -27,7 +27,7 @@ typedef enum : NSUInteger {
 
 /**
  
- A context encompasses a single file; all entities (that is, individuals, families, etc) in the file will belong to the same context.
+ A context encompasses a single file; all entities (that is, individuals, families, etc) in the file will belong to the same context. Generally you'll keep a reference to the context in your Document.
  
  ```
     // create a new context
@@ -38,16 +38,21 @@ typedef enum : NSUInteger {
  
     // read a file
     NSError *err = nil;
-    BOOL readingSucceeded = [ctx readContentsOfFile:@"/path/to/file.ged" error:err];
+    BOOL readingSucceeded = [ctx readContentsOfFile:@"/path/to/file.ged" error:&err];
  
     if (!readingSucceeded) {
         // handle error
     }
+    
+    // work on context, create/modify/delete entities & properties
+    
+    // TODO save the context back out
  ```
  
  */
 @interface GCContext : NSObject <NSCoding>
 
+#pragma mark Obtaining a context
 /// @name Obtaining a context
 
 /// Creates and returns a new context.
@@ -94,7 +99,27 @@ typedef enum : NSUInteger {
  */
 - (BOOL)readContentsOfURL:(NSURL *)url error:(NSError **)error;
 
-#pragma mark Objective-C properties
+#pragma mark - Objective-C properties -
+
+#pragma mark Accessing properties
+/// @name Accessing properties
+
+@property (readonly) GCFileEncoding fileEncoding;
+
+/// The name of the receiver.
+@property (readonly) NSString *name;
+
+#pragma mark Setting the delegate
+/// @name Setting the delegate
+
+/// The receiver's delegate. See GCContextDelegate.
+@property (weak) id<NSObject, GCContextDelegate> delegate;
+
+#pragma mark Accessing entities
+/// @name Accessing entities
+
+/// A collection of all the receiver's entities.
+@property (readonly) NSMutableSet *allEntities;
 
 /// The header of the receiver.
 @property GCHeaderEntity *header;
@@ -123,10 +148,8 @@ typedef enum : NSUInteger {
 /// An ordered collection of the receiver's submitters.
 @property (readonly) NSMutableArray *submitters;
 
-/// A collection of all the receiver's entities.
-@property (readonly) NSMutableSet *allEntities;
-
-/// @name Gedcom output
+#pragma mark Accessing Gedcom output
+/// @name Accessing Gedcom output
 
 /// The receiver as an ordered collection of Gedcom nodes.
 @property (readonly) NSArray *gedcomNodes;
@@ -134,21 +157,9 @@ typedef enum : NSUInteger {
 /// The receiver as a Gedcom string.
 @property (readonly) NSString *gedcomString;
 
-#pragma mark Objective-C properties
-
-/// @name Accessing properties
-
-@property (readonly) GCFileEncoding fileEncoding;
-
-/// The name of the receiver.
-@property (readonly) NSString *name;
-
-/// @name Setting the delegate
-
-/// The receiver's delegate. See GCContextDelegate.
-@property (weak) id<NSObject, GCContextDelegate> delegate;
-
 @end
+
+#pragma mark -
 
 @interface GCContext (GCValidationMethods)
 

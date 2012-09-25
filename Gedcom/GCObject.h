@@ -22,7 +22,6 @@
 @interface GCObject : NSObject <NSCoding>
 
 #pragma mark Initialization
-
 /// @name Creating and initializing objects
 
 /** Initializes and returns an object with the specified type.
@@ -32,8 +31,7 @@
  */
 - (id)initWithType:(NSString *)type;
 
-#pragma mark GCProperty access
-
+#pragma mark Accessing GCProperties
 /// @name Accessing GCProperties
 
 /// Returns an ordered collection of valid property types for the receiver.
@@ -72,7 +70,6 @@
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
 
 #pragma mark Comparison
-
 /// @name Comparing objects
 
 /** Compares the receiver to another GCObject.
@@ -91,7 +88,7 @@
  */
 - (BOOL)isEqualTo:(id)other;
 
-#pragma mark Objective-C properties
+#pragma mark - Objective-C properties -
 
 /// @name Accessing properties
 
@@ -107,6 +104,22 @@
 /// The root object of a given tree of GCObjects. Will usually be a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
 @property (readonly, nonatomic) GCObject *rootObject;
 
+/// The context associated with the receiver. Properties will forward the request to their describedObject.
+@property (readonly, nonatomic) GCContext *context;
+
+/** The value of the receiver appropiate for displaying in the user interface.
+ 
+ For entities, it will be their xref; for attributes, their value; and for relationships, the target's xref.
+ 
+ */
+@property (readonly, nonatomic) NSString *displayValue;
+
+/// The displayValue of the receiver, with attributes.
+@property (readonly, nonatomic) NSAttributedString *attributedDisplayValue;
+
+#pragma mark Accessing Gedcom output
+/// @name Accessing Gedcom output
+
 /// The receiver as a GCNode.  Setting this property will cause the receiver to interpret the node and add new properties and remove those that no longer exist.
 @property GCNode *gedcomNode;
 
@@ -119,20 +132,9 @@
 /// The receiver as an attributed string of Gedcom data.
 @property NSAttributedString *attributedGedcomString;
 
-/// The context associated with the receiver. Properties will forward the request to their describedObject.
-@property (readonly, nonatomic) GCContext *context;
-
-/** The value of the receiver appropiate for displaying in the user interface.
- 
- For entities, it will be their xref; for attributes, their value; and for relationships, the target's xref.
-
- */
-@property (readonly, nonatomic) NSString *displayValue;
-
-/// The displayValue of the receiver, with attributes.
-@property (readonly, nonatomic) NSAttributedString *attributedDisplayValue;
-
 @end
+
+#pragma mark -
 
 @class GCValue;
 @class GCEntity;
@@ -171,6 +173,8 @@
 @property (readonly, nonatomic) NSMutableSet *allProperties;
 
 @end
+
+#pragma mark -
 
 @interface GCObject (GCValidationMethods)
 
