@@ -106,7 +106,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (target: %@) {\n%@%@};\n", indent, [self className], self, _target ? [self.context _xrefForEntity:_target] : nil, [self _propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (describing: %p target: %@) {\n%@%@};\n", indent, [self className], self, self.describedObject, _target ? [self.context _xrefForEntity:_target] : nil, [self _propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
