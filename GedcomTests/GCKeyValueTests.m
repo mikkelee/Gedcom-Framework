@@ -53,6 +53,8 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    NSLog(@"Observed: \tkeypath: %@\n\tobject:%@\n\tchange:%@\n\tcontext: %@", keyPath, object, change, context);
+    
     id old = [NSNull null];
     if ([change valueForKey:NSKeyValueChangeOldKey]) {
         if (![[change valueForKey:NSKeyValueChangeOldKey] isKindOfClass:[NSNull class]]) {
@@ -80,8 +82,6 @@
     if ([[change valueForKey:NSKeyValueChangeKindKey] intValue] == 1 && [old isEqualTo:new]) {
         return;
     }
-    
-    //NSLog(@"Observed: %@ %@ %@ %@", keyPath, object, change, context);
     
     NSArray *observation = [NSArray arrayWithObjects:keyPath,
                             [change valueForKey:NSKeyValueChangeKindKey], 
@@ -184,34 +184,37 @@
     
     observer.entity = indi;
     
-    [[indi mutableArrayValueForKey:@"personalNames"] addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    [indi.personalNames addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
     [indi.personalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"]];
     
     //TODO should this fire something too?
-    [[[indi valueForKey:@"personalNames"] objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
+    [[indi.personalNames objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
     
-    [[indi mutableArrayValueForKey:@"personalNames"] removeObjectAtIndex:0];
+    [indi.personalNames removeObjectAtIndex:0];
     
     NSArray *expectedObservations = [NSArray arrayWithObjects:
                                      // NSKeyValueChange : old : new
-                                     @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/",
-                                     @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/ Smed",
-                                     @"personalNames : 3 : 0 NAME Jens /Hansen/ : <null>",
+                                     @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/", // insert name
+                                     @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/ Smed", // insert name
+                                     @"personalNames : 3 : 0 NAME Jens /Hansen/ : <null>", // remove name
                                      nil];
     STAssertEqualObjects([observer observations], 
                          expectedObservations,
                          nil);
 }
 
-- (void)AtestSetGedcomString
+- (void)testSetGedcomString
 {
+    //TODO better test:
+    
     GCTestObserver *observer = [[GCTestObserver alloc] init];
 
 	GCContext *ctx = [GCContext context];
 	
     GCEntity *indi = [GCEntity entityWithType:@"individual" inContext:ctx];
     
-    indi.gedcomString = @"0 @INDI1@ INDI\n"
+    indi.gedcomString =
+     @"0 @INDI1@ INDI\n"
      @"1 NAME Jens /Hansen/\n"
      @"1 NAME Jens /Hansen/ Smed\n"
      @"1 BIRT\n"
@@ -220,7 +223,8 @@
     
     observer.entity = indi;
     
-    indi.gedcomString = @"0 @INDI1@ INDI\n"
+    indi.gedcomString =
+     @"0 @INDI1@ INDI\n"
      @"1 NAME Jens /Hansen/\n"
      @"1 NAME Jens /Hansen/ Smed\n"
      @"1 DEAT\n"
@@ -228,9 +232,7 @@
     
     NSArray *expectedObservations = [NSArray arrayWithObjects:
                                      // NSKeyValueChange : old : new
-                                     @"births : 2 : (null) : 0 BIRT",
-                                     @"deaths : 2 : (null) : 0 DEAT Y",
-                                     @"deaths : 3 : 0 DEAT : (null)",
+                                     @"births : 3 : 0 BIRT\n1 DATE 1 JAN 1901 : <null>", // remove birth
                                      nil];
     STAssertEqualObjects([observer observations], 
                          expectedObservations,

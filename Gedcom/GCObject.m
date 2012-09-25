@@ -117,20 +117,47 @@ __strong static NSDictionary *_defaultColors;
 
 #pragma mark NSKeyValueCoding overrides
 
+- (void)_internalAddProperty:(GCProperty *)property
+{
+    if (property.describedObject && property.describedObject != self) {
+        [property.describedObject.allProperties removeObject:property];
+    }
+    
+    [property setValue:self forKey:@"primitiveDescribedObject"];
+    
+    @synchronized(_propertyStore) {
+        if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+            NSString *key = property.gedTag.pluralName;
+            
+            if (!_propertyStore[key]) {
+                _propertyStore[key] = [NSMutableArray array];
+            }
+            
+            [_propertyStore[key] addObject:property];
+        } else {
+            _propertyStore[property.type] = property;
+        }
+    }
+    
+    NSParameterAssert(property.describedObject == self);
+}
+
 - (void)_internalSetValue:(id)value forKey:(NSString *)key {
     NSString *type = [[GCTag tagNamed:key] name];
     
     if ([value isKindOfClass:[GCProperty class]]) {
-        [self.allProperties addObject:value];
+        [self _internalAddProperty:value];
     } else if ([value isKindOfClass:[GCValue class]]) {
-        [self addAttributeWithType:type value:value];
+        [self _internalAddProperty:[GCAttribute attributeWithType:type value:value]];
     } else if ([value isKindOfClass:[GCEntity class]]) {
-        [self addRelationshipWithType:type target:value];
+        GCRelationship *relationship = [GCRelationship relationshipWithType:type];
+        [self _internalAddProperty:relationship];
+        relationship.target = value;
     } else {
-		NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
-														 reason:[NSString stringWithFormat:@"Invalid value %@ for _internalSetValue:forKey:", value]
-													   userInfo:nil];
-		@throw exception;
+        NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
+                                                         reason:[NSString stringWithFormat:@"Invalid value %@ for _internalSetValue:forKey:", value]
+                                                       userInfo:nil];
+        @throw exception;
     }
 }
 
@@ -311,27 +338,15 @@ __strong static NSDictionary *_defaultColors;
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert(property.gedTag.isCustom || [self.validPropertyTypes containsObject:property.type] || [self.validPropertyTypes containsObject:property.gedTag.pluralName]);
     
-    if (property.describedObject && property.describedObject != self) {
-        [property.describedObject.allProperties removeObject:property];
-    }
-    
-    [property setValue:self forKey:@"primitiveDescribedObject"];
-    
     //[self willChangeValueForKey:@"gedcomString"];
     
-    @synchronized(_propertyStore) {
-        if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
-            NSString *key = property.gedTag.pluralName;
-            
-            if (!_propertyStore[key]) {
-                _propertyStore[key] = [NSMutableArray array];
-            }
-            
-            [_propertyStore[key] addObject:property];
-        } else {
-            _propertyStore[property.type] = property;
-        }
+    if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+        [[self mutableArrayValueForKey:property.gedTag.pluralName] addObject:property];
+    } else {
+        [self setValue:property forKey:property.type];
     }
+    
+    NSParameterAssert(property.describedObject == self);
     
     //[self didChangeValueForKey:@"gedcomString"];
 }
@@ -344,21 +359,13 @@ __strong static NSDictionary *_defaultColors;
     
     //[self willChangeValueForKey:@"gedcomString"];
     
-    @synchronized(_propertyStore) {
-        if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
-            NSString *key = property.gedTag.pluralName;
-            
-            if (!_propertyStore[key]) {
-                _propertyStore[key] = [NSMutableArray array];
-            }
-            
-            [_propertyStore[key] removeObject:property];
-        } else {
-            [_propertyStore removeObjectForKey:property.type];
-        }
+    if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+        [[self mutableArrayValueForKey:property.gedTag.pluralName] removeObject:property];
+    } else {
+        [self setNilValueForKey:property.type];
     }
     
-    [property setValue:nil forKey:@"primitiveDescribedObject"];
+    NSParameterAssert(property.describedObject == nil);
     
     //[self didChangeValueForKey:@"gedcomString"];
 }
@@ -581,7 +588,9 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSMutableSet *originalProperties = [self.allProperties mutableCopy];
+    NSMutableArray *originalProperties = [self.orderedProperties mutableCopy];
+    
+    //NSLog(@" ********** BEGIN %p %@ **********", self, self.type);
     
     //NSLog(@"originalProperties: %@", originalProperties);
     
@@ -590,23 +599,22 @@ __strong static NSDictionary *_defaultColors;
             continue; //we ignore the CHAN node, it shouldn't be changed via setGedcomNode:
         }
         
-        NSSet *matches = [originalProperties objectsWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(GCProperty *obj, BOOL *stop) {
+        NSArray *matches = [originalProperties objectsAtIndexes:[originalProperties indexesOfObjectsPassingTest:^BOOL(GCObject *obj, NSUInteger idx, BOOL *stop) {
             return [obj.gedTag.code isEqualToString:subNode.gedTag];
-        }];
+        }]];
         
         if ([matches count] < 1) {
             //NSLog(@"adding new property for %@", subNode);
             [self addPropertyWithGedcomNode:subNode];
         } else {
-            //TODO...
-            GCProperty *property = [matches anyObject];
+            GCProperty *property = [matches objectAtIndex:0];
             [originalProperties removeObject:property];
             //NSLog(@"modifying property %@ with %@", property, subNode);
             property.gedcomNode = subNode;
         }
     }
     
-    //NSLog(@"after adding to propertiesArray: %@", [self propertiesArray]);
+    //NSLog(@"after adding to propertiesArray: %@", self.orderedProperties);
     
     //NSLog(@"removing originalProperties: %@", originalProperties);
     
@@ -615,7 +623,9 @@ __strong static NSDictionary *_defaultColors;
         [self.allProperties removeObject:property];
     }
     
-    //NSLog(@"propertiesArray: %@", [self propertiesArray]);
+    //NSLog(@"propertiesArray: %@", self.orderedProperties);
+    
+    //NSLog(@" ********** END %p %@ **********", self, self.type);
 }
 
 - (NSString *)gedcomString
@@ -677,16 +687,12 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
 {
-    [self.allProperties addObject:[GCAttribute attributeWithType:type value:value]];
+    [self _internalSetValue:value forKey:type];
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-    GCRelationship *relationship = [GCRelationship relationshipWithType:type];
-    
-    [self.allProperties addObject:relationship];
-    
-    relationship.target = target;
+    [self _internalSetValue:target forKey:type];
 }
 
 - (void)addPropertyWithGedcomNode:(GCNode *)node
