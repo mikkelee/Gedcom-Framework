@@ -237,7 +237,7 @@
     
 }
 
-- (void)AtestDescribedObject
+- (void)testDescribedObject
 {
 	GCContext *ctx = [GCContext context];
 	
@@ -256,7 +256,6 @@
     [indi.personalNames removeObject:name];
     
     STAssertNil(name.describedObject, nil);
-    
 }
 
 @end

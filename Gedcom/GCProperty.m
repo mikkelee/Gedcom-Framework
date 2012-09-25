@@ -96,10 +96,9 @@
 {
     [self willChangeValueForKey:@"describedObject"];
     if (_primitiveDescribedObject) {
-        if (_primitiveDescribedObject == self) {
-            return;
+        if (_primitiveDescribedObject != describedObject) {
+            [_primitiveDescribedObject.allProperties removeObject:self];
         }
-        [_primitiveDescribedObject.allProperties removeObject:self];
     }
     self.primitiveDescribedObject = describedObject;
     [_primitiveDescribedObject.allProperties addObject:self];

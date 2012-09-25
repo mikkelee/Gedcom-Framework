@@ -159,6 +159,13 @@ __strong static NSDictionary *_defaultColors;
         }
     } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
         @synchronized(_propertyStore) {
+            if ([self allowedOccurrencesPropertyType:key].max > 1) {
+                for (GCProperty *property in _propertyStore[key]) {
+                    [property setValue:nil forKey:@"primitiveDescribedObject"];
+                }
+            } else {
+                [_propertyStore[key] setValue:nil forKey:@"primitiveDescribedObject"];
+            }
             [_propertyStore removeObjectForKey:key];
         }
     } else {
@@ -263,15 +270,6 @@ __strong static NSDictionary *_defaultColors;
 
 #pragma mark GCProperty collection accessors
 
-- (void)setDescribedObjectForProperty:(GCProperty *)property
-{
-    if (property.describedObject) {
-        [property.describedObject.allProperties removeObject:property];
-    }
-    
-    [property setValue:self forKey:@"primitiveDescribedObject"];
-}
-
 - (NSUInteger)countOfProperties
 {
     @synchronized(_propertyStore) {
@@ -313,7 +311,11 @@ __strong static NSDictionary *_defaultColors;
     NSParameterAssert([property isKindOfClass:[GCProperty class]]);
     NSParameterAssert(property.gedTag.isCustom || [self.validPropertyTypes containsObject:property.type] || [self.validPropertyTypes containsObject:property.gedTag.pluralName]);
     
-    [self setDescribedObjectForProperty:property];
+    if (property.describedObject && property.describedObject != self) {
+        [property.describedObject.allProperties removeObject:property];
+    }
+    
+    [property setValue:self forKey:@"primitiveDescribedObject"];
     
     //[self willChangeValueForKey:@"gedcomString"];
     
