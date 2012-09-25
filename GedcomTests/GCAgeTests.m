@@ -55,14 +55,14 @@
 {
     NSMutableArray *ages = [NSMutableArray array];
     
-    GCPlacestring *a = [GCAge valueWithGedcomString:@"INFANT"];
-    GCPlacestring *b = [GCAge valueWithGedcomString:@"STILLBORN"];
-    GCPlacestring *c = [GCAge valueWithGedcomString:@"0y"];
-    GCPlacestring *d = [GCAge valueWithGedcomString:@"> 5y"];
-    GCPlacestring *e = [GCAge valueWithGedcomString:@"6y"];
-    GCPlacestring *f = [GCAge valueWithGedcomString:@"< 6y"];
-    GCPlacestring *g = [GCAge valueWithGedcomString:@"1y"];
-    GCPlacestring *h = [GCAge valueWithGedcomString:@"CHILD"];
+    GCAge *a = [GCAge valueWithGedcomString:@"INFANT"];
+    GCAge *b = [GCAge valueWithGedcomString:@"STILLBORN"];
+    GCAge *c = [GCAge valueWithGedcomString:@"0y"];
+    GCAge *d = [GCAge valueWithGedcomString:@"> 5y"];
+    GCAge *e = [GCAge valueWithGedcomString:@"6y"];
+    GCAge *f = [GCAge valueWithGedcomString:@"< 6y"];
+    GCAge *g = [GCAge valueWithGedcomString:@"1y"];
+    GCAge *h = [GCAge valueWithGedcomString:@"CHILD"];
     
     [ages addObject:a];
     [ages addObject:b];
