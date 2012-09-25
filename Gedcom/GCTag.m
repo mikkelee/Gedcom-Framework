@@ -54,7 +54,6 @@ const NSString *kPlural = @"plural";
 
 __strong static NSMutableDictionary *_tagStore;
 __strong static NSMutableDictionary *_tagInfo;
-__strong static NSMutableDictionary *_tagsByName;
 __strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
 
@@ -202,25 +201,6 @@ static inline void setupKey(NSString *key) {
     return _tagStore[name];
 }
 
-+ (NSDictionary *)tagsByName
-{
-    if (!_tagsByName) {
-        NSSet *keys = [_tagStore keysOfEntriesWithOptions:(NSEnumerationConcurrent) passingTest:^BOOL(NSString *key, GCTag *tag, BOOL *stop) {
-            return ![key hasPrefix:@"@"] && !tag.isCustom;
-        }];
-        
-        NSMutableDictionary *tmpTags = [NSMutableDictionary dictionary];
-        
-        for (NSString *key in keys) {
-            tmpTags[key] = _tagStore[key];
-        }
-        
-        _tagsByName = tmpTags;
-    }
-    
-    return [_tagsByName copy];
-}
-
 + (GCTag *)rootTagWithCode:(NSString *)code
 {
     NSParameterAssert(code != nil);
@@ -242,8 +222,6 @@ static inline void setupKey(NSString *key) {
         _rootTagsByCode[code] = tag;
         _tagStore[tagName] = tag;
         _tagStore[pluralName] = tag;
-        _tagsByName[tagName] = tag;
-        _tagsByName[pluralName] = tag;
     }
     
     return _rootTagsByCode[code];
@@ -315,8 +293,6 @@ static inline void setupKey(NSString *key) {
         NSLog(@"Created %@: %@", tagName, tag);
         _tagStore[tagName] = tag;
         _tagStore[pluralName] = tag;
-        _tagsByName[tagName] = tag;
-        _tagsByName[pluralName] = tag;
         
         return tag;
     }

@@ -27,13 +27,6 @@ typedef struct {
 #pragma mark Obtaining tags
 /// @name Obtaining tags
 
-//TODO tagNamed:/tagsByName is confusing and redundant; clean up!
-/** Returns a dictionary of the available tags. The keys are the names of the tags.
- 
- @return A dictionary of tags.
- */
-+ (NSDictionary *)tagsByName;
-
 /** Returns a tag with the given name.
  
  @param name The name of the requested tag.

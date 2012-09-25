@@ -249,7 +249,7 @@ __strong static NSDictionary *_defaultColors;
     [keyPaths addObject:@"gedcomNode"];
     [keyPaths addObject:@"allProperties"];
     
-    GCTag *tag = [GCTag tagsByName][key];
+    GCTag *tag = [GCTag tagNamed:key];
     
     if ([key isEqualToString:@"properties"]) {
         NSString *cleanName = [[self className] substringFromIndex:2];
