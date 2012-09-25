@@ -28,10 +28,10 @@
 
 - (void)testSimpleObjects
 {
-    // Create a context
+    // Create a context.
 	GCContext *ctx = [GCContext context];
 	
-    // Create an individual entity in the context
+    // Create an individual entity in the context.
     GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
     
     // Create an array of names and set them on the individual for the property key "personalNames".
@@ -45,7 +45,7 @@
     [indi setValue:names 
             forKey:@"personalNames"];
 	
-    // Create a birth attribute, give it a date attribute and add it to the individual
+    // Create a birth attribute, give it a date attribute and add it to the individual.
 	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
@@ -54,7 +54,7 @@
     
     // You can also use subscripted access, in this case adding a single death attribute
     // with the value yes, indicating that the individual died.
-    indi[@"deaths"] = @[[GCBool yes]];
+    indi[@"deaths"] = @[ [GCBool yes] ];
     
     [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"modificationDate"]; //Setting a known date so output is known
     
