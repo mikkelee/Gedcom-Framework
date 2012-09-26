@@ -17,25 +17,8 @@
 
 #pragma mark GCSimpleDate
 
-@implementation GCSimpleDate
-
-- (NSComparisonResult)compare:(id)other {
-    //TODO properly compare BEF/AFT etc!
-	if (other == nil) {
-		return NSOrderedAscending;
-	} else if ([other isKindOfClass:[GCSimpleDate class]]) {
-        NSParameterAssert([self.calendar isEqual:[other calendar]]);
-        
-		if ([self.dateComponents year] != [[other dateComponents] year]) {
-			return [@([self.dateComponents year]) compare:@([[other dateComponents] year])];
-		} else if ([self.dateComponents month] != [[other dateComponents] month]) {
-			return [@([self.dateComponents month]) compare:@([[other dateComponents] month])];
-		} else {
-			return [@([self.dateComponents day]) compare:@([[other dateComponents] day])];
-		}
-	} else {
-		return [self compare:[other refDate]];
-	}
+@implementation GCSimpleDate {
+    NSCalendar *_calendar;
 }
 
 - (NSString *)gedcomString
@@ -43,12 +26,12 @@
     NSString *calendarString = @"";
     NSArray *monthNames = nil;
     
-    if ([[_calendar calendarIdentifier] isEqualToString:NSGregorianCalendar]) {
+    if ([[self.calendar calendarIdentifier] isEqualToString:NSGregorianCalendar]) {
         monthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
-    } else if ([[_calendar calendarIdentifier] isEqualToString:NSHebrewCalendar]) {
+    } else if ([[self.calendar calendarIdentifier] isEqualToString:NSHebrewCalendar]) {
         monthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
         calendarString = @"@#DHEBREW@ ";
-    } else if ([[_calendar calendarIdentifier] isEqualToString:nil]) { //TODO
+    } else if ([[self.calendar calendarIdentifier] isEqualToString:nil]) { //TODO
         monthNames = @[ @"VEND", @"BRUM", @"FRIM", @"NIVO", @"PLUV", @"VENT", @"GERM", @"FLOR", @"PRAI", @"MESS", @"THER", @"FRUC", @"COMP" ];
         calendarString = @"@#DFRENCH R@ ";
     }
@@ -81,19 +64,44 @@
                                           timeStyle:NSDateFormatterNoStyle];
 }
 
+- (NSCalendar *)calendar
+{
+    return _calendar;
+}
+
+- (void)setCalendar:(NSCalendar *)calendar
+{
+    _calendar = calendar;
+}
+
 - (NSDate *)minDate
 {
-    return [self.calendar dateFromComponents:self.dateComponents];
+    NSDateComponents *tmpComponents = [self.dateComponents copy];
+    
+    //NSLog(@"minDate: %@", tmpComponents);
+    if ([tmpComponents day] <= 0) { [tmpComponents setDay:1]; }
+    if ([tmpComponents month] <= 0) { [tmpComponents setMonth:1]; }
+    [tmpComponents setHour:00];
+    [tmpComponents setMinute:00];
+    [tmpComponents setSecond:01];
+    //NSLog(@"minDate: %@", tmpComponents);
+    
+    return [self.calendar dateFromComponents:tmpComponents];
 }
 
 - (NSDate *)maxDate
 {
-    return [self.calendar dateFromComponents:self.dateComponents];
-}
-
-- (GCSimpleDate *)refDate
-{
-	return self;
+    NSDateComponents *tmpComponents = [self.dateComponents copy];
+    
+    //NSLog(@"maxDate: %@", tmpComponents);
+    if ([tmpComponents day] <= 0) { [tmpComponents setDay:31]; }
+    if ([tmpComponents month] <= 0) { [tmpComponents setMonth:12]; }
+    [tmpComponents setHour:23];
+    [tmpComponents setMinute:59];
+    [tmpComponents setSecond:59];
+    //NSLog(@"maxDate: %@", tmpComponents);
+    
+    return [self.calendar dateFromComponents:tmpComponents];
 }
 
 @end
@@ -117,19 +125,14 @@
 	return nil;
 }
 
-- (GCSimpleDate *)refDate
-{
-	return nil;
-}
-
 - (NSDate *)minDate
 {
-    return nil;
+    return [NSDate distantPast];
 }
 
 - (NSDate *)maxDate
 {
-    return nil;
+    return [NSDate distantPast];
 }
 
 @end
@@ -140,22 +143,17 @@
 
 - (NSCalendar *)calendar
 {
-	return [self.simpleDate calendar];
-}
-
-- (GCSimpleDate *)refDate
-{
-	return self.simpleDate;
+	return self.simpleDate.calendar;
 }
 
 - (NSDate *)minDate
 {
-    return [[self.simpleDate calendar] dateFromComponents:self.simpleDate.dateComponents];
+    return self.simpleDate.minDate;
 }
 
 - (NSDate *)maxDate
 {
-    return [[self.simpleDate calendar] dateFromComponents:self.simpleDate.dateComponents];
+    return self.simpleDate.maxDate;
 }
 
 @end
@@ -205,23 +203,6 @@
     GCSimpleDate *_dateB;
 }
 
-- (GCSimpleDate *)refDate
-{
-	if (self.dateA == nil) {
-		return self.dateB;
-	} else if (self.dateB == nil) {
-		return self.dateA;
-	} else {
-		GCSimpleDate *m = [[GCSimpleDate alloc] init];
-		
-		[m setCalendar:self.dateA.calendar];
-		[m setDateComponents:[self.dateA.calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                    fromDate:[self.minDate dateByAddingTimeInterval:[self.maxDate timeIntervalSinceDate:self.minDate]/2]]];
-        
-		return m;
-	}
-}
-
 - (NSCalendar *)calendar
 {
 	if (self.dateA) {
@@ -257,12 +238,20 @@
 
 - (NSDate *)minDate
 {
-    return [self.dateA.calendar dateFromComponents:self.dateA.dateComponents];
+    if (self.dateA) {
+        return self.dateA.maxDate;
+    } else {
+        return nil;
+    }
 }
 
 - (NSDate *)maxDate
 {
-    return [self.dateB.calendar dateFromComponents:self.dateB.dateComponents];
+    if (self.dateB) {
+        return self.dateB.minDate;
+    } else {
+        return nil;
+    }
 }
 
 @end
@@ -339,11 +328,6 @@
 - (NSString *)displayString
 {
     return self.gedcomString;
-}
-
-- (GCSimpleDate *)refDate
-{
-	return nil;
 }
 
 - (NSCalendar *)calendar
@@ -580,15 +564,23 @@ static NSCalendar *_gregorianCalendar = nil;
 
 - (id)dateByAddingAge:(GCAge *)age
 {
-    NSDate *theDate = self.maxDate ? self.maxDate : self.minDate;
+    NSDate *theDate = self.minDate ? self.minDate : self.maxDate;
     
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
     
-    [ageComponents setYear:[age years]];
-    [ageComponents setMonth:[age months]];
-    [ageComponents setDay:[age days]];
+    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     
-    return [GCDate dateWithDate:[self.refDate.calendar dateByAddingComponents:ageComponents toDate:theDate options:0]];
+    [ageComponents setYear:age.years];
+    [ageComponents setMonth:age.months];
+    [ageComponents setDay:age.days];
+    [ageComponents setHour:0];
+    [ageComponents setTimeZone:utc];
+    
+    NSDate *result = [self.calendar dateByAddingComponents:ageComponents toDate:theDate options:0];
+    
+    //result = [result dateByAddingTimeInterval:-[utc daylightSavingTimeOffsetForDate:result]]; // NO to daylight savings time
+    
+    return [GCDate dateWithDate:result];
 }
 
 - (BOOL)containsDate:(NSDate *)date
@@ -605,14 +597,63 @@ static NSCalendar *_gregorianCalendar = nil;
 
 #pragma mark Comparison
 
-- (NSComparisonResult) compare:(id)other {
-	if (other == nil) {
-		return NSOrderedAscending;
-	} else {
-		return [self.refDate compare:[other refDate]];
-	}
+- (BOOL)isLessThan:(GCDate *)other
+{
+    if (!self.minDate) {
+        if (!other.minDate) {
+            return [self.maxDate compare:other.maxDate] == NSOrderedAscending;
+        } else {
+            return [self.maxDate compare:other.minDate] != NSOrderedDescending;
+        }
+    } else if (!self.maxDate) {
+        if (!other.minDate) {
+            return [self.minDate compare:other.maxDate] == NSOrderedAscending;
+        } else if (!other.maxDate) {
+            return [self.minDate compare:other.minDate] == NSOrderedAscending;
+        } else {
+            return [self.minDate compare:other.minDate] != NSOrderedDescending
+                && [self.minDate compare:other.maxDate] == NSOrderedAscending;
+        }
+    } else {
+        if (!other.minDate || !other.maxDate) {
+            return ![other isLessThan:self]; // reverse comparison
+        } else if ([self.minDate compare:other.minDate] == NSOrderedSame) {
+            return [self.maxDate compare:other.maxDate] == NSOrderedAscending;
+        } else {
+            return [self.minDate compare:other.minDate] == NSOrderedAscending;
+        }
+    }
 }
 
+- (BOOL)isEqualTo:(GCDate *)other
+{
+    return self.minDate && other.minDate && [self.minDate compare:other.minDate] == NSOrderedSame
+        && self.maxDate && other.maxDate && [self.maxDate compare:other.maxDate] == NSOrderedSame;
+}
+
+- (NSComparisonResult) compare:(GCDate *)other {
+    if (![other isKindOfClass:[GCDate class]]) {
+        return NSOrderedAscending;
+    }
+    
+    if ([self isLessThan:other]) {
+        return NSOrderedAscending;
+    } else if ([self isEqualTo:other]) {
+        return NSOrderedSame;
+    } else {
+        return NSOrderedDescending;
+    }
+}
+
+#pragma mark @selector trickery
+/*
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    NSLog(@"GCDate respondsToSelector: %@", NSStringFromSelector(aSelector));
+    
+    return [super respondsToSelector:aSelector];
+}
+*/
 #pragma mark NSCopying compliance
 
 - (id)copyWithZone:(NSZone *)zone
@@ -622,24 +663,7 @@ static NSCalendar *_gregorianCalendar = nil;
 
 #pragma mark Objective-C properties
 
-@dynamic refDate;
-
 @dynamic gedcomString;
 @dynamic displayString;
-
-- (NSUInteger)year
-{
-    return [self.refDate.dateComponents year];
-}
-
-- (NSUInteger)month
-{
-    return [self.refDate.dateComponents month];
-}
-
-- (NSUInteger)day
-{
-    return [self.refDate.dateComponents day];
-}
 
 @end

@@ -178,6 +178,10 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        [currentDateComponents setHour:0];
+        [currentDateComponents setMinute:0];
+        [currentDateComponents setSecond:0];
+        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
         
         currentDate = nil;
     }
@@ -323,6 +327,10 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        [currentDateComponents setHour:0];
+        [currentDateComponents setMinute:0];
+        [currentDateComponents setSecond:0];
+        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
         NSCalendar *calendar = _gregorianCalendar;
         
         long tag = 0;

@@ -28,8 +28,6 @@
 
 + (id)dateWithInvalidDateString:(NSString *)s;
 
-@property (retain, readonly) GCSimpleDate *refDate; //used for sorting, etc.
-
 @end
 
 #pragma mark GCSimpleDate

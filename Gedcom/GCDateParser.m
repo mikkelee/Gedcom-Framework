@@ -94,7 +94,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 #import "GCDate_internal.h"
 
 
-#line 274 "GCDateParser.rl"
+#line 278 "GCDateParser.rl"
 
 
 
@@ -2181,7 +2181,7 @@ static const int date_error = 0;
 static const int date_en_main = 1;
 
 
-#line 277 "GCDateParser.rl"
+#line 281 "GCDateParser.rl"
 
 @implementation GCDateParser {
 	NSMutableDictionary *_cache;
@@ -2231,6 +2231,10 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        [currentDateComponents setHour:0];
+        [currentDateComponents setMinute:0];
+        [currentDateComponents setSecond:0];
+        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
         NSCalendar *calendar = _gregorianCalendar;
         
         long tag = 0;
@@ -2250,14 +2254,14 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         const char *eof = pe;
         
         
-#line 2254 "GCDateParser.m"
+#line 2258 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 345 "GCDateParser.rl"
+#line 353 "GCDateParser.rl"
         
-#line 2261 "GCDateParser.m"
+#line 2265 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2441,25 +2445,29 @@ _match:
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        [currentDateComponents setHour:0];
+        [currentDateComponents setMinute:0];
+        [currentDateComponents setSecond:0];
+        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
         
         currentDate = nil;
     }
 	break;
 	case 15:
-#line 185 "GCDateParser.rl"
+#line 189 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 17:
-#line 195 "GCDateParser.rl"
+#line 199 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePhrase.", fpc);
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2463 "GCDateParser.m"
+#line 2471 "GCDateParser.m"
 		}
 	}
 
@@ -2526,54 +2534,58 @@ _again:
         [currentDateComponents setYear:0];
         [currentDateComponents setMonth:0];
         [currentDateComponents setDay:0];
+        [currentDateComponents setHour:0];
+        [currentDateComponents setMinute:0];
+        [currentDateComponents setSecond:0];
+        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
         
         currentDate = nil;
     }
 	break;
 	case 15:
-#line 185 "GCDateParser.rl"
+#line 189 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
     }
 	break;
 	case 16:
-#line 190 "GCDateParser.rl"
+#line 194 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateApproximate.", fpc);
         currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
 	break;
 	case 18:
-#line 200 "GCDateParser.rl"
+#line 204 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateInterpreted.", fpc);
         currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
 	break;
 	case 19:
-#line 205 "GCDateParser.rl"
+#line 209 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateRange.", fpc);
         currentDate = [GCDate dateWithRangeFrom:previousDate to:currentDate];
     }
 	break;
 	case 20:
-#line 210 "GCDateParser.rl"
+#line 214 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePeriod.", fpc);
         currentDate = [GCDate dateWithPeriodFrom:previousDate to:currentDate];
     }
 	break;
 	case 21:
-#line 215 "GCDateParser.rl"
+#line 219 "GCDateParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
         date = currentDate;
 		finished = YES;
 	}
 	break;
-#line 2577 "GCDateParser.m"
+#line 2589 "GCDateParser.m"
 		}
 	}
 	}
@@ -2581,7 +2593,7 @@ _again:
 	_out: {}
 	}
 
-#line 346 "GCDateParser.rl"
+#line 354 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

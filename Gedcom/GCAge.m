@@ -292,11 +292,11 @@ NSString * const GCAgeQualifier_toString[] = {
 
 + (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
 {
-    NSCalendar *calendar = [[fromDate valueForKey:@"refDate"] calendar];
+    NSCalendar *calendar = fromDate.calendar;
     
-    NSDateComponents *ageComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+    NSDateComponents *ageComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSTimeZoneCalendarUnit)
                                                   fromDate:fromDate.minDate
-                                                    toDate:toDate.maxDate
+                                                    toDate:toDate.minDate
                                                    options:NO];
     
     return [GCAge ageWithSimpleAge:ageComponents qualifier:GCAgeNoQualifier];

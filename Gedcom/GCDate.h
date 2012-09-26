@@ -59,22 +59,13 @@
 
 /// @name Helpers
 
+@property (readonly) NSCalendar *calendar;
+
 /// If the date is a range or a period, will return the start of the period, otherwise it will be the same as the date, and identical to maxDate.
 @property (readonly) NSDate *minDate;
 
 /// If the date is a range or a period, will return the end of the period, otherwise it will be the same as the date, and identical to minDate.
 @property (readonly) NSDate *maxDate;
-
-/// @name Property access
-
-/// The year of the date. If the date is a range or a period, the year will be in the middle.
-@property (readonly) NSUInteger year;
-
-/// The month of the date.
-@property (readonly) NSUInteger month;
-
-/// The month of the date.
-@property (readonly) NSUInteger day;
 
 @end
 

@@ -99,4 +99,38 @@
 	STAssertEqualObjects([result gedcomString], @"(Dato ukendt)", nil);
 }
 
+- (void)testDateSort
+{
+    NSMutableArray *ages = [NSMutableArray array];
+    
+    GCDate *a = [GCDate valueWithGedcomString:@"ABT 1890"];
+    GCDate *b = [GCDate valueWithGedcomString:@"BEF 1890"];
+    GCDate *c = [GCDate valueWithGedcomString:@"AFT 1890"];
+    GCDate *d = [GCDate valueWithGedcomString:@"1 JAN 1890"];
+    GCDate *e = [GCDate valueWithGedcomString:@"6 JUN 1890"];
+    GCDate *f = [GCDate valueWithGedcomString:@"FROM 1889"];
+    GCDate *g = [GCDate valueWithGedcomString:@"TO 1891"];
+    GCDate *h = [GCDate valueWithGedcomString:@"INT 1891 (guess)"];
+    GCDate *i = [GCDate valueWithGedcomString:@"BET 1889 AND 1890"];
+    GCDate *j = [GCDate valueWithGedcomString:@"FROM 1890 TO 1891"];
+	//GCDate *k = [GCDate valueWithGedcomString:@"@#DHEBREW@ 2 TVT 5758"];
+    
+    [ages addObject:a];
+    [ages addObject:b];
+    [ages addObject:c];
+    [ages addObject:d];
+    [ages addObject:e];
+    [ages addObject:f];
+    [ages addObject:g];
+    [ages addObject:h];
+    [ages addObject:i];
+    [ages addObject:j];
+    
+    [ages sortUsingSelector:@selector(compare:)];
+    
+    NSArray *expectedOrder = @[ f, i, b, d, a, e, c, j, g, h ];
+    
+    STAssertEqualObjects(ages, expectedOrder, nil);
+}
+
 @end
