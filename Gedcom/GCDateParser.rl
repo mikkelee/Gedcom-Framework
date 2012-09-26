@@ -147,6 +147,11 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
         [currentDateComponents setYear:currentNumber];
 		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
+	
+	action saveYearGreg {
+        yearGreg = currentString;
+		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
+	}
     
     action setCalendarGregorian {
         calendar = _gregorianCalendar;
@@ -189,6 +194,10 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
     action saveDateSimple {
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
+        if (yearGreg) {
+            ((GCSimpleDate *)currentDate).yearGregSuffix = yearGreg;
+        }
+        yearGreg = nil;
     }
     
     action saveDateApproximate {
@@ -236,7 +245,8 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 							'ADS' | 'NSN' | 'IYR' | 'SVN' | 'TMZ' | 'AAV' | 
 							'ELL' ) >tag %string %saveMonthHebr;
 	year 				= ( digit digit digit digit? ) >tag %number %saveYear;
-	yearGreg			= ( year | year '/' digit digit );
+    yearGregSuffix      = ( '/' digit digit ) >tag %string %saveYearGreg;
+	yearGreg			= ( year | ( year yearGregSuffix ) );
 	
     sep                 = ( ' ' | '/' | '-' );
 	
@@ -339,6 +349,8 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         long tag = 0;
         NSInteger currentNumber = 0;
         NSString *currentString = nil;
+        
+        NSString *yearGreg = nil;
         
         NSString *approximationQualifier = nil;
         id previousDate = nil;

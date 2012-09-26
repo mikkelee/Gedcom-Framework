@@ -48,7 +48,7 @@
 		day = [NSString stringWithFormat:@"%ld ", [self.dateComponents day]];
 	}
 	
-	return [NSString stringWithFormat:@"%@%@%@%04ld", calendarString, day, month, [self.dateComponents year]];
+	return [NSString stringWithFormat:@"%@%@%@%04ld%@", calendarString, day, month, [self.dateComponents year], _yearGregSuffix ? _yearGregSuffix : @""];
 }
 
 - (NSString *)displayString

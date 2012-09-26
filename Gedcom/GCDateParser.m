@@ -94,46 +94,48 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 #import "GCDate_internal.h"
 
 
-#line 278 "GCDateParser.rl"
+#line 288 "GCDateParser.rl"
 
 
 
 #line 102 "GCDateParser.m"
 static const char _date_actions[] = {
-	0, 1, 0, 1, 21, 2, 1, 3, 
-	2, 1, 4, 2, 1, 8, 2, 2, 
-	5, 2, 2, 6, 2, 2, 7, 2, 
-	2, 13, 2, 2, 17, 2, 18, 21, 
-	3, 0, 2, 17, 3, 9, 15, 14, 
-	3, 9, 15, 21, 4, 9, 15, 16, 
-	21, 4, 9, 15, 19, 21, 4, 9, 
-	15, 20, 21, 5, 1, 8, 9, 15, 
-	14, 5, 1, 8, 9, 15, 21, 5, 
-	1, 8, 10, 15, 14, 5, 1, 8, 
-	10, 15, 21, 5, 1, 8, 11, 15, 
-	14, 5, 1, 8, 11, 15, 21, 5, 
-	1, 8, 12, 15, 14, 5, 1, 8, 
-	12, 15, 21, 5, 9, 15, 14, 19, 
-	21, 5, 9, 15, 14, 20, 21, 6, 
-	1, 8, 9, 15, 16, 21, 6, 1, 
-	8, 9, 15, 19, 21, 6, 1, 8, 
-	9, 15, 20, 21, 6, 1, 8, 10, 
-	15, 16, 21, 6, 1, 8, 10, 15, 
-	19, 21, 6, 1, 8, 10, 15, 20, 
-	21, 6, 1, 8, 11, 15, 16, 21, 
-	6, 1, 8, 11, 15, 19, 21, 6, 
-	1, 8, 11, 15, 20, 21, 6, 1, 
-	8, 12, 15, 16, 21, 6, 1, 8, 
-	12, 15, 19, 21, 6, 1, 8, 12, 
-	15, 20, 21, 7, 1, 8, 9, 15, 
-	14, 19, 21, 7, 1, 8, 9, 15, 
-	14, 20, 21, 7, 1, 8, 10, 15, 
-	14, 19, 21, 7, 1, 8, 10, 15, 
-	14, 20, 21, 7, 1, 8, 11, 15, 
-	14, 19, 21, 7, 1, 8, 11, 15, 
-	14, 20, 21, 7, 1, 8, 12, 15, 
-	14, 19, 21, 7, 1, 8, 12, 15, 
-	14, 20, 21
+	0, 1, 0, 1, 22, 2, 1, 3, 
+	2, 1, 4, 2, 2, 5, 2, 2, 
+	6, 2, 2, 7, 2, 2, 14, 2, 
+	2, 18, 2, 19, 22, 3, 0, 2, 
+	18, 3, 1, 8, 0, 5, 1, 8, 
+	10, 16, 15, 5, 1, 8, 10, 16, 
+	22, 5, 1, 8, 11, 16, 15, 5, 
+	1, 8, 11, 16, 22, 5, 1, 8, 
+	12, 16, 15, 5, 1, 8, 12, 16, 
+	22, 5, 1, 8, 13, 16, 15, 5, 
+	1, 8, 13, 16, 22, 5, 2, 9, 
+	10, 16, 15, 5, 2, 9, 10, 16, 
+	22, 6, 1, 8, 10, 16, 17, 22, 
+	6, 1, 8, 10, 16, 20, 22, 6, 
+	1, 8, 10, 16, 21, 22, 6, 1, 
+	8, 11, 16, 17, 22, 6, 1, 8, 
+	11, 16, 20, 22, 6, 1, 8, 11, 
+	16, 21, 22, 6, 1, 8, 12, 16, 
+	17, 22, 6, 1, 8, 12, 16, 20, 
+	22, 6, 1, 8, 12, 16, 21, 22, 
+	6, 1, 8, 13, 16, 17, 22, 6, 
+	1, 8, 13, 16, 20, 22, 6, 1, 
+	8, 13, 16, 21, 22, 6, 2, 9, 
+	10, 16, 17, 22, 6, 2, 9, 10, 
+	16, 20, 22, 6, 2, 9, 10, 16, 
+	21, 22, 7, 1, 8, 10, 16, 15, 
+	20, 22, 7, 1, 8, 10, 16, 15, 
+	21, 22, 7, 1, 8, 11, 16, 15, 
+	20, 22, 7, 1, 8, 11, 16, 15, 
+	21, 22, 7, 1, 8, 12, 16, 15, 
+	20, 22, 7, 1, 8, 12, 16, 15, 
+	21, 22, 7, 1, 8, 13, 16, 15, 
+	20, 22, 7, 1, 8, 13, 16, 15, 
+	21, 22, 7, 2, 9, 10, 16, 15, 
+	20, 22, 7, 2, 9, 10, 16, 15, 
+	21, 22
 };
 
 static const short _date_key_offsets[] = {
@@ -1828,177 +1830,177 @@ static const short _date_trans_targs[] = {
 static const short _date_trans_actions[] = {
 	0, 0, 1, 0, 1, 0, 1, 1, 
 	1, 1, 0, 1, 1, 1, 1, 1, 
-	0, 1, 32, 0, 26, 5, 0, 1, 
+	0, 1, 29, 0, 23, 5, 0, 1, 
 	1, 1, 8, 0, 1, 0, 0, 0, 
-	0, 0, 0, 0, 14, 0, 0, 0, 
+	0, 0, 0, 0, 11, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 5, 0, 
-	0, 0, 0, 17, 1, 0, 0, 0, 
+	0, 0, 0, 14, 1, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 0, 0, 0, 
-	20, 1, 0, 0, 0, 0, 0, 0, 
+	17, 1, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 5, 0, 1, 8, 0, 1, 
-	0, 0, 0, 0, 0, 14, 0, 0, 
+	0, 0, 0, 0, 0, 11, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 23, 1, 0, 1, 1, 1, 1, 
+	0, 20, 1, 0, 1, 1, 1, 1, 
 	1, 1, 1, 1, 5, 0, 1, 8, 
 	0, 1, 0, 0, 0, 0, 0, 0, 
-	0, 14, 0, 0, 0, 0, 0, 0, 
+	0, 11, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 0, 0, 0, 
-	17, 1, 0, 0, 0, 0, 0, 0, 
+	14, 1, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	5, 0, 0, 0, 0, 20, 1, 0, 
+	5, 0, 0, 0, 0, 17, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
 	0, 1, 8, 0, 1, 0, 0, 0, 
-	0, 0, 14, 0, 0, 0, 0, 0, 
+	0, 0, 11, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 1, 0, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
 	0, 1, 8, 0, 1, 0, 0, 0, 
-	0, 0, 0, 0, 14, 0, 0, 0, 
+	0, 0, 0, 0, 11, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 5, 0, 
-	0, 0, 0, 17, 1, 0, 0, 0, 
+	0, 0, 0, 14, 1, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 0, 0, 0, 
-	20, 1, 0, 0, 0, 0, 0, 0, 
+	17, 1, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 5, 0, 1, 8, 0, 1, 
-	0, 0, 0, 0, 0, 14, 0, 0, 
+	0, 0, 0, 0, 0, 11, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 0, 1, 1, 1, 1, 
 	1, 1, 1, 1, 5, 0, 1, 8, 
 	0, 1, 0, 0, 0, 0, 0, 0, 
-	0, 14, 0, 0, 0, 0, 0, 0, 
+	0, 11, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 0, 0, 0, 
-	17, 1, 0, 0, 0, 0, 0, 0, 
+	14, 1, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	5, 0, 0, 0, 0, 20, 1, 0, 
+	5, 0, 0, 0, 0, 17, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
 	0, 1, 8, 0, 1, 0, 0, 0, 
-	0, 0, 14, 0, 0, 0, 0, 0, 
+	0, 0, 11, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 1, 0, 1, 1, 
 	1, 1, 1, 1, 1, 1, 5, 0, 
-	1, 8, 0, 1, 0, 0, 59, 11, 
-	0, 0, 0, 0, 0, 36, 0, 0, 
-	0, 14, 0, 0, 0, 0, 0, 0, 
+	1, 8, 0, 1, 0, 0, 37, 33, 
+	0, 0, 0, 0, 0, 85, 0, 0, 
+	0, 11, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 0, 0, 0, 
-	17, 1, 0, 0, 95, 0, 0, 0, 
+	14, 1, 0, 0, 73, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 5, 0, 0, 0, 0, 20, 
-	1, 0, 0, 83, 0, 0, 0, 0, 
+	1, 1, 5, 0, 0, 0, 0, 17, 
+	1, 0, 0, 61, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 1, 8, 0, 
-	1, 0, 0, 71, 0, 0, 0, 0, 
-	14, 0, 0, 0, 0, 0, 0, 0, 
+	1, 0, 0, 49, 0, 0, 0, 0, 
+	11, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 0, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	5, 0, 1, 8, 0, 1, 0, 0, 
 	0, 0, 1, 0, 1, 1, 1, 1, 
 	1, 1, 1, 1, 5, 0, 1, 8, 
 	0, 1, 0, 0, 0, 0, 0, 0, 
-	0, 14, 0, 0, 0, 0, 0, 0, 
+	0, 11, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 5, 0, 0, 0, 0, 
-	17, 1, 0, 0, 0, 0, 0, 0, 
+	14, 1, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	5, 0, 0, 0, 0, 20, 1, 0, 
+	5, 0, 0, 0, 0, 17, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
 	0, 1, 8, 0, 1, 0, 0, 0, 
-	0, 0, 14, 0, 0, 0, 0, 0, 
+	0, 0, 11, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	14, 0, 0, 0, 0, 0, 0, 0, 
+	11, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 5, 0, 0, 0, 0, 17, 
+	1, 1, 5, 0, 0, 0, 0, 14, 
 	1, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
-	0, 0, 0, 0, 20, 1, 0, 0, 
+	0, 0, 0, 0, 17, 1, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 5, 0, 
 	1, 8, 0, 1, 0, 0, 0, 0, 
-	0, 14, 0, 0, 0, 0, 0, 0, 
+	0, 11, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 1, 0, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
-	0, 1, 8, 0, 1, 0, 0, 59, 
-	11, 0, 0, 1, 32, 0, 26, 0, 
-	0, 36, 0, 0, 0, 14, 0, 0, 
+	0, 1, 8, 0, 1, 0, 0, 37, 
+	33, 0, 0, 1, 29, 0, 23, 0, 
+	0, 85, 0, 0, 0, 11, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
-	0, 0, 0, 0, 17, 1, 0, 0, 
-	95, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 14, 1, 0, 0, 
+	73, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 5, 0, 
-	0, 0, 0, 20, 1, 0, 0, 83, 
+	0, 0, 0, 17, 1, 0, 0, 61, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 5, 
-	0, 1, 8, 0, 1, 0, 0, 71, 
-	0, 0, 0, 0, 14, 0, 0, 0, 
-	0, 0, 0, 0, 0, 11, 0, 0, 
-	0, 0, 11, 0, 0, 0, 0, 11, 
+	0, 1, 8, 0, 1, 0, 0, 49, 
 	0, 0, 0, 0, 11, 0, 0, 0, 
-	0, 59, 11, 0, 11, 0, 0, 0, 
-	0, 36, 95, 0, 83, 0, 71, 0
+	0, 0, 0, 0, 0, 33, 0, 0, 
+	0, 0, 33, 0, 0, 0, 0, 33, 
+	0, 0, 0, 0, 33, 0, 0, 0, 
+	0, 37, 33, 0, 33, 0, 0, 0, 
+	0, 85, 73, 0, 61, 0, 49, 0
 };
 
 static const short _date_eof_actions[] = {
@@ -2164,14 +2166,14 @@ static const short _date_eof_actions[] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 3, 65, 40, 65, 101, 101, 89, 
-	89, 77, 77, 119, 44, 119, 182, 182, 
-	161, 161, 140, 140, 203, 107, 203, 251, 
-	251, 235, 235, 219, 219, 126, 49, 126, 
-	189, 189, 168, 168, 147, 147, 211, 133, 
-	54, 133, 196, 196, 175, 175, 154, 154, 
-	113, 211, 259, 259, 243, 243, 227, 227, 
-	29
+	0, 3, 43, 91, 43, 79, 79, 67, 
+	67, 55, 55, 97, 181, 97, 160, 160, 
+	139, 139, 118, 118, 202, 266, 202, 250, 
+	250, 234, 234, 218, 218, 104, 188, 104, 
+	167, 167, 146, 146, 125, 125, 210, 111, 
+	195, 111, 174, 174, 153, 153, 132, 132, 
+	274, 210, 258, 258, 242, 242, 226, 226, 
+	26
 };
 
 static const int date_start = 1;
@@ -2181,7 +2183,7 @@ static const int date_error = 0;
 static const int date_en_main = 1;
 
 
-#line 281 "GCDateParser.rl"
+#line 291 "GCDateParser.rl"
 
 @implementation GCDateParser {
 	NSMutableDictionary *_cache;
@@ -2244,6 +2246,8 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         NSInteger currentNumber = 0;
         NSString *currentString = nil;
         
+        NSString *yearGreg = nil;
+        
         NSString *approximationQualifier = nil;
         id previousDate = nil;
         id currentDate = nil;
@@ -2257,14 +2261,14 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         const char *eof = pe;
         
         
-#line 2261 "GCDateParser.m"
+#line 2265 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 356 "GCDateParser.rl"
+#line 368 "GCDateParser.rl"
         
-#line 2268 "GCDateParser.m"
+#line 2272 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2409,36 +2413,43 @@ _match:
 	case 9:
 #line 151 "GCDateParser.rl"
 	{
-        calendar = _gregorianCalendar;
-    }
+        yearGreg = currentString;
+		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
+	}
 	break;
 	case 10:
-#line 155 "GCDateParser.rl"
+#line 156 "GCDateParser.rl"
 	{
-        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
         calendar = _gregorianCalendar;
     }
 	break;
 	case 11:
 #line 160 "GCDateParser.rl"
 	{
-        calendar = _hebrewCalendar;
+        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
+        calendar = _gregorianCalendar;
     }
 	break;
 	case 12:
-#line 164 "GCDateParser.rl"
+#line 165 "GCDateParser.rl"
+	{
+        calendar = _hebrewCalendar;
+    }
+	break;
+	case 13:
+#line 169 "GCDateParser.rl"
 	{
         calendar = _frenchRevolutionaryCalendar;
     }
 	break;
-	case 13:
-#line 168 "GCDateParser.rl"
+	case 14:
+#line 173 "GCDateParser.rl"
 	{
         approximationQualifier = currentString;
     }
 	break;
-	case 14:
-#line 172 "GCDateParser.rl"
+	case 15:
+#line 177 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
         
@@ -2456,21 +2467,25 @@ _match:
         currentDate = nil;
     }
 	break;
-	case 15:
-#line 189 "GCDateParser.rl"
+	case 16:
+#line 194 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
+        if (yearGreg) {
+            ((GCSimpleDate *)currentDate).yearGregSuffix = yearGreg;
+        }
+        yearGreg = nil;
     }
 	break;
-	case 17:
-#line 199 "GCDateParser.rl"
+	case 18:
+#line 208 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePhrase.", fpc);
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2474 "GCDateParser.m"
+#line 2489 "GCDateParser.m"
 		}
 	}
 
@@ -2494,6 +2509,14 @@ _again:
 		//NSLog(@"%p num: %d", fpc, number);
 	}
 	break;
+	case 2:
+#line 112 "GCDateParser.rl"
+	{
+		long len = (p - data) - tag;
+		currentString = [[NSString alloc] initWithBytes:p-len length:len encoding:NSUTF8StringEncoding];
+		//NSLog(@"%p string: %@", fpc, string);
+	}
+	break;
 	case 8:
 #line 146 "GCDateParser.rl"
 	{
@@ -2504,30 +2527,37 @@ _again:
 	case 9:
 #line 151 "GCDateParser.rl"
 	{
-        calendar = _gregorianCalendar;
-    }
+        yearGreg = currentString;
+		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
+	}
 	break;
 	case 10:
-#line 155 "GCDateParser.rl"
+#line 156 "GCDateParser.rl"
 	{
-        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
         calendar = _gregorianCalendar;
     }
 	break;
 	case 11:
 #line 160 "GCDateParser.rl"
 	{
-        calendar = _hebrewCalendar;
+        // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
+        calendar = _gregorianCalendar;
     }
 	break;
 	case 12:
-#line 164 "GCDateParser.rl"
+#line 165 "GCDateParser.rl"
+	{
+        calendar = _hebrewCalendar;
+    }
+	break;
+	case 13:
+#line 169 "GCDateParser.rl"
 	{
         calendar = _frenchRevolutionaryCalendar;
     }
 	break;
-	case 14:
-#line 172 "GCDateParser.rl"
+	case 15:
+#line 177 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
         
@@ -2545,50 +2575,54 @@ _again:
         currentDate = nil;
     }
 	break;
-	case 15:
-#line 189 "GCDateParser.rl"
+	case 16:
+#line 194 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
+        if (yearGreg) {
+            ((GCSimpleDate *)currentDate).yearGregSuffix = yearGreg;
+        }
+        yearGreg = nil;
     }
 	break;
-	case 16:
-#line 194 "GCDateParser.rl"
+	case 17:
+#line 203 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateApproximate.", fpc);
         currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
 	break;
-	case 18:
-#line 204 "GCDateParser.rl"
+	case 19:
+#line 213 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateInterpreted.", fpc);
         currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
 	break;
-	case 19:
-#line 209 "GCDateParser.rl"
+	case 20:
+#line 218 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateRange.", fpc);
         currentDate = [GCDate dateWithRangeFrom:previousDate to:currentDate];
     }
 	break;
-	case 20:
-#line 214 "GCDateParser.rl"
+	case 21:
+#line 223 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePeriod.", fpc);
         currentDate = [GCDate dateWithPeriodFrom:previousDate to:currentDate];
     }
 	break;
-	case 21:
-#line 219 "GCDateParser.rl"
+	case 22:
+#line 228 "GCDateParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
         date = currentDate;
 		finished = YES;
 	}
 	break;
-#line 2592 "GCDateParser.m"
+#line 2626 "GCDateParser.m"
 		}
 	}
 	}
@@ -2596,7 +2630,7 @@ _again:
 	_out: {}
 	}
 
-#line 357 "GCDateParser.rl"
+#line 369 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

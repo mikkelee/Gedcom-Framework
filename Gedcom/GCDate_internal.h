@@ -36,6 +36,7 @@
 
 @property NSDateComponents *dateComponents;
 @property NSCalendar *calendar;
+@property NSString *yearGregSuffix;
 
 @end
 
