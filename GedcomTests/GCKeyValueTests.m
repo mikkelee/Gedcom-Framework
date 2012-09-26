@@ -53,7 +53,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"Observed: \tkeypath: %@\n\tobject:%@\n\tchange:%@\n\tcontext: %@", keyPath, object, change, context);
+    //NSLog(@"Observed: \tkeypath: %@\n\tobject:%@\n\tchange:%@\n\tcontext: %@", keyPath, object, change, context);
     
     id old = [NSNull null];
     if ([change valueForKey:NSKeyValueChangeOldKey]) {
