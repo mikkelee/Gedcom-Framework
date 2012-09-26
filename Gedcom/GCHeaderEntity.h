@@ -37,6 +37,8 @@
  */
 + (id)headerWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
+#pragma mark Objective-C properties
+
 @property GCHeaderSourceAttribute *headerSource;
 
 /// An array of GCDestinationAttribute
