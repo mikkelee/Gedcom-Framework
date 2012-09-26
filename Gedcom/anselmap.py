@@ -13,7 +13,7 @@ for line in iter(f):
 		continue
 	(map, comment) = line.strip().split('#')
 	(anselcode, utf16code) = map.split('=')
-	charmap[int(anselcode, 16)] = { "utf16": utf16code, "comment": comment }
+	charmap[int(anselcode, 16)] = { "ansel": anselcode, "utf16": utf16code, "comment": comment }
 	#print anselcode, utf16code, comment
 
 #print charmap
@@ -21,7 +21,7 @@ for line in iter(f):
 print 'static const unichar ansel2utf16[] = {'
 for i in range(0,256):
 	if charmap.has_key(i):
-		print '\n\t0x%s, // %s' % (charmap[i]['utf16'], charmap[i]['comment'])
+		print '\n\t/* ansel: 0x%s => utf-16: */ 0x%s, // %s' % (charmap[i]['ansel'], charmap[i]['utf16'], charmap[i]['comment'])
 	else:
 		print ('\t%d, ' % i),
 print '\n};'

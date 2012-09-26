@@ -11,6 +11,7 @@
 #import "Gedcom.h"
 
 #import "DateHelpers.h"
+#import "EncodingHelpers.h"
 
 @interface GCHelperTests : SenTestCase
 @end
@@ -63,6 +64,20 @@
     [self testDate:@"19 JUN 2000" time:@"12:34:56.789"];
     [self testDate:@"11 NOV 2004" time:@"23:30:14.012"];
     [self testDate:@"25 JAN 1999" time:@"01:52:23"];
+}
+
+
+- (void)testEncoding
+{
+    const unsigned char copyrightAnsel[] = { 0xc3, 0x20, 0x31, 0x39, 0x39, 0x37 }; // "(c) 1997" in ANSEL
+    
+    NSData *copyrightData = [NSData dataWithBytes:copyrightAnsel length:6];
+    
+    NSString *copyrightString = stringFromANSELData(copyrightData);
+    
+    NSString *expected = [NSString stringWithFormat:@"%C 1997", (unichar)0x00a9];
+    
+    STAssertEqualObjects(copyrightString, expected, nil);
 }
 
 @end

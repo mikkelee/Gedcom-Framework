@@ -85,90 +85,92 @@ static const unichar ansel2utf16[] = {
     140,  	141,  	142,  	143,  	144,  	145,  	146,  	147,  	148,  	149,
     150,  	151,  	152,  	153,  	154,  	155,  	156,  	157,  	158,  	159,
     160,
-	0x0141, // latin capital letter L with stroke
-	0x00D8, // latin capital letter O with stroke
-	0x0110, // latin capital letter D with stroke
-	0x00DE, // latin capital letter thorn
-	0x00C6, // latin capital letter AE
-	0x0152, // latin capital ligature OE
-	0x02B9, // modified letter prime
-	0x00B7, // middle dot
-	0x266D, // music flat sign
-	0x00AE, // registered sign
-	0x00B1, // plus-minus sign
-	0x01A0, // latin capital letter O with horn
-	0x01AF, // latin capital letter U with horn
-	0x02BC, // modifier letter apostrophe
+	/* ansel: 0xA1 => utf-16: */ 0x0141, // latin capital letter L with stroke
+	/* ansel: 0xA2 => utf-16: */ 0x00D8, // latin capital letter O with stroke
+	/* ansel: 0xA3 => utf-16: */ 0x0110, // latin capital letter D with stroke
+	/* ansel: 0xA4 => utf-16: */ 0x00DE, // latin capital letter thorn
+	/* ansel: 0xA5 => utf-16: */ 0x00C6, // latin capital letter AE
+	/* ansel: 0xA6 => utf-16: */ 0x0152, // latin capital ligature OE
+	/* ansel: 0xA7 => utf-16: */ 0x02B9, // modified letter prime
+	/* ansel: 0xA8 => utf-16: */ 0x00B7, // middle dot
+	/* ansel: 0xA9 => utf-16: */ 0x266D, // music flat sign
+	/* ansel: 0xAA => utf-16: */ 0x00AE, // registered sign
+	/* ansel: 0xAB => utf-16: */ 0x00B1, // plus-minus sign
+	/* ansel: 0xAC => utf-16: */ 0x01A0, // latin capital letter O with horn
+	/* ansel: 0xAD => utf-16: */ 0x01AF, // latin capital letter U with horn
+	/* ansel: 0xAE => utf-16: */ 0x02BC, // modifier letter apostrophe
 	175,
-	0x02BB, // modifier letter turned comma
-	0x0142, // latin small letter L with stroke
-	0x00F8, // latin small letter O with stroke
-	0x0111, // latin small letter D with stroke
-	0x00FE, // latin small letter thorn
-	0x00E6, // latin small letter AE
-	0x0153, // latin small ligature OE
-	0x02BA, // modified letter double prime
-	0x0131, // latin small letter dotless i
-	0x00A3, // pound sign
-	0x00F0, // latin small letter eth
+	/* ansel: 0xB0 => utf-16: */ 0x02BB, // modifier letter turned comma
+	/* ansel: 0xB1 => utf-16: */ 0x0142, // latin small letter L with stroke
+	/* ansel: 0xB2 => utf-16: */ 0x00F8, // latin small letter O with stroke
+	/* ansel: 0xB3 => utf-16: */ 0x0111, // latin small letter D with stroke
+	/* ansel: 0xB4 => utf-16: */ 0x00FE, // latin small letter thorn
+	/* ansel: 0xB5 => utf-16: */ 0x00E6, // latin small letter AE
+	/* ansel: 0xB6 => utf-16: */ 0x0153, // latin small ligature OE
+	/* ansel: 0xB7 => utf-16: */ 0x02BA, // modified letter double prime
+	/* ansel: 0xB8 => utf-16: */ 0x0131, // latin small letter dotless i
+	/* ansel: 0xB9 => utf-16: */ 0x00A3, // pound sign
+	/* ansel: 0xBA => utf-16: */ 0x00F0, // latin small letter eth
 	187,
-	0x01A1, // latin small letter O with horn
-	0x01B0, // latin small letter U with horn
+	/* ansel: 0xBC => utf-16: */ 0x01A1, // latin small letter O with horn
+	/* ansel: 0xBD => utf-16: */ 0x01B0, // latin small letter U with horn
 	190,  	191,
-	0x00B0, // degree sign
-	0x2113, // script small L
-	0x2117, // sound recording copyright
-	0x00A9, // copyright sign
-	0x266F, // music sharp sign
-	0x00BF, // inverted question mark
-	0x00A1, // inverted exclamation mark
-	199,  	200,  	201,  	202,  	203,  	204,  	205,  	206,
-	0x00DF, // latin small letter sharp S
+	/* ansel: 0xC0 => utf-16: */ 0x00B0, // degree sign
+	/* ansel: 0xC1 => utf-16: */ 0x2113, // script small L
+	/* ansel: 0xC2 => utf-16: */ 0x2117, // sound recording copyright
+	/* ansel: 0xC3 => utf-16: */ 0x00A9, // copyright sign
+	/* ansel: 0xC4 => utf-16: */ 0x266F, // music sharp sign
+	/* ansel: 0xC5 => utf-16: */ 0x00BF, // inverted question mark
+	/* ansel: 0xC6 => utf-16: */ 0x00A1, // inverted exclamation mark
+	199,
+    200,  	201,  	202,  	203,  	204,  	205,  	206,
+	/* ansel: 0xCF => utf-16: */ 0x00DF, // latin small letter sharp S
 	208,  	209,
     210,  	211,  	212,  	213,  	214,  	215,  	216,  	217,  	218,  	219,
     220,  	221,  	222,  	223,
-	0x0309, // combining hook above
-	0x0300, // combining grave accent
-	0x0301, // combining acute accent
-	0x0302, // combining circumflex accent
-	0x0303, // combining tilde
-	0x0304, // combining macron
-	0x0306, // combining breve
-	0x0307, // combining dot above
-	0x0308, // combining diaeresis
-	0x030C, // combining caron
-	0x030A, // combining ring above
-	0xFE20, // combining ligature left half
-	0xFE21, // combining ligature right half
-	0x0315, // combining comma above right
-	0x030B, // combining double acute accent
-	0x0310, // combining candrabindu
-	0x0327, // combining cedilla
-	0x0328, // combining ogonek
-	0x0323, // combining dot below
-	0x0324, // combining diaeresis below
-	0x0325, // combining ring below
-	0x0333, // combining double low line
-	0x0332, // combining low line
-	0x0326, // combining comma below
-	0x031C, // combining left half ring below
-	0x032E, // combining breve below
-	0xFE22, // combining double tilde left half
-	0xFE23, // combining double tilde right half
+	/* ansel: 0xE0 => utf-16: */ 0x0309, // combining hook above
+	/* ansel: 0xE1 => utf-16: */ 0x0300, // combining grave accent
+	/* ansel: 0xE2 => utf-16: */ 0x0301, // combining acute accent
+	/* ansel: 0xE3 => utf-16: */ 0x0302, // combining circumflex accent
+	/* ansel: 0xE4 => utf-16: */ 0x0303, // combining tilde
+	/* ansel: 0xE5 => utf-16: */ 0x0304, // combining macron
+	/* ansel: 0xE6 => utf-16: */ 0x0306, // combining breve
+	/* ansel: 0xE7 => utf-16: */ 0x0307, // combining dot above
+	/* ansel: 0xE8 => utf-16: */ 0x0308, // combining diaeresis
+	/* ansel: 0xE9 => utf-16: */ 0x030C, // combining caron
+	/* ansel: 0xEA => utf-16: */ 0x030A, // combining ring above
+	/* ansel: 0xEB => utf-16: */ 0xFE20, // combining ligature left half
+	/* ansel: 0xEC => utf-16: */ 0xFE21, // combining ligature right half
+	/* ansel: 0xED => utf-16: */ 0x0315, // combining comma above right
+	/* ansel: 0xEE => utf-16: */ 0x030B, // combining double acute accent
+	/* ansel: 0xEF => utf-16: */ 0x0310, // combining candrabindu
+	/* ansel: 0xF0 => utf-16: */ 0x0327, // combining cedilla
+	/* ansel: 0xF1 => utf-16: */ 0x0328, // combining ogonek
+	/* ansel: 0xF2 => utf-16: */ 0x0323, // combining dot below
+	/* ansel: 0xF3 => utf-16: */ 0x0324, // combining diaeresis below
+	/* ansel: 0xF4 => utf-16: */ 0x0325, // combining ring below
+	/* ansel: 0xF5 => utf-16: */ 0x0333, // combining double low line
+	/* ansel: 0xF6 => utf-16: */ 0x0332, // combining low line
+	/* ansel: 0xF7 => utf-16: */ 0x0326, // combining comma below
+	/* ansel: 0xF8 => utf-16: */ 0x031C, // combining left half ring below
+	/* ansel: 0xF9 => utf-16: */ 0x032E, // combining breve below
+	/* ansel: 0xFA => utf-16: */ 0xFE22, // combining double tilde left half
+	/* ansel: 0xFB => utf-16: */ 0xFE23, // combining double tilde right half
 	252,  	253,
-	0x0313, // combining comma above
+	/* ansel: 0xFE => utf-16: */ 0x0313, // combining comma above
 	255,
 };
 
 static inline NSString * stringFromANSELData(NSData *input) {
-    const char *inBytes = [input bytes];
     int outLen = (int)[input length];
     unichar outBytes[outLen];
     
+    const unsigned char *inBytes = [input bytes];
+    
     for (int i = 0; i <= outLen; i++) {
-        char b = inBytes[i];
+        unsigned char b = inBytes[i];
         outBytes[i] = ansel2utf16[b];
-        //NSLog(@"%d/%d: %c => %C", i, outLen, b, outBytes[i]);
+        //NSLog(@"%d/%d: %c (%d) => (%d) %C", i, outLen, b, b, ansel2utf16[b], outBytes[i]);
     }
     
     NSString *outString = [NSString stringWithCharacters:outBytes length:outLen];
