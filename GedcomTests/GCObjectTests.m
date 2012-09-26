@@ -217,11 +217,11 @@
     
     STAssertEquals([(NSArray *)[error userInfo][NSDetailedErrorsKey] count], (NSUInteger)2, nil);
     
-    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][0] code], GCTooManyValuesError, nil);
-    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][0] localizedDescription], @"Too many values for key languages on submitter", nil);
+    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][0] code], GCTooFewValuesError, nil);
+    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][0] localizedDescription], @"Too few values for key name on submitter", nil);
     
-    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][1] code], GCTooFewValuesError, nil);
-    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][1] localizedDescription], @"Too few values for key name on submitter", nil);
+    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][1] code], GCTooManyValuesError, nil);
+    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][1] localizedDescription], @"Too many values for key languages on submitter", nil);
 }
 
 - (void)testObjectValidation
