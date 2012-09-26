@@ -351,7 +351,9 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
             expandOccurences(occurrencesDicts, subtag);
         }
         
-        _cachedOccurencesDicts = [occurrencesDicts copy];
+        @synchronized (_cachedOccurencesDicts) {
+            _cachedOccurencesDicts = [occurrencesDicts copy];
+        }
     }
     
     NSDictionary *validDict = _cachedOccurencesDicts[tag.name];
@@ -379,7 +381,9 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
             }
         }
         
-        _multipleAllowedCache = [multipleAllowedCache copy];
+        @synchronized (_multipleAllowedCache) {
+            _multipleAllowedCache = [multipleAllowedCache copy];
+        }
     }
     
     BOOL allowed = [_multipleAllowedCache containsObject:tag];
