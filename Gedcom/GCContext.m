@@ -402,6 +402,8 @@ __strong static NSArray *_rootKeys = nil;
         return GCASCIIFileEncoding;
     } else if ([encoding isEqualToString:@"UNICODE"]) {
         return GCUTF16FileEncoding;
+    } else if ([encoding isEqualToString:@"UTF-8"]) {
+        return GCUTF8FileEncoding;
     } else {
         return GCUnknownFileEncoding;
     }
