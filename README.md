@@ -40,6 +40,7 @@ The most important remaining issues, loosely prioritized in order of importance:
 * **Misc**: Handle special cases from spec? (see SOURCE_CITATION -- use callbacks?).
 * **Docs**: Code samples in headers (see GCContext.h for preliminary example).
 * **ANSEL**: Does not support saving to ANSEL, but reading is OK.
+* **Multimedia**: Blob codec.
 * **Unit tests**: Full code coverage.
 
 Additionally there are at times a few minor TODOs scattered around the source files.
@@ -161,6 +162,9 @@ is equivalent to:
 
 ======
 
-Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) and [GEDitCOM's GEDCOM 5.5 Torture Test Files page](http://www.geditcom.com/gedcom.html) -- with two modifications to allged.ged:
-- line 34 has "English" instead of "language".
-- line 322 has a Hebrew date instead of the original Gregorian date.
+Test files used to verify GEDCOM compliance are from [Heiner Eichmann's GEDCOM 5.5 Sample Page](http://www.heiner-eichmann.de/gedcom/gedcom.htm) and [GEDitCOM's GEDCOM 5.5 Torture Test Files page](http://www.geditcom.com/gedcom.html) -- with minor modifications to facilitate testing:
+* allged.ged:
+  - line 34 has "English" instead of "language".
+  - line 322 has a Hebrew date instead of the original Gregorian date.
+* TGC55.ged:
+  - CHAN nodes: uppercased month names & made times fixed width.
