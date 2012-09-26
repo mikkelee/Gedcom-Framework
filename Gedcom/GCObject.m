@@ -173,7 +173,12 @@ __strong static NSDictionary *_defaultColors;
                 [self _internalSetValue:item forKey:key];
             }
         } else {
+            /*
+             Manually firing notifications for to-one properties; they apparently only fire automatically through NSKeyValueNotifyingMutableArray
+             */
+            [self willChangeValueForKey:key];
             [self _internalSetValue:value forKey:key];
+            [self didChangeValueForKey:key];
         }
     } else {
         [super setValue:value forKey:key];

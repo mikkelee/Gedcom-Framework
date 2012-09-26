@@ -53,7 +53,11 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    //NSLog(@"Observed: \tkeypath: %@\n\tobject:%@\n\tchange:%@\n\tcontext: %@", keyPath, object, change, context);
+    //NSLog(@"Observed:\n\tkeypath: %@\n\tobject:%@\n\tchange:%@\n\tcontext: %@", keyPath, object, change, context);
+    
+    if ([keyPath isEqualToString:@"changeInfo"]) {
+        return;
+    }
     
     id old = [NSNull null];
     if ([change valueForKey:NSKeyValueChangeOldKey]) {
@@ -184,6 +188,9 @@
     
     observer.entity = indi;
     
+    indi.sex = [GCGender maleGender];
+    [indi setValue:[GCGender maleGender] forKey:@"sex"];
+    
     [indi.personalNames addObject:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
     [indi.personalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"]];
     
@@ -194,6 +201,7 @@
     
     NSArray *expectedObservations = [NSArray arrayWithObjects:
                                      // NSKeyValueChange : old : new
+                                     @"sex : 1 : <null> : 0 SEX M", // set sex
                                      @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/", // insert name
                                      @"personalNames : 2 : <null> : 0 NAME Jens /Hansen/ Smed", // insert name
                                      @"personalNames : 3 : 0 NAME Jens /Hansen/ : <null>", // remove name
