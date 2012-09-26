@@ -10,7 +10,7 @@
 
 /**
  
- Mutable version of GCNode.
+ Mutable version of GCNode. They are identical except you may change the properties.
  
  */
 @interface GCMutableNode : GCNode

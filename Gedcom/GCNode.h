@@ -12,6 +12,22 @@
  
  Nodes are structures representing Gedcom data as nested objects with accessors for tags, values, xrefs, etc.
  
+ ```
+    // get an array of nodes from a string
+    NSArray *nodes = [GCNode arrayOfNodesFromString:@"0 HEAD\n1 ..."];
+    
+    // find all individuals
+    for (GCNode *node in nodes) {
+        if ([[node gedTag] isEqualToString:@"INDI"]) {
+            // and print their names:
+            for (GCNode *name in node[@"NAME"]) {
+                NSLog(@"name found: %@", name.gedValue);
+            }
+        }
+    }
+ 
+ ```
+ 
  Nodes are immutable, but see also GCMutableNode.
  
  */
