@@ -27,6 +27,7 @@
     Class _cachedObjectClass;
     Class _cachedTargetType;
     NSArray *_cachedAllowedValues;
+    NSArray *_multipleAllowedCache;
 }
 
 #pragma mark Constants
@@ -365,6 +366,29 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
                   ;
 	
     return (GCAllowedOccurrences){min, max};
+}
+
+- (BOOL)allowsMultipleOccurrencesOfSubTag:(GCTag *)tag
+{
+    if (!_multipleAllowedCache) {
+        NSMutableArray *multipleAllowedCache = [NSMutableArray array];
+        
+        for (GCTag *t in self.validSubTags) {
+            if ([self allowedOccurrencesOfSubTag:t].max > 1) {
+                [multipleAllowedCache addObject:t];
+            }
+        }
+        
+        _multipleAllowedCache = [multipleAllowedCache copy];
+    }
+    
+    BOOL allowed = [_multipleAllowedCache containsObject:tag];
+    
+    if (allowed) {
+        return YES;
+    } else {
+        return [self allowedOccurrencesOfSubTag:tag].max > 1; // it's probably custom, let's look it up
+    }
 }
 
 #pragma mark Description

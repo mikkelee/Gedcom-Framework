@@ -101,9 +101,14 @@ __strong static NSDictionary *_defaultColors;
     }
 }
 
-- (GCAllowedOccurrences)allowedOccurrencesPropertyType:(NSString *)type
+- (GCAllowedOccurrences)allowedOccurrencesOfPropertyType:(NSString *)type
 {
     return [_gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
+}
+
+- (BOOL)_allowsMultipleOccurrencesOfPropertyType:(NSString *)type
+{
+    return [_gedTag allowsMultipleOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
 
 - (NSArray *)propertyTypesInGroup:(NSString *)groupName
@@ -128,7 +133,7 @@ __strong static NSDictionary *_defaultColors;
     [property setValue:self forKey:@"primitiveDescribedObject"];
     
     @synchronized(_propertyStore) {
-        if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+        if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
             NSString *key = property.gedTag.pluralName;
             
             if (!_propertyStore[key]) {
@@ -166,7 +171,7 @@ __strong static NSDictionary *_defaultColors;
 - (void)setValue:(id)value forKey:(NSString *)key
 {
     if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
-        if ([self allowedOccurrencesPropertyType:key].max > 1) {
+        if ([self allowedOccurrencesOfPropertyType:key].max > 1) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
             for (id item in value) {
@@ -193,7 +198,7 @@ __strong static NSDictionary *_defaultColors;
         }
     } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
         @synchronized(_propertyStore) {
-            if ([self allowedOccurrencesPropertyType:key].max > 1) {
+            if ([self _allowsMultipleOccurrencesOfPropertyType:key]) {
                 for (GCProperty *property in _propertyStore[key]) {
                     [property setValue:nil forKey:@"primitiveDescribedObject"];
                 }
@@ -347,7 +352,7 @@ __strong static NSDictionary *_defaultColors;
     
     //[self willChangeValueForKey:@"gedcomString"];
     
-    if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+    if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
         [[self mutableArrayValueForKey:property.gedTag.pluralName] addObject:property];
     } else {
         [self setValue:property forKey:property.type];
@@ -366,7 +371,7 @@ __strong static NSDictionary *_defaultColors;
     
     //[self willChangeValueForKey:@"gedcomString"];
     
-    if ([self allowedOccurrencesPropertyType:property.type].max > 1) {
+    if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
         [[self mutableArrayValueForKey:property.gedTag.pluralName] removeObject:property];
     } else {
         [self setNilValueForKey:property.type];
@@ -436,7 +441,7 @@ __strong static NSDictionary *_defaultColors;
         id value = nil;
         
         if ([self.validPropertyTypes containsObject:stringSelector]) {
-            if ([self allowedOccurrencesPropertyType:stringSelector].max > 1) {
+            if ([self allowedOccurrencesOfPropertyType:stringSelector].max > 1) {
                 value = [self mutableArrayValueForKey:stringSelector];
             } else {
                 value = [self valueForKey:stringSelector];
@@ -468,7 +473,7 @@ __strong static NSDictionary *_defaultColors;
     
     @synchronized(_propertyStore) {
         for (NSString *propertyType in self.validPropertyTypes) {
-            if ([self allowedOccurrencesPropertyType:propertyType].max > 1) {
+            if ([self _allowsMultipleOccurrencesOfPropertyType:propertyType]) {
                 [orderedProperties addObjectsFromArray:[_propertyStore valueForKey:propertyType]];
             } else {
                 if ([_propertyStore valueForKey:propertyType]) {
@@ -749,7 +754,7 @@ __strong static NSDictionary *_defaultColors;
         
         NSInteger propertyCount = 0;
         
-        if ([self allowedOccurrencesPropertyType:propertyKey].max > 1) {
+        if ([self allowedOccurrencesOfPropertyType:propertyKey].max > 1) {
             propertyCount = [[self valueForKey:propertyKey] count];
             
             for (id property in [self valueForKey:propertyKey]) {

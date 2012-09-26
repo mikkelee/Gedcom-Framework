@@ -85,6 +85,8 @@ typedef struct {
  */
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
+- (BOOL)allowsMultipleOccurrencesOfSubTag:(GCTag *)tag;
+
 #pragma mark - Objective-C properties -
 #pragma mark Accessing properties
 /// @name Accessing properties

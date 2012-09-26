@@ -44,7 +44,7 @@
  @param type A given type.
  @return A GCAllowedOccurrences struct.
  */
-- (GCAllowedOccurrences)allowedOccurrencesPropertyType:(NSString *)type;
+- (GCAllowedOccurrences)allowedOccurrencesOfPropertyType:(NSString *)type;
 
 /** Returns an array of the names of properties of a certain group, such as an individuals `individualEvent`s.
  
