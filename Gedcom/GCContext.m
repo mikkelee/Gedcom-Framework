@@ -11,6 +11,7 @@
 #import "GCNode.h"
 #import "GCObject.h"
 #import "GCTag.h"
+#import "GCString.h"
 
 #import "GCEntity.h"
 #import "GCHeaderEntity.h"
@@ -30,7 +31,6 @@
 //TODO: merging contexts etc.
 
 @implementation GCContext {
-    GCFileEncoding _encoding;
 	NSMutableDictionary *_xrefToEntityMap;
     NSMutableDictionary *_entityToXrefMap;
 	NSMutableDictionary *_xrefToBlockMap;
@@ -144,13 +144,9 @@ __strong static NSArray *_rootKeys = nil;
     } else if (fileEncoding == GCANSELFileEncoding) {
         NSString *fileString = stringFromANSELData(data);
         
-        _encoding = fileEncoding;
-        
         return [self parseNodes:[GCNode arrayOfNodesFromString:fileString] error:error];
     } else {
         NSString *fileString = [[NSString alloc] initWithData:data encoding:fileEncoding];
-        
-        _encoding = fileEncoding;
         
         return [self parseNodes:[GCNode arrayOfNodesFromString:fileString] error:error];
     }
@@ -164,6 +160,19 @@ __strong static NSArray *_rootKeys = nil;
 - (BOOL)readContentsOfURL:(NSURL *)url error:(NSError **)error
 {
     return [self parseData:[NSData dataWithContentsOfURL:url] error:error];
+}
+
+#pragma mark Saving a context
+
+- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile error:(NSError **)error
+{
+    NSData *dataToWrite = self.gedcomData;
+    
+    NSDataWritingOptions options = 0;
+    
+    options |= useAuxiliaryFile ? NSDataWritingAtomic : 0;
+    
+    return [dataToWrite writeToFile:path options:options error:error];
 }
 
 #pragma mark GCEntity collection accessors
@@ -383,7 +392,40 @@ __strong static NSArray *_rootKeys = nil;
 
 - (GCFileEncoding)fileEncoding
 {
-    return _encoding;
+    NSParameterAssert(_header);
+    
+    NSString *encoding = _header.characterSet.value.gedcomString;
+    
+    if ([encoding isEqualToString:@"ANSEL"]) {
+        return GCANSELFileEncoding;
+    } else if ([encoding isEqualToString:@"ASCII"]) {
+        return GCASCIIFileEncoding;
+    } else if ([encoding isEqualToString:@"UNICODE"]) {
+        return GCUTF16FileEncoding;
+    } else {
+        return GCUnknownFileEncoding;
+    }
+}
+
+- (void)setFileEncoding:(GCFileEncoding)fileEncoding
+{
+    NSParameterAssert(_header);
+    
+    NSParameterAssert(fileEncoding != GCUnknownFileEncoding);
+    
+    NSString *encodingStr;
+    
+    if (fileEncoding == GCANSELFileEncoding) {
+        encodingStr = @"ANSEL";
+    } else if (fileEncoding == GCASCIIFileEncoding) {
+        encodingStr = @"ASCII";
+    } else if (fileEncoding == GCUTF16FileEncoding) {
+        encodingStr = @"UNICODE";
+    } else {
+        NSAssert(false, @"Unhandled file encoding!");
+    }
+    
+    _header.characterSet.value = [GCString valueWithGedcomString:encodingStr];
 }
 
 - (NSArray *)gedcomNodes
@@ -428,6 +470,13 @@ __strong static NSArray *_rootKeys = nil;
     }
     
     return [gedcomStrings componentsJoinedByString:@"\n"];
+}
+
+- (NSData *)gedcomData
+{
+    NSParameterAssert(self.fileEncoding != GCANSELFileEncoding); //TODO not supported yet
+    
+    return [self.gedcomString dataUsingEncoding:self.fileEncoding];
 }
 
 #pragma mark Accessing entities

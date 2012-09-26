@@ -27,7 +27,7 @@ typedef enum : NSUInteger {
 
 /**
  
- A context encompasses a single file; all entities (that is, individuals, families, etc) in the file will belong to the same context. Generally you'll keep a reference to the context in your Document.
+ A context encompasses a single file; all entities (that is, individuals, families, etc) in the file will belong to the same context. Generally you'll keep a reference to the context in your Document as it is needed when creating entities.
  
  ```
     // create a new context
@@ -64,51 +64,53 @@ typedef enum : NSUInteger {
 #pragma mark Parsing nodes
 /// @name Parsing nodes
 
-//TODO docs...
 /** Causes the receiver to parse the nodes.
  
  Will throw an exception if the receiver already contains entities.
  
  @param nodes A collection of nodes.
+ @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
+ @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
 - (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error;
 
-/** Causes the receiver to parse the nodes.
+/** Causes the receiver to determine the encoding of the text contained in the data. It will then create an array of nodes and use parseNodes: to parse them. The determined encoding will be available on the fileEncoding property.
  
  Will throw an exception if the receiver already contains entities.
  
  @param nodes A collection of nodes.
+ @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
+ @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
 - (BOOL)parseData:(NSData *)data error:(NSError **)error;
 
-/** Causes the receiver to parse the contents of the file.
- 
- Will throw an exception if the receiver already contains entities.
- 
- If parsing succeeds, 
- 
+/** Causes the receiver to parse the contents of the file into an NSData object and pass it to parseData:error:.
+  
  @param nodes A collection of nodes.
+ @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
+ @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
 - (BOOL)readContentsOfFile:(NSString *)path error:(NSError **)error;
 
-/** Causes the receiver to parse the nodes.
- 
- Will throw an exception if the receiver already contains entities.
+/** Causes the receiver to read the contents of the URL into an NSData object and pass it to parseData:error:.
  
  @param nodes A collection of nodes.
+ @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
+ @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
 - (BOOL)readContentsOfURL:(NSURL *)url error:(NSError **)error;
 
 #pragma mark Saving a context
 
-// TODO
+- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile error:(NSError **)error;
 
 #pragma mark - Objective-C properties -
 
 #pragma mark Accessing properties
 /// @name Accessing properties
 
-@property (readonly) GCFileEncoding fileEncoding;
+/// The encoding of the file as specified in the header. Modifying this will alter the header.
+@property GCFileEncoding fileEncoding;
 
 /// The name of the receiver.
 @property (readonly) NSString *name;
@@ -160,6 +162,9 @@ typedef enum : NSUInteger {
 
 /// The receiver as a Gedcom string.
 @property (readonly) NSString *gedcomString;
+
+/// The receiver's gedcomString as an NSData object using the encoding from fileEncoding
+@property (readonly) NSData *gedcomData;
 
 @end
 
