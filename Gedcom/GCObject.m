@@ -45,12 +45,14 @@ __strong static NSDictionary *_defaultColors;
     };
 }
 
+//COV_NF_START
 - (id)init
 {
     NSLog(@"You must use -initWithType: to initialize!");
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
+//COV_NF_END
 
 - (id)initWithType:(NSString *)type
 {
