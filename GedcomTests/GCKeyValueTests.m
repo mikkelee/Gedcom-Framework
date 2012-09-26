@@ -87,11 +87,11 @@
         return;
     }
     
-    NSArray *observation = [NSArray arrayWithObjects:keyPath,
+    NSArray *observation = @[keyPath,
                             [change valueForKey:NSKeyValueChangeKindKey], 
                             old, 
-                            new, 
-                            nil];
+                            new
+                            ];
     NSString *observationString = [observation componentsJoinedByString:@" : "];
     [_observations addObject:observationString];
 }
