@@ -39,4 +39,13 @@
     STAssertEqualObjects([a displayString], @"Fuglafjør∂ur, Eysturoy, Eysturoyar sýsla, Færøerne", nil);
 }
 
+- (void)testCopying
+{
+    GCPlacestring *a = [GCPlacestring valueWithGedcomString:@"Fuglafjør∂ur, Eysturoy, Eysturoyar sýsla, Færøerne"];
+    
+    GCPlacestring *b = [a copy];
+    
+    STAssertEquals(a, b, nil);
+}
+
 @end

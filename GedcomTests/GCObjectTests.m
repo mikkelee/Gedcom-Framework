@@ -258,4 +258,17 @@
     STAssertNil(name.describedObject, nil);
 }
 
+- (void)testLocalization
+{
+	GCContext *ctx = [GCContext context];
+    
+    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    
+    STAssertEqualObjects(indi.localizedType, @"Individual", nil);
+    
+    GCAncestralFileNumberAttribute *afn = [GCAncestralFileNumberAttribute ancestralFileNumber];
+    
+    STAssertEqualObjects(afn.localizedType, @"Ancestral File number", nil);
+}
+
 @end
