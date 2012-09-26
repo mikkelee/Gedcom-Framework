@@ -37,8 +37,8 @@ typedef enum : NSUInteger {
     ctx.delegate = ...;
  
     // read a file
-    NSError *err = nil;
-    BOOL readingSucceeded = [ctx readContentsOfFile:@"/path/to/file.ged" error:&err];
+    NSError *readErr = nil;
+    BOOL readingSucceeded = [ctx readContentsOfFile:@"/path/to/file.ged" error:&readErr];
  
     if (!readingSucceeded) {
         // handle error
@@ -46,7 +46,14 @@ typedef enum : NSUInteger {
     
     // work on context, create/modify/delete entities & properties
     
-    // TODO save the context back out
+    // save the context back out
+ 
+    NSError *writeErr = nil;
+    BOOL writingSucceeded = [ctx writeToFile:@"/path..." atomically:YES error:&writeErr];
+     
+     if (!writingSucceeded) {
+         // handle error
+     }
  ```
  
  */
