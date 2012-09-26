@@ -49,4 +49,16 @@
 							  subNodes:self.subNodes];
 }
 
+@dynamic headerSource;
+@dynamic destinations;
+@dynamic headerDate;
+@dynamic submitterReference;
+@dynamic submissionReferences;
+@dynamic file;
+@dynamic copyright;
+@dynamic gedcom;
+@dynamic characterSet;
+@dynamic language;
+@dynamic noteEmbedded;
+
 @end
