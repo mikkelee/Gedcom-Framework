@@ -290,9 +290,12 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
 
 + (void)initialize
 {
+    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     _sharedDateParser = [[self alloc] init];
     _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [_gregorianCalendar setTimeZone:utc];
     _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+    [_hebrewCalendar setTimeZone:utc];
     _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
 }
 

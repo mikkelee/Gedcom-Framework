@@ -356,15 +356,12 @@
 
 @implementation GCPlaceholderDate
 
-static NSCalendar *_gregorianCalendar = nil;
-
 + (id)allocWithZone:(NSZone *)zone
 {
     static dispatch_once_t predDate = 0;
     __strong static id _sharedDatePlaceholder = nil;
     dispatch_once(&predDate, ^{
         _sharedDatePlaceholder = [super allocWithZone:zone];
-        _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     });
     return _sharedDatePlaceholder;
 }
@@ -461,7 +458,10 @@ static NSCalendar *_gregorianCalendar = nil;
 
 - (id)initWithDate:(NSDate *)date
 {
+    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    [calendar setTimeZone:utc];
     
     NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                   fromDate:date];
@@ -577,8 +577,6 @@ static NSCalendar *_gregorianCalendar = nil;
     [ageComponents setTimeZone:utc];
     
     NSDate *result = [self.calendar dateByAddingComponents:ageComponents toDate:theDate options:0];
-    
-    //result = [result dateByAddingTimeInterval:-[utc daylightSavingTimeOffsetForDate:result]]; // NO to daylight savings time
     
     return [GCDate dateWithDate:result];
 }

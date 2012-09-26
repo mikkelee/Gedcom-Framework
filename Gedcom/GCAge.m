@@ -131,6 +131,8 @@ NSString * const GCAgeQualifier_toString[] = {
     
     GCAgeQualifier qualifier = GCAgeNoQualifier;
     
+    [ageComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    
     if ([self.keyword isEqualToString:@"CHILD"]) {
         [ageComponents setYear:8];
         qualifier = GCAgeLessThan;
@@ -199,6 +201,8 @@ NSString * const GCAgeQualifier_toString[] = {
 {
 	GCSimpleAge *age = [[GCSimpleAge alloc] init];
 	
+    [c setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    
 	age.ageComponents = c;
     age.qualifier = q;
 	

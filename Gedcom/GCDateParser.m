@@ -2194,9 +2194,12 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
 
 + (void)initialize
 {
+    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     _sharedDateParser = [[self alloc] init];
     _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [_gregorianCalendar setTimeZone:utc];
     _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
+    [_hebrewCalendar setTimeZone:utc];
     _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
 }
 
@@ -2254,14 +2257,14 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         const char *eof = pe;
         
         
-#line 2258 "GCDateParser.m"
+#line 2261 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 353 "GCDateParser.rl"
+#line 356 "GCDateParser.rl"
         
-#line 2265 "GCDateParser.m"
+#line 2268 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2467,7 +2470,7 @@ _match:
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2471 "GCDateParser.m"
+#line 2474 "GCDateParser.m"
 		}
 	}
 
@@ -2585,7 +2588,7 @@ _again:
 		finished = YES;
 	}
 	break;
-#line 2589 "GCDateParser.m"
+#line 2592 "GCDateParser.m"
 		}
 	}
 	}
@@ -2593,7 +2596,7 @@ _again:
 	_out: {}
 	}
 
-#line 354 "GCDateParser.rl"
+#line 357 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;
