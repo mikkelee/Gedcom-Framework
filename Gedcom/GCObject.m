@@ -381,7 +381,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
-    NSLog(@"respondsToSelector: %@", NSStringFromSelector(aSelector));
+    NSLog(@"GCObject respondsToSelector: %@", NSStringFromSelector(aSelector));
     
     return [super respondsToSelector:aSelector];
 }
