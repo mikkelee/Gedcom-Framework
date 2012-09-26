@@ -524,7 +524,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"[GCNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", self.gedTag, self.xref, self.gedValue, self.subNodes];
+	return [NSString stringWithFormat:@"<%@: %p> (tag: %@ xref: %@ value: %@) subNodes: %@", [self className], self, self.gedTag, self.xref, self.gedValue, self.subNodes];
 }
 //COV_NF_END
 
