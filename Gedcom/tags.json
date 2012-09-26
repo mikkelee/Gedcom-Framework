@@ -21,6 +21,7 @@
                          { "name": "gedcom", "min": 1, "max": 1 },
                          { "name": "characterSet", "min": 1, "max": 1 },
                          { "name": "language", "min": 0, "max": 1 },
+                         { "name": "placeFormatSpecifier", "min": 0, "max": 1 },
                          { "name": "noteEmbedded", "min": 0, "max": 1 }
                          ]
 	},
@@ -53,8 +54,8 @@
                          { "name": "generationsOfAncestors", "min": 0, "max": 1 },
                          { "name": "generationsOfDescendants", "min": 0, "max": 1 },
                          { "name": "ordinanceFlag", "min": 0, "max": 1 },
-                         { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
+                         { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
                          ]
 	},
@@ -67,12 +68,13 @@
                          { "name": "wife", "min": 0, "max": 1 },
                          { "name": "child", "min": 0, "max": "M" },
                          { "name": "numberOfChildren", "min": 0, "max": 1 },
-                         { "name": "submissionReference", "min": 0, "max": "M" },
+                         { "name": "submitterReference", "min": 0, "max": "M" },
                          { "name": "lDSSealingSpouse", "min": 0, "max": "M" },
                          { "groupName": "@source" },
                          { "groupName": "@multimedia" },
                          { "groupName": "@note" },
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
+                         { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
                          ]
 	},
@@ -88,7 +90,7 @@
                          { "groupName": "@individualLDSOrdinance" },
                          { "name": "childInFamily", "min": 0, "max": "M" },
                          { "name": "spouseInFamily", "min": 0, "max": "M" },
-                         { "name": "submissionReference", "min": 0, "max": "M" },
+                         { "name": "submitterReference", "min": 0, "max": "M" },
                          { "name": "association", "min": 0, "max": "M" },
                          { "name": "alias", "min": 0, "max": "M" },
                          { "name": "ancestorInterest", "min": 0, "max": "M" },
@@ -96,7 +98,10 @@
                          { "groupName": "@source" },
                          { "groupName": "@multimedia" },
                          { "groupName": "@note" },
+                         { "name": "recordFileNumber", "min": 0, "max": "M" },
+                         { "name": "ancestralFileNumber", "min": 0, "max": "M" },
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
+                         { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
                          ]
 	},
@@ -104,10 +109,12 @@
 		"code": "OBJE",
 		"objectType": "entity",
 		"validSubTags": [
-                         { "name": "format", "min": 1, "max": 1 },
+                         { "name": "multimediaFormat", "min": 1, "max": 1 },
                          { "name": "title", "min": 0, "max": 1 },
                          { "groupName": "@note" },
+                         { "name": "binaryObject", "min": 0, "max": 1 },
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
+                         { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
                          ]
 	},
@@ -164,6 +171,7 @@
                          { "name": "recordFileNumber", "min": 0, "max": 1 },
                          { "name": "ancestralFileNumber", "min": 0, "max": 1 },
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
+                         { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
                          ]
 	},
@@ -217,6 +225,20 @@
 		"validSubTags": [
                          { "name": "adoptedByWhichParent", "min": 0, "max": 1 }
                          ]
+	},
+	
+	"sealedToFamily": {
+		"code": "FAMC",
+		"objectType": "relationship",
+		"target": "family",
+		"plural": "sealedToFamilies"
+	},
+	
+	"bornToFamily": {
+		"code": "FAMC",
+		"objectType": "relationship",
+		"target": "family",
+		"plural": "bornToFamilies"
 	},
     
 	"husbandDetail": {
@@ -357,6 +379,7 @@
                      { "name": "address", "min": 0, "max": 1 },
                      { "name": "phoneNumber", "min": 0, "max": 1 },
                      { "name": "age", "min": 0, "max": 1 },
+                     { "name": "responsibleAgency", "min": 0, "max": 1 },
                      { "name": "cause", "min": 0, "max": 1 },
                      { "groupName": "@source" },
                      { "groupName": "@multimedia" },
@@ -426,6 +449,7 @@
 		"validSubTags": [
                          { "name": "page", "min": 0, "max": 1 },
                          { "name": "data", "min": 0, "max": 1 },
+                         { "name": "eventCited", "min": 0, "max": 1 },
                          { "name": "qualityOfData", "min": 0, "max": 1 },
                          { "groupName": "@multimedia" },
                          { "groupName": "@note" }
@@ -498,7 +522,7 @@
 		"objectType": "attribute",
 		"valueType": "string",
 		"validSubTags": [
-                         { "name": "format", "min": 1, "max": 1 },
+                         { "name": "multimediaFormat", "min": 1, "max": 1 },
                          { "name": "title", "min": 0, "max": 1 },
                          { "name": "file", "min": 0, "max": 1 },
                          { "groupName": "@note" }
@@ -631,7 +655,7 @@
 		"code": "BIRT",
 		"objectType": "attribute",
 		"validSubTags": [
-                         { "name": "childInFamily", "min": 0, "max": 1 }
+                         { "name": "bornToFamily", "min": 0, "max": 1 }
                          ]
 	},
 	"blessing": {
@@ -830,6 +854,15 @@
                          { "name": "place", "min": 0, "max": 1 }
                          ]
 	},
+	"eventCited": {
+		"code": "EVEN",
+		"objectType": "attribute",
+		"valueType": "string",
+        "allowedValues": [ "ANUL", "CENS", "DIV", "DIVF", "ENGA", "MARR", "MARB", "MARC", "MARL", "MARS", "EVEN", "ADOP", "BIRT", "BAPM", "BARM", "BASM", "BLES", "BURI", "CENS", "CHR", "CHRA", "CONF", "CREM", "DEAT", "EMIG", "FCOM", "GRAD", "IMMI", "NATU", "ORDN", "RETI", "PROB", "WILL", "EVEN", "CAST", "EDUC", "NATI", "OCCU", "PROP", "RELI", "RESI", "TITL" ],
+		"validSubTags": [
+                         { "name": "role", "min": 0, "max": 1 }
+                         ]
+	},
 	"familyFile": {
 		"code": "FAMF",
 		"objectType": "attribute",
@@ -844,11 +877,24 @@
 		"code": "FCOM",
 		"objectType": "attribute"
 	},
-	"format": {
+	"multimediaFormat": {
 		"code": "FORM",
 		"objectType": "attribute",
 		"valueType": "string",
         "allowedValues": [ "bmp", "gif", "jpeg", "ole", "pcx", "tiff", "wav" ]
+	},
+	"placeFormatSpecifier": {
+		"code": "PLAC",
+		"objectType": "attribute",
+		"valueType": "string",
+		"validSubTags": [
+                         { "name": "placeFormat", "min": 1, "max": 1 }
+                         ]
+	},
+	"placeFormat": {
+		"code": "FORM",
+		"objectType": "attribute",
+		"valueType": "list"
 	},
 	"gedcomFormat": {
 		"code": "FORM",
@@ -979,7 +1025,12 @@
 	"place": {
 		"code": "PLAC",
 		"objectType": "attribute",
-		"valueType": "placestring"
+		"valueType": "placestring",
+		"validSubTags": [
+                         { "name": "placeFormat", "min": 0, "max": 1 },
+                         { "groupName": "@source" },
+                         { "groupName": "@note" }
+                         ]
 	},
 	"postalCode": {
 		"code": "POST",
@@ -1060,7 +1111,8 @@
 		"objectType": "attribute",
 		"valueType": "string",
         "validSubTags": [
-                         { "name": "lDSSealingChildStatus", "min": 0, "max": 1 }
+                         { "name": "lDSSealingChildStatus", "min": 0, "max": 1 },
+                         { "name": "sealedToFamily", "min": 1, "max": 1 }
                          ]
 	},
 	"lDSSealingSpouse": {
