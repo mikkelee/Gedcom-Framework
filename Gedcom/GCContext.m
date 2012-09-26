@@ -474,9 +474,12 @@ __strong static NSArray *_rootKeys = nil;
 
 - (NSData *)gedcomData
 {
-    NSParameterAssert(self.fileEncoding != GCANSELFileEncoding); //TODO not supported yet
+    GCFileEncoding useEncoding = self.fileEncoding;
     
-    return [self.gedcomString dataUsingEncoding:self.fileEncoding];
+    NSParameterAssert(useEncoding != GCUnknownFileEncoding);
+    NSParameterAssert(useEncoding != GCANSELFileEncoding); //TODO not supported yet
+    
+    return [self.gedcomString dataUsingEncoding:useEncoding];
 }
 
 #pragma mark Accessing entities
