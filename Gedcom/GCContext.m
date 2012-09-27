@@ -478,7 +478,7 @@ __strong static NSArray *_rootKeys = nil;
     GCFileEncoding useEncoding = self.fileEncoding;
     
     NSParameterAssert(useEncoding != GCUnknownFileEncoding);
-    NSParameterAssert(useEncoding != GCANSELFileEncoding); //TODO not supported yet
+    NSParameterAssert(useEncoding != GCANSELFileEncoding);
     
     return [self.gedcomString dataUsingEncoding:useEncoding];
 }
