@@ -92,6 +92,8 @@
     
     GCEntity *object = [GCEntity entityWithGedcomNode:node inContext:ctx];
     
+    STAssertEqualObjects([node gedcomString], [object gedcomString], nil);
+    
     STAssertEqualObjects([object gedcomString], 
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
