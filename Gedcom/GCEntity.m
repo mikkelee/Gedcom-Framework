@@ -25,6 +25,7 @@
 @interface GCEntity ()
 
 @property (nonatomic) NSDate *modificationDate;
+@property GCChangeInfoAttribute *changeInfo;
 
 @end
 
@@ -167,19 +168,16 @@
 
 - (NSDate *)modificationDate
 {
-    return self[@"changeInfo"][@"modificationDate"];
+    return self.changeInfo.modificationDate;
 }
 
 - (void)setModificationDate:(NSDate *)modificationDate
 {
-    GCChangeInfoAttribute *changeInfo = self[@"changeInfo"];
-    
-    if (!changeInfo) {
-        changeInfo = [[GCChangeInfoAttribute alloc] init];
-        self[@"changeInfo"] = changeInfo;
+    if (!self.changeInfo) {
+        self.changeInfo = [[GCChangeInfoAttribute alloc] init];
     }
     
-    [changeInfo setValue:modificationDate forKey:@"modificationDate"];
+    [self.changeInfo setValue:modificationDate forKey:@"modificationDate"];
 }
 
 - (void)didChangeValueForKey:(NSString *)key
@@ -200,4 +198,6 @@
     [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
 }
 
+
+@dynamic changeInfo;
 @end
