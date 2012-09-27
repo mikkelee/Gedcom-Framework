@@ -286,7 +286,7 @@
 		3ED92D421563D78C00E53E47 /* GCContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContextDelegate.h; sourceTree = "<group>"; };
 		3EDBBE5F15F7EE15008C1E50 /* GCObjects_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjects_generated.h; sourceTree = "<group>"; };
 		3EDBBE6015F7EE15008C1E50 /* GCObjects_generated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjects_generated.m; sourceTree = "<group>"; };
-		3EDBBE6115F7EE15008C1E50 /* tags.py */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = tags.py; sourceTree = "<group>"; usesTabs = 1; };
+		3EDBBE6115F7EE15008C1E50 /* tags.py */ = {isa = PBXFileReference; explicitFileType = text.script.python; fileEncoding = 4; path = tags.py; sourceTree = "<group>"; usesTabs = 1; };
 		3EDD4113156D022200002352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Values.strings; sourceTree = "<group>"; };
 		3EDD4116156D8EE200002352 /* GCPlacestring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlacestring.h; sourceTree = "<group>"; };
 		3EDD4117156D8EE200002352 /* GCPlacestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlacestring.m; sourceTree = "<group>"; };

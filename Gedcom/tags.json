@@ -23,7 +23,8 @@
                          { "name": "language", "min": 0, "max": 1 },
                          { "name": "placeFormatSpecifier", "min": 0, "max": 1 },
                          { "name": "noteEmbedded", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": "The header structure provides information about the entire transmission. The headerSource identifies which system sent the data. The destination identifies the intended receiving system."
 	},
     
 	"@record": {
@@ -58,7 +59,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": "The sending system uses a submission record to send instructions and information to the receiving system."
 	},
 	"family": {
 		"code": "FAM",
@@ -78,7 +80,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": "The family record is used to record marriages, common law marriages, and family unions caused by two people becoming the parents of a child."
 	},
 	"individual": {
 		"code": "INDI",
@@ -106,7 +109,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": "The individual record is a compilation of facts, known or discovered, about an individual. Sometimes these facts are from different sources. This form allows documentation of the source where each of the facts were discovered."
 	},
 	"multimedia": {
 		"code": "OBJE",
@@ -120,7 +124,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": ""
 	},
 	"note": {
 		"code": "NOTE",
@@ -132,7 +137,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": ""
 	},
 	"repository": {
 		"code": "REPO",
@@ -146,7 +152,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": ""
 	},
 	"source": {
 		"code": "SOUR",
@@ -165,7 +172,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": 1 },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": "Source records are used to provide a bibliographic description of the source cited."
 	},
 	"submitter": {
 		"code": "SUBM",
@@ -182,7 +190,8 @@
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },
                          { "name": "recordIdNumber", "min": 0, "max": 1 },
                          { "name": "changeInfo", "min": 0, "max": 1 }
-                         ]
+                         ],
+        "doc": "The submitter record identifies an individual or organization that contributed information contained in the GEDCOM transmission. All records in the transmission are assumed to be submitted by the SUBMITTER referenced in the HEADer, unless a SUBMitter reference inside a specific record points at a different SUBMITTER record."
 	},
     
 	"husband": {
