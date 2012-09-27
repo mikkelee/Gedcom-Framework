@@ -44,8 +44,6 @@
 		3E14EDCB15230DAF00080364 /* GCContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14EDC915230DAE00080364 /* GCContext.m */; };
 		3E17B4B216014180009D2CCB /* GCDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */; };
 		3E17B4B61603F254009D2CCB /* GCHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4B51603F254009D2CCB /* GCHelperTests.m */; };
-		3E17B4BB16068FC4009D2CCB /* GCNoteEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E17B4B916068FC4009D2CCB /* GCNoteEntity.h */; };
-		3E17B4BC16068FC4009D2CCB /* GCNoteEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4BA16068FC4009D2CCB /* GCNoteEntity.m */; };
 		3E1C3E6A151C319C005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E72151C319C005E09E1 /* InfoPlist.strings */; };
 		3E1C3E80151C319D005E09E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */; };
@@ -213,8 +211,6 @@
 		3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDelegateTests.m; sourceTree = "<group>"; };
 		3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCContext_internal.h; sourceTree = "<group>"; };
 		3E17B4B51603F254009D2CCB /* GCHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelperTests.m; sourceTree = "<group>"; };
-		3E17B4B916068FC4009D2CCB /* GCNoteEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCNoteEntity.h; sourceTree = "<group>"; };
-		3E17B4BA16068FC4009D2CCB /* GCNoteEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCNoteEntity.m; sourceTree = "<group>"; };
 		3E17B4BD1606BF55009D2CCB /* GCDateParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDateParser.rl; sourceTree = "<group>"; };
 		3E1C3E66151C319C005E09E1 /* Gedcom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gedcom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1C3E69151C319C005E09E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -394,8 +390,6 @@
 			children = (
 				3E252F0D1523915900BAFCB1 /* GCHeaderEntity.h */,
 				3E252F0E1523915900BAFCB1 /* GCHeaderEntity.m */,
-				3E17B4B916068FC4009D2CCB /* GCNoteEntity.h */,
-				3E17B4BA16068FC4009D2CCB /* GCNoteEntity.m */,
 				3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */,
 				3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */,
 				3E81B76B1607DAA70028F3C1 /* Custom tag subclasses */,
@@ -700,7 +694,6 @@
 				3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */,
 				3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */,
 				3E09D19315F9816900BAA69E /* GCDate_internal.h in Headers */,
-				3E17B4BB16068FC4009D2CCB /* GCNoteEntity.h in Headers */,
 				3E02E7B81607D968008728D9 /* GCCustomEntity.h in Headers */,
 				3E81B7651607DA630028F3C1 /* GCCustomAttribute.h in Headers */,
 				3E81B7691607DA9D0028F3C1 /* GCCustomRelationship.h in Headers */,
@@ -947,7 +940,6 @@
 				3EDBBE6315F7EE15008C1E50 /* GCObjects_generated.m in Sources */,
 				3E75836415F8DD7F00A9B096 /* GCAgeParser.m in Sources */,
 				3E75836A15F8DF4800A9B096 /* GCDateParser.m in Sources */,
-				3E17B4BC16068FC4009D2CCB /* GCNoteEntity.m in Sources */,
 				3E02E7B91607D968008728D9 /* GCCustomEntity.m in Sources */,
 				3E81B7661607DA630028F3C1 /* GCCustomAttribute.m in Sources */,
 				3E81B76A1607DA9D0028F3C1 /* GCCustomRelationship.m in Sources */,

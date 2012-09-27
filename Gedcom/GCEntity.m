@@ -14,6 +14,8 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
+#import "GCString.h"
+
 #import "GCChangeInfoAttribute.h"
 
 #import "GCContext_internal.h"
@@ -64,9 +66,13 @@
 	
 	entity->_isBuildingFromGedcom = YES;
     
-	if ([node xref])
-		[context _setXref:[node xref] forEntity:entity];
+	if (node.xref)
+		[context _setXref:node.xref forEntity:entity];
 	
+    if (node.gedValue)
+        entity.value = [GCString valueWithGedcomString:node.gedValue];
+
+    
 	[entity addPropertiesWithGedcomNodes:node.subNodes];
     
 	entity->_isBuildingFromGedcom = NO;
@@ -129,7 +135,7 @@
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:nil
+								 value:self.value.gedcomString
 								  xref:[self.context _xrefForEntity:self]
 							  subNodes:self.subNodes];
 }

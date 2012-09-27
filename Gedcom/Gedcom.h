@@ -21,7 +21,6 @@
 #import "GCRelationship.h"
 
 #import "GCHeaderEntity.h"
-#import "GCNoteEntity.h"
 #import "GCObjects_generated.h"
 
 #import "GCValue.h"

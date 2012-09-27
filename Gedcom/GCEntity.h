@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GCObject.h"
 
+@class GCString;
+
 /**
  
  Entities are objects such as an individual or a family.
@@ -52,5 +54,8 @@
 
 /// The last time the entity was modified. Will access the entity's GCChangeInfoAttribute to obtain the info. Note that every KVC-compliant change made to the entity will cause the change info to update.
 @property (readonly, nonatomic) NSDate *modificationDate;
+
+/// The text value of the entity; most entities have no use for this. //TODO private header?
+@property GCString *value;
 
 @end
