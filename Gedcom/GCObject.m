@@ -171,7 +171,7 @@ __strong static NSDictionary *_defaultColors;
 - (void)setValue:(id)value forKey:(NSString *)key
 {
     if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
-        if ([self allowedOccurrencesOfPropertyType:key].max > 1) {
+        if ([self _allowsMultipleOccurrencesOfPropertyType:key]) {
             NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
             [self setNilValueForKey:key]; //clean first
             for (id item in value) {
@@ -441,7 +441,7 @@ __strong static NSDictionary *_defaultColors;
         id value = nil;
         
         if ([self.validPropertyTypes containsObject:stringSelector]) {
-            if ([self allowedOccurrencesOfPropertyType:stringSelector].max > 1) {
+            if ([self _allowsMultipleOccurrencesOfPropertyType:stringSelector]) {
                 value = [self mutableArrayValueForKey:stringSelector];
             } else {
                 value = [self valueForKey:stringSelector];
@@ -754,7 +754,7 @@ __strong static NSDictionary *_defaultColors;
         
         NSInteger propertyCount = 0;
         
-        if ([self allowedOccurrencesOfPropertyType:propertyKey].max > 1) {
+        if ([self _allowsMultipleOccurrencesOfPropertyType:propertyKey]) {
             propertyCount = [[self valueForKey:propertyKey] count];
             
             for (id property in [self valueForKey:propertyKey]) {

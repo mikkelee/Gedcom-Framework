@@ -28,7 +28,9 @@
     self = [super initForObject:object withGedcomNode:node];
     
     if (self) {
-        [self setValueWithGedcomString:node.gedValue];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self setValueWithGedcomString:node.gedValue];
+        });
     }
     
     return self;
