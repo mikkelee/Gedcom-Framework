@@ -236,15 +236,17 @@ __strong static NSArray *_rootKeys = nil;
 {
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         NSParameterAssert(!_header);
-        _header = (GCHeaderEntity *)entity;
+        self.header = (GCHeaderEntity *)entity;
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
-        _submission = (GCSubmissionEntity *)entity;
+        self.submission = (GCSubmissionEntity *)entity;
     } else if ([entity isKindOfClass:[GCEntity class]]) {
         @synchronized (_entityStore) {
             if (!_entityStore[entity.type]) {
                 _entityStore[entity.type] = [NSMutableArray array];
             }
+            [self willChangeValueForKey:entity.type];
             [_entityStore[entity.type] addObject:entity];
+            [self didChangeValueForKey:entity.type];
         }
     } else {
         NSAssert(NO, @"Unknown class: %@", entity);
@@ -263,15 +265,17 @@ __strong static NSArray *_rootKeys = nil;
     
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         if (_header == entity) {
-            _header = nil;
+            self.header = nil;
         }
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
         if (_submission == entity) {
-            _submission = nil;
+            self.submission = nil;
         }
     } else if ([entity isKindOfClass:[GCEntity class]]) {
         @synchronized (_entityStore) {
+            [self willChangeValueForKey:entity.type];
             [_entityStore[entity.type] removeObject:entity];
+            [self didChangeValueForKey:entity.type];
         }
     } else {
         NSAssert(NO, @"Unknown class: %@", entity);
@@ -487,37 +491,37 @@ __strong static NSArray *_rootKeys = nil;
 
 - (id)families
 {
-	return _entityStore[@"family"];
+	return [_entityStore[@"family"] copy];
 }
 
 - (id)individuals
 {
-	return _entityStore[@"individual"];
+	return [_entityStore[@"individual"] copy];
 }
 
 - (id)multimediaObjects
 {
-	return _entityStore[@"multimedia"];
+	return [_entityStore[@"multimedia"] copy];
 }
 
 - (id)notes
 {
-	return _entityStore[@"note"];
+	return [_entityStore[@"note"] copy];
 }
 
 - (id)repositories
 {
-	return _entityStore[@"repository"];
+	return [_entityStore[@"repository"] copy];
 }
 
 - (id)sources
 {
-	return _entityStore[@"source"];
+	return [_entityStore[@"source"] copy];
 }
 
 - (id)submitters
 {
-	return _entityStore[@"submitter"];
+	return [_entityStore[@"submitter"] copy];
 }
 
 - (NSMutableSet *)allEntities

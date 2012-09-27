@@ -141,25 +141,25 @@ typedef enum : NSUInteger {
 @property GCSubmissionEntity *submission;
 
 /// An ordered collection of the receiver's families.
-@property (readonly) NSMutableArray *families;
+@property (readonly) NSArray *families;
 
 /// An ordered collection of the receiver's individuals.
-@property (readonly) NSMutableArray *individuals;
+@property (readonly) NSArray *individuals;
 
 /// An ordered collection of the receiver's multimedia objects.
-@property (readonly) NSMutableArray *multimediaObjects;
+@property (readonly) NSArray *multimediaObjects;
 
 /// An ordered collection of the receiver's notes.
-@property (readonly) NSMutableArray *notes;
+@property (readonly) NSArray *notes;
 
 /// An ordered collection of the receiver's repositories.
-@property (readonly) NSMutableArray *repositories;
+@property (readonly) NSArray *repositories;
 
 /// An ordered collection of the receiver's sources.
-@property (readonly) NSMutableArray *sources;
+@property (readonly) NSArray *sources;
 
 /// An ordered collection of the receiver's submitters.
-@property (readonly) NSMutableArray *submitters;
+@property (readonly) NSArray *submitters;
 
 #pragma mark Accessing Gedcom output
 /// @name Accessing Gedcom output
