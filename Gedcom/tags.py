@@ -4,9 +4,7 @@ import json
 from string import Template
 
 specialClasses = [ #don't generate classes for these
-	'GCHeaderEntity',
 	'GCTrailerEntity',
-#	'GCNoteEntity',
 	'GCChangeInfoAttribute'
 ];
 

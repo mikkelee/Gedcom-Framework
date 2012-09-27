@@ -12,7 +12,6 @@
 #import "GCTag.h"
 
 #import "GCContext.h"
-#import "GCHeaderEntity.h"
 
 #import "GCObject.h"
 #import "GCEntity.h"
@@ -20,7 +19,6 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCHeaderEntity.h"
 #import "GCObjects_generated.h"
 
 #import "GCValue.h"

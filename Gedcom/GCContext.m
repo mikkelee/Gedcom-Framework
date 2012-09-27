@@ -14,7 +14,6 @@
 #import "GCString.h"
 
 #import "GCEntity.h"
-#import "GCHeaderEntity.h"
 
 #import "GCObjects_generated.h"
 

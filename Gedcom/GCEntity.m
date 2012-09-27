@@ -61,16 +61,17 @@
 
 + (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-	GCEntity *entity = [self entityWithType:[[GCTag rootTagWithCode:node.gedTag] name] inContext:context];
+    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+	GCEntity *entity = [self entityWithType:tag.name inContext:context];
 	
 	NSParameterAssert(entity);
 	
 	entity->_isBuildingFromGedcom = YES;
     
-	if (node.xref)
+	if (tag.hasXref)
 		[context _setXref:node.xref forEntity:entity];
 	
-    if (node.gedValue)
+    if (tag.hasValue)
         entity.value = [GCString valueWithGedcomString:node.gedValue];
 
     
@@ -127,7 +128,13 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (xref: %@) {\n%@%@};\n", indent, [self className], self, [_context _xrefForEntity:self], [self _propertyDescriptionWithIndent:level+1], indent];
+    NSString *extraValues;
+    if (self.gedTag.hasXref)
+        extraValues = [NSString stringWithFormat:@"xref: %@", [_context _xrefForEntity:self]];
+    else if (self.gedTag.hasValue)
+        extraValues = [NSString stringWithFormat:@"value: %@", self.value];
+    
+    return [NSString stringWithFormat:@"%@<%@: %p> (%@) {\n%@%@};\n", indent, [self className], self, extraValues, [self _propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -136,27 +143,30 @@
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.value.gedcomString
-								  xref:[self.context _xrefForEntity:self]
+								 value:self.gedTag.hasValue ? self.value.gedcomString : nil
+								  xref:self.gedTag.hasXref ? [self.context _xrefForEntity:self] : nil
 							  subNodes:self.subNodes];
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSParameterAssert([[gedcomNode xref] isEqualToString:[self.context _xrefForEntity:self]]);
+    NSParameterAssert(!self.gedTag.hasXref || [gedcomNode.xref isEqualToString:[self.context _xrefForEntity:self]]);
     
     [super setGedcomNode:gedcomNode];
 }    
 
 - (NSString *)displayValue
 {
-    return [self.context _xrefForEntity:self];
+    if (self.gedTag.hasXref)
+        return [self.context _xrefForEntity:self];
+    else
+        return self.value.displayString;
 }
 
 - (NSAttributedString *)attributedDisplayValue
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue 
-                                           attributes:@{NSLinkAttributeName: [self.context _xrefForEntity:self]}];
+                                           attributes:self.gedTag.hasXref ? @{NSLinkAttributeName: [self.context _xrefForEntity:self]} : nil];
 }
 
 - (GCObject *)rootObject

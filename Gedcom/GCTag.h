@@ -112,6 +112,15 @@ typedef struct {
 /// The GCTag's corresponding GCObject subclass.
 @property (readonly) Class objectClass;
 
+#pragma mark Entity tags
+/// @name Entity tags
+
+/// A BOOL indicating whether the entity for the tag should have an xref.
+@property (readonly) BOOL hasXref;
+
+/// A BOOL indicating whether the entity for the tag should have a value.
+@property (readonly) BOOL hasValue;
+
 #pragma mark Attribute tags
 /// @name Attribute tags
 

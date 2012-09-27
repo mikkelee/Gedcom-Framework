@@ -53,8 +53,6 @@
 		3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */; };
 		3E21E9B6160E88EB001EE004 /* GCChangeInfoAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */; };
 		3E21E9BB160F5A05001EE004 /* ValidationHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9BA160F5A05001EE004 /* ValidationHelpers.h */; };
-		3E252F0F1523915A00BAFCB1 /* GCHeaderEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E252F0D1523915900BAFCB1 /* GCHeaderEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E252F101523915A00BAFCB1 /* GCHeaderEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E252F0E1523915900BAFCB1 /* GCHeaderEntity.m */; };
 		3E29DB1A154A1D9600756CF4 /* GCDateAgeMathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */; };
 		3E29DB1D154A405100756CF4 /* GCMutableNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E29DB1B154A405100756CF4 /* GCMutableNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E29DB1E154A405100756CF4 /* GCMutableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB1C154A405100756CF4 /* GCMutableNode.m */; };
@@ -227,8 +225,6 @@
 		3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCChangeInfoAttribute.h; sourceTree = "<group>"; };
 		3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCChangeInfoAttribute.m; sourceTree = "<group>"; };
 		3E21E9BA160F5A05001EE004 /* ValidationHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationHelpers.h; sourceTree = "<group>"; };
-		3E252F0D1523915900BAFCB1 /* GCHeaderEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHeaderEntity.h; sourceTree = "<group>"; };
-		3E252F0E1523915900BAFCB1 /* GCHeaderEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHeaderEntity.m; sourceTree = "<group>"; };
 		3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateAgeMathTests.m; sourceTree = "<group>"; };
 		3E29DB1B154A405100756CF4 /* GCMutableNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMutableNode.h; sourceTree = "<group>"; };
 		3E29DB1C154A405100756CF4 /* GCMutableNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMutableNode.m; sourceTree = "<group>"; };
@@ -388,12 +384,10 @@
 		3E17B4AF16013AFD009D2CCB /* Concrete subclasses */ = {
 			isa = PBXGroup;
 			children = (
-				3E252F0D1523915900BAFCB1 /* GCHeaderEntity.h */,
-				3E252F0E1523915900BAFCB1 /* GCHeaderEntity.m */,
+				3EDBBE5D15F7EE04008C1E50 /* Generated files */,
 				3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */,
 				3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */,
 				3E81B76B1607DAA70028F3C1 /* Custom tag subclasses */,
-				3EDBBE5D15F7EE04008C1E50 /* Generated files */,
 			);
 			name = "Concrete subclasses";
 			sourceTree = "<group>";
@@ -679,7 +673,6 @@
 				3E57559115217C3B00A918D1 /* GCRelationship.h in Headers */,
 				3E4373551521CB7200BA362F /* GCAttribute.h in Headers */,
 				3E14EDCA15230DAF00080364 /* GCContext.h in Headers */,
-				3E252F0F1523915A00BAFCB1 /* GCHeaderEntity.h in Headers */,
 				3E29DB1D154A405100756CF4 /* GCMutableNode.h in Headers */,
 				3E29DB36154E622700756CF4 /* GCGender.h in Headers */,
 				3EDDB428154EC63C0068E85F /* GCString.h in Headers */,
@@ -927,7 +920,6 @@
 				3E57559215217C3B00A918D1 /* GCRelationship.m in Sources */,
 				3E4373561521CB7200BA362F /* GCAttribute.m in Sources */,
 				3E14EDCB15230DAF00080364 /* GCContext.m in Sources */,
-				3E252F101523915A00BAFCB1 /* GCHeaderEntity.m in Sources */,
 				3E29DB1E154A405100756CF4 /* GCMutableNode.m in Sources */,
 				3E29DB37154E622700756CF4 /* GCGender.m in Sources */,
 				3EDDB429154EC63C0068E85F /* GCString.m in Sources */,

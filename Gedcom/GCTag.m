@@ -51,6 +51,9 @@ const NSString *kTargetType = @"target";
 const NSString *kReverseRelationshipTag = @"reverseRelationshipTag";
 const NSString *kPlural = @"plural";
 
+const NSString *kHasXref = @"hasXref";
+const NSString *kHasValue = @"hasValue";
+
 #pragma mark Initialization
 
 __strong static NSMutableDictionary *_tagStore;
@@ -539,6 +542,16 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
 - (BOOL)isCustom
 {
     return [_name hasPrefix:@"custom"];
+}
+
+- (BOOL)hasXref
+{
+    return _settings[kHasXref] != nil;
+}
+
+- (BOOL)hasValue
+{
+    return _settings[kHasValue] != nil;
 }
 
 @end
