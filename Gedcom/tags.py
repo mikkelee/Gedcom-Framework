@@ -9,7 +9,7 @@ specialClasses = [ #don't generate classes for these
 ];
 
 # Templates:
-propertyT = Template('/// $doc\n@property $type *$name;')
+propertyT = Template('/// $doc\n@property $type *$name;\n')
 dynamicT = Template('@dynamic $name;')
 forwardT = Template('@class $name;')
 
@@ -190,12 +190,23 @@ for key in sorted(tags):
 		propagate(key)
 
 def expand_group(group, properties, dynamics):
+	pro, dyn = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
+					
+	properties.append(pro)
+	dynamics.append(dyn)
+	
 	for variant in tags[group]['variants']:
 		if variant.has_key('groupName'):
+			pro, dyn = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
+			
+			if pro not in properties:
+				properties.append(pro)
+				dynamics.append(dyn)
+			
 			expand_group(variant['groupName'], properties, dynamics)
 			continue
 		print '		PROCESSING VARIANT "%s": %s' % (variant['name'], tags[variant['name']])
-		pro, dyn = property(variant['name'], tags[variant['name']]['objectType'], variant['doc'] if variant.has_key('doc') else '', variant['max'] == 'M', variant['min'] == 1)
+		pro, dyn = property(variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), variant['max'] == 'M', variant['min'] == 1)
 		properties.append(pro)
 		dynamics.append(dyn)
 
@@ -224,11 +235,6 @@ for key in sorted(tags):
 			for prop in tags[key]['validSubTags']:
 				print '	PROCESSING SUBTAG %s' % prop
 				if prop.has_key('groupName'):
-					#pro, dyn = property(prop['groupName'][1:], '', 'Property for accessing superVariants', True, False, is_super_variant=True)
-					
-					#properties.append(pro)
-					#dynamics.append(dyn)
-					
 					expand_group(prop['groupName'], properties, dynamics)
 					
 				else:

@@ -150,16 +150,22 @@
 // Properties:
 ///  
 @property GCAddressLine1Attribute *addressLine1;
+
 ///  
 @property GCAddressLine2Attribute *addressLine2;
+
 ///  
 @property GCCityAttribute *city;
+
 ///  
 @property GCStateAttribute *state;
+
 ///  
 @property GCPostalCodeAttribute *postalCode;
+
 ///  
 @property GCCountryAttribute *country;
+
 
 @end
 
@@ -276,6 +282,7 @@
 ///  
 @property GCAdoptedByWhichParentAttribute *adoptedByWhichParent;
 
+
 @end
 
 /**
@@ -306,34 +313,61 @@
 // Properties:
 ///  
 @property GCAdoptedIntoFamilyRelationship *adoptedIntoFamily;
-///  
+
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -363,34 +397,60 @@
 +(GCAdultChristeningAttribute *)adultChristeningWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -528,38 +588,66 @@
 +(GCAnnulmentAttribute *)annulmentWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -585,16 +673,28 @@
 // Properties:
 ///   NB: required property
 @property GCRecordTypeAttribute *recordType;
+
 ///   NB: required property
 @property GCRelationshipDescriptorAttribute *relationshipDescriptor;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
+
 
 @end
 
@@ -654,34 +754,60 @@
 +(GCBaptismAttribute *)baptismWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -711,34 +837,60 @@
 +(GCBarMitzvahAttribute *)barMitzvahWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -768,34 +920,60 @@
 +(GCBasMitzvahAttribute *)basMitzvahWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -857,34 +1035,61 @@
 // Properties:
 ///  
 @property GCBornToFamilyRelationship *bornToFamily;
-///  
+
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -914,34 +1119,60 @@
 +(GCBlessingAttribute *)blessingWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -995,34 +1226,60 @@
 +(GCBurialAttribute *)burialWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1055,6 +1312,7 @@
 ///  
 @property GCMediaTypeAttribute *mediaType;
 
+
 @end
 
 /**
@@ -1083,34 +1341,60 @@
 +(GCCasteAttribute *)casteWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1170,38 +1454,66 @@
 +(GCCensusAttribute *)censusWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -1233,6 +1545,7 @@
 // Properties:
 ///  
 @property GCVersionAttribute *version;
+
 
 @end
 
@@ -1282,10 +1595,16 @@
 // Properties:
 ///  
 @property GCPedigreeAttribute *pedigree;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1317,34 +1636,61 @@
 // Properties:
 ///  
 @property GCChildInFamilyRelationship *childInFamily;
-///  
+
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1404,34 +1750,60 @@
 +(GCConfirmationAttribute *)confirmationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1493,8 +1865,10 @@
 // Properties:
 ///  
 @property GCAddressAttribute *address;
+
 ///  
 @property GCPhoneNumberAttribute *phoneNumber;
+
 
 @end
 
@@ -1554,34 +1928,60 @@
 +(GCCremationAttribute *)cremationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1611,38 +2011,66 @@
 +(GCCustomEventAttribute *)customEventWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -1674,8 +2102,10 @@
 // Properties:
 ///  
 @property GCDateAttribute *date;
+
 ///  An array of GCTextAttribute
 @property NSMutableArray *texts;
+
 
 @end
 
@@ -1735,34 +2165,60 @@
 +(GCDeathAttribute *)deathWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -1846,38 +2302,66 @@
 +(GCDivorceAttribute *)divorceWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -1907,38 +2391,66 @@
 +(GCDivorceFiledAttribute *)divorceFiledWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -1968,34 +2480,60 @@
 +(GCEducationAttribute *)educationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2025,34 +2563,60 @@
 +(GCEmigrationAttribute *)emigrationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2082,38 +2646,66 @@
 +(GCEngagementAttribute *)engagementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -2146,6 +2738,7 @@
 ///  
 @property GCRoleAttribute *role;
 
+
 @end
 
 /**
@@ -2176,8 +2769,10 @@
 // Properties:
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCPlaceAttribute *place;
+
 
 @end
 
@@ -2195,58 +2790,96 @@
 +(GCFamilyEntity *)familyInContext:(GCContext *)context;
 
 // Properties:
-///  An array of GCAnnulmentAttribute
+/// Property for accessing the following properties 
+@property NSMutableArray *familyEvents;
+
+/// Also contained in familyEvents.  An array of GCAnnulmentAttribute
 @property NSMutableArray *annulments;
-///  An array of GCCensusAttribute
+
+/// Also contained in familyEvents.  An array of GCCensusAttribute
 @property NSMutableArray *censuses;
-///  An array of GCDivorceAttribute
+
+/// Also contained in familyEvents.  An array of GCDivorceAttribute
 @property NSMutableArray *divorces;
-///  An array of GCDivorceFiledAttribute
+
+/// Also contained in familyEvents.  An array of GCDivorceFiledAttribute
 @property NSMutableArray *divorceFileds;
-///  An array of GCEngagementAttribute
+
+/// Also contained in familyEvents.  An array of GCEngagementAttribute
 @property NSMutableArray *engagements;
-///  An array of GCMarriageAttribute
+
+/// Also contained in familyEvents.  An array of GCMarriageAttribute
 @property NSMutableArray *marriages;
-///  An array of GCMarriageBannAttribute
+
+/// Also contained in familyEvents.  An array of GCMarriageBannAttribute
 @property NSMutableArray *marriageBanns;
-///  An array of GCMarriageContractAttribute
+
+/// Also contained in familyEvents.  An array of GCMarriageContractAttribute
 @property NSMutableArray *marriageContracts;
-///  An array of GCMarriageLicenseAttribute
+
+/// Also contained in familyEvents.  An array of GCMarriageLicenseAttribute
 @property NSMutableArray *marriageLicenses;
-///  An array of GCMarriageSettlementAttribute
+
+/// Also contained in familyEvents.  An array of GCMarriageSettlementAttribute
 @property NSMutableArray *marriageSettlements;
-///  An array of GCCustomEventAttribute
+
+/// Also contained in familyEvents.  An array of GCCustomEventAttribute
 @property NSMutableArray *customEvents;
+
 ///  
 @property GCHusbandRelationship *husband;
+
 ///  
 @property GCWifeRelationship *wife;
+
 ///  An array of GCChildRelationship
 @property NSMutableArray *children;
+
 ///  
 @property GCNumberOfChildrenAttribute *numberOfChildren;
+
 ///  An array of GCSubmitterReferenceRelationship
 @property NSMutableArray *submitterReferences;
+
 ///  An array of GCLDSSealingSpouseAttribute
 @property NSMutableArray *lDSSealingSpouses;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -2336,34 +2969,60 @@
 +(GCFirstCommunionAttribute *)firstCommunionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2395,8 +3054,10 @@
 // Properties:
 ///   NB: required property
 @property GCVersionAttribute *version;
+
 ///   NB: required property
 @property GCGedcomFormatAttribute *gedcomFormat;
+
 
 @end
 
@@ -2486,34 +3147,60 @@
 +(GCGenerationsOfDescendantsAttribute *)generationsOfDescendantsWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2573,34 +3260,60 @@
 +(GCGraduationAttribute *)graduationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2620,28 +3333,40 @@
 // Properties:
 ///   NB: required property
 @property GCHeaderSourceAttribute *headerSource;
+
 ///  An array of GCDestinationAttribute
 @property NSMutableArray *destinations;
+
 ///  
 @property GCHeaderDateAttribute *headerDate;
+
 ///   NB: required property
 @property GCSubmitterReferenceRelationship *submitterReference;
+
 ///  An array of GCSubmissionReferenceRelationship
 @property NSMutableArray *submissionReferences;
+
 ///  
 @property GCFileAttribute *file;
+
 ///  
 @property GCCopyrightAttribute *copyright;
+
 ///   NB: required property
 @property GCGedcomAttribute *gedcom;
+
 ///   NB: required property
 @property GCCharacterSetAttribute *characterSet;
+
 ///  
 @property GCLanguageAttribute *language;
+
 ///  
 @property GCPlaceFormatSpecifierAttribute *placeFormatSpecifier;
+
 ///  
 @property GCNoteEmbeddedAttribute *noteEmbedded;
+
 
 @end
 
@@ -2674,6 +3399,7 @@
 ///  
 @property GCTimeAttribute *time;
 
+
 @end
 
 /**
@@ -2704,12 +3430,16 @@
 // Properties:
 ///  
 @property GCVersionAttribute *version;
+
 ///  
 @property GCNameAttribute *name;
+
 ///  
 @property GCCorporationAttribute *corporation;
+
 ///  
 @property GCHeaderSourceDataAttribute *headerSourceData;
+
 
 @end
 
@@ -2741,8 +3471,10 @@
 // Properties:
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCCopyrightAttribute *copyright;
+
 
 @end
 
@@ -2799,6 +3531,7 @@
 ///   NB: required property
 @property GCAgeAttribute *age;
 
+
 @end
 
 /**
@@ -2827,34 +3560,60 @@
 +(GCIdentNumberAttribute *)identNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2884,34 +3643,60 @@
 +(GCImmigrationAttribute *)immigrationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -2931,128 +3716,208 @@
 // Properties:
 ///  
 @property GCRestrictionNoticeAttribute *restrictionNotice;
+
 ///  An array of GCPersonalNameAttribute
 @property NSMutableArray *personalNames;
+
 ///  
 @property GCSexAttribute *sex;
-///  An array of GCBirthAttribute
+
+/// Property for accessing the following properties 
+@property NSMutableArray *individualEvents;
+
+/// Also contained in individualEvents.  An array of GCBirthAttribute
 @property NSMutableArray *births;
-///  An array of GCChristeningAttribute
+
+/// Also contained in individualEvents.  An array of GCChristeningAttribute
 @property NSMutableArray *christenings;
-///  An array of GCDeathAttribute
+
+/// Also contained in individualEvents.  An array of GCDeathAttribute
 @property NSMutableArray *deaths;
-///  An array of GCBurialAttribute
+
+/// Also contained in individualEvents.  An array of GCBurialAttribute
 @property NSMutableArray *burials;
-///  An array of GCCremationAttribute
+
+/// Also contained in individualEvents.  An array of GCCremationAttribute
 @property NSMutableArray *cremations;
-///  An array of GCAdoptionAttribute
+
+/// Also contained in individualEvents.  An array of GCAdoptionAttribute
 @property NSMutableArray *adoptions;
-///  An array of GCBaptismAttribute
+
+/// Also contained in individualEvents.  An array of GCBaptismAttribute
 @property NSMutableArray *baptisms;
-///  An array of GCBarMitzvahAttribute
+
+/// Also contained in individualEvents.  An array of GCBarMitzvahAttribute
 @property NSMutableArray *barMitzvahs;
-///  An array of GCBasMitzvahAttribute
+
+/// Also contained in individualEvents.  An array of GCBasMitzvahAttribute
 @property NSMutableArray *basMitzvahs;
-///  An array of GCBlessingAttribute
+
+/// Also contained in individualEvents.  An array of GCBlessingAttribute
 @property NSMutableArray *blessings;
-///  An array of GCAdultChristeningAttribute
+
+/// Also contained in individualEvents.  An array of GCAdultChristeningAttribute
 @property NSMutableArray *adultChristenings;
-///  An array of GCConfirmationAttribute
+
+/// Also contained in individualEvents.  An array of GCConfirmationAttribute
 @property NSMutableArray *confirmations;
-///  An array of GCFirstCommunionAttribute
+
+/// Also contained in individualEvents.  An array of GCFirstCommunionAttribute
 @property NSMutableArray *firstCommunions;
-///  An array of GCOrdinationAttribute
+
+/// Also contained in individualEvents.  An array of GCOrdinationAttribute
 @property NSMutableArray *ordinations;
-///  An array of GCNaturalizationAttribute
+
+/// Also contained in individualEvents.  An array of GCNaturalizationAttribute
 @property NSMutableArray *naturalizations;
-///  An array of GCEmigrationAttribute
+
+/// Also contained in individualEvents.  An array of GCEmigrationAttribute
 @property NSMutableArray *emigrations;
-///  An array of GCImmigrationAttribute
+
+/// Also contained in individualEvents.  An array of GCImmigrationAttribute
 @property NSMutableArray *immigrations;
-///  An array of GCCensusAttribute
+
+/// Also contained in individualEvents.  An array of GCCensusAttribute
 @property NSMutableArray *censuses;
-///  An array of GCProbateAttribute
+
+/// Also contained in individualEvents.  An array of GCProbateAttribute
 @property NSMutableArray *probates;
-///  An array of GCWillAttribute
+
+/// Also contained in individualEvents.  An array of GCWillAttribute
 @property NSMutableArray *wills;
-///  An array of GCGraduationAttribute
+
+/// Also contained in individualEvents.  An array of GCGraduationAttribute
 @property NSMutableArray *graduations;
-///  An array of GCRetirementAttribute
+
+/// Also contained in individualEvents.  An array of GCRetirementAttribute
 @property NSMutableArray *retirements;
-///  An array of GCCustomEventAttribute
+
+/// Also contained in individualEvents.  An array of GCCustomEventAttribute
 @property NSMutableArray *customEvents;
-///  An array of GCCasteAttribute
+
+/// Property for accessing the following properties 
+@property NSMutableArray *individualAttributes;
+
+/// Also contained in individualAttributes.  An array of GCCasteAttribute
 @property NSMutableArray *castes;
-///  An array of GCPhysicalDescriptionAttribute
+
+/// Also contained in individualAttributes.  An array of GCPhysicalDescriptionAttribute
 @property NSMutableArray *physicalDescriptions;
-///  An array of GCGenerationsOfDescendantsAttribute
+
+/// Also contained in individualAttributes.  An array of GCGenerationsOfDescendantsAttribute
 @property NSMutableArray *generationsOfDescendantss;
-///  An array of GCEducationAttribute
+
+/// Also contained in individualAttributes.  An array of GCEducationAttribute
 @property NSMutableArray *educations;
-///  An array of GCIdentNumberAttribute
+
+/// Also contained in individualAttributes.  An array of GCIdentNumberAttribute
 @property NSMutableArray *identNumbers;
-///  An array of GCNationalityAttribute
+
+/// Also contained in individualAttributes.  An array of GCNationalityAttribute
 @property NSMutableArray *nationalities;
-///  An array of GCNumberOfChildrenAttribute
+
+/// Also contained in individualAttributes.  An array of GCNumberOfChildrenAttribute
 @property NSMutableArray *numberOfChildrens;
-///  An array of GCNumberOfMarriagesAttribute
+
+/// Also contained in individualAttributes.  An array of GCNumberOfMarriagesAttribute
 @property NSMutableArray *numberOfMarriagess;
-///  An array of GCOccupationAttribute
+
+/// Also contained in individualAttributes.  An array of GCOccupationAttribute
 @property NSMutableArray *occupations;
-///  An array of GCPropertyOwnedAttribute
+
+/// Also contained in individualAttributes.  An array of GCPropertyOwnedAttribute
 @property NSMutableArray *propertyOwneds;
-///  An array of GCReligionAttribute
+
+/// Also contained in individualAttributes.  An array of GCReligionAttribute
 @property NSMutableArray *religions;
-///  An array of GCResidenceAttribute
+
+/// Also contained in individualAttributes.  An array of GCResidenceAttribute
 @property NSMutableArray *residences;
-///  An array of GCSocialSecurityNumberAttribute
+
+/// Also contained in individualAttributes.  An array of GCSocialSecurityNumberAttribute
 @property NSMutableArray *socialSecurityNumbers;
-///  An array of GCTitleAttribute
+
+/// Also contained in individualAttributes.  An array of GCTitleAttribute
 @property NSMutableArray *titles;
-///  An array of GCLDSBaptismAttribute
+
+/// Property for accessing the following properties 
+@property NSMutableArray *individualLDSOrdinances;
+
+/// Also contained in individualLDSOrdinances.  An array of GCLDSBaptismAttribute
 @property NSMutableArray *lDSBaptisms;
-///  An array of GCLDSConfirmationAttribute
+
+/// Also contained in individualLDSOrdinances.  An array of GCLDSConfirmationAttribute
 @property NSMutableArray *lDSConfirmations;
-///  An array of GCLDSEndowmentAttribute
+
+/// Also contained in individualLDSOrdinances.  An array of GCLDSEndowmentAttribute
 @property NSMutableArray *lDSEndowments;
-///  An array of GCLDSSealingChildAttribute
+
+/// Also contained in individualLDSOrdinances.  An array of GCLDSSealingChildAttribute
 @property NSMutableArray *lDSSealingChilds;
+
 ///  An array of GCChildInFamilyRelationship
 @property NSMutableArray *childInFamilies;
+
 ///  An array of GCSpouseInFamilyRelationship
 @property NSMutableArray *spouseInFamilies;
+
 ///  An array of GCSubmitterReferenceRelationship
 @property NSMutableArray *submitterReferences;
+
 ///  An array of GCAssociationRelationship
 @property NSMutableArray *associations;
+
 ///  An array of GCAliasRelationship
 @property NSMutableArray *aliases;
+
 ///  An array of GCAncestorInterestRelationship
 @property NSMutableArray *ancestorInterests;
+
 ///  An array of GCDescendantInterestRelationship
 @property NSMutableArray *descendantInterests;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  An array of GCRecordFileNumberAttribute
 @property NSMutableArray *recordFileNumbers;
+
 ///  An array of GCAncestralFileNumberAttribute
 @property NSMutableArray *ancestralFileNumbers;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -3084,20 +3949,34 @@
 // Properties:
 ///  
 @property GCLDSBaptismStatusAttribute *lDSBaptismStatus;
+
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCTempleAttribute *temple;
+
 ///  
 @property GCPlaceAttribute *place;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -3159,20 +4038,34 @@
 // Properties:
 ///  
 @property GCLDSBaptismStatusAttribute *lDSBaptismStatus;
+
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCTempleAttribute *temple;
+
 ///  
 @property GCPlaceAttribute *place;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -3234,20 +4127,34 @@
 // Properties:
 ///  
 @property GCLDSEndowmentStatusAttribute *lDSEndowmentStatus;
+
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCTempleAttribute *temple;
+
 ///  
 @property GCPlaceAttribute *place;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -3309,22 +4216,37 @@
 // Properties:
 ///  
 @property GCLDSSealingChildStatusAttribute *lDSSealingChildStatus;
+
 ///   NB: required property
 @property GCSealedToFamilyRelationship *sealedToFamily;
+
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCTempleAttribute *temple;
+
 ///  
 @property GCPlaceAttribute *place;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -3386,20 +4308,34 @@
 // Properties:
 ///  
 @property GCLDSSealingSpouseStatusAttribute *lDSSealingSpouseStatus;
+
 ///  
 @property GCDateAttribute *date;
+
 ///  
 @property GCTempleAttribute *temple;
+
 ///  
 @property GCPlaceAttribute *place;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -3519,38 +4455,66 @@
 +(GCMarriageAttribute *)marriageWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -3580,38 +4544,66 @@
 +(GCMarriageBannAttribute *)marriageBannWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -3641,38 +4633,66 @@
 +(GCMarriageContractAttribute *)marriageContractWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -3702,38 +4722,66 @@
 +(GCMarriageLicenseAttribute *)marriageLicenseWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -3763,38 +4811,66 @@
 +(GCMarriageSettlementAttribute *)marriageSettlementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCHusbandDetailAttribute *husbandDetail;
+
 ///  
 @property GCWifeDetailAttribute *wifeDetail;
+
 
 @end
 
@@ -3844,20 +4920,31 @@
 // Properties:
 ///   NB: required property
 @property GCMultimediaFormatAttribute *multimediaFormat;
+
 ///  
 @property GCTitleAttribute *title;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCBinaryObjectAttribute *binaryObject;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -3889,14 +4976,22 @@
 // Properties:
 ///   NB: required property
 @property GCMultimediaFormatAttribute *multimediaFormat;
+
 ///  
 @property GCTitleAttribute *title;
+
 ///  
 @property GCFileAttribute *file;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4070,34 +5165,60 @@
 +(GCNationalityAttribute *)nationalityWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4127,34 +5248,60 @@
 +(GCNaturalizationAttribute *)naturalizationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4202,16 +5349,24 @@
 +(GCNoteEntity *)noteInContext:(GCContext *)context;
 
 // Properties:
-///  An array of GCSourceCitationRelationship
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -4241,10 +5396,15 @@
 +(GCNoteEmbeddedAttribute *)noteEmbeddedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  An array of GCSourceCitationRelationship
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
+
 
 @end
 
@@ -4268,10 +5428,15 @@
 +(GCNoteReferenceRelationship *)noteReferenceWithTarget:(GCEntity *)target;
 
 // Properties:
-///  An array of GCSourceCitationRelationship
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
+
 
 @end
 
@@ -4301,34 +5466,60 @@
 +(GCNumberOfChildrenAttribute *)numberOfChildrenWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4358,34 +5549,60 @@
 +(GCNumberOfMarriagesAttribute *)numberOfMarriagesWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4415,34 +5632,60 @@
 +(GCOccupationAttribute *)occupationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4502,34 +5745,60 @@
 +(GCOrdinationAttribute *)ordinationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4589,10 +5858,15 @@
 +(GCPedigreeAttribute *)pedigreeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  An array of GCNoteReferenceRelationship
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4624,24 +5898,40 @@
 // Properties:
 ///  
 @property GCNamePrefixAttribute *namePrefix;
+
 ///  
 @property GCGivenNameAttribute *givenName;
+
 ///  
 @property GCNicknameAttribute *nickname;
+
 ///  
 @property GCSurnamePrefixAttribute *surnamePrefix;
+
 ///  
 @property GCSurnameAttribute *surname;
+
 ///  
 @property GCNameSuffixAttribute *nameSuffix;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4701,34 +5991,60 @@
 +(GCPhysicalDescriptionAttribute *)physicalDescriptionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4760,14 +6076,25 @@
 // Properties:
 ///  
 @property GCPlaceFormatAttribute *placeFormat;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4830,6 +6157,7 @@
 ///   NB: required property
 @property GCPlaceFormatAttribute *placeFormat;
 
+
 @end
 
 /**
@@ -4888,34 +6216,60 @@
 +(GCProbateAttribute *)probateWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -4945,34 +6299,60 @@
 +(GCPropertyOwnedAttribute *)propertyOwnedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5182,34 +6562,60 @@
 +(GCReligionAttribute *)religionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5229,20 +6635,31 @@
 // Properties:
 ///  
 @property GCNameAttribute *name;
+
 ///  
 @property GCAddressAttribute *address;
+
 ///  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -5266,12 +6683,18 @@
 +(GCRepositoryCitationRelationship *)repositoryCitationWithTarget:(GCEntity *)target;
 
 // Properties:
-///  An array of GCNoteReferenceRelationship
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  An array of GCCallNumberAttribute
 @property NSMutableArray *callNumbers;
+
 
 @end
 
@@ -5301,34 +6724,60 @@
 +(GCResidenceAttribute *)residenceWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5418,34 +6867,60 @@
 +(GCRetirementAttribute *)retirementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5559,34 +7034,60 @@
 +(GCSocialSecurityNumberAttribute *)socialSecurityNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5606,32 +7107,52 @@
 // Properties:
 ///  
 @property GCSourceDataAttribute *sourceData;
+
 ///  
 @property GCAuthorAttribute *author;
+
 ///  
 @property GCTitleAttribute *title;
+
 ///  
 @property GCAbbreviationAttribute *abbreviation;
+
 ///  
 @property GCPublicationFactsAttribute *publicationFacts;
+
 ///  
 @property GCTextAttribute *text;
+
 ///  
 @property GCRepositoryCitationRelationship *repositoryCitation;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 ///  
 @property GCUserReferenceNumberAttribute *userReferenceNumber;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -5657,20 +7178,34 @@
 // Properties:
 ///  
 @property GCPageAttribute *page;
+
 ///  
 @property GCDataAttribute *data;
+
 ///  
 @property GCEventCitedAttribute *eventCited;
+
 ///  
 @property GCQualityOfDataAttribute *qualityOfData;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5702,12 +7237,19 @@
 // Properties:
 ///  An array of GCEventsRecordedAttribute
 @property NSMutableArray *eventsRecordeds;
+
 ///  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5739,10 +7281,16 @@
 // Properties:
 ///  An array of GCTextAttribute
 @property NSMutableArray *texts;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5766,10 +7314,15 @@
 +(GCSpouseInFamilyRelationship *)spouseInFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
-///  An array of GCNoteReferenceRelationship
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -5819,22 +7372,31 @@
 // Properties:
 ///  
 @property GCSubmitterReferenceRelationship *submitterReference;
+
 ///  
 @property GCFamilyFileAttribute *familyFile;
+
 ///  
 @property GCTempleAttribute *temple;
+
 ///  
 @property GCGenerationsOfAncestorsAttribute *generationsOfAncestors;
+
 ///  
 @property GCGenerationsOfDescendantsAttribute *generationsOfDescendants;
+
 ///  
 @property GCOrdinanceFlagAttribute *ordinanceFlag;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -5878,26 +7440,40 @@
 // Properties:
 ///   NB: required property
 @property GCNameAttribute *name;
+
 ///  
 @property GCAddressAttribute *address;
+
 ///  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
+
 ///  
 @property GCLanguageAttribute *language;
+
 ///  
 @property GCRecordFileNumberAttribute *recordFileNumber;
+
 ///  
 @property GCAncestralFileNumberAttribute *ancestralFileNumber;
+
 ///  An array of GCUserReferenceNumberAttribute
 @property NSMutableArray *userReferenceNumbers;
+
 ///  
 @property GCRecordIdNumberAttribute *recordIdNumber;
+
 ///  
 @property GCChangeInfoAttribute *changeInfo;
+
 
 @end
 
@@ -6101,34 +7677,60 @@
 +(GCTitleAttribute *)titleWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
@@ -6190,6 +7792,7 @@
 // Properties:
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
+
 
 @end
 
@@ -6276,6 +7879,7 @@
 ///   NB: required property
 @property GCAgeAttribute *age;
 
+
 @end
 
 /**
@@ -6304,34 +7908,60 @@
 +(GCWillAttribute *)willWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-///  
+/// Property for accessing the following properties 
+@property NSMutableArray *eventDetails;
+
+/// Also contained in eventDetails.  
 @property GCTypeDescriptionAttribute *typeDescription;
-///  
+
+/// Also contained in eventDetails.  
 @property GCDateAttribute *date;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPlaceAttribute *place;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAddressAttribute *address;
-///  
+
+/// Also contained in eventDetails.  
 @property GCPhoneNumberAttribute *phoneNumber;
-///  
+
+/// Also contained in eventDetails.  
 @property GCAgeAttribute *age;
-///  
+
+/// Also contained in eventDetails.  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-///  
+
+/// Also contained in eventDetails.  
 @property GCCauseAttribute *cause;
-///  An array of GCSourceCitationRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *sources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
-///  An array of GCSourceEmbeddedAttribute
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-///  An array of GCMultimediaReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *multimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
-///  An array of GCMultimediaEmbeddedAttribute
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-///  An array of GCNoteReferenceRelationship
+
+/// Property for accessing the following properties 
+@property NSMutableArray *notes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
-///  An array of GCNoteEmbeddedAttribute
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
+
 
 @end
 
