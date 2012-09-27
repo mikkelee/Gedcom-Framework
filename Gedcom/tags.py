@@ -224,10 +224,10 @@ for key in sorted(tags):
 			for prop in tags[key]['validSubTags']:
 				print '	PROCESSING SUBTAG %s' % prop
 				if prop.has_key('groupName'):
-					pro, dyn = property(prop['groupName'][1:], '', 'TODO superVariant doc', True, False, is_super_variant=True)
+					#pro, dyn = property(prop['groupName'][1:], '', 'Property for accessing superVariants', True, False, is_super_variant=True)
 					
-					properties.append(pro)
-					dynamics.append(dyn)
+					#properties.append(pro)
+					#dynamics.append(dyn)
 					
 					expand_group(prop['groupName'], properties, dynamics)
 					

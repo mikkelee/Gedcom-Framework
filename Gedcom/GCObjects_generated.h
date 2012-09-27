@@ -306,8 +306,6 @@
 // Properties:
 ///  
 @property GCAdoptedIntoFamilyRelationship *adoptedIntoFamily;
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -365,8 +363,6 @@
 +(GCAdultChristeningAttribute *)adultChristeningWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -532,8 +528,6 @@
 +(GCAnnulmentAttribute *)annulmentWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -593,14 +587,10 @@
 @property GCRecordTypeAttribute *recordType;
 ///   NB: required property
 @property GCRelationshipDescriptorAttribute *relationshipDescriptor;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
 @property NSMutableArray *noteEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
@@ -664,8 +654,6 @@
 +(GCBaptismAttribute *)baptismWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -723,8 +711,6 @@
 +(GCBarMitzvahAttribute *)barMitzvahWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -782,8 +768,6 @@
 +(GCBasMitzvahAttribute *)basMitzvahWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -873,8 +857,6 @@
 // Properties:
 ///  
 @property GCBornToFamilyRelationship *bornToFamily;
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -932,8 +914,6 @@
 +(GCBlessingAttribute *)blessingWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1015,8 +995,6 @@
 +(GCBurialAttribute *)burialWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1105,8 +1083,6 @@
 +(GCCasteAttribute *)casteWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1194,8 +1170,6 @@
 +(GCCensusAttribute *)censusWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1308,8 +1282,6 @@
 // Properties:
 ///  
 @property GCPedigreeAttribute *pedigree;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -1345,8 +1317,6 @@
 // Properties:
 ///  
 @property GCChildInFamilyRelationship *childInFamily;
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1434,8 +1404,6 @@
 +(GCConfirmationAttribute *)confirmationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1586,8 +1554,6 @@
 +(GCCremationAttribute *)cremationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1645,8 +1611,6 @@
 +(GCCustomEventAttribute *)customEventWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1771,8 +1735,6 @@
 +(GCDeathAttribute *)deathWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1884,8 +1846,6 @@
 +(GCDivorceAttribute *)divorceWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -1947,8 +1907,6 @@
 +(GCDivorceFiledAttribute *)divorceFiledWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2010,8 +1968,6 @@
 +(GCEducationAttribute *)educationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2069,8 +2025,6 @@
 +(GCEmigrationAttribute *)emigrationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2128,8 +2082,6 @@
 +(GCEngagementAttribute *)engagementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2243,8 +2195,6 @@
 +(GCFamilyEntity *)familyInContext:(GCContext *)context;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *familyEvents;
 ///  An array of GCAnnulmentAttribute
 @property NSMutableArray *annulments;
 ///  An array of GCCensusAttribute
@@ -2279,20 +2229,14 @@
 @property NSMutableArray *submitterReferences;
 ///  An array of GCLDSSealingSpouseAttribute
 @property NSMutableArray *lDSSealingSpouses;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *multimedias;
 ///  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
 ///  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -2392,8 +2336,6 @@
 +(GCFirstCommunionAttribute *)firstCommunionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2544,8 +2486,6 @@
 +(GCGenerationsOfDescendantsAttribute *)generationsOfDescendantsWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2633,8 +2573,6 @@
 +(GCGraduationAttribute *)graduationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2889,8 +2827,6 @@
 +(GCIdentNumberAttribute *)identNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -2948,8 +2884,6 @@
 +(GCImmigrationAttribute *)immigrationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -3001,8 +2935,6 @@
 @property NSMutableArray *personalNames;
 ///  
 @property GCSexAttribute *sex;
-/// TODO superVariant doc 
-@property NSMutableArray *individualEvents;
 ///  An array of GCBirthAttribute
 @property NSMutableArray *births;
 ///  An array of GCChristeningAttribute
@@ -3049,8 +2981,6 @@
 @property NSMutableArray *retirements;
 ///  An array of GCCustomEventAttribute
 @property NSMutableArray *customEvents;
-/// TODO superVariant doc 
-@property NSMutableArray *individualAttributes;
 ///  An array of GCCasteAttribute
 @property NSMutableArray *castes;
 ///  An array of GCPhysicalDescriptionAttribute
@@ -3079,8 +3009,6 @@
 @property NSMutableArray *socialSecurityNumbers;
 ///  An array of GCTitleAttribute
 @property NSMutableArray *titles;
-/// TODO superVariant doc 
-@property NSMutableArray *individualLDSOrdinances;
 ///  An array of GCLDSBaptismAttribute
 @property NSMutableArray *lDSBaptisms;
 ///  An array of GCLDSConfirmationAttribute
@@ -3103,20 +3031,14 @@
 @property NSMutableArray *ancestorInterests;
 ///  An array of GCDescendantInterestRelationship
 @property NSMutableArray *descendantInterests;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *multimedias;
 ///  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
 ///  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -3168,14 +3090,10 @@
 @property GCTempleAttribute *temple;
 ///  
 @property GCPlaceAttribute *place;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -3247,14 +3165,10 @@
 @property GCTempleAttribute *temple;
 ///  
 @property GCPlaceAttribute *place;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -3326,14 +3240,10 @@
 @property GCTempleAttribute *temple;
 ///  
 @property GCPlaceAttribute *place;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -3407,14 +3317,10 @@
 @property GCTempleAttribute *temple;
 ///  
 @property GCPlaceAttribute *place;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -3486,14 +3392,10 @@
 @property GCTempleAttribute *temple;
 ///  
 @property GCPlaceAttribute *place;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -3617,8 +3519,6 @@
 +(GCMarriageAttribute *)marriageWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -3680,8 +3580,6 @@
 +(GCMarriageBannAttribute *)marriageBannWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -3743,8 +3641,6 @@
 +(GCMarriageContractAttribute *)marriageContractWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -3806,8 +3702,6 @@
 +(GCMarriageLicenseAttribute *)marriageLicenseWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -3869,8 +3763,6 @@
 +(GCMarriageSettlementAttribute *)marriageSettlementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -3954,8 +3846,6 @@
 @property GCMultimediaFormatAttribute *multimediaFormat;
 ///  
 @property GCTitleAttribute *title;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -4003,8 +3893,6 @@
 @property GCTitleAttribute *title;
 ///  
 @property GCFileAttribute *file;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -4182,8 +4070,6 @@
 +(GCNationalityAttribute *)nationalityWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4241,8 +4127,6 @@
 +(GCNaturalizationAttribute *)naturalizationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4318,8 +4202,6 @@
 +(GCNoteEntity *)noteInContext:(GCContext *)context;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
@@ -4359,8 +4241,6 @@
 +(GCNoteEmbeddedAttribute *)noteEmbeddedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
@@ -4388,8 +4268,6 @@
 +(GCNoteReferenceRelationship *)noteReferenceWithTarget:(GCEntity *)target;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
@@ -4423,8 +4301,6 @@
 +(GCNumberOfChildrenAttribute *)numberOfChildrenWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4482,8 +4358,6 @@
 +(GCNumberOfMarriagesAttribute *)numberOfMarriagesWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4541,8 +4415,6 @@
 +(GCOccupationAttribute *)occupationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4630,8 +4502,6 @@
 +(GCOrdinationAttribute *)ordinationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4719,8 +4589,6 @@
 +(GCPedigreeAttribute *)pedigreeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -4766,14 +4634,10 @@
 @property GCSurnameAttribute *surname;
 ///  
 @property GCNameSuffixAttribute *nameSuffix;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -4837,8 +4701,6 @@
 +(GCPhysicalDescriptionAttribute *)physicalDescriptionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -4898,14 +4760,10 @@
 // Properties:
 ///  
 @property GCPlaceFormatAttribute *placeFormat;
-/// TODO superVariant doc 
-@property NSMutableArray *sources;
 ///  An array of GCSourceCitationRelationship
 @property NSMutableArray *sourceCitations;
 ///  An array of GCSourceEmbeddedAttribute
 @property NSMutableArray *sourceEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5030,8 +4888,6 @@
 +(GCProbateAttribute *)probateWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -5089,8 +4945,6 @@
 +(GCPropertyOwnedAttribute *)propertyOwnedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -5328,8 +5182,6 @@
 +(GCReligionAttribute *)religionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -5381,8 +5233,6 @@
 @property GCAddressAttribute *address;
 ///  
 @property GCPhoneNumberAttribute *phoneNumber;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5416,8 +5266,6 @@
 +(GCRepositoryCitationRelationship *)repositoryCitationWithTarget:(GCEntity *)target;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5453,8 +5301,6 @@
 +(GCResidenceAttribute *)residenceWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -5572,8 +5418,6 @@
 +(GCRetirementAttribute *)retirementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -5715,8 +5559,6 @@
 +(GCSocialSecurityNumberAttribute *)socialSecurityNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -5776,14 +5618,10 @@
 @property GCTextAttribute *text;
 ///  
 @property GCRepositoryCitationRelationship *repositoryCitation;
-/// TODO superVariant doc 
-@property NSMutableArray *multimedias;
 ///  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
 ///  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5825,14 +5663,10 @@
 @property GCEventCitedAttribute *eventCited;
 ///  
 @property GCQualityOfDataAttribute *qualityOfData;
-/// TODO superVariant doc 
-@property NSMutableArray *multimedias;
 ///  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
 ///  An array of GCMultimediaEmbeddedAttribute
 @property NSMutableArray *multimediaEmbeddeds;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5870,8 +5704,6 @@
 @property NSMutableArray *eventsRecordeds;
 ///  
 @property GCResponsibleAgencyAttribute *responsibleAgency;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5907,8 +5739,6 @@
 // Properties:
 ///  An array of GCTextAttribute
 @property NSMutableArray *texts;
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -5936,8 +5766,6 @@
 +(GCSpouseInFamilyRelationship *)spouseInFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *notes;
 ///  An array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;
 ///  An array of GCNoteEmbeddedAttribute
@@ -6054,8 +5882,6 @@
 @property GCAddressAttribute *address;
 ///  
 @property GCPhoneNumberAttribute *phoneNumber;
-/// TODO superVariant doc 
-@property NSMutableArray *multimedias;
 ///  An array of GCMultimediaReferenceRelationship
 @property NSMutableArray *multimediaReferences;
 ///  An array of GCMultimediaEmbeddedAttribute
@@ -6275,8 +6101,6 @@
 +(GCTitleAttribute *)titleWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  
@@ -6480,8 +6304,6 @@
 +(GCWillAttribute *)willWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// TODO superVariant doc 
-@property NSMutableArray *eventDetails;
 ///  
 @property GCTypeDescriptionAttribute *typeDescription;
 ///  

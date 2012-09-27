@@ -284,7 +284,6 @@
 
 // Properties:
 @dynamic adoptedIntoFamily;
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -339,7 +338,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -540,7 +538,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -590,10 +587,8 @@
 // Properties:
 @dynamic recordType;
 @dynamic relationshipDescriptor;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
 
@@ -677,7 +672,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -732,7 +726,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -787,7 +780,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -884,7 +876,6 @@
 
 // Properties:
 @dynamic bornToFamily;
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -939,7 +930,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1026,7 +1016,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1122,7 +1111,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1218,7 +1206,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1340,7 +1327,6 @@
 
 // Properties:
 @dynamic pedigree;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -1384,7 +1370,6 @@
 
 // Properties:
 @dynamic childInFamily;
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1480,7 +1465,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1659,7 +1643,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1714,7 +1697,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1854,7 +1836,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -1982,7 +1963,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2039,7 +2019,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2096,7 +2075,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2151,7 +2129,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2206,7 +2183,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2328,7 +2304,6 @@
 }
 
 // Properties:
-@dynamic familyEvents;
 @dynamic annulments;
 @dynamic censuses;
 @dynamic divorces;
@@ -2346,13 +2321,10 @@
 @dynamic numberOfChildren;
 @dynamic submitterReferences;
 @dynamic lDSSealingSpouses;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic multimedias;
 @dynamic multimediaReferences;
 @dynamic multimediaEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumbers;
@@ -2480,7 +2452,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2659,7 +2630,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -2755,7 +2725,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -3044,7 +3013,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -3099,7 +3067,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -3139,7 +3106,6 @@
 @dynamic restrictionNotice;
 @dynamic personalNames;
 @dynamic sex;
-@dynamic individualEvents;
 @dynamic births;
 @dynamic christenings;
 @dynamic deaths;
@@ -3163,7 +3129,6 @@
 @dynamic graduations;
 @dynamic retirements;
 @dynamic customEvents;
-@dynamic individualAttributes;
 @dynamic castes;
 @dynamic physicalDescriptions;
 @dynamic generationsOfDescendantss;
@@ -3178,7 +3143,6 @@
 @dynamic residences;
 @dynamic socialSecurityNumbers;
 @dynamic titles;
-@dynamic individualLDSOrdinances;
 @dynamic lDSBaptisms;
 @dynamic lDSConfirmations;
 @dynamic lDSEndowments;
@@ -3190,13 +3154,10 @@
 @dynamic aliases;
 @dynamic ancestorInterests;
 @dynamic descendantInterests;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic multimedias;
 @dynamic multimediaReferences;
 @dynamic multimediaEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic recordFileNumbers;
@@ -3248,10 +3209,8 @@
 @dynamic date;
 @dynamic temple;
 @dynamic place;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -3339,10 +3298,8 @@
 @dynamic date;
 @dynamic temple;
 @dynamic place;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -3430,10 +3387,8 @@
 @dynamic date;
 @dynamic temple;
 @dynamic place;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -3522,10 +3477,8 @@
 @dynamic date;
 @dynamic temple;
 @dynamic place;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -3613,10 +3566,8 @@
 @dynamic date;
 @dynamic temple;
 @dynamic place;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -3782,7 +3733,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -3839,7 +3789,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -3896,7 +3845,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -3953,7 +3901,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4010,7 +3957,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4092,7 +4038,6 @@
 // Properties:
 @dynamic multimediaFormat;
 @dynamic title;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic binaryObject;
@@ -4142,7 +4087,6 @@
 @dynamic multimediaFormat;
 @dynamic title;
 @dynamic file;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -4381,7 +4325,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4436,7 +4379,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4514,7 +4456,6 @@
 }
 
 // Properties:
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
 @dynamic userReferenceNumbers;
@@ -4560,7 +4501,6 @@
 }
 
 // Properties:
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
 
@@ -4594,7 +4534,6 @@
 }
 
 // Properties:
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
 
@@ -4637,7 +4576,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4692,7 +4630,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4747,7 +4684,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4843,7 +4779,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -4939,7 +4874,6 @@
 }
 
 // Properties:
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -4988,10 +4922,8 @@
 @dynamic surnamePrefix;
 @dynamic surname;
 @dynamic nameSuffix;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -5075,7 +5007,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -5131,10 +5062,8 @@
 
 // Properties:
 @dynamic placeFormat;
-@dynamic sources;
 @dynamic sourceCitations;
 @dynamic sourceEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -5300,7 +5229,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -5355,7 +5283,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -5656,7 +5583,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -5696,7 +5622,6 @@
 @dynamic name;
 @dynamic address;
 @dynamic phoneNumber;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumbers;
@@ -5733,7 +5658,6 @@
 }
 
 // Properties:
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic callNumbers;
@@ -5777,7 +5701,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -5914,7 +5837,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -6083,7 +6005,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -6127,10 +6048,8 @@
 @dynamic publicationFacts;
 @dynamic text;
 @dynamic repositoryCitation;
-@dynamic multimedias;
 @dynamic multimediaReferences;
 @dynamic multimediaEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 @dynamic userReferenceNumber;
@@ -6171,10 +6090,8 @@
 @dynamic data;
 @dynamic eventCited;
 @dynamic qualityOfData;
-@dynamic multimedias;
 @dynamic multimediaReferences;
 @dynamic multimediaEmbeddeds;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -6219,7 +6136,6 @@
 // Properties:
 @dynamic eventsRecordeds;
 @dynamic responsibleAgency;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -6263,7 +6179,6 @@
 
 // Properties:
 @dynamic texts;
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -6297,7 +6212,6 @@
 }
 
 // Properties:
-@dynamic notes;
 @dynamic noteReferences;
 @dynamic noteEmbeddeds;
 
@@ -6429,7 +6343,6 @@
 @dynamic name;
 @dynamic address;
 @dynamic phoneNumber;
-@dynamic multimedias;
 @dynamic multimediaReferences;
 @dynamic multimediaEmbeddeds;
 @dynamic language;
@@ -6715,7 +6628,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
@@ -6966,7 +6878,6 @@
 }
 
 // Properties:
-@dynamic eventDetails;
 @dynamic typeDescription;
 @dynamic date;
 @dynamic place;
