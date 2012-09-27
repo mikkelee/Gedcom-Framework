@@ -36,13 +36,17 @@ __strong static NSDictionary *_defaultColors;
 
 + (void)initialize
 {
-    _validPropertiesByType = [NSMutableDictionary dictionary];
+    @synchronized (_validPropertiesByType) {
+        _validPropertiesByType = [NSMutableDictionary dictionary];
+    }
     
-    _defaultColors = @{
-        GCLevelAttributeName : [NSColor redColor],
-        GCXrefAttributeName : [NSColor blueColor],
-        GCTagAttributeName : [NSColor darkGrayColor]
-    };
+    @synchronized (_defaultColors) {
+        _defaultColors = @{
+            GCLevelAttributeName : [NSColor redColor],
+            GCXrefAttributeName : [NSColor blueColor],
+            GCTagAttributeName : [NSColor darkGrayColor]
+        };
+    }
 }
 
 //COV_NF_START
@@ -192,11 +196,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setNilValueForKey:(NSString *)key
 {
-    if ([[self propertyTypesInGroup:key] count] > 0) {
-        for (NSString *propertyType in [self propertyTypesInGroup:key]) {
-            [self setNilValueForKey:propertyType];
-        }
-    } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
+    if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
         @synchronized(_propertyStore) {
             if ([self _allowsMultipleOccurrencesOfPropertyType:key]) {
                 for (GCProperty *property in _propertyStore[key]) {
@@ -206,6 +206,10 @@ __strong static NSDictionary *_defaultColors;
                 [_propertyStore[key] setValue:nil forKey:@"primitiveDescribedObject"];
             }
             [_propertyStore removeObjectForKey:key];
+        }
+    } else if ([[self propertyTypesInGroup:key] count] > 0) {
+        for (NSString *propertyType in [self propertyTypesInGroup:key]) {
+            [self setNilValueForKey:propertyType];
         }
     } else {
         [super setNilValueForKey:key];
@@ -222,6 +226,10 @@ __strong static NSDictionary *_defaultColors;
         } else {
             return nil;
         }
+    } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
+        @synchronized(_propertyStore) {
+            return _propertyStore[key];
+        }
     } else if ([[self propertyTypesInGroup:key] count] > 0) {
         NSMutableArray *values = [NSMutableArray array];
         
@@ -230,10 +238,6 @@ __strong static NSDictionary *_defaultColors;
         }
         
         return values;
-    } else if ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom) {
-        @synchronized(_propertyStore) {
-            return _propertyStore[key];
-        }
     } else {
         return [super valueForKey:key];
     }
