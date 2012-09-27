@@ -174,6 +174,15 @@
     return self;
 }
 
+@synthesize value = _value;
+
+- (void)setValue:(GCString *)value
+{
+    NSParameterAssert(self.gedTag.hasValue);
+    
+    _value = value;
+}
+
 @synthesize context = _context;
 
 - (NSDate *)modificationDate
