@@ -15,7 +15,4 @@
  */
 @interface GCCustomEntity : GCEntity
 
-/// Returns the value of the entity.
-@property GCString *value;
-
 @end

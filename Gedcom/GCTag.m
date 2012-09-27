@@ -220,6 +220,7 @@ static inline void setupKey(NSString *key) {
                                         settings:@{kCode: code,
                                                   kName: tagName,
                                                   kPlural: pluralName,
+                                                  kHasValue: @(1),
                                                   kObjectType: @"entity",
                                                   kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);
