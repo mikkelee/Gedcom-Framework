@@ -252,9 +252,9 @@ static inline void setupKey(NSString *key) {
     }
     
     [_tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *tagDict, BOOL *stop) {
+        //TODO checking every tag every time is a bit much, use _settings instead?
         if ([key hasPrefix:@"@"]) {
             NSString *variantGroupName = tagDict[kPlural];
-            
             for (NSDictionary *variant in tagDict[kVariants]) {
                 if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kName]]]) {
                     if (!byVariant[variantGroupName]) {
@@ -263,8 +263,6 @@ static inline void setupKey(NSString *key) {
                     [byVariant[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
                 }
             }
-            
-            //byName[variantGroupName] = byName[tagDict[kName]];
         }
     }];
     
