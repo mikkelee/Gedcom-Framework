@@ -68,6 +68,18 @@
 	return [subNodes arrayByAddingObjectsFromArray:super.subNodes];
 }
 
+- (GCNode *)gedcomNode
+{
+    return [[GCNode alloc] initWithTag:self.gedTag.code
+								 value:nil
+								  xref:nil
+							  subNodes:self.subNodes];
+}
+
+- (void)setValueWithGedcomString:(NSString *)string
+{
+    return;
+}
 
 // Properties:
 @dynamic noteReferences;

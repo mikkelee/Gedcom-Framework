@@ -611,10 +611,6 @@ __strong static NSDictionary *_defaultColors;
     //NSLog(@"originalProperties: %@", originalProperties);
     
     for (GCNode *subNode in [gedcomNode subNodes]) {
-        if ([subNode.gedTag isEqualToString:@"CHAN"]) {
-            continue; //we ignore the CHAN node, it shouldn't be changed via setGedcomNode:
-        }
-        
         NSArray *matches = [originalProperties objectsAtIndexes:[originalProperties indexesOfObjectsPassingTest:^BOOL(GCObject *obj, NSUInteger idx, BOOL *stop) {
             return [obj.gedTag.code isEqualToString:subNode.gedTag];
         }]];
@@ -623,6 +619,7 @@ __strong static NSDictionary *_defaultColors;
             //NSLog(@"adding new property for %@", subNode);
             [self addPropertyWithGedcomNode:subNode];
         } else {
+            // TODO check for equivalence
             GCProperty *property = [matches objectAtIndex:0];
             [originalProperties removeObject:property];
             //NSLog(@"modifying property %@ with %@", property, subNode);
