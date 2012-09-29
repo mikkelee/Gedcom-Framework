@@ -44,22 +44,21 @@
     @"1 NAME Peder /Hansen/\n"
     @"1 BIRT\n"
     @"2 PLAC Stockholm, Sweden\n"
+    @"2 DATE AFT 1905\n"
     @"0 TRLR";
     
     [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString] error:nil];
     
-    /* TODO
     NSPredicate *birthPredicate = [NSPredicate predicateWithFormat:@"ANY births.date.value < %@", [GCDate valueWithGedcomString:@"1905"]];
-    NSArray *birthResult = [[ctx.individuals mutableCopy] filteredArrayUsingPredicate:birthPredicate];
+    NSArray *birthResult = [ctx.individuals filteredArrayUsingPredicate:birthPredicate];
     STAssertEquals([birthResult count], (NSUInteger)2, nil);
-    */
     
     NSPredicate *cphPredicate = [NSPredicate predicateWithFormat:@"ANY individualEvents.place.value.gedcomString BEGINSWITH %@", @"Copenhagen"];
-    NSArray *cphResult = [[ctx.individuals mutableCopy] filteredArrayUsingPredicate:cphPredicate];
+    NSArray *cphResult = [ctx.individuals filteredArrayUsingPredicate:cphPredicate];
     STAssertEquals([cphResult count], (NSUInteger)2, nil);
     
     NSPredicate *hansenPredicate = [NSPredicate predicateWithFormat:@"ANY personalNames.value.gedcomString CONTAINS %@", @"Hansen"];
-    NSArray *hansenResult = [[ctx.individuals mutableCopy] filteredArrayUsingPredicate:hansenPredicate];
+    NSArray *hansenResult = [ctx.individuals filteredArrayUsingPredicate:hansenPredicate];
     STAssertEquals([hansenResult count], (NSUInteger)3, nil);
     
 }
