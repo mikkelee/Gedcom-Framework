@@ -39,7 +39,6 @@
 		3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E09D18C15F9427C00BAA69E /* GCObject_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836515F8DDF800A9B096 /* GCAge_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19315F9816900BAA69E /* GCDate_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836615F8DF3E00A9B096 /* GCDate_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3E0E6802161112B4000CF845 /* anselmap.py in Resources */ = {isa = PBXBuildFile; fileRef = 3E0E6801161112B4000CF845 /* anselmap.py */; };
 		3E14EDCA15230DAF00080364 /* GCContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E14EDC815230DAE00080364 /* GCContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E14EDCB15230DAF00080364 /* GCContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14EDC915230DAE00080364 /* GCContext.m */; };
 		3E17B4B216014180009D2CCB /* GCDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */; };
@@ -86,7 +85,6 @@
 		3E57559215217C3B00A918D1 /* GCRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57559015217C3B00A918D1 /* GCRelationship.m */; };
 		3E5A68631610A6E8005B2319 /* GCList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A68611610A6E7005B2319 /* GCList.h */; };
 		3E5A68641610A6E8005B2319 /* GCList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A68621610A6E8005B2319 /* GCList.m */; };
-		3E5A68691610EB2D005B2319 /* ans2uni.out in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A68681610EB2D005B2319 /* ans2uni.out */; };
 		3E5A686C1610F57A005B2319 /* TGC55.ged in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A686B1610F57A005B2319 /* TGC55.ged */; };
 		3E5F5098151DCC7B00A433A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F5097151DCC7B00A433A6 /* README.md */; };
 		3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C0151DF2E800A433A6 /* Gedcom.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -113,7 +111,6 @@
 		3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D421563D78C00E53E47 /* GCContextDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EDBBE6215F7EE15008C1E50 /* GCObjects_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDBBE5F15F7EE15008C1E50 /* GCObjects_generated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EDBBE6315F7EE15008C1E50 /* GCObjects_generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDBBE6015F7EE15008C1E50 /* GCObjects_generated.m */; };
-		3EDBBE6415F7EE15008C1E50 /* tags.py in Resources */ = {isa = PBXBuildFile; fileRef = 3EDBBE6115F7EE15008C1E50 /* tags.py */; };
 		3EDD4114156D022200002352 /* Values.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD4112156D022200002352 /* Values.strings */; };
 		3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDD4116156D8EE200002352 /* GCPlacestring.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD4117156D8EE200002352 /* GCPlacestring.m */; };
@@ -873,9 +870,6 @@
 				3EB5ABD6153619280036B4D5 /* tags.json in Resources */,
 				3EDD4114156D022200002352 /* Values.strings in Resources */,
 				3EDD411F156F047A00002352 /* Tags.strings in Resources */,
-				3EDBBE6415F7EE15008C1E50 /* tags.py in Resources */,
-				3E5A68691610EB2D005B2319 /* ans2uni.out in Resources */,
-				3E0E6802161112B4000CF845 /* anselmap.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
