@@ -14,6 +14,8 @@
 
 #import "GCObjects_generated.h"
 
+#import "GCObject_internal.h"
+
 @interface GCChangeInfoAttribute ()
 
 @property NSDate *modificationDate;
