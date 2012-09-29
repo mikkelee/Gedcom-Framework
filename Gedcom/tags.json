@@ -145,7 +145,7 @@
 		"objectType": "entity",
         "hasXref": 1,
 		"validSubTags": [
-                         { "name": "name", "min": 0, "max": 1 },
+                         { "name": "descriptiveName", "min": 0, "max": 1 },
                          { "name": "address", "min": 0, "max": 1 },
                          { "name": "phoneNumber", "min": 0, "max": 3 },
                          { "groupName": "@note" },
@@ -180,7 +180,7 @@
 		"objectType": "entity",
         "hasXref": 1,
 		"validSubTags": [
-                         { "name": "name", "min": 1, "max": 1 },
+                         { "name": "descriptiveName", "min": 1, "max": 1 },
                          { "name": "address", "min": 0, "max": 1 },
                          { "name": "phoneNumber", "min": 0, "max": 3 },
                          { "groupName": "@multimedia" },
@@ -321,7 +321,7 @@
                      { "name": "will", "min": 0, "max": "M" },
                      { "name": "graduation", "min": 0, "max": "M" },
                      { "name": "retirement", "min": 0, "max": "M" },
-                     { "name": "customEvent", "min": 0, "max": "M" }
+                     { "name": "genericEvent", "min": 0, "max": "M" }
                      ],
 		"validSubTags": [
                          { "groupName": "@eventDetail" }
@@ -380,7 +380,7 @@
                      { "name": "marriageContract", "min": 0, "max": "M" },
                      { "name": "marriageLicense", "min": 0, "max": "M" },
                      { "name": "marriageSettlement", "min": 0, "max": "M" },
-                     { "name": "customEvent", "min": 0, "max": "M" }
+                     { "name": "genericEvent", "min": 0, "max": "M" }
                      ],
 		"validSubTags": [
                          { "groupName": "@eventDetail" },
@@ -488,7 +488,7 @@
 		"valueType": "string",
 		"validSubTags": [
                          { "name": "version", "min": 0, "max": 1 },
-                         { "name": "name", "min": 0, "max": 1 },
+                         { "name": "descriptiveName", "min": 0, "max": 1 },
                          { "name": "corporation", "min": 0, "max": 1 },
                          { "name": "headerSourceData", "min": 0, "max": 1 }
                          ]
@@ -858,7 +858,7 @@
 		"code": "ENGA",
 		"objectType": "attribute"
 	},
-	"customEvent": {
+	"genericEvent": {
 		"code": "EVEN",
 		"objectType": "attribute"
 	},
@@ -985,7 +985,7 @@
 		"valueType": "string",
         "allowedValues": [ "audio", "book", "card", "electronic", "fiche", "film", "magazine", "manuscript", "map", "newspaper", "photo", "tombstone", "video" ]
 	},
-	"name": {
+	"descriptiveName": {
 		"code": "NAME",
 		"objectType": "attribute",
 		"valueType": "string"

@@ -11,8 +11,13 @@
 
 #import <Gedcom/GCContext_internal.h> //TODO move entityForXref back to GCContext.h???
 
+@interface Document ()
+
+@property GCContext *context;
+
+@end
+
 @implementation Document {
-    GCContext *ctx;
     BOOL _isEntireFileLoaded;
     NSMutableArray *_individuals;
 }
@@ -82,12 +87,12 @@
     [currentlyLoadingSpinner setUsesThreadedAnimation:YES];
     [currentlyLoadingSpinner startAnimation:nil];
     
-    ctx = [GCContext context];
+    self.context = [GCContext context];
     
-    [ctx setDelegate:self];
+    [self.context setDelegate:self];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [ctx parseData:data error:nil];
+        [self.context parseData:data error:nil];
     });
 }
 
@@ -95,7 +100,14 @@
 
 - (IBAction)testLog:(id)sender
 {
-    NSLog(@"header: %@", [ctx header]);
+    NSLog(@"header: %@", self.context.header);
+}
+
+- (IBAction)updatePredicates:(id)sender
+{
+    if (sender == individualsPredicateEditor) {
+        self.individualsPredicate = [individualsPredicateEditor predicate];
+    }
 }
 
 #pragma mark NSTextViewDelegate methods
@@ -103,7 +115,7 @@
 - (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
 {
     if ([[link scheme] isEqualToString:@"xref"]) {
-        GCEntity *entity = [ctx _entityForXref:[[link path] lastPathComponent]];
+        GCEntity *entity = [self.context _entityForXref:[[link path] lastPathComponent]];
         
         return [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
     } else {
@@ -127,13 +139,14 @@
     [recordCountField setIntegerValue:entityCount];
     [currentlyLoadingSpinner stopAnimation:nil];
     _isEntireFileLoaded = YES;
+    [individualsPredicateEditor setRowTemplates:[GCIndividualEntity defaultPredicateEditorRowTemplates]];
     
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
     
-    [self setIndividuals:[ctx individuals]];
+    self.individuals = self.context.individuals;
     
-    //[individualsController setContent:[ctx individuals]];
+    //[individualsPredicateEditor addRow:nil];
 }
 
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity

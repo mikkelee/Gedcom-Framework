@@ -9,9 +9,35 @@ specialClasses = [ #don't generate classes for these
 ];
 
 # Templates:
-propertyT = Template('/// $doc\n@property $type *$name;\n')
-dynamicT = Template('@dynamic $name;')
 forwardT = Template('@class $name;')
+
+propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
+dynamicT = Template('@dynamic $name;')
+
+mutableAccessorsT = Template("""
+- (NSMutableArray *)mutable$capName {
+    return [self mutableArrayValueForKey:@"$name"];
+}
+
+- (id)objectIn${capName}AtIndex:(NSUInteger)index {
+    return [_$name objectAtIndex:index];
+}
+ 
+- (NSArray *)${name}AtIndexes:(NSIndexSet *)indexes {
+    return [_$name objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:($type *)$name in${capName}AtIndex:(NSUInteger)index {
+	NSParameterAssert([$name isKindOfClass:[$type class]]);
+	[$name setValue:self forKey:@"describedObject"];
+    [_$name insertObject:$name atIndex:index];
+}
+
+- (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
+	[_$name[index] setValue:nil forKey:@"describedObject"];
+    [_$name removeObjectAtIndex:index];
+}
+""")
 
 constructorDeclarationT = Template("""/** Initializes and returns a $name.
 
@@ -21,7 +47,7 @@ constructorDeclarationT = Template("""/** Initializes and returns a $name.
 +($returnType *)$name$extra""")
 
 constructorBodyT = Template("""{
-	return [self ${objectType}WithType:@"$name"$extra];
+	return [[self alloc] init$extra];
 }""")
 
 headerFileT = Template("""/*
@@ -29,6 +55,7 @@ headerFileT = Template("""/*
  */
 
 #import "GCEntity.h"
+#import "GCObject_internal.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
@@ -59,23 +86,32 @@ classDefinitionT = Template("""/**
 $methods
 
 // Properties:
-$properties
+$propertyDeclarations
 
 @end
 """)
-classImplementationT = Template("""@implementation $name
+classImplementationT = Template("""@implementation $name {
+$ivars
+}
 
 // Methods:
 $methods
 
 // Properties:
-$dynamics
+$propertyImplementations
 
 @end
 """)
 initT = Template("""- (id)init
 {
-	return [super initWithType:@"$type"];
+	self = [super _initWithType:@"$type"];
+	
+	if (self) {
+		// initialize ivars, if any:
+$initProperties
+	}
+	
+	return self;
 }
 """)
 
@@ -97,15 +133,29 @@ forwardDeclarations = set()
 
 def property(key, type, doc, is_plural, is_required, is_super_variant=False):
 	name = pluralize(key) if is_plural else key
-	h_line = propertyT.substitute(
-		type='NSMutableArray' if is_plural else classify(key, type),
+	if not is_super_variant and not is_plural:
+		forwardDeclarations.add(forwardT.substitute(name=classify(key, type)))
+	definition = propertyT.substitute(
+		type='NSArray' if is_super_variant or is_plural else classify(key, type),
 		name=name, 
 		doc='%s %s%s' % (doc, 'An array of %s' % classify(key, type) if is_plural and not is_super_variant else '', ' NB: required property' if is_required else '')
 	)
-	if not is_super_variant and not is_plural:
-		forwardDeclarations.add(forwardT.substitute(name=classify(key, type)))
-	m_line = dynamicT.substitute(name=name)
-	return h_line, m_line
+	ivar = None
+	implementation = ''
+	if is_plural:
+		definition = '%s%s' % (definition, propertyT.substitute(
+			type='NSMutableArray',
+			name='mutable%s%s' % (name[0].upper(), name[1:]),
+			doc='Mutable accessor for %s' % name
+		))
+		implementation = dynamicT.substitute(name=name) if is_super_variant else mutableAccessorsT.substitute(
+			name=name,
+			capName='%s%s' % (name[0].upper(), name[1:]),
+			type=classify(key, type)
+		)
+		if not is_super_variant:
+			ivar = '_%s' % name
+	return definition, implementation, ivar
 
 def constructors(key, type):
 	cons = dict()
@@ -118,7 +168,7 @@ def constructors(key, type):
 		)] = constructorBodyT.substitute(
 			objectType=tags[key]['objectType'],
 			name=key,
-			extra=' inContext:context'
+			extra='WithContext:context'
 		)
 	else:
 		cons[constructorDeclarationT.substitute(
@@ -140,7 +190,7 @@ def constructors(key, type):
 			)] = constructorBodyT.substitute(
 				objectType=tags[key]['objectType'],
 				name=key,
-				extra=' value:value'
+				extra='WithValue:value'
 			)
 			cons[constructorDeclarationT.substitute(
 				returnType=classify(key, type),
@@ -150,18 +200,7 @@ def constructors(key, type):
 			)] = constructorBodyT.substitute(
 				objectType=tags[key]['objectType'],
 				name=key,
-				extra=' gedcomStringValue:value'
-			)
-		elif type == 'relationship':
-			cons[constructorDeclarationT.substitute(
-				returnType=classify(key, type),
-				name=key, 
-				extra='WithTarget:(GCEntity *)target',
-				doc='@param target The relationship\'s target entity.'
-			)] = constructorBodyT.substitute(
-				objectType=tags[key]['objectType'],
-				name=key,
-				extra=' target:target'
+				extra='WithGedcomStringValue:value'
 			)
 	return cons
 
@@ -189,26 +228,29 @@ for key in sorted(tags):
 	if key[0] == '@':
 		propagate(key)
 
-def expand_group(group, properties, dynamics):
-	pro, dyn = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
+def expand_group(group, propertyDeclarations, propertyImplementations, ivars):
+	dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
 					
-	properties.append(pro)
-	dynamics.append(dyn)
+	propertyDeclarations.append(dec)
+	propertyImplementations.append(imp)
+	if ivar: ivars.append(ivar)
 	
 	for variant in tags[group]['variants']:
 		if variant.has_key('groupName'):
-			pro, dyn = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
+			dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
 			
-			if pro not in properties:
-				properties.append(pro)
-				dynamics.append(dyn)
+			if dec not in propertyDeclarations:
+				propertyDeclarations.append(dec)
+				propertyImplementations.append(imp)
+				if ivar: ivars.append(ivar)
 			
-			expand_group(variant['groupName'], properties, dynamics)
+			expand_group(variant['groupName'], propertyDeclarations, propertyImplementations, ivars)
 			continue
 		print '		PROCESSING VARIANT "%s": %s' % (variant['name'], tags[variant['name']])
-		pro, dyn = property(variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), variant['max'] == 'M', variant['min'] == 1)
-		properties.append(pro)
-		dynamics.append(dyn)
+		dec, imp, ivar = property(variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
+		propertyDeclarations.append(dec)
+		propertyImplementations.append(imp)
+		if ivar: ivars.append(ivar)
 
 
 for key in sorted(tags):
@@ -222,37 +264,43 @@ for key in sorted(tags):
 		methodDefs = []
 		methodImps = []
 		
-		methodImps.append(initT.substitute(type=key))
-		
 		for declaration in sorted(cons):
 			methodDefs.append('%s;' % declaration)
 			methodImps.append('%s\n%s' % (declaration, cons[declaration]))
 		
-		properties = []
-		dynamics = []
+		propertyDeclarations = []
+		propertyImplementations = []
+		ivars = []
 		
 		if tags[key].has_key('validSubTags'):
 			for prop in tags[key]['validSubTags']:
 				print '	PROCESSING SUBTAG %s' % prop
 				if prop.has_key('groupName'):
-					expand_group(prop['groupName'], properties, dynamics)
+					expand_group(prop['groupName'], propertyDeclarations, propertyImplementations, ivars)
 					
 				else:
-					pro, dyn = property(prop['name'], tags[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', prop['max'] == 'M', prop['min'] == 1)
-					properties.append(pro)
-					dynamics.append(dyn)
+					dec, imp, ivar = property(prop['name'], tags[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
+					propertyDeclarations.append(dec)
+					propertyImplementations.append(imp)
+					if ivar: ivars.append(ivar)
+		
+		methodImps.append(initT.substitute(
+			type=key,
+			initProperties="\n".join(['\t\t%s = [NSMutableArray array];' % x for x in ivars])
+		))
 		
 		classDefinitions.append(classDefinitionT.substitute(
 			name=classify(key, tags[key]['objectType']),
 			superClass=classify(tags[key]['objectType'], ''),
 			doc=tags[key]['doc'] if tags[key].has_key('doc') else '',
 			methods="\n".join(methodDefs),
-			properties="\n".join(properties)
+			propertyDeclarations="\n".join(propertyDeclarations)
 		))
 		classImplementations.append(classImplementationT.substitute(
 			name=classify(key, tags[key]['objectType']),
 			methods="\n".join(methodImps),
-			dynamics="\n".join(dynamics)
+			propertyImplementations="\n".join(propertyImplementations),
+			ivars="\n".join(['\tNSMutableArray *%s;' % x for x in ivars])
 		))
 	
 	print 'DONE PROCESSING %s' % key

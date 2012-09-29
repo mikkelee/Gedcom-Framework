@@ -12,15 +12,32 @@
 
 #import "DateHelpers.h"
 
+#import "GCObjects_generated.h"
+
 @interface GCChangeInfoAttribute ()
 
 @property NSDate *modificationDate;
 
 @end
 
-@implementation GCChangeInfoAttribute
+@implementation GCChangeInfoAttribute {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+}
 
 #pragma mark Initialization
+
+- (id)init
+{
+	self = [super _initWithType:@"changeInfo"];
+    
+    if (self) {
+        _noteReferences = [NSMutableArray array];
+        _noteEmbeddeds = [NSMutableArray array];
+    }
+    
+    return self;
+}
 
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
@@ -37,24 +54,53 @@
     return self;
 }
 
-- (id)init
-{
-	return [super initWithType:@"changeInfo"];
+#pragma mark Objective-C properties
+
+@dynamic notes;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
-+(GCChangeInfoAttribute *)changeInfo
-{
-	return [self attributeWithType:@"changeInfo"];
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
 }
 
-+(GCChangeInfoAttribute *)changeInfoWithValue:(GCValue *)value
-{
-	return [self attributeWithType:@"changeInfo" value:value];
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
 }
 
-+(GCChangeInfoAttribute *)changeInfoWithGedcomStringValue:(NSString *)value
-{
-	return [self attributeWithType:@"changeInfo" gedcomStringValue:value];
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+    [noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+    [_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
 #pragma mark Gedcom access
@@ -80,10 +126,6 @@
 {
     return;
 }
-
-// Properties:
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
 
 @end
 

@@ -21,16 +21,6 @@
  */
 @interface GCObject : NSObject <NSCoding>
 
-#pragma mark Initialization
-/// @name Creating and initializing objects
-
-/** Initializes and returns an object with the specified type.
- 
- @param type A given type.
- @return A new object.
- */
-- (id)initWithType:(NSString *)type;
-
 #pragma mark Accessing GCProperties
 /// @name Accessing GCProperties
 
@@ -52,22 +42,6 @@
  @return An array of property names or `nil` if there is no such group.
  */
 - (NSArray *)propertyTypesInGroup:(NSString *)groupName;
-
-#pragma mark Keyed subscript accessors
-
-/** Returns the property/ies with the given type. Used like in NSMutableDictionary.
- 
- @param key The type of the property.
- @return If the property allows multiple occurrences, will return a KVC-compliant NSMutableArray, otherwise the property itself.
- */
-- (id)objectForKeyedSubscript:(id)key;
-
-/** Sets the property for the given type. Used like in NSMutableDictionary
- 
- @param object A collection for properties allowing multiple occurrences, otherwise a single property.
- @param key The type of the property.
- */
-- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
 
 #pragma mark Comparison
 /// @name Comparing objects
@@ -132,6 +106,12 @@
 /// The receiver as an attributed string of Gedcom data.
 @property NSAttributedString *attributedGedcomString;
 
+#pragma mark Accessing properties
+
+@property (nonatomic, readonly) NSArray *orderedProperties;
+
+@property (nonatomic, readonly) NSArray *customProperties;
+
 @end
 
 #pragma mark -
@@ -142,20 +122,6 @@
 @interface GCObject (GCConvenienceMethods)
 
 /// @name Accessing GCProperties
-
-/** Creates a GCAttribute with the given type and value and adds it to the receiver via Key-Value coding.
- 
- @param type The type of the attribute.
- @param value The value of the attribute.
- */
-- (void)addAttributeWithType:(NSString *)type value:(GCValue *)value;
-
-/** Creates a GCRelationship with the given type and target and adds it to the receiver via Key-Value coding.
- 
- @param type The type of the relationship.
- @param target The target of the relationship.
- */
-- (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target;
 
 /** Creates a GCProperty based on the node and adds it to the receiver via Key-Value coding.
  

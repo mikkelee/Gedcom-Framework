@@ -4,14 +4,11 @@
 
 #import "GCObjects_generated.h"
 
-@implementation GCAbbreviationAttribute
+@implementation GCAbbreviationAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"abbreviation"];
 }
 
+// Methods:
 /** Initializes and returns a abbreviation.
 
  
@@ -19,7 +16,7 @@
 */
 +(GCAbbreviationAttribute *)abbreviation
 {
-	return [self attributeWithType:@"abbreviation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a abbreviation.
 
@@ -28,7 +25,7 @@
 */
 +(GCAbbreviationAttribute *)abbreviationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"abbreviation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a abbreviation.
 
@@ -37,22 +34,31 @@
 */
 +(GCAbbreviationAttribute *)abbreviationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"abbreviation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"abbreviation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAddressAttribute
+@implementation GCAddressAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"address"];
 }
 
+// Methods:
 /** Initializes and returns a address.
 
  
@@ -60,7 +66,7 @@
 */
 +(GCAddressAttribute *)address
 {
-	return [self attributeWithType:@"address"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a address.
 
@@ -69,7 +75,7 @@
 */
 +(GCAddressAttribute *)addressWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"address" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a address.
 
@@ -78,27 +84,36 @@
 */
 +(GCAddressAttribute *)addressWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"address" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"address"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic addressLine1;
-@dynamic addressLine2;
-@dynamic city;
-@dynamic state;
-@dynamic postalCode;
-@dynamic country;
+
+
+
+
+
+
 
 @end
 
-@implementation GCAddressLine1Attribute
+@implementation GCAddressLine1Attribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"addressLine1"];
 }
 
+// Methods:
 /** Initializes and returns a addressLine1.
 
  
@@ -106,7 +121,7 @@
 */
 +(GCAddressLine1Attribute *)addressLine1
 {
-	return [self attributeWithType:@"addressLine1"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a addressLine1.
 
@@ -115,7 +130,7 @@
 */
 +(GCAddressLine1Attribute *)addressLine1WithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"addressLine1" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a addressLine1.
 
@@ -124,22 +139,31 @@
 */
 +(GCAddressLine1Attribute *)addressLine1WithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"addressLine1" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"addressLine1"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAddressLine2Attribute
+@implementation GCAddressLine2Attribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"addressLine2"];
 }
 
+// Methods:
 /** Initializes and returns a addressLine2.
 
  
@@ -147,7 +171,7 @@
 */
 +(GCAddressLine2Attribute *)addressLine2
 {
-	return [self attributeWithType:@"addressLine2"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a addressLine2.
 
@@ -156,7 +180,7 @@
 */
 +(GCAddressLine2Attribute *)addressLine2WithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"addressLine2" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a addressLine2.
 
@@ -165,22 +189,31 @@
 */
 +(GCAddressLine2Attribute *)addressLine2WithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"addressLine2" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"addressLine2"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAdoptedByWhichParentAttribute
+@implementation GCAdoptedByWhichParentAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"adoptedByWhichParent"];
 }
 
+// Methods:
 /** Initializes and returns a adoptedByWhichParent.
 
  
@@ -188,7 +221,7 @@
 */
 +(GCAdoptedByWhichParentAttribute *)adoptedByWhichParent
 {
-	return [self attributeWithType:@"adoptedByWhichParent"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a adoptedByWhichParent.
 
@@ -197,7 +230,7 @@
 */
 +(GCAdoptedByWhichParentAttribute *)adoptedByWhichParentWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"adoptedByWhichParent" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a adoptedByWhichParent.
 
@@ -206,22 +239,31 @@
 */
 +(GCAdoptedByWhichParentAttribute *)adoptedByWhichParentWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"adoptedByWhichParent" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"adoptedByWhichParent"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAdoptedIntoFamilyRelationship
+@implementation GCAdoptedIntoFamilyRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"adoptedIntoFamily"];
 }
 
+// Methods:
 /** Initializes and returns a adoptedIntoFamily.
 
  
@@ -229,31 +271,36 @@
 */
 +(GCAdoptedIntoFamilyRelationship *)adoptedIntoFamily
 {
-	return [self relationshipWithType:@"adoptedIntoFamily"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a adoptedIntoFamily.
-
- @param target The relationship's target entity.
- @return A new adoptedIntoFamily.
-*/
-+(GCAdoptedIntoFamilyRelationship *)adoptedIntoFamilyWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"adoptedIntoFamily" target:target];
+	self = [super _initWithType:@"adoptedIntoFamily"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
-@dynamic adoptedByWhichParent;
+
 
 @end
 
-@implementation GCAdoptionAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"adoption"];
+@implementation GCAdoptionAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a adoption.
 
  
@@ -261,7 +308,7 @@
 */
 +(GCAdoptionAttribute *)adoption
 {
-	return [self attributeWithType:@"adoption"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a adoption.
 
@@ -270,7 +317,7 @@
 */
 +(GCAdoptionAttribute *)adoptionWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"adoption" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a adoption.
 
@@ -279,40 +326,197 @@
 */
 +(GCAdoptionAttribute *)adoptionWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"adoption" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"adoption"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic adoptedIntoFamily;
+
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCAdultChristeningAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"adultChristening"];
+@implementation GCAdultChristeningAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a adultChristening.
 
  
@@ -320,7 +524,7 @@
 */
 +(GCAdultChristeningAttribute *)adultChristening
 {
-	return [self attributeWithType:@"adultChristening"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a adultChristening.
 
@@ -329,7 +533,7 @@
 */
 +(GCAdultChristeningAttribute *)adultChristeningWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"adultChristening" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a adultChristening.
 
@@ -338,39 +542,191 @@
 */
 +(GCAdultChristeningAttribute *)adultChristeningWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"adultChristening" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"adultChristening"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCAgeAttribute
+@implementation GCAgeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"age"];
 }
 
+// Methods:
 /** Initializes and returns a age.
 
  
@@ -378,7 +734,7 @@
 */
 +(GCAgeAttribute *)age
 {
-	return [self attributeWithType:@"age"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a age.
 
@@ -387,7 +743,7 @@
 */
 +(GCAgeAttribute *)ageWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"age" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a age.
 
@@ -396,22 +752,31 @@
 */
 +(GCAgeAttribute *)ageWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"age" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"age"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAliasRelationship
+@implementation GCAliasRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"alias"];
 }
 
+// Methods:
 /** Initializes and returns a alias.
 
  
@@ -419,31 +784,31 @@
 */
 +(GCAliasRelationship *)alias
 {
-	return [self relationshipWithType:@"alias"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a alias.
-
- @param target The relationship's target entity.
- @return A new alias.
-*/
-+(GCAliasRelationship *)aliasWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"alias" target:target];
+	self = [super _initWithType:@"alias"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAncestorInterestRelationship
+@implementation GCAncestorInterestRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"ancestorInterest"];
 }
 
+// Methods:
 /** Initializes and returns a ancestorInterest.
 
  
@@ -451,31 +816,31 @@
 */
 +(GCAncestorInterestRelationship *)ancestorInterest
 {
-	return [self relationshipWithType:@"ancestorInterest"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a ancestorInterest.
-
- @param target The relationship's target entity.
- @return A new ancestorInterest.
-*/
-+(GCAncestorInterestRelationship *)ancestorInterestWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"ancestorInterest" target:target];
+	self = [super _initWithType:@"ancestorInterest"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAncestralFileNumberAttribute
+@implementation GCAncestralFileNumberAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"ancestralFileNumber"];
 }
 
+// Methods:
 /** Initializes and returns a ancestralFileNumber.
 
  
@@ -483,7 +848,7 @@
 */
 +(GCAncestralFileNumberAttribute *)ancestralFileNumber
 {
-	return [self attributeWithType:@"ancestralFileNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a ancestralFileNumber.
 
@@ -492,7 +857,7 @@
 */
 +(GCAncestralFileNumberAttribute *)ancestralFileNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"ancestralFileNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a ancestralFileNumber.
 
@@ -501,22 +866,36 @@
 */
 +(GCAncestralFileNumberAttribute *)ancestralFileNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"ancestralFileNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"ancestralFileNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCAnnulmentAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"annulment"];
+@implementation GCAnnulmentAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a annulment.
 
  
@@ -524,7 +903,7 @@
 */
 +(GCAnnulmentAttribute *)annulment
 {
-	return [self attributeWithType:@"annulment"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a annulment.
 
@@ -533,7 +912,7 @@
 */
 +(GCAnnulmentAttribute *)annulmentWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"annulment" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a annulment.
 
@@ -542,41 +921,196 @@
 */
 +(GCAnnulmentAttribute *)annulmentWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"annulment" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"annulment"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCAssociationRelationship
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"association"];
+@implementation GCAssociationRelationship {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a association.
 
  
@@ -584,38 +1118,133 @@
 */
 +(GCAssociationRelationship *)association
 {
-	return [self relationshipWithType:@"association"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a association.
-
- @param target The relationship's target entity.
- @return A new association.
-*/
-+(GCAssociationRelationship *)associationWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"association" target:target];
+	self = [super _initWithType:@"association"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
+
 
 // Properties:
-@dynamic recordType;
-@dynamic relationshipDescriptor;
+
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCAuthorAttribute
+@implementation GCAuthorAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"author"];
 }
 
+// Methods:
 /** Initializes and returns a author.
 
  
@@ -623,7 +1252,7 @@
 */
 +(GCAuthorAttribute *)author
 {
-	return [self attributeWithType:@"author"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a author.
 
@@ -632,7 +1261,7 @@
 */
 +(GCAuthorAttribute *)authorWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"author" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a author.
 
@@ -641,22 +1270,36 @@
 */
 +(GCAuthorAttribute *)authorWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"author" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"author"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCBaptismAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"baptism"];
+@implementation GCBaptismAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a baptism.
 
  
@@ -664,7 +1307,7 @@
 */
 +(GCBaptismAttribute *)baptism
 {
-	return [self attributeWithType:@"baptism"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a baptism.
 
@@ -673,7 +1316,7 @@
 */
 +(GCBaptismAttribute *)baptismWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"baptism" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a baptism.
 
@@ -682,39 +1325,196 @@
 */
 +(GCBaptismAttribute *)baptismWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"baptism" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"baptism"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCBarMitzvahAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"barMitzvah"];
+@implementation GCBarMitzvahAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a barMitzvah.
 
  
@@ -722,7 +1522,7 @@
 */
 +(GCBarMitzvahAttribute *)barMitzvah
 {
-	return [self attributeWithType:@"barMitzvah"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a barMitzvah.
 
@@ -731,7 +1531,7 @@
 */
 +(GCBarMitzvahAttribute *)barMitzvahWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"barMitzvah" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a barMitzvah.
 
@@ -740,39 +1540,196 @@
 */
 +(GCBarMitzvahAttribute *)barMitzvahWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"barMitzvah" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"barMitzvah"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCBasMitzvahAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"basMitzvah"];
+@implementation GCBasMitzvahAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a basMitzvah.
 
  
@@ -780,7 +1737,7 @@
 */
 +(GCBasMitzvahAttribute *)basMitzvah
 {
-	return [self attributeWithType:@"basMitzvah"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a basMitzvah.
 
@@ -789,7 +1746,7 @@
 */
 +(GCBasMitzvahAttribute *)basMitzvahWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"basMitzvah" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a basMitzvah.
 
@@ -798,39 +1755,191 @@
 */
 +(GCBasMitzvahAttribute *)basMitzvahWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"basMitzvah" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"basMitzvah"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCBinaryObjectAttribute
+@implementation GCBinaryObjectAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"binaryObject"];
 }
 
+// Methods:
 /** Initializes and returns a binaryObject.
 
  
@@ -838,7 +1947,7 @@
 */
 +(GCBinaryObjectAttribute *)binaryObject
 {
-	return [self attributeWithType:@"binaryObject"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a binaryObject.
 
@@ -847,7 +1956,7 @@
 */
 +(GCBinaryObjectAttribute *)binaryObjectWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"binaryObject" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a binaryObject.
 
@@ -856,22 +1965,36 @@
 */
 +(GCBinaryObjectAttribute *)binaryObjectWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"binaryObject" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"binaryObject"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCBirthAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"birth"];
+@implementation GCBirthAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a birth.
 
  
@@ -879,7 +2002,7 @@
 */
 +(GCBirthAttribute *)birth
 {
-	return [self attributeWithType:@"birth"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a birth.
 
@@ -888,7 +2011,7 @@
 */
 +(GCBirthAttribute *)birthWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"birth" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a birth.
 
@@ -897,40 +2020,197 @@
 */
 +(GCBirthAttribute *)birthWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"birth" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"birth"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic bornToFamily;
+
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCBlessingAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"blessing"];
+@implementation GCBlessingAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a blessing.
 
  
@@ -938,7 +2218,7 @@
 */
 +(GCBlessingAttribute *)blessing
 {
-	return [self attributeWithType:@"blessing"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a blessing.
 
@@ -947,7 +2227,7 @@
 */
 +(GCBlessingAttribute *)blessingWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"blessing" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a blessing.
 
@@ -956,39 +2236,191 @@
 */
 +(GCBlessingAttribute *)blessingWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"blessing" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"blessing"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCBornToFamilyRelationship
+@implementation GCBornToFamilyRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"bornToFamily"];
 }
 
+// Methods:
 /** Initializes and returns a bornToFamily.
 
  
@@ -996,31 +2428,36 @@
 */
 +(GCBornToFamilyRelationship *)bornToFamily
 {
-	return [self relationshipWithType:@"bornToFamily"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a bornToFamily.
-
- @param target The relationship's target entity.
- @return A new bornToFamily.
-*/
-+(GCBornToFamilyRelationship *)bornToFamilyWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"bornToFamily" target:target];
+	self = [super _initWithType:@"bornToFamily"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCBurialAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"burial"];
+@implementation GCBurialAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a burial.
 
  
@@ -1028,7 +2465,7 @@
 */
 +(GCBurialAttribute *)burial
 {
-	return [self attributeWithType:@"burial"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a burial.
 
@@ -1037,7 +2474,7 @@
 */
 +(GCBurialAttribute *)burialWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"burial" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a burial.
 
@@ -1046,39 +2483,191 @@
 */
 +(GCBurialAttribute *)burialWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"burial" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"burial"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCCallNumberAttribute
+@implementation GCCallNumberAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"callNumber"];
 }
 
+// Methods:
 /** Initializes and returns a callNumber.
 
  
@@ -1086,7 +2675,7 @@
 */
 +(GCCallNumberAttribute *)callNumber
 {
-	return [self attributeWithType:@"callNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a callNumber.
 
@@ -1095,7 +2684,7 @@
 */
 +(GCCallNumberAttribute *)callNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"callNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a callNumber.
 
@@ -1104,22 +2693,36 @@
 */
 +(GCCallNumberAttribute *)callNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"callNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"callNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic mediaType;
+
 
 @end
 
-@implementation GCCasteAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"caste"];
+@implementation GCCasteAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a caste.
 
  
@@ -1127,7 +2730,7 @@
 */
 +(GCCasteAttribute *)caste
 {
-	return [self attributeWithType:@"caste"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a caste.
 
@@ -1136,7 +2739,7 @@
 */
 +(GCCasteAttribute *)casteWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"caste" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a caste.
 
@@ -1145,39 +2748,191 @@
 */
 +(GCCasteAttribute *)casteWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"caste" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"caste"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCCauseAttribute
+@implementation GCCauseAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"cause"];
 }
 
+// Methods:
 /** Initializes and returns a cause.
 
  
@@ -1185,7 +2940,7 @@
 */
 +(GCCauseAttribute *)cause
 {
-	return [self attributeWithType:@"cause"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a cause.
 
@@ -1194,7 +2949,7 @@
 */
 +(GCCauseAttribute *)causeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"cause" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a cause.
 
@@ -1203,22 +2958,36 @@
 */
 +(GCCauseAttribute *)causeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"cause" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"cause"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCCensusAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"census"];
+@implementation GCCensusAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a census.
 
  
@@ -1226,7 +2995,7 @@
 */
 +(GCCensusAttribute *)census
 {
-	return [self attributeWithType:@"census"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a census.
 
@@ -1235,7 +3004,7 @@
 */
 +(GCCensusAttribute *)censusWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"census" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a census.
 
@@ -1244,41 +3013,193 @@
 */
 +(GCCensusAttribute *)censusWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"census" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"census"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCCharacterSetAttribute
+@implementation GCCharacterSetAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"characterSet"];
 }
 
+// Methods:
 /** Initializes and returns a characterSet.
 
  
@@ -1286,7 +3207,7 @@
 */
 +(GCCharacterSetAttribute *)characterSet
 {
-	return [self attributeWithType:@"characterSet"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a characterSet.
 
@@ -1295,7 +3216,7 @@
 */
 +(GCCharacterSetAttribute *)characterSetWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"characterSet" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a characterSet.
 
@@ -1304,22 +3225,31 @@
 */
 +(GCCharacterSetAttribute *)characterSetWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"characterSet" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"characterSet"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic version;
+
 
 @end
 
-@implementation GCChildRelationship
+@implementation GCChildRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"child"];
 }
 
+// Methods:
 /** Initializes and returns a child.
 
  
@@ -1327,31 +3257,32 @@
 */
 +(GCChildRelationship *)child
 {
-	return [self relationshipWithType:@"child"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a child.
-
- @param target The relationship's target entity.
- @return A new child.
-*/
-+(GCChildRelationship *)childWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"child" target:target];
+	self = [super _initWithType:@"child"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCChildInFamilyRelationship
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"childInFamily"];
+@implementation GCChildInFamilyRelationship {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a childInFamily.
 
  
@@ -1359,34 +3290,86 @@
 */
 +(GCChildInFamilyRelationship *)childInFamily
 {
-	return [self relationshipWithType:@"childInFamily"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a childInFamily.
-
- @param target The relationship's target entity.
- @return A new childInFamily.
-*/
-+(GCChildInFamilyRelationship *)childInFamilyWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"childInFamily" target:target];
+	self = [super _initWithType:@"childInFamily"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
+
 
 // Properties:
-@dynamic pedigree;
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCChristeningAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"christening"];
+@implementation GCChristeningAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a christening.
 
  
@@ -1394,7 +3377,7 @@
 */
 +(GCChristeningAttribute *)christening
 {
-	return [self attributeWithType:@"christening"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a christening.
 
@@ -1403,7 +3386,7 @@
 */
 +(GCChristeningAttribute *)christeningWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"christening" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a christening.
 
@@ -1412,40 +3395,192 @@
 */
 +(GCChristeningAttribute *)christeningWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"christening" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"christening"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic childInFamily;
+
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCCityAttribute
+@implementation GCCityAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"city"];
 }
 
+// Methods:
 /** Initializes and returns a city.
 
  
@@ -1453,7 +3588,7 @@
 */
 +(GCCityAttribute *)city
 {
-	return [self attributeWithType:@"city"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a city.
 
@@ -1462,7 +3597,7 @@
 */
 +(GCCityAttribute *)cityWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"city" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a city.
 
@@ -1471,22 +3606,36 @@
 */
 +(GCCityAttribute *)cityWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"city" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"city"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCConfirmationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"confirmation"];
+@implementation GCConfirmationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a confirmation.
 
  
@@ -1494,7 +3643,7 @@
 */
 +(GCConfirmationAttribute *)confirmation
 {
-	return [self attributeWithType:@"confirmation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a confirmation.
 
@@ -1503,7 +3652,7 @@
 */
 +(GCConfirmationAttribute *)confirmationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"confirmation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a confirmation.
 
@@ -1512,39 +3661,191 @@
 */
 +(GCConfirmationAttribute *)confirmationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"confirmation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"confirmation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCCopyrightAttribute
+@implementation GCCopyrightAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"copyright"];
 }
 
+// Methods:
 /** Initializes and returns a copyright.
 
  
@@ -1552,7 +3853,7 @@
 */
 +(GCCopyrightAttribute *)copyright
 {
-	return [self attributeWithType:@"copyright"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a copyright.
 
@@ -1561,7 +3862,7 @@
 */
 +(GCCopyrightAttribute *)copyrightWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"copyright" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a copyright.
 
@@ -1570,22 +3871,31 @@
 */
 +(GCCopyrightAttribute *)copyrightWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"copyright" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"copyright"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCCorporationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"corporation"];
+@implementation GCCorporationAttribute {
+	NSMutableArray *_phoneNumbers;
 }
 
+// Methods:
 /** Initializes and returns a corporation.
 
  
@@ -1593,7 +3903,7 @@
 */
 +(GCCorporationAttribute *)corporation
 {
-	return [self attributeWithType:@"corporation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a corporation.
 
@@ -1602,7 +3912,7 @@
 */
 +(GCCorporationAttribute *)corporationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"corporation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a corporation.
 
@@ -1611,23 +3921,55 @@
 */
 +(GCCorporationAttribute *)corporationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"corporation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"corporation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_phoneNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic address;
-@dynamic phoneNumber;
+
+
+- (NSMutableArray *)mutablePhoneNumbers {
+    return [self mutableArrayValueForKey:@"phoneNumbers"];
+}
+
+- (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
+    return [_phoneNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)phoneNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_phoneNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCPhoneNumberAttribute *)phoneNumbers inPhoneNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([phoneNumbers isKindOfClass:[GCPhoneNumberAttribute class]]);
+	[phoneNumbers setValue:self forKey:@"describedObject"];
+    [_phoneNumbers insertObject:phoneNumbers atIndex:index];
+}
+
+- (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+	[_phoneNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_phoneNumbers removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCCountryAttribute
+@implementation GCCountryAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"country"];
 }
 
+// Methods:
 /** Initializes and returns a country.
 
  
@@ -1635,7 +3977,7 @@
 */
 +(GCCountryAttribute *)country
 {
-	return [self attributeWithType:@"country"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a country.
 
@@ -1644,7 +3986,7 @@
 */
 +(GCCountryAttribute *)countryWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"country" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a country.
 
@@ -1653,22 +3995,36 @@
 */
 +(GCCountryAttribute *)countryWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"country" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"country"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCCremationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"cremation"];
+@implementation GCCremationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a cremation.
 
  
@@ -1676,7 +4032,7 @@
 */
 +(GCCremationAttribute *)cremation
 {
-	return [self attributeWithType:@"cremation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a cremation.
 
@@ -1685,7 +4041,7 @@
 */
 +(GCCremationAttribute *)cremationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"cremation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a cremation.
 
@@ -1694,99 +4050,191 @@
 */
 +(GCCremationAttribute *)cremationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"cremation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"cremation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
-@dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
 
-@end
-
-@implementation GCCustomEventAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"customEvent"];
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
-/** Initializes and returns a customEvent.
-
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
  
- @return A new customEvent.
-*/
-+(GCCustomEventAttribute *)customEvent
-{
-	return [self attributeWithType:@"customEvent"];
-}
-/** Initializes and returns a customEvent.
-
- @param value The value as a GCValue object.
- @return A new customEvent.
-*/
-+(GCCustomEventAttribute *)customEventWithValue:(GCValue *)value
-{
-	return [self attributeWithType:@"customEvent" value:value];
-}
-/** Initializes and returns a customEvent.
-
- @param value The value as an NSString.
- @return A new customEvent.
-*/
-+(GCCustomEventAttribute *)customEventWithGedcomStringValue:(NSString *)value
-{
-	return [self attributeWithType:@"customEvent" gedcomStringValue:value];
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
 }
 
-// Properties:
-@dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCDataAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"data"];
+@implementation GCDataAttribute {
+	NSMutableArray *_texts;
 }
 
+// Methods:
 /** Initializes and returns a data.
 
  
@@ -1794,7 +4242,7 @@
 */
 +(GCDataAttribute *)data
 {
-	return [self attributeWithType:@"data"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a data.
 
@@ -1803,7 +4251,7 @@
 */
 +(GCDataAttribute *)dataWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"data" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a data.
 
@@ -1812,23 +4260,55 @@
 */
 +(GCDataAttribute *)dataWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"data" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"data"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_texts = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic date;
-@dynamic texts;
+
+
+- (NSMutableArray *)mutableTexts {
+    return [self mutableArrayValueForKey:@"texts"];
+}
+
+- (id)objectInTextsAtIndex:(NSUInteger)index {
+    return [_texts objectAtIndex:index];
+}
+ 
+- (NSArray *)textsAtIndexes:(NSIndexSet *)indexes {
+    return [_texts objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCTextAttribute *)texts inTextsAtIndex:(NSUInteger)index {
+	NSParameterAssert([texts isKindOfClass:[GCTextAttribute class]]);
+	[texts setValue:self forKey:@"describedObject"];
+    [_texts insertObject:texts atIndex:index];
+}
+
+- (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
+	[_texts[index] setValue:nil forKey:@"describedObject"];
+    [_texts removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCDateAttribute
+@implementation GCDateAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"date"];
 }
 
+// Methods:
 /** Initializes and returns a date.
 
  
@@ -1836,7 +4316,7 @@
 */
 +(GCDateAttribute *)date
 {
-	return [self attributeWithType:@"date"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a date.
 
@@ -1845,7 +4325,7 @@
 */
 +(GCDateAttribute *)dateWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"date" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a date.
 
@@ -1854,22 +4334,36 @@
 */
 +(GCDateAttribute *)dateWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"date" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"date"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCDeathAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"death"];
+@implementation GCDeathAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a death.
 
  
@@ -1877,7 +4371,7 @@
 */
 +(GCDeathAttribute *)death
 {
-	return [self attributeWithType:@"death"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a death.
 
@@ -1886,7 +4380,7 @@
 */
 +(GCDeathAttribute *)deathWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"death" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a death.
 
@@ -1895,39 +4389,191 @@
 */
 +(GCDeathAttribute *)deathWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"death" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"death"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCDescendantInterestRelationship
+@implementation GCDescendantInterestRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"descendantInterest"];
 }
 
+// Methods:
 /** Initializes and returns a descendantInterest.
 
  
@@ -1935,31 +4581,81 @@
 */
 +(GCDescendantInterestRelationship *)descendantInterest
 {
-	return [self relationshipWithType:@"descendantInterest"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a descendantInterest.
-
- @param target The relationship's target entity.
- @return A new descendantInterest.
-*/
-+(GCDescendantInterestRelationship *)descendantInterestWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"descendantInterest" target:target];
+	self = [super _initWithType:@"descendantInterest"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCDestinationAttribute
+@implementation GCDescriptiveNameAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"destination"];
 }
 
+// Methods:
+/** Initializes and returns a descriptiveName.
+
+ 
+ @return A new descriptiveName.
+*/
++(GCDescriptiveNameAttribute *)descriptiveName
+{
+	return [[self alloc] init];
+}
+/** Initializes and returns a descriptiveName.
+
+ @param value The value as a GCValue object.
+ @return A new descriptiveName.
+*/
++(GCDescriptiveNameAttribute *)descriptiveNameWithValue:(GCValue *)value
+{
+	return [[self alloc] initWithValue:value];
+}
+/** Initializes and returns a descriptiveName.
+
+ @param value The value as an NSString.
+ @return A new descriptiveName.
+*/
++(GCDescriptiveNameAttribute *)descriptiveNameWithGedcomStringValue:(NSString *)value
+{
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"descriptiveName"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
+
+// Properties:
+
+
+@end
+
+@implementation GCDestinationAttribute {
+
+}
+
+// Methods:
 /** Initializes and returns a destination.
 
  
@@ -1967,7 +4663,7 @@
 */
 +(GCDestinationAttribute *)destination
 {
-	return [self attributeWithType:@"destination"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a destination.
 
@@ -1976,7 +4672,7 @@
 */
 +(GCDestinationAttribute *)destinationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"destination" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a destination.
 
@@ -1985,22 +4681,36 @@
 */
 +(GCDestinationAttribute *)destinationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"destination" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"destination"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCDivorceAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"divorce"];
+@implementation GCDivorceAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a divorce.
 
  
@@ -2008,7 +4718,7 @@
 */
 +(GCDivorceAttribute *)divorce
 {
-	return [self attributeWithType:@"divorce"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a divorce.
 
@@ -2017,7 +4727,7 @@
 */
 +(GCDivorceAttribute *)divorceWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"divorce" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a divorce.
 
@@ -2026,41 +4736,198 @@
 */
 +(GCDivorceAttribute *)divorceWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"divorce" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"divorce"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCDivorceFiledAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"divorceFiled"];
+@implementation GCDivorceFiledAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a divorceFiled.
 
  
@@ -2068,7 +4935,7 @@
 */
 +(GCDivorceFiledAttribute *)divorceFiled
 {
-	return [self attributeWithType:@"divorceFiled"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a divorceFiled.
 
@@ -2077,7 +4944,7 @@
 */
 +(GCDivorceFiledAttribute *)divorceFiledWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"divorceFiled" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a divorceFiled.
 
@@ -2086,41 +4953,198 @@
 */
 +(GCDivorceFiledAttribute *)divorceFiledWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"divorceFiled" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"divorceFiled"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCEducationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"education"];
+@implementation GCEducationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a education.
 
  
@@ -2128,7 +5152,7 @@
 */
 +(GCEducationAttribute *)education
 {
-	return [self attributeWithType:@"education"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a education.
 
@@ -2137,7 +5161,7 @@
 */
 +(GCEducationAttribute *)educationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"education" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a education.
 
@@ -2146,39 +5170,196 @@
 */
 +(GCEducationAttribute *)educationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"education" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"education"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCEmigrationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"emigration"];
+@implementation GCEmigrationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a emigration.
 
  
@@ -2186,7 +5367,7 @@
 */
 +(GCEmigrationAttribute *)emigration
 {
-	return [self attributeWithType:@"emigration"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a emigration.
 
@@ -2195,7 +5376,7 @@
 */
 +(GCEmigrationAttribute *)emigrationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"emigration" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a emigration.
 
@@ -2204,39 +5385,196 @@
 */
 +(GCEmigrationAttribute *)emigrationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"emigration" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"emigration"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCEngagementAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"engagement"];
+@implementation GCEngagementAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a engagement.
 
  
@@ -2244,7 +5582,7 @@
 */
 +(GCEngagementAttribute *)engagement
 {
-	return [self attributeWithType:@"engagement"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a engagement.
 
@@ -2253,7 +5591,7 @@
 */
 +(GCEngagementAttribute *)engagementWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"engagement" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a engagement.
 
@@ -2262,41 +5600,193 @@
 */
 +(GCEngagementAttribute *)engagementWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"engagement" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"engagement"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCEventCitedAttribute
+@implementation GCEventCitedAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"eventCited"];
 }
 
+// Methods:
 /** Initializes and returns a eventCited.
 
  
@@ -2304,7 +5794,7 @@
 */
 +(GCEventCitedAttribute *)eventCited
 {
-	return [self attributeWithType:@"eventCited"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a eventCited.
 
@@ -2313,7 +5803,7 @@
 */
 +(GCEventCitedAttribute *)eventCitedWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"eventCited" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a eventCited.
 
@@ -2322,22 +5812,31 @@
 */
 +(GCEventCitedAttribute *)eventCitedWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"eventCited" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"eventCited"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic role;
+
 
 @end
 
-@implementation GCEventsRecordedAttribute
+@implementation GCEventsRecordedAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"eventsRecorded"];
 }
 
+// Methods:
 /** Initializes and returns a eventsRecorded.
 
  
@@ -2345,7 +5844,7 @@
 */
 +(GCEventsRecordedAttribute *)eventsRecorded
 {
-	return [self attributeWithType:@"eventsRecorded"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a eventsRecorded.
 
@@ -2354,7 +5853,7 @@
 */
 +(GCEventsRecordedAttribute *)eventsRecordedWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"eventsRecorded" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a eventsRecorded.
 
@@ -2363,23 +5862,52 @@
 */
 +(GCEventsRecordedAttribute *)eventsRecordedWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"eventsRecorded" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"eventsRecorded"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic date;
-@dynamic place;
+
+
 
 @end
 
-@implementation GCFamilyEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"family"];
+@implementation GCFamilyEntity {
+	NSMutableArray *_annulments;
+	NSMutableArray *_censuses;
+	NSMutableArray *_divorces;
+	NSMutableArray *_divorceFileds;
+	NSMutableArray *_engagements;
+	NSMutableArray *_marriages;
+	NSMutableArray *_marriageBanns;
+	NSMutableArray *_marriageContracts;
+	NSMutableArray *_marriageLicenses;
+	NSMutableArray *_marriageSettlements;
+	NSMutableArray *_genericEvents;
+	NSMutableArray *_children;
+	NSMutableArray *_submitterReferences;
+	NSMutableArray *_lDSSealingSpouses;
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a family.
 
  @param context The context in which to create the entity.
@@ -2387,51 +5915,563 @@
 */
 +(GCFamilyEntity *)familyInContext:(GCContext *)context
 {
-	return [self entityWithType:@"family" inContext:context];
+	return [[self alloc] initWithContext:context];
 }
+- (id)init
+{
+	self = [super _initWithType:@"family"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_annulments = [NSMutableArray array];
+		_censuses = [NSMutableArray array];
+		_divorces = [NSMutableArray array];
+		_divorceFileds = [NSMutableArray array];
+		_engagements = [NSMutableArray array];
+		_marriages = [NSMutableArray array];
+		_marriageBanns = [NSMutableArray array];
+		_marriageContracts = [NSMutableArray array];
+		_marriageLicenses = [NSMutableArray array];
+		_marriageSettlements = [NSMutableArray array];
+		_genericEvents = [NSMutableArray array];
+		_children = [NSMutableArray array];
+		_submitterReferences = [NSMutableArray array];
+		_lDSSealingSpouses = [NSMutableArray array];
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic familyEvents;
-@dynamic annulments;
-@dynamic censuses;
-@dynamic divorces;
-@dynamic divorceFileds;
-@dynamic engagements;
-@dynamic marriages;
-@dynamic marriageBanns;
-@dynamic marriageContracts;
-@dynamic marriageLicenses;
-@dynamic marriageSettlements;
-@dynamic customEvents;
-@dynamic husband;
-@dynamic wife;
-@dynamic children;
-@dynamic numberOfChildren;
-@dynamic submitterReferences;
-@dynamic lDSSealingSpouses;
+
+- (NSMutableArray *)mutableAnnulments {
+    return [self mutableArrayValueForKey:@"annulments"];
+}
+
+- (id)objectInAnnulmentsAtIndex:(NSUInteger)index {
+    return [_annulments objectAtIndex:index];
+}
+ 
+- (NSArray *)annulmentsAtIndexes:(NSIndexSet *)indexes {
+    return [_annulments objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAnnulmentAttribute *)annulments inAnnulmentsAtIndex:(NSUInteger)index {
+	NSParameterAssert([annulments isKindOfClass:[GCAnnulmentAttribute class]]);
+	[annulments setValue:self forKey:@"describedObject"];
+    [_annulments insertObject:annulments atIndex:index];
+}
+
+- (void)removeObjectFromAnnulmentsAtIndex:(NSUInteger)index {
+	[_annulments[index] setValue:nil forKey:@"describedObject"];
+    [_annulments removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableCensuses {
+    return [self mutableArrayValueForKey:@"censuses"];
+}
+
+- (id)objectInCensusesAtIndex:(NSUInteger)index {
+    return [_censuses objectAtIndex:index];
+}
+ 
+- (NSArray *)censusesAtIndexes:(NSIndexSet *)indexes {
+    return [_censuses objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCCensusAttribute *)censuses inCensusesAtIndex:(NSUInteger)index {
+	NSParameterAssert([censuses isKindOfClass:[GCCensusAttribute class]]);
+	[censuses setValue:self forKey:@"describedObject"];
+    [_censuses insertObject:censuses atIndex:index];
+}
+
+- (void)removeObjectFromCensusesAtIndex:(NSUInteger)index {
+	[_censuses[index] setValue:nil forKey:@"describedObject"];
+    [_censuses removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableDivorces {
+    return [self mutableArrayValueForKey:@"divorces"];
+}
+
+- (id)objectInDivorcesAtIndex:(NSUInteger)index {
+    return [_divorces objectAtIndex:index];
+}
+ 
+- (NSArray *)divorcesAtIndexes:(NSIndexSet *)indexes {
+    return [_divorces objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCDivorceAttribute *)divorces inDivorcesAtIndex:(NSUInteger)index {
+	NSParameterAssert([divorces isKindOfClass:[GCDivorceAttribute class]]);
+	[divorces setValue:self forKey:@"describedObject"];
+    [_divorces insertObject:divorces atIndex:index];
+}
+
+- (void)removeObjectFromDivorcesAtIndex:(NSUInteger)index {
+	[_divorces[index] setValue:nil forKey:@"describedObject"];
+    [_divorces removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableDivorceFileds {
+    return [self mutableArrayValueForKey:@"divorceFileds"];
+}
+
+- (id)objectInDivorceFiledsAtIndex:(NSUInteger)index {
+    return [_divorceFileds objectAtIndex:index];
+}
+ 
+- (NSArray *)divorceFiledsAtIndexes:(NSIndexSet *)indexes {
+    return [_divorceFileds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCDivorceFiledAttribute *)divorceFileds inDivorceFiledsAtIndex:(NSUInteger)index {
+	NSParameterAssert([divorceFileds isKindOfClass:[GCDivorceFiledAttribute class]]);
+	[divorceFileds setValue:self forKey:@"describedObject"];
+    [_divorceFileds insertObject:divorceFileds atIndex:index];
+}
+
+- (void)removeObjectFromDivorceFiledsAtIndex:(NSUInteger)index {
+	[_divorceFileds[index] setValue:nil forKey:@"describedObject"];
+    [_divorceFileds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableEngagements {
+    return [self mutableArrayValueForKey:@"engagements"];
+}
+
+- (id)objectInEngagementsAtIndex:(NSUInteger)index {
+    return [_engagements objectAtIndex:index];
+}
+ 
+- (NSArray *)engagementsAtIndexes:(NSIndexSet *)indexes {
+    return [_engagements objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCEngagementAttribute *)engagements inEngagementsAtIndex:(NSUInteger)index {
+	NSParameterAssert([engagements isKindOfClass:[GCEngagementAttribute class]]);
+	[engagements setValue:self forKey:@"describedObject"];
+    [_engagements insertObject:engagements atIndex:index];
+}
+
+- (void)removeObjectFromEngagementsAtIndex:(NSUInteger)index {
+	[_engagements[index] setValue:nil forKey:@"describedObject"];
+    [_engagements removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMarriages {
+    return [self mutableArrayValueForKey:@"marriages"];
+}
+
+- (id)objectInMarriagesAtIndex:(NSUInteger)index {
+    return [_marriages objectAtIndex:index];
+}
+ 
+- (NSArray *)marriagesAtIndexes:(NSIndexSet *)indexes {
+    return [_marriages objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMarriageAttribute *)marriages inMarriagesAtIndex:(NSUInteger)index {
+	NSParameterAssert([marriages isKindOfClass:[GCMarriageAttribute class]]);
+	[marriages setValue:self forKey:@"describedObject"];
+    [_marriages insertObject:marriages atIndex:index];
+}
+
+- (void)removeObjectFromMarriagesAtIndex:(NSUInteger)index {
+	[_marriages[index] setValue:nil forKey:@"describedObject"];
+    [_marriages removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMarriageBanns {
+    return [self mutableArrayValueForKey:@"marriageBanns"];
+}
+
+- (id)objectInMarriageBannsAtIndex:(NSUInteger)index {
+    return [_marriageBanns objectAtIndex:index];
+}
+ 
+- (NSArray *)marriageBannsAtIndexes:(NSIndexSet *)indexes {
+    return [_marriageBanns objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMarriageBannAttribute *)marriageBanns inMarriageBannsAtIndex:(NSUInteger)index {
+	NSParameterAssert([marriageBanns isKindOfClass:[GCMarriageBannAttribute class]]);
+	[marriageBanns setValue:self forKey:@"describedObject"];
+    [_marriageBanns insertObject:marriageBanns atIndex:index];
+}
+
+- (void)removeObjectFromMarriageBannsAtIndex:(NSUInteger)index {
+	[_marriageBanns[index] setValue:nil forKey:@"describedObject"];
+    [_marriageBanns removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMarriageContracts {
+    return [self mutableArrayValueForKey:@"marriageContracts"];
+}
+
+- (id)objectInMarriageContractsAtIndex:(NSUInteger)index {
+    return [_marriageContracts objectAtIndex:index];
+}
+ 
+- (NSArray *)marriageContractsAtIndexes:(NSIndexSet *)indexes {
+    return [_marriageContracts objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMarriageContractAttribute *)marriageContracts inMarriageContractsAtIndex:(NSUInteger)index {
+	NSParameterAssert([marriageContracts isKindOfClass:[GCMarriageContractAttribute class]]);
+	[marriageContracts setValue:self forKey:@"describedObject"];
+    [_marriageContracts insertObject:marriageContracts atIndex:index];
+}
+
+- (void)removeObjectFromMarriageContractsAtIndex:(NSUInteger)index {
+	[_marriageContracts[index] setValue:nil forKey:@"describedObject"];
+    [_marriageContracts removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMarriageLicenses {
+    return [self mutableArrayValueForKey:@"marriageLicenses"];
+}
+
+- (id)objectInMarriageLicensesAtIndex:(NSUInteger)index {
+    return [_marriageLicenses objectAtIndex:index];
+}
+ 
+- (NSArray *)marriageLicensesAtIndexes:(NSIndexSet *)indexes {
+    return [_marriageLicenses objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMarriageLicenseAttribute *)marriageLicenses inMarriageLicensesAtIndex:(NSUInteger)index {
+	NSParameterAssert([marriageLicenses isKindOfClass:[GCMarriageLicenseAttribute class]]);
+	[marriageLicenses setValue:self forKey:@"describedObject"];
+    [_marriageLicenses insertObject:marriageLicenses atIndex:index];
+}
+
+- (void)removeObjectFromMarriageLicensesAtIndex:(NSUInteger)index {
+	[_marriageLicenses[index] setValue:nil forKey:@"describedObject"];
+    [_marriageLicenses removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMarriageSettlements {
+    return [self mutableArrayValueForKey:@"marriageSettlements"];
+}
+
+- (id)objectInMarriageSettlementsAtIndex:(NSUInteger)index {
+    return [_marriageSettlements objectAtIndex:index];
+}
+ 
+- (NSArray *)marriageSettlementsAtIndexes:(NSIndexSet *)indexes {
+    return [_marriageSettlements objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMarriageSettlementAttribute *)marriageSettlements inMarriageSettlementsAtIndex:(NSUInteger)index {
+	NSParameterAssert([marriageSettlements isKindOfClass:[GCMarriageSettlementAttribute class]]);
+	[marriageSettlements setValue:self forKey:@"describedObject"];
+    [_marriageSettlements insertObject:marriageSettlements atIndex:index];
+}
+
+- (void)removeObjectFromMarriageSettlementsAtIndex:(NSUInteger)index {
+	[_marriageSettlements[index] setValue:nil forKey:@"describedObject"];
+    [_marriageSettlements removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableGenericEvents {
+    return [self mutableArrayValueForKey:@"genericEvents"];
+}
+
+- (id)objectInGenericEventsAtIndex:(NSUInteger)index {
+    return [_genericEvents objectAtIndex:index];
+}
+ 
+- (NSArray *)genericEventsAtIndexes:(NSIndexSet *)indexes {
+    return [_genericEvents objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCGenericEventAttribute *)genericEvents inGenericEventsAtIndex:(NSUInteger)index {
+	NSParameterAssert([genericEvents isKindOfClass:[GCGenericEventAttribute class]]);
+	[genericEvents setValue:self forKey:@"describedObject"];
+    [_genericEvents insertObject:genericEvents atIndex:index];
+}
+
+- (void)removeObjectFromGenericEventsAtIndex:(NSUInteger)index {
+	[_genericEvents[index] setValue:nil forKey:@"describedObject"];
+    [_genericEvents removeObjectAtIndex:index];
+}
+
+
+
+
+- (NSMutableArray *)mutableChildren {
+    return [self mutableArrayValueForKey:@"children"];
+}
+
+- (id)objectInChildrenAtIndex:(NSUInteger)index {
+    return [_children objectAtIndex:index];
+}
+ 
+- (NSArray *)childrenAtIndexes:(NSIndexSet *)indexes {
+    return [_children objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCChildRelationship *)children inChildrenAtIndex:(NSUInteger)index {
+	NSParameterAssert([children isKindOfClass:[GCChildRelationship class]]);
+	[children setValue:self forKey:@"describedObject"];
+    [_children insertObject:children atIndex:index];
+}
+
+- (void)removeObjectFromChildrenAtIndex:(NSUInteger)index {
+	[_children[index] setValue:nil forKey:@"describedObject"];
+    [_children removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableSubmitterReferences {
+    return [self mutableArrayValueForKey:@"submitterReferences"];
+}
+
+- (id)objectInSubmitterReferencesAtIndex:(NSUInteger)index {
+    return [_submitterReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)submitterReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_submitterReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSubmitterReferenceRelationship *)submitterReferences inSubmitterReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([submitterReferences isKindOfClass:[GCSubmitterReferenceRelationship class]]);
+	[submitterReferences setValue:self forKey:@"describedObject"];
+    [_submitterReferences insertObject:submitterReferences atIndex:index];
+}
+
+- (void)removeObjectFromSubmitterReferencesAtIndex:(NSUInteger)index {
+	[_submitterReferences[index] setValue:nil forKey:@"describedObject"];
+    [_submitterReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableLDSSealingSpouses {
+    return [self mutableArrayValueForKey:@"lDSSealingSpouses"];
+}
+
+- (id)objectInLDSSealingSpousesAtIndex:(NSUInteger)index {
+    return [_lDSSealingSpouses objectAtIndex:index];
+}
+ 
+- (NSArray *)lDSSealingSpousesAtIndexes:(NSIndexSet *)indexes {
+    return [_lDSSealingSpouses objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCLDSSealingSpouseAttribute *)lDSSealingSpouses inLDSSealingSpousesAtIndex:(NSUInteger)index {
+	NSParameterAssert([lDSSealingSpouses isKindOfClass:[GCLDSSealingSpouseAttribute class]]);
+	[lDSSealingSpouses setValue:self forKey:@"describedObject"];
+    [_lDSSealingSpouses insertObject:lDSSealingSpouses atIndex:index];
+}
+
+- (void)removeObjectFromLDSSealingSpousesAtIndex:(NSUInteger)index {
+	[_lDSSealingSpouses[index] setValue:nil forKey:@"describedObject"];
+    [_lDSSealingSpouses removeObjectAtIndex:index];
+}
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCFamilyFileAttribute
+@implementation GCFamilyFileAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"familyFile"];
 }
 
+// Methods:
 /** Initializes and returns a familyFile.
 
  
@@ -2439,7 +6479,7 @@
 */
 +(GCFamilyFileAttribute *)familyFile
 {
-	return [self attributeWithType:@"familyFile"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a familyFile.
 
@@ -2448,7 +6488,7 @@
 */
 +(GCFamilyFileAttribute *)familyFileWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"familyFile" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a familyFile.
 
@@ -2457,22 +6497,31 @@
 */
 +(GCFamilyFileAttribute *)familyFileWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"familyFile" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"familyFile"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCFileAttribute
+@implementation GCFileAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"file"];
 }
 
+// Methods:
 /** Initializes and returns a file.
 
  
@@ -2480,7 +6529,7 @@
 */
 +(GCFileAttribute *)file
 {
-	return [self attributeWithType:@"file"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a file.
 
@@ -2489,7 +6538,7 @@
 */
 +(GCFileAttribute *)fileWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"file" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a file.
 
@@ -2498,22 +6547,36 @@
 */
 +(GCFileAttribute *)fileWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"file" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"file"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCFirstCommunionAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"firstCommunion"];
+@implementation GCFirstCommunionAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a firstCommunion.
 
  
@@ -2521,7 +6584,7 @@
 */
 +(GCFirstCommunionAttribute *)firstCommunion
 {
-	return [self attributeWithType:@"firstCommunion"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a firstCommunion.
 
@@ -2530,7 +6593,7 @@
 */
 +(GCFirstCommunionAttribute *)firstCommunionWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"firstCommunion" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a firstCommunion.
 
@@ -2539,39 +6602,191 @@
 */
 +(GCFirstCommunionAttribute *)firstCommunionWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"firstCommunion" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"firstCommunion"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCGedcomAttribute
+@implementation GCGedcomAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"gedcom"];
 }
 
+// Methods:
 /** Initializes and returns a gedcom.
 
  
@@ -2579,7 +6794,7 @@
 */
 +(GCGedcomAttribute *)gedcom
 {
-	return [self attributeWithType:@"gedcom"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a gedcom.
 
@@ -2588,7 +6803,7 @@
 */
 +(GCGedcomAttribute *)gedcomWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"gedcom" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a gedcom.
 
@@ -2597,23 +6812,32 @@
 */
 +(GCGedcomAttribute *)gedcomWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"gedcom" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"gedcom"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic version;
-@dynamic gedcomFormat;
+
+
 
 @end
 
-@implementation GCGedcomFormatAttribute
+@implementation GCGedcomFormatAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"gedcomFormat"];
 }
 
+// Methods:
 /** Initializes and returns a gedcomFormat.
 
  
@@ -2621,7 +6845,7 @@
 */
 +(GCGedcomFormatAttribute *)gedcomFormat
 {
-	return [self attributeWithType:@"gedcomFormat"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a gedcomFormat.
 
@@ -2630,7 +6854,7 @@
 */
 +(GCGedcomFormatAttribute *)gedcomFormatWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"gedcomFormat" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a gedcomFormat.
 
@@ -2639,22 +6863,31 @@
 */
 +(GCGedcomFormatAttribute *)gedcomFormatWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"gedcomFormat" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"gedcomFormat"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCGenerationsOfAncestorsAttribute
+@implementation GCGenerationsOfAncestorsAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"generationsOfAncestors"];
 }
 
+// Methods:
 /** Initializes and returns a generationsOfAncestors.
 
  
@@ -2662,7 +6895,7 @@
 */
 +(GCGenerationsOfAncestorsAttribute *)generationsOfAncestors
 {
-	return [self attributeWithType:@"generationsOfAncestors"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a generationsOfAncestors.
 
@@ -2671,7 +6904,7 @@
 */
 +(GCGenerationsOfAncestorsAttribute *)generationsOfAncestorsWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"generationsOfAncestors" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a generationsOfAncestors.
 
@@ -2680,22 +6913,36 @@
 */
 +(GCGenerationsOfAncestorsAttribute *)generationsOfAncestorsWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"generationsOfAncestors" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"generationsOfAncestors"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCGenerationsOfDescendantsAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"generationsOfDescendants"];
+@implementation GCGenerationsOfDescendantsAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a generationsOfDescendants.
 
  
@@ -2703,7 +6950,7 @@
 */
 +(GCGenerationsOfDescendantsAttribute *)generationsOfDescendants
 {
-	return [self attributeWithType:@"generationsOfDescendants"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a generationsOfDescendants.
 
@@ -2712,7 +6959,7 @@
 */
 +(GCGenerationsOfDescendantsAttribute *)generationsOfDescendantsWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"generationsOfDescendants" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a generationsOfDescendants.
 
@@ -2721,39 +6968,408 @@
 */
 +(GCGenerationsOfDescendantsAttribute *)generationsOfDescendantsWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"generationsOfDescendants" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"generationsOfDescendants"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCGivenNameAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"givenName"];
+@implementation GCGenericEventAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
+/** Initializes and returns a genericEvent.
+
+ 
+ @return A new genericEvent.
+*/
++(GCGenericEventAttribute *)genericEvent
+{
+	return [[self alloc] init];
+}
+/** Initializes and returns a genericEvent.
+
+ @param value The value as a GCValue object.
+ @return A new genericEvent.
+*/
++(GCGenericEventAttribute *)genericEventWithValue:(GCValue *)value
+{
+	return [[self alloc] initWithValue:value];
+}
+/** Initializes and returns a genericEvent.
+
+ @param value The value as an NSString.
+ @return A new genericEvent.
+*/
++(GCGenericEventAttribute *)genericEventWithGedcomStringValue:(NSString *)value
+{
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"genericEvent"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
+
+// Properties:
+@dynamic eventDetails;
+
+
+
+
+
+
+
+
+@dynamic sources;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
+@dynamic multimedias;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
+@dynamic notes;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
+
+@end
+
+@implementation GCGivenNameAttribute {
+
+}
+
+// Methods:
 /** Initializes and returns a givenName.
 
  
@@ -2761,7 +7377,7 @@
 */
 +(GCGivenNameAttribute *)givenName
 {
-	return [self attributeWithType:@"givenName"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a givenName.
 
@@ -2770,7 +7386,7 @@
 */
 +(GCGivenNameAttribute *)givenNameWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"givenName" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a givenName.
 
@@ -2779,22 +7395,36 @@
 */
 +(GCGivenNameAttribute *)givenNameWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"givenName" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"givenName"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCGraduationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"graduation"];
+@implementation GCGraduationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a graduation.
 
  
@@ -2802,7 +7432,7 @@
 */
 +(GCGraduationAttribute *)graduation
 {
-	return [self attributeWithType:@"graduation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a graduation.
 
@@ -2811,7 +7441,7 @@
 */
 +(GCGraduationAttribute *)graduationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"graduation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a graduation.
 
@@ -2820,39 +7450,192 @@
 */
 +(GCGraduationAttribute *)graduationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"graduation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"graduation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCHeaderEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"header"];
+@implementation GCHeaderEntity {
+	NSMutableArray *_destinations;
+	NSMutableArray *_submissionReferences;
 }
 
+// Methods:
 /** Initializes and returns a header.
 
  @param context The context in which to create the entity.
@@ -2860,33 +7643,89 @@
 */
 +(GCHeaderEntity *)headerInContext:(GCContext *)context
 {
-	return [self entityWithType:@"header" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"header"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_destinations = [NSMutableArray array];
+		_submissionReferences = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic headerSource;
-@dynamic destinations;
-@dynamic headerDate;
-@dynamic submitterReference;
-@dynamic submissionReferences;
-@dynamic file;
-@dynamic copyright;
-@dynamic gedcom;
-@dynamic characterSet;
-@dynamic language;
-@dynamic placeFormatSpecifier;
-@dynamic noteEmbedded;
+
+
+- (NSMutableArray *)mutableDestinations {
+    return [self mutableArrayValueForKey:@"destinations"];
+}
+
+- (id)objectInDestinationsAtIndex:(NSUInteger)index {
+    return [_destinations objectAtIndex:index];
+}
+ 
+- (NSArray *)destinationsAtIndexes:(NSIndexSet *)indexes {
+    return [_destinations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCDestinationAttribute *)destinations inDestinationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([destinations isKindOfClass:[GCDestinationAttribute class]]);
+	[destinations setValue:self forKey:@"describedObject"];
+    [_destinations insertObject:destinations atIndex:index];
+}
+
+- (void)removeObjectFromDestinationsAtIndex:(NSUInteger)index {
+	[_destinations[index] setValue:nil forKey:@"describedObject"];
+    [_destinations removeObjectAtIndex:index];
+}
+
+
+
+
+- (NSMutableArray *)mutableSubmissionReferences {
+    return [self mutableArrayValueForKey:@"submissionReferences"];
+}
+
+- (id)objectInSubmissionReferencesAtIndex:(NSUInteger)index {
+    return [_submissionReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)submissionReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_submissionReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSubmissionReferenceRelationship *)submissionReferences inSubmissionReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([submissionReferences isKindOfClass:[GCSubmissionReferenceRelationship class]]);
+	[submissionReferences setValue:self forKey:@"describedObject"];
+    [_submissionReferences insertObject:submissionReferences atIndex:index];
+}
+
+- (void)removeObjectFromSubmissionReferencesAtIndex:(NSUInteger)index {
+	[_submissionReferences[index] setValue:nil forKey:@"describedObject"];
+    [_submissionReferences removeObjectAtIndex:index];
+}
+
+
+
+
+
+
+
+
 
 @end
 
-@implementation GCHeaderDateAttribute
+@implementation GCHeaderDateAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"headerDate"];
 }
 
+// Methods:
 /** Initializes and returns a headerDate.
 
  
@@ -2894,7 +7733,7 @@
 */
 +(GCHeaderDateAttribute *)headerDate
 {
-	return [self attributeWithType:@"headerDate"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a headerDate.
 
@@ -2903,7 +7742,7 @@
 */
 +(GCHeaderDateAttribute *)headerDateWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"headerDate" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a headerDate.
 
@@ -2912,22 +7751,31 @@
 */
 +(GCHeaderDateAttribute *)headerDateWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"headerDate" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"headerDate"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic time;
+
 
 @end
 
-@implementation GCHeaderSourceAttribute
+@implementation GCHeaderSourceAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"headerSource"];
 }
 
+// Methods:
 /** Initializes and returns a headerSource.
 
  
@@ -2935,7 +7783,7 @@
 */
 +(GCHeaderSourceAttribute *)headerSource
 {
-	return [self attributeWithType:@"headerSource"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a headerSource.
 
@@ -2944,7 +7792,7 @@
 */
 +(GCHeaderSourceAttribute *)headerSourceWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"headerSource" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a headerSource.
 
@@ -2953,25 +7801,34 @@
 */
 +(GCHeaderSourceAttribute *)headerSourceWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"headerSource" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"headerSource"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic version;
-@dynamic name;
-@dynamic corporation;
-@dynamic headerSourceData;
+
+
+
+
 
 @end
 
-@implementation GCHeaderSourceDataAttribute
+@implementation GCHeaderSourceDataAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"headerSourceData"];
 }
 
+// Methods:
 /** Initializes and returns a headerSourceData.
 
  
@@ -2979,7 +7836,7 @@
 */
 +(GCHeaderSourceDataAttribute *)headerSourceData
 {
-	return [self attributeWithType:@"headerSourceData"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a headerSourceData.
 
@@ -2988,7 +7845,7 @@
 */
 +(GCHeaderSourceDataAttribute *)headerSourceDataWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"headerSourceData" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a headerSourceData.
 
@@ -2997,23 +7854,32 @@
 */
 +(GCHeaderSourceDataAttribute *)headerSourceDataWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"headerSourceData" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"headerSourceData"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic date;
-@dynamic copyright;
+
+
 
 @end
 
-@implementation GCHusbandRelationship
+@implementation GCHusbandRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"husband"];
 }
 
+// Methods:
 /** Initializes and returns a husband.
 
  
@@ -3021,31 +7887,31 @@
 */
 +(GCHusbandRelationship *)husband
 {
-	return [self relationshipWithType:@"husband"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a husband.
-
- @param target The relationship's target entity.
- @return A new husband.
-*/
-+(GCHusbandRelationship *)husbandWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"husband" target:target];
+	self = [super _initWithType:@"husband"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCHusbandDetailAttribute
+@implementation GCHusbandDetailAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"husbandDetail"];
 }
 
+// Methods:
 /** Initializes and returns a husbandDetail.
 
  
@@ -3053,7 +7919,7 @@
 */
 +(GCHusbandDetailAttribute *)husbandDetail
 {
-	return [self attributeWithType:@"husbandDetail"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a husbandDetail.
 
@@ -3062,7 +7928,7 @@
 */
 +(GCHusbandDetailAttribute *)husbandDetailWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"husbandDetail" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a husbandDetail.
 
@@ -3071,22 +7937,36 @@
 */
 +(GCHusbandDetailAttribute *)husbandDetailWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"husbandDetail" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"husbandDetail"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic age;
+
 
 @end
 
-@implementation GCIdentNumberAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"identNumber"];
+@implementation GCIdentNumberAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a identNumber.
 
  
@@ -3094,7 +7974,7 @@
 */
 +(GCIdentNumberAttribute *)identNumber
 {
-	return [self attributeWithType:@"identNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a identNumber.
 
@@ -3103,7 +7983,7 @@
 */
 +(GCIdentNumberAttribute *)identNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"identNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a identNumber.
 
@@ -3112,39 +7992,196 @@
 */
 +(GCIdentNumberAttribute *)identNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"identNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"identNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCImmigrationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"immigration"];
+@implementation GCImmigrationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a immigration.
 
  
@@ -3152,7 +8189,7 @@
 */
 +(GCImmigrationAttribute *)immigration
 {
-	return [self attributeWithType:@"immigration"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a immigration.
 
@@ -3161,7 +8198,7 @@
 */
 +(GCImmigrationAttribute *)immigrationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"immigration" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a immigration.
 
@@ -3170,39 +8207,248 @@
 */
 +(GCImmigrationAttribute *)immigrationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"immigration" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"immigration"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCIndividualEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"individual"];
+@implementation GCIndividualEntity {
+	NSMutableArray *_personalNames;
+	NSMutableArray *_births;
+	NSMutableArray *_christenings;
+	NSMutableArray *_deaths;
+	NSMutableArray *_burials;
+	NSMutableArray *_cremations;
+	NSMutableArray *_adoptions;
+	NSMutableArray *_baptisms;
+	NSMutableArray *_barMitzvahs;
+	NSMutableArray *_basMitzvahs;
+	NSMutableArray *_blessings;
+	NSMutableArray *_adultChristenings;
+	NSMutableArray *_confirmations;
+	NSMutableArray *_firstCommunions;
+	NSMutableArray *_ordinations;
+	NSMutableArray *_naturalizations;
+	NSMutableArray *_emigrations;
+	NSMutableArray *_immigrations;
+	NSMutableArray *_censuses;
+	NSMutableArray *_probates;
+	NSMutableArray *_wills;
+	NSMutableArray *_graduations;
+	NSMutableArray *_retirements;
+	NSMutableArray *_genericEvents;
+	NSMutableArray *_castes;
+	NSMutableArray *_physicalDescriptions;
+	NSMutableArray *_generationsOfDescendantss;
+	NSMutableArray *_educations;
+	NSMutableArray *_identNumbers;
+	NSMutableArray *_nationalities;
+	NSMutableArray *_numberOfChildrens;
+	NSMutableArray *_numberOfMarriagess;
+	NSMutableArray *_occupations;
+	NSMutableArray *_propertyOwneds;
+	NSMutableArray *_religions;
+	NSMutableArray *_residences;
+	NSMutableArray *_socialSecurityNumbers;
+	NSMutableArray *_titles;
+	NSMutableArray *_lDSBaptisms;
+	NSMutableArray *_lDSConfirmations;
+	NSMutableArray *_lDSEndowments;
+	NSMutableArray *_lDSSealingChilds;
+	NSMutableArray *_childInFamilies;
+	NSMutableArray *_spouseInFamilies;
+	NSMutableArray *_submitterReferences;
+	NSMutableArray *_associations;
+	NSMutableArray *_aliases;
+	NSMutableArray *_ancestorInterests;
+	NSMutableArray *_descendantInterests;
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+	NSMutableArray *_recordFileNumbers;
+	NSMutableArray *_ancestralFileNumbers;
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a individual.
 
  @param context The context in which to create the entity.
@@ -3210,89 +8456,1492 @@
 */
 +(GCIndividualEntity *)individualInContext:(GCContext *)context
 {
-	return [self entityWithType:@"individual" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"individual"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_personalNames = [NSMutableArray array];
+		_births = [NSMutableArray array];
+		_christenings = [NSMutableArray array];
+		_deaths = [NSMutableArray array];
+		_burials = [NSMutableArray array];
+		_cremations = [NSMutableArray array];
+		_adoptions = [NSMutableArray array];
+		_baptisms = [NSMutableArray array];
+		_barMitzvahs = [NSMutableArray array];
+		_basMitzvahs = [NSMutableArray array];
+		_blessings = [NSMutableArray array];
+		_adultChristenings = [NSMutableArray array];
+		_confirmations = [NSMutableArray array];
+		_firstCommunions = [NSMutableArray array];
+		_ordinations = [NSMutableArray array];
+		_naturalizations = [NSMutableArray array];
+		_emigrations = [NSMutableArray array];
+		_immigrations = [NSMutableArray array];
+		_censuses = [NSMutableArray array];
+		_probates = [NSMutableArray array];
+		_wills = [NSMutableArray array];
+		_graduations = [NSMutableArray array];
+		_retirements = [NSMutableArray array];
+		_genericEvents = [NSMutableArray array];
+		_castes = [NSMutableArray array];
+		_physicalDescriptions = [NSMutableArray array];
+		_generationsOfDescendantss = [NSMutableArray array];
+		_educations = [NSMutableArray array];
+		_identNumbers = [NSMutableArray array];
+		_nationalities = [NSMutableArray array];
+		_numberOfChildrens = [NSMutableArray array];
+		_numberOfMarriagess = [NSMutableArray array];
+		_occupations = [NSMutableArray array];
+		_propertyOwneds = [NSMutableArray array];
+		_religions = [NSMutableArray array];
+		_residences = [NSMutableArray array];
+		_socialSecurityNumbers = [NSMutableArray array];
+		_titles = [NSMutableArray array];
+		_lDSBaptisms = [NSMutableArray array];
+		_lDSConfirmations = [NSMutableArray array];
+		_lDSEndowments = [NSMutableArray array];
+		_lDSSealingChilds = [NSMutableArray array];
+		_childInFamilies = [NSMutableArray array];
+		_spouseInFamilies = [NSMutableArray array];
+		_submitterReferences = [NSMutableArray array];
+		_associations = [NSMutableArray array];
+		_aliases = [NSMutableArray array];
+		_ancestorInterests = [NSMutableArray array];
+		_descendantInterests = [NSMutableArray array];
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+		_recordFileNumbers = [NSMutableArray array];
+		_ancestralFileNumbers = [NSMutableArray array];
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic restrictionNotice;
-@dynamic personalNames;
-@dynamic sex;
+
+
+- (NSMutableArray *)mutablePersonalNames {
+    return [self mutableArrayValueForKey:@"personalNames"];
+}
+
+- (id)objectInPersonalNamesAtIndex:(NSUInteger)index {
+    return [_personalNames objectAtIndex:index];
+}
+ 
+- (NSArray *)personalNamesAtIndexes:(NSIndexSet *)indexes {
+    return [_personalNames objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCPersonalNameAttribute *)personalNames inPersonalNamesAtIndex:(NSUInteger)index {
+	NSParameterAssert([personalNames isKindOfClass:[GCPersonalNameAttribute class]]);
+	[personalNames setValue:self forKey:@"describedObject"];
+    [_personalNames insertObject:personalNames atIndex:index];
+}
+
+- (void)removeObjectFromPersonalNamesAtIndex:(NSUInteger)index {
+	[_personalNames[index] setValue:nil forKey:@"describedObject"];
+    [_personalNames removeObjectAtIndex:index];
+}
+
+
 @dynamic individualEvents;
-@dynamic births;
-@dynamic christenings;
-@dynamic deaths;
-@dynamic burials;
-@dynamic cremations;
-@dynamic adoptions;
-@dynamic baptisms;
-@dynamic barMitzvahs;
-@dynamic basMitzvahs;
-@dynamic blessings;
-@dynamic adultChristenings;
-@dynamic confirmations;
-@dynamic firstCommunions;
-@dynamic ordinations;
-@dynamic naturalizations;
-@dynamic emigrations;
-@dynamic immigrations;
-@dynamic censuses;
-@dynamic probates;
-@dynamic wills;
-@dynamic graduations;
-@dynamic retirements;
-@dynamic customEvents;
+
+- (NSMutableArray *)mutableBirths {
+    return [self mutableArrayValueForKey:@"births"];
+}
+
+- (id)objectInBirthsAtIndex:(NSUInteger)index {
+    return [_births objectAtIndex:index];
+}
+ 
+- (NSArray *)birthsAtIndexes:(NSIndexSet *)indexes {
+    return [_births objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCBirthAttribute *)births inBirthsAtIndex:(NSUInteger)index {
+	NSParameterAssert([births isKindOfClass:[GCBirthAttribute class]]);
+	[births setValue:self forKey:@"describedObject"];
+    [_births insertObject:births atIndex:index];
+}
+
+- (void)removeObjectFromBirthsAtIndex:(NSUInteger)index {
+	[_births[index] setValue:nil forKey:@"describedObject"];
+    [_births removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableChristenings {
+    return [self mutableArrayValueForKey:@"christenings"];
+}
+
+- (id)objectInChristeningsAtIndex:(NSUInteger)index {
+    return [_christenings objectAtIndex:index];
+}
+ 
+- (NSArray *)christeningsAtIndexes:(NSIndexSet *)indexes {
+    return [_christenings objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCChristeningAttribute *)christenings inChristeningsAtIndex:(NSUInteger)index {
+	NSParameterAssert([christenings isKindOfClass:[GCChristeningAttribute class]]);
+	[christenings setValue:self forKey:@"describedObject"];
+    [_christenings insertObject:christenings atIndex:index];
+}
+
+- (void)removeObjectFromChristeningsAtIndex:(NSUInteger)index {
+	[_christenings[index] setValue:nil forKey:@"describedObject"];
+    [_christenings removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableDeaths {
+    return [self mutableArrayValueForKey:@"deaths"];
+}
+
+- (id)objectInDeathsAtIndex:(NSUInteger)index {
+    return [_deaths objectAtIndex:index];
+}
+ 
+- (NSArray *)deathsAtIndexes:(NSIndexSet *)indexes {
+    return [_deaths objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCDeathAttribute *)deaths inDeathsAtIndex:(NSUInteger)index {
+	NSParameterAssert([deaths isKindOfClass:[GCDeathAttribute class]]);
+	[deaths setValue:self forKey:@"describedObject"];
+    [_deaths insertObject:deaths atIndex:index];
+}
+
+- (void)removeObjectFromDeathsAtIndex:(NSUInteger)index {
+	[_deaths[index] setValue:nil forKey:@"describedObject"];
+    [_deaths removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableBurials {
+    return [self mutableArrayValueForKey:@"burials"];
+}
+
+- (id)objectInBurialsAtIndex:(NSUInteger)index {
+    return [_burials objectAtIndex:index];
+}
+ 
+- (NSArray *)burialsAtIndexes:(NSIndexSet *)indexes {
+    return [_burials objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCBurialAttribute *)burials inBurialsAtIndex:(NSUInteger)index {
+	NSParameterAssert([burials isKindOfClass:[GCBurialAttribute class]]);
+	[burials setValue:self forKey:@"describedObject"];
+    [_burials insertObject:burials atIndex:index];
+}
+
+- (void)removeObjectFromBurialsAtIndex:(NSUInteger)index {
+	[_burials[index] setValue:nil forKey:@"describedObject"];
+    [_burials removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableCremations {
+    return [self mutableArrayValueForKey:@"cremations"];
+}
+
+- (id)objectInCremationsAtIndex:(NSUInteger)index {
+    return [_cremations objectAtIndex:index];
+}
+ 
+- (NSArray *)cremationsAtIndexes:(NSIndexSet *)indexes {
+    return [_cremations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCCremationAttribute *)cremations inCremationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([cremations isKindOfClass:[GCCremationAttribute class]]);
+	[cremations setValue:self forKey:@"describedObject"];
+    [_cremations insertObject:cremations atIndex:index];
+}
+
+- (void)removeObjectFromCremationsAtIndex:(NSUInteger)index {
+	[_cremations[index] setValue:nil forKey:@"describedObject"];
+    [_cremations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableAdoptions {
+    return [self mutableArrayValueForKey:@"adoptions"];
+}
+
+- (id)objectInAdoptionsAtIndex:(NSUInteger)index {
+    return [_adoptions objectAtIndex:index];
+}
+ 
+- (NSArray *)adoptionsAtIndexes:(NSIndexSet *)indexes {
+    return [_adoptions objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAdoptionAttribute *)adoptions inAdoptionsAtIndex:(NSUInteger)index {
+	NSParameterAssert([adoptions isKindOfClass:[GCAdoptionAttribute class]]);
+	[adoptions setValue:self forKey:@"describedObject"];
+    [_adoptions insertObject:adoptions atIndex:index];
+}
+
+- (void)removeObjectFromAdoptionsAtIndex:(NSUInteger)index {
+	[_adoptions[index] setValue:nil forKey:@"describedObject"];
+    [_adoptions removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableBaptisms {
+    return [self mutableArrayValueForKey:@"baptisms"];
+}
+
+- (id)objectInBaptismsAtIndex:(NSUInteger)index {
+    return [_baptisms objectAtIndex:index];
+}
+ 
+- (NSArray *)baptismsAtIndexes:(NSIndexSet *)indexes {
+    return [_baptisms objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCBaptismAttribute *)baptisms inBaptismsAtIndex:(NSUInteger)index {
+	NSParameterAssert([baptisms isKindOfClass:[GCBaptismAttribute class]]);
+	[baptisms setValue:self forKey:@"describedObject"];
+    [_baptisms insertObject:baptisms atIndex:index];
+}
+
+- (void)removeObjectFromBaptismsAtIndex:(NSUInteger)index {
+	[_baptisms[index] setValue:nil forKey:@"describedObject"];
+    [_baptisms removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableBarMitzvahs {
+    return [self mutableArrayValueForKey:@"barMitzvahs"];
+}
+
+- (id)objectInBarMitzvahsAtIndex:(NSUInteger)index {
+    return [_barMitzvahs objectAtIndex:index];
+}
+ 
+- (NSArray *)barMitzvahsAtIndexes:(NSIndexSet *)indexes {
+    return [_barMitzvahs objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCBarMitzvahAttribute *)barMitzvahs inBarMitzvahsAtIndex:(NSUInteger)index {
+	NSParameterAssert([barMitzvahs isKindOfClass:[GCBarMitzvahAttribute class]]);
+	[barMitzvahs setValue:self forKey:@"describedObject"];
+    [_barMitzvahs insertObject:barMitzvahs atIndex:index];
+}
+
+- (void)removeObjectFromBarMitzvahsAtIndex:(NSUInteger)index {
+	[_barMitzvahs[index] setValue:nil forKey:@"describedObject"];
+    [_barMitzvahs removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableBasMitzvahs {
+    return [self mutableArrayValueForKey:@"basMitzvahs"];
+}
+
+- (id)objectInBasMitzvahsAtIndex:(NSUInteger)index {
+    return [_basMitzvahs objectAtIndex:index];
+}
+ 
+- (NSArray *)basMitzvahsAtIndexes:(NSIndexSet *)indexes {
+    return [_basMitzvahs objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCBasMitzvahAttribute *)basMitzvahs inBasMitzvahsAtIndex:(NSUInteger)index {
+	NSParameterAssert([basMitzvahs isKindOfClass:[GCBasMitzvahAttribute class]]);
+	[basMitzvahs setValue:self forKey:@"describedObject"];
+    [_basMitzvahs insertObject:basMitzvahs atIndex:index];
+}
+
+- (void)removeObjectFromBasMitzvahsAtIndex:(NSUInteger)index {
+	[_basMitzvahs[index] setValue:nil forKey:@"describedObject"];
+    [_basMitzvahs removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableBlessings {
+    return [self mutableArrayValueForKey:@"blessings"];
+}
+
+- (id)objectInBlessingsAtIndex:(NSUInteger)index {
+    return [_blessings objectAtIndex:index];
+}
+ 
+- (NSArray *)blessingsAtIndexes:(NSIndexSet *)indexes {
+    return [_blessings objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCBlessingAttribute *)blessings inBlessingsAtIndex:(NSUInteger)index {
+	NSParameterAssert([blessings isKindOfClass:[GCBlessingAttribute class]]);
+	[blessings setValue:self forKey:@"describedObject"];
+    [_blessings insertObject:blessings atIndex:index];
+}
+
+- (void)removeObjectFromBlessingsAtIndex:(NSUInteger)index {
+	[_blessings[index] setValue:nil forKey:@"describedObject"];
+    [_blessings removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableAdultChristenings {
+    return [self mutableArrayValueForKey:@"adultChristenings"];
+}
+
+- (id)objectInAdultChristeningsAtIndex:(NSUInteger)index {
+    return [_adultChristenings objectAtIndex:index];
+}
+ 
+- (NSArray *)adultChristeningsAtIndexes:(NSIndexSet *)indexes {
+    return [_adultChristenings objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAdultChristeningAttribute *)adultChristenings inAdultChristeningsAtIndex:(NSUInteger)index {
+	NSParameterAssert([adultChristenings isKindOfClass:[GCAdultChristeningAttribute class]]);
+	[adultChristenings setValue:self forKey:@"describedObject"];
+    [_adultChristenings insertObject:adultChristenings atIndex:index];
+}
+
+- (void)removeObjectFromAdultChristeningsAtIndex:(NSUInteger)index {
+	[_adultChristenings[index] setValue:nil forKey:@"describedObject"];
+    [_adultChristenings removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableConfirmations {
+    return [self mutableArrayValueForKey:@"confirmations"];
+}
+
+- (id)objectInConfirmationsAtIndex:(NSUInteger)index {
+    return [_confirmations objectAtIndex:index];
+}
+ 
+- (NSArray *)confirmationsAtIndexes:(NSIndexSet *)indexes {
+    return [_confirmations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCConfirmationAttribute *)confirmations inConfirmationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([confirmations isKindOfClass:[GCConfirmationAttribute class]]);
+	[confirmations setValue:self forKey:@"describedObject"];
+    [_confirmations insertObject:confirmations atIndex:index];
+}
+
+- (void)removeObjectFromConfirmationsAtIndex:(NSUInteger)index {
+	[_confirmations[index] setValue:nil forKey:@"describedObject"];
+    [_confirmations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableFirstCommunions {
+    return [self mutableArrayValueForKey:@"firstCommunions"];
+}
+
+- (id)objectInFirstCommunionsAtIndex:(NSUInteger)index {
+    return [_firstCommunions objectAtIndex:index];
+}
+ 
+- (NSArray *)firstCommunionsAtIndexes:(NSIndexSet *)indexes {
+    return [_firstCommunions objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCFirstCommunionAttribute *)firstCommunions inFirstCommunionsAtIndex:(NSUInteger)index {
+	NSParameterAssert([firstCommunions isKindOfClass:[GCFirstCommunionAttribute class]]);
+	[firstCommunions setValue:self forKey:@"describedObject"];
+    [_firstCommunions insertObject:firstCommunions atIndex:index];
+}
+
+- (void)removeObjectFromFirstCommunionsAtIndex:(NSUInteger)index {
+	[_firstCommunions[index] setValue:nil forKey:@"describedObject"];
+    [_firstCommunions removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableOrdinations {
+    return [self mutableArrayValueForKey:@"ordinations"];
+}
+
+- (id)objectInOrdinationsAtIndex:(NSUInteger)index {
+    return [_ordinations objectAtIndex:index];
+}
+ 
+- (NSArray *)ordinationsAtIndexes:(NSIndexSet *)indexes {
+    return [_ordinations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCOrdinationAttribute *)ordinations inOrdinationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([ordinations isKindOfClass:[GCOrdinationAttribute class]]);
+	[ordinations setValue:self forKey:@"describedObject"];
+    [_ordinations insertObject:ordinations atIndex:index];
+}
+
+- (void)removeObjectFromOrdinationsAtIndex:(NSUInteger)index {
+	[_ordinations[index] setValue:nil forKey:@"describedObject"];
+    [_ordinations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNaturalizations {
+    return [self mutableArrayValueForKey:@"naturalizations"];
+}
+
+- (id)objectInNaturalizationsAtIndex:(NSUInteger)index {
+    return [_naturalizations objectAtIndex:index];
+}
+ 
+- (NSArray *)naturalizationsAtIndexes:(NSIndexSet *)indexes {
+    return [_naturalizations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNaturalizationAttribute *)naturalizations inNaturalizationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([naturalizations isKindOfClass:[GCNaturalizationAttribute class]]);
+	[naturalizations setValue:self forKey:@"describedObject"];
+    [_naturalizations insertObject:naturalizations atIndex:index];
+}
+
+- (void)removeObjectFromNaturalizationsAtIndex:(NSUInteger)index {
+	[_naturalizations[index] setValue:nil forKey:@"describedObject"];
+    [_naturalizations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableEmigrations {
+    return [self mutableArrayValueForKey:@"emigrations"];
+}
+
+- (id)objectInEmigrationsAtIndex:(NSUInteger)index {
+    return [_emigrations objectAtIndex:index];
+}
+ 
+- (NSArray *)emigrationsAtIndexes:(NSIndexSet *)indexes {
+    return [_emigrations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCEmigrationAttribute *)emigrations inEmigrationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([emigrations isKindOfClass:[GCEmigrationAttribute class]]);
+	[emigrations setValue:self forKey:@"describedObject"];
+    [_emigrations insertObject:emigrations atIndex:index];
+}
+
+- (void)removeObjectFromEmigrationsAtIndex:(NSUInteger)index {
+	[_emigrations[index] setValue:nil forKey:@"describedObject"];
+    [_emigrations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableImmigrations {
+    return [self mutableArrayValueForKey:@"immigrations"];
+}
+
+- (id)objectInImmigrationsAtIndex:(NSUInteger)index {
+    return [_immigrations objectAtIndex:index];
+}
+ 
+- (NSArray *)immigrationsAtIndexes:(NSIndexSet *)indexes {
+    return [_immigrations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCImmigrationAttribute *)immigrations inImmigrationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([immigrations isKindOfClass:[GCImmigrationAttribute class]]);
+	[immigrations setValue:self forKey:@"describedObject"];
+    [_immigrations insertObject:immigrations atIndex:index];
+}
+
+- (void)removeObjectFromImmigrationsAtIndex:(NSUInteger)index {
+	[_immigrations[index] setValue:nil forKey:@"describedObject"];
+    [_immigrations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableCensuses {
+    return [self mutableArrayValueForKey:@"censuses"];
+}
+
+- (id)objectInCensusesAtIndex:(NSUInteger)index {
+    return [_censuses objectAtIndex:index];
+}
+ 
+- (NSArray *)censusesAtIndexes:(NSIndexSet *)indexes {
+    return [_censuses objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCCensusAttribute *)censuses inCensusesAtIndex:(NSUInteger)index {
+	NSParameterAssert([censuses isKindOfClass:[GCCensusAttribute class]]);
+	[censuses setValue:self forKey:@"describedObject"];
+    [_censuses insertObject:censuses atIndex:index];
+}
+
+- (void)removeObjectFromCensusesAtIndex:(NSUInteger)index {
+	[_censuses[index] setValue:nil forKey:@"describedObject"];
+    [_censuses removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableProbates {
+    return [self mutableArrayValueForKey:@"probates"];
+}
+
+- (id)objectInProbatesAtIndex:(NSUInteger)index {
+    return [_probates objectAtIndex:index];
+}
+ 
+- (NSArray *)probatesAtIndexes:(NSIndexSet *)indexes {
+    return [_probates objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCProbateAttribute *)probates inProbatesAtIndex:(NSUInteger)index {
+	NSParameterAssert([probates isKindOfClass:[GCProbateAttribute class]]);
+	[probates setValue:self forKey:@"describedObject"];
+    [_probates insertObject:probates atIndex:index];
+}
+
+- (void)removeObjectFromProbatesAtIndex:(NSUInteger)index {
+	[_probates[index] setValue:nil forKey:@"describedObject"];
+    [_probates removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableWills {
+    return [self mutableArrayValueForKey:@"wills"];
+}
+
+- (id)objectInWillsAtIndex:(NSUInteger)index {
+    return [_wills objectAtIndex:index];
+}
+ 
+- (NSArray *)willsAtIndexes:(NSIndexSet *)indexes {
+    return [_wills objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCWillAttribute *)wills inWillsAtIndex:(NSUInteger)index {
+	NSParameterAssert([wills isKindOfClass:[GCWillAttribute class]]);
+	[wills setValue:self forKey:@"describedObject"];
+    [_wills insertObject:wills atIndex:index];
+}
+
+- (void)removeObjectFromWillsAtIndex:(NSUInteger)index {
+	[_wills[index] setValue:nil forKey:@"describedObject"];
+    [_wills removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableGraduations {
+    return [self mutableArrayValueForKey:@"graduations"];
+}
+
+- (id)objectInGraduationsAtIndex:(NSUInteger)index {
+    return [_graduations objectAtIndex:index];
+}
+ 
+- (NSArray *)graduationsAtIndexes:(NSIndexSet *)indexes {
+    return [_graduations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCGraduationAttribute *)graduations inGraduationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([graduations isKindOfClass:[GCGraduationAttribute class]]);
+	[graduations setValue:self forKey:@"describedObject"];
+    [_graduations insertObject:graduations atIndex:index];
+}
+
+- (void)removeObjectFromGraduationsAtIndex:(NSUInteger)index {
+	[_graduations[index] setValue:nil forKey:@"describedObject"];
+    [_graduations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableRetirements {
+    return [self mutableArrayValueForKey:@"retirements"];
+}
+
+- (id)objectInRetirementsAtIndex:(NSUInteger)index {
+    return [_retirements objectAtIndex:index];
+}
+ 
+- (NSArray *)retirementsAtIndexes:(NSIndexSet *)indexes {
+    return [_retirements objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCRetirementAttribute *)retirements inRetirementsAtIndex:(NSUInteger)index {
+	NSParameterAssert([retirements isKindOfClass:[GCRetirementAttribute class]]);
+	[retirements setValue:self forKey:@"describedObject"];
+    [_retirements insertObject:retirements atIndex:index];
+}
+
+- (void)removeObjectFromRetirementsAtIndex:(NSUInteger)index {
+	[_retirements[index] setValue:nil forKey:@"describedObject"];
+    [_retirements removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableGenericEvents {
+    return [self mutableArrayValueForKey:@"genericEvents"];
+}
+
+- (id)objectInGenericEventsAtIndex:(NSUInteger)index {
+    return [_genericEvents objectAtIndex:index];
+}
+ 
+- (NSArray *)genericEventsAtIndexes:(NSIndexSet *)indexes {
+    return [_genericEvents objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCGenericEventAttribute *)genericEvents inGenericEventsAtIndex:(NSUInteger)index {
+	NSParameterAssert([genericEvents isKindOfClass:[GCGenericEventAttribute class]]);
+	[genericEvents setValue:self forKey:@"describedObject"];
+    [_genericEvents insertObject:genericEvents atIndex:index];
+}
+
+- (void)removeObjectFromGenericEventsAtIndex:(NSUInteger)index {
+	[_genericEvents[index] setValue:nil forKey:@"describedObject"];
+    [_genericEvents removeObjectAtIndex:index];
+}
+
 @dynamic individualAttributes;
-@dynamic castes;
-@dynamic physicalDescriptions;
-@dynamic generationsOfDescendantss;
-@dynamic educations;
-@dynamic identNumbers;
-@dynamic nationalities;
-@dynamic numberOfChildrens;
-@dynamic numberOfMarriagess;
-@dynamic occupations;
-@dynamic propertyOwneds;
-@dynamic religions;
-@dynamic residences;
-@dynamic socialSecurityNumbers;
-@dynamic titles;
+
+- (NSMutableArray *)mutableCastes {
+    return [self mutableArrayValueForKey:@"castes"];
+}
+
+- (id)objectInCastesAtIndex:(NSUInteger)index {
+    return [_castes objectAtIndex:index];
+}
+ 
+- (NSArray *)castesAtIndexes:(NSIndexSet *)indexes {
+    return [_castes objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCCasteAttribute *)castes inCastesAtIndex:(NSUInteger)index {
+	NSParameterAssert([castes isKindOfClass:[GCCasteAttribute class]]);
+	[castes setValue:self forKey:@"describedObject"];
+    [_castes insertObject:castes atIndex:index];
+}
+
+- (void)removeObjectFromCastesAtIndex:(NSUInteger)index {
+	[_castes[index] setValue:nil forKey:@"describedObject"];
+    [_castes removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutablePhysicalDescriptions {
+    return [self mutableArrayValueForKey:@"physicalDescriptions"];
+}
+
+- (id)objectInPhysicalDescriptionsAtIndex:(NSUInteger)index {
+    return [_physicalDescriptions objectAtIndex:index];
+}
+ 
+- (NSArray *)physicalDescriptionsAtIndexes:(NSIndexSet *)indexes {
+    return [_physicalDescriptions objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCPhysicalDescriptionAttribute *)physicalDescriptions inPhysicalDescriptionsAtIndex:(NSUInteger)index {
+	NSParameterAssert([physicalDescriptions isKindOfClass:[GCPhysicalDescriptionAttribute class]]);
+	[physicalDescriptions setValue:self forKey:@"describedObject"];
+    [_physicalDescriptions insertObject:physicalDescriptions atIndex:index];
+}
+
+- (void)removeObjectFromPhysicalDescriptionsAtIndex:(NSUInteger)index {
+	[_physicalDescriptions[index] setValue:nil forKey:@"describedObject"];
+    [_physicalDescriptions removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableGenerationsOfDescendantss {
+    return [self mutableArrayValueForKey:@"generationsOfDescendantss"];
+}
+
+- (id)objectInGenerationsOfDescendantssAtIndex:(NSUInteger)index {
+    return [_generationsOfDescendantss objectAtIndex:index];
+}
+ 
+- (NSArray *)generationsOfDescendantssAtIndexes:(NSIndexSet *)indexes {
+    return [_generationsOfDescendantss objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCGenerationsOfDescendantsAttribute *)generationsOfDescendantss inGenerationsOfDescendantssAtIndex:(NSUInteger)index {
+	NSParameterAssert([generationsOfDescendantss isKindOfClass:[GCGenerationsOfDescendantsAttribute class]]);
+	[generationsOfDescendantss setValue:self forKey:@"describedObject"];
+    [_generationsOfDescendantss insertObject:generationsOfDescendantss atIndex:index];
+}
+
+- (void)removeObjectFromGenerationsOfDescendantssAtIndex:(NSUInteger)index {
+	[_generationsOfDescendantss[index] setValue:nil forKey:@"describedObject"];
+    [_generationsOfDescendantss removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableEducations {
+    return [self mutableArrayValueForKey:@"educations"];
+}
+
+- (id)objectInEducationsAtIndex:(NSUInteger)index {
+    return [_educations objectAtIndex:index];
+}
+ 
+- (NSArray *)educationsAtIndexes:(NSIndexSet *)indexes {
+    return [_educations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCEducationAttribute *)educations inEducationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([educations isKindOfClass:[GCEducationAttribute class]]);
+	[educations setValue:self forKey:@"describedObject"];
+    [_educations insertObject:educations atIndex:index];
+}
+
+- (void)removeObjectFromEducationsAtIndex:(NSUInteger)index {
+	[_educations[index] setValue:nil forKey:@"describedObject"];
+    [_educations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableIdentNumbers {
+    return [self mutableArrayValueForKey:@"identNumbers"];
+}
+
+- (id)objectInIdentNumbersAtIndex:(NSUInteger)index {
+    return [_identNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)identNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_identNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCIdentNumberAttribute *)identNumbers inIdentNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([identNumbers isKindOfClass:[GCIdentNumberAttribute class]]);
+	[identNumbers setValue:self forKey:@"describedObject"];
+    [_identNumbers insertObject:identNumbers atIndex:index];
+}
+
+- (void)removeObjectFromIdentNumbersAtIndex:(NSUInteger)index {
+	[_identNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_identNumbers removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNationalities {
+    return [self mutableArrayValueForKey:@"nationalities"];
+}
+
+- (id)objectInNationalitiesAtIndex:(NSUInteger)index {
+    return [_nationalities objectAtIndex:index];
+}
+ 
+- (NSArray *)nationalitiesAtIndexes:(NSIndexSet *)indexes {
+    return [_nationalities objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNationalityAttribute *)nationalities inNationalitiesAtIndex:(NSUInteger)index {
+	NSParameterAssert([nationalities isKindOfClass:[GCNationalityAttribute class]]);
+	[nationalities setValue:self forKey:@"describedObject"];
+    [_nationalities insertObject:nationalities atIndex:index];
+}
+
+- (void)removeObjectFromNationalitiesAtIndex:(NSUInteger)index {
+	[_nationalities[index] setValue:nil forKey:@"describedObject"];
+    [_nationalities removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNumberOfChildrens {
+    return [self mutableArrayValueForKey:@"numberOfChildrens"];
+}
+
+- (id)objectInNumberOfChildrensAtIndex:(NSUInteger)index {
+    return [_numberOfChildrens objectAtIndex:index];
+}
+ 
+- (NSArray *)numberOfChildrensAtIndexes:(NSIndexSet *)indexes {
+    return [_numberOfChildrens objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNumberOfChildrenAttribute *)numberOfChildrens inNumberOfChildrensAtIndex:(NSUInteger)index {
+	NSParameterAssert([numberOfChildrens isKindOfClass:[GCNumberOfChildrenAttribute class]]);
+	[numberOfChildrens setValue:self forKey:@"describedObject"];
+    [_numberOfChildrens insertObject:numberOfChildrens atIndex:index];
+}
+
+- (void)removeObjectFromNumberOfChildrensAtIndex:(NSUInteger)index {
+	[_numberOfChildrens[index] setValue:nil forKey:@"describedObject"];
+    [_numberOfChildrens removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNumberOfMarriagess {
+    return [self mutableArrayValueForKey:@"numberOfMarriagess"];
+}
+
+- (id)objectInNumberOfMarriagessAtIndex:(NSUInteger)index {
+    return [_numberOfMarriagess objectAtIndex:index];
+}
+ 
+- (NSArray *)numberOfMarriagessAtIndexes:(NSIndexSet *)indexes {
+    return [_numberOfMarriagess objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNumberOfMarriagesAttribute *)numberOfMarriagess inNumberOfMarriagessAtIndex:(NSUInteger)index {
+	NSParameterAssert([numberOfMarriagess isKindOfClass:[GCNumberOfMarriagesAttribute class]]);
+	[numberOfMarriagess setValue:self forKey:@"describedObject"];
+    [_numberOfMarriagess insertObject:numberOfMarriagess atIndex:index];
+}
+
+- (void)removeObjectFromNumberOfMarriagessAtIndex:(NSUInteger)index {
+	[_numberOfMarriagess[index] setValue:nil forKey:@"describedObject"];
+    [_numberOfMarriagess removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableOccupations {
+    return [self mutableArrayValueForKey:@"occupations"];
+}
+
+- (id)objectInOccupationsAtIndex:(NSUInteger)index {
+    return [_occupations objectAtIndex:index];
+}
+ 
+- (NSArray *)occupationsAtIndexes:(NSIndexSet *)indexes {
+    return [_occupations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCOccupationAttribute *)occupations inOccupationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([occupations isKindOfClass:[GCOccupationAttribute class]]);
+	[occupations setValue:self forKey:@"describedObject"];
+    [_occupations insertObject:occupations atIndex:index];
+}
+
+- (void)removeObjectFromOccupationsAtIndex:(NSUInteger)index {
+	[_occupations[index] setValue:nil forKey:@"describedObject"];
+    [_occupations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutablePropertyOwneds {
+    return [self mutableArrayValueForKey:@"propertyOwneds"];
+}
+
+- (id)objectInPropertyOwnedsAtIndex:(NSUInteger)index {
+    return [_propertyOwneds objectAtIndex:index];
+}
+ 
+- (NSArray *)propertyOwnedsAtIndexes:(NSIndexSet *)indexes {
+    return [_propertyOwneds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCPropertyOwnedAttribute *)propertyOwneds inPropertyOwnedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([propertyOwneds isKindOfClass:[GCPropertyOwnedAttribute class]]);
+	[propertyOwneds setValue:self forKey:@"describedObject"];
+    [_propertyOwneds insertObject:propertyOwneds atIndex:index];
+}
+
+- (void)removeObjectFromPropertyOwnedsAtIndex:(NSUInteger)index {
+	[_propertyOwneds[index] setValue:nil forKey:@"describedObject"];
+    [_propertyOwneds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableReligions {
+    return [self mutableArrayValueForKey:@"religions"];
+}
+
+- (id)objectInReligionsAtIndex:(NSUInteger)index {
+    return [_religions objectAtIndex:index];
+}
+ 
+- (NSArray *)religionsAtIndexes:(NSIndexSet *)indexes {
+    return [_religions objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCReligionAttribute *)religions inReligionsAtIndex:(NSUInteger)index {
+	NSParameterAssert([religions isKindOfClass:[GCReligionAttribute class]]);
+	[religions setValue:self forKey:@"describedObject"];
+    [_religions insertObject:religions atIndex:index];
+}
+
+- (void)removeObjectFromReligionsAtIndex:(NSUInteger)index {
+	[_religions[index] setValue:nil forKey:@"describedObject"];
+    [_religions removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableResidences {
+    return [self mutableArrayValueForKey:@"residences"];
+}
+
+- (id)objectInResidencesAtIndex:(NSUInteger)index {
+    return [_residences objectAtIndex:index];
+}
+ 
+- (NSArray *)residencesAtIndexes:(NSIndexSet *)indexes {
+    return [_residences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCResidenceAttribute *)residences inResidencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([residences isKindOfClass:[GCResidenceAttribute class]]);
+	[residences setValue:self forKey:@"describedObject"];
+    [_residences insertObject:residences atIndex:index];
+}
+
+- (void)removeObjectFromResidencesAtIndex:(NSUInteger)index {
+	[_residences[index] setValue:nil forKey:@"describedObject"];
+    [_residences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSocialSecurityNumbers {
+    return [self mutableArrayValueForKey:@"socialSecurityNumbers"];
+}
+
+- (id)objectInSocialSecurityNumbersAtIndex:(NSUInteger)index {
+    return [_socialSecurityNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)socialSecurityNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_socialSecurityNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSocialSecurityNumberAttribute *)socialSecurityNumbers inSocialSecurityNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([socialSecurityNumbers isKindOfClass:[GCSocialSecurityNumberAttribute class]]);
+	[socialSecurityNumbers setValue:self forKey:@"describedObject"];
+    [_socialSecurityNumbers insertObject:socialSecurityNumbers atIndex:index];
+}
+
+- (void)removeObjectFromSocialSecurityNumbersAtIndex:(NSUInteger)index {
+	[_socialSecurityNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_socialSecurityNumbers removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableTitles {
+    return [self mutableArrayValueForKey:@"titles"];
+}
+
+- (id)objectInTitlesAtIndex:(NSUInteger)index {
+    return [_titles objectAtIndex:index];
+}
+ 
+- (NSArray *)titlesAtIndexes:(NSIndexSet *)indexes {
+    return [_titles objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCTitleAttribute *)titles inTitlesAtIndex:(NSUInteger)index {
+	NSParameterAssert([titles isKindOfClass:[GCTitleAttribute class]]);
+	[titles setValue:self forKey:@"describedObject"];
+    [_titles insertObject:titles atIndex:index];
+}
+
+- (void)removeObjectFromTitlesAtIndex:(NSUInteger)index {
+	[_titles[index] setValue:nil forKey:@"describedObject"];
+    [_titles removeObjectAtIndex:index];
+}
+
 @dynamic individualLDSOrdinances;
-@dynamic lDSBaptisms;
-@dynamic lDSConfirmations;
-@dynamic lDSEndowments;
-@dynamic lDSSealingChilds;
-@dynamic childInFamilies;
-@dynamic spouseInFamilies;
-@dynamic submitterReferences;
-@dynamic associations;
-@dynamic aliases;
-@dynamic ancestorInterests;
-@dynamic descendantInterests;
+
+- (NSMutableArray *)mutableLDSBaptisms {
+    return [self mutableArrayValueForKey:@"lDSBaptisms"];
+}
+
+- (id)objectInLDSBaptismsAtIndex:(NSUInteger)index {
+    return [_lDSBaptisms objectAtIndex:index];
+}
+ 
+- (NSArray *)lDSBaptismsAtIndexes:(NSIndexSet *)indexes {
+    return [_lDSBaptisms objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCLDSBaptismAttribute *)lDSBaptisms inLDSBaptismsAtIndex:(NSUInteger)index {
+	NSParameterAssert([lDSBaptisms isKindOfClass:[GCLDSBaptismAttribute class]]);
+	[lDSBaptisms setValue:self forKey:@"describedObject"];
+    [_lDSBaptisms insertObject:lDSBaptisms atIndex:index];
+}
+
+- (void)removeObjectFromLDSBaptismsAtIndex:(NSUInteger)index {
+	[_lDSBaptisms[index] setValue:nil forKey:@"describedObject"];
+    [_lDSBaptisms removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableLDSConfirmations {
+    return [self mutableArrayValueForKey:@"lDSConfirmations"];
+}
+
+- (id)objectInLDSConfirmationsAtIndex:(NSUInteger)index {
+    return [_lDSConfirmations objectAtIndex:index];
+}
+ 
+- (NSArray *)lDSConfirmationsAtIndexes:(NSIndexSet *)indexes {
+    return [_lDSConfirmations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCLDSConfirmationAttribute *)lDSConfirmations inLDSConfirmationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([lDSConfirmations isKindOfClass:[GCLDSConfirmationAttribute class]]);
+	[lDSConfirmations setValue:self forKey:@"describedObject"];
+    [_lDSConfirmations insertObject:lDSConfirmations atIndex:index];
+}
+
+- (void)removeObjectFromLDSConfirmationsAtIndex:(NSUInteger)index {
+	[_lDSConfirmations[index] setValue:nil forKey:@"describedObject"];
+    [_lDSConfirmations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableLDSEndowments {
+    return [self mutableArrayValueForKey:@"lDSEndowments"];
+}
+
+- (id)objectInLDSEndowmentsAtIndex:(NSUInteger)index {
+    return [_lDSEndowments objectAtIndex:index];
+}
+ 
+- (NSArray *)lDSEndowmentsAtIndexes:(NSIndexSet *)indexes {
+    return [_lDSEndowments objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCLDSEndowmentAttribute *)lDSEndowments inLDSEndowmentsAtIndex:(NSUInteger)index {
+	NSParameterAssert([lDSEndowments isKindOfClass:[GCLDSEndowmentAttribute class]]);
+	[lDSEndowments setValue:self forKey:@"describedObject"];
+    [_lDSEndowments insertObject:lDSEndowments atIndex:index];
+}
+
+- (void)removeObjectFromLDSEndowmentsAtIndex:(NSUInteger)index {
+	[_lDSEndowments[index] setValue:nil forKey:@"describedObject"];
+    [_lDSEndowments removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableLDSSealingChilds {
+    return [self mutableArrayValueForKey:@"lDSSealingChilds"];
+}
+
+- (id)objectInLDSSealingChildsAtIndex:(NSUInteger)index {
+    return [_lDSSealingChilds objectAtIndex:index];
+}
+ 
+- (NSArray *)lDSSealingChildsAtIndexes:(NSIndexSet *)indexes {
+    return [_lDSSealingChilds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCLDSSealingChildAttribute *)lDSSealingChilds inLDSSealingChildsAtIndex:(NSUInteger)index {
+	NSParameterAssert([lDSSealingChilds isKindOfClass:[GCLDSSealingChildAttribute class]]);
+	[lDSSealingChilds setValue:self forKey:@"describedObject"];
+    [_lDSSealingChilds insertObject:lDSSealingChilds atIndex:index];
+}
+
+- (void)removeObjectFromLDSSealingChildsAtIndex:(NSUInteger)index {
+	[_lDSSealingChilds[index] setValue:nil forKey:@"describedObject"];
+    [_lDSSealingChilds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableChildInFamilies {
+    return [self mutableArrayValueForKey:@"childInFamilies"];
+}
+
+- (id)objectInChildInFamiliesAtIndex:(NSUInteger)index {
+    return [_childInFamilies objectAtIndex:index];
+}
+ 
+- (NSArray *)childInFamiliesAtIndexes:(NSIndexSet *)indexes {
+    return [_childInFamilies objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCChildInFamilyRelationship *)childInFamilies inChildInFamiliesAtIndex:(NSUInteger)index {
+	NSParameterAssert([childInFamilies isKindOfClass:[GCChildInFamilyRelationship class]]);
+	[childInFamilies setValue:self forKey:@"describedObject"];
+    [_childInFamilies insertObject:childInFamilies atIndex:index];
+}
+
+- (void)removeObjectFromChildInFamiliesAtIndex:(NSUInteger)index {
+	[_childInFamilies[index] setValue:nil forKey:@"describedObject"];
+    [_childInFamilies removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSpouseInFamilies {
+    return [self mutableArrayValueForKey:@"spouseInFamilies"];
+}
+
+- (id)objectInSpouseInFamiliesAtIndex:(NSUInteger)index {
+    return [_spouseInFamilies objectAtIndex:index];
+}
+ 
+- (NSArray *)spouseInFamiliesAtIndexes:(NSIndexSet *)indexes {
+    return [_spouseInFamilies objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSpouseInFamilyRelationship *)spouseInFamilies inSpouseInFamiliesAtIndex:(NSUInteger)index {
+	NSParameterAssert([spouseInFamilies isKindOfClass:[GCSpouseInFamilyRelationship class]]);
+	[spouseInFamilies setValue:self forKey:@"describedObject"];
+    [_spouseInFamilies insertObject:spouseInFamilies atIndex:index];
+}
+
+- (void)removeObjectFromSpouseInFamiliesAtIndex:(NSUInteger)index {
+	[_spouseInFamilies[index] setValue:nil forKey:@"describedObject"];
+    [_spouseInFamilies removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSubmitterReferences {
+    return [self mutableArrayValueForKey:@"submitterReferences"];
+}
+
+- (id)objectInSubmitterReferencesAtIndex:(NSUInteger)index {
+    return [_submitterReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)submitterReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_submitterReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSubmitterReferenceRelationship *)submitterReferences inSubmitterReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([submitterReferences isKindOfClass:[GCSubmitterReferenceRelationship class]]);
+	[submitterReferences setValue:self forKey:@"describedObject"];
+    [_submitterReferences insertObject:submitterReferences atIndex:index];
+}
+
+- (void)removeObjectFromSubmitterReferencesAtIndex:(NSUInteger)index {
+	[_submitterReferences[index] setValue:nil forKey:@"describedObject"];
+    [_submitterReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableAssociations {
+    return [self mutableArrayValueForKey:@"associations"];
+}
+
+- (id)objectInAssociationsAtIndex:(NSUInteger)index {
+    return [_associations objectAtIndex:index];
+}
+ 
+- (NSArray *)associationsAtIndexes:(NSIndexSet *)indexes {
+    return [_associations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAssociationRelationship *)associations inAssociationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([associations isKindOfClass:[GCAssociationRelationship class]]);
+	[associations setValue:self forKey:@"describedObject"];
+    [_associations insertObject:associations atIndex:index];
+}
+
+- (void)removeObjectFromAssociationsAtIndex:(NSUInteger)index {
+	[_associations[index] setValue:nil forKey:@"describedObject"];
+    [_associations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableAliases {
+    return [self mutableArrayValueForKey:@"aliases"];
+}
+
+- (id)objectInAliasesAtIndex:(NSUInteger)index {
+    return [_aliases objectAtIndex:index];
+}
+ 
+- (NSArray *)aliasesAtIndexes:(NSIndexSet *)indexes {
+    return [_aliases objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAliasRelationship *)aliases inAliasesAtIndex:(NSUInteger)index {
+	NSParameterAssert([aliases isKindOfClass:[GCAliasRelationship class]]);
+	[aliases setValue:self forKey:@"describedObject"];
+    [_aliases insertObject:aliases atIndex:index];
+}
+
+- (void)removeObjectFromAliasesAtIndex:(NSUInteger)index {
+	[_aliases[index] setValue:nil forKey:@"describedObject"];
+    [_aliases removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableAncestorInterests {
+    return [self mutableArrayValueForKey:@"ancestorInterests"];
+}
+
+- (id)objectInAncestorInterestsAtIndex:(NSUInteger)index {
+    return [_ancestorInterests objectAtIndex:index];
+}
+ 
+- (NSArray *)ancestorInterestsAtIndexes:(NSIndexSet *)indexes {
+    return [_ancestorInterests objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAncestorInterestRelationship *)ancestorInterests inAncestorInterestsAtIndex:(NSUInteger)index {
+	NSParameterAssert([ancestorInterests isKindOfClass:[GCAncestorInterestRelationship class]]);
+	[ancestorInterests setValue:self forKey:@"describedObject"];
+    [_ancestorInterests insertObject:ancestorInterests atIndex:index];
+}
+
+- (void)removeObjectFromAncestorInterestsAtIndex:(NSUInteger)index {
+	[_ancestorInterests[index] setValue:nil forKey:@"describedObject"];
+    [_ancestorInterests removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableDescendantInterests {
+    return [self mutableArrayValueForKey:@"descendantInterests"];
+}
+
+- (id)objectInDescendantInterestsAtIndex:(NSUInteger)index {
+    return [_descendantInterests objectAtIndex:index];
+}
+ 
+- (NSArray *)descendantInterestsAtIndexes:(NSIndexSet *)indexes {
+    return [_descendantInterests objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCDescendantInterestRelationship *)descendantInterests inDescendantInterestsAtIndex:(NSUInteger)index {
+	NSParameterAssert([descendantInterests isKindOfClass:[GCDescendantInterestRelationship class]]);
+	[descendantInterests setValue:self forKey:@"describedObject"];
+    [_descendantInterests insertObject:descendantInterests atIndex:index];
+}
+
+- (void)removeObjectFromDescendantInterestsAtIndex:(NSUInteger)index {
+	[_descendantInterests[index] setValue:nil forKey:@"describedObject"];
+    [_descendantInterests removeObjectAtIndex:index];
+}
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic recordFileNumbers;
-@dynamic ancestralFileNumbers;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableRecordFileNumbers {
+    return [self mutableArrayValueForKey:@"recordFileNumbers"];
+}
+
+- (id)objectInRecordFileNumbersAtIndex:(NSUInteger)index {
+    return [_recordFileNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)recordFileNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_recordFileNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCRecordFileNumberAttribute *)recordFileNumbers inRecordFileNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([recordFileNumbers isKindOfClass:[GCRecordFileNumberAttribute class]]);
+	[recordFileNumbers setValue:self forKey:@"describedObject"];
+    [_recordFileNumbers insertObject:recordFileNumbers atIndex:index];
+}
+
+- (void)removeObjectFromRecordFileNumbersAtIndex:(NSUInteger)index {
+	[_recordFileNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_recordFileNumbers removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableAncestralFileNumbers {
+    return [self mutableArrayValueForKey:@"ancestralFileNumbers"];
+}
+
+- (id)objectInAncestralFileNumbersAtIndex:(NSUInteger)index {
+    return [_ancestralFileNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)ancestralFileNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_ancestralFileNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCAncestralFileNumberAttribute *)ancestralFileNumbers inAncestralFileNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([ancestralFileNumbers isKindOfClass:[GCAncestralFileNumberAttribute class]]);
+	[ancestralFileNumbers setValue:self forKey:@"describedObject"];
+    [_ancestralFileNumbers insertObject:ancestralFileNumbers atIndex:index];
+}
+
+- (void)removeObjectFromAncestralFileNumbersAtIndex:(NSUInteger)index {
+	[_ancestralFileNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_ancestralFileNumbers removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCLDSBaptismAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSBaptism"];
+@implementation GCLDSBaptismAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a lDSBaptism.
 
  
@@ -3300,7 +9949,7 @@
 */
 +(GCLDSBaptismAttribute *)lDSBaptism
 {
-	return [self attributeWithType:@"lDSBaptism"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSBaptism.
 
@@ -3309,7 +9958,7 @@
 */
 +(GCLDSBaptismAttribute *)lDSBaptismWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSBaptism" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSBaptism.
 
@@ -3318,31 +9967,135 @@
 */
 +(GCLDSBaptismAttribute *)lDSBaptismWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSBaptism" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"lDSBaptism"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic lDSBaptismStatus;
-@dynamic date;
-@dynamic temple;
-@dynamic place;
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCLDSBaptismStatusAttribute
+@implementation GCLDSBaptismStatusAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSBaptismStatus"];
 }
 
+// Methods:
 /** Initializes and returns a lDSBaptismStatus.
 
  
@@ -3350,7 +10103,7 @@
 */
 +(GCLDSBaptismStatusAttribute *)lDSBaptismStatus
 {
-	return [self attributeWithType:@"lDSBaptismStatus"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSBaptismStatus.
 
@@ -3359,7 +10112,7 @@
 */
 +(GCLDSBaptismStatusAttribute *)lDSBaptismStatusWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSBaptismStatus" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSBaptismStatus.
 
@@ -3368,22 +10121,34 @@
 */
 +(GCLDSBaptismStatusAttribute *)lDSBaptismStatusWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSBaptismStatus" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"lDSBaptismStatus"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCLDSConfirmationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSConfirmation"];
+@implementation GCLDSConfirmationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a lDSConfirmation.
 
  
@@ -3391,7 +10156,7 @@
 */
 +(GCLDSConfirmationAttribute *)lDSConfirmation
 {
-	return [self attributeWithType:@"lDSConfirmation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSConfirmation.
 
@@ -3400,7 +10165,7 @@
 */
 +(GCLDSConfirmationAttribute *)lDSConfirmationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSConfirmation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSConfirmation.
 
@@ -3409,31 +10174,135 @@
 */
 +(GCLDSConfirmationAttribute *)lDSConfirmationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSConfirmation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"lDSConfirmation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic lDSBaptismStatus;
-@dynamic date;
-@dynamic temple;
-@dynamic place;
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCLDSConfirmationStatusAttribute
+@implementation GCLDSConfirmationStatusAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSConfirmationStatus"];
 }
 
+// Methods:
 /** Initializes and returns a lDSConfirmationStatus.
 
  
@@ -3441,7 +10310,7 @@
 */
 +(GCLDSConfirmationStatusAttribute *)lDSConfirmationStatus
 {
-	return [self attributeWithType:@"lDSConfirmationStatus"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSConfirmationStatus.
 
@@ -3450,7 +10319,7 @@
 */
 +(GCLDSConfirmationStatusAttribute *)lDSConfirmationStatusWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSConfirmationStatus" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSConfirmationStatus.
 
@@ -3459,22 +10328,34 @@
 */
 +(GCLDSConfirmationStatusAttribute *)lDSConfirmationStatusWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSConfirmationStatus" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"lDSConfirmationStatus"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCLDSEndowmentAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSEndowment"];
+@implementation GCLDSEndowmentAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a lDSEndowment.
 
  
@@ -3482,7 +10363,7 @@
 */
 +(GCLDSEndowmentAttribute *)lDSEndowment
 {
-	return [self attributeWithType:@"lDSEndowment"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSEndowment.
 
@@ -3491,7 +10372,7 @@
 */
 +(GCLDSEndowmentAttribute *)lDSEndowmentWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSEndowment" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSEndowment.
 
@@ -3500,31 +10381,135 @@
 */
 +(GCLDSEndowmentAttribute *)lDSEndowmentWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSEndowment" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"lDSEndowment"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic lDSEndowmentStatus;
-@dynamic date;
-@dynamic temple;
-@dynamic place;
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCLDSEndowmentStatusAttribute
+@implementation GCLDSEndowmentStatusAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSEndowmentStatus"];
 }
 
+// Methods:
 /** Initializes and returns a lDSEndowmentStatus.
 
  
@@ -3532,7 +10517,7 @@
 */
 +(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatus
 {
-	return [self attributeWithType:@"lDSEndowmentStatus"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSEndowmentStatus.
 
@@ -3541,7 +10526,7 @@
 */
 +(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatusWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSEndowmentStatus" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSEndowmentStatus.
 
@@ -3550,22 +10535,34 @@
 */
 +(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatusWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSEndowmentStatus" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"lDSEndowmentStatus"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCLDSSealingChildAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSSealingChild"];
+@implementation GCLDSSealingChildAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a lDSSealingChild.
 
  
@@ -3573,7 +10570,7 @@
 */
 +(GCLDSSealingChildAttribute *)lDSSealingChild
 {
-	return [self attributeWithType:@"lDSSealingChild"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSSealingChild.
 
@@ -3582,7 +10579,7 @@
 */
 +(GCLDSSealingChildAttribute *)lDSSealingChildWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSSealingChild" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSSealingChild.
 
@@ -3591,32 +10588,136 @@
 */
 +(GCLDSSealingChildAttribute *)lDSSealingChildWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSSealingChild" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"lDSSealingChild"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic lDSSealingChildStatus;
-@dynamic sealedToFamily;
-@dynamic date;
-@dynamic temple;
-@dynamic place;
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCLDSSealingChildStatusAttribute
+@implementation GCLDSSealingChildStatusAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSSealingChildStatus"];
 }
 
+// Methods:
 /** Initializes and returns a lDSSealingChildStatus.
 
  
@@ -3624,7 +10725,7 @@
 */
 +(GCLDSSealingChildStatusAttribute *)lDSSealingChildStatus
 {
-	return [self attributeWithType:@"lDSSealingChildStatus"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSSealingChildStatus.
 
@@ -3633,7 +10734,7 @@
 */
 +(GCLDSSealingChildStatusAttribute *)lDSSealingChildStatusWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSSealingChildStatus" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSSealingChildStatus.
 
@@ -3642,22 +10743,34 @@
 */
 +(GCLDSSealingChildStatusAttribute *)lDSSealingChildStatusWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSSealingChildStatus" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"lDSSealingChildStatus"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCLDSSealingSpouseAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSSealingSpouse"];
+@implementation GCLDSSealingSpouseAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a lDSSealingSpouse.
 
  
@@ -3665,7 +10778,7 @@
 */
 +(GCLDSSealingSpouseAttribute *)lDSSealingSpouse
 {
-	return [self attributeWithType:@"lDSSealingSpouse"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSSealingSpouse.
 
@@ -3674,7 +10787,7 @@
 */
 +(GCLDSSealingSpouseAttribute *)lDSSealingSpouseWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSSealingSpouse" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSSealingSpouse.
 
@@ -3683,31 +10796,135 @@
 */
 +(GCLDSSealingSpouseAttribute *)lDSSealingSpouseWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSSealingSpouse" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"lDSSealingSpouse"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic lDSSealingSpouseStatus;
-@dynamic date;
-@dynamic temple;
-@dynamic place;
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCLDSSealingSpouseStatusAttribute
+@implementation GCLDSSealingSpouseStatusAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"lDSSealingSpouseStatus"];
 }
 
+// Methods:
 /** Initializes and returns a lDSSealingSpouseStatus.
 
  
@@ -3715,7 +10932,7 @@
 */
 +(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatus
 {
-	return [self attributeWithType:@"lDSSealingSpouseStatus"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a lDSSealingSpouseStatus.
 
@@ -3724,7 +10941,7 @@
 */
 +(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatusWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"lDSSealingSpouseStatus" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a lDSSealingSpouseStatus.
 
@@ -3733,22 +10950,31 @@
 */
 +(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatusWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"lDSSealingSpouseStatus" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"lDSSealingSpouseStatus"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCLanguageAttribute
+@implementation GCLanguageAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"language"];
 }
 
+// Methods:
 /** Initializes and returns a language.
 
  
@@ -3756,7 +10982,7 @@
 */
 +(GCLanguageAttribute *)language
 {
-	return [self attributeWithType:@"language"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a language.
 
@@ -3765,7 +10991,7 @@
 */
 +(GCLanguageAttribute *)languageWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"language" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a language.
 
@@ -3774,22 +11000,31 @@
 */
 +(GCLanguageAttribute *)languageWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"language" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"language"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCLegateeAttribute
+@implementation GCLegateeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"legatee"];
 }
 
+// Methods:
 /** Initializes and returns a legatee.
 
  
@@ -3797,7 +11032,7 @@
 */
 +(GCLegateeAttribute *)legatee
 {
-	return [self attributeWithType:@"legatee"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a legatee.
 
@@ -3806,7 +11041,7 @@
 */
 +(GCLegateeAttribute *)legateeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"legatee" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a legatee.
 
@@ -3815,22 +11050,36 @@
 */
 +(GCLegateeAttribute *)legateeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"legatee" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"legatee"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCMarriageAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"marriage"];
+@implementation GCMarriageAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a marriage.
 
  
@@ -3838,7 +11087,7 @@
 */
 +(GCMarriageAttribute *)marriage
 {
-	return [self attributeWithType:@"marriage"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a marriage.
 
@@ -3847,7 +11096,7 @@
 */
 +(GCMarriageAttribute *)marriageWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"marriage" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a marriage.
 
@@ -3856,41 +11105,198 @@
 */
 +(GCMarriageAttribute *)marriageWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"marriage" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"marriage"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCMarriageBannAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"marriageBann"];
+@implementation GCMarriageBannAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a marriageBann.
 
  
@@ -3898,7 +11304,7 @@
 */
 +(GCMarriageBannAttribute *)marriageBann
 {
-	return [self attributeWithType:@"marriageBann"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a marriageBann.
 
@@ -3907,7 +11313,7 @@
 */
 +(GCMarriageBannAttribute *)marriageBannWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"marriageBann" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a marriageBann.
 
@@ -3916,41 +11322,198 @@
 */
 +(GCMarriageBannAttribute *)marriageBannWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"marriageBann" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"marriageBann"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCMarriageContractAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"marriageContract"];
+@implementation GCMarriageContractAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a marriageContract.
 
  
@@ -3958,7 +11521,7 @@
 */
 +(GCMarriageContractAttribute *)marriageContract
 {
-	return [self attributeWithType:@"marriageContract"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a marriageContract.
 
@@ -3967,7 +11530,7 @@
 */
 +(GCMarriageContractAttribute *)marriageContractWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"marriageContract" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a marriageContract.
 
@@ -3976,41 +11539,198 @@
 */
 +(GCMarriageContractAttribute *)marriageContractWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"marriageContract" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"marriageContract"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCMarriageLicenseAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"marriageLicense"];
+@implementation GCMarriageLicenseAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a marriageLicense.
 
  
@@ -4018,7 +11738,7 @@
 */
 +(GCMarriageLicenseAttribute *)marriageLicense
 {
-	return [self attributeWithType:@"marriageLicense"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a marriageLicense.
 
@@ -4027,7 +11747,7 @@
 */
 +(GCMarriageLicenseAttribute *)marriageLicenseWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"marriageLicense" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a marriageLicense.
 
@@ -4036,41 +11756,198 @@
 */
 +(GCMarriageLicenseAttribute *)marriageLicenseWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"marriageLicense" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"marriageLicense"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCMarriageSettlementAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"marriageSettlement"];
+@implementation GCMarriageSettlementAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a marriageSettlement.
 
  
@@ -4078,7 +11955,7 @@
 */
 +(GCMarriageSettlementAttribute *)marriageSettlement
 {
-	return [self attributeWithType:@"marriageSettlement"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a marriageSettlement.
 
@@ -4087,7 +11964,7 @@
 */
 +(GCMarriageSettlementAttribute *)marriageSettlementWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"marriageSettlement" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a marriageSettlement.
 
@@ -4096,41 +11973,193 @@
 */
 +(GCMarriageSettlementAttribute *)marriageSettlementWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"marriageSettlement" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"marriageSettlement"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCMediaTypeAttribute
+@implementation GCMediaTypeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"mediaType"];
 }
 
+// Methods:
 /** Initializes and returns a mediaType.
 
  
@@ -4138,7 +12167,7 @@
 */
 +(GCMediaTypeAttribute *)mediaType
 {
-	return [self attributeWithType:@"mediaType"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a mediaType.
 
@@ -4147,7 +12176,7 @@
 */
 +(GCMediaTypeAttribute *)mediaTypeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"mediaType" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a mediaType.
 
@@ -4156,22 +12185,33 @@
 */
 +(GCMediaTypeAttribute *)mediaTypeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"mediaType" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"mediaType"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCMultimediaEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"multimedia"];
+@implementation GCMultimediaEntity {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a multimedia.
 
  @param context The context in which to create the entity.
@@ -4179,30 +12219,111 @@
 */
 +(GCMultimediaEntity *)multimediaInContext:(GCContext *)context
 {
-	return [self entityWithType:@"multimedia" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"multimedia"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic multimediaFormat;
-@dynamic title;
+
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic binaryObject;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCMultimediaEmbeddedAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"multimediaEmbedded"];
+@implementation GCMultimediaEmbeddedAttribute {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a multimediaEmbedded.
 
  
@@ -4210,7 +12331,7 @@
 */
 +(GCMultimediaEmbeddedAttribute *)multimediaEmbedded
 {
-	return [self attributeWithType:@"multimediaEmbedded"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a multimediaEmbedded.
 
@@ -4219,7 +12340,7 @@
 */
 +(GCMultimediaEmbeddedAttribute *)multimediaEmbeddedWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"multimediaEmbedded" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a multimediaEmbedded.
 
@@ -4228,27 +12349,83 @@
 */
 +(GCMultimediaEmbeddedAttribute *)multimediaEmbeddedWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"multimediaEmbedded" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"multimediaEmbedded"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic multimediaFormat;
-@dynamic title;
-@dynamic file;
+
+
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCMultimediaFormatAttribute
+@implementation GCMultimediaFormatAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"multimediaFormat"];
 }
 
+// Methods:
 /** Initializes and returns a multimediaFormat.
 
  
@@ -4256,7 +12433,7 @@
 */
 +(GCMultimediaFormatAttribute *)multimediaFormat
 {
-	return [self attributeWithType:@"multimediaFormat"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a multimediaFormat.
 
@@ -4265,7 +12442,7 @@
 */
 +(GCMultimediaFormatAttribute *)multimediaFormatWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"multimediaFormat" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a multimediaFormat.
 
@@ -4274,22 +12451,31 @@
 */
 +(GCMultimediaFormatAttribute *)multimediaFormatWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"multimediaFormat" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"multimediaFormat"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCMultimediaReferenceRelationship
+@implementation GCMultimediaReferenceRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"multimediaReference"];
 }
 
+// Methods:
 /** Initializes and returns a multimediaReference.
 
  
@@ -4297,72 +12483,31 @@
 */
 +(GCMultimediaReferenceRelationship *)multimediaReference
 {
-	return [self relationshipWithType:@"multimediaReference"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a multimediaReference.
-
- @param target The relationship's target entity.
- @return A new multimediaReference.
-*/
-+(GCMultimediaReferenceRelationship *)multimediaReferenceWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"multimediaReference" target:target];
+	self = [super _initWithType:@"multimediaReference"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCNameAttribute
+@implementation GCNamePrefixAttribute {
+
+}
 
 // Methods:
-- (id)init
-{
-	return [super initWithType:@"name"];
-}
-
-/** Initializes and returns a name.
-
- 
- @return A new name.
-*/
-+(GCNameAttribute *)name
-{
-	return [self attributeWithType:@"name"];
-}
-/** Initializes and returns a name.
-
- @param value The value as a GCValue object.
- @return A new name.
-*/
-+(GCNameAttribute *)nameWithValue:(GCValue *)value
-{
-	return [self attributeWithType:@"name" value:value];
-}
-/** Initializes and returns a name.
-
- @param value The value as an NSString.
- @return A new name.
-*/
-+(GCNameAttribute *)nameWithGedcomStringValue:(NSString *)value
-{
-	return [self attributeWithType:@"name" gedcomStringValue:value];
-}
-
-// Properties:
-
-
-@end
-
-@implementation GCNamePrefixAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"namePrefix"];
-}
-
 /** Initializes and returns a namePrefix.
 
  
@@ -4370,7 +12515,7 @@
 */
 +(GCNamePrefixAttribute *)namePrefix
 {
-	return [self attributeWithType:@"namePrefix"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a namePrefix.
 
@@ -4379,7 +12524,7 @@
 */
 +(GCNamePrefixAttribute *)namePrefixWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"namePrefix" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a namePrefix.
 
@@ -4388,22 +12533,31 @@
 */
 +(GCNamePrefixAttribute *)namePrefixWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"namePrefix" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"namePrefix"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCNameSuffixAttribute
+@implementation GCNameSuffixAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"nameSuffix"];
 }
 
+// Methods:
 /** Initializes and returns a nameSuffix.
 
  
@@ -4411,7 +12565,7 @@
 */
 +(GCNameSuffixAttribute *)nameSuffix
 {
-	return [self attributeWithType:@"nameSuffix"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a nameSuffix.
 
@@ -4420,7 +12574,7 @@
 */
 +(GCNameSuffixAttribute *)nameSuffixWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"nameSuffix" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a nameSuffix.
 
@@ -4429,22 +12583,36 @@
 */
 +(GCNameSuffixAttribute *)nameSuffixWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"nameSuffix" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"nameSuffix"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCNationalityAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"nationality"];
+@implementation GCNationalityAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a nationality.
 
  
@@ -4452,7 +12620,7 @@
 */
 +(GCNationalityAttribute *)nationality
 {
-	return [self attributeWithType:@"nationality"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a nationality.
 
@@ -4461,7 +12629,7 @@
 */
 +(GCNationalityAttribute *)nationalityWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"nationality" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a nationality.
 
@@ -4470,39 +12638,196 @@
 */
 +(GCNationalityAttribute *)nationalityWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"nationality" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"nationality"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCNaturalizationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"naturalization"];
+@implementation GCNaturalizationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a naturalization.
 
  
@@ -4510,7 +12835,7 @@
 */
 +(GCNaturalizationAttribute *)naturalization
 {
-	return [self attributeWithType:@"naturalization"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a naturalization.
 
@@ -4519,7 +12844,7 @@
 */
 +(GCNaturalizationAttribute *)naturalizationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"naturalization" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a naturalization.
 
@@ -4528,39 +12853,191 @@
 */
 +(GCNaturalizationAttribute *)naturalizationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"naturalization" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"naturalization"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCNicknameAttribute
+@implementation GCNicknameAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"nickname"];
 }
 
+// Methods:
 /** Initializes and returns a nickname.
 
  
@@ -4568,7 +13045,7 @@
 */
 +(GCNicknameAttribute *)nickname
 {
-	return [self attributeWithType:@"nickname"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a nickname.
 
@@ -4577,7 +13054,7 @@
 */
 +(GCNicknameAttribute *)nicknameWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"nickname" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a nickname.
 
@@ -4586,22 +13063,33 @@
 */
 +(GCNicknameAttribute *)nicknameWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"nickname" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"nickname"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCNoteEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"note"];
+@implementation GCNoteEntity {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a note.
 
  @param context The context in which to create the entity.
@@ -4609,27 +13097,108 @@
 */
 +(GCNoteEntity *)noteInContext:(GCContext *)context
 {
-	return [self entityWithType:@"note" inContext:context];
+	return [[self alloc] initWithContext:context];
 }
+- (id)init
+{
+	self = [super _initWithType:@"note"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCNoteEmbeddedAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"noteEmbedded"];
+@implementation GCNoteEmbeddedAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a noteEmbedded.
 
  
@@ -4637,7 +13206,7 @@
 */
 +(GCNoteEmbeddedAttribute *)noteEmbedded
 {
-	return [self attributeWithType:@"noteEmbedded"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a noteEmbedded.
 
@@ -4646,7 +13215,7 @@
 */
 +(GCNoteEmbeddedAttribute *)noteEmbeddedWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"noteEmbedded" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a noteEmbedded.
 
@@ -4655,24 +13224,81 @@
 */
 +(GCNoteEmbeddedAttribute *)noteEmbeddedWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"noteEmbedded" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"noteEmbedded"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCNoteReferenceRelationship
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"noteReference"];
+@implementation GCNoteReferenceRelationship {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a noteReference.
 
  
@@ -4680,33 +13306,85 @@
 */
 +(GCNoteReferenceRelationship *)noteReference
 {
-	return [self relationshipWithType:@"noteReference"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a noteReference.
-
- @param target The relationship's target entity.
- @return A new noteReference.
-*/
-+(GCNoteReferenceRelationship *)noteReferenceWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"noteReference" target:target];
+	self = [super _initWithType:@"noteReference"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
+
 
 // Properties:
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCNumberOfChildrenAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"numberOfChildren"];
+@implementation GCNumberOfChildrenAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a numberOfChildren.
 
  
@@ -4714,7 +13392,7 @@
 */
 +(GCNumberOfChildrenAttribute *)numberOfChildren
 {
-	return [self attributeWithType:@"numberOfChildren"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a numberOfChildren.
 
@@ -4723,7 +13401,7 @@
 */
 +(GCNumberOfChildrenAttribute *)numberOfChildrenWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"numberOfChildren" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a numberOfChildren.
 
@@ -4732,39 +13410,196 @@
 */
 +(GCNumberOfChildrenAttribute *)numberOfChildrenWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"numberOfChildren" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"numberOfChildren"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCNumberOfMarriagesAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"numberOfMarriages"];
+@implementation GCNumberOfMarriagesAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a numberOfMarriages.
 
  
@@ -4772,7 +13607,7 @@
 */
 +(GCNumberOfMarriagesAttribute *)numberOfMarriages
 {
-	return [self attributeWithType:@"numberOfMarriages"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a numberOfMarriages.
 
@@ -4781,7 +13616,7 @@
 */
 +(GCNumberOfMarriagesAttribute *)numberOfMarriagesWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"numberOfMarriages" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a numberOfMarriages.
 
@@ -4790,39 +13625,196 @@
 */
 +(GCNumberOfMarriagesAttribute *)numberOfMarriagesWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"numberOfMarriages" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"numberOfMarriages"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCOccupationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"occupation"];
+@implementation GCOccupationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a occupation.
 
  
@@ -4830,7 +13822,7 @@
 */
 +(GCOccupationAttribute *)occupation
 {
-	return [self attributeWithType:@"occupation"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a occupation.
 
@@ -4839,7 +13831,7 @@
 */
 +(GCOccupationAttribute *)occupationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"occupation" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a occupation.
 
@@ -4848,39 +13840,191 @@
 */
 +(GCOccupationAttribute *)occupationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"occupation" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"occupation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCOrdinanceFlagAttribute
+@implementation GCOrdinanceFlagAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"ordinanceFlag"];
 }
 
+// Methods:
 /** Initializes and returns a ordinanceFlag.
 
  
@@ -4888,7 +14032,7 @@
 */
 +(GCOrdinanceFlagAttribute *)ordinanceFlag
 {
-	return [self attributeWithType:@"ordinanceFlag"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a ordinanceFlag.
 
@@ -4897,7 +14041,7 @@
 */
 +(GCOrdinanceFlagAttribute *)ordinanceFlagWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"ordinanceFlag" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a ordinanceFlag.
 
@@ -4906,22 +14050,36 @@
 */
 +(GCOrdinanceFlagAttribute *)ordinanceFlagWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"ordinanceFlag" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"ordinanceFlag"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCOrdinationAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"ordination"];
+@implementation GCOrdinationAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a ordination.
 
  
@@ -4929,7 +14087,7 @@
 */
 +(GCOrdinationAttribute *)ordination
 {
-	return [self attributeWithType:@"ordination"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a ordination.
 
@@ -4938,7 +14096,7 @@
 */
 +(GCOrdinationAttribute *)ordinationWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"ordination" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a ordination.
 
@@ -4947,39 +14105,191 @@
 */
 +(GCOrdinationAttribute *)ordinationWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"ordination" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"ordination"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPageAttribute
+@implementation GCPageAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"page"];
 }
 
+// Methods:
 /** Initializes and returns a page.
 
  
@@ -4987,7 +14297,7 @@
 */
 +(GCPageAttribute *)page
 {
-	return [self attributeWithType:@"page"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a page.
 
@@ -4996,7 +14306,7 @@
 */
 +(GCPageAttribute *)pageWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"page" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a page.
 
@@ -5005,22 +14315,32 @@
 */
 +(GCPageAttribute *)pageWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"page" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"page"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCPedigreeAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"pedigree"];
+@implementation GCPedigreeAttribute {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a pedigree.
 
  
@@ -5028,7 +14348,7 @@
 */
 +(GCPedigreeAttribute *)pedigree
 {
-	return [self attributeWithType:@"pedigree"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a pedigree.
 
@@ -5037,7 +14357,7 @@
 */
 +(GCPedigreeAttribute *)pedigreeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"pedigree" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a pedigree.
 
@@ -5046,24 +14366,83 @@
 */
 +(GCPedigreeAttribute *)pedigreeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"pedigree" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"pedigree"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPersonalNameAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"personalName"];
+@implementation GCPersonalNameAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a personalName.
 
  
@@ -5071,7 +14450,7 @@
 */
 +(GCPersonalNameAttribute *)personalName
 {
-	return [self attributeWithType:@"personalName"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a personalName.
 
@@ -5080,7 +14459,7 @@
 */
 +(GCPersonalNameAttribute *)personalNameWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"personalName" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a personalName.
 
@@ -5089,33 +14468,137 @@
 */
 +(GCPersonalNameAttribute *)personalNameWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"personalName" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"personalName"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic namePrefix;
-@dynamic givenName;
-@dynamic nickname;
-@dynamic surnamePrefix;
-@dynamic surname;
-@dynamic nameSuffix;
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPhoneNumberAttribute
+@implementation GCPhoneNumberAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"phoneNumber"];
 }
 
+// Methods:
 /** Initializes and returns a phoneNumber.
 
  
@@ -5123,7 +14606,7 @@
 */
 +(GCPhoneNumberAttribute *)phoneNumber
 {
-	return [self attributeWithType:@"phoneNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a phoneNumber.
 
@@ -5132,7 +14615,7 @@
 */
 +(GCPhoneNumberAttribute *)phoneNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"phoneNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a phoneNumber.
 
@@ -5141,22 +14624,36 @@
 */
 +(GCPhoneNumberAttribute *)phoneNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"phoneNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"phoneNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCPhysicalDescriptionAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"physicalDescription"];
+@implementation GCPhysicalDescriptionAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a physicalDescription.
 
  
@@ -5164,7 +14661,7 @@
 */
 +(GCPhysicalDescriptionAttribute *)physicalDescription
 {
-	return [self attributeWithType:@"physicalDescription"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a physicalDescription.
 
@@ -5173,7 +14670,7 @@
 */
 +(GCPhysicalDescriptionAttribute *)physicalDescriptionWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"physicalDescription" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a physicalDescription.
 
@@ -5182,39 +14679,194 @@
 */
 +(GCPhysicalDescriptionAttribute *)physicalDescriptionWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"physicalDescription" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"physicalDescription"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPlaceAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"place"];
+@implementation GCPlaceAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a place.
 
  
@@ -5222,7 +14874,7 @@
 */
 +(GCPlaceAttribute *)place
 {
-	return [self attributeWithType:@"place"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a place.
 
@@ -5231,7 +14883,7 @@
 */
 +(GCPlaceAttribute *)placeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"place" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a place.
 
@@ -5240,28 +14892,132 @@
 */
 +(GCPlaceAttribute *)placeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"place" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"place"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic placeFormat;
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPlaceFormatAttribute
+@implementation GCPlaceFormatAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"placeFormat"];
 }
 
+// Methods:
 /** Initializes and returns a placeFormat.
 
  
@@ -5269,7 +15025,7 @@
 */
 +(GCPlaceFormatAttribute *)placeFormat
 {
-	return [self attributeWithType:@"placeFormat"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a placeFormat.
 
@@ -5278,7 +15034,7 @@
 */
 +(GCPlaceFormatAttribute *)placeFormatWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"placeFormat" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a placeFormat.
 
@@ -5287,22 +15043,31 @@
 */
 +(GCPlaceFormatAttribute *)placeFormatWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"placeFormat" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"placeFormat"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCPlaceFormatSpecifierAttribute
+@implementation GCPlaceFormatSpecifierAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"placeFormatSpecifier"];
 }
 
+// Methods:
 /** Initializes and returns a placeFormatSpecifier.
 
  
@@ -5310,7 +15075,7 @@
 */
 +(GCPlaceFormatSpecifierAttribute *)placeFormatSpecifier
 {
-	return [self attributeWithType:@"placeFormatSpecifier"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a placeFormatSpecifier.
 
@@ -5319,7 +15084,7 @@
 */
 +(GCPlaceFormatSpecifierAttribute *)placeFormatSpecifierWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"placeFormatSpecifier" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a placeFormatSpecifier.
 
@@ -5328,22 +15093,31 @@
 */
 +(GCPlaceFormatSpecifierAttribute *)placeFormatSpecifierWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"placeFormatSpecifier" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"placeFormatSpecifier"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic placeFormat;
+
 
 @end
 
-@implementation GCPostalCodeAttribute
+@implementation GCPostalCodeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"postalCode"];
 }
 
+// Methods:
 /** Initializes and returns a postalCode.
 
  
@@ -5351,7 +15125,7 @@
 */
 +(GCPostalCodeAttribute *)postalCode
 {
-	return [self attributeWithType:@"postalCode"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a postalCode.
 
@@ -5360,7 +15134,7 @@
 */
 +(GCPostalCodeAttribute *)postalCodeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"postalCode" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a postalCode.
 
@@ -5369,22 +15143,36 @@
 */
 +(GCPostalCodeAttribute *)postalCodeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"postalCode" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"postalCode"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCProbateAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"probate"];
+@implementation GCProbateAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a probate.
 
  
@@ -5392,7 +15180,7 @@
 */
 +(GCProbateAttribute *)probate
 {
-	return [self attributeWithType:@"probate"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a probate.
 
@@ -5401,7 +15189,7 @@
 */
 +(GCProbateAttribute *)probateWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"probate" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a probate.
 
@@ -5410,39 +15198,196 @@
 */
 +(GCProbateAttribute *)probateWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"probate" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"probate"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPropertyOwnedAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"propertyOwned"];
+@implementation GCPropertyOwnedAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a propertyOwned.
 
  
@@ -5450,7 +15395,7 @@
 */
 +(GCPropertyOwnedAttribute *)propertyOwned
 {
-	return [self attributeWithType:@"propertyOwned"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a propertyOwned.
 
@@ -5459,7 +15404,7 @@
 */
 +(GCPropertyOwnedAttribute *)propertyOwnedWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"propertyOwned" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a propertyOwned.
 
@@ -5468,39 +15413,191 @@
 */
 +(GCPropertyOwnedAttribute *)propertyOwnedWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"propertyOwned" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"propertyOwned"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCPublicationFactsAttribute
+@implementation GCPublicationFactsAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"publicationFacts"];
 }
 
+// Methods:
 /** Initializes and returns a publicationFacts.
 
  
@@ -5508,7 +15605,7 @@
 */
 +(GCPublicationFactsAttribute *)publicationFacts
 {
-	return [self attributeWithType:@"publicationFacts"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a publicationFacts.
 
@@ -5517,7 +15614,7 @@
 */
 +(GCPublicationFactsAttribute *)publicationFactsWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"publicationFacts" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a publicationFacts.
 
@@ -5526,22 +15623,31 @@
 */
 +(GCPublicationFactsAttribute *)publicationFactsWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"publicationFacts" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"publicationFacts"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCQualityOfDataAttribute
+@implementation GCQualityOfDataAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"qualityOfData"];
 }
 
+// Methods:
 /** Initializes and returns a qualityOfData.
 
  
@@ -5549,7 +15655,7 @@
 */
 +(GCQualityOfDataAttribute *)qualityOfData
 {
-	return [self attributeWithType:@"qualityOfData"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a qualityOfData.
 
@@ -5558,7 +15664,7 @@
 */
 +(GCQualityOfDataAttribute *)qualityOfDataWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"qualityOfData" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a qualityOfData.
 
@@ -5567,22 +15673,31 @@
 */
 +(GCQualityOfDataAttribute *)qualityOfDataWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"qualityOfData" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"qualityOfData"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCRecordFileNumberAttribute
+@implementation GCRecordFileNumberAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"recordFileNumber"];
 }
 
+// Methods:
 /** Initializes and returns a recordFileNumber.
 
  
@@ -5590,7 +15705,7 @@
 */
 +(GCRecordFileNumberAttribute *)recordFileNumber
 {
-	return [self attributeWithType:@"recordFileNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a recordFileNumber.
 
@@ -5599,7 +15714,7 @@
 */
 +(GCRecordFileNumberAttribute *)recordFileNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"recordFileNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a recordFileNumber.
 
@@ -5608,22 +15723,31 @@
 */
 +(GCRecordFileNumberAttribute *)recordFileNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"recordFileNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"recordFileNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCRecordIdNumberAttribute
+@implementation GCRecordIdNumberAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"recordIdNumber"];
 }
 
+// Methods:
 /** Initializes and returns a recordIdNumber.
 
  
@@ -5631,7 +15755,7 @@
 */
 +(GCRecordIdNumberAttribute *)recordIdNumber
 {
-	return [self attributeWithType:@"recordIdNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a recordIdNumber.
 
@@ -5640,7 +15764,7 @@
 */
 +(GCRecordIdNumberAttribute *)recordIdNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"recordIdNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a recordIdNumber.
 
@@ -5649,22 +15773,31 @@
 */
 +(GCRecordIdNumberAttribute *)recordIdNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"recordIdNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"recordIdNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCRecordTypeAttribute
+@implementation GCRecordTypeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"recordType"];
 }
 
+// Methods:
 /** Initializes and returns a recordType.
 
  
@@ -5672,7 +15805,7 @@
 */
 +(GCRecordTypeAttribute *)recordType
 {
-	return [self attributeWithType:@"recordType"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a recordType.
 
@@ -5681,7 +15814,7 @@
 */
 +(GCRecordTypeAttribute *)recordTypeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"recordType" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a recordType.
 
@@ -5690,22 +15823,31 @@
 */
 +(GCRecordTypeAttribute *)recordTypeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"recordType" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"recordType"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCRelationshipDescriptorAttribute
+@implementation GCRelationshipDescriptorAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"relationshipDescriptor"];
 }
 
+// Methods:
 /** Initializes and returns a relationshipDescriptor.
 
  
@@ -5713,7 +15855,7 @@
 */
 +(GCRelationshipDescriptorAttribute *)relationshipDescriptor
 {
-	return [self attributeWithType:@"relationshipDescriptor"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a relationshipDescriptor.
 
@@ -5722,7 +15864,7 @@
 */
 +(GCRelationshipDescriptorAttribute *)relationshipDescriptorWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"relationshipDescriptor" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a relationshipDescriptor.
 
@@ -5731,22 +15873,36 @@
 */
 +(GCRelationshipDescriptorAttribute *)relationshipDescriptorWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"relationshipDescriptor" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"relationshipDescriptor"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCReligionAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"religion"];
+@implementation GCReligionAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a religion.
 
  
@@ -5754,7 +15910,7 @@
 */
 +(GCReligionAttribute *)religion
 {
-	return [self attributeWithType:@"religion"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a religion.
 
@@ -5763,7 +15919,7 @@
 */
 +(GCReligionAttribute *)religionWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"religion" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a religion.
 
@@ -5772,39 +15928,194 @@
 */
 +(GCReligionAttribute *)religionWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"religion" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"religion"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCRepositoryEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"repository"];
+@implementation GCRepositoryEntity {
+	NSMutableArray *_phoneNumbers;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a repository.
 
  @param context The context in which to create the entity.
@@ -5812,30 +16123,136 @@
 */
 +(GCRepositoryEntity *)repositoryInContext:(GCContext *)context
 {
-	return [self entityWithType:@"repository" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"repository"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_phoneNumbers = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic name;
-@dynamic address;
-@dynamic phoneNumber;
+
+
+
+- (NSMutableArray *)mutablePhoneNumbers {
+    return [self mutableArrayValueForKey:@"phoneNumbers"];
+}
+
+- (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
+    return [_phoneNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)phoneNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_phoneNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCPhoneNumberAttribute *)phoneNumbers inPhoneNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([phoneNumbers isKindOfClass:[GCPhoneNumberAttribute class]]);
+	[phoneNumbers setValue:self forKey:@"describedObject"];
+    [_phoneNumbers insertObject:phoneNumbers atIndex:index];
+}
+
+- (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+	[_phoneNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_phoneNumbers removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCRepositoryCitationRelationship
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"repositoryCitation"];
+@implementation GCRepositoryCitationRelationship {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
+	NSMutableArray *_callNumbers;
 }
 
+// Methods:
 /** Initializes and returns a repositoryCitation.
 
  
@@ -5843,34 +16260,110 @@
 */
 +(GCRepositoryCitationRelationship *)repositoryCitation
 {
-	return [self relationshipWithType:@"repositoryCitation"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a repositoryCitation.
-
- @param target The relationship's target entity.
- @return A new repositoryCitation.
-*/
-+(GCRepositoryCitationRelationship *)repositoryCitationWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"repositoryCitation" target:target];
+	self = [super _initWithType:@"repositoryCitation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+		_callNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
+
 
 // Properties:
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic callNumbers;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableCallNumbers {
+    return [self mutableArrayValueForKey:@"callNumbers"];
+}
+
+- (id)objectInCallNumbersAtIndex:(NSUInteger)index {
+    return [_callNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)callNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_callNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCCallNumberAttribute *)callNumbers inCallNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([callNumbers isKindOfClass:[GCCallNumberAttribute class]]);
+	[callNumbers setValue:self forKey:@"describedObject"];
+    [_callNumbers insertObject:callNumbers atIndex:index];
+}
+
+- (void)removeObjectFromCallNumbersAtIndex:(NSUInteger)index {
+	[_callNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_callNumbers removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCResidenceAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"residence"];
+@implementation GCResidenceAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a residence.
 
  
@@ -5878,7 +16371,7 @@
 */
 +(GCResidenceAttribute *)residence
 {
-	return [self attributeWithType:@"residence"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a residence.
 
@@ -5887,7 +16380,7 @@
 */
 +(GCResidenceAttribute *)residenceWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"residence" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a residence.
 
@@ -5896,39 +16389,191 @@
 */
 +(GCResidenceAttribute *)residenceWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"residence" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"residence"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCResponsibleAgencyAttribute
+@implementation GCResponsibleAgencyAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"responsibleAgency"];
 }
 
+// Methods:
 /** Initializes and returns a responsibleAgency.
 
  
@@ -5936,7 +16581,7 @@
 */
 +(GCResponsibleAgencyAttribute *)responsibleAgency
 {
-	return [self attributeWithType:@"responsibleAgency"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a responsibleAgency.
 
@@ -5945,7 +16590,7 @@
 */
 +(GCResponsibleAgencyAttribute *)responsibleAgencyWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"responsibleAgency" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a responsibleAgency.
 
@@ -5954,22 +16599,31 @@
 */
 +(GCResponsibleAgencyAttribute *)responsibleAgencyWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"responsibleAgency" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"responsibleAgency"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCRestrictionNoticeAttribute
+@implementation GCRestrictionNoticeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"restrictionNotice"];
 }
 
+// Methods:
 /** Initializes and returns a restrictionNotice.
 
  
@@ -5977,7 +16631,7 @@
 */
 +(GCRestrictionNoticeAttribute *)restrictionNotice
 {
-	return [self attributeWithType:@"restrictionNotice"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a restrictionNotice.
 
@@ -5986,7 +16640,7 @@
 */
 +(GCRestrictionNoticeAttribute *)restrictionNoticeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"restrictionNotice" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a restrictionNotice.
 
@@ -5995,22 +16649,36 @@
 */
 +(GCRestrictionNoticeAttribute *)restrictionNoticeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"restrictionNotice" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"restrictionNotice"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCRetirementAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"retirement"];
+@implementation GCRetirementAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a retirement.
 
  
@@ -6018,7 +16686,7 @@
 */
 +(GCRetirementAttribute *)retirement
 {
-	return [self attributeWithType:@"retirement"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a retirement.
 
@@ -6027,7 +16695,7 @@
 */
 +(GCRetirementAttribute *)retirementWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"retirement" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a retirement.
 
@@ -6036,39 +16704,191 @@
 */
 +(GCRetirementAttribute *)retirementWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"retirement" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"retirement"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCRoleAttribute
+@implementation GCRoleAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"role"];
 }
 
+// Methods:
 /** Initializes and returns a role.
 
  
@@ -6076,7 +16896,7 @@
 */
 +(GCRoleAttribute *)role
 {
-	return [self attributeWithType:@"role"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a role.
 
@@ -6085,7 +16905,7 @@
 */
 +(GCRoleAttribute *)roleWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"role" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a role.
 
@@ -6094,22 +16914,31 @@
 */
 +(GCRoleAttribute *)roleWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"role" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"role"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSealedToFamilyRelationship
+@implementation GCSealedToFamilyRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"sealedToFamily"];
 }
 
+// Methods:
 /** Initializes and returns a sealedToFamily.
 
  
@@ -6117,31 +16946,31 @@
 */
 +(GCSealedToFamilyRelationship *)sealedToFamily
 {
-	return [self relationshipWithType:@"sealedToFamily"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a sealedToFamily.
-
- @param target The relationship's target entity.
- @return A new sealedToFamily.
-*/
-+(GCSealedToFamilyRelationship *)sealedToFamilyWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"sealedToFamily" target:target];
+	self = [super _initWithType:@"sealedToFamily"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSexAttribute
+@implementation GCSexAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"sex"];
 }
 
+// Methods:
 /** Initializes and returns a sex.
 
  
@@ -6149,7 +16978,7 @@
 */
 +(GCSexAttribute *)sex
 {
-	return [self attributeWithType:@"sex"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a sex.
 
@@ -6158,7 +16987,7 @@
 */
 +(GCSexAttribute *)sexWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"sex" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a sex.
 
@@ -6167,22 +16996,36 @@
 */
 +(GCSexAttribute *)sexWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"sex" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"sex"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSocialSecurityNumberAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"socialSecurityNumber"];
+@implementation GCSocialSecurityNumberAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a socialSecurityNumber.
 
  
@@ -6190,7 +17033,7 @@
 */
 +(GCSocialSecurityNumberAttribute *)socialSecurityNumber
 {
-	return [self attributeWithType:@"socialSecurityNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a socialSecurityNumber.
 
@@ -6199,7 +17042,7 @@
 */
 +(GCSocialSecurityNumberAttribute *)socialSecurityNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"socialSecurityNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a socialSecurityNumber.
 
@@ -6208,39 +17051,194 @@
 */
 +(GCSocialSecurityNumberAttribute *)socialSecurityNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"socialSecurityNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"socialSecurityNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCSourceEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"source"];
+@implementation GCSourceEntity {
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a source.
 
  @param context The context in which to create the entity.
@@ -6248,37 +17246,144 @@
 */
 +(GCSourceEntity *)sourceInContext:(GCContext *)context
 {
-	return [self entityWithType:@"source" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"source"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic sourceData;
-@dynamic author;
-@dynamic title;
-@dynamic abbreviation;
-@dynamic publicationFacts;
-@dynamic text;
-@dynamic repositoryCitation;
+
+
+
+
+
+
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
-@dynamic userReferenceNumber;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
+
+
+
 
 @end
 
-@implementation GCSourceCitationRelationship
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"sourceCitation"];
+@implementation GCSourceCitationRelationship {
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a sourceCitation.
 
  
@@ -6286,40 +17391,137 @@
 */
 +(GCSourceCitationRelationship *)sourceCitation
 {
-	return [self relationshipWithType:@"sourceCitation"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a sourceCitation.
-
- @param target The relationship's target entity.
- @return A new sourceCitation.
-*/
-+(GCSourceCitationRelationship *)sourceCitationWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"sourceCitation" target:target];
+	self = [super _initWithType:@"sourceCitation"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
+
 
 // Properties:
-@dynamic page;
-@dynamic data;
-@dynamic eventCited;
-@dynamic qualityOfData;
+
+
+
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCSourceDataAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"sourceData"];
+@implementation GCSourceDataAttribute {
+	NSMutableArray *_eventsRecordeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a sourceData.
 
  
@@ -6327,7 +17529,7 @@
 */
 +(GCSourceDataAttribute *)sourceData
 {
-	return [self attributeWithType:@"sourceData"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a sourceData.
 
@@ -6336,7 +17538,7 @@
 */
 +(GCSourceDataAttribute *)sourceDataWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"sourceData" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a sourceData.
 
@@ -6345,26 +17547,108 @@
 */
 +(GCSourceDataAttribute *)sourceDataWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"sourceData" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"sourceData"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_eventsRecordeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic eventsRecordeds;
-@dynamic responsibleAgency;
+
+- (NSMutableArray *)mutableEventsRecordeds {
+    return [self mutableArrayValueForKey:@"eventsRecordeds"];
+}
+
+- (id)objectInEventsRecordedsAtIndex:(NSUInteger)index {
+    return [_eventsRecordeds objectAtIndex:index];
+}
+ 
+- (NSArray *)eventsRecordedsAtIndexes:(NSIndexSet *)indexes {
+    return [_eventsRecordeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCEventsRecordedAttribute *)eventsRecordeds inEventsRecordedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([eventsRecordeds isKindOfClass:[GCEventsRecordedAttribute class]]);
+	[eventsRecordeds setValue:self forKey:@"describedObject"];
+    [_eventsRecordeds insertObject:eventsRecordeds atIndex:index];
+}
+
+- (void)removeObjectFromEventsRecordedsAtIndex:(NSUInteger)index {
+	[_eventsRecordeds[index] setValue:nil forKey:@"describedObject"];
+    [_eventsRecordeds removeObjectAtIndex:index];
+}
+
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCSourceEmbeddedAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"sourceEmbedded"];
+@implementation GCSourceEmbeddedAttribute {
+	NSMutableArray *_texts;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a sourceEmbedded.
 
  
@@ -6372,7 +17656,7 @@
 */
 +(GCSourceEmbeddedAttribute *)sourceEmbedded
 {
-	return [self attributeWithType:@"sourceEmbedded"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a sourceEmbedded.
 
@@ -6381,7 +17665,7 @@
 */
 +(GCSourceEmbeddedAttribute *)sourceEmbeddedWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"sourceEmbedded" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a sourceEmbedded.
 
@@ -6390,25 +17674,106 @@
 */
 +(GCSourceEmbeddedAttribute *)sourceEmbeddedWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"sourceEmbedded" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"sourceEmbedded"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_texts = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic texts;
+
+- (NSMutableArray *)mutableTexts {
+    return [self mutableArrayValueForKey:@"texts"];
+}
+
+- (id)objectInTextsAtIndex:(NSUInteger)index {
+    return [_texts objectAtIndex:index];
+}
+ 
+- (NSArray *)textsAtIndexes:(NSIndexSet *)indexes {
+    return [_texts objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCTextAttribute *)texts inTextsAtIndex:(NSUInteger)index {
+	NSParameterAssert([texts isKindOfClass:[GCTextAttribute class]]);
+	[texts setValue:self forKey:@"describedObject"];
+    [_texts insertObject:texts atIndex:index];
+}
+
+- (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
+	[_texts[index] setValue:nil forKey:@"describedObject"];
+    [_texts removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCSpouseInFamilyRelationship
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"spouseInFamily"];
+@implementation GCSpouseInFamilyRelationship {
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a spouseInFamily.
 
  
@@ -6416,33 +17781,80 @@
 */
 +(GCSpouseInFamilyRelationship *)spouseInFamily
 {
-	return [self relationshipWithType:@"spouseInFamily"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a spouseInFamily.
-
- @param target The relationship's target entity.
- @return A new spouseInFamily.
-*/
-+(GCSpouseInFamilyRelationship *)spouseInFamilyWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"spouseInFamily" target:target];
+	self = [super _initWithType:@"spouseInFamily"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
 }
+
 
 // Properties:
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCStateAttribute
+@implementation GCStateAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"state"];
 }
 
+// Methods:
 /** Initializes and returns a state.
 
  
@@ -6450,7 +17862,7 @@
 */
 +(GCStateAttribute *)state
 {
-	return [self attributeWithType:@"state"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a state.
 
@@ -6459,7 +17871,7 @@
 */
 +(GCStateAttribute *)stateWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"state" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a state.
 
@@ -6468,22 +17880,31 @@
 */
 +(GCStateAttribute *)stateWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"state" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"state"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSubmissionEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"submission"];
+@implementation GCSubmissionEntity {
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a submission.
 
  @param context The context in which to create the entity.
@@ -6491,30 +17912,62 @@
 */
 +(GCSubmissionEntity *)submissionInContext:(GCContext *)context
 {
-	return [self entityWithType:@"submission" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"submission"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic submitterReference;
-@dynamic familyFile;
-@dynamic temple;
-@dynamic generationsOfAncestors;
-@dynamic generationsOfDescendants;
-@dynamic ordinanceFlag;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+
+
+
+
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCSubmissionReferenceRelationship
+@implementation GCSubmissionReferenceRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"submissionReference"];
 }
 
+// Methods:
 /** Initializes and returns a submissionReference.
 
  
@@ -6522,31 +17975,35 @@
 */
 +(GCSubmissionReferenceRelationship *)submissionReference
 {
-	return [self relationshipWithType:@"submissionReference"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a submissionReference.
-
- @param target The relationship's target entity.
- @return A new submissionReference.
-*/
-+(GCSubmissionReferenceRelationship *)submissionReferenceWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"submissionReference" target:target];
+	self = [super _initWithType:@"submissionReference"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSubmitterEntity
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"submitter"];
+@implementation GCSubmitterEntity {
+	NSMutableArray *_phoneNumbers;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_languages;
+	NSMutableArray *_userReferenceNumbers;
 }
 
+// Methods:
 /** Initializes and returns a submitter.
 
  @param context The context in which to create the entity.
@@ -6554,33 +18011,161 @@
 */
 +(GCSubmitterEntity *)submitterInContext:(GCContext *)context
 {
-	return [self entityWithType:@"submitter" inContext:context];
+	return [[self alloc] initWithContext:context];
+}
+- (id)init
+{
+	self = [super _initWithType:@"submitter"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_phoneNumbers = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_languages = [NSMutableArray array];
+		_userReferenceNumbers = [NSMutableArray array];
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic name;
-@dynamic address;
-@dynamic phoneNumber;
+
+
+
+- (NSMutableArray *)mutablePhoneNumbers {
+    return [self mutableArrayValueForKey:@"phoneNumbers"];
+}
+
+- (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
+    return [_phoneNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)phoneNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_phoneNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCPhoneNumberAttribute *)phoneNumbers inPhoneNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([phoneNumbers isKindOfClass:[GCPhoneNumberAttribute class]]);
+	[phoneNumbers setValue:self forKey:@"describedObject"];
+    [_phoneNumbers insertObject:phoneNumbers atIndex:index];
+}
+
+- (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+	[_phoneNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_phoneNumbers removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
-@dynamic language;
-@dynamic recordFileNumber;
-@dynamic ancestralFileNumber;
-@dynamic userReferenceNumbers;
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableLanguages {
+    return [self mutableArrayValueForKey:@"languages"];
+}
+
+- (id)objectInLanguagesAtIndex:(NSUInteger)index {
+    return [_languages objectAtIndex:index];
+}
+ 
+- (NSArray *)languagesAtIndexes:(NSIndexSet *)indexes {
+    return [_languages objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCLanguageAttribute *)languages inLanguagesAtIndex:(NSUInteger)index {
+	NSParameterAssert([languages isKindOfClass:[GCLanguageAttribute class]]);
+	[languages setValue:self forKey:@"describedObject"];
+    [_languages insertObject:languages atIndex:index];
+}
+
+- (void)removeObjectFromLanguagesAtIndex:(NSUInteger)index {
+	[_languages[index] setValue:nil forKey:@"describedObject"];
+    [_languages removeObjectAtIndex:index];
+}
+
+
+
+
+- (NSMutableArray *)mutableUserReferenceNumbers {
+    return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
+    return [_userReferenceNumbers objectAtIndex:index];
+}
+ 
+- (NSArray *)userReferenceNumbersAtIndexes:(NSIndexSet *)indexes {
+    return [_userReferenceNumbers objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCUserReferenceNumberAttribute *)userReferenceNumbers inUserReferenceNumbersAtIndex:(NSUInteger)index {
+	NSParameterAssert([userReferenceNumbers isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	[userReferenceNumbers setValue:self forKey:@"describedObject"];
+    [_userReferenceNumbers insertObject:userReferenceNumbers atIndex:index];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+    [_userReferenceNumbers removeObjectAtIndex:index];
+}
+
+
+
 
 @end
 
-@implementation GCSubmitterReferenceRelationship
+@implementation GCSubmitterReferenceRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"submitterReference"];
 }
 
+// Methods:
 /** Initializes and returns a submitterReference.
 
  
@@ -6588,31 +18173,31 @@
 */
 +(GCSubmitterReferenceRelationship *)submitterReference
 {
-	return [self relationshipWithType:@"submitterReference"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a submitterReference.
-
- @param target The relationship's target entity.
- @return A new submitterReference.
-*/
-+(GCSubmitterReferenceRelationship *)submitterReferenceWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"submitterReference" target:target];
+	self = [super _initWithType:@"submitterReference"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSurnameAttribute
+@implementation GCSurnameAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"surname"];
 }
 
+// Methods:
 /** Initializes and returns a surname.
 
  
@@ -6620,7 +18205,7 @@
 */
 +(GCSurnameAttribute *)surname
 {
-	return [self attributeWithType:@"surname"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a surname.
 
@@ -6629,7 +18214,7 @@
 */
 +(GCSurnameAttribute *)surnameWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"surname" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a surname.
 
@@ -6638,22 +18223,31 @@
 */
 +(GCSurnameAttribute *)surnameWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"surname" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"surname"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCSurnamePrefixAttribute
+@implementation GCSurnamePrefixAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"surnamePrefix"];
 }
 
+// Methods:
 /** Initializes and returns a surnamePrefix.
 
  
@@ -6661,7 +18255,7 @@
 */
 +(GCSurnamePrefixAttribute *)surnamePrefix
 {
-	return [self attributeWithType:@"surnamePrefix"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a surnamePrefix.
 
@@ -6670,7 +18264,7 @@
 */
 +(GCSurnamePrefixAttribute *)surnamePrefixWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"surnamePrefix" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a surnamePrefix.
 
@@ -6679,22 +18273,31 @@
 */
 +(GCSurnamePrefixAttribute *)surnamePrefixWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"surnamePrefix" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"surnamePrefix"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCTempleAttribute
+@implementation GCTempleAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"temple"];
 }
 
+// Methods:
 /** Initializes and returns a temple.
 
  
@@ -6702,7 +18305,7 @@
 */
 +(GCTempleAttribute *)temple
 {
-	return [self attributeWithType:@"temple"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a temple.
 
@@ -6711,7 +18314,7 @@
 */
 +(GCTempleAttribute *)templeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"temple" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a temple.
 
@@ -6720,22 +18323,31 @@
 */
 +(GCTempleAttribute *)templeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"temple" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"temple"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCTextAttribute
+@implementation GCTextAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"text"];
 }
 
+// Methods:
 /** Initializes and returns a text.
 
  
@@ -6743,7 +18355,7 @@
 */
 +(GCTextAttribute *)text
 {
-	return [self attributeWithType:@"text"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a text.
 
@@ -6752,7 +18364,7 @@
 */
 +(GCTextAttribute *)textWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"text" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a text.
 
@@ -6761,22 +18373,31 @@
 */
 +(GCTextAttribute *)textWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"text" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"text"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCTimeAttribute
+@implementation GCTimeAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"time"];
 }
 
+// Methods:
 /** Initializes and returns a time.
 
  
@@ -6784,7 +18405,7 @@
 */
 +(GCTimeAttribute *)time
 {
-	return [self attributeWithType:@"time"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a time.
 
@@ -6793,7 +18414,7 @@
 */
 +(GCTimeAttribute *)timeWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"time" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a time.
 
@@ -6802,22 +18423,36 @@
 */
 +(GCTimeAttribute *)timeWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"time" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"time"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCTitleAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"title"];
+@implementation GCTitleAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a title.
 
  
@@ -6825,7 +18460,7 @@
 */
 +(GCTitleAttribute *)title
 {
-	return [self attributeWithType:@"title"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a title.
 
@@ -6834,7 +18469,7 @@
 */
 +(GCTitleAttribute *)titleWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"title" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a title.
 
@@ -6843,39 +18478,191 @@
 */
 +(GCTitleAttribute *)titleWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"title" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"title"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 
-@implementation GCTypeDescriptionAttribute
+@implementation GCTypeDescriptionAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"typeDescription"];
 }
 
+// Methods:
 /** Initializes and returns a typeDescription.
 
  
@@ -6883,7 +18670,7 @@
 */
 +(GCTypeDescriptionAttribute *)typeDescription
 {
-	return [self attributeWithType:@"typeDescription"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a typeDescription.
 
@@ -6892,7 +18679,7 @@
 */
 +(GCTypeDescriptionAttribute *)typeDescriptionWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"typeDescription" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a typeDescription.
 
@@ -6901,22 +18688,31 @@
 */
 +(GCTypeDescriptionAttribute *)typeDescriptionWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"typeDescription" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"typeDescription"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCUserReferenceNumberAttribute
+@implementation GCUserReferenceNumberAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"userReferenceNumber"];
 }
 
+// Methods:
 /** Initializes and returns a userReferenceNumber.
 
  
@@ -6924,7 +18720,7 @@
 */
 +(GCUserReferenceNumberAttribute *)userReferenceNumber
 {
-	return [self attributeWithType:@"userReferenceNumber"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a userReferenceNumber.
 
@@ -6933,7 +18729,7 @@
 */
 +(GCUserReferenceNumberAttribute *)userReferenceNumberWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"userReferenceNumber" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a userReferenceNumber.
 
@@ -6942,22 +18738,31 @@
 */
 +(GCUserReferenceNumberAttribute *)userReferenceNumberWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"userReferenceNumber" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"userReferenceNumber"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic typeDescription;
+
 
 @end
 
-@implementation GCVersionAttribute
+@implementation GCVersionAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"version"];
 }
 
+// Methods:
 /** Initializes and returns a version.
 
  
@@ -6965,7 +18770,7 @@
 */
 +(GCVersionAttribute *)version
 {
-	return [self attributeWithType:@"version"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a version.
 
@@ -6974,7 +18779,7 @@
 */
 +(GCVersionAttribute *)versionWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"version" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a version.
 
@@ -6983,22 +18788,31 @@
 */
 +(GCVersionAttribute *)versionWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"version" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"version"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
+}
+
 
 // Properties:
 
 
 @end
 
-@implementation GCWifeRelationship
+@implementation GCWifeRelationship {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"wife"];
 }
 
+// Methods:
 /** Initializes and returns a wife.
 
  
@@ -7006,31 +18820,31 @@
 */
 +(GCWifeRelationship *)wife
 {
-	return [self relationshipWithType:@"wife"];
+	return [[self alloc] init];
 }
-/** Initializes and returns a wife.
-
- @param target The relationship's target entity.
- @return A new wife.
-*/
-+(GCWifeRelationship *)wifeWithTarget:(GCEntity *)target
+- (id)init
 {
-	return [self relationshipWithType:@"wife" target:target];
+	self = [super _initWithType:@"wife"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
+
 
 // Properties:
 
 
 @end
 
-@implementation GCWifeDetailAttribute
+@implementation GCWifeDetailAttribute {
 
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"wifeDetail"];
 }
 
+// Methods:
 /** Initializes and returns a wifeDetail.
 
  
@@ -7038,7 +18852,7 @@
 */
 +(GCWifeDetailAttribute *)wifeDetail
 {
-	return [self attributeWithType:@"wifeDetail"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a wifeDetail.
 
@@ -7047,7 +18861,7 @@
 */
 +(GCWifeDetailAttribute *)wifeDetailWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"wifeDetail" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a wifeDetail.
 
@@ -7056,22 +18870,36 @@
 */
 +(GCWifeDetailAttribute *)wifeDetailWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"wifeDetail" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
+}
+- (id)init
+{
+	self = [super _initWithType:@"wifeDetail"];
+	
+	if (self) {
+		// initialize ivars, if any:
+
+	}
+	
+	return self;
 }
 
+
 // Properties:
-@dynamic age;
+
 
 @end
 
-@implementation GCWillAttribute
-
-// Methods:
-- (id)init
-{
-	return [super initWithType:@"will"];
+@implementation GCWillAttribute {
+	NSMutableArray *_sourceCitations;
+	NSMutableArray *_sourceEmbeddeds;
+	NSMutableArray *_multimediaReferences;
+	NSMutableArray *_multimediaEmbeddeds;
+	NSMutableArray *_noteReferences;
+	NSMutableArray *_noteEmbeddeds;
 }
 
+// Methods:
 /** Initializes and returns a will.
 
  
@@ -7079,7 +18907,7 @@
 */
 +(GCWillAttribute *)will
 {
-	return [self attributeWithType:@"will"];
+	return [[self alloc] init];
 }
 /** Initializes and returns a will.
 
@@ -7088,7 +18916,7 @@
 */
 +(GCWillAttribute *)willWithValue:(GCValue *)value
 {
-	return [self attributeWithType:@"will" value:value];
+	return [[self alloc] initWithValue:value];
 }
 /** Initializes and returns a will.
 
@@ -7097,28 +18925,183 @@
 */
 +(GCWillAttribute *)willWithGedcomStringValue:(NSString *)value
 {
-	return [self attributeWithType:@"will" gedcomStringValue:value];
+	return [[self alloc] initWithGedcomStringValue:value];
 }
+- (id)init
+{
+	self = [super _initWithType:@"will"];
+	
+	if (self) {
+		// initialize ivars, if any:
+		_sourceCitations = [NSMutableArray array];
+		_sourceEmbeddeds = [NSMutableArray array];
+		_multimediaReferences = [NSMutableArray array];
+		_multimediaEmbeddeds = [NSMutableArray array];
+		_noteReferences = [NSMutableArray array];
+		_noteEmbeddeds = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 
 // Properties:
 @dynamic eventDetails;
-@dynamic typeDescription;
-@dynamic date;
-@dynamic place;
-@dynamic address;
-@dynamic phoneNumber;
-@dynamic age;
-@dynamic responsibleAgency;
-@dynamic cause;
+
+
+
+
+
+
+
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceCitations {
+    return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
+    return [_sourceCitations objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceCitationsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceCitations objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceCitationRelationship *)sourceCitations inSourceCitationsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceCitations isKindOfClass:[GCSourceCitationRelationship class]]);
+	[sourceCitations setValue:self forKey:@"describedObject"];
+    [_sourceCitations insertObject:sourceCitations atIndex:index];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+    [_sourceCitations removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableSourceEmbeddeds {
+    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
+    return [_sourceEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)sourceEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_sourceEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCSourceEmbeddedAttribute *)sourceEmbeddeds inSourceEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([sourceEmbeddeds isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	[sourceEmbeddeds setValue:self forKey:@"describedObject"];
+    [_sourceEmbeddeds insertObject:sourceEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_sourceEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaReferences {
+    return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
+    return [_multimediaReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaReferenceRelationship *)multimediaReferences inMultimediaReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaReferences isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	[multimediaReferences setValue:self forKey:@"describedObject"];
+    [_multimediaReferences insertObject:multimediaReferences atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds {
+    return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    return [_multimediaEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)multimediaEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_multimediaEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCMultimediaEmbeddedAttribute *)multimediaEmbeddeds inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([multimediaEmbeddeds isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	[multimediaEmbeddeds setValue:self forKey:@"describedObject"];
+    [_multimediaEmbeddeds insertObject:multimediaEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_multimediaEmbeddeds removeObjectAtIndex:index];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteReferences {
+    return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
+    return [_noteReferences objectAtIndex:index];
+}
+ 
+- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
+    return [_noteReferences objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
+	[noteReferences setValue:self forKey:@"describedObject"];
+    [_noteReferences insertObject:noteReferences atIndex:index];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+    [_noteReferences removeObjectAtIndex:index];
+}
+
+
+- (NSMutableArray *)mutableNoteEmbeddeds {
+    return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
+    return [_noteEmbeddeds objectAtIndex:index];
+}
+ 
+- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
+    return [_noteEmbeddeds objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	[noteEmbeddeds setValue:self forKey:@"describedObject"];
+    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    [_noteEmbeddeds removeObjectAtIndex:index];
+}
+
 
 @end
 

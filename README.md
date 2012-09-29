@@ -120,19 +120,19 @@ Similarly, for relationships, the following:
 ```objective-c
 	GCContext *ctx = [GCContext context];
 	
-	GCEntity *husb = [GCEntity entityWithType:@"individual" inContext:ctx];
+	GCIndividualEntity *husb = [GCIndividualEntity individualInContext:ctx];
 	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCEntity *wife = [GCEntity entityWithType:@"individual" inContext:ctx];
+	GCIndividualEntity *wife = [GCIndividualEntity individualInContext:ctx];
 	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCEntity *chil = [GCEntity entityWithType:@"individual" inContext:ctx];
+	GCIndividualEntity *chil = [GCIndividualEntity individualInContext:ctx];
 	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"family" inContext:ctx];
+    GCFamilyEntity *fam = [GCFamilyEntity familyInContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];

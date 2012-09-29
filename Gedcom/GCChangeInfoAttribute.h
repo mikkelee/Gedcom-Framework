@@ -17,16 +17,12 @@
  */
 @interface GCChangeInfoAttribute : GCAttribute
 
-/** Returns a new change info attribute.
- 
- @return A new change info attribute.
- */
-+(GCChangeInfoAttribute *)changeInfo;
-
 #pragma mark Objective-C properties
 
 /// Returns the last time the entity was modified.
 @property (readonly) NSDate *modificationDate;
+
+@property (readonly) NSArray *notes;
 
 /// Returns an array of GCNoteReferenceRelationship
 @property NSMutableArray *noteReferences;

@@ -41,11 +41,6 @@
     return [[self alloc] initForObject:object withGedcomNode:node];
 }
 
-+ (id)attributeWithType:(NSString *)type
-{
-    return [[self alloc] initWithType:type];
-}
-
 #pragma mark NSKeyValueCoding overrides
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
@@ -141,22 +136,26 @@
 
 @implementation GCAttribute (GCConvenienceMethods)
 
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value
+- (id)initWithValue:(GCValue *)value
 {
-    GCAttribute *attribute = [self attributeWithType:type];
+    self = [self init];
     
-    attribute.value = value;
+    if (self) {
+        self.value = value;
+    }
     
-    return attribute;
+    return self;
 }
 
-+ (id)attributeWithType:(NSString *)type gedcomStringValue:(NSString *)value
+- (id)initWithGedcomStringValue:(NSString *)value
 {
-    GCAttribute *attribute = [self attributeWithType:type];
+    self = [self init];
     
-    [attribute setValueWithGedcomString:value];
+    if (self) {
+        [self setValueWithGedcomString:value];
+    }
     
-    return attribute;
+    return self;
 }
 
 - (void)setValueWithGedcomString:(NSString *)string

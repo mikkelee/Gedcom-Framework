@@ -10,9 +10,11 @@
 
 #import "GCNode.h"
 
+#import "GCObject_internal.h"
+
 @interface GCProperty ()
 
-@property (weak) GCObject *primitiveDescribedObject;
+@property (weak, nonatomic) GCObject *describedObject;
 
 @end
 
@@ -25,9 +27,9 @@
     GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
     if (!tag.isCustom) {
-        self = [self init];
+        self = [[tag.objectClass alloc] init];
     } else {
-        self = [super initWithType:tag.name];
+        self = [[tag.objectClass alloc] _initWithType:tag.name];
     }
     
     if (self) {
@@ -73,7 +75,7 @@
 	self = [super initWithCoder:aDecoder];
     
     if (self) {
-        _primitiveDescribedObject = [aDecoder decodeObjectForKey:@"describedObject"];
+        _describedObject = [aDecoder decodeObjectForKey:@"describedObject"];
 	}
     
     return self;
@@ -87,22 +89,10 @@
 
 #pragma mark Objective-C properties
 
-- (GCObject *)describedObject
-{
-    return self.primitiveDescribedObject;
-}
-
 - (void)setDescribedObject:(GCObject *)describedObject
 {
-    [self willChangeValueForKey:@"describedObject"];
-    if (_primitiveDescribedObject) {
-        if (_primitiveDescribedObject != describedObject) {
-            [_primitiveDescribedObject.allProperties removeObject:self];
-        }
-    }
-    self.primitiveDescribedObject = describedObject;
-    [_primitiveDescribedObject.allProperties addObject:self];
-    [self didChangeValueForKey:@"describedObject"];
+    //NSLog(@"%@ (%@) %p => %p", NSStringFromSelector(_cmd), NSStringFromClass(self.gedTag.objectClass), self, describedObject);
+    _describedObject = describedObject;
 }
 
 - (GCObject *)rootObject

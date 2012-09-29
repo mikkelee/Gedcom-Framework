@@ -1,0 +1,11 @@
+/* 
+  Predicates.strings
+  Gedcom
+
+  Created by Mikkel Eide Eriksen on 27/09/12.
+  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
+*/
+
+"personalNames.value.gedcomString" = "Any name";
+"eventDetails.place.value.gedcomString" = "Any event place";
+"births.date.value.minDate" = "Any birth date";

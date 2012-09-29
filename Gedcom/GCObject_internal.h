@@ -8,15 +8,29 @@
 
 #import "GCObject.h"
 
+#import "GCTag.h"
+
 #import "ValidationHelpers.h"
 
 #import "GedcomErrors.h"
 
-@interface GCObject ()
+extern NSString *GCMaintainDescribedObjectConsistencyContext;
 
-#pragma mark Description helper
+@interface GCObject () {
+    GCTag *_gedTag;
+}
+
+- (id)_initWithType:(NSString *)type;
+
+#pragma mark Misc
 
 - (NSString *)_propertyDescriptionWithIndent:(NSUInteger)level;
+
+- (BOOL)_allowsMultipleOccurrencesOfPropertyType:(NSString *)type;
+
+#pragma mark Objective-C properties
+
+@property (nonatomic) NSMutableArray *customProperties;
 
 @end
 

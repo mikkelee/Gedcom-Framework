@@ -36,12 +36,20 @@
 
 #pragma mark Initialization
 
-- (id)initWithType:(NSString *)type inContext:(GCContext *)context
+//COV_NF_START
+- (id)init
 {
-    NSParameterAssert(type);
+    NSLog(@"You must use -initInContext: to initialize a GCEntity!");
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+//COV_NF_END
+
+- (id)initWithContext:(GCContext *)context
+{
     NSParameterAssert(context);
     
-    self = [super initWithType:type];
+    self = [self init];
     
     if (self) {
 		_context = context;
@@ -52,34 +60,45 @@
     return self;    
 }
 
-#pragma mark Convenience constructors
-
-+ (id)entityWithType:(NSString *)type inContext:(GCContext *)context
+- (id)_initWithType:(NSString *)type inContext:(GCContext *)context
 {
-    return [[self alloc] initWithType:type inContext:context];
+    NSParameterAssert(type);
+    NSParameterAssert(context);
+    
+    self = [self _initWithType:type];
+    
+    if (self) {
+		_context = context;
+        _isBuildingFromGedcom = NO;
+        [_context.allEntities addObject:self];
+    }
+    
+    return self;
 }
 
-+ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
+#pragma mark Convenience constructors
+
+- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
     GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
-	GCEntity *entity = [self entityWithType:tag.name inContext:context];
-	
-	NSParameterAssert(entity);
-	
-	entity->_isBuildingFromGedcom = YES;
+    self = [self _initWithType:tag.name inContext:context];
     
-	if (tag.hasXref)
-		[context _setXref:node.xref forEntity:entity];
-	
-    if (tag.hasValue)
-        entity.value = [GCString valueWithGedcomString:node.gedValue];
-
+    if (self) {
+        _isBuildingFromGedcom = YES;
+        
+        if (tag.hasXref)
+            [context _setXref:node.xref forEntity:self];
+        
+        if (tag.hasValue)
+            self.value = [GCString valueWithGedcomString:node.gedValue];
+        
+        
+        [self addPropertiesWithGedcomNodes:node.subNodes];
+        
+        _isBuildingFromGedcom = NO;
+    }
     
-	[entity addPropertiesWithGedcomNodes:node.subNodes];
-    
-	entity->_isBuildingFromGedcom = NO;
-	
-	return entity;
+    return self;
 }
 
 #pragma mark Comparison
@@ -192,8 +211,14 @@
 
 - (void)setModificationDate:(NSDate *)modificationDate
 {
-    if (!self.changeInfo) {
-        self.changeInfo = [[GCChangeInfoAttribute alloc] init];
+    if (!modificationDate) {
+        if (!self.changeInfo.notes) {
+            self.changeInfo = nil;
+        }
+    } else {
+        if (!self.changeInfo) {
+            self.changeInfo = [[GCChangeInfoAttribute alloc] init];
+        }
     }
     
     [self.changeInfo setValue:modificationDate forKey:@"modificationDate"];
@@ -201,7 +226,7 @@
 
 - (void)didChangeValueForKey:(NSString *)key
 {
-    if (!_isBuildingFromGedcom) {
+    if (!_isBuildingFromGedcom && [self.validPropertyTypes containsObject:@"changeInfo"]) {
         self.modificationDate = [NSDate date];
     }
     
@@ -210,13 +235,13 @@
 
 - (void)didChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
 {
-    if (!_isBuildingFromGedcom) {
+    if (!_isBuildingFromGedcom && [self.validPropertyTypes containsObject:@"changeInfo"]) {
         self.modificationDate = [NSDate date];
     }
     
     [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
 }
 
-
 @dynamic changeInfo;
+
 @end

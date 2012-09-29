@@ -22,13 +22,12 @@
 
 /// @name Creating and initializing entities
 
-/** Initializes and returns a entity with the specified type and context.
+/** Initializes and returns a entity in the specified context.
  
- @param type A string which must correspond to a valid root object.
  @param context The context of the entity.
  @return A new entity.
  */
-- (id)initWithType:(NSString *)type inContext:(GCContext *)context;
+- (id)initWithContext:(GCContext *)context;
 
 #pragma mark Convenience constructors
 
@@ -38,15 +37,7 @@
  @param context The context of the entity.
  @return A new entity.
  */
-+ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
-
-/** Returns an entity with the specified type in the given GCContext.
- 
- @param type A string which must correspond to a valid root object.
- @param context The context of the entity.
- @return A new entity.
- */
-+ (id)entityWithType:(NSString *)type inContext:(GCContext *)context;
+- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
 #pragma mark Objective-C properties
 

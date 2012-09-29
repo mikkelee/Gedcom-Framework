@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Gedcom/Gedcom.h>
+#import "GCAttribute.h"
 
 /**
  

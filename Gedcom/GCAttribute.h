@@ -32,15 +32,6 @@
  */
 + (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
-/** Returns an attribute with a given type.
- 
- The attribute's describedObject and value will be nil and must be set manually afterwards.
- 
- @param type The type of the attribute.
- @return A new attribute.
- */
-+ (id)attributeWithType:(NSString *)type;
-
 #pragma mark Objective-C properties
 
 /// @name Accessing values
@@ -56,25 +47,23 @@
 @interface GCAttribute (GCConvenienceMethods)
 
 /// @name Creating attributes
-/** Returns an attribute with the specified type and value.
+/** Returns an attribute with the specified value.
  
- @param type The type of the attribute.
  @param value A GCValue.
  @return A new attribute.
  
  */
-+ (id)attributeWithType:(NSString *)type value:(GCValue *)value;
+- (id)initWithValue:(GCValue *)value;
 
-/** Returns an attribute with the specified type and value.
+/** Returns an attribute with the specified value.
  
  The appropiate GCValue subclass will be created.
  
- @param type The type of the attribute.
  @param value An NSString.
  @return A new attribute.
  
  */
-+ (id)attributeWithType:(NSString *)type gedcomStringValue:(NSString *)value;
+- (id)initWithGedcomStringValue:(NSString *)value;
 
 /// @name Accessing values
 /** Convenience method for setting the attribute's value with a given string.

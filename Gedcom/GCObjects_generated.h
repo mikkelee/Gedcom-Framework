@@ -3,6 +3,7 @@
  */
 
 #import "GCEntity.h"
+#import "GCObject_internal.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
@@ -29,6 +30,7 @@
 @class GCCountryAttribute;
 @class GCDataAttribute;
 @class GCDateAttribute;
+@class GCDescriptiveNameAttribute;
 @class GCEventCitedAttribute;
 @class GCFamilyFileAttribute;
 @class GCFileAttribute;
@@ -49,7 +51,6 @@
 @class GCLanguageAttribute;
 @class GCMediaTypeAttribute;
 @class GCMultimediaFormatAttribute;
-@class GCNameAttribute;
 @class GCNamePrefixAttribute;
 @class GCNameSuffixAttribute;
 @class GCNicknameAttribute;
@@ -149,22 +150,22 @@
 
 // Properties:
 ///  
-@property GCAddressLine1Attribute *addressLine1;
+@property (nonatomic) GCAddressLine1Attribute *addressLine1;
 
 ///  
-@property GCAddressLine2Attribute *addressLine2;
+@property (nonatomic) GCAddressLine2Attribute *addressLine2;
 
 ///  
-@property GCCityAttribute *city;
+@property (nonatomic) GCCityAttribute *city;
 
 ///  
-@property GCStateAttribute *state;
+@property (nonatomic) GCStateAttribute *state;
 
 ///  
-@property GCPostalCodeAttribute *postalCode;
+@property (nonatomic) GCPostalCodeAttribute *postalCode;
 
 ///  
-@property GCCountryAttribute *country;
+@property (nonatomic) GCCountryAttribute *country;
 
 
 @end
@@ -271,16 +272,10 @@
  @return A new adoptedIntoFamily.
 */
 +(GCAdoptedIntoFamilyRelationship *)adoptedIntoFamily;
-/** Initializes and returns a adoptedIntoFamily.
-
- @param target The relationship's target entity.
- @return A new adoptedIntoFamily.
-*/
-+(GCAdoptedIntoFamilyRelationship *)adoptedIntoFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
 ///  
-@property GCAdoptedByWhichParentAttribute *adoptedByWhichParent;
+@property (nonatomic) GCAdoptedByWhichParentAttribute *adoptedByWhichParent;
 
 
 @end
@@ -312,61 +307,81 @@
 
 // Properties:
 ///  
-@property GCAdoptedIntoFamilyRelationship *adoptedIntoFamily;
+@property (nonatomic) GCAdoptedIntoFamilyRelationship *adoptedIntoFamily;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -398,58 +413,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -496,12 +531,6 @@
  @return A new alias.
 */
 +(GCAliasRelationship *)alias;
-/** Initializes and returns a alias.
-
- @param target The relationship's target entity.
- @return A new alias.
-*/
-+(GCAliasRelationship *)aliasWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -520,12 +549,6 @@
  @return A new ancestorInterest.
 */
 +(GCAncestorInterestRelationship *)ancestorInterest;
-/** Initializes and returns a ancestorInterest.
-
- @param target The relationship's target entity.
- @return A new ancestorInterest.
-*/
-+(GCAncestorInterestRelationship *)ancestorInterestWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -589,64 +612,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -663,37 +706,43 @@
  @return A new association.
 */
 +(GCAssociationRelationship *)association;
-/** Initializes and returns a association.
-
- @param target The relationship's target entity.
- @return A new association.
-*/
-+(GCAssociationRelationship *)associationWithTarget:(GCEntity *)target;
 
 // Properties:
 ///   NB: required property
-@property GCRecordTypeAttribute *recordType;
+@property (nonatomic) GCRecordTypeAttribute *recordType;
 
 ///   NB: required property
-@property GCRelationshipDescriptorAttribute *relationshipDescriptor;
+@property (nonatomic) GCRelationshipDescriptorAttribute *relationshipDescriptor;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 
 @end
@@ -755,58 +804,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -838,58 +907,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -921,58 +1010,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1034,61 +1143,81 @@
 
 // Properties:
 ///  
-@property GCBornToFamilyRelationship *bornToFamily;
+@property (nonatomic) GCBornToFamilyRelationship *bornToFamily;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1120,58 +1249,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1188,12 +1337,6 @@
  @return A new bornToFamily.
 */
 +(GCBornToFamilyRelationship *)bornToFamily;
-/** Initializes and returns a bornToFamily.
-
- @param target The relationship's target entity.
- @return A new bornToFamily.
-*/
-+(GCBornToFamilyRelationship *)bornToFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -1227,58 +1370,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1310,7 +1473,7 @@
 
 // Properties:
 ///  
-@property GCMediaTypeAttribute *mediaType;
+@property (nonatomic) GCMediaTypeAttribute *mediaType;
 
 
 @end
@@ -1342,58 +1505,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1455,64 +1638,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -1544,7 +1747,7 @@
 
 // Properties:
 ///  
-@property GCVersionAttribute *version;
+@property (nonatomic) GCVersionAttribute *version;
 
 
 @end
@@ -1561,12 +1764,6 @@
  @return A new child.
 */
 +(GCChildRelationship *)child;
-/** Initializes and returns a child.
-
- @param target The relationship's target entity.
- @return A new child.
-*/
-+(GCChildRelationship *)childWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -1585,25 +1782,25 @@
  @return A new childInFamily.
 */
 +(GCChildInFamilyRelationship *)childInFamily;
-/** Initializes and returns a childInFamily.
-
- @param target The relationship's target entity.
- @return A new childInFamily.
-*/
-+(GCChildInFamilyRelationship *)childInFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
 ///  
-@property GCPedigreeAttribute *pedigree;
+@property (nonatomic) GCPedigreeAttribute *pedigree;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1635,61 +1832,81 @@
 
 // Properties:
 ///  
-@property GCChildInFamilyRelationship *childInFamily;
+@property (nonatomic) GCChildInFamilyRelationship *childInFamily;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1751,58 +1968,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -1864,10 +2101,12 @@
 
 // Properties:
 ///  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
-///  
-@property GCPhoneNumberAttribute *phoneNumber;
+///  An array of GCPhoneNumberAttribute
+@property (nonatomic) NSArray *phoneNumbers;
+/// Mutable accessor for phoneNumbers
+@property (nonatomic) NSMutableArray *mutablePhoneNumbers;
 
 
 @end
@@ -1929,147 +2168,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
-
-
-@end
-
-/**
- 
-*/
-@interface GCCustomEventAttribute : GCAttribute
-
-// Methods:
-/** Initializes and returns a customEvent.
-
- 
- @return A new customEvent.
-*/
-+(GCCustomEventAttribute *)customEvent;
-/** Initializes and returns a customEvent.
-
- @param value The value as a GCValue object.
- @return A new customEvent.
-*/
-+(GCCustomEventAttribute *)customEventWithValue:(GCValue *)value;
-/** Initializes and returns a customEvent.
-
- @param value The value as an NSString.
- @return A new customEvent.
-*/
-+(GCCustomEventAttribute *)customEventWithGedcomStringValue:(NSString *)value;
-
-// Properties:
-/// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
-
-/// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
-
-/// Also contained in eventDetails.  
-@property GCDateAttribute *date;
-
-/// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
-
-/// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
-
-/// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
-
-/// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
-
-/// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
-
-/// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
-
-/// Property for accessing the following properties 
-@property NSMutableArray *sources;
-
-/// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
-
-/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
-
-/// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
-
-/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
-
-/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
-
-/// Property for accessing the following properties 
-@property NSMutableArray *notes;
-
-/// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
-
-/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
-
-///  
-@property GCHusbandDetailAttribute *husbandDetail;
-
-///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -2101,10 +2271,12 @@
 
 // Properties:
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  An array of GCTextAttribute
-@property NSMutableArray *texts;
+@property (nonatomic) NSArray *texts;
+/// Mutable accessor for texts
+@property (nonatomic) NSMutableArray *mutableTexts;
 
 
 @end
@@ -2166,58 +2338,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -2234,12 +2426,36 @@
  @return A new descendantInterest.
 */
 +(GCDescendantInterestRelationship *)descendantInterest;
-/** Initializes and returns a descendantInterest.
 
- @param target The relationship's target entity.
- @return A new descendantInterest.
+// Properties:
+
+
+@end
+
+/**
+ 
 */
-+(GCDescendantInterestRelationship *)descendantInterestWithTarget:(GCEntity *)target;
+@interface GCDescriptiveNameAttribute : GCAttribute
+
+// Methods:
+/** Initializes and returns a descriptiveName.
+
+ 
+ @return A new descriptiveName.
+*/
++(GCDescriptiveNameAttribute *)descriptiveName;
+/** Initializes and returns a descriptiveName.
+
+ @param value The value as a GCValue object.
+ @return A new descriptiveName.
+*/
++(GCDescriptiveNameAttribute *)descriptiveNameWithValue:(GCValue *)value;
+/** Initializes and returns a descriptiveName.
+
+ @param value The value as an NSString.
+ @return A new descriptiveName.
+*/
++(GCDescriptiveNameAttribute *)descriptiveNameWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 
@@ -2303,64 +2519,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -2392,64 +2628,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -2481,58 +2737,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -2564,58 +2840,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -2647,64 +2943,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -2736,7 +3052,7 @@
 
 // Properties:
 ///  
-@property GCRoleAttribute *role;
+@property (nonatomic) GCRoleAttribute *role;
 
 
 @end
@@ -2768,10 +3084,10 @@
 
 // Properties:
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 
 @end
@@ -2791,94 +3107,144 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *familyEvents;
+@property (nonatomic) NSArray *familyEvents;
+/// Mutable accessor for familyEvents
+@property (nonatomic) NSMutableArray *mutableFamilyEvents;
 
 /// Also contained in familyEvents.  An array of GCAnnulmentAttribute
-@property NSMutableArray *annulments;
+@property (nonatomic) NSArray *annulments;
+/// Mutable accessor for annulments
+@property (nonatomic) NSMutableArray *mutableAnnulments;
 
 /// Also contained in familyEvents.  An array of GCCensusAttribute
-@property NSMutableArray *censuses;
+@property (nonatomic) NSArray *censuses;
+/// Mutable accessor for censuses
+@property (nonatomic) NSMutableArray *mutableCensuses;
 
 /// Also contained in familyEvents.  An array of GCDivorceAttribute
-@property NSMutableArray *divorces;
+@property (nonatomic) NSArray *divorces;
+/// Mutable accessor for divorces
+@property (nonatomic) NSMutableArray *mutableDivorces;
 
 /// Also contained in familyEvents.  An array of GCDivorceFiledAttribute
-@property NSMutableArray *divorceFileds;
+@property (nonatomic) NSArray *divorceFileds;
+/// Mutable accessor for divorceFileds
+@property (nonatomic) NSMutableArray *mutableDivorceFileds;
 
 /// Also contained in familyEvents.  An array of GCEngagementAttribute
-@property NSMutableArray *engagements;
+@property (nonatomic) NSArray *engagements;
+/// Mutable accessor for engagements
+@property (nonatomic) NSMutableArray *mutableEngagements;
 
 /// Also contained in familyEvents.  An array of GCMarriageAttribute
-@property NSMutableArray *marriages;
+@property (nonatomic) NSArray *marriages;
+/// Mutable accessor for marriages
+@property (nonatomic) NSMutableArray *mutableMarriages;
 
 /// Also contained in familyEvents.  An array of GCMarriageBannAttribute
-@property NSMutableArray *marriageBanns;
+@property (nonatomic) NSArray *marriageBanns;
+/// Mutable accessor for marriageBanns
+@property (nonatomic) NSMutableArray *mutableMarriageBanns;
 
 /// Also contained in familyEvents.  An array of GCMarriageContractAttribute
-@property NSMutableArray *marriageContracts;
+@property (nonatomic) NSArray *marriageContracts;
+/// Mutable accessor for marriageContracts
+@property (nonatomic) NSMutableArray *mutableMarriageContracts;
 
 /// Also contained in familyEvents.  An array of GCMarriageLicenseAttribute
-@property NSMutableArray *marriageLicenses;
+@property (nonatomic) NSArray *marriageLicenses;
+/// Mutable accessor for marriageLicenses
+@property (nonatomic) NSMutableArray *mutableMarriageLicenses;
 
 /// Also contained in familyEvents.  An array of GCMarriageSettlementAttribute
-@property NSMutableArray *marriageSettlements;
+@property (nonatomic) NSArray *marriageSettlements;
+/// Mutable accessor for marriageSettlements
+@property (nonatomic) NSMutableArray *mutableMarriageSettlements;
 
-/// Also contained in familyEvents.  An array of GCCustomEventAttribute
-@property NSMutableArray *customEvents;
+/// Also contained in familyEvents.  An array of GCGenericEventAttribute
+@property (nonatomic) NSArray *genericEvents;
+/// Mutable accessor for genericEvents
+@property (nonatomic) NSMutableArray *mutableGenericEvents;
 
 ///  
-@property GCHusbandRelationship *husband;
+@property (nonatomic) GCHusbandRelationship *husband;
 
 ///  
-@property GCWifeRelationship *wife;
+@property (nonatomic) GCWifeRelationship *wife;
 
 ///  An array of GCChildRelationship
-@property NSMutableArray *children;
+@property (nonatomic) NSArray *children;
+/// Mutable accessor for children
+@property (nonatomic) NSMutableArray *mutableChildren;
 
 ///  
-@property GCNumberOfChildrenAttribute *numberOfChildren;
+@property (nonatomic) GCNumberOfChildrenAttribute *numberOfChildren;
 
 ///  An array of GCSubmitterReferenceRelationship
-@property NSMutableArray *submitterReferences;
+@property (nonatomic) NSArray *submitterReferences;
+/// Mutable accessor for submitterReferences
+@property (nonatomic) NSMutableArray *mutableSubmitterReferences;
 
 ///  An array of GCLDSSealingSpouseAttribute
-@property NSMutableArray *lDSSealingSpouses;
+@property (nonatomic) NSArray *lDSSealingSpouses;
+/// Mutable accessor for lDSSealingSpouses
+@property (nonatomic) NSMutableArray *mutableLDSSealingSpouses;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -2970,58 +3336,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -3053,10 +3439,10 @@
 
 // Properties:
 ///   NB: required property
-@property GCVersionAttribute *version;
+@property (nonatomic) GCVersionAttribute *version;
 
 ///   NB: required property
-@property GCGedcomFormatAttribute *gedcomFormat;
+@property (nonatomic) GCGedcomFormatAttribute *gedcomFormat;
 
 
 @end
@@ -3148,58 +3534,187 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
+
+
+@end
+
+/**
+ 
+*/
+@interface GCGenericEventAttribute : GCAttribute
+
+// Methods:
+/** Initializes and returns a genericEvent.
+
+ 
+ @return A new genericEvent.
+*/
++(GCGenericEventAttribute *)genericEvent;
+/** Initializes and returns a genericEvent.
+
+ @param value The value as a GCValue object.
+ @return A new genericEvent.
+*/
++(GCGenericEventAttribute *)genericEventWithValue:(GCValue *)value;
+/** Initializes and returns a genericEvent.
+
+ @param value The value as an NSString.
+ @return A new genericEvent.
+*/
++(GCGenericEventAttribute *)genericEventWithGedcomStringValue:(NSString *)value;
+
+// Properties:
+/// Property for accessing the following properties 
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCDateAttribute *date;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCPlaceAttribute *place;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCAddressAttribute *address;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCAgeAttribute *age;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
+
+/// Also contained in eventDetails.  
+@property (nonatomic) GCCauseAttribute *cause;
+
+/// Property for accessing the following properties 
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
+
+/// Also contained in sources.  An array of GCSourceCitationRelationship
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
+
+/// Also contained in sources.  An array of GCSourceEmbeddedAttribute
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
+
+/// Property for accessing the following properties 
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
+
+/// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
+
+/// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
+
+/// Property for accessing the following properties 
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
+
+/// Also contained in notes.  An array of GCNoteReferenceRelationship
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
+
+/// Also contained in notes.  An array of GCNoteEmbeddedAttribute
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
+
+///  
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
+
+///  
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -3261,58 +3776,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -3332,40 +3867,44 @@
 
 // Properties:
 ///   NB: required property
-@property GCHeaderSourceAttribute *headerSource;
+@property (nonatomic) GCHeaderSourceAttribute *headerSource;
 
 ///  An array of GCDestinationAttribute
-@property NSMutableArray *destinations;
+@property (nonatomic) NSArray *destinations;
+/// Mutable accessor for destinations
+@property (nonatomic) NSMutableArray *mutableDestinations;
 
 ///  
-@property GCHeaderDateAttribute *headerDate;
+@property (nonatomic) GCHeaderDateAttribute *headerDate;
 
 ///   NB: required property
-@property GCSubmitterReferenceRelationship *submitterReference;
+@property (nonatomic) GCSubmitterReferenceRelationship *submitterReference;
 
 ///  An array of GCSubmissionReferenceRelationship
-@property NSMutableArray *submissionReferences;
+@property (nonatomic) NSArray *submissionReferences;
+/// Mutable accessor for submissionReferences
+@property (nonatomic) NSMutableArray *mutableSubmissionReferences;
 
 ///  
-@property GCFileAttribute *file;
+@property (nonatomic) GCFileAttribute *file;
 
 ///  
-@property GCCopyrightAttribute *copyright;
+@property (nonatomic) GCCopyrightAttribute *copyright;
 
 ///   NB: required property
-@property GCGedcomAttribute *gedcom;
+@property (nonatomic) GCGedcomAttribute *gedcom;
 
 ///   NB: required property
-@property GCCharacterSetAttribute *characterSet;
+@property (nonatomic) GCCharacterSetAttribute *characterSet;
 
 ///  
-@property GCLanguageAttribute *language;
+@property (nonatomic) GCLanguageAttribute *language;
 
 ///  
-@property GCPlaceFormatSpecifierAttribute *placeFormatSpecifier;
+@property (nonatomic) GCPlaceFormatSpecifierAttribute *placeFormatSpecifier;
 
 ///  
-@property GCNoteEmbeddedAttribute *noteEmbedded;
+@property (nonatomic) GCNoteEmbeddedAttribute *noteEmbedded;
 
 
 @end
@@ -3397,7 +3936,7 @@
 
 // Properties:
 ///  
-@property GCTimeAttribute *time;
+@property (nonatomic) GCTimeAttribute *time;
 
 
 @end
@@ -3429,16 +3968,16 @@
 
 // Properties:
 ///  
-@property GCVersionAttribute *version;
+@property (nonatomic) GCVersionAttribute *version;
 
 ///  
-@property GCNameAttribute *name;
+@property (nonatomic) GCDescriptiveNameAttribute *descriptiveName;
 
 ///  
-@property GCCorporationAttribute *corporation;
+@property (nonatomic) GCCorporationAttribute *corporation;
 
 ///  
-@property GCHeaderSourceDataAttribute *headerSourceData;
+@property (nonatomic) GCHeaderSourceDataAttribute *headerSourceData;
 
 
 @end
@@ -3470,10 +4009,10 @@
 
 // Properties:
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCCopyrightAttribute *copyright;
+@property (nonatomic) GCCopyrightAttribute *copyright;
 
 
 @end
@@ -3490,12 +4029,6 @@
  @return A new husband.
 */
 +(GCHusbandRelationship *)husband;
-/** Initializes and returns a husband.
-
- @param target The relationship's target entity.
- @return A new husband.
-*/
-+(GCHusbandRelationship *)husbandWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -3529,7 +4062,7 @@
 
 // Properties:
 ///   NB: required property
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 
 @end
@@ -3561,58 +4094,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -3644,58 +4197,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -3715,208 +4288,336 @@
 
 // Properties:
 ///  
-@property GCRestrictionNoticeAttribute *restrictionNotice;
+@property (nonatomic) GCRestrictionNoticeAttribute *restrictionNotice;
 
 ///  An array of GCPersonalNameAttribute
-@property NSMutableArray *personalNames;
+@property (nonatomic) NSArray *personalNames;
+/// Mutable accessor for personalNames
+@property (nonatomic) NSMutableArray *mutablePersonalNames;
 
 ///  
-@property GCSexAttribute *sex;
+@property (nonatomic) GCSexAttribute *sex;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *individualEvents;
+@property (nonatomic) NSArray *individualEvents;
+/// Mutable accessor for individualEvents
+@property (nonatomic) NSMutableArray *mutableIndividualEvents;
 
 /// Also contained in individualEvents.  An array of GCBirthAttribute
-@property NSMutableArray *births;
+@property (nonatomic) NSArray *births;
+/// Mutable accessor for births
+@property (nonatomic) NSMutableArray *mutableBirths;
 
 /// Also contained in individualEvents.  An array of GCChristeningAttribute
-@property NSMutableArray *christenings;
+@property (nonatomic) NSArray *christenings;
+/// Mutable accessor for christenings
+@property (nonatomic) NSMutableArray *mutableChristenings;
 
 /// Also contained in individualEvents.  An array of GCDeathAttribute
-@property NSMutableArray *deaths;
+@property (nonatomic) NSArray *deaths;
+/// Mutable accessor for deaths
+@property (nonatomic) NSMutableArray *mutableDeaths;
 
 /// Also contained in individualEvents.  An array of GCBurialAttribute
-@property NSMutableArray *burials;
+@property (nonatomic) NSArray *burials;
+/// Mutable accessor for burials
+@property (nonatomic) NSMutableArray *mutableBurials;
 
 /// Also contained in individualEvents.  An array of GCCremationAttribute
-@property NSMutableArray *cremations;
+@property (nonatomic) NSArray *cremations;
+/// Mutable accessor for cremations
+@property (nonatomic) NSMutableArray *mutableCremations;
 
 /// Also contained in individualEvents.  An array of GCAdoptionAttribute
-@property NSMutableArray *adoptions;
+@property (nonatomic) NSArray *adoptions;
+/// Mutable accessor for adoptions
+@property (nonatomic) NSMutableArray *mutableAdoptions;
 
 /// Also contained in individualEvents.  An array of GCBaptismAttribute
-@property NSMutableArray *baptisms;
+@property (nonatomic) NSArray *baptisms;
+/// Mutable accessor for baptisms
+@property (nonatomic) NSMutableArray *mutableBaptisms;
 
 /// Also contained in individualEvents.  An array of GCBarMitzvahAttribute
-@property NSMutableArray *barMitzvahs;
+@property (nonatomic) NSArray *barMitzvahs;
+/// Mutable accessor for barMitzvahs
+@property (nonatomic) NSMutableArray *mutableBarMitzvahs;
 
 /// Also contained in individualEvents.  An array of GCBasMitzvahAttribute
-@property NSMutableArray *basMitzvahs;
+@property (nonatomic) NSArray *basMitzvahs;
+/// Mutable accessor for basMitzvahs
+@property (nonatomic) NSMutableArray *mutableBasMitzvahs;
 
 /// Also contained in individualEvents.  An array of GCBlessingAttribute
-@property NSMutableArray *blessings;
+@property (nonatomic) NSArray *blessings;
+/// Mutable accessor for blessings
+@property (nonatomic) NSMutableArray *mutableBlessings;
 
 /// Also contained in individualEvents.  An array of GCAdultChristeningAttribute
-@property NSMutableArray *adultChristenings;
+@property (nonatomic) NSArray *adultChristenings;
+/// Mutable accessor for adultChristenings
+@property (nonatomic) NSMutableArray *mutableAdultChristenings;
 
 /// Also contained in individualEvents.  An array of GCConfirmationAttribute
-@property NSMutableArray *confirmations;
+@property (nonatomic) NSArray *confirmations;
+/// Mutable accessor for confirmations
+@property (nonatomic) NSMutableArray *mutableConfirmations;
 
 /// Also contained in individualEvents.  An array of GCFirstCommunionAttribute
-@property NSMutableArray *firstCommunions;
+@property (nonatomic) NSArray *firstCommunions;
+/// Mutable accessor for firstCommunions
+@property (nonatomic) NSMutableArray *mutableFirstCommunions;
 
 /// Also contained in individualEvents.  An array of GCOrdinationAttribute
-@property NSMutableArray *ordinations;
+@property (nonatomic) NSArray *ordinations;
+/// Mutable accessor for ordinations
+@property (nonatomic) NSMutableArray *mutableOrdinations;
 
 /// Also contained in individualEvents.  An array of GCNaturalizationAttribute
-@property NSMutableArray *naturalizations;
+@property (nonatomic) NSArray *naturalizations;
+/// Mutable accessor for naturalizations
+@property (nonatomic) NSMutableArray *mutableNaturalizations;
 
 /// Also contained in individualEvents.  An array of GCEmigrationAttribute
-@property NSMutableArray *emigrations;
+@property (nonatomic) NSArray *emigrations;
+/// Mutable accessor for emigrations
+@property (nonatomic) NSMutableArray *mutableEmigrations;
 
 /// Also contained in individualEvents.  An array of GCImmigrationAttribute
-@property NSMutableArray *immigrations;
+@property (nonatomic) NSArray *immigrations;
+/// Mutable accessor for immigrations
+@property (nonatomic) NSMutableArray *mutableImmigrations;
 
 /// Also contained in individualEvents.  An array of GCCensusAttribute
-@property NSMutableArray *censuses;
+@property (nonatomic) NSArray *censuses;
+/// Mutable accessor for censuses
+@property (nonatomic) NSMutableArray *mutableCensuses;
 
 /// Also contained in individualEvents.  An array of GCProbateAttribute
-@property NSMutableArray *probates;
+@property (nonatomic) NSArray *probates;
+/// Mutable accessor for probates
+@property (nonatomic) NSMutableArray *mutableProbates;
 
 /// Also contained in individualEvents.  An array of GCWillAttribute
-@property NSMutableArray *wills;
+@property (nonatomic) NSArray *wills;
+/// Mutable accessor for wills
+@property (nonatomic) NSMutableArray *mutableWills;
 
 /// Also contained in individualEvents.  An array of GCGraduationAttribute
-@property NSMutableArray *graduations;
+@property (nonatomic) NSArray *graduations;
+/// Mutable accessor for graduations
+@property (nonatomic) NSMutableArray *mutableGraduations;
 
 /// Also contained in individualEvents.  An array of GCRetirementAttribute
-@property NSMutableArray *retirements;
+@property (nonatomic) NSArray *retirements;
+/// Mutable accessor for retirements
+@property (nonatomic) NSMutableArray *mutableRetirements;
 
-/// Also contained in individualEvents.  An array of GCCustomEventAttribute
-@property NSMutableArray *customEvents;
+/// Also contained in individualEvents.  An array of GCGenericEventAttribute
+@property (nonatomic) NSArray *genericEvents;
+/// Mutable accessor for genericEvents
+@property (nonatomic) NSMutableArray *mutableGenericEvents;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *individualAttributes;
+@property (nonatomic) NSArray *individualAttributes;
+/// Mutable accessor for individualAttributes
+@property (nonatomic) NSMutableArray *mutableIndividualAttributes;
 
 /// Also contained in individualAttributes.  An array of GCCasteAttribute
-@property NSMutableArray *castes;
+@property (nonatomic) NSArray *castes;
+/// Mutable accessor for castes
+@property (nonatomic) NSMutableArray *mutableCastes;
 
 /// Also contained in individualAttributes.  An array of GCPhysicalDescriptionAttribute
-@property NSMutableArray *physicalDescriptions;
+@property (nonatomic) NSArray *physicalDescriptions;
+/// Mutable accessor for physicalDescriptions
+@property (nonatomic) NSMutableArray *mutablePhysicalDescriptions;
 
 /// Also contained in individualAttributes.  An array of GCGenerationsOfDescendantsAttribute
-@property NSMutableArray *generationsOfDescendantss;
+@property (nonatomic) NSArray *generationsOfDescendantss;
+/// Mutable accessor for generationsOfDescendantss
+@property (nonatomic) NSMutableArray *mutableGenerationsOfDescendantss;
 
 /// Also contained in individualAttributes.  An array of GCEducationAttribute
-@property NSMutableArray *educations;
+@property (nonatomic) NSArray *educations;
+/// Mutable accessor for educations
+@property (nonatomic) NSMutableArray *mutableEducations;
 
 /// Also contained in individualAttributes.  An array of GCIdentNumberAttribute
-@property NSMutableArray *identNumbers;
+@property (nonatomic) NSArray *identNumbers;
+/// Mutable accessor for identNumbers
+@property (nonatomic) NSMutableArray *mutableIdentNumbers;
 
 /// Also contained in individualAttributes.  An array of GCNationalityAttribute
-@property NSMutableArray *nationalities;
+@property (nonatomic) NSArray *nationalities;
+/// Mutable accessor for nationalities
+@property (nonatomic) NSMutableArray *mutableNationalities;
 
 /// Also contained in individualAttributes.  An array of GCNumberOfChildrenAttribute
-@property NSMutableArray *numberOfChildrens;
+@property (nonatomic) NSArray *numberOfChildrens;
+/// Mutable accessor for numberOfChildrens
+@property (nonatomic) NSMutableArray *mutableNumberOfChildrens;
 
 /// Also contained in individualAttributes.  An array of GCNumberOfMarriagesAttribute
-@property NSMutableArray *numberOfMarriagess;
+@property (nonatomic) NSArray *numberOfMarriagess;
+/// Mutable accessor for numberOfMarriagess
+@property (nonatomic) NSMutableArray *mutableNumberOfMarriagess;
 
 /// Also contained in individualAttributes.  An array of GCOccupationAttribute
-@property NSMutableArray *occupations;
+@property (nonatomic) NSArray *occupations;
+/// Mutable accessor for occupations
+@property (nonatomic) NSMutableArray *mutableOccupations;
 
 /// Also contained in individualAttributes.  An array of GCPropertyOwnedAttribute
-@property NSMutableArray *propertyOwneds;
+@property (nonatomic) NSArray *propertyOwneds;
+/// Mutable accessor for propertyOwneds
+@property (nonatomic) NSMutableArray *mutablePropertyOwneds;
 
 /// Also contained in individualAttributes.  An array of GCReligionAttribute
-@property NSMutableArray *religions;
+@property (nonatomic) NSArray *religions;
+/// Mutable accessor for religions
+@property (nonatomic) NSMutableArray *mutableReligions;
 
 /// Also contained in individualAttributes.  An array of GCResidenceAttribute
-@property NSMutableArray *residences;
+@property (nonatomic) NSArray *residences;
+/// Mutable accessor for residences
+@property (nonatomic) NSMutableArray *mutableResidences;
 
 /// Also contained in individualAttributes.  An array of GCSocialSecurityNumberAttribute
-@property NSMutableArray *socialSecurityNumbers;
+@property (nonatomic) NSArray *socialSecurityNumbers;
+/// Mutable accessor for socialSecurityNumbers
+@property (nonatomic) NSMutableArray *mutableSocialSecurityNumbers;
 
 /// Also contained in individualAttributes.  An array of GCTitleAttribute
-@property NSMutableArray *titles;
+@property (nonatomic) NSArray *titles;
+/// Mutable accessor for titles
+@property (nonatomic) NSMutableArray *mutableTitles;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *individualLDSOrdinances;
+@property (nonatomic) NSArray *individualLDSOrdinances;
+/// Mutable accessor for individualLDSOrdinances
+@property (nonatomic) NSMutableArray *mutableIndividualLDSOrdinances;
 
 /// Also contained in individualLDSOrdinances.  An array of GCLDSBaptismAttribute
-@property NSMutableArray *lDSBaptisms;
+@property (nonatomic) NSArray *lDSBaptisms;
+/// Mutable accessor for lDSBaptisms
+@property (nonatomic) NSMutableArray *mutableLDSBaptisms;
 
 /// Also contained in individualLDSOrdinances.  An array of GCLDSConfirmationAttribute
-@property NSMutableArray *lDSConfirmations;
+@property (nonatomic) NSArray *lDSConfirmations;
+/// Mutable accessor for lDSConfirmations
+@property (nonatomic) NSMutableArray *mutableLDSConfirmations;
 
 /// Also contained in individualLDSOrdinances.  An array of GCLDSEndowmentAttribute
-@property NSMutableArray *lDSEndowments;
+@property (nonatomic) NSArray *lDSEndowments;
+/// Mutable accessor for lDSEndowments
+@property (nonatomic) NSMutableArray *mutableLDSEndowments;
 
 /// Also contained in individualLDSOrdinances.  An array of GCLDSSealingChildAttribute
-@property NSMutableArray *lDSSealingChilds;
+@property (nonatomic) NSArray *lDSSealingChilds;
+/// Mutable accessor for lDSSealingChilds
+@property (nonatomic) NSMutableArray *mutableLDSSealingChilds;
 
 ///  An array of GCChildInFamilyRelationship
-@property NSMutableArray *childInFamilies;
+@property (nonatomic) NSArray *childInFamilies;
+/// Mutable accessor for childInFamilies
+@property (nonatomic) NSMutableArray *mutableChildInFamilies;
 
 ///  An array of GCSpouseInFamilyRelationship
-@property NSMutableArray *spouseInFamilies;
+@property (nonatomic) NSArray *spouseInFamilies;
+/// Mutable accessor for spouseInFamilies
+@property (nonatomic) NSMutableArray *mutableSpouseInFamilies;
 
 ///  An array of GCSubmitterReferenceRelationship
-@property NSMutableArray *submitterReferences;
+@property (nonatomic) NSArray *submitterReferences;
+/// Mutable accessor for submitterReferences
+@property (nonatomic) NSMutableArray *mutableSubmitterReferences;
 
 ///  An array of GCAssociationRelationship
-@property NSMutableArray *associations;
+@property (nonatomic) NSArray *associations;
+/// Mutable accessor for associations
+@property (nonatomic) NSMutableArray *mutableAssociations;
 
 ///  An array of GCAliasRelationship
-@property NSMutableArray *aliases;
+@property (nonatomic) NSArray *aliases;
+/// Mutable accessor for aliases
+@property (nonatomic) NSMutableArray *mutableAliases;
 
 ///  An array of GCAncestorInterestRelationship
-@property NSMutableArray *ancestorInterests;
+@property (nonatomic) NSArray *ancestorInterests;
+/// Mutable accessor for ancestorInterests
+@property (nonatomic) NSMutableArray *mutableAncestorInterests;
 
 ///  An array of GCDescendantInterestRelationship
-@property NSMutableArray *descendantInterests;
+@property (nonatomic) NSArray *descendantInterests;
+/// Mutable accessor for descendantInterests
+@property (nonatomic) NSMutableArray *mutableDescendantInterests;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  An array of GCRecordFileNumberAttribute
-@property NSMutableArray *recordFileNumbers;
+@property (nonatomic) NSArray *recordFileNumbers;
+/// Mutable accessor for recordFileNumbers
+@property (nonatomic) NSMutableArray *mutableRecordFileNumbers;
 
 ///  An array of GCAncestralFileNumberAttribute
-@property NSMutableArray *ancestralFileNumbers;
+@property (nonatomic) NSArray *ancestralFileNumbers;
+/// Mutable accessor for ancestralFileNumbers
+@property (nonatomic) NSMutableArray *mutableAncestralFileNumbers;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -3948,34 +4649,46 @@
 
 // Properties:
 ///  
-@property GCLDSBaptismStatusAttribute *lDSBaptismStatus;
+@property (nonatomic) GCLDSBaptismStatusAttribute *lDSBaptismStatus;
 
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCTempleAttribute *temple;
+@property (nonatomic) GCTempleAttribute *temple;
 
 ///  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -4037,34 +4750,46 @@
 
 // Properties:
 ///  
-@property GCLDSBaptismStatusAttribute *lDSBaptismStatus;
+@property (nonatomic) GCLDSBaptismStatusAttribute *lDSBaptismStatus;
 
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCTempleAttribute *temple;
+@property (nonatomic) GCTempleAttribute *temple;
 
 ///  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -4126,34 +4851,46 @@
 
 // Properties:
 ///  
-@property GCLDSEndowmentStatusAttribute *lDSEndowmentStatus;
+@property (nonatomic) GCLDSEndowmentStatusAttribute *lDSEndowmentStatus;
 
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCTempleAttribute *temple;
+@property (nonatomic) GCTempleAttribute *temple;
 
 ///  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -4215,37 +4952,49 @@
 
 // Properties:
 ///  
-@property GCLDSSealingChildStatusAttribute *lDSSealingChildStatus;
+@property (nonatomic) GCLDSSealingChildStatusAttribute *lDSSealingChildStatus;
 
 ///   NB: required property
-@property GCSealedToFamilyRelationship *sealedToFamily;
+@property (nonatomic) GCSealedToFamilyRelationship *sealedToFamily;
 
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCTempleAttribute *temple;
+@property (nonatomic) GCTempleAttribute *temple;
 
 ///  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -4307,34 +5056,46 @@
 
 // Properties:
 ///  
-@property GCLDSSealingSpouseStatusAttribute *lDSSealingSpouseStatus;
+@property (nonatomic) GCLDSSealingSpouseStatusAttribute *lDSSealingSpouseStatus;
 
 ///  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 ///  
-@property GCTempleAttribute *temple;
+@property (nonatomic) GCTempleAttribute *temple;
 
 ///  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -4456,64 +5217,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -4545,64 +5326,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -4634,64 +5435,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -4723,64 +5544,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -4812,64 +5653,84 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCHusbandDetailAttribute *husbandDetail;
+@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
 
 ///  
-@property GCWifeDetailAttribute *wifeDetail;
+@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end
@@ -4919,31 +5780,39 @@
 
 // Properties:
 ///   NB: required property
-@property GCMultimediaFormatAttribute *multimediaFormat;
+@property (nonatomic) GCMultimediaFormatAttribute *multimediaFormat;
 
 ///  
-@property GCTitleAttribute *title;
+@property (nonatomic) GCTitleAttribute *title;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCBinaryObjectAttribute *binaryObject;
+@property (nonatomic) GCBinaryObjectAttribute *binaryObject;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -4975,22 +5844,28 @@
 
 // Properties:
 ///   NB: required property
-@property GCMultimediaFormatAttribute *multimediaFormat;
+@property (nonatomic) GCMultimediaFormatAttribute *multimediaFormat;
 
 ///  
-@property GCTitleAttribute *title;
+@property (nonatomic) GCTitleAttribute *title;
 
 ///  
-@property GCFileAttribute *file;
+@property (nonatomic) GCFileAttribute *file;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5037,42 +5912,6 @@
  @return A new multimediaReference.
 */
 +(GCMultimediaReferenceRelationship *)multimediaReference;
-/** Initializes and returns a multimediaReference.
-
- @param target The relationship's target entity.
- @return A new multimediaReference.
-*/
-+(GCMultimediaReferenceRelationship *)multimediaReferenceWithTarget:(GCEntity *)target;
-
-// Properties:
-
-
-@end
-
-/**
- 
-*/
-@interface GCNameAttribute : GCAttribute
-
-// Methods:
-/** Initializes and returns a name.
-
- 
- @return A new name.
-*/
-+(GCNameAttribute *)name;
-/** Initializes and returns a name.
-
- @param value The value as a GCValue object.
- @return A new name.
-*/
-+(GCNameAttribute *)nameWithValue:(GCValue *)value;
-/** Initializes and returns a name.
-
- @param value The value as an NSString.
- @return A new name.
-*/
-+(GCNameAttribute *)nameWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 
@@ -5166,58 +6005,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5249,58 +6108,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5350,22 +6229,30 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -5397,13 +6284,19 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 
 @end
@@ -5420,22 +6313,22 @@
  @return A new noteReference.
 */
 +(GCNoteReferenceRelationship *)noteReference;
-/** Initializes and returns a noteReference.
-
- @param target The relationship's target entity.
- @return A new noteReference.
-*/
-+(GCNoteReferenceRelationship *)noteReferenceWithTarget:(GCEntity *)target;
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 
 @end
@@ -5467,58 +6360,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5550,58 +6463,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5633,58 +6566,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5746,58 +6699,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5859,13 +6832,19 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5897,40 +6876,52 @@
 
 // Properties:
 ///  
-@property GCNamePrefixAttribute *namePrefix;
+@property (nonatomic) GCNamePrefixAttribute *namePrefix;
 
 ///  
-@property GCGivenNameAttribute *givenName;
+@property (nonatomic) GCGivenNameAttribute *givenName;
 
 ///  
-@property GCNicknameAttribute *nickname;
+@property (nonatomic) GCNicknameAttribute *nickname;
 
 ///  
-@property GCSurnamePrefixAttribute *surnamePrefix;
+@property (nonatomic) GCSurnamePrefixAttribute *surnamePrefix;
 
 ///  
-@property GCSurnameAttribute *surname;
+@property (nonatomic) GCSurnameAttribute *surname;
 
 ///  
-@property GCNameSuffixAttribute *nameSuffix;
+@property (nonatomic) GCNameSuffixAttribute *nameSuffix;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -5992,58 +6983,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6075,25 +7086,37 @@
 
 // Properties:
 ///  
-@property GCPlaceFormatAttribute *placeFormat;
+@property (nonatomic) GCPlaceFormatAttribute *placeFormat;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6155,7 +7178,7 @@
 
 // Properties:
 ///   NB: required property
-@property GCPlaceFormatAttribute *placeFormat;
+@property (nonatomic) GCPlaceFormatAttribute *placeFormat;
 
 
 @end
@@ -6217,58 +7240,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6300,58 +7343,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6563,58 +7626,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6634,31 +7717,41 @@
 
 // Properties:
 ///  
-@property GCNameAttribute *name;
+@property (nonatomic) GCDescriptiveNameAttribute *descriptiveName;
 
 ///  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
-///  
-@property GCPhoneNumberAttribute *phoneNumber;
+///  An array of GCPhoneNumberAttribute
+@property (nonatomic) NSArray *phoneNumbers;
+/// Mutable accessor for phoneNumbers
+@property (nonatomic) NSMutableArray *mutablePhoneNumbers;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -6675,25 +7768,27 @@
  @return A new repositoryCitation.
 */
 +(GCRepositoryCitationRelationship *)repositoryCitation;
-/** Initializes and returns a repositoryCitation.
-
- @param target The relationship's target entity.
- @return A new repositoryCitation.
-*/
-+(GCRepositoryCitationRelationship *)repositoryCitationWithTarget:(GCEntity *)target;
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  An array of GCCallNumberAttribute
-@property NSMutableArray *callNumbers;
+@property (nonatomic) NSArray *callNumbers;
+/// Mutable accessor for callNumbers
+@property (nonatomic) NSMutableArray *mutableCallNumbers;
 
 
 @end
@@ -6725,58 +7820,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6868,58 +7983,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -6966,12 +8101,6 @@
  @return A new sealedToFamily.
 */
 +(GCSealedToFamilyRelationship *)sealedToFamily;
-/** Initializes and returns a sealedToFamily.
-
- @param target The relationship's target entity.
- @return A new sealedToFamily.
-*/
-+(GCSealedToFamilyRelationship *)sealedToFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -7035,58 +8164,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -7106,52 +8255,64 @@
 
 // Properties:
 ///  
-@property GCSourceDataAttribute *sourceData;
+@property (nonatomic) GCSourceDataAttribute *sourceData;
 
 ///  
-@property GCAuthorAttribute *author;
+@property (nonatomic) GCAuthorAttribute *author;
 
 ///  
-@property GCTitleAttribute *title;
+@property (nonatomic) GCTitleAttribute *title;
 
 ///  
-@property GCAbbreviationAttribute *abbreviation;
+@property (nonatomic) GCAbbreviationAttribute *abbreviation;
 
 ///  
-@property GCPublicationFactsAttribute *publicationFacts;
+@property (nonatomic) GCPublicationFactsAttribute *publicationFacts;
 
 ///  
-@property GCTextAttribute *text;
+@property (nonatomic) GCTextAttribute *text;
 
 ///  
-@property GCRepositoryCitationRelationship *repositoryCitation;
+@property (nonatomic) GCRepositoryCitationRelationship *repositoryCitation;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 ///  
-@property GCUserReferenceNumberAttribute *userReferenceNumber;
+@property (nonatomic) GCUserReferenceNumberAttribute *userReferenceNumber;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -7168,43 +8329,49 @@
  @return A new sourceCitation.
 */
 +(GCSourceCitationRelationship *)sourceCitation;
-/** Initializes and returns a sourceCitation.
-
- @param target The relationship's target entity.
- @return A new sourceCitation.
-*/
-+(GCSourceCitationRelationship *)sourceCitationWithTarget:(GCEntity *)target;
 
 // Properties:
 ///  
-@property GCPageAttribute *page;
+@property (nonatomic) GCPageAttribute *page;
 
 ///  
-@property GCDataAttribute *data;
+@property (nonatomic) GCDataAttribute *data;
 
 ///  
-@property GCEventCitedAttribute *eventCited;
+@property (nonatomic) GCEventCitedAttribute *eventCited;
 
 ///  
-@property GCQualityOfDataAttribute *qualityOfData;
+@property (nonatomic) GCQualityOfDataAttribute *qualityOfData;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -7236,19 +8403,27 @@
 
 // Properties:
 ///  An array of GCEventsRecordedAttribute
-@property NSMutableArray *eventsRecordeds;
+@property (nonatomic) NSArray *eventsRecordeds;
+/// Mutable accessor for eventsRecordeds
+@property (nonatomic) NSMutableArray *mutableEventsRecordeds;
 
 ///  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -7280,16 +8455,24 @@
 
 // Properties:
 ///  An array of GCTextAttribute
-@property NSMutableArray *texts;
+@property (nonatomic) NSArray *texts;
+/// Mutable accessor for texts
+@property (nonatomic) NSMutableArray *mutableTexts;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -7306,22 +8489,22 @@
  @return A new spouseInFamily.
 */
 +(GCSpouseInFamilyRelationship *)spouseInFamily;
-/** Initializes and returns a spouseInFamily.
-
- @param target The relationship's target entity.
- @return A new spouseInFamily.
-*/
-+(GCSpouseInFamilyRelationship *)spouseInFamilyWithTarget:(GCEntity *)target;
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -7371,31 +8554,33 @@
 
 // Properties:
 ///  
-@property GCSubmitterReferenceRelationship *submitterReference;
+@property (nonatomic) GCSubmitterReferenceRelationship *submitterReference;
 
 ///  
-@property GCFamilyFileAttribute *familyFile;
+@property (nonatomic) GCFamilyFileAttribute *familyFile;
 
 ///  
-@property GCTempleAttribute *temple;
+@property (nonatomic) GCTempleAttribute *temple;
 
 ///  
-@property GCGenerationsOfAncestorsAttribute *generationsOfAncestors;
+@property (nonatomic) GCGenerationsOfAncestorsAttribute *generationsOfAncestors;
 
 ///  
-@property GCGenerationsOfDescendantsAttribute *generationsOfDescendants;
+@property (nonatomic) GCGenerationsOfDescendantsAttribute *generationsOfDescendants;
 
 ///  
-@property GCOrdinanceFlagAttribute *ordinanceFlag;
+@property (nonatomic) GCOrdinanceFlagAttribute *ordinanceFlag;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -7412,12 +8597,6 @@
  @return A new submissionReference.
 */
 +(GCSubmissionReferenceRelationship *)submissionReference;
-/** Initializes and returns a submissionReference.
-
- @param target The relationship's target entity.
- @return A new submissionReference.
-*/
-+(GCSubmissionReferenceRelationship *)submissionReferenceWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -7439,40 +8618,52 @@
 
 // Properties:
 ///   NB: required property
-@property GCNameAttribute *name;
+@property (nonatomic) GCDescriptiveNameAttribute *descriptiveName;
 
 ///  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
-///  
-@property GCPhoneNumberAttribute *phoneNumber;
+///  An array of GCPhoneNumberAttribute
+@property (nonatomic) NSArray *phoneNumbers;
+/// Mutable accessor for phoneNumbers
+@property (nonatomic) NSMutableArray *mutablePhoneNumbers;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
+
+///  An array of GCLanguageAttribute
+@property (nonatomic) NSArray *languages;
+/// Mutable accessor for languages
+@property (nonatomic) NSMutableArray *mutableLanguages;
 
 ///  
-@property GCLanguageAttribute *language;
+@property (nonatomic) GCRecordFileNumberAttribute *recordFileNumber;
 
 ///  
-@property GCRecordFileNumberAttribute *recordFileNumber;
-
-///  
-@property GCAncestralFileNumberAttribute *ancestralFileNumber;
+@property (nonatomic) GCAncestralFileNumberAttribute *ancestralFileNumber;
 
 ///  An array of GCUserReferenceNumberAttribute
-@property NSMutableArray *userReferenceNumbers;
+@property (nonatomic) NSArray *userReferenceNumbers;
+/// Mutable accessor for userReferenceNumbers
+@property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 ///  
-@property GCRecordIdNumberAttribute *recordIdNumber;
+@property (nonatomic) GCRecordIdNumberAttribute *recordIdNumber;
 
 ///  
-@property GCChangeInfoAttribute *changeInfo;
+@property (nonatomic) GCChangeInfoAttribute *changeInfo;
 
 
 @end
@@ -7489,12 +8680,6 @@
  @return A new submitterReference.
 */
 +(GCSubmitterReferenceRelationship *)submitterReference;
-/** Initializes and returns a submitterReference.
-
- @param target The relationship's target entity.
- @return A new submitterReference.
-*/
-+(GCSubmitterReferenceRelationship *)submitterReferenceWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -7678,58 +8863,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end
@@ -7791,7 +8996,7 @@
 
 // Properties:
 ///  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 
 @end
@@ -7838,12 +9043,6 @@
  @return A new wife.
 */
 +(GCWifeRelationship *)wife;
-/** Initializes and returns a wife.
-
- @param target The relationship's target entity.
- @return A new wife.
-*/
-+(GCWifeRelationship *)wifeWithTarget:(GCEntity *)target;
 
 // Properties:
 
@@ -7877,7 +9076,7 @@
 
 // Properties:
 ///   NB: required property
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 
 @end
@@ -7909,58 +9108,78 @@
 
 // Properties:
 /// Property for accessing the following properties 
-@property NSMutableArray *eventDetails;
+@property (nonatomic) NSArray *eventDetails;
+/// Mutable accessor for eventDetails
+@property (nonatomic) NSMutableArray *mutableEventDetails;
 
 /// Also contained in eventDetails.  
-@property GCTypeDescriptionAttribute *typeDescription;
+@property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
 /// Also contained in eventDetails.  
-@property GCDateAttribute *date;
+@property (nonatomic) GCDateAttribute *date;
 
 /// Also contained in eventDetails.  
-@property GCPlaceAttribute *place;
+@property (nonatomic) GCPlaceAttribute *place;
 
 /// Also contained in eventDetails.  
-@property GCAddressAttribute *address;
+@property (nonatomic) GCAddressAttribute *address;
 
 /// Also contained in eventDetails.  
-@property GCPhoneNumberAttribute *phoneNumber;
+@property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
 /// Also contained in eventDetails.  
-@property GCAgeAttribute *age;
+@property (nonatomic) GCAgeAttribute *age;
 
 /// Also contained in eventDetails.  
-@property GCResponsibleAgencyAttribute *responsibleAgency;
+@property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
 /// Also contained in eventDetails.  
-@property GCCauseAttribute *cause;
+@property (nonatomic) GCCauseAttribute *cause;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *sources;
+@property (nonatomic) NSArray *sources;
+/// Mutable accessor for sources
+@property (nonatomic) NSMutableArray *mutableSources;
 
 /// Also contained in sources.  An array of GCSourceCitationRelationship
-@property NSMutableArray *sourceCitations;
+@property (nonatomic) NSArray *sourceCitations;
+/// Mutable accessor for sourceCitations
+@property (nonatomic) NSMutableArray *mutableSourceCitations;
 
 /// Also contained in sources.  An array of GCSourceEmbeddedAttribute
-@property NSMutableArray *sourceEmbeddeds;
+@property (nonatomic) NSArray *sourceEmbeddeds;
+/// Mutable accessor for sourceEmbeddeds
+@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *multimedias;
+@property (nonatomic) NSArray *multimedias;
+/// Mutable accessor for multimedias
+@property (nonatomic) NSMutableArray *mutableMultimedias;
 
 /// Also contained in multimedias.  An array of GCMultimediaReferenceRelationship
-@property NSMutableArray *multimediaReferences;
+@property (nonatomic) NSArray *multimediaReferences;
+/// Mutable accessor for multimediaReferences
+@property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
 /// Also contained in multimedias.  An array of GCMultimediaEmbeddedAttribute
-@property NSMutableArray *multimediaEmbeddeds;
+@property (nonatomic) NSArray *multimediaEmbeddeds;
+/// Mutable accessor for multimediaEmbeddeds
+@property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// Property for accessing the following properties 
-@property NSMutableArray *notes;
+@property (nonatomic) NSArray *notes;
+/// Mutable accessor for notes
+@property (nonatomic) NSMutableArray *mutableNotes;
 
 /// Also contained in notes.  An array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+@property (nonatomic) NSArray *noteReferences;
+/// Mutable accessor for noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
 /// Also contained in notes.  An array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Mutable accessor for noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end

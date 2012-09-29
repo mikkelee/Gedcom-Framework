@@ -17,11 +17,13 @@
 
 - (void)testAttributeValues
 {
-    GCAttribute *date = [GCAttribute attributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
+    GCAttribute *date = [[GCDateAttribute alloc] init];
+    
+    date.value = [GCDate valueWithGedcomString:@"1 JAN 1901"];
     
     STAssertEqualObjects([[date value] gedcomString], @"1 JAN 1901", nil);
     
-    GCAttribute *name = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
+    GCAttribute *name = [GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"];
     
     STAssertEqualObjects([[name value] displayString], @"Hansen, Jens (Smed)", nil);
 }
@@ -90,7 +92,7 @@
                                                               value:@"Y"],
                                                 ]];
     
-    GCEntity *object = [GCEntity entityWithGedcomNode:node inContext:ctx];
+    GCEntity *object = [[GCIndividualEntity alloc] initWithGedcomNode:node inContext:ctx];
     
     STAssertEqualObjects([node gedcomString], [object gedcomString], nil);
     
@@ -108,19 +110,19 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-	GCEntity *husb = [GCEntity entityWithType:@"individual" inContext:ctx];
+	GCIndividualEntity *husb = [GCIndividualEntity individualInContext:ctx];
 	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCEntity *wife = [GCEntity entityWithType:@"individual" inContext:ctx];
+	GCIndividualEntity *wife = [GCIndividualEntity individualInContext:ctx];
 	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCEntity *chil = [GCEntity entityWithType:@"individual" inContext:ctx];
+	GCIndividualEntity *chil = [GCIndividualEntity individualInContext:ctx];
 	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCEntity *fam = [GCEntity entityWithType:@"family" inContext:ctx];
+    GCFamilyEntity *fam = [GCFamilyEntity familyInContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];
@@ -206,7 +208,7 @@
     
     NSArray *malformedNodes = [GCNode arrayOfNodesFromString:nodeString];
     
-    GCEntity *submitter = [GCEntity entityWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
+    GCEntity *submitter = [[GCSubmitterEntity alloc] initWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
     
     NSError *error = nil;
     
@@ -219,11 +221,11 @@
     
     STAssertEquals([(NSArray *)[error userInfo][NSDetailedErrorsKey] count], (NSUInteger)2, nil);
     
-    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][0] code], GCTooFewValuesError, nil);
-    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][0] localizedDescription], @"Too few values for key name on submitter", nil);
+    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][1] code], GCTooFewValuesError, nil);
+    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][1] localizedDescription], @"Too few values for key descriptiveName on submitter", nil);
     
-    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][1] code], GCTooManyValuesError, nil);
-    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][1] localizedDescription], @"Too many values for key languages on submitter", nil);
+    STAssertEquals([(NSError *)[error userInfo][NSDetailedErrorsKey][0] code], GCTooManyValuesError, nil);
+    STAssertEqualObjects([[error userInfo][NSDetailedErrorsKey][0] localizedDescription], @"Too many values for key languages on submitter", nil);
 }
 
 - (void)testObjectValidation
@@ -247,15 +249,15 @@
     
     [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
     
-    GCAttribute *name = [GCAttribute attributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
+    GCAttribute *name = [GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/"];
     
     STAssertNil(name.describedObject, nil);
     
-    [indi.personalNames addObject:name];
+    [indi.mutablePersonalNames addObject:name];
     
     STAssertEqualObjects(name.describedObject, indi, nil);
     
-    [indi.personalNames removeObject:name];
+    [indi.mutablePersonalNames removeObject:name];
     
     STAssertNil(name.describedObject, nil);
 }

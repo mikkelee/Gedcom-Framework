@@ -47,6 +47,6 @@
 /// @name Accessing properties
 
 /// The object being described by the receiver.
-@property (weak) GCObject *describedObject;
+@property (weak, nonatomic, readonly) GCObject *describedObject;
 
 @end

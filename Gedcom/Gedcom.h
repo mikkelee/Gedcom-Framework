@@ -38,3 +38,7 @@
 #import "GCXrefProtocol.h"
 
 #import "GedcomErrors.h"
+
+#import "GCPredicateExtensions.h"
+
+#import "GCObject+GCObjectKeyValueExtensions.h"

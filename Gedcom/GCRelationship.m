@@ -13,6 +13,7 @@
 #import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
+#import "GCObject+GCObjectKeyValueExtensions.h"
 
 @implementation GCRelationship {
 	GCEntity *_target;
@@ -41,11 +42,6 @@
 + (id)relationshipForObject:(GCObject *)object withGedcomNode:(GCNode *)node
 {
     return [[self alloc] initForObject:object withGedcomNode:node];
-}
-
-+ (id)relationshipWithType:(NSString *)type
-{
-	return [[self alloc] initWithType:type];
 }
 
 #pragma mark NSKeyValueCoding overrides
@@ -180,19 +176,6 @@
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue 
                                            attributes:@{NSLinkAttributeName: [self.context _xrefForEntity:_target]}];
-}
-
-@end
-
-@implementation GCRelationship (GCConvenienceMethods)
-
-+ (id)relationshipWithType:(NSString *)type target:(GCEntity *)target
-{
-    GCRelationship *relationship = [self relationshipWithType:type];
-    
-    relationship.target = target;
-	
-    return relationship;
 }
 
 @end

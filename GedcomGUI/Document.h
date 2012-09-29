@@ -18,10 +18,16 @@
     
     IBOutlet NSTextField *recordCountField;
     IBOutlet NSProgressIndicator *currentlyLoadingSpinner;
+    
+    IBOutlet NSPredicateEditor *individualsPredicateEditor;
 }
 
 - (IBAction)testLog:(id)sender;
 
+- (IBAction)updatePredicates:(id)sender;
+
+@property (readonly) GCContext *context;
 @property id individuals;
+@property NSPredicate *individualsPredicate;
 
 @end
