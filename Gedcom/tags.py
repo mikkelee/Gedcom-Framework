@@ -1,5 +1,15 @@
 ﻿#!/usr/bin/env python
 
+import os.path, time
+
+selfModified = time.ctime(os.path.getmtime(os.path.abspath(os.path.dirname(__file__))))
+jsonModified = time.ctime(os.path.getmtime('tags.json'))
+headerModified = time.ctime(os.path.getmtime('GCObjects_generated.h'))
+
+if selfModified < headerModified and jsonModified < headerModified:
+	print 'NOT GOING TO RUN; touch tags.json to force.'
+	exit()
+
 import json
 from string import Template
 
@@ -55,7 +65,6 @@ headerFileT = Template("""/*
  */
 
 #import "GCEntity.h"
-#import "GCObject_internal.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
@@ -73,6 +82,8 @@ implementationFileT = Template("""/*
  */
 
 #import "GCObjects_generated.h"
+
+#import "GCObject_internal.h"
 
 $classImplementations
 """)

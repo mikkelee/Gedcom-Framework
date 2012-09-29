@@ -4,6 +4,8 @@
 
 #import "GCObjects_generated.h"
 
+#import "GCObject_internal.h"
+
 @implementation GCAbbreviationAttribute {
 
 }

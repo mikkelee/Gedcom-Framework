@@ -3,7 +3,6 @@
  */
 
 #import "GCEntity.h"
-#import "GCObject_internal.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
