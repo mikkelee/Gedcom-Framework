@@ -102,7 +102,7 @@ __strong static NSArray *_rootKeys = nil;
             *stop = YES;
             return;
         } else {
-            GCEntity *entity = [[tag.objectClass alloc] initWithGedcomNode:node inContext:self]; // it will add itself to the context
+            (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self]; // it will add itself to the context
         }
     }];
     
