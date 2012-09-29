@@ -146,6 +146,7 @@
     
     self.individuals = self.context.individuals;
     
+    // THIS CRASHES:
     //[individualsPredicateEditor addRow:nil];
 }
 

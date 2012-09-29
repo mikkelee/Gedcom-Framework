@@ -118,7 +118,7 @@ NSString *GCMaintainDescribedObjectConsistencyContext = @"GCMaintainDescribedObj
 
 - (id)valueForUndefinedKey:(NSString *)key
 {
-    NSLog(@"%@ %@", NSStringFromSelector(_cmd), key);
+    //NSLog(@"%@ %@", NSStringFromSelector(_cmd), key);
     if ([key hasSuffix:@"@primary"]) {
         NSString *cleanKey = [key componentsSeparatedByString:@"@"][0];
         
