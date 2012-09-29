@@ -137,17 +137,17 @@
 - (void)context:(GCContext *)context didFinishWithEntityCount:(NSInteger)entityCount
 {
     [recordCountField setIntegerValue:entityCount];
+    
     [currentlyLoadingSpinner stopAnimation:nil];
     _isEntireFileLoaded = YES;
-    [individualsPredicateEditor setRowTemplates:[GCIndividualEntity defaultPredicateEditorRowTemplates]];
     
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
     
     self.individuals = self.context.individuals;
     
-    // THIS CRASHES:
-    //[individualsPredicateEditor addRow:nil];
+    [individualsPredicateEditor setRowTemplates:[GCIndividualEntity defaultPredicateEditorRowTemplates]];
+    [individualsPredicateEditor addRow:nil];
 }
 
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity
