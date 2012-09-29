@@ -629,8 +629,10 @@
         && self.maxDate && other.maxDate && [self.maxDate compare:other.maxDate] == NSOrderedSame;
 }
 
-- (NSComparisonResult) compare:(GCDate *)other {
-    if (![other isKindOfClass:[GCDate class]]) {
+- (NSComparisonResult) compare:(id)other {
+    if ([other isKindOfClass:[NSDate class]]) {
+        return [self compare:[GCDate dateWithDate:other]];
+    } else if (![other isKindOfClass:[GCDate class]]) {
         return NSOrderedAscending;
     }
     

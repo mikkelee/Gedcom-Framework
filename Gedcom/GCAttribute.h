@@ -40,7 +40,7 @@
  May be nil.
  
  */
-@property GCValue *value;
+@property (nonatomic) GCValue *value;
 
 @end
 

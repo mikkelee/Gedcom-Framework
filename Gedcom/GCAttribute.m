@@ -122,6 +122,12 @@
 
 #pragma mark Objective-C properties
 
+- (void)setValue:(GCValue *)value
+{
+    NSParameterAssert([value isKindOfClass:[GCValue class]]);
+    _value = value;
+}
+
 - (NSString *)displayValue
 {
     return self.value.displayString;

@@ -12,13 +12,6 @@
 
 #pragma mark Initialization
 
-- (id)init
-{
-    NSParameterAssert([self class] != [GCValue class]);
-    
-    return [super init];
-}
-
 //COV_NF_START
 + (id)valueWithGedcomString:(NSString *)gedcomString
 {
