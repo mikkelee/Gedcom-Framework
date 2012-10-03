@@ -43,8 +43,8 @@
     @"1 SEX M\n"
     @"1 NAME Peder /Hansen/\n"
     @"1 BIRT\n"
-    @"2 PLAC Stockholm, Sweden\n"
     @"2 DATE AFT 1905\n"
+    @"2 PLAC Stockholm, Sweden\n"
     @"0 TRLR";
     
     [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString] error:nil];
@@ -61,6 +61,8 @@
     NSArray *hansenResult = [ctx.individuals filteredArrayUsingPredicate:hansenPredicate];
     STAssertEquals([hansenResult count], (NSUInteger)3, nil);
     
+    // TODO entire keypath MUST be non-null for predicate to work. how to avoid [NSNull compare:]?? something like this perhaps:
+    //NSPredicate *birthPredicate = [NSPredicate predicateWithFormat:@"(SUBQUERY(births, $x, $x != nil && $x.date.value < %@).@count != 0)", [GCDate valueWithGedcomString:@"1905"]];
 }
 
 @end
