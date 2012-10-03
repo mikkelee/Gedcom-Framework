@@ -20,7 +20,7 @@
 #import "GCContextDelegate.h"
 
 #import "ValidationHelpers.h"
-#import "EncodingHelpers.h"
+#import "CharacterSetHelpers.h"
 
 @interface GCTrailerEntity : NSObject //empty class to match trailer objects
 @end
