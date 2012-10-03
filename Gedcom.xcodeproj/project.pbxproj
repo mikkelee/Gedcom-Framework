@@ -102,6 +102,8 @@
 		3E8C1D72161BDA52005B3BE6 /* GCGUIAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1D71161BDA52005B3BE6 /* GCGUIAdditions.m */; };
 		3E8C1D75161BDA83005B3BE6 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8C1D73161BDA83005B3BE6 /* NSData+Base64.h */; };
 		3E8C1D76161BDA83005B3BE6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1D74161BDA83005B3BE6 /* NSData+Base64.m */; };
+		3E8C1D7A161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8C1D78161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h */; };
+		3E8C1D7B161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */; };
 		3EB5ABD6153619280036B4D5 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json */; };
 		3ED171231614B4FC00B5B83F /* Predicates.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ED171221614B4FC00B5B83F /* Predicates.strings */; };
 		3ED1712A1614C16200B5B83F /* GCPredicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED171291614C16200B5B83F /* GCPredicateTests.m */; };
@@ -288,6 +290,8 @@
 		3E8C1D71161BDA52005B3BE6 /* GCGUIAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGUIAdditions.m; sourceTree = "<group>"; };
 		3E8C1D73161BDA83005B3BE6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		3E8C1D74161BDA83005B3BE6 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		3E8C1D78161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCBinaryObjectAttribute+GCObjectAdditions.h"; sourceTree = "<group>"; };
+		3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCBinaryObjectAttribute+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
 		3ED171221614B4FC00B5B83F /* Predicates.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Predicates.strings; path = GedcomGUI/Predicates.strings; sourceTree = SOURCE_ROOT; };
 		3ED171291614C16200B5B83F /* GCPredicateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPredicateTests.m; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 				3EDBBE5D15F7EE04008C1E50 /* Generated files */,
 				3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */,
 				3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */,
+				3E8C1D77161CD23F005B3BE6 /* Object Additions */,
 				3E81B76B1607DAA70028F3C1 /* Custom tag subclasses */,
 			);
 			name = "Concrete subclasses";
@@ -638,6 +643,15 @@
 			name = "Custom tag subclasses";
 			sourceTree = "<group>";
 		};
+		3E8C1D77161CD23F005B3BE6 /* Object Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3E8C1D78161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h */,
+				3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */,
+			);
+			name = "Object Additions";
+			sourceTree = "<group>";
+		};
 		3EB5ABCF153615CD0036B4D5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +737,7 @@
 				3E5A68631610A6E8005B2319 /* GCList.h in Headers */,
 				3ED1712D16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.h in Headers */,
 				3E8C1D75161BDA83005B3BE6 /* NSData+Base64.h in Headers */,
+				3E8C1D7A161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,6 +982,7 @@
 				3E5A68641610A6E8005B2319 /* GCList.m in Sources */,
 				3ED1712E16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.m in Sources */,
 				3E8C1D76161BDA83005B3BE6 /* NSData+Base64.m in Sources */,
+				3E8C1D7B161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

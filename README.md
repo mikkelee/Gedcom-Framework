@@ -45,7 +45,6 @@ The most important remaining issues, loosely prioritized in order of importance:
 * **Misc**: Handle special cases from spec? (see SOURCE_CITATION — use callbacks?).
 * **Docs**: Code samples in headers (see GCContext.h for preliminary example).
 * **ANSEL**: Does not support saving to ANSEL, but reading is OK.
-* **Multimedia**: Blob codec.
 * **Unit tests**: Full code coverage.
 
 Additionally there are at times a few minor TODOs scattered around the source files.
