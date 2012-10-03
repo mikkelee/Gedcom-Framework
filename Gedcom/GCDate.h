@@ -16,6 +16,8 @@
  
  Gedcom dates can have many forms. This class cluster provides parsing, sorting, and a helper method for calculating dates.
  
+ Parsing dates with the French Republican/Revolutionary calendar is not currently supported.
+ 
  */
 @interface GCDate : GCValue
 
@@ -61,7 +63,7 @@
 
 @property (readonly) NSCalendar *calendar;
 
-/// If the date is a range or a period, will return the start of the period, otherwise it will be the same as the date, and identical to maxDate.
+/// If the date is a range or a period, will return the start of the period (or nil for open-ended), otherwise it will be the same as the date, and identical to maxDate.
 @property (readonly) NSDate *minDate;
 
 /// If the date is a range or a period, will return the end of the period, otherwise it will be the same as the date, and identical to minDate.
