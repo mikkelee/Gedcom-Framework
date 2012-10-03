@@ -352,11 +352,6 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
     }];
 }
 
-- (NSMutableSet *)allProperties
-{
-    return [self mutableSetValueForKey:@"properties"];
-}
-
 @end
 
 @implementation GCObject (GCValidationMethods)

@@ -29,6 +29,9 @@
  */
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
 
+/// The properties of the receiver as a KVC-compliant mutable set.
+@property (readonly, nonatomic) NSMutableSet *allProperties;
+
 @end
 
 @interface GCObject (GCMoreConvenienceMethods)

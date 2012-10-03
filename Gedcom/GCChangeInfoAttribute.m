@@ -15,6 +15,7 @@
 #import "GCObjects_generated.h"
 
 #import "GCObject_internal.h"
+#import "GCObject+GCObjectKeyValueExtensions.h"
 
 @interface GCChangeInfoAttribute ()
 

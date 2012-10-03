@@ -15,8 +15,6 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-NSString *GCMaintainDescribedObjectConsistencyContext = @"GCMaintainDescribedObjectConsistencyContext";
-
 @implementation GCObject (GCObjectKeyValueExtensions)
 
 #pragma mark Internal helpers
@@ -43,13 +41,9 @@ NSString *GCMaintainDescribedObjectConsistencyContext = @"GCMaintainDescribedObj
             indexes = [NSIndexSet indexSetWithIndex:[[super valueForKey:key] count]];
         }
         
-        //[self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:key];
         [[super mutableArrayValueForKey:key] addObject:property];
-        //[self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:key];
     } else {
-        //[self willChangeValueForKey:property.type];
         [super setValue:property forKey:property.type];
-        //[self didChangeValueForKey:property.type];
     }
     
     NSParameterAssert(property.describedObject == self);
@@ -64,15 +58,9 @@ NSString *GCMaintainDescribedObjectConsistencyContext = @"GCMaintainDescribedObj
     } else if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
         NSString *key = property.gedTag.pluralName;
         
-        //NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:[[super valueForKey:key] indexOfObject:property]];
-        
-        //[self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:key];
         [[super mutableArrayValueForKey:key] removeObject:property];
-        //[self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:key];
     } else {
-        //[self willChangeValueForKey:property.type];
         [super setValue:nil forKey:property.type];
-        //[self didChangeValueForKey:property.type];
     }
     
     NSParameterAssert(property.describedObject == nil);
@@ -214,24 +202,12 @@ NSString *GCMaintainDescribedObjectConsistencyContext = @"GCMaintainDescribedObj
 
 - (NSUInteger)countOfProperties
 {
-    return [[self orderedProperties] count];
+    return [self.orderedProperties count];
 }
 
 - (NSEnumerator *)enumeratorOfProperties
 {
-    NSMutableSet *props = [NSMutableSet set];
-    
-    for (id prop in [self orderedProperties]) {
-        if ([prop isKindOfClass:[NSArray class]]) {
-            [props addObjectsFromArray:prop];
-        } else {
-            [props addObject:prop];
-        }
-    }
-    
-    //NSLog(@"props: %@", props);
-    
-    return [props objectEnumerator];
+    return [self.orderedProperties objectEnumerator];
 }
 
 - (GCProperty *)memberOfProperties:(GCProperty *)property
@@ -261,6 +237,11 @@ NSString *GCMaintainDescribedObjectConsistencyContext = @"GCMaintainDescribedObj
  
  }
  */
+
+- (NSMutableSet *)allProperties
+{
+    return [self mutableSetValueForKey:@"properties"];
+}
 
 @end
 

@@ -11,6 +11,7 @@
 #import "GCNode.h"
 
 #import "GCObject_internal.h"
+#import "GCObject+GCObjectKeyValueExtensions.h"
 
 @interface GCProperty ()
 

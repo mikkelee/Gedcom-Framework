@@ -14,8 +14,6 @@
 
 #import "GedcomErrors.h"
 
-extern NSString *GCMaintainDescribedObjectConsistencyContext;
-
 @interface GCObject () {
     GCTag *_gedTag;
 }
