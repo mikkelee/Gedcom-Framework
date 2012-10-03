@@ -61,6 +61,7 @@
 
 /// @name Helpers
 
+/// The calendar used by the receiver.
 @property (readonly) NSCalendar *calendar;
 
 /// If the date is a range or a period, will return the start of the period (or nil for open-ended), otherwise it will be the same as the date, and identical to maxDate.

@@ -85,7 +85,7 @@ typedef enum : NSUInteger {
  
  Will throw an exception if the receiver already contains entities.
  
- @param nodes A collection of nodes.
+ @param data An NSData object containing a Gedcom string in any valid encoding.
  @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
  @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
@@ -93,7 +93,7 @@ typedef enum : NSUInteger {
 
 /** Causes the receiver to parse the contents of the file into an NSData object and pass it to parseData:error:.
   
- @param nodes A collection of nodes.
+ @param path A path to a Gedcom file.
  @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
  @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
@@ -101,7 +101,7 @@ typedef enum : NSUInteger {
 
 /** Causes the receiver to read the contents of the URL into an NSData object and pass it to parseData:error:.
  
- @param nodes A collection of nodes.
+ @param url A URL pointing to a Gedcom file.
  @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
  @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
  */
@@ -109,14 +109,23 @@ typedef enum : NSUInteger {
 
 #pragma mark Saving a context
 
+/** Causes the receiver to write its contents to a file.
+ 
+ @param path A path pointing to the inteded location.
+ @param useAuxiliaryFile If `YES`, the contents are written to a backup file, and then—assuming no errors occur—the backup file is renamed to the name specified by path; otherwise, the data is written directly to path.
+ @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
+ @return `YES` if the write was successful. If the receiver was unable to write its entities, it will return `NO` and set the error pointer to an NSError describing the problem.
+ */
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile error:(NSError **)error;
 
 #pragma mark Getting entities by URL
 
-/**
+/** Causes the receiver to look up the entity referred to by the URL and return it.
  
- xref://context/xref
+ Attributed gedcom strings returned by GCObjects will contain URLs of the form "xref://contextName/xref".
  
+ @param url An URL with the scheme `xref://`.
+ @return The entity indicated by the URL.
  */
 + (GCEntity *)entityForURL:(NSURL *)url;
 

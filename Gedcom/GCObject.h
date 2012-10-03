@@ -108,8 +108,10 @@
 
 #pragma mark Accessing properties
 
+/// The properties of the receiver ordered as indicated in the spec.
 @property (nonatomic, readonly) NSArray *orderedProperties;
 
+/// The non-standard properties of the receiver, if any.
 @property (nonatomic, readonly) NSArray *customProperties;
 
 @end

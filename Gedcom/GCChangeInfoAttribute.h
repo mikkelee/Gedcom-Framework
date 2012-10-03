@@ -22,12 +22,17 @@
 /// Returns the last time the entity was modified.
 @property (readonly) NSDate *modificationDate;
 
-@property (readonly) NSArray *notes;
+/// Property for accessing the following properties
+@property (nonatomic) NSArray *notes;
 
-/// Returns an array of GCNoteReferenceRelationship
-@property NSMutableArray *noteReferences;
+/// Also contained in notes. . GCNoteReferenceRelationship
+@property (nonatomic) NSArray *noteReferences;
+/// Also contained in notes. . noteReferences
+@property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Returns an array of GCNoteEmbeddedAttribute
-@property NSMutableArray *noteEmbeddeds;
+/// Also contained in notes. . GCNoteEmbeddedAttribute
+@property (nonatomic) NSArray *noteEmbeddeds;
+/// Also contained in notes. . noteEmbeddeds
+@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 @end

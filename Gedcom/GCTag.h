@@ -85,6 +85,11 @@ typedef struct {
  */
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag;
 
+/** A helper method for quicker lookups when only interested in knowing whether the receiver allows more than one of a given subtag.
+ 
+ @param tag A GCTag object.
+ @return a `BOOL` indicating whether multiple subtags of the given type are allowed.
+ */
 - (BOOL)allowsMultipleOccurrencesOfSubTag:(GCTag *)tag;
 
 #pragma mark - Objective-C properties -

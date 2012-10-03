@@ -18,7 +18,7 @@
     
     // find all individuals
     for (GCNode *node in nodes) {
-        if ([[node gedTag] isEqualToString:@"INDI"]) {
+        if ([node.gedTag isEqualToString:@"INDI"]) {
             // and print their names:
             for (GCNode *name in node[@"NAME"]) {
                 NSLog(@"name found: %@", name.gedValue);

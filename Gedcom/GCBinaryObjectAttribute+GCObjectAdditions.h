@@ -10,8 +10,12 @@
 
 @interface GCBinaryObjectAttribute (GCObjectAdditions)
 
+/// @name Accessing properties
+
+/// Helper for accessing the data encoded in the BLOB.
 @property (readonly, nonatomic) NSData *blobData;
 
+/// Helper for parsing the data as an image.
 @property (readonly, nonatomic) NSImage *image;
 
 @end
