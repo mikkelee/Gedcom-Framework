@@ -82,7 +82,7 @@
     STAssertEqualObjects(copyrightString, expected, nil);
 }
 
-- (void)testBlobDecoding
+- (void)AtestBlobDecoding
 {
     /*
      "PICT"-format image from BLOB in TGC55.ged
@@ -99,6 +99,7 @@
     
     NSData *data = [NSData dataFromBase64String:blob];
     
+    // TODO: not currently functional; test.pict cannot be viewed - problem with torture test or decoding? unable to find other examples...
     [data writeToFile:@"test.pict" atomically:YES];
 }
 
