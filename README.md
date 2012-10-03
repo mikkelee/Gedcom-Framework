@@ -34,7 +34,7 @@ Additionally, a simple GUI is included that can open a .ged file; it will displa
 
 # Version history #
 
-* 0.9.2 - BLOB decoding functional.
+* 0.9.2 — BLOB decoding functional.
 * 0.9.1 — all info in TGC55.ged can be losslessly handled, though it will not pass validation due to non-standard tags.
 * 0.9.0 — Functionality is there; 1.0 comes after a bit more thorough testing/bugsquashing + documentation.
 
