@@ -41,22 +41,22 @@ static unsigned char base64EncodeLookup[65] =
 //
 static unsigned char base64DecodeLookup[256] =
 { // GEDCOM 5.5 OBJE.BLOB standard
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /*   0 -  16                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /*  17 -  32                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx,  0,  1,  2, /*  33 -  48              ./0 */
-     3,  4,  5,  6,  7,  8,  9, 10, 11, xx, xx, xx, xx, xx, xx, xx, /*  49 -  64 123456789        */
-    12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, /*  65 -  80 ABCDEFGHIJKLMNOP */
-    28, 29, 30, 31, 32, 33, 34, 35, 36, 37, xx, xx, xx, xx, xx, xx, /*  81 -  96 QRSTUVWXYZ       */
-    38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, /*  97 - 112 abcdefghijklmnop */
-    54, 55, 56, 57, 58, 59, 60, 61, 62, 63, xx, xx, xx, xx, xx, xx, /* 113 - 128 qrstuvwxyz       */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 129 - 144                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 145 - 170                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 171 - 186                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 187 - 192                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 193 - 208                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 209 - 224                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 225 - 240                  */
-    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 239 - 256                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /*   0 -  15                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /*  16 -  31                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx,  0,  1, /*  32 -  47               ./ */
+     2,  3,  4,  5,  6,  7,  8,  9, 10, 11, xx, xx, xx, xx, xx, xx, /*  48 -  63 0123456789       */
+    xx, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, /*  64 -  79  ABCDEFGHIJKLMNO */
+    27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, xx, xx, xx, xx, xx, /*  80 -  95 PQRSTUVWXYZ      */
+    xx, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, /*  96 - 111  abcdefghijklmno */
+    53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, xx, xx, xx, xx, xx, /* 112 - 127 pqrstuvwxyz      */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 128 - 143                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 144 - 169                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 170 - 185                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 186 - 191                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 192 - 207                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 208 - 223                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 224 - 239                  */
+    xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, /* 240 - 255                  */
 };
 /* Original as per Gallagher
 {
