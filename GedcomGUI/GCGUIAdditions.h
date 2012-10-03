@@ -1,5 +1,5 @@
 //
-//  GCPredicateExtensions.h
+//  GCGUIAdditions.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 27/09/12.
@@ -8,8 +8,15 @@
 
 #import <Gedcom/Gedcom.h>
 
-@interface GCIndividualEntity (GCPredicateExtensions)
+@interface GCObject (GCGUIAdditions)
 
 + (NSArray *)defaultPredicateEditorRowTemplates;
+
+@end
+
+@interface GCValue (GCGUIAdditions)
+
++ (NSArray *)defaultPredicateOperators;
+- (NSAttributeType)defaultAttributeType;
 
 @end

@@ -34,7 +34,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3E02E7B81607D968008728D9 /* GCCustomEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E02E7B61607D968008728D9 /* GCCustomEntity.h */; };
+		3E02E7B81607D968008728D9 /* GCCustomEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E02E7B61607D968008728D9 /* GCCustomEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E02E7B91607D968008728D9 /* GCCustomEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02E7B71607D968008728D9 /* GCCustomEntity.m */; };
 		3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E09D18C15F9427C00BAA69E /* GCObject_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836515F8DDF800A9B096 /* GCAge_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -49,9 +49,9 @@
 		3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E88151C319D005E09E1 /* InfoPlist.strings */; };
-		3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */; };
+		3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E21E9B6160E88EB001EE004 /* GCChangeInfoAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */; };
-		3E21E9BB160F5A05001EE004 /* ValidationHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9BA160F5A05001EE004 /* ValidationHelpers.h */; };
+		3E21E9BB160F5A05001EE004 /* ValidationHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9BA160F5A05001EE004 /* ValidationHelpers.h */; settings = {ATTRIBUTES = (); }; };
 		3E29DB1A154A1D9600756CF4 /* GCDateAgeMathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */; };
 		3E29DB1D154A405100756CF4 /* GCMutableNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E29DB1B154A405100756CF4 /* GCMutableNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E29DB1E154A405100756CF4 /* GCMutableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB1C154A405100756CF4 /* GCMutableNode.m */; };
@@ -76,14 +76,14 @@
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57557C15202A9600A918D1 /* GCValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557A15202A9600A918D1 /* GCValue.m */; };
-		3E575580152057B200A918D1 /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* DateHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E575580152057B200A918D1 /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* DateHelpers.h */; settings = {ATTRIBUTES = (); }; };
 		3E57558815217C0E00A918D1 /* GCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558615217C0D00A918D1 /* GCObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57558915217C0E00A918D1 /* GCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57558715217C0D00A918D1 /* GCObject.m */; };
 		3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558B15217C2F00A918D1 /* GCProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57558E15217C2F00A918D1 /* GCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57558C15217C2F00A918D1 /* GCProperty.m */; };
 		3E57559115217C3B00A918D1 /* GCRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558F15217C3B00A918D1 /* GCRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57559215217C3B00A918D1 /* GCRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57559015217C3B00A918D1 /* GCRelationship.m */; };
-		3E5A68631610A6E8005B2319 /* GCList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A68611610A6E7005B2319 /* GCList.h */; };
+		3E5A68631610A6E8005B2319 /* GCList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A68611610A6E7005B2319 /* GCList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E5A68641610A6E8005B2319 /* GCList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A68621610A6E8005B2319 /* GCList.m */; };
 		3E5A686C1610F57A005B2319 /* TGC55.ged in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A686B1610F57A005B2319 /* TGC55.ged */; };
 		3E5F5098151DCC7B00A433A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F5097151DCC7B00A433A6 /* README.md */; };
@@ -95,17 +95,19 @@
 		3E75836415F8DD7F00A9B096 /* GCAgeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75836215F8DD7F00A9B096 /* GCAgeParser.m */; };
 		3E75836A15F8DF4800A9B096 /* GCDateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75836815F8DF4800A9B096 /* GCDateParser.m */; };
 		3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */; };
-		3E81B7651607DA630028F3C1 /* GCCustomAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E81B7631607DA630028F3C1 /* GCCustomAttribute.h */; };
+		3E81B7651607DA630028F3C1 /* GCCustomAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E81B7631607DA630028F3C1 /* GCCustomAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E81B7661607DA630028F3C1 /* GCCustomAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81B7641607DA630028F3C1 /* GCCustomAttribute.m */; };
-		3E81B7691607DA9D0028F3C1 /* GCCustomRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E81B7671607DA9D0028F3C1 /* GCCustomRelationship.h */; };
+		3E81B7691607DA9D0028F3C1 /* GCCustomRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E81B7671607DA9D0028F3C1 /* GCCustomRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E81B76A1607DA9D0028F3C1 /* GCCustomRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81B7681607DA9D0028F3C1 /* GCCustomRelationship.m */; };
 		3EB5ABD6153619280036B4D5 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json */; };
 		3ED171231614B4FC00B5B83F /* Predicates.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ED171221614B4FC00B5B83F /* Predicates.strings */; };
-		3ED171261614BBAB00B5B83F /* GCPredicateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED171241614BBAA00B5B83F /* GCPredicateExtensions.h */; };
-		3ED171271614BBAB00B5B83F /* GCPredicateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED171251614BBAB00B5B83F /* GCPredicateExtensions.m */; };
 		3ED1712A1614C16200B5B83F /* GCPredicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED171291614C16200B5B83F /* GCPredicateTests.m */; };
-		3ED1712D16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED1712B16155AE100B5B83F /* GCObject+GCObjectKeyValueExtensions.h */; };
+		3ED1712D16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED1712B16155AE100B5B83F /* GCObject+GCObjectKeyValueExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3ED1712E16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1712C16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.m */; };
+		3ED171491616992D00B5B83F /* GCValue_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A68661610B51B005B2319 /* GCValue_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3ED1714A1616995E00B5B83F /* GedcomErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A68671610CA16005B2319 /* GedcomErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ED1714B16169A1000B5B83F /* EncodingHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A686A1610EFEF005B2319 /* EncodingHelpers.h */; settings = {ATTRIBUTES = (); }; };
+		3ED1714C161BB8E300B5B83F /* GCGUIAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED171251614BBAB00B5B83F /* GCGUIAdditions.m */; };
 		3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3ED92D401563C70500E53E47 /* GCXrefProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */; };
 		3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED92D421563D78C00E53E47 /* GCContextDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -144,13 +146,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3E02E7A71606C12B008728D9;
 			remoteInfo = "Build Date Parser";
-		};
-		3E09D18E15F9803A00BAA69E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E75837315F8EA7D00A9B096;
-			remoteInfo = "Build Parsers";
 		};
 		3E1C3E82151C319D005E09E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -285,8 +280,8 @@
 		3E81B7681607DA9D0028F3C1 /* GCCustomRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCustomRelationship.m; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
 		3ED171221614B4FC00B5B83F /* Predicates.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Predicates.strings; path = GedcomGUI/Predicates.strings; sourceTree = SOURCE_ROOT; };
-		3ED171241614BBAA00B5B83F /* GCPredicateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPredicateExtensions.h; sourceTree = "<group>"; };
-		3ED171251614BBAB00B5B83F /* GCPredicateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPredicateExtensions.m; sourceTree = "<group>"; };
+		3ED171241614BBAA00B5B83F /* GCGUIAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGUIAdditions.h; sourceTree = "<group>"; };
+		3ED171251614BBAB00B5B83F /* GCGUIAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGUIAdditions.m; sourceTree = "<group>"; };
 		3ED171291614C16200B5B83F /* GCPredicateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPredicateTests.m; sourceTree = "<group>"; };
 		3ED1712B16155AE100B5B83F /* GCObject+GCObjectKeyValueExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCObjectKeyValueExtensions.h"; sourceTree = "<group>"; };
 		3ED1712C16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCObjectKeyValueExtensions.m"; sourceTree = "<group>"; };
@@ -565,6 +560,8 @@
 			children = (
 				3E3995B7155DE4B500228946 /* Document.h */,
 				3E3995B8155DE4B500228946 /* Document.m */,
+				3ED171241614BBAA00B5B83F /* GCGUIAdditions.h */,
+				3ED171251614BBAB00B5B83F /* GCGUIAdditions.m */,
 				3E3995BA155DE4B500228946 /* Document.xib */,
 				3E3995BD155DE4B500228946 /* MainMenu.xib */,
 				3E3995AC155DE4B500228946 /* Supporting Files */,
@@ -603,8 +600,6 @@
 				3EF7A1CA151C57A2004A8540 /* GCTag.h */,
 				3EF7A1CB151C57A3004A8540 /* GCTag.m */,
 				3E17B4AE16013ACF009D2CCB /* Object hierarchy */,
-				3ED171241614BBAA00B5B83F /* GCPredicateExtensions.h */,
-				3ED171251614BBAB00B5B83F /* GCPredicateExtensions.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -684,40 +679,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */,
-				3EECFD66151C32630074E26C /* GCAge.h in Headers */,
-				3EECFD74151C32630074E26C /* GCDate.h in Headers */,
+				3ED1714A1616995E00B5B83F /* GedcomErrors.h in Headers */,
 				3EECFD8A151C32630074E26C /* GCNode.h in Headers */,
-				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
-				3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */,
-				3E57557B15202A9600A918D1 /* GCValue.h in Headers */,
-				3E575580152057B200A918D1 /* DateHelpers.h in Headers */,
-				3E57558815217C0E00A918D1 /* GCObject.h in Headers */,
-				3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */,
-				3E57559115217C3B00A918D1 /* GCRelationship.h in Headers */,
-				3E4373551521CB7200BA362F /* GCAttribute.h in Headers */,
-				3E14EDCA15230DAF00080364 /* GCContext.h in Headers */,
 				3E29DB1D154A405100756CF4 /* GCMutableNode.h in Headers */,
-				3E29DB36154E622700756CF4 /* GCGender.h in Headers */,
-				3EDDB428154EC63C0068E85F /* GCString.h in Headers */,
-				3EDDB42D154EC6470068E85F /* GCBool.h in Headers */,
-				3EDDB431154EC6550068E85F /* GCNumber.h in Headers */,
-				3E396A03154F375400AE8636 /* GCValueFormatter.h in Headers */,
-				3E39506A1560DFFC00FEEA9F /* GCNamestring.h in Headers */,
-				3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */,
-				3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */,
-				3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */,
+				3E14EDCA15230DAF00080364 /* GCContext.h in Headers */,
+				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
+				3E57558815217C0E00A918D1 /* GCObject.h in Headers */,
+				3ED1712D16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.h in Headers */,
+				3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */,
+				3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */,
+				3E4373551521CB7200BA362F /* GCAttribute.h in Headers */,
+				3E57559115217C3B00A918D1 /* GCRelationship.h in Headers */,
 				3EDBBE6215F7EE15008C1E50 /* GCObjects_generated.h in Headers */,
-				3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */,
-				3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */,
-				3E09D19315F9816900BAA69E /* GCDate_internal.h in Headers */,
+				3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */,
 				3E02E7B81607D968008728D9 /* GCCustomEntity.h in Headers */,
 				3E81B7651607DA630028F3C1 /* GCCustomAttribute.h in Headers */,
 				3E81B7691607DA9D0028F3C1 /* GCCustomRelationship.h in Headers */,
-				3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */,
-				3E21E9BB160F5A05001EE004 /* ValidationHelpers.h in Headers */,
+				3E57557B15202A9600A918D1 /* GCValue.h in Headers */,
+				3EDDB428154EC63C0068E85F /* GCString.h in Headers */,
+				3E39506A1560DFFC00FEEA9F /* GCNamestring.h in Headers */,
+				3EDD4118156D8EE200002352 /* GCPlacestring.h in Headers */,
 				3E5A68631610A6E8005B2319 /* GCList.h in Headers */,
-				3ED171261614BBAB00B5B83F /* GCPredicateExtensions.h in Headers */,
-				3ED1712D16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.h in Headers */,
+				3EDDB431154EC6550068E85F /* GCNumber.h in Headers */,
+				3E29DB36154E622700756CF4 /* GCGender.h in Headers */,
+				3EDDB42D154EC6470068E85F /* GCBool.h in Headers */,
+				3EECFD66151C32630074E26C /* GCAge.h in Headers */,
+				3EECFD74151C32630074E26C /* GCDate.h in Headers */,
+				3E396A03154F375400AE8636 /* GCValueFormatter.h in Headers */,
+				3E575580152057B200A918D1 /* DateHelpers.h in Headers */,
+				3E21E9BB160F5A05001EE004 /* ValidationHelpers.h in Headers */,
+				3ED92D441563D78C00E53E47 /* GCContextDelegate.h in Headers */,
+				3ED92D3F1563C70500E53E47 /* GCXrefProtocol.h in Headers */,
+				3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */,
+				3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */,
+				3ED171491616992D00B5B83F /* GCValue_internal.h in Headers */,
+				3E09D19315F9816900BAA69E /* GCDate_internal.h in Headers */,
+				3ED1714B16169A1000B5B83F /* EncodingHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,7 +779,6 @@
 			);
 			dependencies = (
 				3E75835815F7F09F00A9B096 /* PBXTargetDependency */,
-				3E09D18F15F9803A00BAA69E /* PBXTargetDependency */,
 			);
 			name = Gedcom;
 			productName = Gedcom;
@@ -960,7 +956,6 @@
 				3E81B76A1607DA9D0028F3C1 /* GCCustomRelationship.m in Sources */,
 				3E21E9B6160E88EB001EE004 /* GCChangeInfoAttribute.m in Sources */,
 				3E5A68641610A6E8005B2319 /* GCList.m in Sources */,
-				3ED171271614BBAB00B5B83F /* GCPredicateExtensions.m in Sources */,
 				3ED1712E16155AE200B5B83F /* GCObject+GCObjectKeyValueExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -991,6 +986,7 @@
 			files = (
 				3E3995B2155DE4B500228946 /* main.m in Sources */,
 				3E3995B9155DE4B500228946 /* Document.m in Sources */,
+				3ED1714C161BB8E300B5B83F /* GCGUIAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,11 +997,6 @@
 			isa = PBXTargetDependency;
 			target = 3E02E7A71606C12B008728D9 /* Build Date Parser */;
 			targetProxy = 3E02E7AC1606C150008728D9 /* PBXContainerItemProxy */;
-		};
-		3E09D18F15F9803A00BAA69E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E75837315F8EA7D00A9B096 /* Build Parsers */;
-			targetProxy = 3E09D18E15F9803A00BAA69E /* PBXContainerItemProxy */;
 		};
 		3E1C3E83151C319D005E09E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

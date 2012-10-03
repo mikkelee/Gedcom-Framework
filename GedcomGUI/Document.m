@@ -100,7 +100,8 @@
 
 - (IBAction)testLog:(id)sender
 {
-    NSLog(@"header: %@", self.context.header);
+    [individualsPredicateEditor addRow:nil];
+    //NSLog(@"header: %@", self.context.header);
 }
 
 - (IBAction)updatePredicates:(id)sender
@@ -144,10 +145,10 @@
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
     
+    // TODO somehow bind array controller to s.c.i instead
     self.individuals = self.context.individuals;
     
     [individualsPredicateEditor setRowTemplates:[GCIndividualEntity defaultPredicateEditorRowTemplates]];
-    [individualsPredicateEditor addRow:nil];
 }
 
 - (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity
