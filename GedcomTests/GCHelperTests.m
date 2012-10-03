@@ -84,6 +84,10 @@
 
 - (void)testBlobDecoding
 {
+    /*
+     "PICT"-format image from BLOB in TGC55.ged
+     Note: If decoded it should be an image of a flower
+     */
     NSString *blob =
     @".HM.......k.1..F.jwA.Dzzzzw............A....1.........0U.66..E.8"
     @".......A..k.a6.A.......A..k.........../6....G.......0../..U....."
@@ -95,7 +99,7 @@
     
     NSData *data = [NSData dataFromBase64String:blob];
     
-    [data writeToFile:@"/Users/carthag/Desktop/test.pict" atomically:YES];
+    [data writeToFile:@"test.pict" atomically:YES];
 }
 
 @end
