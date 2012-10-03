@@ -37,10 +37,10 @@ mutableAccessorsT = Template("""
     return [_$name objectsAtIndexes:indexes];
 }
 
-- (void)insertObject:($type *)$name in${capName}AtIndex:(NSUInteger)index {
-	NSParameterAssert([$name isKindOfClass:[$type class]]);
-	[$name setValue:self forKey:@"describedObject"];
-    [_$name insertObject:$name atIndex:index];
+- (void)insertObject:($type *)obj in${capName}AtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[$type class]]);
+	[obj setValue:self forKey:@"describedObject"];
+    [_$name insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
@@ -142,30 +142,43 @@ def pluralize(s):
 
 forwardDeclarations = set()
 
-def property(key, type, doc, is_plural, is_required, is_super_variant=False):
+def property(key, type, doc, is_plural, is_required, is_property_group=False):
 	name = pluralize(key) if is_plural else key
-	if not is_super_variant and not is_plural:
-		forwardDeclarations.add(forwardT.substitute(name=classify(key, type)))
-	definition = propertyT.substitute(
-		type='NSArray' if is_super_variant or is_plural else classify(key, type),
-		name=name, 
-		doc='%s %s%s' % (doc, 'An array of %s' % classify(key, type) if is_plural and not is_super_variant else '', ' NB: required property' if is_required else '')
-	)
 	ivar = None
+	definition = ''
 	implementation = ''
 	if is_plural:
-		definition = '%s%s' % (definition, propertyT.substitute(
-			type='NSMutableArray',
-			name='mutable%s%s' % (name[0].upper(), name[1:]),
-			doc='Mutable accessor for %s' % name
-		))
-		implementation = dynamicT.substitute(name=name) if is_super_variant else mutableAccessorsT.substitute(
-			name=name,
-			capName='%s%s' % (name[0].upper(), name[1:]),
-			type=classify(key, type)
-		)
-		if not is_super_variant:
+		if is_property_group:
+			definition = propertyT.substitute(
+				type='NSArray',
+				name=name,
+				doc=doc
+			)
+			implementation = dynamicT.substitute(name=name)
+		else:
+			definition = '%s%s' % (propertyT.substitute(
+				type='NSArray',
+				name=name,
+				doc='. '.join([doc, classify(key, type)])
+			), propertyT.substitute(
+				type='NSMutableArray',
+				name='mutable%s%s' % (name[0].upper(), name[1:]),
+				doc='. '.join([doc, name])
+			))
+			implementation = mutableAccessorsT.substitute(
+				name=name,
+				capName='%s%s' % (name[0].upper(), name[1:]),
+				type=classify(key, type)
+			)
 			ivar = '_%s' % name
+	else:
+		forwardDeclarations.add(forwardT.substitute(name=classify(key, type)))
+		definition = propertyT.substitute(
+			type=classify(key, type),
+			name=name,
+			doc='. '.join([doc, ' NB: required property.' if is_required else ''])
+		)
+
 	return definition, implementation, ivar
 
 def constructors(key, type):
@@ -240,7 +253,7 @@ for key in sorted(tags):
 		propagate(key)
 
 def expand_group(group, propertyDeclarations, propertyImplementations, ivars):
-	dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
+	dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
 					
 	propertyDeclarations.append(dec)
 	propertyImplementations.append(imp)
@@ -248,7 +261,7 @@ def expand_group(group, propertyDeclarations, propertyImplementations, ivars):
 	
 	for variant in tags[group]['variants']:
 		if variant.has_key('groupName'):
-			dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_super_variant=True)
+			dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
 			
 			if dec not in propertyDeclarations:
 				propertyDeclarations.append(dec)
