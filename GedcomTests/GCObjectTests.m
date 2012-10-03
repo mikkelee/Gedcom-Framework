@@ -76,21 +76,20 @@
     
     ctx = [GCContext context]; //fresh context
 	
-    GCNode *node = [[GCNode alloc] initWithTag:@"INDI" 
-                                         value:nil
-                                          xref:@"@INDI1@"
-                                      subNodes:@[
-                                                [GCNode nodeWithTag:@"NAME"
-                                                              value:@"Jens /Hansen/"],
-                                                [GCNode nodeWithTag:@"NAME"
-                                                              value:@"Jens /Hansen/ Smed"],
-                                                [GCNode nodeWithTag:@"BIRT"
-                                                              value:nil
-                                                           subNodes:@[ [GCNode nodeWithTag:@"DATE"
-                                                                                     value:@"1 JAN 1901"] ]],
-                                                [GCNode nodeWithTag:@"DEAT" 
-                                                              value:@"Y"],
-                                                ]];
+    GCNode *node = [GCNode nodeWithTag:@"INDI"
+                                  xref:@"@INDI1@"
+                              subNodes:@[
+                                        [GCNode nodeWithTag:@"NAME"
+                                                      value:@"Jens /Hansen/"],
+                                        [GCNode nodeWithTag:@"NAME"
+                                                      value:@"Jens /Hansen/ Smed"],
+                                        [GCNode nodeWithTag:@"BIRT"
+                                                      value:nil
+                                                   subNodes:@[ [GCNode nodeWithTag:@"DATE"
+                                                                             value:@"1 JAN 1901"] ]],
+                                        [GCNode nodeWithTag:@"DEAT" 
+                                                      value:@"Y"],
+                                        ]];
     
     GCEntity *object = [[GCIndividualEntity alloc] initWithGedcomNode:node inContext:ctx];
     
