@@ -174,6 +174,17 @@ __strong static NSArray *_rootKeys = nil;
     return [dataToWrite writeToFile:path options:options error:error];
 }
 
+#pragma mark Getting entities by URL
+
++ (GCEntity *)entityForURL:(NSURL *)url
+{
+    NSParameterAssert([url.scheme isEqualToString:@"xref"]);
+    
+    GCContext *context = [GCContext contextsByName][url.host];
+    
+    return [context _entityForXref:[url.path lastPathComponent]];
+}
+
 #pragma mark GCEntity collection accessors
 
 - (NSUInteger)countOfEntities
@@ -576,10 +587,10 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Xref link methods
 
-- (void)_activateXref:(NSString *)xref
+- (void)_activateEntity:(GCEntity *)entity
 {
     if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForEntity:)]) {
-        [_delegate context:self didReceiveActionForEntity:[self _entityForXref:xref]];
+        [_delegate context:self didReceiveActionForEntity:entity];
     }
 }
 

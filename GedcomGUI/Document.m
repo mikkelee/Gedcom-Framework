@@ -9,7 +9,7 @@
 #import "Document.h"
 #import <Gedcom/Gedcom.h>
 
-#import <Gedcom/GCContext_internal.h> //TODO move entityForXref back to GCContext.h???
+#import "GCGUIAdditions.h"
 
 @interface Document ()
 
@@ -116,7 +116,7 @@
 - (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
 {
     if ([[link scheme] isEqualToString:@"xref"]) {
-        GCEntity *entity = [self.context _entityForXref:[[link path] lastPathComponent]];
+        GCEntity *entity = [GCContext entityForURL:link];
         
         return [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
     } else {

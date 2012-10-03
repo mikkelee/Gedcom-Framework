@@ -38,9 +38,9 @@ __attribute__((destructor)) static void unregister_protocol() {
     NSURLRequest *request = [self request];
     
     GCContext *context = [GCContext contextsByName][request.URL.host];
-    NSString *xref = request.URL.path;
+    GCEntity *entity = [GCContext entityForURL:request.URL];
     
-    [context _activateXref:xref];
+    [context _activateEntity:entity];
 }
 
 - (void)stopLoading

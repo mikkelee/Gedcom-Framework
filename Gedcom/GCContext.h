@@ -111,6 +111,15 @@ typedef enum : NSUInteger {
 
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile error:(NSError **)error;
 
+#pragma mark Getting entities by URL
+
+/**
+ 
+ xref://context/xref
+ 
+ */
++ (GCEntity *)entityForURL:(NSURL *)url;
+
 #pragma mark - Objective-C properties -
 
 #pragma mark Accessing properties

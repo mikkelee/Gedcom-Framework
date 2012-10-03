@@ -20,7 +20,7 @@
 
 - (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity;
 
-- (void)_activateXref:(NSString *)xref;
+- (void)_activateEntity:(GCEntity *)entity;
 
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
