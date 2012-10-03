@@ -12,4 +12,6 @@
 
 @property (readonly, nonatomic) NSData *blobData;
 
+@property (readonly, nonatomic) NSImage *image;
+
 @end

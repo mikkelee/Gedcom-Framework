@@ -17,4 +17,9 @@
     return [NSData dataFromBase64String:self.value.gedcomString];
 }
 
+- (NSImage *)image
+{
+    return [[NSImage alloc] initWithData:self.blobData];
+}
+
 @end
