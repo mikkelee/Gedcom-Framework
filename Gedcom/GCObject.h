@@ -70,41 +70,41 @@
 @property (readonly) NSString *type;
 
 /// The localized type of the receiver.
-@property (readonly) NSString *localizedType;
+@property (nonatomic, readonly) NSString *localizedType;
 
 /// The GCTag corresponding to the receiver's type.
 @property (readonly) GCTag *gedTag;
 
 /// The root object of a given tree of GCObjects. Will usually be a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
-@property (readonly, nonatomic) GCObject *rootObject;
+@property (nonatomic, readonly) GCObject *rootObject;
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
-@property (readonly, nonatomic) GCContext *context;
+@property (nonatomic, readonly) GCContext *context;
 
 /** The value of the receiver appropiate for displaying in the user interface.
  
  For entities, it will be their xref; for attributes, their value; and for relationships, the target's xref.
  
  */
-@property (readonly, nonatomic) NSString *displayValue;
+@property (nonatomic, readonly) NSString *displayValue;
 
 /// The displayValue of the receiver, with attributes.
-@property (readonly, nonatomic) NSAttributedString *attributedDisplayValue;
+@property (nonatomic, readonly) NSAttributedString *attributedDisplayValue;
 
 #pragma mark Accessing Gedcom output
 /// @name Accessing Gedcom output
 
 /// The receiver as a GCNode.  Setting this property will cause the receiver to interpret the node and add new properties and remove those that no longer exist.
-@property GCNode *gedcomNode;
+@property (nonatomic) GCNode *gedcomNode;
 
 /// The properties of the receiver as a collection of nodes. @see GCNode
-@property (readonly) NSArray *subNodes;
+@property (nonatomic, readonly) NSArray *subNodes;
 
 /// The receiver as a string of Gedcom data. Setting it will interpret the string as a GCNode and set it to the receiver's gedcomNode property.
-@property NSString *gedcomString;
+@property (nonatomic) NSString *gedcomString;
 
 /// The receiver as an attributed string of Gedcom data.
-@property NSAttributedString *attributedGedcomString;
+@property (nonatomic) NSAttributedString *attributedGedcomString;
 
 #pragma mark Accessing properties
 

@@ -67,7 +67,7 @@
 {
     [self setValueWithGedcomString:gedcomNode.gedValue];
     
-    [super setGedcomNode:gedcomNode];       
+    [super setSubNodes:gedcomNode.subNodes];
 }
 
 #pragma mark Comparison

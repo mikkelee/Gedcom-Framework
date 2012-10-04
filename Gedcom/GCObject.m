@@ -118,38 +118,6 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
     return [propertyTypes count] > 0 ? [propertyTypes copy] : nil;
 }
 
-#pragma mark Gedcom access
-
-- (NSArray *)orderedProperties
-{
-    NSMutableArray *orderedProperties = [NSMutableArray array];
-    
-    for (NSString *propertyType in self.validPropertyTypes) {
-        if ([self _allowsMultipleOccurrencesOfPropertyType:propertyType]) {
-            [orderedProperties addObjectsFromArray:[super valueForKey:propertyType]];
-        } else {
-            if ([self valueForKey:propertyType]) {
-                [orderedProperties addObject:[super valueForKey:propertyType]];
-            }
-        }
-    }
-    
-    [orderedProperties addObjectsFromArray:_customProperties];
-    
-	return orderedProperties;
-}
-
-- (NSArray *)subNodes
-{
-    NSMutableArray *subNodes = [NSMutableArray array];
-    
-    for (GCProperty *property in self.orderedProperties) {
-        [subNodes addObject:property.gedcomNode];
-    }
-    
-	return subNodes;
-}
-
 #pragma mark Comparison & equality
 
 - (NSComparisonResult)compare:(id)other
@@ -238,13 +206,46 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    // TODO: move to setSubNodes
+    NSLog(@"You override this method in your subclass!");
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (NSArray *)orderedProperties
+{
+    NSMutableArray *orderedProperties = [NSMutableArray array];
     
+    for (NSString *propertyType in self.validPropertyTypes) {
+        if ([self _allowsMultipleOccurrencesOfPropertyType:propertyType]) {
+            [orderedProperties addObjectsFromArray:[super valueForKey:propertyType]];
+        } else {
+            if ([self valueForKey:propertyType]) {
+                [orderedProperties addObject:[super valueForKey:propertyType]];
+            }
+        }
+    }
+    
+    [orderedProperties addObjectsFromArray:_customProperties];
+    
+	return orderedProperties;
+}
+
+- (NSArray *)subNodes
+{
+    NSMutableArray *subNodes = [NSMutableArray array];
+    
+    for (GCProperty *property in self.orderedProperties) {
+        [subNodes addObject:property.gedcomNode];
+    }
+    
+	return subNodes;
+}
+
+- (void)setSubNodes:(NSArray *)newSubNodes
+{
     NSArray *originalProperties = [self.orderedProperties copy];
     
     NSArray *curSubNodes = self.subNodes;
-    NSArray *newSubNodes = gedcomNode.subNodes;
-
+    
     NSUInteger curMarker = 0;
     NSUInteger newMarker = 0;
     

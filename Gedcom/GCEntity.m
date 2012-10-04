@@ -170,8 +170,8 @@
 {
     NSParameterAssert(!self.gedTag.hasXref || [gedcomNode.xref isEqualToString:[self.context _xrefForEntity:self]]);
     
-    [super setGedcomNode:gedcomNode];
-}    
+    [super setSubNodes:gedcomNode.subNodes];
+}
 
 - (NSString *)displayValue
 {

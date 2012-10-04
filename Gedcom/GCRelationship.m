@@ -72,7 +72,7 @@
 {
     self.target = [self.context _entityForXref:gedcomNode.gedValue];
     
-    [super setGedcomNode:gedcomNode];
+    [super setSubNodes:gedcomNode.subNodes];
 }
 
 #pragma mark Comparison

@@ -32,5 +32,7 @@
 
 @property (nonatomic) NSMutableArray *customProperties;
 
+@property (nonatomic) NSArray *subNodes;
+
 @end
 
