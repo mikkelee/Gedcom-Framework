@@ -241,7 +241,7 @@ static inline void setupKey(NSString *key) {
                                    [NSMutableDictionary dictionary], @"relationship",
                                    nil];
     NSMutableDictionary *byName = [NSMutableDictionary dictionary];
-    NSMutableDictionary *byVariant = [NSMutableDictionary dictionary];
+    NSMutableDictionary *byGroup = [NSMutableDictionary dictionary];
     
     for (GCTag *subTag in self.validSubTags) {
         NSString *typeKey = [NSStringFromClass(subTag.objectClass) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
@@ -257,10 +257,10 @@ static inline void setupKey(NSString *key) {
             NSString *variantGroupName = tagDict[kPlural];
             for (NSDictionary *variant in tagDict[kVariants]) {
                 if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kName]]]) {
-                    if (!byVariant[variantGroupName]) {
-                        byVariant[variantGroupName] = [NSMutableArray array];
+                    if (!byGroup[variantGroupName]) {
+                        byGroup[variantGroupName] = [NSMutableArray array];
                     }
-                    [byVariant[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
+                    [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
                 }
             }
         }
@@ -268,7 +268,7 @@ static inline void setupKey(NSString *key) {
     
     _cachedSubTagsByCode = [byCode copy];
     _cachedSubTagsByName = [byName copy];
-    _cachedSubTagsByGroup = [byVariant copy];
+    _cachedSubTagsByGroup = [byGroup copy];
 }
 
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
