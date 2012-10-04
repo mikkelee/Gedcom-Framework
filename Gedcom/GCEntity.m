@@ -31,7 +31,6 @@
 
 @implementation GCEntity {
     GCContext *_context;
-    BOOL _isBuildingFromGedcom;
 }
 
 #pragma mark Initialization

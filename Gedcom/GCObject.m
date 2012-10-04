@@ -238,41 +238,52 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSMutableArray *originalProperties = [self.orderedProperties mutableCopy];
+    // TODO: move to setSubNodes
     
-    //NSLog(@" ********** BEGIN %p %@ **********", self, self.type);
+    NSArray *originalProperties = [self.orderedProperties copy];
     
-    //NSLog(@"originalProperties: %@", originalProperties);
+    NSArray *curSubNodes = self.subNodes;
+    NSArray *newSubNodes = gedcomNode.subNodes;
+
+    NSUInteger curMarker = 0;
+    NSUInteger newMarker = 0;
     
-    for (GCNode *subNode in [gedcomNode subNodes]) {
-        NSArray *matches = [originalProperties objectsAtIndexes:[originalProperties indexesOfObjectsPassingTest:^BOOL(GCObject *obj, NSUInteger idx, BOOL *stop) {
-            return [obj.gedTag.code isEqualToString:subNode.gedTag];
-        }]];
+    _isBuildingFromGedcom = YES;
+    
+    while (newMarker < [newSubNodes count]) {
+        //NSLog(@"%ld,%ld", newMarker, curMarker);
         
-        if ([matches count] < 1) {
-            //NSLog(@"adding new property for %@", subNode);
-            [self addPropertyWithGedcomNode:subNode];
+        if (curMarker >= [curSubNodes count]) {
+            //NSLog(@"INSERT %@", newSubNodes[newMarker]);
+            [self addPropertyWithGedcomNode:newSubNodes[newMarker]];
+            newMarker++;
+        } else if ([curSubNodes[curMarker] isEqualTo:newSubNodes[newMarker]]) {
+            //NSLog(@"SKIP; IDENTICAL");
+            curMarker++;
+            newMarker++;
         } else {
-            // TODO check for equivalence
-            GCProperty *property = [matches objectAtIndex:0];
-            [originalProperties removeObject:property];
-            //NSLog(@"modifying property %@ with %@", property, subNode);
-            property.gedcomNode = subNode;
+            
+            NSUInteger nextIndex = [newSubNodes indexOfObject:curSubNodes[curMarker]
+                                                      inRange:NSMakeRange(newMarker, [newSubNodes count]-(newMarker+1))];
+            
+            if (nextIndex != NSNotFound) {
+                for (NSUInteger i = newMarker; i < nextIndex; i++) {
+                    //NSLog(@"INSERT %@", newSubNodes[i]);
+                    [self addPropertyWithGedcomNode:newSubNodes[i]];
+                }
+                newMarker = nextIndex+1;
+            } else {
+                //NSLog(@"DELETE %@", curSubNodes[curMarker]);
+                [self.allProperties removeObject:originalProperties[curMarker]];
+                curMarker++;
+            }
         }
+        
     }
     
-    //NSLog(@"after adding to propertiesArray: %@", self.orderedProperties);
+    _isBuildingFromGedcom = NO;
     
-    //NSLog(@"removing originalProperties: %@", originalProperties);
-    
-    //remove the left over objects:
-    for (GCProperty *property in originalProperties) {
-        [self.allProperties removeObject:property];
-    }
-    
-    //NSLog(@"propertiesArray: %@", self.orderedProperties);
-    
-    //NSLog(@" ********** END %p %@ **********", self, self.type);
+    NSParameterAssert([self.allProperties count] == [newSubNodes count]);
 }
 
 - (NSString *)gedcomString

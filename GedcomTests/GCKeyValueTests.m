@@ -243,6 +243,8 @@
     NSArray *expectedObservations = [NSArray arrayWithObjects:
                                      // propertyType : NSKeyValueChange : old : new
                                      @"births : 3 : 0 BIRT\n1 DATE 1 JAN 1901 : <null>", // remove birth
+                                     @"deaths : 3 : 0 DEAT Y : <null>", // remove death
+                                     @"deaths : 2 : <null> : 0 DEAT", // insert new death
                                      nil];
     STAssertEqualObjects([observer observations], 
                          expectedObservations,

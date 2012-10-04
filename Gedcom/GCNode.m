@@ -423,17 +423,6 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 #pragma mark Comparison
 
-- (NSSet *)allSubTags
-{
-    NSMutableSet *subTags = [NSMutableSet set];
-    
-    for (GCNode *subNode in self.subNodes) {
-        [subTags addObject:subNode.gedTag];
-    }
-    
-    return [subTags copy];
-}
-
 - (BOOL)isEquivalentTo:(GCNode *)other
 {
     if (![other isKindOfClass:[self class]]) {
@@ -490,34 +479,15 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     return YES;
 }
 
-/*
-
-- (BOOL)isEqual:(GCNode *)other
+- (BOOL)isEqual:(GCNode *)object
 {
-    if (![self.gedTag isEqualToString:[other gedTag]]) {
-        return NO;
-    }
-    
-    if (self.gedValue && ![self.gedValue isEqualToString:[other gedValue]]) {
-        return NO;
-    }
-    
-    if (self.xref && ![self.xref isEqualToString:[other xref]]) {
-        return NO;
-    }
-    
-    if (![[self.subNodes set] isEqualToSet:[[other subNodes] set]]) {
-        return NO;
-    }
-    
-    return YES;
+    return [self.gedcomString isEqual:object.gedcomString];
 }
 
 - (NSUInteger)hash
 {
-    return [self.gedTag hash] + [self.xref hash] + [self.gedValue hash] + [[self.subNodes set] hash];
+    return [self.gedcomString hash];
 }
-*/
 
 #pragma mark Description
 
@@ -591,6 +561,17 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 - (BOOL)valueIsXref
 {
     return _gedValue != nil && [_gedValue hasSuffix:@"@"] && [_gedValue hasPrefix:@"@"] && ![_gedValue hasPrefix:@"@#"];
+}
+
+- (NSSet *)allSubTags
+{
+    NSMutableSet *subTags = [NSMutableSet set];
+    
+    for (GCNode *subNode in self.subNodes) {
+        [subTags addObject:subNode.gedTag];
+    }
+    
+    return [subTags copy];
 }
 
 @end

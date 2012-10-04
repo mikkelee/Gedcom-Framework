@@ -15,7 +15,9 @@
 #import "GedcomErrors.h"
 
 @interface GCObject () {
+    @protected
     GCTag *_gedTag;
+    BOOL _isBuildingFromGedcom;
 }
 
 - (id)_initWithType:(NSString *)type;
