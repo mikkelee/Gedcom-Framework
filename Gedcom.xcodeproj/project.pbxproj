@@ -503,7 +503,6 @@
 				3EB5ABD5153619280036B4D5 /* tags.json */,
 				3EDD4112156D022200002352 /* Values.strings */,
 				3EDD411E156F047A00002352 /* Tags.strings */,
-				3ED171221614B4FC00B5B83F /* Predicates.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -590,6 +589,7 @@
 				3E3995B1155DE4B500228946 /* main.m */,
 				3E3995B3155DE4B500228946 /* GedcomGUI-Prefix.pch */,
 				3E3995B4155DE4B500228946 /* Credits.rtf */,
+				3ED171221614B4FC00B5B83F /* Predicates.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
