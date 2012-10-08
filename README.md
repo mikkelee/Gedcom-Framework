@@ -27,7 +27,7 @@ A short summary of the functionality follows:
     - GCBool
 * Relationship integrity is handled with a GCContext (equivalent to a file) that ensures that all GCEntities have an internal 1-to-1 mapping with an xref, used for serializing from/to GEDCOM.
 * Objects and contexts can be validated and will return detailed NSErrors.
-* Full [url=http://gentlebytes.com/appledoc/]AppleDoc[/url] documentation is contained in the headers and can be built with the Documentation target.
+* Full [AppleDoc](http://gentlebytes.com/appledoc/) documentation is contained in the headers and can be built with the Documentation target.
 * No external dependencies for usage; compiling requires python & ragel.
 
 Additionally, a simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structures as gedcom strings as well as a hierarchy of display-formatted strings, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [Screenshot as of May 31, 2012](https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png)
