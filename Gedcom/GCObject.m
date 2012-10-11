@@ -23,7 +23,7 @@
 
 #import "ValidationHelpers.h"
 
-#import "GCObject+GCObjectKeyValueExtensions.h"
+#import "GCObject+GCObjectKeyValueAdditions.h"
 
 __strong static NSMutableDictionary *_validPropertiesByType;
 __strong static NSDictionary *_defaultColors;

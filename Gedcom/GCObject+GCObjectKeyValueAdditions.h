@@ -1,5 +1,5 @@
 //
-//  GCObject+GCObjectKeyValueExtensions.h
+//  GCObject+GCObjectKeyValueAdditions.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 28/09/12.
@@ -11,7 +11,7 @@
 @class GCValue;
 @class GCEntity;
 
-@interface GCObject (GCObjectKeyValueExtensions)
+@interface GCObject (GCObjectKeyValueAdditions)
 
 #pragma mark Keyed subscript accessors
 

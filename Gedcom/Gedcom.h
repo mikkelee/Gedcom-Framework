@@ -33,7 +33,7 @@
 
 #import "GCValueFormatter.h"
 
-#import "GCObject+GCObjectKeyValueExtensions.h"
+#import "GCObject+GCObjectKeyValueAdditions.h"
 
 #import "GCObject+GCSanityCheckAdditions.h"
 

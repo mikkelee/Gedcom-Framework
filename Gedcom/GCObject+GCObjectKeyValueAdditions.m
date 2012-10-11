@@ -1,12 +1,12 @@
 //
-//  GCObject+GCObjectKeyValueExtensions.m
+//  GCObject+GCObjectKeyValueAdditions.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 28/09/12.
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject+GCObjectKeyValueExtensions.h"
+#import "GCObject+GCObjectKeyValueAdditions.h"
 
 #import "GCObject_internal.h"
 
@@ -15,7 +15,7 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-@implementation GCObject (GCObjectKeyValueExtensions)
+@implementation GCObject (GCObjectKeyValueAdditions)
 
 #pragma mark Internal helpers
 
