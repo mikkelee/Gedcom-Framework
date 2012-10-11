@@ -31,14 +31,21 @@
 + (id)dateWithDate:(NSDate *)date;
 
 #pragma mark Helpers
-
 /// @name Helpers
+
 /** Returns a date created by adding the given age to the receiver.
  
  @param age A GCAge object.
  @return A new date.
  */
 - (id)dateByAddingAge:(GCAge *)age;
+
+/** Returns a date created by subtracting the given age to the receiver.
+ 
+ @param age A GCAge object.
+ @return A new date.
+ */
+- (id)dateBySubtractingAge:(GCAge *)age;
 
 /** Returns a boolean value indicating whether the given date is contained within the receiver.
  

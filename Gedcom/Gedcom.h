@@ -33,10 +33,15 @@
 
 #import "GCValueFormatter.h"
 
+#import "GCObject+GCObjectKeyValueExtensions.h"
+
+#import "GCObject+GCSanityCheckAdditions.h"
+
+#import "GCIndividualEntity+GCObjectAdditions.h"
+#import "GCBinaryObjectAttribute+GCObjectAdditions.h"
+
 #import "GCContextDelegate.h"
 
 #import "GCXrefProtocol.h"
 
 #import "GedcomErrors.h"
-
-#import "GCObject+GCObjectKeyValueExtensions.h"

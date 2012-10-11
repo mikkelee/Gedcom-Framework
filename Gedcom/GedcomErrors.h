@@ -23,5 +23,8 @@ typedef enum : NSInteger {
     
     // validation errors cont'd:
     GCTooManyValuesError = -201,
-    GCTooFewValuesError = -202
+    GCTooFewValuesError = -202,
+    
+    // sanity checking:
+    GCSanityCheckInconsistency = -301,
 } GCErrorCode;

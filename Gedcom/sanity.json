@@ -1,0 +1,13 @@
+﻿{
+	"individual": {
+		"orderRequirements": {
+			"birth": ["baptism", "christening", "confirmation", "death", "burial" ],
+			"death": ["burial"]
+		},
+		"ageRequirements": {
+			"confirmation": "12y"
+		}
+		
+		
+	}
+}

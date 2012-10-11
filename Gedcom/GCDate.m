@@ -562,6 +562,8 @@
 
 #pragma mark Helpers
 
+//TODO take into account age qualifiers and make them BEF/AFT
+
 - (id)dateByAddingAge:(GCAge *)age
 {
     NSDate *theDate = self.minDate ? self.minDate : self.maxDate;
@@ -573,6 +575,25 @@
     [ageComponents setYear:age.years];
     [ageComponents setMonth:age.months];
     [ageComponents setDay:age.days];
+    [ageComponents setHour:0];
+    [ageComponents setTimeZone:utc];
+    
+    NSDate *result = [self.calendar dateByAddingComponents:ageComponents toDate:theDate options:0];
+    
+    return [GCDate dateWithDate:result];
+}
+
+- (id)dateBySubtractingAge:(GCAge *)age
+{
+    NSDate *theDate = self.minDate ? self.minDate : self.maxDate;
+    
+    NSDateComponents *ageComponents = [[NSDateComponents alloc] init];
+    
+    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    
+    [ageComponents setYear:-age.years];
+    [ageComponents setMonth:-age.months];
+    [ageComponents setDay:-age.days];
     [ageComponents setHour:0];
     [ageComponents setTimeZone:utc];
     

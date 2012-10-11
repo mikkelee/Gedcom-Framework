@@ -9,7 +9,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import "Gedcom.h"
-#import <objc/runtime.h>
 
 @interface GCTestObserver : NSObject
 
