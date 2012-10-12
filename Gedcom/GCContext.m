@@ -342,12 +342,10 @@ __strong static NSArray *_rootKeys = nil;
     
     // call any registered blocks:
     @synchronized (_xrefToBlockMap) {
-        if (_xrefToBlockMap[xref]) {
-            for (void (^block) (NSString *, GCEntity *) in _xrefToBlockMap[xref]) {
-                block(xref, entity);
-            }
-            [_xrefToBlockMap removeObjectForKey:xref];
+        for (void (^block) (NSString *, GCEntity *) in _xrefToBlockMap[xref]) {
+            block(xref, entity);
         }
+        [_xrefToBlockMap removeObjectForKey:xref];
     }
 }
 
