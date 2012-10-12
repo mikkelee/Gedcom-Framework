@@ -182,6 +182,13 @@
 			remoteGlobalIDString = 3E1C3E65151C319C005E09E1;
 			remoteInfo = Gedcom;
 		};
+		3E39987B162858F70069041F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E1C3E65151C319C005E09E1;
+			remoteInfo = Gedcom;
+		};
 		3E75835715F7F09F00A9B096 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
@@ -936,6 +943,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3E39987C162858F70069041F /* PBXTargetDependency */,
 			);
 			name = GedcomTools;
 			productName = GedcomTools;
@@ -1157,6 +1165,11 @@
 			isa = PBXTargetDependency;
 			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
 			targetProxy = 3E3995DC155DE57F00228946 /* PBXContainerItemProxy */;
+		};
+		3E39987C162858F70069041F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
+			targetProxy = 3E39987B162858F70069041F /* PBXContainerItemProxy */;
 		};
 		3E75835815F7F09F00A9B096 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1644,6 +1657,7 @@
 				3E8C1E2F16255350005B3BE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

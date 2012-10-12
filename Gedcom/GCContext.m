@@ -85,6 +85,12 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert([nodes count] > 0);
     NSParameterAssert([self countOfEntities] == 1); // 1 for trailer
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didCountNodes:)]) {
+            [_delegate context:self didCountNodes:[nodes count]];
+        }
+    });
+    
 #ifdef DEBUGLEVEL
     clock_t start, end;
     double elapsed;
@@ -122,9 +128,11 @@ __strong static NSArray *_rootKeys = nil;
         return NO;
     }
     
-    if (_delegate && [_delegate respondsToSelector:@selector(context:didFinishWithEntityCount:)]) {
-        [_delegate context:self didFinishWithEntityCount:self.countOfEntities];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didFinishWithEntityCount:)]) {
+            [_delegate context:self didFinishWithEntityCount:self.countOfEntities];
+        }
+    });
     
     return YES;
 }

@@ -44,18 +44,20 @@
  */
 - (BOOL)context:(GCContext *)context shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
+- (void)context:(GCContext *)context didCountNodes:(NSUInteger)nodeCount;
+
 /** Will be called when a GCContext's entity count changes during parsing.
  
  @param context The context that sent the message.
  @param entityCount The new count.
  */
-- (void)context:(GCContext *)context didUpdateEntityCount:(NSInteger)entityCount;
+- (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount;
 
 /** Will be called when a GCContext's is done parsing.
  
  @param context The context that sent the message.
  @param entityCount The new count.
  */
-- (void)context:(GCContext *)context didFinishWithEntityCount:(NSInteger)entityCount;
+- (void)context:(GCContext *)context didFinishWithEntityCount:(NSUInteger)entityCount;
 
 @end
