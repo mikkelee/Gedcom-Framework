@@ -1446,6 +1446,7 @@
 				GCC_PREFIX_HEADER = "GedcomGUI/GedcomGUI-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"";
 				INFOPLIST_FILE = "GedcomGUI/GedcomGUI-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1463,6 +1464,7 @@
 				GCC_PREFIX_HEADER = "GedcomGUI/GedcomGUI-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"";
 				INFOPLIST_FILE = "GedcomGUI/GedcomGUI-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
