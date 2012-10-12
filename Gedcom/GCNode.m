@@ -52,10 +52,10 @@ static NSString *concSeparator;
     self = [super init];
     
 	if (self) {
-        self.lineSeparator = @"\n";
-        self.gedTag = tag;
-        self.xref = xref;
-        self.gedValue = value;
+        _lineSeparator = @"\n";
+        _gedTag = tag;
+        _xref = xref;
+        _gedValue = value;
         
         if (subNodes) {
             _subNodes = [subNodes mutableCopy]; 
