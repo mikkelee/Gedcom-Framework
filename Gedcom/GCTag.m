@@ -191,6 +191,30 @@ static inline void setupKey(NSString *key) {
     if (self) {
         _name = name;
         _settings = settings;
+        
+        _code = _settings[kCode];
+        _isCustom = [_name hasPrefix:@"custom"];
+        _localizedName = [[NSBundle bundleForClass:[self class]] localizedStringForKey:_name value:_name table:@"Tags"];
+        _pluralName = _settings[kPlural];
+        
+        // objectClass
+        NSString *lookupName = self.name;
+        if (self.isCustom) {
+            lookupName = @"custom";
+        }
+        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[lookupName substringToIndex:1] uppercaseString], [lookupName substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
+        _objectClass = NSClassFromString(objectClassString);
+        
+        // for entities:
+        _hasXref = _settings[kHasXref] != nil;
+        _hasValue = _settings[kHasValue] != nil;
+        
+        // for attributes:
+        _valueType = NSClassFromString([NSString stringWithFormat:@"GC%@", [_settings[kValueType] capitalizedString]]);
+        _allowedValues = [_settings[kAllowedValues] valueForKey:@"uppercaseString"];
+        
+        // for relationships:
+        _targetType = _isCustom ? NSClassFromString(@"GCEntity") :  NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [_settings[kTargetType] capitalizedString]]);
     }
     
     return self;    
@@ -427,83 +451,6 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
 
 #pragma mark Objective-C properties
 
-- (NSString *)localizedName
-{
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    return [frameworkBundle localizedStringForKey:_name value:_name table:@"Tags"];
-}
-
-- (NSString *)pluralName
-{
-    return _settings[kPlural];
-}
-
-- (NSString *)code
-{
-    return _settings[kCode];
-}
-
-- (Class)valueType
-{
-    if (!_cachedValueClass) {
-        NSString *valueTypeString = _settings[kValueType];
-        
-        _cachedValueClass = NSClassFromString([NSString stringWithFormat:@"GC%@", [valueTypeString capitalizedString]]);
-        
-        //NSLog(@"valueTypeString: %@ => %@", valueTypeString, _cachedValueClass);
-    }
-    
-	return _cachedValueClass;
-}
-
-- (NSArray *)allowedValues
-{
-    if (!_cachedAllowedValues) {
-        NSMutableArray *aVs = [NSMutableArray array];
-        
-        for (NSString *allowedValue in _settings[kAllowedValues]) {
-            [aVs addObject:[allowedValue uppercaseString]];
-        }
-        
-        _cachedAllowedValues = [aVs copy];
-    }
-    
-    return _cachedAllowedValues;
-}
-
-- (Class)objectClass
-{
-    if (!_cachedObjectClass) {
-        NSString *lookupName = self.name;
-        if (self.isCustom) {
-            lookupName = @"custom";
-        }
-        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[lookupName substringToIndex:1] uppercaseString], [lookupName substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
-        
-        _cachedObjectClass = NSClassFromString(objectClassString);
-        
-        //NSLog(@"objectClassString: %@ => %@", objectClassString, _cachedObjectClass);
-    }
-    
-	return _cachedObjectClass;
-}
-
-- (Class)targetType
-{
-    if (!_cachedTargetType) {
-        if (self.isCustom) {
-            _cachedTargetType = NSClassFromString(@"GCEntity");
-        } else {
-            NSString *targetTypeString = _settings[kTargetType];
-            
-            _cachedTargetType = NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [targetTypeString capitalizedString]]);
-        }
-    }
-    
-	return _cachedTargetType;
-}
-
 static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
     if (valid[kGroupName]) {
         for (NSDictionary *variant in _tagInfo[valid[kGroupName]][kVariants]) {
@@ -529,28 +476,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
 
 - (GCTag *)reverseRelationshipTag
 {
-	NSString *name = _settings[kReverseRelationshipTag];
-	
-	if (name != nil) {
-		return [GCTag tagNamed:name];
-	} else {
-		return nil;
-	}
-}
+    return _settings[kReverseRelationshipTag] ? [GCTag tagNamed:_settings[kReverseRelationshipTag]] : nil;
 
-- (BOOL)isCustom
-{
-    return [_name hasPrefix:@"custom"];
 }
-
-- (BOOL)hasXref
-{
-    return _settings[kHasXref] != nil;
-}
-
-- (BOOL)hasValue
-{
-    return _settings[kHasValue] != nil;
-}
-
 @end
