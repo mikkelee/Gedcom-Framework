@@ -19,7 +19,7 @@
 
 #pragma mark GCContextDelegate methods
 
-- (void)context:(GCContext *)context didCountNodes:(NSUInteger)nodeCount
+- (void)context:(GCContext *)context willParseNodes:(NSUInteger)nodeCount
 {
     [_loadingProgress setIndeterminate:NO];
     [_loadingProgress setMaxValue:nodeCount];

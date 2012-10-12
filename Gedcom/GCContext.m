@@ -86,8 +86,8 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert([self countOfEntities] == 1); // 1 for trailer
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didCountNodes:)]) {
-            [_delegate context:self didCountNodes:[nodes count]];
+        if (_delegate && [_delegate respondsToSelector:@selector(context:willParseNodes:)]) {
+            [_delegate context:self willParseNodes:[nodes count]];
         }
     });
     
