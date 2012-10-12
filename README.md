@@ -30,7 +30,11 @@ A short summary of the functionality follows:
 * Full [AppleDoc](http://gentlebytes.com/appledoc/) documentation is contained in the headers and can be built with the Documentation target.
 * No external dependencies for usage; compiling requires python & ragel.
 
-Additionally, a simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structures as gedcom strings as well as a hierarchy of display-formatted strings, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [Screenshot as of May 31, 2012](https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png)
+Additionally two application targets are included:
+
+* **GedcomTools**: A simple validation app that will display any validation errors it may find in a given Gedcom file.
+
+* **GedcomGUI**: A simple GUI is included that can open a .ged file; it will display a list of the individuals with names and birth data, and allow the user to inspect the structures as gedcom strings as well as a hierarchy of display-formatted strings, as well as experiment with editing the Gedcom data directly, and see how it is parsed. Saving is not currently enabled to prevent accidental data loss. [Screenshot as of May 31, 2012](https://github.com/mikkelee/Gedcom-Framework/raw/master/screenshot.png)
 
 # Version history #
 
