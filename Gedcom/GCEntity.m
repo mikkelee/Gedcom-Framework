@@ -86,7 +86,7 @@
         _isBuildingFromGedcom = YES;
         
         if (tag.hasXref)
-            [context _setXref:node.xref forEntity:self];
+            [self.context _setXref:node.xref forEntity:self];
         
         if (tag.hasValue)
             self.value = [GCString valueWithGedcomString:node.gedValue];

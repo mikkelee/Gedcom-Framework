@@ -27,7 +27,7 @@
     
     if (self) {
         NSParameterAssert(object.context);
-        //NSLog(@"%p: registering callback for %p on %@", self.context, self, [node gedValue]);
+        //NSLog(@"%p: registering callback for %p on %@", object.context, self, [node gedValue]);
         [object.context _registerCallbackForXref:node.gedValue usingBlock:^void(NSString *xref, GCEntity *entity) {
             //NSLog(@"set %@ => %p on %p", xref, entity, self);
             self.target = entity;
