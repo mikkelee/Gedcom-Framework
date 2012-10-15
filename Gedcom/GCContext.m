@@ -108,6 +108,7 @@ __strong static NSArray *_rootKeys = nil;
             *stop = YES;
             return;
         } else {
+            //NSLog(@"%p: creating %@", self, tag.objectClass);
             (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self]; // it will add itself to the context
         }
     }];
@@ -122,7 +123,7 @@ __strong static NSArray *_rootKeys = nil;
         if (error != NULL) {
             *error = [NSError errorWithDomain:GCErrorDomain
                                          code:GCParsingInconcistencyError
-                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Inconsistent number of entities after handling nodes: %ld should be %ld (a misplaced TRLR?)", handledNodes, [nodes count]]}];
+                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Unexpected number of entities after handling nodes: %ld should be %ld (a misplaced TRLR?)", handledNodes, [nodes count]]}];
         }
         
         return NO;
@@ -327,6 +328,10 @@ __strong static NSArray *_rootKeys = nil;
     
     NSString *pointer = [NSString stringWithFormat:@"%p", entity];
     
+    //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
+    
+    // TODO - check if xref is used already!
+    // clear previously set xref, if any:
     @synchronized (_entityToXrefMap) {
         if (_entityToXrefMap[entity]) {
             @synchronized (_xrefToEntityMap) {
@@ -338,8 +343,6 @@ __strong static NSArray *_rootKeys = nil;
         }
     }
     
-    //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
-    
     // update maps:
     @synchronized (_xrefToEntityMap) {
         _xrefToEntityMap[xref] = entity;
@@ -350,8 +353,8 @@ __strong static NSArray *_rootKeys = nil;
     
     // call any registered blocks:
     @synchronized (_xrefToBlockMap) {
-        for (void (^block) (NSString *, GCEntity *) in _xrefToBlockMap[xref]) {
-            block(xref, entity);
+        for (void (^callback) (NSString *, GCEntity *) in _xrefToBlockMap[xref]) {
+            callback(xref, entity);
         }
         [_xrefToBlockMap removeObjectForKey:xref];
     }
@@ -381,7 +384,7 @@ __strong static NSArray *_rootKeys = nil;
         }
     }
     
-    //NSLog(@"%p found %@ for %p in %@", self, xref, entity, _entityToXrefMap);
+    //NSLog(@"%p: found %@ for %p in %@", self, xref, entity, _entityToXrefMap);
     
     return xref;
 }
@@ -393,17 +396,17 @@ __strong static NSArray *_rootKeys = nil;
     }
 }
 
-- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref, GCEntity *entity))block
+- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref, GCEntity *entity))callback
 {
     NSParameterAssert(xref);
     
     @synchronized (_xrefToBlockMap) {
         if ([self _entityForXref:xref]) {
-            block(xref, [self _entityForXref:xref]);
+            callback(xref, [self _entityForXref:xref]);
         } else	if (_xrefToBlockMap[xref]) {
-            [_xrefToBlockMap[xref] addObject:[block copy]];
+            [_xrefToBlockMap[xref] addObject:[callback copy]];
         } else {
-            _xrefToBlockMap[xref] = [NSMutableSet setWithObject:[block copy]];
+            _xrefToBlockMap[xref] = [NSMutableSet setWithObject:[callback copy]];
         }
     }
 }
