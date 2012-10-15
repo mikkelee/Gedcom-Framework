@@ -36,17 +36,20 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 
 + (void)initialize
 {
-    @synchronized (_validPropertiesByType) {
-        _validPropertiesByType = [NSMutableDictionary dictionary];
-    }
-    
-    @synchronized (_defaultColors) {
-        _defaultColors = @{
-        GCLevelAttributeName : [NSColor redColor],
-        GCXrefAttributeName : [NSColor blueColor],
-        GCTagAttributeName : [NSColor darkGrayColor]
-        };
-    }
+    static dispatch_once_t predObjectInit = 0;
+    dispatch_once(&predObjectInit, ^{
+        @synchronized (_validPropertiesByType) {
+            _validPropertiesByType = [NSMutableDictionary dictionary];
+        }
+        
+        @synchronized (_defaultColors) {
+            _defaultColors = @{
+            GCLevelAttributeName : [NSColor redColor],
+            GCXrefAttributeName : [NSColor blueColor],
+            GCTagAttributeName : [NSColor darkGrayColor]
+            };
+        }
+    });
 }
 
 //COV_NF_START
