@@ -128,14 +128,14 @@
 
 #pragma mark GCContextDelegate methods
 
-- (void)context:(GCContext *)context didUpdateEntityCount:(NSInteger)entityCount
+- (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount
 {
     if (entityCount < 100 || entityCount % 100 == 0) {
         [recordCountField setIntegerValue:entityCount];
     }
 }
 
-- (void)context:(GCContext *)context didFinishWithEntityCount:(NSInteger)entityCount
+- (void)context:(GCContext *)context didFinishWithEntityCount:(NSUInteger)entityCount
 {
     [recordCountField setIntegerValue:entityCount];
     

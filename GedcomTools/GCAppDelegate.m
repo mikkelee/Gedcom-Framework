@@ -34,18 +34,18 @@
 {
     [_loadingProgress incrementBy:(entityCount - [_loadingProgress doubleValue])];
     
-    NSError *error = nil;
-    
     [_statusLabel setStringValue:@"Validating..."];
     [_loadingProgress setIndeterminate:YES];
     [_loadingProgress startAnimation:self];
+    
+    NSError *error = nil;
     
     BOOL result = [ctx validateContext:&error];
     
     if (!result) {
         [_resultView setString:[error description]];
     } else {
-        [_resultView setString:@"File OK!"];
+        [_resultView setString:@"File is valid!"];
     }
     
     [_statusLabel setStringValue:@"Done."];
@@ -89,7 +89,7 @@
             
             if (!didLoad) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [_statusLabel setStringValue:@"Done."];
+                    [_statusLabel setStringValue:@"Error loading file."];
                     [_loadingProgress stopAnimation:self];
                     [_testButton setEnabled:YES];
                     [_resultView setString:[error description]];
