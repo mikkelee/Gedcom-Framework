@@ -94,7 +94,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 #import "GCDate_internal.h"
 
 
-#line 288 "GCDateParser.rl"
+#line 285 "GCDateParser.rl"
 
 
 
@@ -2183,26 +2183,41 @@ static const int date_error = 0;
 static const int date_en_main = 1;
 
 
-#line 291 "GCDateParser.rl"
+#line 288 "GCDateParser.rl"
 
 @implementation GCDateParser {
 	NSMutableDictionary *_cache;
 }
 
 __strong static id _sharedDateParser = nil;
+__strong static NSTimeZone *_utc;
 __strong static NSCalendar *_gregorianCalendar;
 __strong static NSCalendar *_hebrewCalendar;
 __strong static NSCalendar *_frenchRevolutionaryCalendar;
+__strong static NSArray *_gregorianMonthNames;
+__strong static NSArray *_hebrewMonthNames;
+__strong static NSArray *_frenchRevolutionaryMonthNames;
 
 + (void)initialize
 {
-    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     _sharedDateParser = [[self alloc] init];
+    
+    _utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    
     _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [_gregorianCalendar setTimeZone:utc];
+    [_gregorianCalendar setTimeZone:_utc];
+    
     _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
-    [_hebrewCalendar setTimeZone:utc];
+    [_hebrewCalendar setTimeZone:_utc];
+    
     _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
+    
+    _gregorianMonthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
+
+    _hebrewMonthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
+
+    _frenchRevolutionaryMonthNames = @[ @"VEND", @"BRUM", @"FRIM", @"NIVO", @"PLUV", @"VENT", @"GERM", @"FLOR", @"PRAI", @"MESS", @"THER", @"FRUC", @"COMP" ];
+
 }
 
 + (id)sharedDateParser
@@ -2239,7 +2254,7 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         [currentDateComponents setHour:0];
         [currentDateComponents setMinute:0];
         [currentDateComponents setSecond:0];
-        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [currentDateComponents setTimeZone:_utc];
         NSCalendar *calendar = _gregorianCalendar;
         
         long tag = 0;
@@ -2261,14 +2276,14 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         const char *eof = pe;
         
         
-#line 2265 "GCDateParser.m"
+#line 2280 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 368 "GCDateParser.rl"
+#line 380 "GCDateParser.rl"
         
-#line 2272 "GCDateParser.m"
+#line 2287 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2382,74 +2397,71 @@ _match:
 	case 5:
 #line 128 "GCDateParser.rl"
 	{
-        NSArray *monthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
-        [currentDateComponents setMonth:[monthNames indexOfObject:currentString]+1];
+        [currentDateComponents setMonth:[_gregorianMonthNames indexOfObject:currentString]+1];
 		//NSLog(@"%p saveMonthWord: %d", fpc, currentNumber);
 	}
 	break;
 	case 6:
-#line 134 "GCDateParser.rl"
+#line 133 "GCDateParser.rl"
 	{
-        NSArray *monthNames = @[ @"VEND", @"BRUM", @"FRIM", @"NIVO", @"PLUV", @"VENT", @"GERM", @"FLOR", @"PRAI", @"MESS", @"THER", @"FRUC", @"COMP" ];
-        [currentDateComponents setMonth:[monthNames indexOfObject:currentString]+1];
+        [currentDateComponents setMonth:[_frenchRevolutionaryMonthNames indexOfObject:currentString]+1];
 		//NSLog(@"%p saveMonthFren: %d", fpc, currentNumber);
 	}
 	break;
 	case 7:
-#line 140 "GCDateParser.rl"
+#line 138 "GCDateParser.rl"
 	{
-        NSArray *monthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
-        [currentDateComponents setMonth:[monthNames indexOfObject:currentString]+1];
+        [currentDateComponents setMonth:[_hebrewMonthNames indexOfObject:currentString]+1];
 		//NSLog(@"%p saveMonthHebr: %d", fpc, currentNumber);
 	}
 	break;
 	case 8:
-#line 146 "GCDateParser.rl"
+#line 143 "GCDateParser.rl"
 	{
         [currentDateComponents setYear:currentNumber];
 		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
 	break;
 	case 9:
-#line 151 "GCDateParser.rl"
+#line 148 "GCDateParser.rl"
 	{
         yearGreg = currentString;
 		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
 	break;
 	case 10:
-#line 156 "GCDateParser.rl"
+#line 153 "GCDateParser.rl"
 	{
         calendar = _gregorianCalendar;
     }
 	break;
 	case 11:
-#line 160 "GCDateParser.rl"
+#line 157 "GCDateParser.rl"
 	{
         // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
         calendar = _gregorianCalendar;
     }
 	break;
 	case 12:
-#line 165 "GCDateParser.rl"
+#line 162 "GCDateParser.rl"
 	{
         calendar = _hebrewCalendar;
     }
 	break;
 	case 13:
-#line 169 "GCDateParser.rl"
+#line 166 "GCDateParser.rl"
 	{
         calendar = _frenchRevolutionaryCalendar;
     }
 	break;
 	case 14:
-#line 173 "GCDateParser.rl"
+#line 170 "GCDateParser.rl"
 	{
         approximationQualifier = currentString;
     }
 	break;
 	case 15:
-#line 177 "GCDateParser.rl"
+#line 174 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
         
@@ -2462,13 +2474,13 @@ _match:
         [currentDateComponents setHour:0];
         [currentDateComponents setMinute:0];
         [currentDateComponents setSecond:0];
-        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [currentDateComponents setTimeZone:_utc];
         
         currentDate = nil;
     }
 	break;
 	case 16:
-#line 194 "GCDateParser.rl"
+#line 191 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
@@ -2479,13 +2491,13 @@ _match:
     }
 	break;
 	case 18:
-#line 208 "GCDateParser.rl"
+#line 205 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePhrase.", fpc);
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2489 "GCDateParser.m"
+#line 2501 "GCDateParser.m"
 		}
 	}
 
@@ -2518,46 +2530,46 @@ _again:
 	}
 	break;
 	case 8:
-#line 146 "GCDateParser.rl"
+#line 143 "GCDateParser.rl"
 	{
         [currentDateComponents setYear:currentNumber];
 		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
 	break;
 	case 9:
-#line 151 "GCDateParser.rl"
+#line 148 "GCDateParser.rl"
 	{
         yearGreg = currentString;
 		//NSLog(@"%p saveYears: %d", fpc, currentNumber);
 	}
 	break;
 	case 10:
-#line 156 "GCDateParser.rl"
+#line 153 "GCDateParser.rl"
 	{
         calendar = _gregorianCalendar;
     }
 	break;
 	case 11:
-#line 160 "GCDateParser.rl"
+#line 157 "GCDateParser.rl"
 	{
         // NSGregorianCalendar has Julian October 4, 1582 >>> Gregorian October 15, 1582
         calendar = _gregorianCalendar;
     }
 	break;
 	case 12:
-#line 165 "GCDateParser.rl"
+#line 162 "GCDateParser.rl"
 	{
         calendar = _hebrewCalendar;
     }
 	break;
 	case 13:
-#line 169 "GCDateParser.rl"
+#line 166 "GCDateParser.rl"
 	{
         calendar = _frenchRevolutionaryCalendar;
     }
 	break;
 	case 15:
-#line 177 "GCDateParser.rl"
+#line 174 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePart.", fpc);
         
@@ -2570,13 +2582,13 @@ _again:
         [currentDateComponents setHour:0];
         [currentDateComponents setMinute:0];
         [currentDateComponents setSecond:0];
-        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [currentDateComponents setTimeZone:_utc];
         
         currentDate = nil;
     }
 	break;
 	case 16:
-#line 194 "GCDateParser.rl"
+#line 191 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateSimple.", fpc);
         currentDate = [GCDate dateWithSimpleDate:currentDateComponents calendar:calendar];
@@ -2587,42 +2599,42 @@ _again:
     }
 	break;
 	case 17:
-#line 203 "GCDateParser.rl"
+#line 200 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateApproximate.", fpc);
         currentDate = [GCDate dateWithApproximateDate:currentDate type:approximationQualifier];
     }
 	break;
 	case 19:
-#line 213 "GCDateParser.rl"
+#line 210 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateInterpreted.", fpc);
         currentDate = [GCDate dateWithInterpretedDate:previousDate phrase:currentDate];
     }
 	break;
 	case 20:
-#line 218 "GCDateParser.rl"
+#line 215 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDateRange.", fpc);
         currentDate = [GCDate dateWithRangeFrom:previousDate to:currentDate];
     }
 	break;
 	case 21:
-#line 223 "GCDateParser.rl"
+#line 220 "GCDateParser.rl"
 	{
 		//NSLog(@"%p saveDatePeriod.", fpc);
         currentDate = [GCDate dateWithPeriodFrom:previousDate to:currentDate];
     }
 	break;
 	case 22:
-#line 228 "GCDateParser.rl"
+#line 225 "GCDateParser.rl"
 	{
 		//NSLog(@"%p finish.", fpc);
         date = currentDate;
 		finished = YES;
 	}
 	break;
-#line 2626 "GCDateParser.m"
+#line 2638 "GCDateParser.m"
 		}
 	}
 	}
@@ -2630,7 +2642,7 @@ _again:
 	_out: {}
 	}
 
-#line 369 "GCDateParser.rl"
+#line 381 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

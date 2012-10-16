@@ -126,20 +126,17 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 	}
 	
 	action saveMonthWord {
-        NSArray *monthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
-        [currentDateComponents setMonth:[monthNames indexOfObject:currentString]+1];
+        [currentDateComponents setMonth:[_gregorianMonthNames indexOfObject:currentString]+1];
 		//NSLog(@"%p saveMonthWord: %d", fpc, currentNumber);
 	}
 	
 	action saveMonthFren {
-        NSArray *monthNames = @[ @"VEND", @"BRUM", @"FRIM", @"NIVO", @"PLUV", @"VENT", @"GERM", @"FLOR", @"PRAI", @"MESS", @"THER", @"FRUC", @"COMP" ];
-        [currentDateComponents setMonth:[monthNames indexOfObject:currentString]+1];
+        [currentDateComponents setMonth:[_frenchRevolutionaryMonthNames indexOfObject:currentString]+1];
 		//NSLog(@"%p saveMonthFren: %d", fpc, currentNumber);
 	}
 	
 	action saveMonthHebr {
-        NSArray *monthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
-        [currentDateComponents setMonth:[monthNames indexOfObject:currentString]+1];
+        [currentDateComponents setMonth:[_hebrewMonthNames indexOfObject:currentString]+1];
 		//NSLog(@"%p saveMonthHebr: %d", fpc, currentNumber);
 	}
 	
@@ -186,7 +183,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
         [currentDateComponents setHour:0];
         [currentDateComponents setMinute:0];
         [currentDateComponents setSecond:0];
-        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [currentDateComponents setTimeZone:_utc];
         
         currentDate = nil;
     }
@@ -294,19 +291,34 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 }
 
 __strong static id _sharedDateParser = nil;
+__strong static NSTimeZone *_utc;
 __strong static NSCalendar *_gregorianCalendar;
 __strong static NSCalendar *_hebrewCalendar;
 __strong static NSCalendar *_frenchRevolutionaryCalendar;
+__strong static NSArray *_gregorianMonthNames;
+__strong static NSArray *_hebrewMonthNames;
+__strong static NSArray *_frenchRevolutionaryMonthNames;
 
 + (void)initialize
 {
-    NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     _sharedDateParser = [[self alloc] init];
+    
+    _utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    
     _gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [_gregorianCalendar setTimeZone:utc];
+    [_gregorianCalendar setTimeZone:_utc];
+    
     _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
-    [_hebrewCalendar setTimeZone:utc];
+    [_hebrewCalendar setTimeZone:_utc];
+    
     _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
+    
+    _gregorianMonthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
+
+    _hebrewMonthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
+
+    _frenchRevolutionaryMonthNames = @[ @"VEND", @"BRUM", @"FRIM", @"NIVO", @"PLUV", @"VENT", @"GERM", @"FLOR", @"PRAI", @"MESS", @"THER", @"FRUC", @"COMP" ];
+
 }
 
 + (id)sharedDateParser
@@ -343,7 +355,7 @@ __strong static NSCalendar *_frenchRevolutionaryCalendar;
         [currentDateComponents setHour:0];
         [currentDateComponents setMinute:0];
         [currentDateComponents setSecond:0];
-        [currentDateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [currentDateComponents setTimeZone:_utc];
         NSCalendar *calendar = _gregorianCalendar;
         
         long tag = 0;
