@@ -27,10 +27,10 @@
 {
     GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
-    if (!tag.isCustom) {
-        self = [[tag.objectClass alloc] init];
-    } else {
+    if (tag.isCustom) {
         self = [[tag.objectClass alloc] _initWithType:tag.name];
+    } else {
+        self = [self init];
     }
     
     if (self) {
