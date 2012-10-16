@@ -17,11 +17,13 @@
 @implementation GCPlacestring {
 }
 
-__strong static id _rootPlace = nil;
+__strong static GCPlacestring *_rootPlace = nil;
+__strong static NSMutableDictionary *_allPlaces = nil;
 
 + (void)initialize
 {
     _rootPlace = [[self alloc] initWithValue:@"@ROOT"];
+    _allPlaces = [NSMutableDictionary dictionary];
 }
 
 + (id)rootPlace
@@ -43,6 +45,12 @@ __strong static id _rootPlace = nil;
 
 + (id)valueWithGedcomString:(NSString *)gedcomString
 {
+    @synchronized(_allPlaces) {
+        if (_allPlaces[gedcomString]) {
+            return _allPlaces[gedcomString];
+        }
+    }
+    
     @synchronized([self rootPlace]) {
         NSArray *places = [gedcomString componentsSeparatedByString:@","];
         
@@ -58,6 +66,8 @@ __strong static id _rootPlace = nil;
                 parent = place;
             }
         }
+        
+        _allPlaces[gedcomString] = parent;
         
         return parent;
     }
