@@ -10,7 +10,7 @@
 
 @interface GCMutableNode ()
 
-@property (weak) GCNode *parent;
+@property (weak, nonatomic) GCNode *parent;
 
 @property (readonly) NSMutableArray *internalSubNodes;
 

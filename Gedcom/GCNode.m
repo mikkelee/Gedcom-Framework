@@ -15,11 +15,11 @@
 
 - (void)addSubNode: (GCNode *) n;
 
-@property (weak) GCNode *parent;
-@property NSString *gedTag;
-@property NSString *gedValue;
-@property NSString *xref;
-@property NSString *lineSeparator;
+@property (weak, nonatomic) GCNode *parent;
+@property (nonatomic) NSString *gedTag;
+@property (nonatomic) NSString *gedValue;
+@property (nonatomic) NSString *xref;
+@property (nonatomic) NSString *lineSeparator;
 
 @end
 

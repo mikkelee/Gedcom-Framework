@@ -18,18 +18,18 @@
 /// @name Accessing properties
 
 /// The tag of the receiver; may not be `nil`.
-@property NSString *gedTag;
+@property (nonatomic) NSString *gedTag;
 
 /// The value of the receiver; may be `nil`.
-@property NSString *gedValue;
+@property (nonatomic) NSString *gedValue;
 
 /// The xref of the receiver; may be `nil`.
-@property NSString *xref;
+@property (nonatomic) NSString *xref;
 
 /// The line separator of the receiver; usually `\n`.
-@property NSString *lineSeparator;
+@property (nonatomic) NSString *lineSeparator;
 
 /// A KVC-compliant uniquing ordered collection containing the subnodes of the receiver.
-@property (readonly) NSMutableArray *subNodes;
+@property (readonly, nonatomic) NSMutableArray *subNodes;
 
 @end

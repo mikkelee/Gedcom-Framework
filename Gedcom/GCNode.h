@@ -106,28 +106,28 @@
 /// @name Accessing properties
 
 /// The parent node of the receiver; will be `nil` for root nodes.
-@property (weak, readonly) GCNode *parent;
+@property (weak, readonly, nonatomic) GCNode *parent;
 
 /// The tag of the receiver; may not be `nil`.
-@property (readonly) NSString *gedTag;
+@property (readonly, nonatomic) NSString *gedTag;
 
 /// The value of the receiver; may be `nil`.
-@property (readonly) NSString *gedValue;
+@property (readonly, nonatomic) NSString *gedValue;
 
 /// `TRUE` the value is non-nil and starts and ends with a `@`, otherwise `NO`.
-@property (readonly) BOOL valueIsXref;
+@property (readonly, nonatomic) BOOL valueIsXref;
 
 /// The xref of the receiver; may be `nil`.
-@property (readonly) NSString *xref;
+@property (readonly, nonatomic) NSString *xref;
 
 /// The line separator of the receiver; usually `\n`.
-@property (readonly) NSString *lineSeparator;
+@property (readonly, nonatomic) NSString *lineSeparator;
 
 /// An ordered collection containing the subnodes of the receiver; may not be `nil`.
-@property (readonly) NSArray *subNodes;
+@property (readonly, nonatomic) NSArray *subNodes;
 
 /// A uniquing collection containing the gedTags for all subNodes of the receiver.
-@property (readonly) NSSet *allSubTags;
+@property (readonly, nonatomic) NSSet *allSubTags;
 
 @end
 
