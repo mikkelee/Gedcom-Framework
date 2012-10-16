@@ -28,6 +28,7 @@
     Class _cachedTargetType;
     NSArray *_cachedAllowedValues;
     NSArray *_multipleAllowedCache;
+    NSArray *_onlySingleAllowedCache;
 }
 
 #pragma mark Constants
@@ -258,14 +259,13 @@ static inline void setupKey(NSString *key) {
 
 #pragma mark Subtags
 
-- (void)buildSubTagCaches
+- (void)_buildSubTagCaches
 {
     NSMutableDictionary *byCode = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    [NSMutableDictionary dictionary], @"attribute",
                                    [NSMutableDictionary dictionary], @"relationship",
                                    nil];
     NSMutableDictionary *byName = [NSMutableDictionary dictionary];
-    NSMutableDictionary *byGroup = [NSMutableDictionary dictionary];
     
     for (GCTag *subTag in self.validSubTags) {
         NSString *typeKey = [NSStringFromClass(subTag.objectClass) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
@@ -275,30 +275,14 @@ static inline void setupKey(NSString *key) {
         byName[subTag.pluralName] = subTag;
     }
     
-    [_tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *tagDict, BOOL *stop) {
-        //TODO checking every tag every time is a bit much, use _settings instead?
-        if ([key hasPrefix:@"@"]) {
-            NSString *variantGroupName = tagDict[kPlural];
-            for (NSDictionary *variant in tagDict[kVariants]) {
-                if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kName]]]) {
-                    if (!byGroup[variantGroupName]) {
-                        byGroup[variantGroupName] = [NSMutableArray array];
-                    }
-                    [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
-                }
-            }
-        }
-    }];
-    
     _cachedSubTagsByCode = [byCode copy];
     _cachedSubTagsByName = [byName copy];
-    _cachedSubTagsByGroup = [byGroup copy];
 }
 
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
     if (!_cachedSubTagsByCode) {
-        [self buildSubTagCaches];
+        [self _buildSubTagCaches];
     }
     
     if ([code hasPrefix:@"_"]) {
@@ -330,7 +314,7 @@ static inline void setupKey(NSString *key) {
 - (GCTag *)subTagWithName:(NSString *)name
 {
     if (!_cachedSubTagsByName) {
-        [self buildSubTagCaches];
+        [self _buildSubTagCaches];
     }
     
     return _cachedSubTagsByName[name];
@@ -339,7 +323,24 @@ static inline void setupKey(NSString *key) {
 - (NSArray *)subTagsInGroup:(NSString *)groupName
 {
     if (!_cachedSubTagsByGroup) {
-        [self buildSubTagCaches];
+        NSMutableDictionary *byGroup = [NSMutableDictionary dictionary];
+        
+        [_settings[kValidSubTags] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString *key = obj[kGroupName];
+            if (key) {
+                NSString *variantGroupName = _tagInfo[key][kPlural];
+                for (NSDictionary *variant in _tagInfo[key][kVariants]) {
+                    if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kName]]]) {
+                        if (!byGroup[variantGroupName]) {
+                            byGroup[variantGroupName] = [NSMutableArray array];
+                        }
+                        [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
+                    }
+                }
+            }
+        }];
+        
+        _cachedSubTagsByGroup = [byGroup copy];
     }
     
     return _cachedSubTagsByGroup[groupName];
@@ -398,25 +399,33 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
 
 - (BOOL)allowsMultipleOccurrencesOfSubTag:(GCTag *)tag
 {
-    if (!_multipleAllowedCache) {
+    if (!_onlySingleAllowedCache) {
+        NSMutableArray *onlySingleAllowedCache = [NSMutableArray array];
         NSMutableArray *multipleAllowedCache = [NSMutableArray array];
         
         for (GCTag *t in self.validSubTags) {
             if ([self allowedOccurrencesOfSubTag:t].max > 1) {
                 [multipleAllowedCache addObject:t];
+            } else {
+                [onlySingleAllowedCache addObject:t];
             }
         }
         
-        @synchronized (_multipleAllowedCache) {
+        @synchronized (_onlySingleAllowedCache) {
+            _onlySingleAllowedCache = [onlySingleAllowedCache copy];
             _multipleAllowedCache = [multipleAllowedCache copy];
         }
     }
     
-    BOOL allowed = [_multipleAllowedCache containsObject:tag];
+    BOOL singleAllowed = [_onlySingleAllowedCache containsObject:tag];
+    BOOL multipleAllowed = [_multipleAllowedCache containsObject:tag];
     
-    if (allowed) {
+    if (singleAllowed) {
+        return NO;
+    } else if (multipleAllowed) {
         return YES;
     } else {
+        //NSLog(@"Couldn't decide if multiple %@ were allowed on %@", tag, self);
         return [self allowedOccurrencesOfSubTag:tag].max > 1; // it's probably custom, let's look it up
     }
 }
