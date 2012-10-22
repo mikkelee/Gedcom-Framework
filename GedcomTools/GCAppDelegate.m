@@ -38,14 +38,26 @@
     [_loadingProgress setIndeterminate:YES];
     [_loadingProgress startAnimation:self];
     
-    NSError *error = nil;
+    NSError *validationError = nil;
     
-    BOOL result = [ctx validateContext:&error];
+    BOOL isValid = [ctx validateContext:&validationError];
     
-    if (!result) {
-        [_resultView setString:[error description]];
+    if (!isValid) {
+        [_resultView setString:[NSString stringWithFormat:@"**** Validity Check ****\n%@", [validationError description]]];
     } else {
         [_resultView setString:@"File is valid!"];
+    }
+    
+    [_statusLabel setStringValue:@"Sanity checking..."];
+    
+    NSError *sanityError = nil;
+    
+    BOOL isSane = [ctx sanityCheck:&sanityError];
+    
+    if (!isSane) {
+        [_resultView setString:[NSString stringWithFormat:@"%@\n **** Sanity Check ****\n%@", [_resultView string], [sanityError description]]];
+    } else {
+        [_resultView setString:@"File is sane!"];
     }
     
     [_statusLabel setStringValue:@"Done."];

@@ -1328,7 +1328,6 @@
 							<string key="NSFrame">{{443, 8}, {103, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="466722327">
@@ -1384,7 +1383,7 @@
 											<string key="NSFrameSize">{503, 384}</string>
 											<reference key="NSSuperview" ref="937128014"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="875464472"/>
+											<reference key="NSNextKeyView" ref="894009777"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="205239979">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1648,7 +1647,7 @@ wGw</bytes>
 							<string key="NSFrame">{{20, 44}, {520, 386}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="894009777"/>
+							<reference key="NSNextKeyView" ref="937128014"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133138</int>
 							<reference key="NSVScroller" ref="875464472"/>
