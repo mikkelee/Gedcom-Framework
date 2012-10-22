@@ -26,7 +26,7 @@
     self = [super initWithGedcomNode:node onObject:object];
     
     if (self) {
-        NSParameterAssert(object.context);
+        GCParameterAssert(object.context);
         //NSLog(@"%p: registering callback for %p on %@", object.context, self, [node gedValue]);
         [object.context _registerCallbackForXref:node.gedValue usingBlock:^void(NSString *xref, GCEntity *entity) {
             //NSLog(@"set %@ => %p on %p", xref, entity, self);
@@ -53,7 +53,7 @@
 
 - (GCNode *)gedcomNode
 {
-    NSParameterAssert(_target);
+    GCParameterAssert(_target);
     
     return [[GCNode alloc] initWithTag:self.gedTag.code
 								 value:[self.context _xrefForEntity:_target]
@@ -128,7 +128,7 @@
 - (void)setTarget:(GCEntity *)target
 {
     NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
-    NSParameterAssert([[target class] isSubclassOfClass:self.gedTag.targetType]);
+    NSParameterAssert([target isKindOfClass:self.gedTag.targetType]);
     
     //NSLog(@"self: %@", self);
     

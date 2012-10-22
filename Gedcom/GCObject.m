@@ -287,7 +287,7 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
     
     _isBuildingFromGedcom = NO;
     
-    NSParameterAssert([self.allProperties count] == [newSubNodes count]);
+    GCParameterAssert([self.allProperties count] == [newSubNodes count]);
 }
 
 - (NSString *)gedcomString
@@ -299,11 +299,11 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 {
     NSArray *nodes = [GCNode arrayOfNodesFromString:gedcomString];
     
-    NSParameterAssert([nodes count] == 1);
+    GCParameterAssert([nodes count] == 1);
     
     GCNode *node = [nodes lastObject];
     
-    NSParameterAssert([self.gedTag.code isEqualToString:node.gedTag]);
+    GCParameterAssert([self.gedTag.code isEqualToString:node.gedTag]);
     
     self.gedcomNode = node;
 }

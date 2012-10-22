@@ -81,9 +81,9 @@ __strong static NSArray *_rootKeys = nil;
 
 - (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error
 {
-    NSParameterAssert(nodes);
-    NSParameterAssert([nodes count] > 0);
-    NSParameterAssert([self countOfEntities] == 1); // 1 for trailer
+    GCParameterAssert(nodes);
+    GCParameterAssert([nodes count] > 0);
+    GCParameterAssert([self countOfEntities] == 1); // 1 for trailer
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:willParseNodes:)]) {
@@ -301,6 +301,8 @@ __strong static NSArray *_rootKeys = nil;
         NSAssert(NO, @"Unknown class: %@", entity);
     }
     
+    // TODO handle xrefs and any relationships...
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
             [_delegate context:self didUpdateEntityCount:self.countOfEntities];
@@ -415,8 +417,6 @@ __strong static NSArray *_rootKeys = nil;
 
 - (GCFileEncoding)fileEncoding
 {
-    NSParameterAssert(_header);
-    
     NSString *encoding = _header.characterSet.value.gedcomString;
     
     if ([encoding isEqualToString:@"ANSEL"]) {
@@ -434,7 +434,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)setFileEncoding:(GCFileEncoding)fileEncoding
 {
-    NSParameterAssert(_header);
+    GCParameterAssert(_header);
     
     NSParameterAssert(fileEncoding != GCUnknownFileEncoding);
     

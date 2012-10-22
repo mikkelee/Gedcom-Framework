@@ -36,7 +36,7 @@
         calendarString = @"@#DFRENCH R@ ";
     }
     
-    NSParameterAssert(monthNames);
+    GCParameterAssert(monthNames);
 	
 	NSString *month = @"";
 	if ([self.dateComponents month] >= 1 && [self.dateComponents month] <= 12) {
@@ -219,7 +219,7 @@
 
 - (void)setDateA:(GCSimpleDate *)dateA
 {
-    NSParameterAssert(dateA == nil || _dateB == nil || [dateA.calendar isEqual:_dateB.calendar]);
+    GCParameterAssert(dateA == nil || _dateB == nil || [dateA.calendar isEqual:_dateB.calendar]);
     
     _dateA = dateA;
 }
@@ -231,7 +231,7 @@
 
 - (void)setDateB:(GCSimpleDate *)dateB
 {
-    NSParameterAssert(dateB == nil || _dateA == nil || [_dateA.calendar isEqual:dateB.calendar]);
+    GCParameterAssert(dateB == nil || _dateA == nil || [_dateA.calendar isEqual:dateB.calendar]);
     
     _dateB = dateB;
 }

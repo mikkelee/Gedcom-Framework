@@ -46,7 +46,7 @@
         [super setValue:property forKey:property.type];
     }
     
-    NSParameterAssert(property.describedObject == self);
+    GCParameterAssert(property.describedObject == self);
 }
 
 - (void)_internalRemoveProperty:(GCProperty *)property
@@ -63,7 +63,7 @@
         [super setValue:nil forKey:property.type];
     }
     
-    NSParameterAssert(property.describedObject == nil);
+    GCParameterAssert(property.describedObject == nil);
 }
 
 - (void)_internalAddValue:(id)value forKey:(NSString *)key {

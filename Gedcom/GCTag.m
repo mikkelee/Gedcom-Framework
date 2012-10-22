@@ -182,10 +182,9 @@ static inline void setupKey(NSString *key) {
     //NSLog(@"_tagStore: %@", _tagStore);
 }
 
-- (id)initWithName:(NSString *)name 
-		 settings:(NSDictionary *)settings
+- (id)initWithName:(NSString *)name settings:(NSDictionary *)settings
 {
-    NSParameterAssert(name != nil);
+    GCParameterAssert(name);
     
     self = [super init];
     
@@ -225,14 +224,14 @@ static inline void setupKey(NSString *key) {
 
 + (GCTag *)tagNamed:(NSString *)name
 {
-    NSParameterAssert(name);
+    GCParameterAssert(name);
     
     return _tagStore[name];
 }
 
 + (GCTag *)rootTagWithCode:(NSString *)code
 {
-    NSParameterAssert(code != nil);
+    GCParameterAssert(code);
     
     if ([code hasPrefix:@"_"]) {
         NSString *tagName = [NSString stringWithFormat:@"custom%@Entity", code];
@@ -385,7 +384,7 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
     
     NSDictionary *validDict = _cachedOccurencesDicts[tag.name];
     
-    NSParameterAssert(validDict);
+    GCParameterAssert(validDict);
     
     NSInteger min = [validDict[kMin] integerValue];
     

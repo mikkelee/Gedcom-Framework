@@ -53,8 +53,8 @@
 
 - (id)_initWithType:(NSString *)type inContext:(GCContext *)context
 {
-    NSParameterAssert(type);
-    NSParameterAssert(context);
+    GCParameterAssert(type);
+    GCParameterAssert(context);
     
     self = [self _initWithType:type];
     
