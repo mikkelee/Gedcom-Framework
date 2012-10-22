@@ -42,7 +42,7 @@
     return self;
 }
 
-- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
     self = [self init];
     

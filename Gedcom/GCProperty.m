@@ -23,7 +23,7 @@
 
 #pragma mark Initialization
 
-- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
     GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
     

@@ -23,22 +23,15 @@
 
 #pragma mark Initialization
 
-- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
-    self = [super initForObject:object withGedcomNode:node];
+    self = [super initWithGedcomNode:node onObject:object];
     
     if (self) {
         [self setValueWithGedcomString:node.gedValue];
     }
     
     return self;
-}
-
-#pragma mark Convenience constructors
-
-+ (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node
-{
-    return [[self alloc] initForObject:object withGedcomNode:node];
 }
 
 #pragma mark NSKeyValueCoding overrides

@@ -28,7 +28,7 @@
  @param node A GCNode. Its tag code must correspond to a valid property on the object.
  @return A new attribute.
  */
-- (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object;
 
 #pragma mark Objective-C properties
 

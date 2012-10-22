@@ -357,7 +357,7 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
         }
     }
     
-    (void)[[tag.objectClass alloc] initForObject:self withGedcomNode:node];
+    (void)[[tag.objectClass alloc] initWithGedcomNode:node onObject:self];
 }
 
 - (void)addPropertiesWithGedcomNodes:(NSArray *)nodes

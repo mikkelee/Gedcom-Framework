@@ -21,17 +21,6 @@
  */
 @interface GCAttribute : GCProperty
 
-#pragma mark Convenience constructors
-
-/// @name Creating attributes
-/** Returns an attribute whose type, value, and properties reflect the GCNode.
- 
- @param object The object being described.
- @param node A GCNode. Its tag code must correspond to a valid property on the object.
- @return A new attribute.
- */
-+ (id)attributeForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
-
 #pragma mark Objective-C properties
 
 /// @name Accessing values
