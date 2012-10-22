@@ -127,7 +127,7 @@
 
 - (void)setTarget:(GCEntity *)target
 {
-    NSParameterAssert(self.describedObject);
+    NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
     NSParameterAssert([[target class] isSubclassOfClass:self.gedTag.targetType]);
     
     //NSLog(@"self: %@", self);
