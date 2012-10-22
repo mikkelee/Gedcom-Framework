@@ -50,6 +50,7 @@ The most important remaining issues, loosely prioritized in order of importance:
 * **Docs**: Code samples in headers (see GCContext.h for preliminary example).
 * **ANSEL**: Does not support saving to ANSEL, but reading is OK.
 * **Unit tests**: Full code coverage.
+* **Assertions**: Clean up; either remove, make full blown exceptions, or leave as-is with comment that it's for dev purposes.
 
 Additionally there are at times a few minor TODOs scattered around the source files.
 
