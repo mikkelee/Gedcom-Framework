@@ -44,19 +44,11 @@
 }
 //COV_NF_END
 
-- (id)initWithContext:(GCContext *)context
+- (id)initInContext:(GCContext *)context
 {
-    NSParameterAssert(context);
-    
-    self = [self init];
-    
-    if (self) {
-		_context = context;
-        _isBuildingFromGedcom = NO;
-        [_context.allEntities addObject:self];
-    }
-    
-    return self;    
+    NSLog(@"You must override -initInContext: in your subclass!");
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 - (id)_initWithType:(NSString *)type inContext:(GCContext *)context
@@ -80,7 +72,12 @@
 - (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
     GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
-    self = [self _initWithType:tag.name inContext:context];
+    
+    if (tag.isCustom) {
+        self = [self _initWithType:tag.name inContext:context];
+    } else {
+        self = [self initInContext:context];
+    }
     
     if (self) {
         _isBuildingFromGedcom = YES;

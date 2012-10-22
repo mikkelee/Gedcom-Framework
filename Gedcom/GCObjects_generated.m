@@ -5917,11 +5917,11 @@
 */
 +(GCFamilyEntity *)familyInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"family"];
+	self = [super _initWithType:@"family" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -7645,11 +7645,11 @@
 */
 +(GCHeaderEntity *)headerInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"header"];
+	self = [super _initWithType:@"header" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -8458,11 +8458,11 @@
 */
 +(GCIndividualEntity *)individualInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"individual"];
+	self = [super _initWithType:@"individual" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -12221,11 +12221,11 @@
 */
 +(GCMultimediaEntity *)multimediaInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"multimedia"];
+	self = [super _initWithType:@"multimedia" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -13099,11 +13099,11 @@
 */
 +(GCNoteEntity *)noteInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"note"];
+	self = [super _initWithType:@"note" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -16125,11 +16125,11 @@
 */
 +(GCRepositoryEntity *)repositoryInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"repository"];
+	self = [super _initWithType:@"repository" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -17248,11 +17248,11 @@
 */
 +(GCSourceEntity *)sourceInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"source"];
+	self = [super _initWithType:@"source" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -17914,11 +17914,11 @@
 */
 +(GCSubmissionEntity *)submissionInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"submission"];
+	self = [super _initWithType:@"submission" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -18013,11 +18013,11 @@
 */
 +(GCSubmitterEntity *)submitterInContext:(GCContext *)context
 {
-	return [[self alloc] initWithContext:context];
+	return [[self alloc] initInContext:context];
 }
-- (id)init
+- (id)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"submitter"];
+	self = [super _initWithType:@"submitter" inContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:

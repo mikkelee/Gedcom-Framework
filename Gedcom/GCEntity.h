@@ -27,7 +27,7 @@
  @param context The context of the entity.
  @return A new entity.
  */
-- (id)initWithContext:(GCContext *)context;
+- (id)initInContext:(GCContext *)context;
 
 #pragma mark Convenience constructors
 

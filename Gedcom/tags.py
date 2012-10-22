@@ -113,9 +113,9 @@ $propertyImplementations
 
 @end
 """)
-initT = Template("""- (id)init
+initT = Template("""- (id)init$extraDef
 {
-	self = [super _initWithType:@"$type"];
+	self = [super _initWithType:@"$type"$extraImp];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -192,7 +192,7 @@ def constructors(key, type):
 		)] = constructorBodyT.substitute(
 			objectType=tags[key]['objectType'],
 			name=key,
-			extra='WithContext:context'
+			extra='InContext:context'
 		)
 	else:
 		cons[constructorDeclarationT.substitute(
@@ -310,7 +310,9 @@ for key in sorted(tags):
 		
 		methodImps.append(initT.substitute(
 			type=key,
-			initProperties="\n".join(['\t\t%s = [NSMutableArray array];' % x for x in ivars])
+			initProperties="\n".join(['\t\t%s = [NSMutableArray array];' % x for x in ivars]),
+			extraDef='InContext:(GCContext *)context' if tags[key]['objectType'] == 'entity' else '',
+			extraImp=' inContext:context' if tags[key]['objectType'] == 'entity' else ''
 		))
 		
 		classDefinitions.append(classDefinitionT.substitute(

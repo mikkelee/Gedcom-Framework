@@ -7,6 +7,7 @@
 //
 
 #import "GCObject.h"
+#import "GCEntity.h"
 
 #import "GCTag.h"
 
@@ -36,3 +37,8 @@
 
 @end
 
+@interface GCEntity ()
+
+- (id)_initWithType:(NSString *)type inContext:(GCContext *)context;
+
+@end
