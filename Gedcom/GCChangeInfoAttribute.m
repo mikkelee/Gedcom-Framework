@@ -47,7 +47,7 @@
     self = [self init];
     
     if (self) {
-        [object.allProperties addObject:self];
+        [object addPropertiesObject:self];
         
         self.modificationDate = dateFromNode(node[@"DATE"][0]);
 		

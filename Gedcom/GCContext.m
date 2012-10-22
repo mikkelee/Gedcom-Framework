@@ -104,7 +104,7 @@ __strong static NSArray *_rootKeys = nil;
         
         handledNodes++;
         
-        if ([tag.objectClass isSubclassOfClass:[GCTrailerEntity class]]) {
+        if (tag.objectClass == [GCTrailerEntity class]) {
             *stop = YES;
             return;
         } else {

@@ -30,18 +30,6 @@
  */
 - (id)initForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
 
-#pragma mark Convenience constructor
-
-/** Returns a property whose type and properties reflect the GCNode.
- 
- Will inspect the node and determine whether to return an attribute or a relationship.
- 
- @param object The object being described.
- @param node A GCNode. Its tag code must correspond to a valid property on the object.
- @return A new attribute.
- */
-+ (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node;
-
 #pragma mark Objective-C properties
 
 /// @name Accessing properties

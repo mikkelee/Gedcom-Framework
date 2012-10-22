@@ -34,20 +34,12 @@
     }
     
     if (self) {
-        [object.allProperties addObject:self];
+        [object addPropertiesObject:self];
         
         [self addPropertiesWithGedcomNodes:node.subNodes];
     }
     
     return self;
-}
-
-
-#pragma mark Convenience constructors
-
-+ (id)propertyForObject:(GCObject *)object withGedcomNode:(GCNode *)node
-{
-    return [[self alloc] initForObject:object withGedcomNode:node];
 }
 
 #pragma mark Comparison

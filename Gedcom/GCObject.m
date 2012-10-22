@@ -173,7 +173,7 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 
 - (NSString *)descriptionWithIndent:(NSUInteger)level
 {
-    NSLog(@"You override this method in your subclass!");
+    NSLog(@"You must override this method in your subclass!");
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
@@ -357,7 +357,7 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
         }
     }
     
-    [tag.objectClass propertyForObject:self withGedcomNode:node];
+    (void)[[tag.objectClass alloc] initForObject:self withGedcomNode:node];
 }
 
 - (void)addPropertiesWithGedcomNodes:(NSArray *)nodes
