@@ -48,7 +48,6 @@ The most important remaining issues, loosely prioritized in order of importance:
 
 * **tags.json**: 95% done (documentation is missing).
 * **Docs**: Code samples in headers (see GCContext.h for preliminary example).
-* **ANSEL**: Does not support saving to ANSEL, but reading is OK.
 * **Unit tests**: Full code coverage.
 * **Assertions**: Clean up; either remove, make full blown exceptions, or leave as-is with comment that it's for dev purposes.
 

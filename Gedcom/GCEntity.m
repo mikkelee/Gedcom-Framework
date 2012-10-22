@@ -61,7 +61,7 @@
     if (self) {
 		_context = context;
         _isBuildingFromGedcom = NO;
-        [_context.allEntities addObject:self];
+        [_context.mutableEntities addObject:self];
     }
     
     return self;

@@ -134,7 +134,7 @@ typedef enum : NSUInteger {
 #pragma mark Accessing properties
 /// @name Accessing properties
 
-/// The encoding of the file as specified in the header. Modifying this will alter the header.
+/// The encoding of the file as specified in the header. Modifying this will alter the header. ANSEL is only supported when reading files, not when writing them.
 @property GCFileEncoding fileEncoding;
 
 /// The name of the receiver.
@@ -150,7 +150,7 @@ typedef enum : NSUInteger {
 /// @name Accessing entities
 
 /// A collection of all the receiver's entities.
-@property (readonly) NSMutableSet *allEntities;
+@property (readonly) NSMutableSet *mutableEntities;
 
 /// The header of the receiver.
 @property GCHeaderEntity *header;

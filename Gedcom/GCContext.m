@@ -218,34 +218,32 @@ __strong static NSArray *_rootKeys = nil;
 
 - (NSEnumerator *)enumeratorOfEntities
 {
-    NSMutableSet *ents = [NSMutableSet set];
+    NSMutableSet *entities = [NSMutableSet set];
     
     if (_header)
-        [ents addObject:_header];
+        [entities addObject:_header];
     
     if (_submission)
-        [ents addObject:_submission];
+        [entities addObject:_submission];
     
     @synchronized (_entityStore) {
-        for (id ent in [_entityStore allValues]) {
-            if ([ent isKindOfClass:[NSArray class]]) {
-                [ents addObjectsFromArray:ent];
+        for (id entity in [_entityStore allValues]) {
+            if ([entity isKindOfClass:[NSArray class]]) {
+                [entities addObjectsFromArray:entity];
             } else {
-                [ents addObject:ent];
+                [entities addObject:entity];
             }
         }
     }
     
-    //NSLog(@"ents: %@", ents);
-    
-    return [ents objectEnumerator];
+    return [entities objectEnumerator];
 }
 
-- (GCEntity *)memberOfEntities:(GCEntity *)entity
+- (GCEntity *)memberOfEntities:(GCEntity *)anEntity
 {
-    for (GCEntity *e in [self enumeratorOfEntities]) {
-        if ([e isEqual:entity]) {
-            return e;
+    for (GCEntity *entity in [self enumeratorOfEntities]) {
+        if ([entity isEqual:anEntity]) {
+            return entity;
         }
     }
     
@@ -544,7 +542,7 @@ __strong static NSArray *_rootKeys = nil;
 	return [_entityStore[@"submitter"] copy];
 }
 
-- (NSMutableSet *)allEntities
+- (NSMutableSet *)mutableEntities
 {
     return [self mutableSetValueForKey:@"entities"];
 }
@@ -627,7 +625,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     BOOL isValid = YES;
     NSError *returnError = nil;
     
-    for (GCEntity *entity in self.allEntities) {
+    for (GCEntity *entity in self.mutableEntities) {
         //NSLog(@"validating %@", [self xrefForEntity:entity]);
         
         NSError *err = nil;
