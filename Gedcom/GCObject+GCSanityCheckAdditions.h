@@ -6,7 +6,14 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Gedcom/Gedcom.h>
+#import "GCContext.h"
+#import "GCEntity.h"
+
+@interface GCContext (GCSanityCheckAdditions)
+
+- (BOOL)sanityCheck:(NSError **)error;
+
+@end
 
 @interface GCEntity (GCSanityCheckAdditions)
 

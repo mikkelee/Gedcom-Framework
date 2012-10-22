@@ -9,6 +9,44 @@
 #import "GCObject+GCSanityCheckAdditions.h"
 #import "ValidationHelpers.h"
 
+#import "GCObjects_generated.h"
+#import "GCAge.h"
+#import "GCDate.h"
+#import "GedcomErrors.h"
+
+@implementation GCContext (GCSanityCheckAdditions)
+
+- (BOOL)sanityCheck:(NSError **)outError
+{
+	__block BOOL isSane = YES;
+    __block NSError *returnError = nil;
+    
+    for (GCEntity *entity in self.mutableEntities) {
+        NSError *error;
+        if (![entity sanityCheck:&error]) {
+            isSane &= NO;
+            returnError = combineErrors(returnError, error);
+        }
+    }
+	
+    if (!isSane) {
+        *outError = returnError;
+    }
+    
+    return isSane;
+}
+
+@end
+
+@implementation GCEntity (GCSanityCheckAdditions)
+
+- (BOOL)sanityCheck:(NSError **)outError
+{
+    return YES; // default
+}
+
+@end
+
 @implementation GCIndividualEntity (GCSanityCheckAdditions)
 
 - (BOOL)sanityCheck:(NSError **)outError
@@ -33,6 +71,9 @@
 	[settings[@"orderRequirements"] enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *eventsThatMustOccurLater, BOOL *stop){
 		NSString *keyPath = [NSString stringWithFormat:@"%@s.date.value", key];
 		for (GCDate *eventDate in [self valueForKeyPath:keyPath]) {
+            if ([eventDate isKindOfClass:[NSNull class]]) {
+                continue;
+            }
 			for (id eventType in eventsThatMustOccurLater) {
 				NSString *otherKeyPath = [NSString stringWithFormat:@"%@s.date.value", eventType];
 				for (GCDate *otherEventDate in [self valueForKeyPath:otherKeyPath]) {
@@ -48,9 +89,13 @@
 		}
 	}];
 	
-	[settings[@"ageRequirements"] enumerateKeysAndObjectsUsingBlock:^(id key, NSNumber *requiredAge, BOOL *stop){
+	[settings[@"ageRequirements"] enumerateKeysAndObjectsUsingBlock:^(id key, NSString *requiredAgeString, BOOL *stop){
+        GCAge *requiredAge = [GCAge valueWithGedcomString:requiredAgeString];
 		NSString *keyPath = [NSString stringWithFormat:@"%@s.age.value", key];
 		for (GCAge *ageAtEvent in [self valueForKeyPath:keyPath]) {
+            if ([ageAtEvent isKindOfClass:[NSNull class]]) {
+                continue;
+            }
 			if ([ageAtEvent isLessThan:requiredAge]) {
 				isSane &= NO;
                 returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
