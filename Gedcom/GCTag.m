@@ -377,7 +377,7 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
             expandOccurences(occurrencesDicts, subtag);
         }
         
-        @synchronized (_cachedOccurencesDicts) {
+        @synchronized (self) {
             _cachedOccurencesDicts = [occurrencesDicts copy];
         }
     }
@@ -410,7 +410,7 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
             }
         }
         
-        @synchronized (_onlySingleAllowedCache) {
+        @synchronized (self) {
             _onlySingleAllowedCache = [onlySingleAllowedCache copy];
             _multipleAllowedCache = [multipleAllowedCache copy];
         }

@@ -30,7 +30,7 @@ __strong static NSDictionary *_defaultColors;
 
 @implementation GCObject
 
-static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
+//static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 
 #pragma mark Initialization and teardown
 
@@ -435,7 +435,7 @@ static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
         }
     }
     
-    if (!isValid) {
+    if (!isValid && outError != NULL) {
         *outError = returnError;
     }
     
