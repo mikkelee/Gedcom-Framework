@@ -30,7 +30,7 @@
     [_loadingProgress incrementBy:(entityCount - [_loadingProgress doubleValue])];
 }
 
-- (void)context:(GCContext *)context didFinishWithEntityCount:(NSUInteger)entityCount
+- (void)context:(GCContext *)context didParseNodesWithEntityCount:(NSUInteger)entityCount
 {
     [_loadingProgress incrementBy:(entityCount - [_loadingProgress doubleValue])];
     

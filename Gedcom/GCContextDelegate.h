@@ -63,6 +63,6 @@
  @param context The context that sent the message.
  @param entityCount The new count.
  */
-- (void)context:(GCContext *)context didFinishWithEntityCount:(NSUInteger)entityCount;
+- (void)context:(GCContext *)context didParseNodesWithEntityCount:(NSUInteger)entityCount;
 
 @end

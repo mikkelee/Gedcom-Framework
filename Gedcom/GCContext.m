@@ -130,8 +130,8 @@ __strong static NSArray *_rootKeys = nil;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didFinishWithEntityCount:)]) {
-            [_delegate context:self didFinishWithEntityCount:self.countOfEntities];
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
+            [_delegate context:self didParseNodesWithEntityCount:self.countOfEntities];
         }
     });
     
