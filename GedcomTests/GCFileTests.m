@@ -93,6 +93,8 @@
     if ([leftoverOutput count] > 0) {
         NSLog(@"leftoverInput: %@", leftoverOutput);
     }
+    
+    // TODO test encode == decode...
 }
 
 - (void)testSimpleGed
