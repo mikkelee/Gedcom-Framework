@@ -16,7 +16,7 @@
 
 /**
  
- A set of optional methods that can be implemented by an object.
+ A set of optional methods that can be implemented by a delegate.
  
  If a GCContext has a delegate, it will call these if they are implemented.
  
@@ -51,14 +51,14 @@
  */
 - (void)context:(GCContext *)context willParseNodes:(NSUInteger)nodeCount;
 
-/** Will be called when a GCContext's entity count changes during parsing.
+/** Will be called when a GCContext's entity count changes (either during parsing or general usage).
  
  @param context The context that sent the message.
  @param entityCount The new count.
  */
 - (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount;
 
-/** Will be called when a GCContext's is done parsing.
+/** Will be called when a GCContext is done parsing.
  
  @param context The context that sent the message.
  @param entityCount The new count.

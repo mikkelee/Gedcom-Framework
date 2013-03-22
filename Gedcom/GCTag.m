@@ -487,4 +487,5 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
     return _settings[kReverseRelationshipTag] ? [GCTag tagNamed:_settings[kReverseRelationshipTag]] : nil;
 
 }
+
 @end
