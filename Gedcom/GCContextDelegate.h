@@ -47,21 +47,21 @@
 /** Will be called just before a GCContext starts parsing nodes into entities.
  
  @param context The context that sent the message.
- @param entityCount The number of nodes to parse.
+ @param nodeCount The number of nodes the context will parse.
  */
 - (void)context:(GCContext *)context willParseNodes:(NSUInteger)nodeCount;
 
 /** Will be called when a GCContext's entity count changes (either during parsing or general usage).
  
  @param context The context that sent the message.
- @param entityCount The new count.
+ @param entityCount The number of entities currently in the context.
  */
 - (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount;
 
 /** Will be called when a GCContext is done parsing.
  
  @param context The context that sent the message.
- @param entityCount The new count.
+ @param entityCount The number of entities currently in the context.
  */
 - (void)context:(GCContext *)context didParseNodesWithEntityCount:(NSUInteger)entityCount;
 

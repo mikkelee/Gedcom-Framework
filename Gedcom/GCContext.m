@@ -27,9 +27,9 @@
 @implementation GCTrailerEntity
 @end
 
+//TODO: split into categories?
 //TODO: merging contexts etc.
 //TODO: transactions?
-//TODO: split into categories?
 
 @implementation GCContext {
 	NSMutableDictionary *_xrefToEntityMap;

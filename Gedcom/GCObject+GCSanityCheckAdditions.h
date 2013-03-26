@@ -11,12 +11,22 @@
 
 @interface GCContext (GCSanityCheckAdditions)
 
+/** Runs various sanity checks on the receiver and its entities.
+ 
+ @param error An NSError object describing the inconsistencies, if any.
+ @return `YES` if the context is sane, `NO` if not.
+ */
 - (BOOL)sanityCheck:(NSError **)error;
 
 @end
 
 @interface GCEntity (GCSanityCheckAdditions)
 
+/** Runs various sanity checks on the receiver.
+ 
+ @param error An NSError object describing the inconsistencies, if any.
+ @return `YES` if the entity is sane, `NO` if not.
+ */
 - (BOOL)sanityCheck:(NSError **)error;
 
 @end

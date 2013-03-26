@@ -10,8 +10,14 @@
 
 @interface GCIndividualEntity (GCObjectAdditions)
 
+/// Attempts to estimate the birth date based on the events attached to the individual
 @property (readonly) GCDate *estimatedBirthDate;
 
+/** Attemts to estimate how old the individual was on a given date
+ 
+ @param date The date to test against.
+ @return The age on the given date.
+ */
 - (GCAge *)estimatedAgeOnDate:(id)date;
 
 @end

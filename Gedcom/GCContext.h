@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
  A context encompasses a single file; all entities (that is, individuals, families, etc) in the file will belong to the same context. Generally you'll keep a reference to the context in your Document as it is needed when creating entities.
  
  ```
-    // create a new context
+    // obtain a new context
     GCContext *ctx = [GCContext context];
     
     // optionally set your delegate
@@ -44,10 +44,9 @@ typedef enum : NSUInteger {
         // handle error
     }
     
-    // work on context, create/modify/delete entities & properties
+    // work on context here: create/modify/delete entities & properties
     
     // save the context back out
- 
     NSError *writeErr = nil;
     BOOL writingSucceeded = [ctx writeToFile:@"/path..." atomically:YES error:&writeErr];
      
