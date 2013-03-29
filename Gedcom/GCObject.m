@@ -363,9 +363,9 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)addPropertiesWithGedcomNodes:(NSArray *)nodes
 {
-    [nodes enumerateObjectsWithOptions:(NSEnumerationConcurrent) usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [self addPropertyWithGedcomNode:obj];
-    }];
+    for (id node in nodes) {
+        [self addPropertyWithGedcomNode:node];
+    }
 }
 
 @end

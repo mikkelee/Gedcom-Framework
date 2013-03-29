@@ -99,21 +99,20 @@ __strong static NSArray *_rootKeys = nil;
     start = clock();
 #endif
     
-    __block NSUInteger handledNodes = 0;
+    NSUInteger handledNodes = 0;
     
-    [nodes enumerateObjectsWithOptions:(kNilOptions) usingBlock:^(GCNode *node, NSUInteger idx, BOOL *stop) {
+    for (GCNode *node in nodes) {
         GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
         
         handledNodes++;
         
         if (tag.objectClass == [GCTrailerEntity class]) {
-            *stop = YES;
-            return;
+            break;
         } else {
             //NSLog(@"%p: creating %@", self, tag.objectClass);
             (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self]; // it will add itself to the context
         }
-    }];
+    }
     
 #ifdef DEBUGLEVEL
     end = clock();
@@ -200,7 +199,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (NSUInteger)countOfEntities
 {
-    __block NSUInteger count = 0;
+    NSUInteger count = 0;
     
     if (_header)
         count++;
@@ -208,9 +207,9 @@ __strong static NSArray *_rootKeys = nil;
         count++;
     
     @synchronized (_entityStore) {
-        [_entityStore enumerateKeysAndObjectsWithOptions:(kNilOptions) usingBlock:^(id key, NSMutableArray *obj, BOOL *stop) {
+        for (NSMutableArray *obj in [_entityStore objectEnumerator]) {
             count += [obj count];
-        }];
+        }
     }
     
     count++; //trailer
@@ -335,12 +334,10 @@ __strong static NSArray *_rootKeys = nil;
     // TODO - check if xref is used already!
     // clear previously set xref, if any:
     @synchronized (_entityToXrefMap) {
-        if (_entityToXrefMap[entity]) {
-            @synchronized (_xrefToEntityMap) {
-                if (_entityToXrefMap[pointer]) {
-                    [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[pointer]];
-                    [_entityToXrefMap removeObjectForKey:pointer];
-                }
+        @synchronized (_xrefToEntityMap) {
+            if (_entityToXrefMap[pointer]) {
+                [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[pointer]];
+                [_entityToXrefMap removeObjectForKey:pointer];
             }
         }
     }
