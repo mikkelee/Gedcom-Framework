@@ -494,7 +494,28 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@: %p> (tag: %@ xref: %@ value: %@) subNodes: %@", [self className], self, self.gedTag, self.xref, self.gedValue, self.subNodes];
+	return [self descriptionWithIndent:0];
+}
+
+- (NSString *)descriptionWithIndent:(NSUInteger)level
+{
+    NSString *indent = @"";
+    for (NSUInteger i = 0; i < level; i++) {
+        indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
+    }
+    
+    return [NSString stringWithFormat:@"%@<%@: %p> (tag: %@ xref: %@ value: %@) {\n%@%@};\n", indent, [self className], self, self.gedTag, self.xref, self.gedValue, [self _subNodeDescriptionWithIndent:level+1], indent];
+}
+
+- (NSString *)_subNodeDescriptionWithIndent:(NSUInteger)level
+{
+    NSMutableString *out = [NSMutableString string];
+    
+    for (GCNode *subNode in self.subNodes) {
+        [out appendString:[subNode descriptionWithIndent:level+1]];
+    }
+    
+    return out;
 }
 //COV_NF_END
 

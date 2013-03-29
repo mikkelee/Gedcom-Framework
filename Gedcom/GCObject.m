@@ -181,6 +181,7 @@ __strong static NSDictionary *_defaultColors;
 - (NSString *)_propertyDescriptionWithIndent:(NSUInteger)level
 {
     NSMutableString *out = [NSMutableString string];
+    
     for (GCObject *property in self.allProperties) {
         [out appendString:[property descriptionWithIndent:level+1]];
     }
