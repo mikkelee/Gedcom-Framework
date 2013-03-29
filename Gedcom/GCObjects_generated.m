@@ -5,6 +5,7 @@
 #import "GCObjects_generated.h"
 
 #import "GCObject_internal.h"
+#import "GCProperty_internal.h"
 
 @implementation GCAbbreviationAttribute {
 
@@ -375,12 +376,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -399,12 +400,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -424,12 +425,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -448,12 +449,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -473,12 +474,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -497,12 +498,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -590,12 +591,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -614,12 +615,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -639,12 +640,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -663,12 +664,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -688,12 +689,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -712,12 +713,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -969,12 +970,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -993,12 +994,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1018,12 +1019,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -1042,12 +1043,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1067,12 +1068,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -1091,12 +1092,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1157,12 +1158,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -1181,12 +1182,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1206,12 +1207,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -1230,12 +1231,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1373,12 +1374,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -1397,12 +1398,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1422,12 +1423,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -1446,12 +1447,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1471,12 +1472,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -1495,12 +1496,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1588,12 +1589,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -1612,12 +1613,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1637,12 +1638,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -1661,12 +1662,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1686,12 +1687,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -1710,12 +1711,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1803,12 +1804,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -1827,12 +1828,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1852,12 +1853,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -1876,12 +1877,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -1901,12 +1902,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -1925,12 +1926,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2069,12 +2070,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -2093,12 +2094,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2118,12 +2119,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -2142,12 +2143,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2167,12 +2168,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -2191,12 +2192,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2284,12 +2285,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -2308,12 +2309,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2333,12 +2334,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -2357,12 +2358,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2382,12 +2383,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -2406,12 +2407,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2531,12 +2532,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -2555,12 +2556,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2580,12 +2581,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -2604,12 +2605,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2629,12 +2630,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -2653,12 +2654,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2796,12 +2797,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -2820,12 +2821,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2845,12 +2846,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -2869,12 +2870,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -2894,12 +2895,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -2918,12 +2919,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3061,12 +3062,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -3085,12 +3086,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3110,12 +3111,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -3134,12 +3135,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3159,12 +3160,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -3183,12 +3184,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3326,12 +3327,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -3350,12 +3351,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3444,12 +3445,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -3468,12 +3469,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3493,12 +3494,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -3517,12 +3518,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3542,12 +3543,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -3566,12 +3567,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3709,12 +3710,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -3733,12 +3734,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3758,12 +3759,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -3782,12 +3783,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3807,12 +3808,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -3831,12 +3832,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -3955,12 +3956,12 @@
 
 - (void)insertObject:(GCPhoneNumberAttribute *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_phoneNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
-	[_phoneNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCPhoneNumberAttribute *)_phoneNumbers[index]).describedObject = nil;
     [_phoneNumbers removeObjectAtIndex:index];
 }
 
@@ -4098,12 +4099,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -4122,12 +4123,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4147,12 +4148,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -4171,12 +4172,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4196,12 +4197,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -4220,12 +4221,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4294,12 +4295,12 @@
 
 - (void)insertObject:(GCTextAttribute *)obj inTextsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTextAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_texts insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
-	[_texts[index] setValue:nil forKey:@"describedObject"];
+	((GCTextAttribute *)_texts[index]).describedObject = nil;
     [_texts removeObjectAtIndex:index];
 }
 
@@ -4437,12 +4438,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -4461,12 +4462,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4486,12 +4487,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -4510,12 +4511,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4535,12 +4536,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -4559,12 +4560,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4784,12 +4785,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -4808,12 +4809,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4833,12 +4834,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -4857,12 +4858,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -4882,12 +4883,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -4906,12 +4907,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5001,12 +5002,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -5025,12 +5026,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5050,12 +5051,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -5074,12 +5075,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5099,12 +5100,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -5123,12 +5124,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5218,12 +5219,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -5242,12 +5243,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5267,12 +5268,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -5291,12 +5292,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5316,12 +5317,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -5340,12 +5341,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5433,12 +5434,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -5457,12 +5458,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5482,12 +5483,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -5506,12 +5507,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5531,12 +5532,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -5555,12 +5556,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5648,12 +5649,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -5672,12 +5673,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5697,12 +5698,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -5721,12 +5722,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5746,12 +5747,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -5770,12 +5771,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -5969,12 +5970,12 @@
 
 - (void)insertObject:(GCAnnulmentAttribute *)obj inAnnulmentsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAnnulmentAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_annulments insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAnnulmentsAtIndex:(NSUInteger)index {
-	[_annulments[index] setValue:nil forKey:@"describedObject"];
+	((GCAnnulmentAttribute *)_annulments[index]).describedObject = nil;
     [_annulments removeObjectAtIndex:index];
 }
 
@@ -5993,12 +5994,12 @@
 
 - (void)insertObject:(GCCensusAttribute *)obj inCensusesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCensusAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_censuses insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromCensusesAtIndex:(NSUInteger)index {
-	[_censuses[index] setValue:nil forKey:@"describedObject"];
+	((GCCensusAttribute *)_censuses[index]).describedObject = nil;
     [_censuses removeObjectAtIndex:index];
 }
 
@@ -6017,12 +6018,12 @@
 
 - (void)insertObject:(GCDivorceAttribute *)obj inDivorcesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDivorceAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_divorces insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromDivorcesAtIndex:(NSUInteger)index {
-	[_divorces[index] setValue:nil forKey:@"describedObject"];
+	((GCDivorceAttribute *)_divorces[index]).describedObject = nil;
     [_divorces removeObjectAtIndex:index];
 }
 
@@ -6041,12 +6042,12 @@
 
 - (void)insertObject:(GCDivorceFiledAttribute *)obj inDivorceFiledsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDivorceFiledAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_divorceFileds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromDivorceFiledsAtIndex:(NSUInteger)index {
-	[_divorceFileds[index] setValue:nil forKey:@"describedObject"];
+	((GCDivorceFiledAttribute *)_divorceFileds[index]).describedObject = nil;
     [_divorceFileds removeObjectAtIndex:index];
 }
 
@@ -6065,12 +6066,12 @@
 
 - (void)insertObject:(GCEngagementAttribute *)obj inEngagementsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEngagementAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_engagements insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromEngagementsAtIndex:(NSUInteger)index {
-	[_engagements[index] setValue:nil forKey:@"describedObject"];
+	((GCEngagementAttribute *)_engagements[index]).describedObject = nil;
     [_engagements removeObjectAtIndex:index];
 }
 
@@ -6089,12 +6090,12 @@
 
 - (void)insertObject:(GCMarriageAttribute *)obj inMarriagesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMarriageAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_marriages insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMarriagesAtIndex:(NSUInteger)index {
-	[_marriages[index] setValue:nil forKey:@"describedObject"];
+	((GCMarriageAttribute *)_marriages[index]).describedObject = nil;
     [_marriages removeObjectAtIndex:index];
 }
 
@@ -6113,12 +6114,12 @@
 
 - (void)insertObject:(GCMarriageBannAttribute *)obj inMarriageBannsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMarriageBannAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_marriageBanns insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMarriageBannsAtIndex:(NSUInteger)index {
-	[_marriageBanns[index] setValue:nil forKey:@"describedObject"];
+	((GCMarriageBannAttribute *)_marriageBanns[index]).describedObject = nil;
     [_marriageBanns removeObjectAtIndex:index];
 }
 
@@ -6137,12 +6138,12 @@
 
 - (void)insertObject:(GCMarriageContractAttribute *)obj inMarriageContractsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMarriageContractAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_marriageContracts insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMarriageContractsAtIndex:(NSUInteger)index {
-	[_marriageContracts[index] setValue:nil forKey:@"describedObject"];
+	((GCMarriageContractAttribute *)_marriageContracts[index]).describedObject = nil;
     [_marriageContracts removeObjectAtIndex:index];
 }
 
@@ -6161,12 +6162,12 @@
 
 - (void)insertObject:(GCMarriageLicenseAttribute *)obj inMarriageLicensesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMarriageLicenseAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_marriageLicenses insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMarriageLicensesAtIndex:(NSUInteger)index {
-	[_marriageLicenses[index] setValue:nil forKey:@"describedObject"];
+	((GCMarriageLicenseAttribute *)_marriageLicenses[index]).describedObject = nil;
     [_marriageLicenses removeObjectAtIndex:index];
 }
 
@@ -6185,12 +6186,12 @@
 
 - (void)insertObject:(GCMarriageSettlementAttribute *)obj inMarriageSettlementsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMarriageSettlementAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_marriageSettlements insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMarriageSettlementsAtIndex:(NSUInteger)index {
-	[_marriageSettlements[index] setValue:nil forKey:@"describedObject"];
+	((GCMarriageSettlementAttribute *)_marriageSettlements[index]).describedObject = nil;
     [_marriageSettlements removeObjectAtIndex:index];
 }
 
@@ -6209,12 +6210,12 @@
 
 - (void)insertObject:(GCGenericEventAttribute *)obj inGenericEventsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenericEventAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_genericEvents insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromGenericEventsAtIndex:(NSUInteger)index {
-	[_genericEvents[index] setValue:nil forKey:@"describedObject"];
+	((GCGenericEventAttribute *)_genericEvents[index]).describedObject = nil;
     [_genericEvents removeObjectAtIndex:index];
 }
 
@@ -6235,12 +6236,12 @@
 
 - (void)insertObject:(GCChildRelationship *)obj inChildrenAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChildRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_children insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromChildrenAtIndex:(NSUInteger)index {
-	[_children[index] setValue:nil forKey:@"describedObject"];
+	((GCChildRelationship *)_children[index]).describedObject = nil;
     [_children removeObjectAtIndex:index];
 }
 
@@ -6260,12 +6261,12 @@
 
 - (void)insertObject:(GCSubmitterReferenceRelationship *)obj inSubmitterReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmitterReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_submitterReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSubmitterReferencesAtIndex:(NSUInteger)index {
-	[_submitterReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCSubmitterReferenceRelationship *)_submitterReferences[index]).describedObject = nil;
     [_submitterReferences removeObjectAtIndex:index];
 }
 
@@ -6284,12 +6285,12 @@
 
 - (void)insertObject:(GCLDSSealingSpouseAttribute *)obj inLDSSealingSpousesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSSealingSpouseAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_lDSSealingSpouses insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromLDSSealingSpousesAtIndex:(NSUInteger)index {
-	[_lDSSealingSpouses[index] setValue:nil forKey:@"describedObject"];
+	((GCLDSSealingSpouseAttribute *)_lDSSealingSpouses[index]).describedObject = nil;
     [_lDSSealingSpouses removeObjectAtIndex:index];
 }
 
@@ -6309,12 +6310,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -6333,12 +6334,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -6358,12 +6359,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -6382,12 +6383,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -6407,12 +6408,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -6431,12 +6432,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -6455,12 +6456,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -6650,12 +6651,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -6674,12 +6675,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -6699,12 +6700,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -6723,12 +6724,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -6748,12 +6749,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -6772,12 +6773,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7016,12 +7017,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -7040,12 +7041,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7065,12 +7066,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -7089,12 +7090,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7114,12 +7115,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -7138,12 +7139,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7231,12 +7232,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -7255,12 +7256,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7280,12 +7281,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -7304,12 +7305,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7329,12 +7330,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -7353,12 +7354,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7498,12 +7499,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -7522,12 +7523,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7547,12 +7548,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -7571,12 +7572,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7596,12 +7597,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -7620,12 +7621,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -7678,12 +7679,12 @@
 
 - (void)insertObject:(GCDestinationAttribute *)obj inDestinationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDestinationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_destinations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromDestinationsAtIndex:(NSUInteger)index {
-	[_destinations[index] setValue:nil forKey:@"describedObject"];
+	((GCDestinationAttribute *)_destinations[index]).describedObject = nil;
     [_destinations removeObjectAtIndex:index];
 }
 
@@ -7704,12 +7705,12 @@
 
 - (void)insertObject:(GCSubmissionReferenceRelationship *)obj inSubmissionReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmissionReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_submissionReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSubmissionReferencesAtIndex:(NSUInteger)index {
-	[_submissionReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCSubmissionReferenceRelationship *)_submissionReferences[index]).describedObject = nil;
     [_submissionReferences removeObjectAtIndex:index];
 }
 
@@ -8040,12 +8041,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -8064,12 +8065,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -8089,12 +8090,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -8113,12 +8114,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -8138,12 +8139,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -8162,12 +8163,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -8255,12 +8256,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -8279,12 +8280,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -8304,12 +8305,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -8328,12 +8329,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -8353,12 +8354,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -8377,12 +8378,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -8547,12 +8548,12 @@
 
 - (void)insertObject:(GCPersonalNameAttribute *)obj inPersonalNamesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPersonalNameAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_personalNames insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromPersonalNamesAtIndex:(NSUInteger)index {
-	[_personalNames[index] setValue:nil forKey:@"describedObject"];
+	((GCPersonalNameAttribute *)_personalNames[index]).describedObject = nil;
     [_personalNames removeObjectAtIndex:index];
 }
 
@@ -8573,12 +8574,12 @@
 
 - (void)insertObject:(GCBirthAttribute *)obj inBirthsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBirthAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_births insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromBirthsAtIndex:(NSUInteger)index {
-	[_births[index] setValue:nil forKey:@"describedObject"];
+	((GCBirthAttribute *)_births[index]).describedObject = nil;
     [_births removeObjectAtIndex:index];
 }
 
@@ -8597,12 +8598,12 @@
 
 - (void)insertObject:(GCChristeningAttribute *)obj inChristeningsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChristeningAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_christenings insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromChristeningsAtIndex:(NSUInteger)index {
-	[_christenings[index] setValue:nil forKey:@"describedObject"];
+	((GCChristeningAttribute *)_christenings[index]).describedObject = nil;
     [_christenings removeObjectAtIndex:index];
 }
 
@@ -8621,12 +8622,12 @@
 
 - (void)insertObject:(GCDeathAttribute *)obj inDeathsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDeathAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_deaths insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromDeathsAtIndex:(NSUInteger)index {
-	[_deaths[index] setValue:nil forKey:@"describedObject"];
+	((GCDeathAttribute *)_deaths[index]).describedObject = nil;
     [_deaths removeObjectAtIndex:index];
 }
 
@@ -8645,12 +8646,12 @@
 
 - (void)insertObject:(GCBurialAttribute *)obj inBurialsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBurialAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_burials insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromBurialsAtIndex:(NSUInteger)index {
-	[_burials[index] setValue:nil forKey:@"describedObject"];
+	((GCBurialAttribute *)_burials[index]).describedObject = nil;
     [_burials removeObjectAtIndex:index];
 }
 
@@ -8669,12 +8670,12 @@
 
 - (void)insertObject:(GCCremationAttribute *)obj inCremationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCremationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_cremations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromCremationsAtIndex:(NSUInteger)index {
-	[_cremations[index] setValue:nil forKey:@"describedObject"];
+	((GCCremationAttribute *)_cremations[index]).describedObject = nil;
     [_cremations removeObjectAtIndex:index];
 }
 
@@ -8693,12 +8694,12 @@
 
 - (void)insertObject:(GCAdoptionAttribute *)obj inAdoptionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAdoptionAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_adoptions insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAdoptionsAtIndex:(NSUInteger)index {
-	[_adoptions[index] setValue:nil forKey:@"describedObject"];
+	((GCAdoptionAttribute *)_adoptions[index]).describedObject = nil;
     [_adoptions removeObjectAtIndex:index];
 }
 
@@ -8717,12 +8718,12 @@
 
 - (void)insertObject:(GCBaptismAttribute *)obj inBaptismsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBaptismAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_baptisms insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromBaptismsAtIndex:(NSUInteger)index {
-	[_baptisms[index] setValue:nil forKey:@"describedObject"];
+	((GCBaptismAttribute *)_baptisms[index]).describedObject = nil;
     [_baptisms removeObjectAtIndex:index];
 }
 
@@ -8741,12 +8742,12 @@
 
 - (void)insertObject:(GCBarMitzvahAttribute *)obj inBarMitzvahsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBarMitzvahAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_barMitzvahs insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromBarMitzvahsAtIndex:(NSUInteger)index {
-	[_barMitzvahs[index] setValue:nil forKey:@"describedObject"];
+	((GCBarMitzvahAttribute *)_barMitzvahs[index]).describedObject = nil;
     [_barMitzvahs removeObjectAtIndex:index];
 }
 
@@ -8765,12 +8766,12 @@
 
 - (void)insertObject:(GCBasMitzvahAttribute *)obj inBasMitzvahsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBasMitzvahAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_basMitzvahs insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromBasMitzvahsAtIndex:(NSUInteger)index {
-	[_basMitzvahs[index] setValue:nil forKey:@"describedObject"];
+	((GCBasMitzvahAttribute *)_basMitzvahs[index]).describedObject = nil;
     [_basMitzvahs removeObjectAtIndex:index];
 }
 
@@ -8789,12 +8790,12 @@
 
 - (void)insertObject:(GCBlessingAttribute *)obj inBlessingsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBlessingAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_blessings insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromBlessingsAtIndex:(NSUInteger)index {
-	[_blessings[index] setValue:nil forKey:@"describedObject"];
+	((GCBlessingAttribute *)_blessings[index]).describedObject = nil;
     [_blessings removeObjectAtIndex:index];
 }
 
@@ -8813,12 +8814,12 @@
 
 - (void)insertObject:(GCAdultChristeningAttribute *)obj inAdultChristeningsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAdultChristeningAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_adultChristenings insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAdultChristeningsAtIndex:(NSUInteger)index {
-	[_adultChristenings[index] setValue:nil forKey:@"describedObject"];
+	((GCAdultChristeningAttribute *)_adultChristenings[index]).describedObject = nil;
     [_adultChristenings removeObjectAtIndex:index];
 }
 
@@ -8837,12 +8838,12 @@
 
 - (void)insertObject:(GCConfirmationAttribute *)obj inConfirmationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCConfirmationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_confirmations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromConfirmationsAtIndex:(NSUInteger)index {
-	[_confirmations[index] setValue:nil forKey:@"describedObject"];
+	((GCConfirmationAttribute *)_confirmations[index]).describedObject = nil;
     [_confirmations removeObjectAtIndex:index];
 }
 
@@ -8861,12 +8862,12 @@
 
 - (void)insertObject:(GCFirstCommunionAttribute *)obj inFirstCommunionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCFirstCommunionAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_firstCommunions insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromFirstCommunionsAtIndex:(NSUInteger)index {
-	[_firstCommunions[index] setValue:nil forKey:@"describedObject"];
+	((GCFirstCommunionAttribute *)_firstCommunions[index]).describedObject = nil;
     [_firstCommunions removeObjectAtIndex:index];
 }
 
@@ -8885,12 +8886,12 @@
 
 - (void)insertObject:(GCOrdinationAttribute *)obj inOrdinationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCOrdinationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_ordinations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromOrdinationsAtIndex:(NSUInteger)index {
-	[_ordinations[index] setValue:nil forKey:@"describedObject"];
+	((GCOrdinationAttribute *)_ordinations[index]).describedObject = nil;
     [_ordinations removeObjectAtIndex:index];
 }
 
@@ -8909,12 +8910,12 @@
 
 - (void)insertObject:(GCNaturalizationAttribute *)obj inNaturalizationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNaturalizationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_naturalizations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNaturalizationsAtIndex:(NSUInteger)index {
-	[_naturalizations[index] setValue:nil forKey:@"describedObject"];
+	((GCNaturalizationAttribute *)_naturalizations[index]).describedObject = nil;
     [_naturalizations removeObjectAtIndex:index];
 }
 
@@ -8933,12 +8934,12 @@
 
 - (void)insertObject:(GCEmigrationAttribute *)obj inEmigrationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEmigrationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_emigrations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromEmigrationsAtIndex:(NSUInteger)index {
-	[_emigrations[index] setValue:nil forKey:@"describedObject"];
+	((GCEmigrationAttribute *)_emigrations[index]).describedObject = nil;
     [_emigrations removeObjectAtIndex:index];
 }
 
@@ -8957,12 +8958,12 @@
 
 - (void)insertObject:(GCImmigrationAttribute *)obj inImmigrationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCImmigrationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_immigrations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromImmigrationsAtIndex:(NSUInteger)index {
-	[_immigrations[index] setValue:nil forKey:@"describedObject"];
+	((GCImmigrationAttribute *)_immigrations[index]).describedObject = nil;
     [_immigrations removeObjectAtIndex:index];
 }
 
@@ -8981,12 +8982,12 @@
 
 - (void)insertObject:(GCCensusAttribute *)obj inCensusesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCensusAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_censuses insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromCensusesAtIndex:(NSUInteger)index {
-	[_censuses[index] setValue:nil forKey:@"describedObject"];
+	((GCCensusAttribute *)_censuses[index]).describedObject = nil;
     [_censuses removeObjectAtIndex:index];
 }
 
@@ -9005,12 +9006,12 @@
 
 - (void)insertObject:(GCProbateAttribute *)obj inProbatesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCProbateAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_probates insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromProbatesAtIndex:(NSUInteger)index {
-	[_probates[index] setValue:nil forKey:@"describedObject"];
+	((GCProbateAttribute *)_probates[index]).describedObject = nil;
     [_probates removeObjectAtIndex:index];
 }
 
@@ -9029,12 +9030,12 @@
 
 - (void)insertObject:(GCWillAttribute *)obj inWillsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCWillAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_wills insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromWillsAtIndex:(NSUInteger)index {
-	[_wills[index] setValue:nil forKey:@"describedObject"];
+	((GCWillAttribute *)_wills[index]).describedObject = nil;
     [_wills removeObjectAtIndex:index];
 }
 
@@ -9053,12 +9054,12 @@
 
 - (void)insertObject:(GCGraduationAttribute *)obj inGraduationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGraduationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_graduations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromGraduationsAtIndex:(NSUInteger)index {
-	[_graduations[index] setValue:nil forKey:@"describedObject"];
+	((GCGraduationAttribute *)_graduations[index]).describedObject = nil;
     [_graduations removeObjectAtIndex:index];
 }
 
@@ -9077,12 +9078,12 @@
 
 - (void)insertObject:(GCRetirementAttribute *)obj inRetirementsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRetirementAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_retirements insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromRetirementsAtIndex:(NSUInteger)index {
-	[_retirements[index] setValue:nil forKey:@"describedObject"];
+	((GCRetirementAttribute *)_retirements[index]).describedObject = nil;
     [_retirements removeObjectAtIndex:index];
 }
 
@@ -9101,12 +9102,12 @@
 
 - (void)insertObject:(GCGenericEventAttribute *)obj inGenericEventsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenericEventAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_genericEvents insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromGenericEventsAtIndex:(NSUInteger)index {
-	[_genericEvents[index] setValue:nil forKey:@"describedObject"];
+	((GCGenericEventAttribute *)_genericEvents[index]).describedObject = nil;
     [_genericEvents removeObjectAtIndex:index];
 }
 
@@ -9126,12 +9127,12 @@
 
 - (void)insertObject:(GCCasteAttribute *)obj inCastesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCasteAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_castes insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromCastesAtIndex:(NSUInteger)index {
-	[_castes[index] setValue:nil forKey:@"describedObject"];
+	((GCCasteAttribute *)_castes[index]).describedObject = nil;
     [_castes removeObjectAtIndex:index];
 }
 
@@ -9150,12 +9151,12 @@
 
 - (void)insertObject:(GCPhysicalDescriptionAttribute *)obj inPhysicalDescriptionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhysicalDescriptionAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_physicalDescriptions insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromPhysicalDescriptionsAtIndex:(NSUInteger)index {
-	[_physicalDescriptions[index] setValue:nil forKey:@"describedObject"];
+	((GCPhysicalDescriptionAttribute *)_physicalDescriptions[index]).describedObject = nil;
     [_physicalDescriptions removeObjectAtIndex:index];
 }
 
@@ -9174,12 +9175,12 @@
 
 - (void)insertObject:(GCGenerationsOfDescendantsAttribute *)obj inGenerationsOfDescendantssAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenerationsOfDescendantsAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_generationsOfDescendantss insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromGenerationsOfDescendantssAtIndex:(NSUInteger)index {
-	[_generationsOfDescendantss[index] setValue:nil forKey:@"describedObject"];
+	((GCGenerationsOfDescendantsAttribute *)_generationsOfDescendantss[index]).describedObject = nil;
     [_generationsOfDescendantss removeObjectAtIndex:index];
 }
 
@@ -9198,12 +9199,12 @@
 
 - (void)insertObject:(GCEducationAttribute *)obj inEducationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEducationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_educations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromEducationsAtIndex:(NSUInteger)index {
-	[_educations[index] setValue:nil forKey:@"describedObject"];
+	((GCEducationAttribute *)_educations[index]).describedObject = nil;
     [_educations removeObjectAtIndex:index];
 }
 
@@ -9222,12 +9223,12 @@
 
 - (void)insertObject:(GCIdentNumberAttribute *)obj inIdentNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCIdentNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_identNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromIdentNumbersAtIndex:(NSUInteger)index {
-	[_identNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCIdentNumberAttribute *)_identNumbers[index]).describedObject = nil;
     [_identNumbers removeObjectAtIndex:index];
 }
 
@@ -9246,12 +9247,12 @@
 
 - (void)insertObject:(GCNationalityAttribute *)obj inNationalitiesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNationalityAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_nationalities insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNationalitiesAtIndex:(NSUInteger)index {
-	[_nationalities[index] setValue:nil forKey:@"describedObject"];
+	((GCNationalityAttribute *)_nationalities[index]).describedObject = nil;
     [_nationalities removeObjectAtIndex:index];
 }
 
@@ -9270,12 +9271,12 @@
 
 - (void)insertObject:(GCNumberOfChildrenAttribute *)obj inNumberOfChildrensAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNumberOfChildrenAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_numberOfChildrens insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNumberOfChildrensAtIndex:(NSUInteger)index {
-	[_numberOfChildrens[index] setValue:nil forKey:@"describedObject"];
+	((GCNumberOfChildrenAttribute *)_numberOfChildrens[index]).describedObject = nil;
     [_numberOfChildrens removeObjectAtIndex:index];
 }
 
@@ -9294,12 +9295,12 @@
 
 - (void)insertObject:(GCNumberOfMarriagesAttribute *)obj inNumberOfMarriagessAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNumberOfMarriagesAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_numberOfMarriagess insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNumberOfMarriagessAtIndex:(NSUInteger)index {
-	[_numberOfMarriagess[index] setValue:nil forKey:@"describedObject"];
+	((GCNumberOfMarriagesAttribute *)_numberOfMarriagess[index]).describedObject = nil;
     [_numberOfMarriagess removeObjectAtIndex:index];
 }
 
@@ -9318,12 +9319,12 @@
 
 - (void)insertObject:(GCOccupationAttribute *)obj inOccupationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCOccupationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_occupations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromOccupationsAtIndex:(NSUInteger)index {
-	[_occupations[index] setValue:nil forKey:@"describedObject"];
+	((GCOccupationAttribute *)_occupations[index]).describedObject = nil;
     [_occupations removeObjectAtIndex:index];
 }
 
@@ -9342,12 +9343,12 @@
 
 - (void)insertObject:(GCPropertyOwnedAttribute *)obj inPropertyOwnedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPropertyOwnedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_propertyOwneds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromPropertyOwnedsAtIndex:(NSUInteger)index {
-	[_propertyOwneds[index] setValue:nil forKey:@"describedObject"];
+	((GCPropertyOwnedAttribute *)_propertyOwneds[index]).describedObject = nil;
     [_propertyOwneds removeObjectAtIndex:index];
 }
 
@@ -9366,12 +9367,12 @@
 
 - (void)insertObject:(GCReligionAttribute *)obj inReligionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCReligionAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_religions insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromReligionsAtIndex:(NSUInteger)index {
-	[_religions[index] setValue:nil forKey:@"describedObject"];
+	((GCReligionAttribute *)_religions[index]).describedObject = nil;
     [_religions removeObjectAtIndex:index];
 }
 
@@ -9390,12 +9391,12 @@
 
 - (void)insertObject:(GCResidenceAttribute *)obj inResidencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCResidenceAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_residences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromResidencesAtIndex:(NSUInteger)index {
-	[_residences[index] setValue:nil forKey:@"describedObject"];
+	((GCResidenceAttribute *)_residences[index]).describedObject = nil;
     [_residences removeObjectAtIndex:index];
 }
 
@@ -9414,12 +9415,12 @@
 
 - (void)insertObject:(GCSocialSecurityNumberAttribute *)obj inSocialSecurityNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSocialSecurityNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_socialSecurityNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSocialSecurityNumbersAtIndex:(NSUInteger)index {
-	[_socialSecurityNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCSocialSecurityNumberAttribute *)_socialSecurityNumbers[index]).describedObject = nil;
     [_socialSecurityNumbers removeObjectAtIndex:index];
 }
 
@@ -9438,12 +9439,12 @@
 
 - (void)insertObject:(GCTitleAttribute *)obj inTitlesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTitleAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_titles insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromTitlesAtIndex:(NSUInteger)index {
-	[_titles[index] setValue:nil forKey:@"describedObject"];
+	((GCTitleAttribute *)_titles[index]).describedObject = nil;
     [_titles removeObjectAtIndex:index];
 }
 
@@ -9463,12 +9464,12 @@
 
 - (void)insertObject:(GCLDSBaptismAttribute *)obj inLDSBaptismsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSBaptismAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_lDSBaptisms insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromLDSBaptismsAtIndex:(NSUInteger)index {
-	[_lDSBaptisms[index] setValue:nil forKey:@"describedObject"];
+	((GCLDSBaptismAttribute *)_lDSBaptisms[index]).describedObject = nil;
     [_lDSBaptisms removeObjectAtIndex:index];
 }
 
@@ -9487,12 +9488,12 @@
 
 - (void)insertObject:(GCLDSConfirmationAttribute *)obj inLDSConfirmationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSConfirmationAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_lDSConfirmations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromLDSConfirmationsAtIndex:(NSUInteger)index {
-	[_lDSConfirmations[index] setValue:nil forKey:@"describedObject"];
+	((GCLDSConfirmationAttribute *)_lDSConfirmations[index]).describedObject = nil;
     [_lDSConfirmations removeObjectAtIndex:index];
 }
 
@@ -9511,12 +9512,12 @@
 
 - (void)insertObject:(GCLDSEndowmentAttribute *)obj inLDSEndowmentsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSEndowmentAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_lDSEndowments insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromLDSEndowmentsAtIndex:(NSUInteger)index {
-	[_lDSEndowments[index] setValue:nil forKey:@"describedObject"];
+	((GCLDSEndowmentAttribute *)_lDSEndowments[index]).describedObject = nil;
     [_lDSEndowments removeObjectAtIndex:index];
 }
 
@@ -9535,12 +9536,12 @@
 
 - (void)insertObject:(GCLDSSealingChildAttribute *)obj inLDSSealingChildsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSSealingChildAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_lDSSealingChilds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromLDSSealingChildsAtIndex:(NSUInteger)index {
-	[_lDSSealingChilds[index] setValue:nil forKey:@"describedObject"];
+	((GCLDSSealingChildAttribute *)_lDSSealingChilds[index]).describedObject = nil;
     [_lDSSealingChilds removeObjectAtIndex:index];
 }
 
@@ -9559,12 +9560,12 @@
 
 - (void)insertObject:(GCChildInFamilyRelationship *)obj inChildInFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChildInFamilyRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_childInFamilies insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromChildInFamiliesAtIndex:(NSUInteger)index {
-	[_childInFamilies[index] setValue:nil forKey:@"describedObject"];
+	((GCChildInFamilyRelationship *)_childInFamilies[index]).describedObject = nil;
     [_childInFamilies removeObjectAtIndex:index];
 }
 
@@ -9583,12 +9584,12 @@
 
 - (void)insertObject:(GCSpouseInFamilyRelationship *)obj inSpouseInFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSpouseInFamilyRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_spouseInFamilies insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSpouseInFamiliesAtIndex:(NSUInteger)index {
-	[_spouseInFamilies[index] setValue:nil forKey:@"describedObject"];
+	((GCSpouseInFamilyRelationship *)_spouseInFamilies[index]).describedObject = nil;
     [_spouseInFamilies removeObjectAtIndex:index];
 }
 
@@ -9607,12 +9608,12 @@
 
 - (void)insertObject:(GCSubmitterReferenceRelationship *)obj inSubmitterReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmitterReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_submitterReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSubmitterReferencesAtIndex:(NSUInteger)index {
-	[_submitterReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCSubmitterReferenceRelationship *)_submitterReferences[index]).describedObject = nil;
     [_submitterReferences removeObjectAtIndex:index];
 }
 
@@ -9631,12 +9632,12 @@
 
 - (void)insertObject:(GCAssociationRelationship *)obj inAssociationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAssociationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_associations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAssociationsAtIndex:(NSUInteger)index {
-	[_associations[index] setValue:nil forKey:@"describedObject"];
+	((GCAssociationRelationship *)_associations[index]).describedObject = nil;
     [_associations removeObjectAtIndex:index];
 }
 
@@ -9655,12 +9656,12 @@
 
 - (void)insertObject:(GCAliasRelationship *)obj inAliasesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAliasRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_aliases insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAliasesAtIndex:(NSUInteger)index {
-	[_aliases[index] setValue:nil forKey:@"describedObject"];
+	((GCAliasRelationship *)_aliases[index]).describedObject = nil;
     [_aliases removeObjectAtIndex:index];
 }
 
@@ -9679,12 +9680,12 @@
 
 - (void)insertObject:(GCAncestorInterestRelationship *)obj inAncestorInterestsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAncestorInterestRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_ancestorInterests insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAncestorInterestsAtIndex:(NSUInteger)index {
-	[_ancestorInterests[index] setValue:nil forKey:@"describedObject"];
+	((GCAncestorInterestRelationship *)_ancestorInterests[index]).describedObject = nil;
     [_ancestorInterests removeObjectAtIndex:index];
 }
 
@@ -9703,12 +9704,12 @@
 
 - (void)insertObject:(GCDescendantInterestRelationship *)obj inDescendantInterestsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDescendantInterestRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_descendantInterests insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromDescendantInterestsAtIndex:(NSUInteger)index {
-	[_descendantInterests[index] setValue:nil forKey:@"describedObject"];
+	((GCDescendantInterestRelationship *)_descendantInterests[index]).describedObject = nil;
     [_descendantInterests removeObjectAtIndex:index];
 }
 
@@ -9728,12 +9729,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -9752,12 +9753,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -9777,12 +9778,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -9801,12 +9802,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -9826,12 +9827,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -9850,12 +9851,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -9874,12 +9875,12 @@
 
 - (void)insertObject:(GCRecordFileNumberAttribute *)obj inRecordFileNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRecordFileNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_recordFileNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromRecordFileNumbersAtIndex:(NSUInteger)index {
-	[_recordFileNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCRecordFileNumberAttribute *)_recordFileNumbers[index]).describedObject = nil;
     [_recordFileNumbers removeObjectAtIndex:index];
 }
 
@@ -9898,12 +9899,12 @@
 
 - (void)insertObject:(GCAncestralFileNumberAttribute *)obj inAncestralFileNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAncestralFileNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_ancestralFileNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromAncestralFileNumbersAtIndex:(NSUInteger)index {
-	[_ancestralFileNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCAncestralFileNumberAttribute *)_ancestralFileNumbers[index]).describedObject = nil;
     [_ancestralFileNumbers removeObjectAtIndex:index];
 }
 
@@ -9922,12 +9923,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -10008,12 +10009,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -10032,12 +10033,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10057,12 +10058,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -10081,12 +10082,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10215,12 +10216,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -10239,12 +10240,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10264,12 +10265,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -10288,12 +10289,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10422,12 +10423,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -10446,12 +10447,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10471,12 +10472,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -10495,12 +10496,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10630,12 +10631,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -10654,12 +10655,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10679,12 +10680,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -10703,12 +10704,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10837,12 +10838,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -10861,12 +10862,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -10886,12 +10887,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -10910,12 +10911,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11153,12 +11154,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -11177,12 +11178,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11202,12 +11203,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -11226,12 +11227,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11251,12 +11252,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -11275,12 +11276,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11370,12 +11371,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -11394,12 +11395,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11419,12 +11420,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -11443,12 +11444,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11468,12 +11469,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -11492,12 +11493,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11587,12 +11588,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -11611,12 +11612,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11636,12 +11637,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -11660,12 +11661,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11685,12 +11686,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -11709,12 +11710,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11804,12 +11805,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -11828,12 +11829,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11853,12 +11854,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -11877,12 +11878,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -11902,12 +11903,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -11926,12 +11927,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12021,12 +12022,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -12045,12 +12046,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12070,12 +12071,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -12094,12 +12095,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12119,12 +12120,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -12143,12 +12144,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12257,12 +12258,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -12281,12 +12282,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12306,12 +12307,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -12387,12 +12388,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -12411,12 +12412,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12686,12 +12687,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -12710,12 +12711,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12735,12 +12736,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -12759,12 +12760,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12784,12 +12785,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -12808,12 +12809,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12901,12 +12902,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -12925,12 +12926,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12950,12 +12951,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -12974,12 +12975,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -12999,12 +13000,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -13023,12 +13024,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13133,12 +13134,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -13157,12 +13158,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13181,12 +13182,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -13259,12 +13260,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -13283,12 +13284,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13341,12 +13342,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -13365,12 +13366,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13458,12 +13459,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -13482,12 +13483,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13507,12 +13508,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -13531,12 +13532,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13556,12 +13557,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -13580,12 +13581,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13673,12 +13674,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -13697,12 +13698,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13722,12 +13723,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -13746,12 +13747,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13771,12 +13772,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -13795,12 +13796,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13888,12 +13889,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -13912,12 +13913,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13937,12 +13938,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -13961,12 +13962,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -13986,12 +13987,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -14010,12 +14011,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14153,12 +14154,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -14177,12 +14178,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14202,12 +14203,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -14226,12 +14227,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14251,12 +14252,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -14275,12 +14276,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14401,12 +14402,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -14425,12 +14426,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14511,12 +14512,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -14535,12 +14536,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14560,12 +14561,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -14584,12 +14585,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14727,12 +14728,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -14751,12 +14752,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14776,12 +14777,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -14800,12 +14801,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14825,12 +14826,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -14849,12 +14850,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14930,12 +14931,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -14954,12 +14955,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -14979,12 +14980,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -15003,12 +15004,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15246,12 +15247,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -15270,12 +15271,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15295,12 +15296,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -15319,12 +15320,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15344,12 +15345,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -15368,12 +15369,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15461,12 +15462,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -15485,12 +15486,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15510,12 +15511,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -15534,12 +15535,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15559,12 +15560,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -15583,12 +15584,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -15976,12 +15977,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -16000,12 +16001,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16025,12 +16026,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -16049,12 +16050,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16074,12 +16075,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -16098,12 +16099,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16161,12 +16162,12 @@
 
 - (void)insertObject:(GCPhoneNumberAttribute *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_phoneNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
-	[_phoneNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCPhoneNumberAttribute *)_phoneNumbers[index]).describedObject = nil;
     [_phoneNumbers removeObjectAtIndex:index];
 }
 
@@ -16186,12 +16187,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -16210,12 +16211,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16234,12 +16235,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -16296,12 +16297,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -16320,12 +16321,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16344,12 +16345,12 @@
 
 - (void)insertObject:(GCCallNumberAttribute *)obj inCallNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCallNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_callNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromCallNumbersAtIndex:(NSUInteger)index {
-	[_callNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCCallNumberAttribute *)_callNumbers[index]).describedObject = nil;
     [_callNumbers removeObjectAtIndex:index];
 }
 
@@ -16437,12 +16438,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -16461,12 +16462,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16486,12 +16487,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -16510,12 +16511,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16535,12 +16536,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -16559,12 +16560,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16752,12 +16753,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -16776,12 +16777,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16801,12 +16802,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -16825,12 +16826,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -16850,12 +16851,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -16874,12 +16875,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17099,12 +17100,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -17123,12 +17124,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17148,12 +17149,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -17172,12 +17173,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17197,12 +17198,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -17221,12 +17222,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17290,12 +17291,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -17314,12 +17315,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17339,12 +17340,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -17363,12 +17364,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17432,12 +17433,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -17456,12 +17457,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17481,12 +17482,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -17505,12 +17506,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17582,12 +17583,12 @@
 
 - (void)insertObject:(GCEventsRecordedAttribute *)obj inEventsRecordedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEventsRecordedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_eventsRecordeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromEventsRecordedsAtIndex:(NSUInteger)index {
-	[_eventsRecordeds[index] setValue:nil forKey:@"describedObject"];
+	((GCEventsRecordedAttribute *)_eventsRecordeds[index]).describedObject = nil;
     [_eventsRecordeds removeObjectAtIndex:index];
 }
 
@@ -17608,12 +17609,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -17632,12 +17633,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17709,12 +17710,12 @@
 
 - (void)insertObject:(GCTextAttribute *)obj inTextsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTextAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_texts insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
-	[_texts[index] setValue:nil forKey:@"describedObject"];
+	((GCTextAttribute *)_texts[index]).describedObject = nil;
     [_texts removeObjectAtIndex:index];
 }
 
@@ -17734,12 +17735,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -17758,12 +17759,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17816,12 +17817,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -17840,12 +17841,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -17951,12 +17952,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -18050,12 +18051,12 @@
 
 - (void)insertObject:(GCPhoneNumberAttribute *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_phoneNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
-	[_phoneNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCPhoneNumberAttribute *)_phoneNumbers[index]).describedObject = nil;
     [_phoneNumbers removeObjectAtIndex:index];
 }
 
@@ -18075,12 +18076,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -18099,12 +18100,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -18123,12 +18124,12 @@
 
 - (void)insertObject:(GCLanguageAttribute *)obj inLanguagesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLanguageAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_languages insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromLanguagesAtIndex:(NSUInteger)index {
-	[_languages[index] setValue:nil forKey:@"describedObject"];
+	((GCLanguageAttribute *)_languages[index]).describedObject = nil;
     [_languages removeObjectAtIndex:index];
 }
 
@@ -18149,12 +18150,12 @@
 
 - (void)insertObject:(GCUserReferenceNumberAttribute *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	[_userReferenceNumbers[index] setValue:nil forKey:@"describedObject"];
+	((GCUserReferenceNumberAttribute *)_userReferenceNumbers[index]).describedObject = nil;
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 
@@ -18526,12 +18527,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -18550,12 +18551,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -18575,12 +18576,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -18599,12 +18600,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -18624,12 +18625,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -18648,12 +18649,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -18973,12 +18974,12 @@
 
 - (void)insertObject:(GCSourceCitationRelationship *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-	[_sourceCitations[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceCitationRelationship *)_sourceCitations[index]).describedObject = nil;
     [_sourceCitations removeObjectAtIndex:index];
 }
 
@@ -18997,12 +18998,12 @@
 
 - (void)insertObject:(GCSourceEmbeddedAttribute *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-	[_sourceEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCSourceEmbeddedAttribute *)_sourceEmbeddeds[index]).describedObject = nil;
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -19022,12 +19023,12 @@
 
 - (void)insertObject:(GCMultimediaReferenceRelationship *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
-	[_multimediaReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaReferenceRelationship *)_multimediaReferences[index]).describedObject = nil;
     [_multimediaReferences removeObjectAtIndex:index];
 }
 
@@ -19046,12 +19047,12 @@
 
 - (void)insertObject:(GCMultimediaEmbeddedAttribute *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
-	[_multimediaEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCMultimediaEmbeddedAttribute *)_multimediaEmbeddeds[index]).describedObject = nil;
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 
@@ -19071,12 +19072,12 @@
 
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-	[_noteReferences[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -19095,12 +19096,12 @@
 
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-	[_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+	((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 

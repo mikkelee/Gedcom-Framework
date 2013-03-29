@@ -12,12 +12,7 @@
 
 #import "GCObject_internal.h"
 #import "GCObject+GCObjectKeyValueAdditions.h"
-
-@interface GCProperty ()
-
-@property (weak, nonatomic) GCObject *describedObject;
-
-@end
+#import "GCProperty_internal.h"
 
 @implementation GCProperty
 

@@ -17,6 +17,8 @@
 #import "GCObject_internal.h"
 #import "GCObject+GCObjectKeyValueAdditions.h"
 
+#import "GCProperty_internal.h"
+
 @interface GCChangeInfoAttribute ()
 
 @property NSDate *modificationDate;
@@ -30,7 +32,7 @@
 
 #pragma mark Initialization
 
-- (id)init
+- (id)_init
 {
 	self = [super _initWithType:@"changeInfo"];
     
@@ -42,9 +44,20 @@
     return self;
 }
 
+- (id)init
+{
+    self = [self _init];
+    
+    if (self) {
+        self.modificationDate = [NSDate date];
+    }
+    
+    return self;
+}
+
 - (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
-    self = [self init];
+    self = [self _init];
     
     if (self) {
         [object addPropertiesObject:self];
@@ -73,12 +86,14 @@
     return [_noteReferences objectsAtIndexes:indexes];
 }
 
-- (void)insertObject:(GCNoteReferenceRelationship *)noteReferences inNoteReferencesAtIndex:(NSUInteger)index {
-	NSParameterAssert([noteReferences isKindOfClass:[GCNoteReferenceRelationship class]]);
-    [_noteReferences insertObject:noteReferences atIndex:index];
+- (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+    obj.describedObject = self;
+    [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+    ((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -95,14 +110,14 @@
     return [_noteEmbeddeds objectsAtIndexes:indexes];
 }
 
-- (void)insertObject:(GCNoteEmbeddedAttribute *)noteEmbeddeds inNoteEmbeddedsAtIndex:(NSUInteger)index {
-	NSParameterAssert([noteEmbeddeds isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-    [noteEmbeddeds setValue:self forKey:@"describedObject"];
-    [_noteEmbeddeds insertObject:noteEmbeddeds atIndex:index];
+- (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+    obj.describedObject = self;
+    [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-    [_noteEmbeddeds[index] setValue:nil forKey:@"describedObject"];
+    ((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 

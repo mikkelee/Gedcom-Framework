@@ -2,11 +2,14 @@
 
 import os.path, time
 
-selfModified = time.ctime(os.path.getmtime(os.path.abspath(os.path.dirname(__file__))))
-jsonModified = time.ctime(os.path.getmtime('tags.json'))
-headerModified = time.ctime(os.path.getmtime('GCObjects_generated.h'))
+selfModified = os.path.getmtime(os.path.abspath(os.path.dirname(__file__)))
+jsonModified = os.path.getmtime('tags.json')
+headerModified = os.path.getmtime('GCObjects_generated.h')
 
 if selfModified < headerModified and jsonModified < headerModified:
+	print 'selfModified: %s' % time.ctime(selfModified)
+	print 'jsonModified: %s' % time.ctime(jsonModified)
+	print 'headerModified: %s' % time.ctime(headerModified)
 	print 'NOT GOING TO RUN; touch tags.json to force.'
 	exit()
 
@@ -39,12 +42,12 @@ mutableAccessorsT = Template("""
 
 - (void)insertObject:($type *)obj in${capName}AtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[$type class]]);
-	[obj setValue:self forKey:@"describedObject"];
+	obj.describedObject = self;
     [_$name insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
-	[_$name[index] setValue:nil forKey:@"describedObject"];
+	(($type *)_$name[index]).describedObject = nil;
     [_$name removeObjectAtIndex:index];
 }
 """)
@@ -84,6 +87,7 @@ implementationFileT = Template("""/*
 #import "GCObjects_generated.h"
 
 #import "GCObject_internal.h"
+#import "GCProperty_internal.h"
 
 $classImplementations
 """)

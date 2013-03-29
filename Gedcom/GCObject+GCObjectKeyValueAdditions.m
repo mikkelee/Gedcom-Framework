@@ -15,6 +15,8 @@
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
+#import "GCProperty_internal.h"
+
 @implementation GCObject (GCObjectKeyValueAdditions)
 
 #pragma mark Internal helpers
@@ -25,21 +27,12 @@
         [property.describedObject.allProperties removeObject:property];
     }
     
-    [property setValue:self forKey:@"describedObject"];
+    property.describedObject = self;
     
     if (property.gedTag.isCustom || self.gedTag.isCustom) {
         [(NSMutableArray *)self.customProperties addObject:property];
     } else if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
         NSString *key = property.gedTag.pluralName;
-        
-        NSIndexSet *indexes;
-        
-        if (![super valueForKey:key]) {
-            [super setValue:[NSMutableArray array] forKey:key];
-            indexes = [NSIndexSet indexSetWithIndex:0];
-        } else {
-            indexes = [NSIndexSet indexSetWithIndex:[[super valueForKey:key] count]];
-        }
         
         [[super mutableArrayValueForKey:key] addObject:property];
     } else {
@@ -51,9 +44,9 @@
 
 - (void)_internalRemoveProperty:(GCProperty *)property
 {
-    [property setValue:nil forKey:@"describedObject"];
+    property.describedObject = nil;
     
-   if (property.gedTag.isCustom || self.gedTag.isCustom) {
+    if (property.gedTag.isCustom || self.gedTag.isCustom) {
         [(NSMutableArray *)self.customProperties removeObject:property];
     } else if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
         NSString *key = property.gedTag.pluralName;

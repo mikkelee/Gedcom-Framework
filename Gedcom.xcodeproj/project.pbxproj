@@ -114,6 +114,7 @@
 		3E8C1EA01626BECE005B3BE6 /* GCObject+GCSanityCheckAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1E9516264861005B3BE6 /* GCObject+GCSanityCheckAdditions.m */; };
 		3E8C1EA11626BED7005B3BE6 /* sanity.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C1E9216264837005B3BE6 /* sanity.json */; };
 		3EB5ABD6153619280036B4D5 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json */; };
+		3ECAA627170594F300C5B335 /* GCProperty_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ECAA626170594BD00C5B335 /* GCProperty_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3ED171231614B4FC00B5B83F /* Predicates.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ED171221614B4FC00B5B83F /* Predicates.strings */; };
 		3ED1712A1614C16200B5B83F /* GCPredicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED171291614C16200B5B83F /* GCPredicateTests.m */; };
 		3ED1712D16155AE200B5B83F /* GCObject+GCObjectKeyValueAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED1712B16155AE100B5B83F /* GCObject+GCObjectKeyValueAdditions.h */; };
@@ -320,6 +321,7 @@
 		3E8C1E98162648DF005B3BE6 /* GCIndividualEntity+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCIndividualEntity+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3E8C1E9C1626BBA5005B3BE6 /* GCSanityCheckTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSanityCheckTests.m; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
+		3ECAA626170594BD00C5B335 /* GCProperty_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCProperty_internal.h; sourceTree = "<group>"; };
 		3ED171221614B4FC00B5B83F /* Predicates.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Predicates.strings; path = GedcomGUI/Predicates.strings; sourceTree = SOURCE_ROOT; };
 		3ED171291614C16200B5B83F /* GCPredicateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPredicateTests.m; sourceTree = "<group>"; };
 		3ED1712B16155AE100B5B83F /* GCObject+GCObjectKeyValueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCObjectKeyValueAdditions.h"; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 			isa = PBXGroup;
 			children = (
 				3E57558B15217C2F00A918D1 /* GCProperty.h */,
+				3ECAA626170594BD00C5B335 /* GCProperty_internal.h */,
 				3E57558C15217C2F00A918D1 /* GCProperty.m */,
 				3E4373531521CB7200BA362F /* GCAttribute.h */,
 				3E4373541521CB7200BA362F /* GCAttribute.m */,
@@ -809,6 +812,7 @@
 				3E8C1D7A161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h in Headers */,
 				3E8C1E99162648DF005B3BE6 /* GCIndividualEntity+GCObjectAdditions.h in Headers */,
 				3E8C1E9F1626BEC7005B3BE6 /* GCObject+GCSanityCheckAdditions.h in Headers */,
+				3ECAA627170594F300C5B335 /* GCProperty_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
