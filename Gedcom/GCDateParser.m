@@ -2210,8 +2210,9 @@ __strong static NSArray *_frenchRevolutionaryMonthNames;
     _hebrewCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSHebrewCalendar];
     [_hebrewCalendar setTimeZone:_utc];
     
-    _frenchRevolutionaryCalendar = nil; //TODO, doesn't exist in ICU...
-    
+    //TODO, french revolutionariy calendar doesn't exist in ICU...
+    _frenchRevolutionaryCalendar = nil;
+
     _gregorianMonthNames = @[ @"JAN", @"FEB", @"MAR", @"APR", @"MAY", @"JUN", @"JUL", @"AUG", @"SEP", @"OCT", @"NOV", @"DEC" ];
 
     _hebrewMonthNames = @[ @"TSH", @"CSH", @"KSL", @"TVT", @"SHV", @"ADR", @"ADS", @"NSN", @"IYR", @"SVN", @"TMZ", @"AAV", @"ELL" ];
@@ -2276,14 +2277,14 @@ __strong static NSArray *_frenchRevolutionaryMonthNames;
         const char *eof = pe;
         
         
-#line 2280 "GCDateParser.m"
+#line 2281 "GCDateParser.m"
 	{
 	cs = date_start;
 	}
 
-#line 380 "GCDateParser.rl"
+#line 381 "GCDateParser.rl"
         
-#line 2287 "GCDateParser.m"
+#line 2288 "GCDateParser.m"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2497,7 +2498,7 @@ _match:
         currentDate = [GCDate dateWithPhrase:currentString];
     }
 	break;
-#line 2501 "GCDateParser.m"
+#line 2502 "GCDateParser.m"
 		}
 	}
 
@@ -2634,7 +2635,7 @@ _again:
 		finished = YES;
 	}
 	break;
-#line 2638 "GCDateParser.m"
+#line 2639 "GCDateParser.m"
 		}
 	}
 	}
@@ -2642,7 +2643,7 @@ _again:
 	_out: {}
 	}
 
-#line 381 "GCDateParser.rl"
+#line 382 "GCDateParser.rl"
         
         if (!finished) {
             date = nil;

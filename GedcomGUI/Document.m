@@ -145,7 +145,7 @@
     [NSApp endSheet:loadingSheet];
     [loadingSheet orderOut:nil];
     
-    // TODO somehow bind array controller to s.c.i instead
+    // TODO bind array controller to s.c.i instead
     self.individuals = self.context.individuals;
     
     [individualsPredicateEditor setRowTemplates:[GCIndividualEntity defaultPredicateEditorRowTemplates]];
