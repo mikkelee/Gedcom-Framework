@@ -28,7 +28,9 @@
     self = [super initWithGedcomNode:node onObject:object];
     
     if (self) {
-        [self setValueWithGedcomString:node.gedValue];
+        if (node.gedValue) {
+            [self setValueWithGedcomString:node.gedValue];
+        }
     }
     
     return self;
@@ -117,7 +119,7 @@
 
 - (void)setValue:(GCValue *)value
 {
-    NSParameterAssert([value isKindOfClass:[GCValue class]]);
+    NSParameterAssert(!value || [value isKindOfClass:[GCValue class]]);
     _value = value;
 }
 
@@ -185,7 +187,7 @@
     
     returnError = combineErrors(returnError, err);
     
-    if (self.gedTag.valueType) {
+    if (self.gedTag.valueType && !self.gedTag.allowsNilValue) {
         if (_value == nil) {
             returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCValueMissingError
