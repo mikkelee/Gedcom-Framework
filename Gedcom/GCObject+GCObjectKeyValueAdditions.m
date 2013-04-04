@@ -251,3 +251,54 @@
 }
 
 @end
+
+#import <objc/runtime.h>
+
+@implementation GCObject (GCSwizzling)
+
++ (void)load
+{
+    // TODO get class list
+    NSArray *classesToSwizzle = @[ @"GCHeaderEntity" ];
+    
+    for (NSString *className in classesToSwizzle) {
+        //NSLog(@"**** Class %@", className);
+        Class cls = NSClassFromString(className);
+        unsigned int propCount, i;
+        objc_property_t *properties = class_copyPropertyList(cls, &propCount);
+        
+        for (i = 0; i < propCount; i++) {
+            objc_property_t property = properties[i];
+            
+            NSString *name = [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
+            NSString *attrs = [NSString stringWithCString:property_getAttributes(property) encoding:NSUTF8StringEncoding];
+            
+            if ([attrs hasPrefix:@"T@\"GC"]) {
+                NSString *setter = [NSString stringWithFormat:@"set%@%@:", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1]];
+                SEL selector = NSSelectorFromString(setter);
+                
+                //NSLog(@"     Swizzling %@", setter);
+                
+                Method origMethod = class_getInstanceMethod(cls, selector);
+                
+                IMP origIMP = method_getImplementation(origMethod);
+                
+                IMP swizIMP = imp_implementationWithBlock(^(id _s, id newObj) {
+                    if ([_s valueForKey:name]) {
+                        [[_s valueForKey:name] setValue:nil forKey:@"describedObject"];
+                    }
+                    
+                    [newObj setValue:_s forKey:@"describedObject"];
+                    
+                    origIMP(_s, selector, newObj);
+                });
+                
+                method_setImplementation(origMethod, swizIMP);
+            } else {
+                //NSLog(@"     Skipping %@", name);
+            }
+        }
+    }
+}
+
+@end
