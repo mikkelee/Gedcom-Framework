@@ -58,7 +58,8 @@
     // with the value yes, indicating that the individual died.
     indi[@"deaths"] = @[ [GCBool yes] ];
     
-    [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"modificationDate"]; //Setting a known date so output is known
+    // Setting a known date so output is testable:
+    [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"modificationDate"];
     
     STAssertEqualObjects([indi gedcomString], 
                          @"0 @INDI1@ INDI\n"
@@ -125,7 +126,7 @@
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];
-    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"children"];
+    [fam setValue:@[ chil ] forKey:@"children"];
     
     //alternately:
 	// [fam addRelationshipWithType:@"husband" target:husb];
