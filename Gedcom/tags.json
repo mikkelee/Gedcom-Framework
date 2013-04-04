@@ -262,7 +262,6 @@
 	"husbandDetail": {
 		"code": "HUSB",
 		"objectType": "attribute",
-		"valueType": "string",
 		"validSubTags": [
                          { "name": "age", "min": 1, "max": 1 }
                          ]
@@ -270,7 +269,6 @@
 	"wifeDetail": {
 		"code": "WIFE",
 		"objectType": "attribute",
-		"valueType": "string",
 		"validSubTags": [
                          { "name": "age", "min": 1, "max": 1 }
                          ]
@@ -296,8 +294,8 @@
 	},
     
 	"@individualEvent": {
-		"objectType": "property",
 		"valueType": "bool",
+        "allowsNil": true,
 		"variants": [
                      { "name": "birth", "min": 0, "max": "M" },
                      { "name": "christening", "min": 0, "max": "M" },
@@ -328,8 +326,6 @@
                          ]
 	},
 	"@individualAttribute": {
-		"objectType": "property",
-		"valueType": "string",
 		"variants": [
                      { "name": "caste", "min": 0, "max": "M" },
                      { "name": "physicalDescription", "min": 0, "max": "M" },
@@ -351,7 +347,6 @@
                          ]
 	},
 	"@individualLDSOrdinance": {
-		"objectType": "property",
 		"variants": [
                      { "name": "lDSBaptism", "min": 0, "max": "M" },
                      { "name": "lDSConfirmation", "min": 0, "max": "M" },
@@ -367,8 +362,8 @@
                          ]
 	},
 	"@familyEvent": {
-		"objectType": "property",
 		"valueType": "bool",
+        "allowsNil": true,
 		"variants": [
                      { "name": "annulment", "min": 0, "max": "M" },
                      { "name": "census", "min": 0, "max": "M" },
@@ -389,7 +384,6 @@
                          ]
 	},
 	"@eventDetail": {
-		"objectType": "property",
 		"variants": [
                      { "name": "typeDescription", "min": 0, "max": 1 },
                      { "name": "date", "min": 0, "max": 1 },
@@ -538,7 +532,6 @@
 	"multimediaEmbedded": {
 		"code": "OBJE",
 		"objectType": "attribute",
-		"valueType": "string",
 		"validSubTags": [
                          { "name": "multimediaFormat", "min": 1, "max": 1 },
                          { "name": "title", "min": 0, "max": 1 },
@@ -772,7 +765,6 @@
 	"data": {
 		"code": "DATA",
 		"objectType": "attribute",
-		"valueType": "string",
 		"validSubTags": [
                          { "name": "date", "min": 0, "max": 1 },
                          { "name": "text", "min": 0, "max": "M" }
@@ -790,7 +782,6 @@
 	"sourceData": {
 		"code": "DATA",
 		"objectType": "attribute",
-		"valueType": "string",
 		"validSubTags": [
                          { "name": "eventsRecorded", "min": 0, "max": "M" },
                          { "name": "responsibleAgency", "min": 0, "max": 1 },
@@ -923,7 +914,6 @@
 	"gedcom": {
 		"code": "GEDC",
 		"objectType": "attribute",
-		"valueType": "string",
 		"validSubTags": [
                          { "name": "version", "min": 1, "max": 1 },
                          { "name": "gedcomFormat", "min": 1, "max": 1 }
@@ -1105,8 +1095,7 @@
 	},
 	"residence": {
 		"code": "RESI",
-		"objectType": "attribute",
-		"valueType": "string"
+		"objectType": "attribute"
 	},
 	"restrictionNotice": {
 		"code": "RESN",

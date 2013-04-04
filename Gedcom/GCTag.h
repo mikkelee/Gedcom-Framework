@@ -132,6 +132,9 @@ typedef struct {
 /// A class indicating which type its value is. Will be `nil` if the tag is not an attribute-tag. See GCValue.
 @property (readonly) Class valueType;
 
+/// A BOOL indicating whether the tag allows nil values. If `NO` it must have a value.
+@property (readonly) BOOL allowsNilValue;
+
 /// A collection of allowed values; will be empty if the tag is not an attribute-tag or there are no restrictions on values.
 @property (readonly) NSArray *allowedValues;
 

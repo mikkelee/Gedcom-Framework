@@ -47,6 +47,7 @@ const NSString *kMax = @"max";
 
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
+const NSString *kAllowsNil = @"allowsNil";
 const NSString *kAllowedValues = @"allowedValues";
 const NSString *kTargetType = @"target";
 const NSString *kReverseRelationshipTag = @"reverseRelationshipTag";
@@ -97,6 +98,10 @@ static inline void propagate(NSString *variantKey, NSDictionary *sourceDict) {
     if (sourceDict[kObjectType] && !variantDict[kObjectType]) {
         variantDict[kObjectType] = sourceDict[kObjectType];
     }
+    
+    if (sourceDict[kAllowsNil] && !variantDict[kAllowsNil]) {
+        variantDict[kAllowsNil] = sourceDict[kAllowsNil];
+    }
 }
 
 static inline void setupKey(NSString *key) {
@@ -117,6 +122,11 @@ static inline void setupKey(NSString *key) {
         tagDict[kPlural] = [NSString stringWithFormat:@"%@s", tagDict[kName]];
     }
     _singularToPlural[tagDict[kName]] = tagDict[kPlural];
+    
+    // allowsNilValue
+    if (!tagDict[kAllowsNil]) {
+        tagDict[kAllowsNil] = [NSNumber numberWithBool:NO];
+    }
     
     // propagate info to variants
     for (NSDictionary *variant in tagDict[kVariants]) {
@@ -211,6 +221,7 @@ static inline void setupKey(NSString *key) {
         
         // for attributes:
         _valueType = NSClassFromString([NSString stringWithFormat:@"GC%@", [_settings[kValueType] capitalizedString]]);
+        _allowsNilValue = [_settings[kAllowsNil] boolValue];
         _allowedValues = [_settings[kAllowedValues] valueForKey:@"uppercaseString"];
         
         // for relationships:
