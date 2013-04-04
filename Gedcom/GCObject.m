@@ -142,7 +142,10 @@ __strong static NSDictionary *_defaultColors;
     
     if (self) {
         for (NSString *propertyType in self.validPropertyTypes) {
-            [super setValue:[aDecoder decodeObjectForKey:propertyType] forKey:propertyType];
+            id obj = [aDecoder decodeObjectForKey:propertyType];
+            if (obj) {
+                [super setValue:obj forKey:propertyType];
+            }
         }
         @synchronized(_customProperties) {
             _customProperties = [aDecoder decodeObjectForKey:@"customProperties"];
