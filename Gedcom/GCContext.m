@@ -79,6 +79,29 @@ __strong static NSArray *_rootKeys = nil;
     }
 }
 
+#pragma mark Default header
+
+- (void)setDefaultHeader
+{
+    GCHeaderEntity *head = [GCHeaderEntity headerInContext:self];
+    
+    head.characterSet = [GCCharacterSetAttribute characterSetWithGedcomStringValue:@"UNICODE"];
+    
+    head.headerSource = [GCHeaderSourceAttribute headerSourceWithGedcomStringValue:@"Gedcom.framework"];
+    head.headerSource.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:@"Gedcom.framework"];
+    head.headerSource.version = [GCVersionAttribute versionWithGedcomStringValue:@"0.9.1"];
+    
+    head.gedcom = [GCGedcomAttribute gedcom];
+    head.gedcom.version = [GCVersionAttribute versionWithGedcomStringValue:@"5.5"];
+    head.gedcom.gedcomFormat = [GCGedcomFormatAttribute gedcomFormatWithGedcomStringValue:@"LINEAGE-LINKED"];
+    
+    GCSubmitterEntity *subm = [GCSubmitterEntity submitterInContext:self];
+    subm.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:NSFullUserName()];
+    
+    head.submitterReference = [GCSubmitterReferenceRelationship submitterReference];
+    head.submitterReference.target = subm;
+}
+
 #pragma mark Node access
 
 - (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error
@@ -254,7 +277,6 @@ __strong static NSArray *_rootKeys = nil;
 - (void)addEntitiesObject:(GCEntity *)entity
 {
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
-        NSParameterAssert(!_header);
         self.header = (GCHeaderEntity *)entity;
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
         self.submission = (GCSubmissionEntity *)entity;
@@ -431,7 +453,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)setFileEncoding:(GCFileEncoding)fileEncoding
 {
-    GCParameterAssert(_header);
+    GCParameterAssert(_header.characterSet);
     
     NSParameterAssert(fileEncoding != GCUnknownFileEncoding);
     
@@ -447,6 +469,8 @@ __strong static NSArray *_rootKeys = nil;
         NSAssert(false, @"Unhandled file encoding!");
     }
     
+    // TODO UTF8?
+    
     _header.characterSet.value = [GCString valueWithGedcomString:encodingStr];
 }
 
@@ -454,6 +478,10 @@ __strong static NSArray *_rootKeys = nil;
 {
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[self countOfEntities]];
 	
+    if (!_header) {
+        [self setDefaultHeader];
+    }
+    
 	[nodes addObject:_header.gedcomNode];
     
     if (_submission) {
@@ -623,6 +651,8 @@ NSString *GCErrorDomain = @"GCErrorDomain";
 {
     BOOL isValid = YES;
     NSError *returnError = nil;
+    
+    // TODO validate missing header!
     
     for (GCEntity *entity in self.mutableEntities) {
         //NSLog(@"validating %@", [self xrefForEntity:entity]);
