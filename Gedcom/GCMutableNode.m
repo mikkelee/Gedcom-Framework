@@ -34,15 +34,6 @@
 	return self;
 }
 
-#pragma mark Description
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"[GCMutableNode tag: %@ xref: %@ value: %@ (subNodes: %@)]", self.gedTag, self.xref, self.gedValue, self.subNodes];
-}
-//COV_NF_END
-
 #pragma mark Internal SubNode accessors
 
 - (NSUInteger)countOfInternalSubNodes
