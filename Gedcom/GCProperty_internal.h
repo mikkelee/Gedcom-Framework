@@ -1,5 +1,5 @@
 //
-//  GCProperty__internal.h
+//  GCProperty_internal.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 29/03/13.
