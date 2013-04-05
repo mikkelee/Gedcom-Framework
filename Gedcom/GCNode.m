@@ -13,8 +13,6 @@
 
 @interface GCNode ()
 
-- (void)addSubNode: (GCNode *) n;
-
 @property (weak, nonatomic) GCNode *parent;
 @property (nonatomic) NSString *gedTag;
 @property (nonatomic) NSString *gedValue;
@@ -23,11 +21,9 @@
 
 @end
 
-@implementation GCNode {
-    NSMutableArray *_subNodes;
-}
+static NSString *concSeparator = @"\u2060";
 
-static NSString *concSeparator;
+@implementation GCNode
 
 #pragma mark Initialization
 
@@ -58,141 +54,18 @@ static NSString *concSeparator;
         _gedValue = value;
         
         if (subNodes) {
-            _subNodes = [subNodes mutableCopy]; 
+            NSMutableArray *tmp = [NSMutableArray array];
+            for (id subNode in subNodes) {
+                ((GCMutableNode *)subNode).parent = self;
+                [tmp addObject:subNode];
+            }
+            _subNodes = [tmp copy];
         } else {
-            _subNodes = [NSMutableArray array];
+            _subNodes = [NSArray array];
         }
 	}
     
     return self;
-}
-
-#pragma mark Convenience constructors
-
-+ (NSArray*)arrayOfNodesFromString:(id)gedString
-{
-    if ([gedString isKindOfClass:[NSAttributedString class]]) {
-        gedString = [gedString string];
-    }
-    
-    NSParameterAssert([gedString isKindOfClass:[NSString class]]);
-    
-	NSMutableArray *gedArray = [NSMutableArray array];
-	
-	__block int currentLevel = 0;
-	__block GCNode *currentNode = nil;
-	
-#ifdef DEBUGLEVEL
-    clock_t start, end;
-    double elapsed;
-    start = clock();
-	//NSLog(@"Began parsing gedcom.");
-#endif
-	
-	NSRegularExpression *levelXrefTagValueRegex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d) (?:(\\@[A-Z_]+\\d*\\@) )?([A-Z]{3,4}[0-9]?|_[A-Z][A-Z0-9]*)(?: (.*))?$"
-                                                                                            options:kNilOptions 
-                                                                                              error:nil];
-	
-    [gedString enumerateLinesUsingBlock:^(NSString *gLine, BOOL *stop) {
-		if ([gLine isEqualToString:@""]) {
-			return;
-        }
-     
-		int level = -1;
-		GCNode* node = nil;
-		
-		NSRange range = NSMakeRange(0, [gLine length]);
-		NSTextCheckingResult *match = [levelXrefTagValueRegex firstMatchInString:gLine options:kNilOptions range:range];
-		
-        //NSLog(@"gLine: %@", gLine);
-        
-        if (match) {
-            GCNode *parent = nil;
-            
-			level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
-            
-            if (level == 0) { //root
-                parent = nil;
-            } else if (level == currentLevel+1) { //child of current
-                parent = currentNode;
-            } else { //find correct parent
-                parent = currentNode;
-                for (int i = currentLevel; i >= level; i--) {
-                    parent = [parent parent];
-                }
-            }
-            
-			NSString *xref = nil;
-			if ([match rangeAtIndex:2].length > 0) {
-				xref = [gLine substringWithRange:[match rangeAtIndex:2]];
-			}
-            
-            NSString *code = [gLine substringWithRange:[match rangeAtIndex:3]];
-            
-			NSString *val = nil;
-			if ([match rangeAtIndex:4].length > 0) {
-                val = [[gLine substringWithRange:[match rangeAtIndex:4]] stringByReplacingOccurrencesOfString:@"@@" withString:@"@"]; // unescape at-sign
-			}
-            
-            // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
-			if ([code isEqualToString:@"CONT"]) {
-				if (currentNode.gedValue == nil) {
-					currentNode.gedValue = val;
-				} else {
-                    currentNode.gedValue = [NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, val];
-                }
-				return;
-			} else if ([code isEqualToString:@"CONC"]) {
-				if (currentNode.gedValue == nil) {
-					currentNode.gedValue = val;
-				} else {
-					currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, val];
-                }
-				return;
-			}
-            
-            /*
-             NSLog(@"level: %d", level);
-             NSLog(@"xref: %@", xref);
-             NSLog(@"code: %@", code);
-             NSLog(@"val: %@", val);
-             NSLog(@"type: %@", type);
-             */
-            
-            if (xref) {
-                node = [GCNode nodeWithTag:code 
-                                      xref:xref];
-            } else {
-                node = [GCNode nodeWithTag:code 
-                                     value:val];
-            }
-            
-            if (parent) {
-                [parent addSubNode:node];
-            } else {
-                [gedArray addObject:node];
-            }
-            
-            currentLevel = level;
-            currentNode = node;
-        } else {
-			NSLog(@"Unable to create node from gedcom: '%@' -- will assume faulty linefeed and append to value of previous node: %@", gLine, currentNode);
-            
-            if (currentNode.gedValue == nil) {
-                currentNode.gedValue = gLine;
-            } else {
-                currentNode.gedValue = [NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, gLine];
-            }
-		}
-	}];
-	
-#ifdef DEBUGLEVEL
-    end = clock();
-    elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-    NSLog(@"arrayOfNodesFromString - Time: %f seconds",elapsed);
-#endif
-    
-	return [gedArray copy];
 }
 
 #pragma mark Gedcom output
@@ -411,21 +284,11 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     return [self valueForKey:key];
 }
 
-#pragma mark Adding subnodes
-
-- (void)addSubNode:(GCNode *)node
-{
-	NSParameterAssert(self != node);
-    
-	[_subNodes addObject:node];
-	[node setParent:self];
-}
-
 #pragma mark Comparison
 
 - (BOOL)isEquivalentTo:(GCNode *)other
 {
-    if (![other isKindOfClass:[self class]]) {
+    if (![other isKindOfClass:[GCNode class]]) {
         return NO;
     }
     
@@ -504,7 +367,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (tag: %@ xref: %@ value: %@) {\n%@%@};\n", indent, [self className], self, self.gedTag, self.xref, self.gedValue, [self _subNodeDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (tag: %@ xref: %@ value: %@ parent: %p) {\n%@%@};\n", indent, [self className], self, self.gedTag, self.xref, self.gedValue, self.parent, [self _subNodeDescriptionWithIndent:level+1], indent];
 }
 
 - (NSString *)_subNodeDescriptionWithIndent:(NSUInteger)level
@@ -571,7 +434,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
     
     for (id subNode in _subNodes) {
-        [copy addSubNode:[subNode mutableCopy]];
+        [copy.mutableSubNodes addObject:[subNode mutableCopy]];
     }
     
     return copy;

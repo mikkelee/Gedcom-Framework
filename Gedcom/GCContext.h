@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "GCContextDelegate.h"
+#import "GCNodeParserDelegate.h"
 
 @class GCHeaderEntity;
 @class GCEntity;
@@ -56,7 +57,7 @@ typedef enum : NSUInteger {
  ```
  
  */
-@interface GCContext : NSObject <NSCoding>
+@interface GCContext : NSObject <NSCoding, GCNodeParserDelegate>
 
 #pragma mark Obtaining a context
 /// @name Obtaining a context

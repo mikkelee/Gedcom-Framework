@@ -9,6 +9,7 @@
 
 #import "GCObject.h"
 
+#import "GCNodeParser.h"
 #import "GCNode.h"
 
 #import "GCContext.h"
@@ -301,7 +302,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomString:(NSString *)gedcomString
 {
-    NSArray *nodes = [GCNode arrayOfNodesFromString:gedcomString];
+    NSArray *nodes = [GCNodeParser arrayOfNodesFromString:gedcomString];
     
     GCParameterAssert([nodes count] == 1);
     

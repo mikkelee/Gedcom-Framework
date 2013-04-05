@@ -38,7 +38,7 @@
         fileContents = [[NSString alloc] initWithData:data encoding:ctx.fileEncoding];
     }
     
-    NSArray *inputNodes = [GCNode arrayOfNodesFromString:fileContents];
+    NSArray *inputNodes = [GCNodeParser arrayOfNodesFromString:fileContents];
     
     // validate encoding:
     

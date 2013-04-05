@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
+#import "GCNodeParser.h"
 #import "GCNode.h"
 #import "GCMutableNode.h"
 
@@ -41,6 +42,7 @@
 #import "GCBinaryObjectAttribute+GCObjectAdditions.h"
 
 #import "GCContextDelegate.h"
+#import "GCNodeParserDelegate.h"
 
 #import "GCXrefProtocol.h"
 

@@ -28,7 +28,7 @@ static inline NSDate * dateFromNode(GCNode *node) {
     
     strptime_l([dateString cStringUsingEncoding:NSASCIIStringEncoding], formatString, &timeResult, NULL);
     
-    assert(mktime(&timeResult) > 0);
+    NSCAssert((&timeResult) > 0, @"Time broken!");
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970: mktime(&timeResult)];
     

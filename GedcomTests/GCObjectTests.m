@@ -10,7 +10,7 @@
 
 #import "Gedcom.h"
 
-@interface GCObjectTests : SenTestCase 
+@interface GCObjectTests : SenTestCase
 @end
 
 @implementation GCObjectTests
@@ -186,7 +186,7 @@
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
 	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 	
-	NSArray *nodes = [GCNode arrayOfNodesFromString:fileContents];
+	NSArray *nodes = [GCNodeParser arrayOfNodesFromString:fileContents];
 	
 	GCContext *ctx = [GCContext context];
     
@@ -206,7 +206,7 @@
 {
     GCContext *ctx = [GCContext context];
     
-    NSArray *malformedNodes = [GCNode arrayOfNodesFromString:nodeString];
+    NSArray *malformedNodes = [GCNodeParser arrayOfNodesFromString:nodeString];
     
     GCEntity *submitter = [[GCSubmitterEntity alloc] initWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
     

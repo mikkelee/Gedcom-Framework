@@ -14,7 +14,7 @@
  
  ```
     // get an array of nodes from a string
-    NSArray *nodes = [GCNode arrayOfNodesFromString:@"0 HEAD\n1 ..."];
+    NSArray *nodes = [GCNodeParser arrayOfNodesFromString:@"0 HEAD\n1 ..."];
     
     // find all individuals
     for (GCNode *node in nodes) {
@@ -46,15 +46,6 @@
  @return A new node.
  */
 - (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(id)subNodes;
-
-#pragma mark Convenience constructors
-
-/** Given a string of Gedcom data, will create an array of the nodes at level 0 of the data. Each node will further have subnodes as indicated by their level in the data.
- 
- @param gedString A string of Gedcom data
- @return An array of nodes.
- */
-+ (NSArray *)arrayOfNodesFromString:(NSString*) gedString;
 
 #pragma mark Subscript accessors
 
@@ -114,7 +105,7 @@
 /// The value of the receiver; may be `nil`.
 @property (readonly, nonatomic) NSString *gedValue;
 
-/// `TRUE` the value is non-nil and starts and ends with a `@`, otherwise `NO`.
+/// `TRUE` the value is non-nil and is wrapped in `@`s, otherwise `NO`.
 @property (readonly, nonatomic) BOOL valueIsXref;
 
 /// The xref of the receiver; may be `nil`.

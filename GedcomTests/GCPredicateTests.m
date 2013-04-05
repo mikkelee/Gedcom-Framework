@@ -47,7 +47,7 @@
     @"2 PLAC Stockholm, Sweden\n"
     @"0 TRLR";
     
-    [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString] error:nil];
+    [ctx parseNodes:[GCNodeParser arrayOfNodesFromString:gedcomString] error:nil];
     
     NSPredicate *birthPredicate = [NSPredicate predicateWithFormat:@"ANY births.date.value < %@", [GCDate valueWithGedcomString:@"1905"]];
     NSArray *birthResult = [ctx.individuals filteredArrayUsingPredicate:birthPredicate];

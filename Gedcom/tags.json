@@ -1095,7 +1095,8 @@
 	},
 	"residence": {
 		"code": "RESI",
-		"objectType": "attribute"
+		"objectType": "attribute",
+		"valueType": "string"
 	},
 	"restrictionNotice": {
 		"code": "RESN",

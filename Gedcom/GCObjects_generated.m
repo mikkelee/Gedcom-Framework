@@ -366,6 +366,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -388,6 +392,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -415,6 +423,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -437,6 +449,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -464,6 +480,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -486,6 +506,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -581,6 +605,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -603,6 +631,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -630,6 +662,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -652,6 +688,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -679,6 +719,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -701,6 +745,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -960,6 +1008,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -982,6 +1034,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -1009,6 +1065,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -1031,6 +1091,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -1058,6 +1122,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -1080,6 +1148,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -1148,6 +1220,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -1170,6 +1246,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -1197,6 +1277,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -1219,6 +1303,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -1364,6 +1452,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -1386,6 +1478,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -1413,6 +1509,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -1435,6 +1535,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -1462,6 +1566,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -1484,6 +1592,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -1579,6 +1691,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -1601,6 +1717,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -1628,6 +1748,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -1650,6 +1774,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -1677,6 +1805,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -1699,6 +1831,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -1794,6 +1930,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -1816,6 +1956,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -1843,6 +1987,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -1865,6 +2013,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -1892,6 +2044,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -1914,6 +2070,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -2060,6 +2220,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -2082,6 +2246,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -2109,6 +2277,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -2131,6 +2303,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -2158,6 +2334,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -2180,6 +2360,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -2275,6 +2459,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -2297,6 +2485,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -2324,6 +2516,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -2346,6 +2542,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -2373,6 +2573,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -2395,6 +2599,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -2522,6 +2730,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -2544,6 +2756,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -2571,6 +2787,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -2593,6 +2813,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -2620,6 +2844,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -2642,6 +2870,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -2787,6 +3019,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -2809,6 +3045,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -2836,6 +3076,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -2858,6 +3102,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -2885,6 +3133,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -2907,6 +3159,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -3052,6 +3308,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -3074,6 +3334,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -3101,6 +3365,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -3123,6 +3391,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -3150,6 +3422,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -3172,6 +3448,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -3317,6 +3597,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -3339,6 +3623,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -3435,6 +3723,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -3457,6 +3749,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -3484,6 +3780,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -3506,6 +3806,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -3533,6 +3837,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -3555,6 +3863,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -3700,6 +4012,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -3722,6 +4038,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -3749,6 +4069,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -3771,6 +4095,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -3798,6 +4126,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -3820,6 +4152,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -3944,6 +4280,10 @@
 
 - (NSMutableArray *)mutablePhoneNumbers {
     return [self mutableArrayValueForKey:@"phoneNumbers"];
+}
+
+- (NSUInteger)countOfPhoneNumbers {
+	return [_phoneNumbers count];
 }
 
 - (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
@@ -4089,6 +4429,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -4111,6 +4455,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -4138,6 +4486,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -4160,6 +4512,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -4187,6 +4543,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -4209,6 +4569,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -4283,6 +4647,10 @@
 
 - (NSMutableArray *)mutableTexts {
     return [self mutableArrayValueForKey:@"texts"];
+}
+
+- (NSUInteger)countOfTexts {
+	return [_texts count];
 }
 
 - (id)objectInTextsAtIndex:(NSUInteger)index {
@@ -4428,6 +4796,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -4450,6 +4822,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -4477,6 +4853,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -4499,6 +4879,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -4526,6 +4910,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -4548,6 +4936,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -4775,6 +5167,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -4797,6 +5193,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -4824,6 +5224,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -4846,6 +5250,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -4873,6 +5281,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -4895,6 +5307,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -4992,6 +5408,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -5014,6 +5434,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -5041,6 +5465,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -5063,6 +5491,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -5090,6 +5522,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -5112,6 +5548,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -5209,6 +5649,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -5231,6 +5675,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -5258,6 +5706,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -5280,6 +5732,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -5307,6 +5763,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -5329,6 +5789,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -5424,6 +5888,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -5446,6 +5914,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -5473,6 +5945,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -5495,6 +5971,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -5522,6 +6002,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -5544,6 +6028,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -5639,6 +6127,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -5661,6 +6153,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -5688,6 +6184,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -5710,6 +6210,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -5737,6 +6241,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -5759,6 +6267,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -5960,6 +6472,10 @@
     return [self mutableArrayValueForKey:@"annulments"];
 }
 
+- (NSUInteger)countOfAnnulments {
+	return [_annulments count];
+}
+
 - (id)objectInAnnulmentsAtIndex:(NSUInteger)index {
     return [_annulments objectAtIndex:index];
 }
@@ -5982,6 +6498,10 @@
 
 - (NSMutableArray *)mutableCensuses {
     return [self mutableArrayValueForKey:@"censuses"];
+}
+
+- (NSUInteger)countOfCensuses {
+	return [_censuses count];
 }
 
 - (id)objectInCensusesAtIndex:(NSUInteger)index {
@@ -6008,6 +6528,10 @@
     return [self mutableArrayValueForKey:@"divorces"];
 }
 
+- (NSUInteger)countOfDivorces {
+	return [_divorces count];
+}
+
 - (id)objectInDivorcesAtIndex:(NSUInteger)index {
     return [_divorces objectAtIndex:index];
 }
@@ -6030,6 +6554,10 @@
 
 - (NSMutableArray *)mutableDivorceFileds {
     return [self mutableArrayValueForKey:@"divorceFileds"];
+}
+
+- (NSUInteger)countOfDivorceFileds {
+	return [_divorceFileds count];
 }
 
 - (id)objectInDivorceFiledsAtIndex:(NSUInteger)index {
@@ -6056,6 +6584,10 @@
     return [self mutableArrayValueForKey:@"engagements"];
 }
 
+- (NSUInteger)countOfEngagements {
+	return [_engagements count];
+}
+
 - (id)objectInEngagementsAtIndex:(NSUInteger)index {
     return [_engagements objectAtIndex:index];
 }
@@ -6078,6 +6610,10 @@
 
 - (NSMutableArray *)mutableMarriages {
     return [self mutableArrayValueForKey:@"marriages"];
+}
+
+- (NSUInteger)countOfMarriages {
+	return [_marriages count];
 }
 
 - (id)objectInMarriagesAtIndex:(NSUInteger)index {
@@ -6104,6 +6640,10 @@
     return [self mutableArrayValueForKey:@"marriageBanns"];
 }
 
+- (NSUInteger)countOfMarriageBanns {
+	return [_marriageBanns count];
+}
+
 - (id)objectInMarriageBannsAtIndex:(NSUInteger)index {
     return [_marriageBanns objectAtIndex:index];
 }
@@ -6126,6 +6666,10 @@
 
 - (NSMutableArray *)mutableMarriageContracts {
     return [self mutableArrayValueForKey:@"marriageContracts"];
+}
+
+- (NSUInteger)countOfMarriageContracts {
+	return [_marriageContracts count];
 }
 
 - (id)objectInMarriageContractsAtIndex:(NSUInteger)index {
@@ -6152,6 +6696,10 @@
     return [self mutableArrayValueForKey:@"marriageLicenses"];
 }
 
+- (NSUInteger)countOfMarriageLicenses {
+	return [_marriageLicenses count];
+}
+
 - (id)objectInMarriageLicensesAtIndex:(NSUInteger)index {
     return [_marriageLicenses objectAtIndex:index];
 }
@@ -6176,6 +6724,10 @@
     return [self mutableArrayValueForKey:@"marriageSettlements"];
 }
 
+- (NSUInteger)countOfMarriageSettlements {
+	return [_marriageSettlements count];
+}
+
 - (id)objectInMarriageSettlementsAtIndex:(NSUInteger)index {
     return [_marriageSettlements objectAtIndex:index];
 }
@@ -6198,6 +6750,10 @@
 
 - (NSMutableArray *)mutableGenericEvents {
     return [self mutableArrayValueForKey:@"genericEvents"];
+}
+
+- (NSUInteger)countOfGenericEvents {
+	return [_genericEvents count];
 }
 
 - (id)objectInGenericEventsAtIndex:(NSUInteger)index {
@@ -6226,6 +6782,10 @@
     return [self mutableArrayValueForKey:@"children"];
 }
 
+- (NSUInteger)countOfChildren {
+	return [_children count];
+}
+
 - (id)objectInChildrenAtIndex:(NSUInteger)index {
     return [_children objectAtIndex:index];
 }
@@ -6251,6 +6811,10 @@
     return [self mutableArrayValueForKey:@"submitterReferences"];
 }
 
+- (NSUInteger)countOfSubmitterReferences {
+	return [_submitterReferences count];
+}
+
 - (id)objectInSubmitterReferencesAtIndex:(NSUInteger)index {
     return [_submitterReferences objectAtIndex:index];
 }
@@ -6273,6 +6837,10 @@
 
 - (NSMutableArray *)mutableLDSSealingSpouses {
     return [self mutableArrayValueForKey:@"lDSSealingSpouses"];
+}
+
+- (NSUInteger)countOfLDSSealingSpouses {
+	return [_lDSSealingSpouses count];
 }
 
 - (id)objectInLDSSealingSpousesAtIndex:(NSUInteger)index {
@@ -6300,6 +6868,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -6322,6 +6894,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -6349,6 +6925,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -6371,6 +6951,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -6398,6 +6982,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -6422,6 +7010,10 @@
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
 }
 
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
+}
+
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
     return [_noteEmbeddeds objectAtIndex:index];
 }
@@ -6444,6 +7036,10 @@
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
 }
 
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
@@ -6641,6 +7237,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -6663,6 +7263,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -6690,6 +7294,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -6712,6 +7320,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -6739,6 +7351,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -6761,6 +7377,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -7007,6 +7627,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -7029,6 +7653,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -7056,6 +7684,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -7078,6 +7710,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -7105,6 +7741,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -7127,6 +7767,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -7222,6 +7866,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -7244,6 +7892,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -7271,6 +7923,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -7293,6 +7949,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -7320,6 +7980,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -7342,6 +8006,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -7489,6 +8157,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -7511,6 +8183,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -7538,6 +8214,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -7560,6 +8240,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -7587,6 +8271,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -7609,6 +8297,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -7669,6 +8361,10 @@
     return [self mutableArrayValueForKey:@"destinations"];
 }
 
+- (NSUInteger)countOfDestinations {
+	return [_destinations count];
+}
+
 - (id)objectInDestinationsAtIndex:(NSUInteger)index {
     return [_destinations objectAtIndex:index];
 }
@@ -7693,6 +8389,10 @@
 
 - (NSMutableArray *)mutableSubmissionReferences {
     return [self mutableArrayValueForKey:@"submissionReferences"];
+}
+
+- (NSUInteger)countOfSubmissionReferences {
+	return [_submissionReferences count];
 }
 
 - (id)objectInSubmissionReferencesAtIndex:(NSUInteger)index {
@@ -8031,6 +8731,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -8053,6 +8757,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -8080,6 +8788,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -8102,6 +8814,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -8129,6 +8845,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -8151,6 +8871,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -8246,6 +8970,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -8268,6 +8996,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -8295,6 +9027,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -8317,6 +9053,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -8344,6 +9084,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -8366,6 +9110,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -8538,6 +9286,10 @@
     return [self mutableArrayValueForKey:@"personalNames"];
 }
 
+- (NSUInteger)countOfPersonalNames {
+	return [_personalNames count];
+}
+
 - (id)objectInPersonalNamesAtIndex:(NSUInteger)index {
     return [_personalNames objectAtIndex:index];
 }
@@ -8564,6 +9316,10 @@
     return [self mutableArrayValueForKey:@"births"];
 }
 
+- (NSUInteger)countOfBirths {
+	return [_births count];
+}
+
 - (id)objectInBirthsAtIndex:(NSUInteger)index {
     return [_births objectAtIndex:index];
 }
@@ -8586,6 +9342,10 @@
 
 - (NSMutableArray *)mutableChristenings {
     return [self mutableArrayValueForKey:@"christenings"];
+}
+
+- (NSUInteger)countOfChristenings {
+	return [_christenings count];
 }
 
 - (id)objectInChristeningsAtIndex:(NSUInteger)index {
@@ -8612,6 +9372,10 @@
     return [self mutableArrayValueForKey:@"deaths"];
 }
 
+- (NSUInteger)countOfDeaths {
+	return [_deaths count];
+}
+
 - (id)objectInDeathsAtIndex:(NSUInteger)index {
     return [_deaths objectAtIndex:index];
 }
@@ -8634,6 +9398,10 @@
 
 - (NSMutableArray *)mutableBurials {
     return [self mutableArrayValueForKey:@"burials"];
+}
+
+- (NSUInteger)countOfBurials {
+	return [_burials count];
 }
 
 - (id)objectInBurialsAtIndex:(NSUInteger)index {
@@ -8660,6 +9428,10 @@
     return [self mutableArrayValueForKey:@"cremations"];
 }
 
+- (NSUInteger)countOfCremations {
+	return [_cremations count];
+}
+
 - (id)objectInCremationsAtIndex:(NSUInteger)index {
     return [_cremations objectAtIndex:index];
 }
@@ -8682,6 +9454,10 @@
 
 - (NSMutableArray *)mutableAdoptions {
     return [self mutableArrayValueForKey:@"adoptions"];
+}
+
+- (NSUInteger)countOfAdoptions {
+	return [_adoptions count];
 }
 
 - (id)objectInAdoptionsAtIndex:(NSUInteger)index {
@@ -8708,6 +9484,10 @@
     return [self mutableArrayValueForKey:@"baptisms"];
 }
 
+- (NSUInteger)countOfBaptisms {
+	return [_baptisms count];
+}
+
 - (id)objectInBaptismsAtIndex:(NSUInteger)index {
     return [_baptisms objectAtIndex:index];
 }
@@ -8730,6 +9510,10 @@
 
 - (NSMutableArray *)mutableBarMitzvahs {
     return [self mutableArrayValueForKey:@"barMitzvahs"];
+}
+
+- (NSUInteger)countOfBarMitzvahs {
+	return [_barMitzvahs count];
 }
 
 - (id)objectInBarMitzvahsAtIndex:(NSUInteger)index {
@@ -8756,6 +9540,10 @@
     return [self mutableArrayValueForKey:@"basMitzvahs"];
 }
 
+- (NSUInteger)countOfBasMitzvahs {
+	return [_basMitzvahs count];
+}
+
 - (id)objectInBasMitzvahsAtIndex:(NSUInteger)index {
     return [_basMitzvahs objectAtIndex:index];
 }
@@ -8778,6 +9566,10 @@
 
 - (NSMutableArray *)mutableBlessings {
     return [self mutableArrayValueForKey:@"blessings"];
+}
+
+- (NSUInteger)countOfBlessings {
+	return [_blessings count];
 }
 
 - (id)objectInBlessingsAtIndex:(NSUInteger)index {
@@ -8804,6 +9596,10 @@
     return [self mutableArrayValueForKey:@"adultChristenings"];
 }
 
+- (NSUInteger)countOfAdultChristenings {
+	return [_adultChristenings count];
+}
+
 - (id)objectInAdultChristeningsAtIndex:(NSUInteger)index {
     return [_adultChristenings objectAtIndex:index];
 }
@@ -8826,6 +9622,10 @@
 
 - (NSMutableArray *)mutableConfirmations {
     return [self mutableArrayValueForKey:@"confirmations"];
+}
+
+- (NSUInteger)countOfConfirmations {
+	return [_confirmations count];
 }
 
 - (id)objectInConfirmationsAtIndex:(NSUInteger)index {
@@ -8852,6 +9652,10 @@
     return [self mutableArrayValueForKey:@"firstCommunions"];
 }
 
+- (NSUInteger)countOfFirstCommunions {
+	return [_firstCommunions count];
+}
+
 - (id)objectInFirstCommunionsAtIndex:(NSUInteger)index {
     return [_firstCommunions objectAtIndex:index];
 }
@@ -8874,6 +9678,10 @@
 
 - (NSMutableArray *)mutableOrdinations {
     return [self mutableArrayValueForKey:@"ordinations"];
+}
+
+- (NSUInteger)countOfOrdinations {
+	return [_ordinations count];
 }
 
 - (id)objectInOrdinationsAtIndex:(NSUInteger)index {
@@ -8900,6 +9708,10 @@
     return [self mutableArrayValueForKey:@"naturalizations"];
 }
 
+- (NSUInteger)countOfNaturalizations {
+	return [_naturalizations count];
+}
+
 - (id)objectInNaturalizationsAtIndex:(NSUInteger)index {
     return [_naturalizations objectAtIndex:index];
 }
@@ -8922,6 +9734,10 @@
 
 - (NSMutableArray *)mutableEmigrations {
     return [self mutableArrayValueForKey:@"emigrations"];
+}
+
+- (NSUInteger)countOfEmigrations {
+	return [_emigrations count];
 }
 
 - (id)objectInEmigrationsAtIndex:(NSUInteger)index {
@@ -8948,6 +9764,10 @@
     return [self mutableArrayValueForKey:@"immigrations"];
 }
 
+- (NSUInteger)countOfImmigrations {
+	return [_immigrations count];
+}
+
 - (id)objectInImmigrationsAtIndex:(NSUInteger)index {
     return [_immigrations objectAtIndex:index];
 }
@@ -8970,6 +9790,10 @@
 
 - (NSMutableArray *)mutableCensuses {
     return [self mutableArrayValueForKey:@"censuses"];
+}
+
+- (NSUInteger)countOfCensuses {
+	return [_censuses count];
 }
 
 - (id)objectInCensusesAtIndex:(NSUInteger)index {
@@ -8996,6 +9820,10 @@
     return [self mutableArrayValueForKey:@"probates"];
 }
 
+- (NSUInteger)countOfProbates {
+	return [_probates count];
+}
+
 - (id)objectInProbatesAtIndex:(NSUInteger)index {
     return [_probates objectAtIndex:index];
 }
@@ -9018,6 +9846,10 @@
 
 - (NSMutableArray *)mutableWills {
     return [self mutableArrayValueForKey:@"wills"];
+}
+
+- (NSUInteger)countOfWills {
+	return [_wills count];
 }
 
 - (id)objectInWillsAtIndex:(NSUInteger)index {
@@ -9044,6 +9876,10 @@
     return [self mutableArrayValueForKey:@"graduations"];
 }
 
+- (NSUInteger)countOfGraduations {
+	return [_graduations count];
+}
+
 - (id)objectInGraduationsAtIndex:(NSUInteger)index {
     return [_graduations objectAtIndex:index];
 }
@@ -9068,6 +9904,10 @@
     return [self mutableArrayValueForKey:@"retirements"];
 }
 
+- (NSUInteger)countOfRetirements {
+	return [_retirements count];
+}
+
 - (id)objectInRetirementsAtIndex:(NSUInteger)index {
     return [_retirements objectAtIndex:index];
 }
@@ -9090,6 +9930,10 @@
 
 - (NSMutableArray *)mutableGenericEvents {
     return [self mutableArrayValueForKey:@"genericEvents"];
+}
+
+- (NSUInteger)countOfGenericEvents {
+	return [_genericEvents count];
 }
 
 - (id)objectInGenericEventsAtIndex:(NSUInteger)index {
@@ -9117,6 +9961,10 @@
     return [self mutableArrayValueForKey:@"castes"];
 }
 
+- (NSUInteger)countOfCastes {
+	return [_castes count];
+}
+
 - (id)objectInCastesAtIndex:(NSUInteger)index {
     return [_castes objectAtIndex:index];
 }
@@ -9139,6 +9987,10 @@
 
 - (NSMutableArray *)mutablePhysicalDescriptions {
     return [self mutableArrayValueForKey:@"physicalDescriptions"];
+}
+
+- (NSUInteger)countOfPhysicalDescriptions {
+	return [_physicalDescriptions count];
 }
 
 - (id)objectInPhysicalDescriptionsAtIndex:(NSUInteger)index {
@@ -9165,6 +10017,10 @@
     return [self mutableArrayValueForKey:@"generationsOfDescendantss"];
 }
 
+- (NSUInteger)countOfGenerationsOfDescendantss {
+	return [_generationsOfDescendantss count];
+}
+
 - (id)objectInGenerationsOfDescendantssAtIndex:(NSUInteger)index {
     return [_generationsOfDescendantss objectAtIndex:index];
 }
@@ -9187,6 +10043,10 @@
 
 - (NSMutableArray *)mutableEducations {
     return [self mutableArrayValueForKey:@"educations"];
+}
+
+- (NSUInteger)countOfEducations {
+	return [_educations count];
 }
 
 - (id)objectInEducationsAtIndex:(NSUInteger)index {
@@ -9213,6 +10073,10 @@
     return [self mutableArrayValueForKey:@"identNumbers"];
 }
 
+- (NSUInteger)countOfIdentNumbers {
+	return [_identNumbers count];
+}
+
 - (id)objectInIdentNumbersAtIndex:(NSUInteger)index {
     return [_identNumbers objectAtIndex:index];
 }
@@ -9235,6 +10099,10 @@
 
 - (NSMutableArray *)mutableNationalities {
     return [self mutableArrayValueForKey:@"nationalities"];
+}
+
+- (NSUInteger)countOfNationalities {
+	return [_nationalities count];
 }
 
 - (id)objectInNationalitiesAtIndex:(NSUInteger)index {
@@ -9261,6 +10129,10 @@
     return [self mutableArrayValueForKey:@"numberOfChildrens"];
 }
 
+- (NSUInteger)countOfNumberOfChildrens {
+	return [_numberOfChildrens count];
+}
+
 - (id)objectInNumberOfChildrensAtIndex:(NSUInteger)index {
     return [_numberOfChildrens objectAtIndex:index];
 }
@@ -9283,6 +10155,10 @@
 
 - (NSMutableArray *)mutableNumberOfMarriagess {
     return [self mutableArrayValueForKey:@"numberOfMarriagess"];
+}
+
+- (NSUInteger)countOfNumberOfMarriagess {
+	return [_numberOfMarriagess count];
 }
 
 - (id)objectInNumberOfMarriagessAtIndex:(NSUInteger)index {
@@ -9309,6 +10185,10 @@
     return [self mutableArrayValueForKey:@"occupations"];
 }
 
+- (NSUInteger)countOfOccupations {
+	return [_occupations count];
+}
+
 - (id)objectInOccupationsAtIndex:(NSUInteger)index {
     return [_occupations objectAtIndex:index];
 }
@@ -9331,6 +10211,10 @@
 
 - (NSMutableArray *)mutablePropertyOwneds {
     return [self mutableArrayValueForKey:@"propertyOwneds"];
+}
+
+- (NSUInteger)countOfPropertyOwneds {
+	return [_propertyOwneds count];
 }
 
 - (id)objectInPropertyOwnedsAtIndex:(NSUInteger)index {
@@ -9357,6 +10241,10 @@
     return [self mutableArrayValueForKey:@"religions"];
 }
 
+- (NSUInteger)countOfReligions {
+	return [_religions count];
+}
+
 - (id)objectInReligionsAtIndex:(NSUInteger)index {
     return [_religions objectAtIndex:index];
 }
@@ -9379,6 +10267,10 @@
 
 - (NSMutableArray *)mutableResidences {
     return [self mutableArrayValueForKey:@"residences"];
+}
+
+- (NSUInteger)countOfResidences {
+	return [_residences count];
 }
 
 - (id)objectInResidencesAtIndex:(NSUInteger)index {
@@ -9405,6 +10297,10 @@
     return [self mutableArrayValueForKey:@"socialSecurityNumbers"];
 }
 
+- (NSUInteger)countOfSocialSecurityNumbers {
+	return [_socialSecurityNumbers count];
+}
+
 - (id)objectInSocialSecurityNumbersAtIndex:(NSUInteger)index {
     return [_socialSecurityNumbers objectAtIndex:index];
 }
@@ -9427,6 +10323,10 @@
 
 - (NSMutableArray *)mutableTitles {
     return [self mutableArrayValueForKey:@"titles"];
+}
+
+- (NSUInteger)countOfTitles {
+	return [_titles count];
 }
 
 - (id)objectInTitlesAtIndex:(NSUInteger)index {
@@ -9454,6 +10354,10 @@
     return [self mutableArrayValueForKey:@"lDSBaptisms"];
 }
 
+- (NSUInteger)countOfLDSBaptisms {
+	return [_lDSBaptisms count];
+}
+
 - (id)objectInLDSBaptismsAtIndex:(NSUInteger)index {
     return [_lDSBaptisms objectAtIndex:index];
 }
@@ -9476,6 +10380,10 @@
 
 - (NSMutableArray *)mutableLDSConfirmations {
     return [self mutableArrayValueForKey:@"lDSConfirmations"];
+}
+
+- (NSUInteger)countOfLDSConfirmations {
+	return [_lDSConfirmations count];
 }
 
 - (id)objectInLDSConfirmationsAtIndex:(NSUInteger)index {
@@ -9502,6 +10410,10 @@
     return [self mutableArrayValueForKey:@"lDSEndowments"];
 }
 
+- (NSUInteger)countOfLDSEndowments {
+	return [_lDSEndowments count];
+}
+
 - (id)objectInLDSEndowmentsAtIndex:(NSUInteger)index {
     return [_lDSEndowments objectAtIndex:index];
 }
@@ -9524,6 +10436,10 @@
 
 - (NSMutableArray *)mutableLDSSealingChilds {
     return [self mutableArrayValueForKey:@"lDSSealingChilds"];
+}
+
+- (NSUInteger)countOfLDSSealingChilds {
+	return [_lDSSealingChilds count];
 }
 
 - (id)objectInLDSSealingChildsAtIndex:(NSUInteger)index {
@@ -9550,6 +10466,10 @@
     return [self mutableArrayValueForKey:@"childInFamilies"];
 }
 
+- (NSUInteger)countOfChildInFamilies {
+	return [_childInFamilies count];
+}
+
 - (id)objectInChildInFamiliesAtIndex:(NSUInteger)index {
     return [_childInFamilies objectAtIndex:index];
 }
@@ -9572,6 +10492,10 @@
 
 - (NSMutableArray *)mutableSpouseInFamilies {
     return [self mutableArrayValueForKey:@"spouseInFamilies"];
+}
+
+- (NSUInteger)countOfSpouseInFamilies {
+	return [_spouseInFamilies count];
 }
 
 - (id)objectInSpouseInFamiliesAtIndex:(NSUInteger)index {
@@ -9598,6 +10522,10 @@
     return [self mutableArrayValueForKey:@"submitterReferences"];
 }
 
+- (NSUInteger)countOfSubmitterReferences {
+	return [_submitterReferences count];
+}
+
 - (id)objectInSubmitterReferencesAtIndex:(NSUInteger)index {
     return [_submitterReferences objectAtIndex:index];
 }
@@ -9620,6 +10548,10 @@
 
 - (NSMutableArray *)mutableAssociations {
     return [self mutableArrayValueForKey:@"associations"];
+}
+
+- (NSUInteger)countOfAssociations {
+	return [_associations count];
 }
 
 - (id)objectInAssociationsAtIndex:(NSUInteger)index {
@@ -9646,6 +10578,10 @@
     return [self mutableArrayValueForKey:@"aliases"];
 }
 
+- (NSUInteger)countOfAliases {
+	return [_aliases count];
+}
+
 - (id)objectInAliasesAtIndex:(NSUInteger)index {
     return [_aliases objectAtIndex:index];
 }
@@ -9670,6 +10606,10 @@
     return [self mutableArrayValueForKey:@"ancestorInterests"];
 }
 
+- (NSUInteger)countOfAncestorInterests {
+	return [_ancestorInterests count];
+}
+
 - (id)objectInAncestorInterestsAtIndex:(NSUInteger)index {
     return [_ancestorInterests objectAtIndex:index];
 }
@@ -9692,6 +10632,10 @@
 
 - (NSMutableArray *)mutableDescendantInterests {
     return [self mutableArrayValueForKey:@"descendantInterests"];
+}
+
+- (NSUInteger)countOfDescendantInterests {
+	return [_descendantInterests count];
 }
 
 - (id)objectInDescendantInterestsAtIndex:(NSUInteger)index {
@@ -9719,6 +10663,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -9741,6 +10689,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -9768,6 +10720,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -9790,6 +10746,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -9817,6 +10777,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -9839,6 +10803,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -9865,6 +10833,10 @@
     return [self mutableArrayValueForKey:@"recordFileNumbers"];
 }
 
+- (NSUInteger)countOfRecordFileNumbers {
+	return [_recordFileNumbers count];
+}
+
 - (id)objectInRecordFileNumbersAtIndex:(NSUInteger)index {
     return [_recordFileNumbers objectAtIndex:index];
 }
@@ -9889,6 +10861,10 @@
     return [self mutableArrayValueForKey:@"ancestralFileNumbers"];
 }
 
+- (NSUInteger)countOfAncestralFileNumbers {
+	return [_ancestralFileNumbers count];
+}
+
 - (id)objectInAncestralFileNumbersAtIndex:(NSUInteger)index {
     return [_ancestralFileNumbers objectAtIndex:index];
 }
@@ -9911,6 +10887,10 @@
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
 }
 
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
@@ -9999,6 +10979,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -10021,6 +11005,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -10048,6 +11036,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -10070,6 +11062,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -10206,6 +11202,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -10228,6 +11228,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -10255,6 +11259,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -10277,6 +11285,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -10413,6 +11425,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -10435,6 +11451,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -10462,6 +11482,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -10484,6 +11508,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -10621,6 +11649,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -10643,6 +11675,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -10670,6 +11706,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -10692,6 +11732,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -10828,6 +11872,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -10850,6 +11898,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -10877,6 +11929,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -10899,6 +11955,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -11144,6 +12204,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -11166,6 +12230,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -11193,6 +12261,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -11215,6 +12287,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -11242,6 +12318,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -11264,6 +12344,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -11361,6 +12445,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -11383,6 +12471,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -11410,6 +12502,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -11432,6 +12528,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -11459,6 +12559,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -11481,6 +12585,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -11578,6 +12686,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -11600,6 +12712,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -11627,6 +12743,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -11649,6 +12769,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -11676,6 +12800,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -11698,6 +12826,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -11795,6 +12927,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -11817,6 +12953,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -11844,6 +12984,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -11866,6 +13010,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -11893,6 +13041,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -11915,6 +13067,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -12012,6 +13168,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -12034,6 +13194,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -12061,6 +13225,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -12083,6 +13251,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -12110,6 +13282,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -12132,6 +13308,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -12248,6 +13428,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -12270,6 +13454,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -12295,6 +13483,10 @@
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
 }
 
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
@@ -12378,6 +13570,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -12400,6 +13596,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -12677,6 +13877,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -12699,6 +13903,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -12726,6 +13934,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -12748,6 +13960,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -12775,6 +13991,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -12797,6 +14017,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -12892,6 +14116,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -12914,6 +14142,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -12941,6 +14173,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -12963,6 +14199,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -12990,6 +14230,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -13012,6 +14256,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -13124,6 +14372,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -13148,6 +14400,10 @@
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
 }
 
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
+}
+
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
     return [_sourceEmbeddeds objectAtIndex:index];
 }
@@ -13170,6 +14426,10 @@
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
 }
 
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
@@ -13250,6 +14510,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -13272,6 +14536,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -13332,6 +14600,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -13354,6 +14626,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -13449,6 +14725,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -13471,6 +14751,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -13498,6 +14782,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -13520,6 +14808,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -13547,6 +14839,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -13569,6 +14865,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -13664,6 +14964,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -13686,6 +14990,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -13713,6 +15021,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -13735,6 +15047,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -13762,6 +15078,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -13784,6 +15104,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -13879,6 +15203,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -13901,6 +15229,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -13928,6 +15260,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -13950,6 +15286,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -13977,6 +15317,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -13999,6 +15343,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -14144,6 +15492,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -14166,6 +15518,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -14193,6 +15549,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -14215,6 +15575,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -14242,6 +15606,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -14264,6 +15632,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -14392,6 +15764,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -14414,6 +15790,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -14502,6 +15882,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -14524,6 +15908,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -14551,6 +15939,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -14573,6 +15965,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -14718,6 +16114,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -14740,6 +16140,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -14767,6 +16171,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -14789,6 +16197,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -14816,6 +16228,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -14838,6 +16254,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -14921,6 +16341,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -14943,6 +16367,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -14970,6 +16398,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -14992,6 +16424,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -15237,6 +16673,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -15259,6 +16699,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -15286,6 +16730,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -15308,6 +16756,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -15335,6 +16787,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -15357,6 +16813,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -15452,6 +16912,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -15474,6 +16938,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -15501,6 +16969,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -15523,6 +16995,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -15550,6 +17026,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -15572,6 +17052,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -15967,6 +17451,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -15989,6 +17477,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -16016,6 +17508,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -16038,6 +17534,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -16065,6 +17565,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -16087,6 +17591,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -16152,6 +17660,10 @@
     return [self mutableArrayValueForKey:@"phoneNumbers"];
 }
 
+- (NSUInteger)countOfPhoneNumbers {
+	return [_phoneNumbers count];
+}
+
 - (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
     return [_phoneNumbers objectAtIndex:index];
 }
@@ -16175,6 +17687,10 @@
 
 - (NSMutableArray *)mutableNoteReferences {
     return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
 }
 
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
@@ -16201,6 +17717,10 @@
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
 }
 
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
+}
+
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
     return [_noteEmbeddeds objectAtIndex:index];
 }
@@ -16223,6 +17743,10 @@
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
 }
 
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
@@ -16287,6 +17811,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -16311,6 +17839,10 @@
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
 }
 
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
+}
+
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
     return [_noteEmbeddeds objectAtIndex:index];
 }
@@ -16333,6 +17865,10 @@
 
 - (NSMutableArray *)mutableCallNumbers {
     return [self mutableArrayValueForKey:@"callNumbers"];
+}
+
+- (NSUInteger)countOfCallNumbers {
+	return [_callNumbers count];
 }
 
 - (id)objectInCallNumbersAtIndex:(NSUInteger)index {
@@ -16428,6 +17964,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -16450,6 +17990,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -16477,6 +18021,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -16499,6 +18047,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -16526,6 +18078,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -16548,6 +18104,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -16743,6 +18303,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -16765,6 +18329,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -16792,6 +18360,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -16814,6 +18386,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -16841,6 +18417,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -16863,6 +18443,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17090,6 +18674,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -17112,6 +18700,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -17139,6 +18731,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -17161,6 +18757,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -17188,6 +18788,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -17210,6 +18814,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17281,6 +18889,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -17303,6 +18915,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -17330,6 +18946,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -17352,6 +18972,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17423,6 +19047,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -17445,6 +19073,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -17472,6 +19104,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -17494,6 +19130,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17573,6 +19213,10 @@
     return [self mutableArrayValueForKey:@"eventsRecordeds"];
 }
 
+- (NSUInteger)countOfEventsRecordeds {
+	return [_eventsRecordeds count];
+}
+
 - (id)objectInEventsRecordedsAtIndex:(NSUInteger)index {
     return [_eventsRecordeds objectAtIndex:index];
 }
@@ -17599,6 +19243,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -17621,6 +19269,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17700,6 +19352,10 @@
     return [self mutableArrayValueForKey:@"texts"];
 }
 
+- (NSUInteger)countOfTexts {
+	return [_texts count];
+}
+
 - (id)objectInTextsAtIndex:(NSUInteger)index {
     return [_texts objectAtIndex:index];
 }
@@ -17725,6 +19381,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -17747,6 +19407,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17807,6 +19471,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -17829,6 +19497,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -17942,6 +19614,10 @@
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
 }
 
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
+}
+
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
     return [_userReferenceNumbers objectAtIndex:index];
 }
@@ -18041,6 +19717,10 @@
     return [self mutableArrayValueForKey:@"phoneNumbers"];
 }
 
+- (NSUInteger)countOfPhoneNumbers {
+	return [_phoneNumbers count];
+}
+
 - (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
     return [_phoneNumbers objectAtIndex:index];
 }
@@ -18064,6 +19744,10 @@
 
 - (NSMutableArray *)mutableMultimediaReferences {
     return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
 }
 
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
@@ -18090,6 +19774,10 @@
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
 }
 
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
+}
+
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
     return [_multimediaEmbeddeds objectAtIndex:index];
 }
@@ -18112,6 +19800,10 @@
 
 - (NSMutableArray *)mutableLanguages {
     return [self mutableArrayValueForKey:@"languages"];
+}
+
+- (NSUInteger)countOfLanguages {
+	return [_languages count];
 }
 
 - (id)objectInLanguagesAtIndex:(NSUInteger)index {
@@ -18138,6 +19830,10 @@
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
     return [self mutableArrayValueForKey:@"userReferenceNumbers"];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers {
+	return [_userReferenceNumbers count];
 }
 
 - (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
@@ -18517,6 +20213,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -18539,6 +20239,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -18566,6 +20270,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -18588,6 +20296,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -18615,6 +20327,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -18637,6 +20353,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
@@ -18964,6 +20684,10 @@
     return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (NSUInteger)countOfSourceCitations {
+	return [_sourceCitations count];
+}
+
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
     return [_sourceCitations objectAtIndex:index];
 }
@@ -18986,6 +20710,10 @@
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
     return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds {
+	return [_sourceEmbeddeds count];
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
@@ -19013,6 +20741,10 @@
     return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (NSUInteger)countOfMultimediaReferences {
+	return [_multimediaReferences count];
+}
+
 - (id)objectInMultimediaReferencesAtIndex:(NSUInteger)index {
     return [_multimediaReferences objectAtIndex:index];
 }
@@ -19035,6 +20767,10 @@
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
     return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds {
+	return [_multimediaEmbeddeds count];
 }
 
 - (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)index {
@@ -19062,6 +20798,10 @@
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (NSUInteger)countOfNoteReferences {
+	return [_noteReferences count];
+}
+
 - (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
     return [_noteReferences objectAtIndex:index];
 }
@@ -19084,6 +20824,10 @@
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds {
+	return [_noteEmbeddeds count];
 }
 
 - (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {

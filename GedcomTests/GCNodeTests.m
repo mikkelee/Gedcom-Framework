@@ -24,7 +24,7 @@
         [gc_inputLines addObject:line];
     }];
     
-	NSArray *nodes = [GCNode arrayOfNodesFromString:gc_inputString];
+	NSArray *nodes = [GCNodeParser arrayOfNodesFromString:gc_inputString];
 	NSMutableString *gc_outputString = [NSMutableString stringWithString:@""];
 	NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:[nodes count]];
 	
@@ -90,7 +90,7 @@
     
     STAssertEquals([[mutableNode subNodes] count], (NSUInteger)0, nil);
 
-    [[mutableNode subNodes] addObject:nickname];
+    [mutableNode.mutableSubNodes addObject:nickname];
     
     STAssertEquals([[mutableNode subNodes] count], (NSUInteger)1, nil);
 }
@@ -110,7 +110,7 @@
 
 - (void)testEquivalence
 {
-    GCNode *original = [[GCNode arrayOfNodesFromString:
+    GCNode *original = [[GCNodeParser arrayOfNodesFromString:
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
@@ -118,7 +118,7 @@
                          @"2 DATE 1 JAN 1901\n"
                          @"1 DEAT Y"] lastObject];
     
-    GCNode *addition = [[GCNode arrayOfNodesFromString:
+    GCNode *addition = [[GCNodeParser arrayOfNodesFromString:
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
@@ -131,7 +131,7 @@
     STAssertEquals([original isEquivalentTo:addition], NO, nil);
     STAssertEquals([addition isEquivalentTo:original], NO, nil);
     
-    GCNode *removal = [[GCNode arrayOfNodesFromString:
+    GCNode *removal = [[GCNodeParser arrayOfNodesFromString:
                         @"0 @INDI1@ INDI\n"
                         @"1 NAME Jens /Hansen/\n"
                         @"1 BIRT\n"
@@ -141,7 +141,7 @@
     STAssertEquals([original isEquivalentTo:removal], NO, nil);
     STAssertEquals([removal isEquivalentTo:original], NO, nil);
     
-    GCNode *reorder = [[GCNode arrayOfNodesFromString:
+    GCNode *reorder = [[GCNodeParser arrayOfNodesFromString:
                         @"0 @INDI1@ INDI\n"
                         @"1 NAME Jens /Hansen/ Smed\n"
                         @"1 NAME Jens /Hansen/\n"

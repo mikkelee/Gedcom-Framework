@@ -10,14 +10,12 @@
 
 @interface GCMutableNode ()
 
-@property (weak, nonatomic) GCNode *parent;
-
-@property (readonly) NSMutableArray *internalSubNodes;
+@property (weak, nonatomic) GCMutableNode *parent;
 
 @end;
 
 @implementation GCMutableNode {
-    NSMutableArray *_internalSubNodes;
+    NSMutableArray *_subNodes;
 }
 
 #pragma mark Initialization
@@ -28,7 +26,13 @@
     
 	if (self) {
         self.lineSeparator = @"\n";
-        _internalSubNodes = [NSMutableArray array];
+        if (subNodes) {
+            for (id subNode in subNodes) {
+                [self.mutableSubNodes addObject:subNode];
+            }
+        } else {
+            _subNodes = [NSMutableArray array];
+        }
 	}
     
 	return self;
@@ -36,40 +40,55 @@
 
 #pragma mark Internal SubNode accessors
 
-- (NSUInteger)countOfInternalSubNodes
+- (NSUInteger)countOfMutableSubNodes
 {
-    return [_internalSubNodes count];
+    return [_subNodes count];
 }
 
-- (id)objectInInternalSubNodesAtIndex:(NSUInteger)index
+- (id)objectInSubNodesAtIndex:(NSUInteger)index
 {
-    return [_internalSubNodes objectAtIndex:index];
+    return [_subNodes objectAtIndex:index];
 }
 
-- (void)insertObject:(GCMutableNode *)node inInternalSubNodesAtIndex:(NSUInteger)index
+- (void)insertObject:(GCMutableNode *)object inMutableSubNodesAtIndex:(NSUInteger)index
+{
+    return [self insertObject:object inSubNodesAtIndex:index];
+}
+
+- (void)insertObject:(GCMutableNode *)node inSubNodesAtIndex:(NSUInteger)index
 {
 	NSParameterAssert(self != node);
     NSParameterAssert([node isKindOfClass:[GCMutableNode class]]);
     
-    if (!_internalSubNodes) {
-        _internalSubNodes = [NSMutableArray array];
+    if (!_subNodes) {
+        _subNodes = [NSMutableArray array];
     }
     
-    [_internalSubNodes insertObject:node atIndex:index];
+    [_subNodes insertObject:node atIndex:index];
     [node setParent:self];
+}
+
+- (void)removeObjectFromMutableSubNodesAtIndex:(NSUInteger)index
+{
+    return [self removeObjectFromSubNodesAtIndex:index];
 }
 
 - (void)removeObjectFromSubNodesAtIndex:(NSUInteger)index
 {
-    [[_internalSubNodes objectAtIndex:index] setParent:nil];
-    [_internalSubNodes removeObjectAtIndex:index];
+    [[_subNodes objectAtIndex:index] setParent:nil];
+    [_subNodes removeObjectAtIndex:index];
 }
 
 #pragma mark Objective-C properties
 
-- (id)subNodes
+- (NSArray *)subNodes
 {
-    return [self mutableOrderedSetValueForKey:@"internalSubNodes"];
+    return [_subNodes copy];
+}
+
+- (NSMutableArray *)mutableSubNodes
+{
+    return [self mutableArrayValueForKey:@"subNodes"];
 }
 
 @end

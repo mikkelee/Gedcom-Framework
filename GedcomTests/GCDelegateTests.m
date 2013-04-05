@@ -46,7 +46,7 @@
     @"1 _UMR Y\n"
     @"0 TRLR";
     
-    [ctx parseNodes:[GCNode arrayOfNodesFromString:gedcomString] error:nil];
+    [ctx parseNodes:[GCNodeParser arrayOfNodesFromString:gedcomString] error:nil];
     
     NSString *expected =
     @"0 HEAD\n"

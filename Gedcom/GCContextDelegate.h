@@ -21,7 +21,7 @@
  If a GCContext has a delegate, it will call these if they are implemented.
  
  */
-@protocol GCContextDelegate
+@protocol GCContextDelegate <NSObject>
 
 @optional
 

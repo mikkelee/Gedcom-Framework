@@ -32,6 +32,10 @@ mutableAccessorsT = Template("""
     return [self mutableArrayValueForKey:@"$name"];
 }
 
+- (NSUInteger)countOf$capName {
+	return [_$name count];
+}
+
 - (id)objectIn${capName}AtIndex:(NSUInteger)index {
     return [_$name objectAtIndex:index];
 }

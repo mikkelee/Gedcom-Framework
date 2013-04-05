@@ -30,7 +30,7 @@
                               time
                               ];
     
-    GCNode *changeNode = [[GCNode arrayOfNodesFromString:gedcomString] lastObject];
+    GCNode *changeNode = [[GCNodeParser arrayOfNodesFromString:gedcomString] lastObject];
     
     //NSLog(@"changeNode: %@", changeNode);
     

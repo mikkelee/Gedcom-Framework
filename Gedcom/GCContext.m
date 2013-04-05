@@ -8,7 +8,9 @@
 
 #import "GCContext_internal.h"
 
+#import "GCNodeParser.h"
 #import "GCNode.h"
+
 #import "GCObject.h"
 #import "GCTag.h"
 #import "GCString.h"
@@ -102,7 +104,27 @@ __strong static NSArray *_rootKeys = nil;
     head.submitterReference.target = subm;
 }
 
-#pragma mark Node access
+#pragma mark GCNodeParser delegate methods
+
+- (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
+{
+    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    
+    if (tag.objectClass != [GCTrailerEntity class]) {
+        (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self];
+    }
+}
+
+- (void)parser:(GCNodeParser *)parser didParseNodesWithCount:(NSUInteger)nodeCount
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
+            [_delegate context:self didParseNodesWithEntityCount:self.countOfEntities];
+        }
+    });
+}
+
+#pragma mark Loading nodes into a context
 
 - (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error
 {
@@ -132,7 +154,6 @@ __strong static NSArray *_rootKeys = nil;
         if (tag.objectClass == [GCTrailerEntity class]) {
             break;
         } else {
-            //NSLog(@"%p: creating %@", self, tag.objectClass);
             (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self]; // it will add itself to the context
         }
     }
@@ -166,6 +187,11 @@ __strong static NSArray *_rootKeys = nil;
 {
     GCFileEncoding fileEncoding = encodingForData(data);
     
+    GCNodeParser *nodeParser = [[GCNodeParser alloc] init];
+    nodeParser.delegate = self;
+    
+    NSString *gedString = nil;
+    
     if (fileEncoding == GCUnknownFileEncoding) {
         if (error != NULL) {
             *error = [NSError errorWithDomain:GCErrorDomain
@@ -174,14 +200,12 @@ __strong static NSArray *_rootKeys = nil;
         }
         return NO;
     } else if (fileEncoding == GCANSELFileEncoding) {
-        NSString *fileString = stringFromANSELData(data);
-        
-        return [self parseNodes:[GCNode arrayOfNodesFromString:fileString] error:error];
+        gedString = stringFromANSELData(data);
     } else {
-        NSString *fileString = [[NSString alloc] initWithData:data encoding:fileEncoding];
-        
-        return [self parseNodes:[GCNode arrayOfNodesFromString:fileString] error:error];
+        gedString = [[NSString alloc] initWithData:data encoding:fileEncoding];
     }
+    
+    return [nodeParser parseString:gedString error:error];
 }
 
 - (BOOL)readContentsOfFile:(NSString *)path error:(NSError **)error

@@ -17,6 +17,8 @@
 
 /// @name Accessing properties
 
+@property (readonly, weak, nonatomic) GCMutableNode *parent;
+
 /// The tag of the receiver; may not be `nil`.
 @property (nonatomic) NSString *gedTag;
 
@@ -29,7 +31,9 @@
 /// The line separator of the receiver; usually `\n`.
 @property (nonatomic) NSString *lineSeparator;
 
-/// A KVC-compliant uniquing ordered collection containing the subnodes of the receiver.
-@property (readonly, nonatomic) NSMutableArray *subNodes;
+/// A KVC-compliant ordered collection containing the subnodes of the receiver.
+@property (nonatomic) NSMutableArray *mutableSubNodes;
+@property (nonatomic) NSArray *subNodes;
+
 
 @end
