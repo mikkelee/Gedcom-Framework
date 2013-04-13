@@ -67,7 +67,7 @@
 
 #pragma mark Comparison
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCAttribute *)other
 {
     NSComparisonResult result = [super compare:other];
     
@@ -75,8 +75,8 @@
         return result;
     }
     
-    if (self.value != [(GCAttribute *)other value]) {
-        return [self.value compare:[(GCAttribute *)other value]];
+    if (self.value != other.value) {
+        return [self.value compare:other.value];
     }
     
     return NSOrderedSame;

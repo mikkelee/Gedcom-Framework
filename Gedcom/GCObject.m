@@ -127,6 +127,7 @@ __strong static NSDictionary *_defaultColors;
 - (NSComparisonResult)compare:(id)other
 {
     //subclasses override to get actual result.
+    NSParameterAssert([self class] == [other class]);
     return NSOrderedSame;
 }
 

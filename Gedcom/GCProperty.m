@@ -39,18 +39,18 @@
 
 #pragma mark Comparison
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCProperty *)other
 {
     if (![other isKindOfClass:[self class]]) {
         return NSOrderedAscending;
     }
     
-    if (self.describedObject != [(GCProperty *)other describedObject]) {
-        return [self.describedObject compare:[(GCProperty *)other describedObject]];
+    if (self.describedObject != other.describedObject) {
+        return [self.describedObject compare:other.describedObject];
     }
     
-    if (self.type != [(GCProperty *)other type]) {
-        return [self.type compare:[(GCProperty *)other type]];
+    if (self.type != other.type) {
+        return [self.type compare:other.type];
     }
     
     return NSOrderedSame;

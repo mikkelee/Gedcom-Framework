@@ -99,7 +99,7 @@
 
 #pragma mark Comparison
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCEntity *)other
 {
     NSComparisonResult result = [super compare:other];
     
@@ -107,8 +107,8 @@
         return result;
     }
     
-    if (self.type != [(GCProperty *)other type]) {
-        return [self.type compare:[(GCProperty *)other type]];
+    if (self.type != other.type) {
+        return [self.type compare:other.type];
     }
     
     return NSOrderedSame;

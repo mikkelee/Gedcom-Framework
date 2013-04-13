@@ -70,7 +70,7 @@
 
 #pragma mark Comparison
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCRelationship *)other
 {
     NSComparisonResult result = [super compare:other];
     
@@ -78,8 +78,8 @@
         return result;
     }
     
-    if (self.target != [(GCRelationship *)other target]) {
-        return [self.target compare:[(GCRelationship *)other target]];
+    if (self.target != other.target) {
+        return [self.target compare:other.target];
     }
     
     return NSOrderedSame;
