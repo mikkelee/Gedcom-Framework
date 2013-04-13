@@ -35,13 +35,36 @@
 
 //TODO: split into categories?
 //TODO: merging contexts etc.
-//TODO: transactions?
+//TODO: transactions? NSUndoManager group
+//TODO: renumber xrefs
+
+@interface NSMapTable (GCSubscriptAdditions)
+
+- (id)objectForKeyedSubscript:(id)key;
+- (void)setObject:(id)object forKeyedSubscript:(id)key;
+
+@end
+
+@implementation NSMapTable (GCSubscriptAdditions)
+
+- (id)objectForKeyedSubscript:(id)key
+{
+    return [self objectForKey:key];
+}
+
+- (void)setObject:(id)object forKeyedSubscript:(id)key
+{
+    return [self setObject:object forKey:key];
+}
+
+@end
 
 @implementation GCContext {
-	NSMutableDictionary *_xrefToEntityMap;
-    NSMutableDictionary *_entityToXrefMap;
-	NSMutableDictionary *_xrefToBlockMap;
+	NSMapTable *_xrefToEntityMap;
+    NSMapTable *_entityToXrefMap;
     NSMutableDictionary *_entityStore;
+    dispatch_group_t _group;
+    dispatch_queue_t _queue;
 }
 
 __strong static NSMutableDictionary *_contextsByName = nil;
@@ -60,9 +83,8 @@ __strong static NSArray *_rootKeys = nil;
 	if (self) {
         _name = [[NSUUID UUID] UUIDString];
         
-        _xrefToEntityMap = [NSMutableDictionary dictionary];
-        _entityToXrefMap = [NSMutableDictionary dictionary];
-        _xrefToBlockMap = [NSMutableDictionary dictionary];
+        _xrefToEntityMap = [NSMapTable strongToStrongObjectsMapTable];
+        _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
         _entityStore = [NSMutableDictionary dictionary];
         
         @synchronized (_contextsByName) {
@@ -383,17 +405,15 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(xref);
     NSParameterAssert(entity);
     
-    NSString *pointer = [NSString stringWithFormat:@"%p", entity];
-    
     //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
     
     // TODO - check if xref is used already!
     // clear previously set xref, if any:
     @synchronized (_entityToXrefMap) {
         @synchronized (_xrefToEntityMap) {
-            if (_entityToXrefMap[pointer]) {
-                [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[pointer]];
-                [_entityToXrefMap removeObjectForKey:pointer];
+            if (_entityToXrefMap[entity]) {
+                [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[entity]];
+                [_entityToXrefMap removeObjectForKey:entity];
             }
         }
     }
@@ -403,15 +423,7 @@ __strong static NSArray *_rootKeys = nil;
         _xrefToEntityMap[xref] = entity;
     }
     @synchronized (_entityToXrefMap) {
-        _entityToXrefMap[pointer] = xref;
-    }
-    
-    // call any registered blocks:
-    @synchronized (_xrefToBlockMap) {
-        for (void (^callback) (NSString *, GCEntity *) in _xrefToBlockMap[xref]) {
-            callback(xref, entity);
-        }
-        [_xrefToBlockMap removeObjectForKey:xref];
+        _entityToXrefMap[entity] = xref;
     }
 }
 
@@ -420,12 +432,10 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(entity);
     NSParameterAssert(entity.gedTag.code);
     
-    NSString *pointer = [NSString stringWithFormat:@"%p", entity];
-    
     NSString *xref = nil;
     
     @synchronized (_entityToXrefMap) {
-        xref = _entityToXrefMap[pointer];
+        xref = _entityToXrefMap[entity];
     }
     
     if (!xref) {
@@ -614,18 +624,12 @@ __strong static NSArray *_rootKeys = nil;
     if (self) {
         _name = [aDecoder decodeObjectForKey:@"name"];
         _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
-        _xrefToBlockMap = [aDecoder decodeObjectForKey:@"xrefBlocks"];
+        _entityToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
         _entityStore = [aDecoder decodeObjectForKey:@"entityStore"];
         _header = [aDecoder decodeObjectForKey:@"header"];
         _submission = [aDecoder decodeObjectForKey:@"submission"];
         
         _contextsByName[_name] = self;
-        
-        _entityToXrefMap = [NSMutableDictionary dictionary];
-        [_xrefToEntityMap enumerateKeysAndObjectsUsingBlock:^(id xref, id entity, BOOL *stop) {
-            NSString *pointer = [NSString stringWithFormat:@"%p", entity];
-            _entityToXrefMap[pointer] = xref;
-        }];
 	}
     
     return self;
@@ -635,7 +639,7 @@ __strong static NSArray *_rootKeys = nil;
 {
     [aCoder encodeObject:_name forKey:@"name"];
     [aCoder encodeObject:_xrefToEntityMap forKey:@"xrefStore"];
-    [aCoder encodeObject:_xrefToBlockMap forKey:@"xrefBlocks"];
+    [aCoder encodeObject:_entityToXrefMap forKey:@"entityToXref"];
     [aCoder encodeObject:_header forKey:@"header"];
     [aCoder encodeObject:_submission forKey:@"submission"];
     [aCoder encodeObject:_entityStore forKey:@"entityStore"];
