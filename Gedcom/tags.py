@@ -25,9 +25,8 @@ specialClasses = [ #don't generate classes for these
 forwardT = Template('@class $name;')
 
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
-dynamicT = Template('@dynamic $name;')
 
-mutableAccessorsT = Template("""
+collectionAccessorsT = Template("""
 - (NSMutableArray *)mutable$capName {
     return [self mutableArrayValueForKey:@"$name"];
 }
@@ -40,12 +39,11 @@ mutableAccessorsT = Template("""
     return [_$name objectAtIndex:index];
 }
  
-- (NSArray *)${name}AtIndexes:(NSIndexSet *)indexes {
-    return [_$name objectsAtIndexes:indexes];
-}
-
 - (void)insertObject:($type *)obj in${capName}AtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[$type class]]);
+	if (obj.describedObject) {
+		[obj.describedObject.mutableProperties removeObject:obj];
+	}
 	obj.describedObject = self;
     [_$name insertObject:obj atIndex:index];
 }
@@ -53,6 +51,28 @@ mutableAccessorsT = Template("""
 - (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
 	(($type *)_$name[index]).describedObject = nil;
     [_$name removeObjectAtIndex:index];
+}
+	""")
+
+singleAccessorsT = Template("""
+- (void)set$capName:($type *)obj
+{
+	if (_$name) {
+		[_$name setValue:nil forKey:@"describedObject"];
+	}
+	
+	if (obj.describedObject) {
+		[obj.describedObject.mutableProperties removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_$name = obj;
+}
+
+- ($type *)$name
+{
+	return _$name;
 }
 """)
 
@@ -92,6 +112,8 @@ implementationFileT = Template("""/*
 
 #import "GCObject_internal.h"
 #import "GCProperty_internal.h"
+
+#import "GCChangeInfoAttribute.h"
 
 $classImplementations
 """)
@@ -162,7 +184,6 @@ def property(key, type, doc, is_plural, is_required, is_property_group=False):
 				name=name,
 				doc=doc
 			)
-			implementation = dynamicT.substitute(name=name)
 		else:
 			definition = '%s%s' % (propertyT.substitute(
 				type='NSArray',
@@ -173,12 +194,12 @@ def property(key, type, doc, is_plural, is_required, is_property_group=False):
 				name='mutable%s%s' % (name[0].upper(), name[1:]),
 				doc='. '.join([doc, name])
 			))
-			implementation = mutableAccessorsT.substitute(
+			implementation = collectionAccessorsT.substitute(
 				name=name,
 				capName='%s%s' % (name[0].upper(), name[1:]),
 				type=classify(key, type)
 			)
-			ivar = '_%s' % name
+			ivar = 'NSMutableArray *_%s' % name
 	else:
 		forwardDeclarations.add(forwardT.substitute(name=classify(key, type)))
 		definition = propertyT.substitute(
@@ -186,6 +207,12 @@ def property(key, type, doc, is_plural, is_required, is_property_group=False):
 			name=name,
 			doc='. '.join([doc, ' NB: required property.' if is_required else ''])
 		)
+		implementation = singleAccessorsT.substitute(
+			type=classify(key, type),
+			name=name,
+			capName='%s%s' % (name[0].upper(), name[1:])
+		)
+		ivar = '%s *_%s' % (classify(key, type), name)
 
 	return definition, implementation, ivar
 
@@ -318,7 +345,7 @@ for key in sorted(tags):
 		
 		methodImps.append(initT.substitute(
 			type=key,
-			initProperties="\n".join(['\t\t%s = [NSMutableArray array];' % x for x in ivars]),
+			initProperties="\n".join(['\t\t%s = [NSMutableArray array];' % x[16:] for x in ivars if x[:14] == 'NSMutableArray']),
 			extraDef='InContext:(GCContext *)context' if tags[key]['objectType'] == 'entity' else '',
 			extraImp=' inContext:context' if tags[key]['objectType'] == 'entity' else ''
 		))
@@ -334,7 +361,7 @@ for key in sorted(tags):
 			name=classify(key, tags[key]['objectType']),
 			methods="\n".join(methodImps),
 			propertyImplementations="\n".join(propertyImplementations),
-			ivars="\n".join(['\tNSMutableArray *%s;' % x for x in ivars])
+			ivars="\n".join(['\t%s;' % x for x in ivars])
 		))
 	
 	print 'DONE PROCESSING %s' % key

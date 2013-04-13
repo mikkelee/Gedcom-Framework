@@ -60,7 +60,7 @@
     self = [self _init];
     
     if (self) {
-        [object addPropertiesObject:self];
+        [object setValue:self forKey:@"changeInfo"];
         
         self.modificationDate = dateFromNode(node[@"DATE"][0]);
 		
@@ -72,8 +72,6 @@
 
 #pragma mark Objective-C properties
 
-@dynamic notes;
-
 - (NSMutableArray *)mutableNoteReferences {
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
@@ -82,13 +80,12 @@
     return [_noteReferences objectAtIndex:index];
 }
 
-- (NSArray *)noteReferencesAtIndexes:(NSIndexSet *)indexes {
-    return [_noteReferences objectsAtIndexes:indexes];
-}
-
 - (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-    obj.describedObject = self;
+	if (obj.describedObject) {
+		[obj.describedObject.mutableProperties removeObject:obj];
+	}
+	obj.describedObject = self;
     [_noteReferences insertObject:obj atIndex:index];
 }
 
@@ -106,13 +103,12 @@
     return [_noteEmbeddeds objectAtIndex:index];
 }
 
-- (NSArray *)noteEmbeddedsAtIndexes:(NSIndexSet *)indexes {
-    return [_noteEmbeddeds objectsAtIndexes:indexes];
-}
-
 - (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-    obj.describedObject = self;
+	if (obj.describedObject) {
+		[obj.describedObject.mutableProperties removeObject:obj];
+	}
+	obj.describedObject = self;
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
