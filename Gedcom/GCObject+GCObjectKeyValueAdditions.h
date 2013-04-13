@@ -29,12 +29,6 @@
  */
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
 
-- (void)addPropertiesObject:(GCProperty *)property;
-- (void)removePropertiesObject:(GCProperty *)property;
-
-/// The properties of the receiver as a KVC-compliant mutable set.
-@property (readonly, nonatomic) NSMutableSet *allProperties;
-
 @end
 
 @interface GCObject (GCMoreConvenienceMethods)
@@ -44,9 +38,9 @@
 /** Creates a GCAttribute with the given type and value and adds it to the receiver via Key-Value coding.
  
  @param type The type of the attribute.
- @param value The value of the attribute.
+ @param value The value of the attribute. If the value is not a GCValue, one will be created.
  */
-- (void)addAttributeWithType:(NSString *)type value:(GCValue *)value;
+- (void)addAttributeWithType:(NSString *)type value:(id)value;
 
 /** Creates a GCRelationship with the given type and target and adds it to the receiver via Key-Value coding.
  

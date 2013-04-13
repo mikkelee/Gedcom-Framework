@@ -52,7 +52,7 @@
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
-    [indi.allProperties addObject:birt];
+    [indi.mutableProperties addObject:birt];
     
     // You can also use subscripted access, in this case adding a single death attribute
     // with the value yes, indicating that the individual died.
@@ -125,7 +125,7 @@
     GCFamilyEntity *fam = [GCFamilyEntity familyInContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
-    [fam setValue:wife forKey:@"wife"];
+    [wife setValue:@[ fam ] forKey:@"spouseInFamilies"];
     [fam setValue:@[ chil ] forKey:@"children"];
     
     //alternately:

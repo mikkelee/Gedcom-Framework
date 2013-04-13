@@ -15,78 +15,17 @@
 
 @implementation GCObject (GCObjectKeyValueAdditions)
 
-#pragma mark Internal helpers
-
-- (void)_internalAddProperty:(GCProperty *)property
-{
-    if (property.describedObject && property.describedObject != self) {
-        [property.describedObject.allProperties removeObject:property];
-    }
-    
-    property.describedObject = self;
-    
-    if (property.gedTag.isCustom || self.gedTag.isCustom) {
-        [(NSMutableArray *)self.customProperties addObject:property];
-    } else if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
-        NSString *key = property.gedTag.pluralName;
-        
-        [[super mutableArrayValueForKey:key] addObject:property];
-    } else {
-        [super setValue:property forKey:property.type];
-    }
-    
-    GCParameterAssert(property.describedObject == self);
-}
-
-- (void)_internalRemoveProperty:(GCProperty *)property
-{
-    property.describedObject = nil;
-    
-    if (property.gedTag.isCustom || self.gedTag.isCustom) {
-        [(NSMutableArray *)self.customProperties removeObject:property];
-    } else if ([self _allowsMultipleOccurrencesOfPropertyType:property.type]) {
-        NSString *key = property.gedTag.pluralName;
-        
-        [[super mutableArrayValueForKey:key] removeObject:property];
-    } else {
-        [super setValue:nil forKey:property.type];
-    }
-    
-    GCParameterAssert(property.describedObject == nil);
-}
-
-- (void)_internalAddValue:(id)value forKey:(NSString *)key {
-    GCTag *tag = [GCTag tagNamed:key];
-    
-    if ([value isKindOfClass:[GCProperty class]]) {
-        [self _internalAddProperty:value];
-    } else if ([value isKindOfClass:[GCValue class]]) {
-        [self _internalAddProperty:[[tag.objectClass alloc] initWithValue:value]];
-    } else if ([value isKindOfClass:[GCEntity class]]) {
-        GCRelationship *relationship = [[tag.objectClass alloc] init];
-        [self _internalAddProperty:relationship];
-        relationship.target = value;
-    } else {
-        NSException *exception = [NSException exceptionWithName:@"GCInvalidKVCValueTypeException"
-                                                         reason:[NSString stringWithFormat:@"Invalid value %@ for _internalSetValue:forKey:", value]
-                                                       userInfo:nil];
-        @throw exception;
-    }
-}
-
 #pragma mark NSKeyValueCoding overrides
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-    if (value && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
-        if ([self _allowsMultipleOccurrencesOfPropertyType:key]) {
-            NSParameterAssert([value respondsToSelector:@selector(countByEnumeratingWithState:objects:count:)]);
-            [super setValue:[NSMutableArray array] forKey:key];
-            for (id item in value) {
-                [self _internalAddValue:item forKey:key];
-            }
-        } else {
-            [self _internalAddValue:value forKey:key];
+    if ([value isKindOfClass:[GCValue class]] && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
+        [self addAttributeWithType:key value:value];
+    } else if ([value isKindOfClass:[GCEntity class]] && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
+        [self addRelationshipWithType:key target:value];
+    } else if ([value isKindOfClass:[NSArray class]] && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
+        for (id item in value) {
+            [self setValue:item forKey:key];
         }
     } else {
         [super setValue:value forKey:key];
@@ -113,7 +52,7 @@
         
         return values;
     } else {
-        return [super valueForKey:key];
+        return [super valueForUndefinedKey:key];
     }
 }
 
@@ -138,8 +77,8 @@
     [keyPaths addObject:@"attributedGedcomString"];
     [keyPaths addObject:@"gedcomString"];
     [keyPaths addObject:@"gedcomNode"];
-    [keyPaths addObject:@"allProperties"];
-    [keyPaths addObject:@"orderedProperties"];
+    [keyPaths addObject:@"properties"];
+    [keyPaths addObject:@"mutableProperties"];
     
     GCTag *tag = [GCTag tagNamed:key];
     
@@ -187,114 +126,43 @@
     }
 }
 
-#pragma mark GCProperty collection accessors
-
-- (NSUInteger)countOfProperties
-{
-    return [self.orderedProperties count];
-}
-
-- (NSEnumerator *)enumeratorOfProperties
-{
-    return [self.orderedProperties objectEnumerator];
-}
-
-- (GCProperty *)memberOfProperties:(GCProperty *)property
-{
-    for (GCProperty *p in [self enumeratorOfProperties]) {
-        if ([p isEqual:property]) {
-            return p;
-        }
-    }
-    
-    return nil;
-}
-
-- (void)addPropertiesObject:(GCProperty *)property
-{
-    [self _internalAddProperty:property];
-}
-
-- (void)removePropertiesObject:(GCProperty *)property
-{
-    [self _internalRemoveProperty:property];
-}
-
-/* //Optional. Implement if benchmarking indicates that performance is an issue.
- - (void)intersectProperties:(NSSet *)objects
- {
- 
- }
- */
-
-- (NSMutableSet *)allProperties
-{
-    return [self mutableSetValueForKey:@"properties"];
-}
-
 @end
 
 @implementation GCObject (GCMoreConvenienceMethods)
 
-- (void)addAttributeWithType:(NSString *)type value:(GCValue *)value
+- (void)addAttributeWithType:(NSString *)type value:(id)value
 {
-    [self _internalAddValue:value forKey:type];
+    GCTag *tag = [GCTag tagNamed:type];
+    
+    GCValue *val = nil;
+    if ([value isKindOfClass:[GCValue class]]) {
+        val = value;
+    } else {
+        val = [[tag.valueType alloc] initWithGedcomStringValue:value];
+    }
+    
+    GCAttribute *attr = [[tag.objectClass alloc] initWithValue:val];
+    
+    if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+        [[self mutableArrayValueForKey:tag.pluralName] addObject:attr];
+    } else {
+        [self setValue:attr forKey:tag.name];
+    }
 }
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
 {
-    [self _internalAddValue:target forKey:type];
-}
-
-@end
-
-#import <objc/runtime.h>
-
-@implementation GCObject (GCSwizzling)
-
-+ (void)load
-{
-    // TODO get class list
-    NSArray *classesToSwizzle = @[ @"GCHeaderEntity" ];
+    GCTag *tag = [GCTag tagNamed:type];
     
-    for (NSString *className in classesToSwizzle) {
-        //NSLog(@"**** Class %@", className);
-        Class cls = NSClassFromString(className);
-        unsigned int propCount, i;
-        objc_property_t *properties = class_copyPropertyList(cls, &propCount);
-        
-        for (i = 0; i < propCount; i++) {
-            objc_property_t property = properties[i];
-            
-            NSString *name = [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
-            NSString *attrs = [NSString stringWithCString:property_getAttributes(property) encoding:NSUTF8StringEncoding];
-            
-            if ([attrs hasPrefix:@"T@\"GC"]) {
-                NSString *setter = [NSString stringWithFormat:@"set%@%@:", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1]];
-                SEL selector = NSSelectorFromString(setter);
-                
-                //NSLog(@"     Swizzling %@", setter);
-                
-                Method origMethod = class_getInstanceMethod(cls, selector);
-                
-                IMP origIMP = method_getImplementation(origMethod);
-                
-                IMP swizIMP = imp_implementationWithBlock(^(id _s, id newObj) {
-                    if ([_s valueForKey:name]) {
-                        [[_s valueForKey:name] setValue:nil forKey:@"describedObject"];
-                    }
-                    
-                    [newObj setValue:_s forKey:@"describedObject"];
-                    
-                    origIMP(_s, selector, newObj);
-                });
-                
-                method_setImplementation(origMethod, swizIMP);
-            } else {
-                //NSLog(@"     Skipping %@", name);
-            }
-        }
+    GCRelationship *rel = [[tag.objectClass alloc] init];
+    
+    if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+        [[self mutableArrayValueForKey:tag.pluralName] addObject:rel];
+    } else {
+        [self setValue:rel forKey:tag.name];
     }
+    
+    rel.target = target;
 }
 
 @end

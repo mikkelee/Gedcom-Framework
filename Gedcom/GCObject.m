@@ -22,7 +22,9 @@
 __strong static NSMutableDictionary *_validPropertiesByType;
 __strong static NSDictionary *_defaultColors;
 
-@implementation GCObject
+@implementation GCObject {
+    NSMutableArray *_customProperties;
+}
 
 //static const NSString *GCColorPreferenceKey = @"GCColorPreferenceKey";
 
@@ -180,7 +182,7 @@ __strong static NSDictionary *_defaultColors;
 {
     NSMutableString *out = [NSMutableString string];
     
-    for (GCObject *property in self.allProperties) {
+    for (GCObject *property in self.properties) {
         [out appendString:[property descriptionWithIndent:level+1]];
     }
     
@@ -212,30 +214,89 @@ __strong static NSDictionary *_defaultColors;
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (NSArray *)orderedProperties
+- (NSArray *)properties
 {
-    NSMutableArray *orderedProperties = [NSMutableArray array];
+    NSMutableArray *properties = [NSMutableArray array];
     
     for (NSString *propertyType in self.validPropertyTypes) {
         if ([self _allowsMultipleOccurrencesOfPropertyType:propertyType]) {
-            [orderedProperties addObjectsFromArray:[super valueForKey:propertyType]];
+            [properties addObjectsFromArray:[super valueForKey:propertyType]];
         } else {
             if ([self valueForKey:propertyType]) {
-                [orderedProperties addObject:[super valueForKey:propertyType]];
+                [properties addObject:[super valueForKey:propertyType]];
             }
         }
     }
     
-    [orderedProperties addObjectsFromArray:_customProperties];
+    [properties addObjectsFromArray:_customProperties];
     
-	return orderedProperties;
+	return [properties copy];
+}
+
+- (NSMutableArray *)mutableProperties
+{
+    return [self mutableArrayValueForKey:@"properties"];
+}
+
+- (NSUInteger)countOfProperties
+{
+    return [self.properties count];
+}
+
+- (id)objectInPropertiesAtIndex:(NSUInteger)index {
+    return [self.properties objectAtIndex:index];
+}
+
+- (void)insertObject:(GCProperty *)prop inPropertiesAtIndex:(NSUInteger)index {
+    GCTag *tag = [GCTag tagNamed:prop.type];
+    
+    if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+        [[self mutableArrayValueForKey:tag.pluralName] addObject:prop];
+    } else {
+        [self setValue:prop forKey:tag.name];
+    }
+}
+
+- (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index {
+    GCProperty *prop = self.properties[index];
+    
+    GCTag *tag = [GCTag tagNamed:prop.type];
+    
+    if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+        [[self mutableArrayValueForKey:tag.pluralName] removeObject:prop];
+    } else {
+        [self setValue:nil forKey:tag.name];
+    }
+}
+
+- (NSMutableArray *)mutableCustomProperties {
+    return [self mutableArrayValueForKey:@"customProperties"];
+}
+
+- (NSUInteger)countOfCustomProperties
+{
+    return [_customProperties count];
+}
+
+- (id)objectInCustomPropertiesAtIndex:(NSUInteger)index {
+    return [_customProperties objectAtIndex:index];
+}
+
+- (void)insertObject:(GCObject *)obj inCustomPropertiesAtIndex:(NSUInteger)index {
+    [obj setValue:self forKey:@"describedObject"];
+    [_customProperties insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromCustomPropertiesAtIndex:(NSUInteger)index {
+    [_customProperties[index] setValue:nil forKey:@"describedObject"];
+    [_customProperties removeObjectAtIndex:index];
 }
 
 - (NSArray *)subNodes
 {
     NSMutableArray *subNodes = [NSMutableArray array];
     
-    for (GCProperty *property in self.orderedProperties) {
+    for (GCProperty *property in self.properties) {
         [subNodes addObject:property.gedcomNode];
     }
     
@@ -244,7 +305,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setSubNodes:(NSArray *)newSubNodes
 {
-    NSArray *originalProperties = [self.orderedProperties copy];
+    NSArray *originalProperties = [self.properties copy];
     
     NSArray *curSubNodes = self.subNodes;
     
@@ -277,7 +338,7 @@ __strong static NSDictionary *_defaultColors;
                 newMarker = nextIndex+1;
             } else {
                 //NSLog(@"DELETE %@", curSubNodes[curMarker]);
-                [self.allProperties removeObject:originalProperties[curMarker]];
+                [self.mutableProperties removeObject:originalProperties[curMarker]];
                 curMarker++;
             }
         }
@@ -286,7 +347,7 @@ __strong static NSDictionary *_defaultColors;
     
     _isBuildingFromGedcom = NO;
     
-    GCParameterAssert([self.allProperties count] == [newSubNodes count]);
+    GCParameterAssert([self.properties count] == [newSubNodes count]);
 }
 
 - (NSString *)gedcomString

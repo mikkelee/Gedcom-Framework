@@ -133,7 +133,7 @@
 	
     GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
     
-    [[indi allProperties] addObject:[GCPersonalNameAttribute personalNameWithValue:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
+    [indi.mutableProperties addObject:[GCPersonalNameAttribute personalNameWithValue:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
     
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"];
     [indi setValue:knownDate forKey:@"modificationDate"];
@@ -159,20 +159,20 @@
     
     GCProperty *nickname = [GCNicknameAttribute nicknameWithValue:[GCString valueWithGedcomString:@"Store Jens"]];
     
-    [name1.allProperties addObject:nickname];
+    [name1.mutableProperties addObject:nickname];
     
     STAssertEqualObjects([nickname describedObject], name1, nil);
-    STAssertTrue([name1.allProperties containsObject:nickname], nil);
-    STAssertFalse([name2.allProperties containsObject:nickname], nil);
+    STAssertTrue([name1.properties containsObject:nickname], nil);
+    STAssertFalse([name2.properties containsObject:nickname], nil);
     
-    [name2.allProperties addObject:nickname];
+    [name2.mutableProperties addObject:nickname];
     
     STAssertEqualObjects([nickname describedObject], name2, nil);
-    STAssertTrue([name2.allProperties containsObject:nickname], nil);
-    STAssertFalse([name1.allProperties containsObject:nickname], nil);
+    STAssertTrue([name2.properties containsObject:nickname], nil);
+    STAssertFalse([name1.properties containsObject:nickname], nil);
     
-    [indi.allProperties addObject:name1];
-    [indi.allProperties addObject:name2];
+    [indi.mutableProperties addObject:name1];
+    [indi.mutableProperties addObject:name2];
     //[indi setValue:[NSArray arrayWithObjects:name1, name2, nil] forKey:@"personalNames"];
     
     NSArray *expectedObjects = @[ [NSNull null], nickname ];
@@ -190,7 +190,6 @@
     observer.entity = indi;
     
     indi.sex = [GCSexAttribute sexWithValue:[GCGender maleGender]];
-    [indi setValue:[GCGender maleGender] forKey:@"sex"];
     
     [indi.mutablePersonalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/"]];
     [indi.mutablePersonalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"]];

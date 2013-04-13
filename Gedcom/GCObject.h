@@ -109,10 +109,15 @@
 #pragma mark Accessing properties
 
 /// The properties of the receiver ordered as indicated in the spec.
-@property (nonatomic, readonly) NSArray *orderedProperties;
+@property (nonatomic, readonly) NSArray *properties;
+
+/// The properties of the receiver as a KVC-compliant mutable set.
+@property (readonly, nonatomic) NSMutableArray *mutableProperties;
 
 /// The non-standard properties of the receiver, if any.
 @property (nonatomic, readonly) NSArray *customProperties;
+
+@property (nonatomic, readonly) NSMutableArray *mutableCustomProperties;
 
 @end
 
@@ -155,3 +160,5 @@
 - (BOOL)validateObject:(NSError **)error;
 
 @end
+
+#import "GCObject+GCObjectKeyValueAdditions.h"

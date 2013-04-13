@@ -25,11 +25,11 @@
     
 	GCBirthAttribute *birt = [GCBirthAttribute birth];
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
-    [indi.allProperties addObject:birt];
+    [indi.mutableProperties addObject:birt];
     
 	GCDeathAttribute *deat = [GCDeathAttribute death];
 	[deat addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1801"]];
-    [indi.allProperties addObject:deat];
+    [indi.mutableProperties addObject:deat];
     
     NSError *error = nil;
     
