@@ -13,8 +13,6 @@
 #import "GCEntity.h"
 
 #import "GCValue.h"
-#import "GCAge.h"
-#import "GCDate.h"
 
 #import "GCObject_internal.h"
 #import "GCValue_internal.h"

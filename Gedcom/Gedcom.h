@@ -23,18 +23,6 @@
 #import "GCObjects_generated.h"
 
 #import "GCValue.h"
-#import "GCAge.h"
-#import "GCDate.h"
-#import "GCString.h"
-#import "GCNamestring.h"
-#import "GCPlacestring.h"
-#import "GCNumber.h"
-#import "GCGender.h"
-#import "GCBool.h"
-
-#import "GCValueFormatter.h"
-
-#import "GCObject+GCObjectKeyValueAdditions.h"
 
 #import "GCObject+GCSanityCheckAdditions.h"
 

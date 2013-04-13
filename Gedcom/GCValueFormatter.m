@@ -6,17 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCValueFormatter.h"
-
 #import "GCValue.h"
-
-#import "GCString.h"
-#import "GCList.h"
-#import "GCNumber.h"
-#import "GCDate.h"
-#import "GCAge.h"
-#import "GCBool.h"
-#import "GCGender.h"
 
 @interface GCValueFormatter ()
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCGender.h"
+#import "GCValue.h"
 
 @implementation GCGender {
     NSString *_gedcomString;

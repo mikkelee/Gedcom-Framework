@@ -6,10 +6,8 @@
 //  Copyright 2011 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCDate.h"
+#import "GCValue.h"
 #import "GCDate_internal.h"
-
-#import "GCAge.h"
 
 #pragma mark -
 #pragma mark Concrete subclasses

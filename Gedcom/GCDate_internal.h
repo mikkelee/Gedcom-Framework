@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCDate.h"
+#import "GCValue.h"
 
 #define DebugLog(fmt, ...) if (0) NSLog(fmt, ## __VA_ARGS__)
 

@@ -10,11 +10,7 @@
 #import "GCNode.h"
 #import "GCTag.h"
 
-#import "GCProperty.h"
-#import "GCAttribute.h"
-#import "GCRelationship.h"
-
-#import "GCString.h"
+#import "GCValue.h"
 
 #import "GCChangeInfoAttribute.h"
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCPlacestring.h"
+#import "GCValue.h"
 
 @interface GCPlacestring ()
 

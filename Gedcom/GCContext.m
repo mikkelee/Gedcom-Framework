@@ -13,9 +13,10 @@
 
 #import "GCObject.h"
 #import "GCTag.h"
-#import "GCString.h"
+#import "GCValue.h"
 
 #import "GCEntity.h"
+#import "GCObject+GCGedcomLoadingAdditions.h"
 
 #import "GCObjects_generated.h"
 

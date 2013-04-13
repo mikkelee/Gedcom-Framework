@@ -10,8 +10,7 @@
 #import "ValidationHelpers.h"
 
 #import "GCObjects_generated.h"
-#import "GCAge.h"
-#import "GCDate.h"
+#import "GCValue.h"
 #import "GedcomErrors.h"
 
 @implementation GCContext (GCSanityCheckAdditions)

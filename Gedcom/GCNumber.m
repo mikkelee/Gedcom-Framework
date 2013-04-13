@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCNumber.h"
+#import "GCValue.h"
 
 @implementation GCNumber {
     NSNumber *_contents;

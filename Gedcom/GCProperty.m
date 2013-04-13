@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCProperty.h"
-
 #import "GCNode.h"
 
 #import "GCObject_internal.h"

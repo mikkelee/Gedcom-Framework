@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCString.h"
+#import "GCValue.h"
 
 @implementation GCString {
     NSString *_contents;

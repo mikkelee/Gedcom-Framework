@@ -8,8 +8,7 @@
 
 #import "GCIndividualEntity+GCObjectAdditions.h"
 
-#import "GCAge.h"
-#import "GCDate.h"
+#import "GCValue.h"
 
 #import "GCObjects_generated.h"
 
