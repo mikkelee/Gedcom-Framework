@@ -22,8 +22,9 @@
 {
     NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
     
-    [keyPaths addObject:@"value"];
-    [keyPaths removeObject:key];
+    if (![key isEqualToString:@"value"]) {
+        [keyPaths addObject:@"value"];
+    }
     
     return keyPaths;
 }
