@@ -8,10 +8,6 @@
 
 #import "GCIndividualEntity+GCObjectAdditions.h"
 
-#import "GCValue.h"
-
-#import "GCObjects_generated.h"
-
 @implementation GCIndividualEntity (GCObjectAdditions)
 
 - (GCDate *)estimatedBirthDate

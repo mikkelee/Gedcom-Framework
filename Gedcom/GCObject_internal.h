@@ -11,8 +11,6 @@
 
 #import "GCTag.h"
 
-#import "ValidationHelpers.h"
-
 #import "GedcomErrors.h"
 
 @interface GCObject () {

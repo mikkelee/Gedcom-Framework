@@ -8,11 +8,8 @@
 
 #import "GCAttribute.h"
 
-#import "GCNode.h"
-
-#import "GCEntity.h"
-
 #import "GCValue.h"
+#import "GCNode.h"
 
 #import "GCObject_internal.h"
 #import "GCValue_internal.h"

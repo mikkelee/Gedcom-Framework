@@ -14,8 +14,6 @@
 
 #import "GCContext.h"
 
-#import "GCEntity.h"
-#import "GCProperty.h"
 #import "GCObject+GCGedcomLoadingAdditions.h"
 
 #import "GCObject_internal.h"

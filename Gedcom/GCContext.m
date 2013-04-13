@@ -11,18 +11,11 @@
 #import "GCNodeParser.h"
 #import "GCNode.h"
 
-#import "GCObject.h"
-#import "GCTag.h"
-#import "GCValue.h"
-
 #import "GCEntity.h"
 #import "GCObject+GCGedcomLoadingAdditions.h"
 
 #import "GCObjects_generated.h"
 
-#import "GCContextDelegate.h"
-
-#import "ValidationHelpers.h"
 #import "CharacterSetHelpers.h"
 
 @interface GCTrailerEntity : NSObject //empty class to match trailer objects

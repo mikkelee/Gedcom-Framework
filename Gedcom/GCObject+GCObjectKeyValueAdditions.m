@@ -6,16 +6,12 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject+GCObjectKeyValueAdditions.h"
-
 #import "GCObject_internal.h"
 
-#import "GCEntity.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
-
-#import "GCProperty_internal.h"
+#import "GCValue.h"
 
 @implementation GCObject (GCObjectKeyValueAdditions)
 

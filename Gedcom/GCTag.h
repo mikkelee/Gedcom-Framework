@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCValue.h"
-
 #import <Foundation/Foundation.h>
 
 typedef struct {

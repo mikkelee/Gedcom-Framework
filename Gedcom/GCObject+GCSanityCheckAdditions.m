@@ -7,11 +7,11 @@
 //
 
 #import "GCObject+GCSanityCheckAdditions.h"
-#import "ValidationHelpers.h"
 
 #import "GCObjects_generated.h"
-#import "GCValue.h"
 #import "GedcomErrors.h"
+
+#import "GCValue.h"
 
 @implementation GCContext (GCSanityCheckAdditions)
 

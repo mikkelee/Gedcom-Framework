@@ -13,7 +13,7 @@
 #import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
-#import "GCObject+GCObjectKeyValueAdditions.h"
+#import "GCProperty_internal.h"
 
 @implementation GCRelationship {
 	GCEntity *_target;
