@@ -16,21 +16,6 @@
 
 @implementation GCAttribute
 
-#pragma mark Initialization
-
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
-{
-    self = [super initWithGedcomNode:node onObject:object];
-    
-    if (self) {
-        if (node.gedValue) {
-            [self setValueWithGedcomString:node.gedValue];
-        }
-    }
-    
-    return self;
-}
-
 #pragma mark NSKeyValueCoding overrides
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key

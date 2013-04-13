@@ -61,36 +61,6 @@
     return self;
 }
 
-#pragma mark Convenience constructors
-
-- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
-{
-    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
-    
-    if (tag.isCustom) {
-        self = [self _initWithType:tag.name inContext:context];
-    } else {
-        self = [self initInContext:context];
-    }
-    
-    if (self) {
-        _isBuildingFromGedcom = YES;
-        
-        if (tag.hasXref)
-            [self.context _setXref:node.xref forEntity:self];
-        
-        if (tag.hasValue)
-            self.value = [GCString valueWithGedcomString:node.gedValue];
-        
-        
-        [self addPropertiesWithGedcomNodes:node.subNodes];
-        
-        _isBuildingFromGedcom = NO;
-    }
-    
-    return self;
-}
-
 #pragma mark Comparison
 
 - (NSComparisonResult)compare:(GCEntity *)other

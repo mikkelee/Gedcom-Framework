@@ -16,20 +16,6 @@
  */
 @interface GCProperty : GCObject
 
-#pragma mark Initialization
-
-/// @name Creating and initializing properties
-
-/** Initializes and creates a property whose type and properties reflect the GCNode.
- 
- Cannot be used to initialize the GCProperty superclass, but must be used on the GCAttribute and GCRelationship subclasses.
- 
- @param object The object being described.
- @param node A GCNode. Its tag code must correspond to a valid property on the object.
- @return A new attribute.
- */
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object;
-
 #pragma mark Objective-C properties
 
 /// @name Accessing properties

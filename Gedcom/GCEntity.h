@@ -29,16 +29,6 @@
  */
 - (id)initInContext:(GCContext *)context;
 
-#pragma mark Convenience constructors
-
-/** Returns an entity whose properties reflect the GCNode in the given GCContext.
- 
- @param node A GCNode. Its tag code must correspond to a valid root object.
- @param context The context of the entity.
- @return A new entity.
- */
-- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
-
 #pragma mark Objective-C properties
 
 /// @name Accessing properties

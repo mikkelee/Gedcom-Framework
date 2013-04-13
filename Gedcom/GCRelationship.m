@@ -19,24 +19,6 @@
 	GCEntity *_target;
 }
 
-#pragma mark Initialization
-
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
-{
-    self = [super initWithGedcomNode:node onObject:object];
-    
-    if (self) {
-        GCParameterAssert(object.context);
-        //NSLog(@"%p: registering callback for %p on %@", object.context, self, [node gedValue]);
-        [object.context _registerCallbackForXref:node.gedValue usingBlock:^void(NSString *xref, GCEntity *entity) {
-            //NSLog(@"set %@ => %p on %p", xref, entity, self);
-            self.target = entity;
-        }];
-    }
-    
-    return self;
-}
-
 #pragma mark NSKeyValueCoding overrides
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key

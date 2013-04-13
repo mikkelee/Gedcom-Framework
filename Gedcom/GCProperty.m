@@ -10,27 +10,6 @@
 
 @implementation GCProperty
 
-#pragma mark Initialization
-
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
-{
-    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
-    
-    if (tag.isCustom) {
-        self = [self _initWithType:tag.name];
-    } else {
-        self = [self init];
-    }
-    
-    if (self) {
-        [object addPropertiesObject:self];
-        
-        [self addPropertiesWithGedcomNodes:node.subNodes];
-    }
-    
-    return self;
-}
-
 #pragma mark Comparison
 
 - (NSComparisonResult)compare:(GCProperty *)other
