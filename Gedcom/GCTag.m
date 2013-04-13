@@ -50,7 +50,6 @@ const NSString *kValueType = @"valueType";
 const NSString *kAllowsNil = @"allowsNil";
 const NSString *kAllowedValues = @"allowedValues";
 const NSString *kTargetType = @"target";
-const NSString *kReverseRelationshipTag = @"reverseRelationshipTag";
 const NSString *kPlural = @"plural";
 
 const NSString *kHasXref = @"hasXref";
@@ -296,26 +295,28 @@ static inline void setupKey(NSString *key) {
     }
     
     if ([code hasPrefix:@"_"]) {
-        NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
-        NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
-        
-        if ([_tagStore valueForKey:tagName]) {
-            return [_tagStore valueForKey:tagName];
+        @synchronized (self) {
+            NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
+            NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
+            
+            if ([_tagStore valueForKey:tagName]) {
+                return [_tagStore valueForKey:tagName];
+            }
+            
+            GCTag *tag = [[GCTag alloc] initWithName:tagName
+                                            settings:@{kCode: code,
+                                               kName: tagName,
+                                             kPlural: pluralName,
+                                          kValueType: @"string",
+                                         kTargetType: @"entity",
+                                         kObjectType: type,
+                                       kValidSubTags: [NSArray array]}];
+            NSLog(@"Created %@: %@", tagName, tag);
+            _tagStore[tagName] = tag;
+            _tagStore[pluralName] = tag;
+            
+            return tag;
         }
-        
-        GCTag *tag = [[GCTag alloc] initWithName:tagName
-                                        settings:@{kCode: code,
-                                                  kName: tagName,
-                                                  kPlural: pluralName,
-                                                  kValueType: @"string",
-                                                  kTargetType: @"entity",
-                                                  kObjectType: type,
-                                                  kValidSubTags: [NSArray array]}];
-        NSLog(@"Created %@: %@", tagName, tag);
-        _tagStore[tagName] = tag;
-        _tagStore[pluralName] = tag;
-        
-        return tag;
     }
     
     return _cachedSubTagsByCode[type][code];
@@ -491,12 +492,6 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
     }
     
     return _cachedValidSubTags;
-}
-
-- (GCTag *)reverseRelationshipTag
-{
-    return _settings[kReverseRelationshipTag] ? [GCTag tagNamed:_settings[kReverseRelationshipTag]] : nil;
-
 }
 
 @end

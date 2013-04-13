@@ -112,34 +112,48 @@
     NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
     NSParameterAssert([target isKindOfClass:self.gedTag.targetType]);
     
-    //NSLog(@"self: %@", self);
+    //NSLog(@"%p target: %p => %p", self, _target, target);
     
-    if (self.gedTag.reverseRelationshipTag) {
-        //remove previous reverse relationship before changing target.
-        for (GCRelationship *relationship in [_target valueForKey:self.gedTag.reverseRelationshipTag.pluralName]) {
-            //NSLog(@"%p: %@", self.describedObject, relationship);
-            if ([relationship.target isEqual:self.rootObject]) {
-                [_target.allProperties removeObject:relationship];
-            }
+    GCEntity *oldTarget = _target;
+    
+    _target = target;
+    
+    if (self.reverseRelationshipType) {
+        //NSLog(@"Got new target: %@ for self: %@", target, self);
+        
+        if (oldTarget) {
+            // remove previous reverse relationship before changing target.
+            //NSLog(@"Removing %@", oldTarget);
+            
+            [oldTarget.mutableProperties removeObject:self.other];
+            self.other = nil;
         }
-        if (target != nil) {
-            //set up new reverse relationship
-            BOOL relationshipExists = NO;
-            for (GCRelationship *relationship in [target valueForKey:self.gedTag.reverseRelationshipTag.pluralName]) {
-                //NSLog(@"%p: %@", self.describedObject, relationship);
-                if ([relationship.target isEqual:self.rootObject]) {
-                    //NSLog(@"relationship: %@", relationship);
-                    relationshipExists = YES;
-                }
-            }
-            if (!relationshipExists) {
-                [target addRelationshipWithType:self.gedTag.reverseRelationshipTag.name
-                                         target:(GCEntity *)self.rootObject];
+        
+        if (target && self.other.rootObject != target) {
+            //NSLog(@"test: %@", [target[self.reverseRelationshipType] valueForKey:@"target"]);
+            
+            if (![[target[self.reverseRelationshipType] valueForKey:@"target"] containsObject:self.rootObject]) {
+                // set up new reverse relationship
+                //NSLog(@"Adding reverse relationship %@ with target: %@", self.reverseRelationshipType, self.rootObject);
+                
+                GCTag *tag = [GCTag tagNamed:self.reverseRelationshipType];
+                
+                GCRelationship *other = [[tag.objectClass alloc] init];
+                
+                other.other = self;
+                self.other = other;
+                
+                [target.mutableProperties addObject:other];
+                
+                other.target = (GCEntity *)self.rootObject;
             }
         }
     }
-    
-    _target = target;
+}
+
+- (NSString *)reverseRelationshipType
+{
+    return nil; // override this to set up a reverse relationship
 }
 
 - (NSString *)displayValue

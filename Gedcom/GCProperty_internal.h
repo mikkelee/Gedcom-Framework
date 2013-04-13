@@ -7,10 +7,18 @@
 //
 
 #import "GCProperty.h"
+#import "GCRelationship.h"
 
 @interface GCProperty ()
 
 @property (weak, nonatomic) GCObject *describedObject;
+
+@end
+
+@interface GCRelationship ()
+
+@property (weak) GCRelationship *other;
+@property (readonly) NSString *reverseRelationshipType;
 
 @end
 
