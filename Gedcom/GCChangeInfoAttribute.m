@@ -80,7 +80,7 @@
     return [_noteReferences objectAtIndex:index];
 }
 
-- (void)insertObject:(GCNoteReferenceRelationship *)obj inNoteReferencesAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
 	if (obj.describedObject) {
 		[obj.describedObject.mutableProperties removeObject:obj];
@@ -90,7 +90,7 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-    ((GCNoteReferenceRelationship *)_noteReferences[index]).describedObject = nil;
+    ((GCProperty *)_noteReferences[index]).describedObject = nil;
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -103,7 +103,7 @@
     return [_noteEmbeddeds objectAtIndex:index];
 }
 
-- (void)insertObject:(GCNoteEmbeddedAttribute *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
 	if (obj.describedObject) {
 		[obj.describedObject.mutableProperties removeObject:obj];
@@ -113,7 +113,7 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-    ((GCNoteEmbeddedAttribute *)_noteEmbeddeds[index]).describedObject = nil;
+    ((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
