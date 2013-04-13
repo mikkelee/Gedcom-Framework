@@ -91,7 +91,7 @@
     }
     
     if ([leftoverOutput count] > 0) {
-        NSLog(@"leftoverInput: %@", leftoverOutput);
+        NSLog(@"leftoverOutput: %@", leftoverOutput);
     }
     
     // TODO test encode == decode...
