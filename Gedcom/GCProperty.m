@@ -53,6 +53,7 @@
 - (void)setDescribedObject:(GCObject *)describedObject
 {
     //NSLog(@"%@ (%@) %p => %p", NSStringFromSelector(_cmd), NSStringFromClass(self.gedTag.objectClass), self, describedObject);
+    //TODO remove here?
     _describedObject = describedObject;
 }
 
