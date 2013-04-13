@@ -28,10 +28,8 @@
  
  ```
  
- Nodes are immutable, but see also GCMutableNode.
- 
  */
-@interface GCNode : NSObject <NSCopying, NSCoding, NSMutableCopying>
+@interface GCNode : NSObject <NSCopying, NSCoding>
 
 #pragma mark Initialization
 
@@ -100,22 +98,23 @@
 @property (weak, readonly, nonatomic) GCNode *parent;
 
 /// The tag of the receiver; may not be `nil`.
-@property (readonly, nonatomic) NSString *gedTag;
+@property (nonatomic) NSString *gedTag;
 
 /// The value of the receiver; may be `nil`.
-@property (readonly, nonatomic) NSString *gedValue;
+@property (nonatomic) NSString *gedValue;
 
 /// `TRUE` the value is non-nil and is wrapped in `@`s, otherwise `NO`.
 @property (readonly, nonatomic) BOOL valueIsXref;
 
 /// The xref of the receiver; may be `nil`.
-@property (readonly, nonatomic) NSString *xref;
+@property (nonatomic) NSString *xref;
 
 /// The line separator of the receiver; usually `\n`.
 @property (readonly, nonatomic) NSString *lineSeparator;
 
-/// An ordered collection containing the subnodes of the receiver; may not be `nil`.
-@property (readonly, nonatomic) NSArray *subNodes;
+/// A KVC-compliant ordered collection containing the subnodes of the receiver.
+@property (nonatomic) NSMutableArray *mutableSubNodes;
+@property (nonatomic) NSArray *subNodes;
 
 /// A uniquing collection containing the gedTags for all subNodes of the receiver.
 @property (readonly, nonatomic) NSSet *allSubTags;
@@ -167,3 +166,5 @@ extern NSString *GCXrefAttributeName;
 extern NSString *GCTagAttributeName;
 extern NSString *GCValueAttributeName;
 extern NSString *GCLinkAttributeName;
+
+extern NSString *concSeparator;

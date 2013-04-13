@@ -7,7 +7,7 @@ A number of classes to ease [GEDCOM 5.5](http://www.gedcom.net/0g/gedcom55/)-man
 A short summary of the functionality follows:
 
 * GEDCOM is parsed and serialized in layers: text <=> GCNode <=> GCObject.
-* Closest to the metal are GCNodes, a simple representation of the nested structure of GEDCOM text data with accessors for tag/value/xref/etc.
+* Closest to the metal are GCNodes (parsed via GCNodeParser), a simple representation of the nested structure of GEDCOM text data with accessors for tag/value/xref/etc.
 * Above GCNodes are GCObjects, which allow for more abstracted data access. There are two basic types of GCObject:
     - GCEntity: Root level records - INDI, FAM, etc.
     - GCProperty: Objects can have a number of properties of which there are two kinds:
@@ -80,7 +80,7 @@ Showing some different ways to add attributes to an object:
     
 	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
     
-    [indi.allProperties addObject:birt];
+    [indi.mutableProperties addObject:birt];
     
     // You can also use subscripted access, in this case adding a single death attribute
     // with the value yes, indicating that the individual died.

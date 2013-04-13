@@ -7,10 +7,9 @@
 //
 
 #import "GCNodeParser.h"
-#import "GCMutableNode.h"
 #import "GCNodeParserDelegate.h"
 
-static NSString *concSeparator = @"\u2060";
+#import "GCNode.h"
 
 @implementation GCNodeParser
 
@@ -36,8 +35,8 @@ static NSString *concSeparator = @"\u2060";
         NSParameterAssert([gedString isKindOfClass:[NSString class]]);
         
         __block int currentLevel = 0;
-        __block GCMutableNode *currentNode = nil;
-        __block GCMutableNode *currentRoot = nil;
+        __block GCNode *currentNode = nil;
+        __block GCNode *currentRoot = nil;
         
 #ifdef DEBUGLEVEL
         clock_t start, end;
@@ -56,7 +55,7 @@ static NSString *concSeparator = @"\u2060";
             }
             
             int level = -1;
-            GCMutableNode* node = nil;
+            GCNode* node = nil;
             
             NSRange range = NSMakeRange(0, [gLine length]);
             NSTextCheckingResult *match = [levelXrefTagValueRegex firstMatchInString:gLine options:kNilOptions range:range];
@@ -64,7 +63,7 @@ static NSString *concSeparator = @"\u2060";
             //NSLog(@"gLine: %@", gLine);
             
             if (match) {
-                GCMutableNode *parent = nil;
+                GCNode *parent = nil;
                 
                 level = [[gLine substringWithRange:[match rangeAtIndex:1]] intValue];
                 
@@ -72,7 +71,7 @@ static NSString *concSeparator = @"\u2060";
                     if (currentRoot) {
                         nodeCount++;
                         if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNode:)]) {
-                            [_delegate parser:self didParseNode:[currentRoot copy]];
+                            [_delegate parser:self didParseNode:currentRoot];
                         }
                     }
                 } else if (level == currentLevel+1) { //child of current
@@ -114,11 +113,11 @@ static NSString *concSeparator = @"\u2060";
                 }
                 
                 if (xref) {
-                    node = [GCMutableNode nodeWithTag:code
-                                                 xref:xref];
+                    node = [GCNode nodeWithTag:code
+                                          xref:xref];
                 } else {
-                    node = [GCMutableNode nodeWithTag:code
-                                                value:val];
+                    node = [GCNode nodeWithTag:code
+                                         value:val];
                 }
                 
                 if (parent) {
@@ -137,7 +136,8 @@ static NSString *concSeparator = @"\u2060";
                 NSLog(@"val: %@", val);
                 NSLog(@"node: %@", node);
                 NSLog(@"currentNode: %@", currentNode);
-                NSLog(@"currentRoot: %@", currentRoot);*/
+                NSLog(@"currentRoot: %@", currentRoot);
+                 */
             } else {
                 NSLog(@"Unable to create node from gedcom: '%@' -- will assume faulty linefeed and append to value of previous node: %@", gLine, currentNode);
                 
@@ -149,10 +149,11 @@ static NSString *concSeparator = @"\u2060";
             }
         }];
         
+        // TODO fix order so this is unneeded.
         if (currentRoot) {
             nodeCount++;
             if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNode:)]) {
-                [_delegate parser:self didParseNode:[currentRoot copy]];
+                [_delegate parser:self didParseNode:currentRoot];
             }
         }
         

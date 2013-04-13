@@ -197,21 +197,18 @@
 	"husband": {
 		"code": "HUSB",
 		"objectType": "relationship",
-		"target": "individual",
-		"reverseRelationshipTag": "spouseInFamily"
+		"target": "individual"
 	},
 	"wife": {
 		"code": "WIFE",
 		"objectType": "relationship",
 		"target": "individual",
-		"reverseRelationshipTag": "spouseInFamily",
 		"plural": "wives"
 	},
 	"child": {
 		"code": "CHIL",
 		"objectType": "relationship",
 		"target": "individual",
-		"reverseRelationshipTag": "childInFamily",
 		"plural": "children"
 	},
 	
@@ -1095,8 +1092,7 @@
 	},
 	"residence": {
 		"code": "RESI",
-		"objectType": "attribute",
-		"valueType": "string"
+		"objectType": "attribute"
 	},
 	"restrictionNotice": {
 		"code": "RESN",

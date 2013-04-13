@@ -115,7 +115,9 @@ __strong static NSArray *_rootKeys = nil;
     GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
     
     if (tag.objectClass != [GCTrailerEntity class]) {
-        (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self];
+        dispatch_group_async(_group, _queue, ^{
+            (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self];
+        });
     }
 }
 
@@ -209,7 +211,11 @@ __strong static NSArray *_rootKeys = nil;
         gedString = [[NSString alloc] initWithData:data encoding:fileEncoding];
     }
     
-    return [nodeParser parseString:gedString error:error];
+    BOOL result = [nodeParser parseString:gedString error:error];
+    
+    dispatch_group_wait(_group, DISPATCH_TIME_FOREVER);
+    
+    return result;
 }
 
 - (BOOL)readContentsOfFile:(NSString *)path error:(NSError **)error

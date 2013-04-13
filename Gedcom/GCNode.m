@@ -7,31 +7,19 @@
 //
 
 #import "GCNode.h"
-#import "GCTag.h"
-
-#import "GCMutableNode.h"
 
 @interface GCNode ()
 
 @property (weak, nonatomic) GCNode *parent;
-@property (nonatomic) NSString *gedTag;
-@property (nonatomic) NSString *gedValue;
-@property (nonatomic) NSString *xref;
 @property (nonatomic) NSString *lineSeparator;
 
 @end
 
-static NSString *concSeparator = @"\u2060";
-
-@implementation GCNode
+@implementation GCNode {
+    NSMutableArray *_subNodes;
+}
 
 #pragma mark Initialization
-
-+ (void)initialize
-{
-    unichar wordJoiner = 0x2060;
-    concSeparator = [NSString stringWithCharacters:&wordJoiner length:1];
-}
 
 //COV_NF_START
 - (id)init
@@ -54,14 +42,13 @@ static NSString *concSeparator = @"\u2060";
         _gedValue = value;
         
         if (subNodes) {
-            NSMutableArray *tmp = [NSMutableArray array];
+            _subNodes = [NSMutableArray array];
             for (id subNode in subNodes) {
-                ((GCMutableNode *)subNode).parent = self;
-                [tmp addObject:subNode];
+                ((GCNode *)subNode).parent = self;
+                [_subNodes addObject:subNode];
             }
-            _subNodes = [tmp copy];
         } else {
-            _subNodes = [NSArray array];
+            _subNodes = [NSMutableArray array];
         }
 	}
     
@@ -422,25 +409,48 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     return copy;
 }
 
-#pragma mark NSMutableCopying conformance
+#pragma mark Internal SubNode accessors
 
-- (id)mutableCopyWithZone:(NSZone *)zone
+- (NSMutableArray *)mutableSubNodes
 {
-    GCMutableNode *copy = [[GCMutableNode allocWithZone:zone] initWithTag:self.gedTag 
-                                                                    value:self.gedValue 
-                                                                     xref:self.xref 
-                                                                 subNodes:nil];
+    return [self mutableArrayValueForKey:@"subNodes"];
+}
+
+- (NSUInteger)countOfSubNodes
+{
+    return [_subNodes count];
+}
+
+- (id)objectInSubNodesAtIndex:(NSUInteger)index
+{
+    return [_subNodes objectAtIndex:index];
+}
+
+- (void)insertObject:(GCNode *)node inSubNodesAtIndex:(NSUInteger)index
+{
+	NSParameterAssert(self != node);
+    NSParameterAssert([node isKindOfClass:[GCNode class]]);
     
-    [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
-    
-    for (id subNode in _subNodes) {
-        [copy.mutableSubNodes addObject:[subNode mutableCopy]];
+    if (!_subNodes) {
+        _subNodes = [NSMutableArray array];
     }
     
-    return copy;
+    [_subNodes insertObject:node atIndex:index];
+    [node setParent:self];
+}
+
+- (void)removeObjectFromSubNodesAtIndex:(NSUInteger)index
+{
+    [[_subNodes objectAtIndex:index] setParent:nil];
+    [_subNodes removeObjectAtIndex:index];
 }
 
 #pragma mark Objective-C properties
+
+- (NSArray *)subNodes
+{
+    return [_subNodes copy];
+}
 
 - (BOOL)valueIsXref
 {
@@ -489,3 +499,5 @@ NSString *GCXrefAttributeName = @"GCXrefAttributeName";
 NSString *GCTagAttributeName = @"GCTagAttributeName";
 NSString *GCValueAttributeName = @"GCValueAttributeName";
 NSString *GCLinkAttributeName = @"GCLinkAttributeName";
+
+NSString *concSeparator = @"\u2060";

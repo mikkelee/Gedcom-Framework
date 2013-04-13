@@ -76,25 +76,6 @@
 	[self testFile:path countShouldBe:18];
 }
 
-- (void)testMutableNode
-{
-    GCNode *node = [GCNode nodeWithTag:@"NAME" value:@"Jens /Hansen/"];
-    
-    GCMutableNode *mutableNode = [node mutableCopy];
-    
-    mutableNode.gedValue = @"Jens /Hansen/ Smed";
-    
-    STAssertEqualObjects([mutableNode gedValue], @"Jens /Hansen/ Smed", nil);
-    
-    GCMutableNode *nickname = [GCMutableNode nodeWithTag:@"NICK" value:@"Smeden"];
-    
-    STAssertEquals([[mutableNode subNodes] count], (NSUInteger)0, nil);
-
-    [mutableNode.mutableSubNodes addObject:nickname];
-    
-    STAssertEquals([[mutableNode subNodes] count], (NSUInteger)1, nil);
-}
-
 - (void)testConcatenation
 {
     NSString *gedcom = 

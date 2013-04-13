@@ -8,17 +8,18 @@
 
 #import "GCNodeParser.h"
 #import "GCNode.h"
-#import "GCMutableNode.h"
-
-#import "GCTag.h"
 
 #import "GCContext.h"
+
+#import "GCTag.h"
 
 #import "GCObject.h"
 #import "GCEntity.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
+
+#import "GCObject+GCGedcomLoadingAdditions.h"
 
 #import "GCObjects_generated.h"
 
