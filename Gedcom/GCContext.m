@@ -87,6 +87,9 @@ __strong static NSArray *_rootKeys = nil;
         _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
         _entityStore = [NSMutableDictionary dictionary];
         
+        _group = dispatch_group_create();
+        _queue = dispatch_queue_create([_name cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+        
         @synchronized (_contextsByName) {
             _contextsByName[_name] = self;
         }
@@ -105,6 +108,14 @@ __strong static NSArray *_rootKeys = nil;
     @synchronized (_contextsByName) {
         return [_contextsByName copy];
     }
+}
+
+#pragma mark Teardown
+
+- (void)dealloc
+{
+    dispatch_release(_group);
+    dispatch_release(_queue);
 }
 
 #pragma mark Default header
@@ -477,7 +488,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (GCFileEncoding)fileEncoding
 {
-    NSString *encoding = _header.characterSet.value.gedcomString;
+    NSString *encoding = _header.characterSet.displayValue;
     
     if ([encoding isEqualToString:@"ANSEL"]) {
         return GCANSELFileEncoding;
@@ -512,7 +523,7 @@ __strong static NSArray *_rootKeys = nil;
     
     // TODO UTF8?
     
-    _header.characterSet.value = [GCString valueWithGedcomString:encodingStr];
+    [_header addAttributeWithType:@"characterSet" value:encodingStr];
 }
 
 - (NSArray *)gedcomNodes
