@@ -12,7 +12,8 @@
 
 #import "DateHelpers.h"
 
-#import "GCObjects_generated.h"
+#import "GCNoteEmbeddedAttribute.h"
+#import "GCNoteReferenceRelationship.h"
 
 #import "GCObject_internal.h"
 

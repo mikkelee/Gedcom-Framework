@@ -19,10 +19,6 @@
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
 
-#import "ValidationHelpers.h"
-
-#import "GCObject+GCObjectKeyValueAdditions.h"
-
 __strong static NSMutableDictionary *_validPropertiesByType;
 __strong static NSDictionary *_defaultColors;
 

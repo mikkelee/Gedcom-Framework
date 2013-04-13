@@ -7,7 +7,6 @@
 //
 
 #import "Document.h"
-#import <Gedcom/Gedcom.h>
 
 #import "GCGUIAdditions.h"
 

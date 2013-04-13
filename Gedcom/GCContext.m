@@ -12,9 +12,19 @@
 #import "GCNode.h"
 
 #import "GCEntity.h"
-#import "GCObject+GCGedcomLoadingAdditions.h"
 
-#import "GCObjects_generated.h"
+#import "GCHeaderEntity.h"
+#import "GCCharacterSetAttribute.h"
+#import "GCHeaderSourceAttribute.h"
+#import "GCDescriptiveNameAttribute.h"
+#import "GCGedcomAttribute.h"
+#import "GCVersionAttribute.h"
+#import "GCGedcomFormatAttribute.h"
+#import "GCSubmitterEntity.h"
+#import "GCSubmitterReferenceRelationship.h"
+#import "GCSubmissionEntity.h"
+
+#import "GCObject+GCGedcomLoadingAdditions.h"
 
 #import "CharacterSetHelpers.h"
 

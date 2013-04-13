@@ -8,7 +8,7 @@
 
 #import "GCObject+GCSanityCheckAdditions.h"
 
-#import "GCObjects_generated.h"
+#import "GCIndividualEntity.h"
 #import "GedcomErrors.h"
 
 #import "GCValue.h"
