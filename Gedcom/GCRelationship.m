@@ -46,7 +46,7 @@
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    self.target = [self.context _entityForXref:gedcomNode.gedValue];
+    self.target = [self.context _entityForXref:gedcomNode.gedValue create:NO withClass:nil];
     
     [super setSubNodes:gedcomNode.subNodes];
 }

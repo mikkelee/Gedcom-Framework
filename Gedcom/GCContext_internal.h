@@ -14,9 +14,7 @@
 
 - (NSString *)_xrefForEntity:(GCEntity *)entity;
 
-- (GCEntity *)_entityForXref:(NSString *)xref;
-
-- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref, GCEntity *entity))block;
+- (GCEntity *)_entityForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass;
 
 - (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity;
 

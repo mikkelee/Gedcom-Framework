@@ -249,7 +249,7 @@ __strong static NSArray *_rootKeys = nil;
     
     GCContext *context = [GCContext contextsByName][url.host];
     
-    return [context _entityForXref:[url.path lastPathComponent]];
+    return [context _entityForXref:[url.path lastPathComponent] create:NO withClass:nil];
 }
 
 #pragma mark GCEntity collection accessors
@@ -444,24 +444,21 @@ __strong static NSArray *_rootKeys = nil;
     return xref;
 }
 
-- (GCEntity *)_entityForXref:(NSString *)xref
+- (GCEntity *)_entityForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass
 {
     @synchronized (_xrefToEntityMap) {
-        return _xrefToEntityMap[xref];
-    }
-}
-
-- (void)_registerCallbackForXref:(NSString *)xref usingBlock:(void (^)(NSString *xref, GCEntity *entity))callback
-{
-    NSParameterAssert(xref);
-    
-    @synchronized (_xrefToBlockMap) {
-        if ([self _entityForXref:xref]) {
-            callback(xref, [self _entityForXref:xref]);
-        } else	if (_xrefToBlockMap[xref]) {
-            [_xrefToBlockMap[xref] addObject:[callback copy]];
+        id entity = _xrefToEntityMap[xref];
+        if (entity) {
+            //NSLog(@"Found existing: %@ > %p", xref, entity);
+            return entity;
+        } else if (create) {
+            entity = [[aClass alloc] initInContext:self];
+            //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, entity);
+            [self _setXref:xref forEntity:entity];
+            return entity;
         } else {
-            _xrefToBlockMap[xref] = [NSMutableSet setWithObject:[callback copy]];
+            //NSLog(@"NOT creating: %@", xref);
+            return nil;
         }
     }
 }
