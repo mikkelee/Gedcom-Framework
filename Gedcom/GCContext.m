@@ -1,5 +1,5 @@
 //
-//  GCXRefStore.m
+//  GCContext.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 28/03/12.
