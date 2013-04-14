@@ -71,6 +71,8 @@
 		3E3995DF155DE69200228946 /* Gedcom.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E4373551521CB7200BA362F /* GCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4373531521CB7200BA362F /* GCAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
+		3E52C01C171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */; };
+		3E52C01D171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57557C15202A9600A918D1 /* GCValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557A15202A9600A918D1 /* GCValue.m */; };
 		3E575580152057B200A918D1 /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* DateHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -571,6 +573,8 @@
 		3E3995BE155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3E4373531521CB7200BA362F /* GCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GCAttribute.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3E4373541521CB7200BA362F /* GCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCHeaderEntity+GCObjectAdditions.h"; sourceTree = "<group>"; };
+		3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCHeaderEntity+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValue.h; sourceTree = "<group>"; };
 		3E57557A15202A9600A918D1 /* GCValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValue.m; sourceTree = "<group>"; };
 		3E57557E152057B200A918D1 /* DateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelpers.h; sourceTree = "<group>"; };
@@ -1280,6 +1284,8 @@
 				3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */,
 				3E8C1E97162648DE005B3BE6 /* GCIndividualEntity+GCObjectAdditions.h */,
 				3E8C1E98162648DF005B3BE6 /* GCIndividualEntity+GCObjectAdditions.m */,
+				3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */,
+				3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */,
 			);
 			name = "Object Additions";
 			sourceTree = "<group>";
@@ -1873,6 +1879,7 @@
 				3ECAA627170594F300C5B335 /* GCProperty_internal.h in Headers */,
 				3E325D2D170D0CC800109A18 /* GCNodeParserDelegate.h in Headers */,
 				3EB826761719C54F004C1811 /* GCObjects_generated.h in Headers */,
+				3E52C01C171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2318,6 +2325,7 @@
 				3EB827AA1719C54F004C1811 /* GCWifeDetailAttribute.m in Sources */,
 				3EB827AB1719C54F004C1811 /* GCWifeRelationship.m in Sources */,
 				3EB827AC1719C54F004C1811 /* GCWillAttribute.m in Sources */,
+				3E52C01D171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

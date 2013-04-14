@@ -14,15 +14,9 @@
 #import "GCEntity.h"
 
 #import "GCHeaderEntity.h"
-#import "GCCharacterSetAttribute.h"
-#import "GCHeaderSourceAttribute.h"
-#import "GCDescriptiveNameAttribute.h"
-#import "GCGedcomAttribute.h"
-#import "GCVersionAttribute.h"
-#import "GCGedcomFormatAttribute.h"
-#import "GCSubmitterEntity.h"
-#import "GCSubmitterReferenceRelationship.h"
 #import "GCSubmissionEntity.h"
+#import "GCCharacterSetAttribute.h"
+#import "GCHeaderEntity+GCObjectAdditions.h"
 
 #import "GCObject+GCGedcomLoadingAdditions.h"
 
@@ -116,29 +110,6 @@ __strong static NSArray *_rootKeys = nil;
 {
     dispatch_release(_group);
     dispatch_release(_queue);
-}
-
-#pragma mark Default header
-
-- (void)setDefaultHeader
-{
-    GCHeaderEntity *head = [GCHeaderEntity headerInContext:self];
-    
-    head.characterSet = [GCCharacterSetAttribute characterSetWithGedcomStringValue:@"UNICODE"];
-    
-    head.headerSource = [GCHeaderSourceAttribute headerSourceWithGedcomStringValue:@"Gedcom.framework"];
-    head.headerSource.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:@"Gedcom.framework"];
-    head.headerSource.version = [GCVersionAttribute versionWithGedcomStringValue:@"0.9.1"];
-    
-    head.gedcom = [GCGedcomAttribute gedcom];
-    head.gedcom.version = [GCVersionAttribute versionWithGedcomStringValue:@"5.5"];
-    head.gedcom.gedcomFormat = [GCGedcomFormatAttribute gedcomFormatWithGedcomStringValue:@"LINEAGE-LINKED"];
-    
-    GCSubmitterEntity *subm = [GCSubmitterEntity submitterInContext:self];
-    subm.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:NSFullUserName()];
-    
-    head.submitterReference = [GCSubmitterReferenceRelationship submitterReference];
-    head.submitterReference.target = subm;
 }
 
 #pragma mark GCNodeParser delegate methods
@@ -531,7 +502,7 @@ __strong static NSArray *_rootKeys = nil;
 	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[self countOfEntities]];
 	
     if (!_header) {
-        [self setDefaultHeader];
+        _header = [GCHeaderEntity defaultHeaderInContext:self];
     }
     
 	[nodes addObject:_header.gedcomNode];
