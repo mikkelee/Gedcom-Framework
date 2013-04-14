@@ -15,6 +15,14 @@
 
 #import "GCHeaderEntity.h"
 #import "GCSubmissionEntity.h"
+#import "GCFamilyEntity.h"
+#import "GCIndividualEntity.h"
+#import "GCMultimediaEntity.h"
+#import "GCNoteEntity.h"
+#import "GCRepositoryEntity.h"
+#import "GCSourceEntity.h"
+#import "GCSubmitterEntity.h"
+
 #import "GCCharacterSetAttribute.h"
 #import "GCHeaderEntity+GCObjectAdditions.h"
 
@@ -28,9 +36,9 @@
 @end
 
 //TODO: split into categories?
-//TODO: merging contexts etc.
-//TODO: transactions? NSUndoManager group
+//TODO: transactions? NSUndoManager groups
 //TODO: renumber xrefs
+//TODO: merging contexts etc.
 
 @interface NSMapTable (GCSubscriptAdditions)
 
@@ -56,7 +64,17 @@
 @implementation GCContext {
 	NSMapTable *_xrefToEntityMap;
     NSMapTable *_entityToXrefMap;
-    NSMutableDictionary *_entityStore;
+    
+    NSMutableArray *_families;
+    NSMutableArray *_individuals;
+    NSMutableArray *_multimedias;
+    NSMutableArray *_notes;
+    NSMutableArray *_repositories;
+    NSMutableArray *_sources;
+    NSMutableArray *_submitters;
+    
+    NSMutableArray *_customEntities;
+    
     dispatch_group_t _group;
     dispatch_queue_t _queue;
 }
@@ -67,7 +85,7 @@ __strong static NSArray *_rootKeys = nil;
 + (void)initialize
 {
     _contextsByName = [NSMutableDictionary dictionary];
-    _rootKeys = @[ @"submitter", @"individual", @"family", @"multimedia", @"note", @"repository", @"source" ];
+    _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ];
 }
 
 - (id)init
@@ -79,7 +97,16 @@ __strong static NSArray *_rootKeys = nil;
         
         _xrefToEntityMap = [NSMapTable strongToStrongObjectsMapTable];
         _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
-        _entityStore = [NSMutableDictionary dictionary];
+        
+        _families = [NSMutableArray array];
+        _individuals = [NSMutableArray array];
+        _multimedias = [NSMutableArray array];
+        _notes = [NSMutableArray array];
+        _repositories = [NSMutableArray array];
+        _sources = [NSMutableArray array];
+        _submitters = [NSMutableArray array];
+        
+        _customEntities = [NSMutableArray array];
         
         _group = dispatch_group_create();
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
@@ -204,119 +231,6 @@ __strong static NSArray *_rootKeys = nil;
     return [context _entityForXref:[url.path lastPathComponent] create:NO withClass:nil];
 }
 
-#pragma mark GCEntity collection accessors
-
-- (NSUInteger)countOfEntities
-{
-    NSUInteger count = 0;
-    
-    if (_header)
-        count++;
-    if (_submission)
-        count++;
-    
-    @synchronized (_entityStore) {
-        for (NSMutableArray *obj in [_entityStore objectEnumerator]) {
-            count += [obj count];
-        }
-    }
-    
-    count++; //trailer
-    
-    return count;
-}
-
-- (NSEnumerator *)enumeratorOfEntities
-{
-    NSMutableSet *entities = [NSMutableSet set];
-    
-    if (_header)
-        [entities addObject:_header];
-    
-    if (_submission)
-        [entities addObject:_submission];
-    
-    @synchronized (_entityStore) {
-        for (id entity in [_entityStore allValues]) {
-            if ([entity isKindOfClass:[NSArray class]]) {
-                [entities addObjectsFromArray:entity];
-            } else {
-                [entities addObject:entity];
-            }
-        }
-    }
-    
-    return [entities objectEnumerator];
-}
-
-- (GCEntity *)memberOfEntities:(GCEntity *)anEntity
-{
-    for (GCEntity *entity in [self enumeratorOfEntities]) {
-        if ([entity isEqual:anEntity]) {
-            return entity;
-        }
-    }
-    
-    return nil;
-}
-
-- (void)addEntitiesObject:(GCEntity *)entity
-{
-    if ([entity isKindOfClass:[GCHeaderEntity class]]) {
-        self.header = (GCHeaderEntity *)entity;
-    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
-        self.submission = (GCSubmissionEntity *)entity;
-    } else if ([entity isKindOfClass:[GCEntity class]]) {
-        @synchronized (_entityStore) {
-            if (!_entityStore[entity.type]) {
-                _entityStore[entity.type] = [NSMutableArray array];
-            }
-            [self willChangeValueForKey:entity.type];
-            [_entityStore[entity.type] addObject:entity];
-            [self didChangeValueForKey:entity.type];
-        }
-    } else {
-        NSAssert(NO, @"Unknown class: %@", entity);
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
-        }
-    });
-}
-
-- (void)removeEntitiesObject:(GCEntity *)entity
-{
-    NSParameterAssert(entity.context == self);
-    
-    if ([entity isKindOfClass:[GCHeaderEntity class]]) {
-        if (_header == entity) {
-            self.header = nil;
-        }
-    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
-        if (_submission == entity) {
-            self.submission = nil;
-        }
-    } else if ([entity isKindOfClass:[GCEntity class]]) {
-        @synchronized (_entityStore) {
-            [self willChangeValueForKey:entity.type];
-            [_entityStore[entity.type] removeObject:entity];
-            [self didChangeValueForKey:entity.type];
-        }
-    } else {
-        NSAssert(NO, @"Unknown class: %@", entity);
-    }
-    
-    // TODO handle xrefs and any relationships...
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
-        }
-    });
-}
-
 #pragma mark Equality
 
 - (BOOL)isEqualTo:(id)object
@@ -334,10 +248,10 @@ __strong static NSArray *_rootKeys = nil;
 {
     NSParameterAssert(xref);
     NSParameterAssert(entity);
+    NSParameterAssert(!_xrefToEntityMap[xref]);
     
     //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
     
-    // TODO - check if xref is used already!
     // clear previously set xref, if any:
     @synchronized (_entityToXrefMap) {
         @synchronized (_xrefToEntityMap) {
@@ -459,21 +373,9 @@ __strong static NSArray *_rootKeys = nil;
         [nodes addObject:_submission.gedcomNode];
     }
 	
-    @synchronized (_entityStore) {
-        for (NSString *key in _rootKeys) {
-            for (GCEntity *entity in _entityStore[key]) {
-                [nodes addObject:entity.gedcomNode];
-            }
-        }
-        
-        NSMutableSet *presentKeys = [NSMutableSet setWithArray:[_entityStore allKeys]];
-        [presentKeys minusSet:[NSSet setWithArray:_rootKeys]];
-        
-        for (NSString *customKey in presentKeys) {
-            //NSLog(@"Custom key: %@", customKey);
-            for (GCEntity *entity in _entityStore[customKey]) {
-                [nodes addObject:entity.gedcomNode];
-            }
+    @synchronized (self) {
+        for (GCEntity *entity in self.entities) {
+            [nodes addObject:entity.gedcomNode];
         }
 	}
     
@@ -505,44 +407,278 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Accessing entities
 
-- (id)families
+- (NSArray *)entities
 {
-	return [_entityStore[@"family"] copy];
+    NSMutableArray *entities = [NSMutableArray array];
+    
+    for (NSString *entityType in _rootKeys) {
+        [entities addObjectsFromArray:[super valueForKey:entityType]];
+    }
+    
+    [entities addObjectsFromArray:_customEntities];
+    
+	return [entities copy];
 }
 
-- (id)individuals
+- (NSMutableArray *)mutableEntities
 {
-	return [_entityStore[@"individual"] copy];
+    return [self mutableArrayValueForKey:@"entities"];
 }
 
-- (id)multimediaObjects
+- (NSUInteger)countOfEntities
 {
-	return [_entityStore[@"multimedia"] copy];
+    NSUInteger count = 0;
+    
+    if (_header)
+        count++;
+    if (_submission)
+        count++;
+    
+    @synchronized (self) {
+        for (NSString *key in _rootKeys) {
+            count += [[self valueForKey:key] count];
+        }
+    }
+    
+    count++; //trailer
+    
+    return count;
 }
 
-- (id)notes
+- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
 {
-	return [_entityStore[@"note"] copy];
+	NSParameterAssert([entity isKindOfClass:[GCEntity class]]);
+    
+    if ([entity isKindOfClass:[GCHeaderEntity class]]) {
+        self.header = (GCHeaderEntity *)entity;
+    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
+        self.submission = (GCSubmissionEntity *)entity;
+    } else  {
+        @synchronized (self) {
+            if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
+                [[self mutableArrayValueForKey:entity.gedTag.pluralName] addObject:entity];
+            } else {
+                [_customEntities addObject:entity];
+                NSLog(@"entity");
+            }
+        }
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
+            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
+        }
+    });
 }
 
-- (id)repositories
+- (void)removeObjectFromEntitiesAtIndex:(NSUInteger)index
 {
-	return [_entityStore[@"repository"] copy];
+    GCEntity *entity = self.entities[index];
+    
+    NSParameterAssert(entity.context == self);
+    
+    if ([entity isKindOfClass:[GCHeaderEntity class]]) {
+        if (_header == entity) {
+            self.header = nil;
+        }
+    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
+        if (_submission == entity) {
+            self.submission = nil;
+        }
+    } else if ([entity isKindOfClass:[GCEntity class]]) {
+        @synchronized (self) {
+            if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
+                [[self mutableArrayValueForKey:entity.gedTag.pluralName] removeObject:entity];
+            } else {
+                [_customEntities removeObject:entity];
+            }
+        }
+    } else {
+        NSAssert(NO, @"Unknown class: %@", entity);
+    }
+    
+    // TODO handle xrefs, remove self as ctx param, and any relationships...
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
+            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
+        }
+    });
 }
 
-- (id)sources
-{
-	return [_entityStore[@"source"] copy];
+
+
+- (NSMutableArray *)mutableFamilies {
+    return [self mutableArrayValueForKey:@"families"];
 }
 
-- (id)submitters
-{
-	return [_entityStore[@"submitter"] copy];
+- (NSUInteger)countOfFamilies {
+	return [_families count];
 }
 
-- (NSMutableSet *)mutableEntities
-{
-    return [self mutableSetValueForKey:@"entities"];
+- (id)objectInFamiliesAtIndex:(NSUInteger)index {
+    return [_families objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inFamiliesAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCFamilyEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_families insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromFamiliesAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_families[index]).context);
+    [_families removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableIndividuals {
+    return [self mutableArrayValueForKey:@"individuals"];
+}
+
+- (NSUInteger)countOfIndividuals {
+	return [_individuals count];
+}
+
+- (id)objectInIndividualsAtIndex:(NSUInteger)index {
+    return [_individuals objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inIndividualsAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCIndividualEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_individuals insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromIndividualsAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_individuals[index]).context);
+    [_individuals removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableMultimedias {
+    return [self mutableArrayValueForKey:@"multimedias"];
+}
+
+- (NSUInteger)countOfMultimedias {
+	return [_multimedias count];
+}
+
+- (id)objectInMultimediasAtIndex:(NSUInteger)index {
+    return [_multimedias objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inMultimediasAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCMultimediaEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_multimedias insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromMultimediasAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_multimedias[index]).context);
+    [_multimedias removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableNotes {
+    return [self mutableArrayValueForKey:@"notes"];
+}
+
+- (NSUInteger)countOfNotes {
+	return [_notes count];
+}
+
+- (id)objectInNotesAtIndex:(NSUInteger)index {
+    return [_notes objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inNotesAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCNoteEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_notes insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromNotesAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_notes[index]).context);
+    [_notes removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableRepositories {
+    return [self mutableArrayValueForKey:@"repositories"];
+}
+
+- (NSUInteger)countOfRepositories {
+	return [_repositories count];
+}
+
+- (id)objectInRepositoriesAtIndex:(NSUInteger)index {
+    return [_repositories objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inRepositoriesAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCRepositoryEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_repositories insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromRepositoriesAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_repositories[index]).context);
+    [_repositories removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableSources {
+    return [self mutableArrayValueForKey:@"sources"];
+}
+
+- (NSUInteger)countOfSources {
+	return [_sources count];
+}
+
+- (id)objectInSourcesAtIndex:(NSUInteger)index {
+    return [_sources objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inSourcesAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCSourceEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_sources insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromSourcesAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_sources[index]).context);
+    [_sources removeObjectAtIndex:index];
+}
+
+
+
+- (NSMutableArray *)mutableSubmitters {
+    return [self mutableArrayValueForKey:@"submitters"];
+}
+
+- (NSUInteger)countOfSubmitters {
+	return [_submitters count];
+}
+
+- (id)objectInSubmittersAtIndex:(NSUInteger)index {
+    return [_submitters objectAtIndex:index];
+}
+
+- (void)insertObject:(GCEntity *)obj inSubmittersAtIndex:(NSUInteger)index {
+	NSParameterAssert([obj isKindOfClass:[GCSubmitterEntity class]]);
+    NSParameterAssert(obj.context == self);
+    [_submitters insertObject:obj atIndex:index];
+}
+
+- (void)removeObjectFromSubmittersAtIndex:(NSUInteger)index {
+    NSParameterAssert(!((GCEntity *)_submitters[index]).context);
+    [_submitters removeObjectAtIndex:index];
 }
 
 #pragma mark NSCoding conformance
@@ -555,9 +691,18 @@ __strong static NSArray *_rootKeys = nil;
         _name = [aDecoder decodeObjectForKey:@"name"];
         _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
         _entityToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
-        _entityStore = [aDecoder decodeObjectForKey:@"entityStore"];
         _header = [aDecoder decodeObjectForKey:@"header"];
         _submission = [aDecoder decodeObjectForKey:@"submission"];
+        
+        _families = [aDecoder decodeObjectForKey:@"families"];
+        _individuals = [aDecoder decodeObjectForKey:@"individuals"];
+        _multimedias = [aDecoder decodeObjectForKey:@"multimedias"];
+        _notes = [aDecoder decodeObjectForKey:@"notes"];
+        _repositories = [aDecoder decodeObjectForKey:@"repositories"];
+        _sources = [aDecoder decodeObjectForKey:@"sources"];
+        _submitters = [aDecoder decodeObjectForKey:@"submitters"];
+        
+        _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
         
         _contextsByName[_name] = self;
 	}
@@ -572,7 +717,16 @@ __strong static NSArray *_rootKeys = nil;
     [aCoder encodeObject:_entityToXrefMap forKey:@"entityToXref"];
     [aCoder encodeObject:_header forKey:@"header"];
     [aCoder encodeObject:_submission forKey:@"submission"];
-    [aCoder encodeObject:_entityStore forKey:@"entityStore"];
+    
+    [aCoder encodeObject:_families forKey:@"families"];
+    [aCoder encodeObject:_individuals forKey:@"individuals"];
+    [aCoder encodeObject:_multimedias forKey:@"multimedias"];
+    [aCoder encodeObject:_notes forKey:@"notes"];
+    [aCoder encodeObject:_repositories forKey:@"repositories"];
+    [aCoder encodeObject:_sources forKey:@"sources"];
+    [aCoder encodeObject:_submitters forKey:@"submitters"];
+    
+    [aCoder encodeObject:_customEntities forKey:@"customEntities"];
 }
 
 #pragma mark Description
@@ -636,6 +790,22 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     }
     
     return isValid;
+}
+
+@end
+
+@implementation GCContext (GCContextKeyValueAdditions)
+
+#pragma mark Subscript accessors
+
+- (id)objectForKeyedSubscript:(id)key
+{
+    return [super valueForKey:key];
+}
+
+- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key
+{
+    return [self setValue:object forKey:(NSString *)key];
 }
 
 @end

@@ -20,7 +20,7 @@
 	__block BOOL isSane = YES;
     __block NSError *returnError = nil;
     
-    for (GCEntity *entity in self.mutableEntities) {
+    for (GCEntity *entity in self.entities) {
         NSError *error;
         if (![entity sanityCheck:&error]) {
             isSane &= NO;

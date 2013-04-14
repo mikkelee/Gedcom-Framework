@@ -142,7 +142,8 @@ typedef enum : NSUInteger {
 /// @name Accessing entities
 
 /// A collection of all the receiver's entities.
-@property (readonly) NSMutableSet *mutableEntities;
+@property (readonly) NSArray *entities;
+@property (readonly) NSMutableArray *mutableEntities;
 
 /// The header of the receiver.
 @property GCHeaderEntity *header;
@@ -152,24 +153,31 @@ typedef enum : NSUInteger {
 
 /// An ordered collection of the receiver's families.
 @property (readonly) NSArray *families;
+@property (readonly) NSMutableArray *mutableFamilies;
 
 /// An ordered collection of the receiver's individuals.
 @property (readonly) NSArray *individuals;
+@property (readonly) NSMutableArray *mutableIndividuals;
 
 /// An ordered collection of the receiver's multimedia objects.
-@property (readonly) NSArray *multimediaObjects;
+@property (readonly) NSArray *multimedias;
+@property (readonly) NSMutableArray *mutableMultimedias;
 
 /// An ordered collection of the receiver's notes.
 @property (readonly) NSArray *notes;
+@property (readonly) NSMutableArray *mutableNotes;
 
 /// An ordered collection of the receiver's repositories.
 @property (readonly) NSArray *repositories;
+@property (readonly) NSMutableArray *mutableRepositories;
 
 /// An ordered collection of the receiver's sources.
 @property (readonly) NSArray *sources;
+@property (readonly) NSMutableArray *mutableSources;
 
 /// An ordered collection of the receiver's submitters.
 @property (readonly) NSArray *submitters;
+@property (readonly) NSMutableArray *mutableSubmitters;
 
 #pragma mark Accessing Gedcom output
 /// @name Accessing Gedcom output
@@ -199,5 +207,25 @@ typedef enum : NSUInteger {
  @return `YES` if the context is valid, otherwise `NO`.
  */
 - (BOOL)validateContext:(NSError **)error;
+
+@end
+
+@interface GCContext (GCContextKeyValueAdditions)
+
+#pragma mark Keyed subscript accessors
+
+/** Returns the property/ies with the given type. Used like on NSMutableDictionary.
+ 
+ @param key The type of the property.
+ @return If the property allows multiple occurrences, will return a KVC-compliant NSMutableArray, otherwise the property itself.
+ */
+- (id)objectForKeyedSubscript:(id)key;
+
+/** Sets the property for the given type. Used like on NSMutableDictionary
+ 
+ @param object A collection for properties allowing multiple occurrences, otherwise a single property.
+ @param key The type of the property.
+ */
+- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
 
 @end
