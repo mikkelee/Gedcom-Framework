@@ -22,4 +22,6 @@
 
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
+- (void)_addEntity:(GCEntity *)entity;
+
 @end

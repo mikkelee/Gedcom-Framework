@@ -445,7 +445,7 @@ __strong static NSArray *_rootKeys = nil;
     return count;
 }
 
-- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
+- (void)_addEntity:(GCEntity *)entity
 {
 	NSParameterAssert([entity isKindOfClass:[GCEntity class]]);
     
@@ -469,6 +469,11 @@ __strong static NSArray *_rootKeys = nil;
             [_delegate context:self didUpdateEntityCount:self.countOfEntities];
         }
     });
+}
+
+- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
+{
+    [self _addEntity:entity];
 }
 
 - (void)removeObjectFromEntitiesAtIndex:(NSUInteger)index
