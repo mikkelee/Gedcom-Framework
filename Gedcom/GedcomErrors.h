@@ -27,6 +27,9 @@ typedef enum : NSInteger {
     
     // sanity checking:
     GCSanityCheckInconsistency = -301,
+    
+    // parser errors:
+    GCNodeParsingError = -401,
 } GCErrorCode;
 
 static inline NSError * combineErrors(NSError *originalError, NSError *secondError) {

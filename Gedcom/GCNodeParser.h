@@ -12,7 +12,7 @@
 
 @interface GCNodeParser : NSObject
 
-+ (id)sharedParser;
++ (id)sharedNodeParser;
 
 - (BOOL)parseString:(NSString *)gedString error:(NSError **)error;
 
