@@ -70,6 +70,25 @@
     return self;
 }
 
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        _modificationDate = [aDecoder decodeObjectForKey:@"modificationDate"];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:_modificationDate forKey:@"modificationDate"];
+}
+
 #pragma mark Objective-C properties
 
 - (NSMutableArray *)mutableNoteReferences {

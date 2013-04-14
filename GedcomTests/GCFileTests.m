@@ -94,7 +94,14 @@
         NSLog(@"leftoverOutput: %@", leftoverOutput);
     }
     
-    // TODO test encode == decode...
+    NSData *ctxData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
+    
+    GCContext *decodedCtx = [NSKeyedUnarchiver unarchiveObjectWithData:ctxData];
+    
+    //NSLog(@"ctx: %@", [ctx gedcomString]);
+    //NSLog(@"decodedCtx: %@", [decodedCtx gedcomString]);
+    
+    STAssertTrue([ctx isEqualTo:decodedCtx], nil);
 }
 
 - (void)testSimpleGed

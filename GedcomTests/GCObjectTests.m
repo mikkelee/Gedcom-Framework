@@ -181,24 +181,6 @@
                          , nil);
 }
 
-- (void)testCoding
-{
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
-	
-	GCContext *ctx = [GCContext context];
-    
-    [ctx readContentsOfFile:path error:nil];
-    
-    NSData *ctxData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
-    
-    GCContext *decodedCtx = [NSKeyedUnarchiver unarchiveObjectWithData:ctxData];
-    
-    //NSLog(@"file: %@", [file gedcomString]);
-    //NSLog(@"decodedFile: %@", [decodedFile gedcomString]);
-    
-    STAssertTrue([ctx isEqualTo:decodedCtx], nil);
-}
-
 - (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedErrorCode:(GCErrorCode)errorCode string:(NSString *)errorString
 {
     GCContext *ctx = [GCContext context];

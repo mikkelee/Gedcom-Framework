@@ -86,6 +86,9 @@
     
     if (self) {
         _context = [aDecoder decodeObjectForKey:@"context"];
+        if (self.gedTag.hasValue) {
+            _value = [aDecoder decodeObjectForKey:@"value"];
+        }
 	}
     
     return self;
@@ -95,6 +98,9 @@
 {
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_context forKey:@"context"];
+    if (self.gedTag.hasValue) {
+        [aCoder encodeObject:_value forKey:@"value"];
+    }
 }
 
 #pragma mark Description
@@ -163,6 +169,7 @@
 }
 
 @synthesize context = _context;
+@dynamic changeInfo;
 
 - (NSDate *)modificationDate
 {
@@ -201,7 +208,5 @@
     
     [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
 }
-
-@dynamic changeInfo;
 
 @end
