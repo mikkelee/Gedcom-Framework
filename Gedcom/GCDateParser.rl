@@ -286,9 +286,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
 
 %% write data;
 
-@implementation GCDateParser {
-	NSMutableDictionary *_cache;
-}
+@implementation GCDateParser
 
 __strong static id _sharedDateParser = nil;
 __strong static NSTimeZone *_utc;
@@ -327,71 +325,50 @@ __strong static NSArray *_frenchRevolutionaryMonthNames;
     return _sharedDateParser;
 }
 
-- (GCDateParser *)init
-{
-    self = [super init];
-    
-    if (self) {
-        _cache = [NSMutableDictionary dictionary];
-    }
-	
-	return self;
-}
-
 - (GCDate *)parseGedcom:(NSString *)str
 {
-    //NSLog(@"***** BEGIN PARSING **** %@ *****", str);
-    @synchronized(_cache) {
-        if (_cache[str]) {
-            //NSLog(@"Getting cached date for %@", str);
-            return [_cache[str] copy];
-        }
-        
-        GCDate *date = nil;
-        
-        NSDateComponents *currentDateComponents = [[NSDateComponents alloc] init];
-        [currentDateComponents setYear:0];
-        [currentDateComponents setMonth:0];
-        [currentDateComponents setDay:0];
-        [currentDateComponents setHour:0];
-        [currentDateComponents setMinute:0];
-        [currentDateComponents setSecond:0];
-        [currentDateComponents setTimeZone:_utc];
-        NSCalendar *calendar = _gregorianCalendar;
-        
-        long tag = 0;
-        NSInteger currentNumber = 0;
-        NSString *currentString = nil;
-        
-        NSString *yearGreg = nil;
-        
-        NSString *approximationQualifier = nil;
-        id previousDate = nil;
-        id currentDate = nil;
-        
-        BOOL finished = NO;
-        
-        int cs = 0;
-        const char *data = [str UTF8String];
-        const char *p = data;
-        const char *pe = p + [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        const char *eof = pe;
-        
-        %% write init;
-        %% write exec;
-        
-        if (!finished) {
-            date = nil;
-        }
-        
-        if (date == nil) {
-            date = [GCDate dateWithInvalidDateString:str];
-        }
-        
-        _cache[str] = date;
-        
-        return date;
+    GCDate *date = nil;
+
+    NSDateComponents *currentDateComponents = [[NSDateComponents alloc] init];
+    [currentDateComponents setYear:0];
+    [currentDateComponents setMonth:0];
+    [currentDateComponents setDay:0];
+    [currentDateComponents setHour:0];
+    [currentDateComponents setMinute:0];
+    [currentDateComponents setSecond:0];
+    [currentDateComponents setTimeZone:_utc];
+    NSCalendar *calendar = _gregorianCalendar;
+
+    long tag = 0;
+    NSInteger currentNumber = 0;
+    NSString *currentString = nil;
+
+    NSString *yearGreg = nil;
+
+    NSString *approximationQualifier = nil;
+    id previousDate = nil;
+    id currentDate = nil;
+
+    BOOL finished = NO;
+
+    int cs = 0;
+    const char *data = [str UTF8String];
+    const char *p = data;
+    const char *pe = p + [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+    const char *eof = pe;
+
+    %% write init;
+    %% write exec;
+
+    if (!finished) {
+        date = nil;
     }
+    
+    if (date == nil) {
+        date = [GCDate dateWithInvalidDateString:str];
+    }
+    
+    return date;
 }
 
 @end

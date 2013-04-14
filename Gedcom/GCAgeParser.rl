@@ -106,9 +106,7 @@ Ragel state machine for GEDCOM ages based on the 5.5 documentation.
 
 %% write data;
 
-@implementation GCAgeParser {
-	NSMutableDictionary *_cache;
-}
+@implementation GCAgeParser
 
 __strong static id _sharedAgeParser = nil;
 
@@ -122,57 +120,38 @@ __strong static id _sharedAgeParser = nil;
     return _sharedAgeParser;
 }
 
-- (GCAgeParser *)init
-{
-    self = [super init];
-    
-    if (self) {
-        _cache = [NSMutableDictionary dictionary];
-    }
-	
-	return self;
-}
-
 - (GCAge *)parseGedcom:(NSString *)str
 {
-    @synchronized(_cache) {
-        if (_cache[str]) {
-            //NSLog(@"Getting cached age for %@", str);
-            return [_cache[str] copy];
-        }
-        
-        GCAge *age = nil;
-        NSDateComponents *currentAgeComponents = [[NSDateComponents alloc] init];
-        [currentAgeComponents setYear:0];
-        [currentAgeComponents setMonth:0];
-        [currentAgeComponents setDay:0];
-        GCAgeQualifier qualifier = GCAgeNoQualifier;
-        long tag = 0;
-        NSInteger currentNumber = 0;
-        NSString *currentString = nil;
-        BOOL finished = NO;
-        
-        int cs = 0;
-        const char *data = [str UTF8String];
-        const char *p = data;
-        const char *pe = p + [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        const char *eof = pe;
-        
-        %% write init;
-        %% write exec;
-        
-        if (!finished) {
-            age = nil;
-        }
-        
-        if (age == nil) {
-            age = [GCAge ageWithInvalidAgeString:str];
-        }
-        
-        _cache[str] = age;
-        
-        return age;
+    GCAge *age = nil;
+    
+    NSDateComponents *currentAgeComponents = [[NSDateComponents alloc] init];
+    [currentAgeComponents setYear:0];
+    [currentAgeComponents setMonth:0];
+    [currentAgeComponents setDay:0];
+    GCAgeQualifier qualifier = GCAgeNoQualifier;
+    long tag = 0;
+    NSInteger currentNumber = 0;
+    NSString *currentString = nil;
+    BOOL finished = NO;
+    
+    int cs = 0;
+    const char *data = [str UTF8String];
+    const char *p = data;
+    const char *pe = p + [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+    const char *eof = pe;
+    
+    %% write init;
+    %% write exec;
+    
+    if (!finished) {
+        age = nil;
     }
+    
+    if (age == nil) {
+        age = [GCAge ageWithInvalidAgeString:str];
+    }
+    
+    return age;
 }
 
 @end
