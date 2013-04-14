@@ -19,19 +19,6 @@
 			name = Documentation;
 			productName = Documentation;
 		};
-		3E75837315F8EA7D00A9B096 /* Build Parsers */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 3E75837415F8EA7D00A9B096 /* Build configuration list for PBXAggregateTarget "Build Parsers" */;
-			buildPhases = (
-			);
-			dependencies = (
-				3E75837815F8EA8200A9B096 /* PBXTargetDependency */,
-				3E02E7AD1606C150008728D9 /* PBXTargetDependency */,
-				3E4E842E171AB70700889651 /* PBXTargetDependency */,
-			);
-			name = "Build Parsers";
-			productName = "Build Parsers";
-		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -473,13 +460,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		3E02E7AC1606C150008728D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E02E7A71606C12B008728D9;
-			remoteInfo = "Build Date Parser";
-		};
 		3E1C3E82151C319D005E09E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
@@ -501,13 +481,6 @@
 			remoteGlobalIDString = 3E1C3E65151C319C005E09E1;
 			remoteInfo = Gedcom;
 		};
-		3E4E842D171AB70700889651 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E52C020171AAF5500A4D800;
-			remoteInfo = "Build Node Parser";
-		};
 		3E75835715F7F09F00A9B096 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
@@ -521,13 +494,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3E75835315F7EEE500A9B096;
 			remoteInfo = "Generate GCObject Subclasses";
-		};
-		3E75837715F8EA8200A9B096 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E1C3E5C151C319C005E09E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E75836F15F8EA7200A9B096;
-			remoteInfo = "Build Age Parser";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1900,34 +1866,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
-		3E02E7A71606C12B008728D9 /* Build Date Parser */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "GCDateParser.rl -o GCDateParser.m";
-			buildConfigurationList = 3E02E7AA1606C12B008728D9 /* Build configuration list for PBXLegacyTarget "Build Date Parser" */;
-			buildPhases = (
-			);
-			buildToolPath = /opt/local/bin/ragel;
-			buildWorkingDirectory = Gedcom;
-			dependencies = (
-			);
-			name = "Build Date Parser";
-			passBuildSettingsInEnvironment = 1;
-			productName = "Build Date Parser";
-		};
-		3E52C020171AAF5500A4D800 /* Build Node Parser */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "GCNodeParser.rl -o GCNodeParser.m";
-			buildConfigurationList = 3E52C021171AAF5500A4D800 /* Build configuration list for PBXLegacyTarget "Build Node Parser" */;
-			buildPhases = (
-			);
-			buildToolPath = /opt/local/bin/ragel;
-			buildWorkingDirectory = Gedcom;
-			dependencies = (
-			);
-			name = "Build Node Parser";
-			passBuildSettingsInEnvironment = 1;
-			productName = "Build Node Parser";
-		};
 		3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = tags.py;
@@ -1941,20 +1879,6 @@
 			name = "Generate GCObject Subclasses";
 			passBuildSettingsInEnvironment = 1;
 			productName = "Generate GCObject Subclasses";
-		};
-		3E75836F15F8EA7200A9B096 /* Build Age Parser */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "GCAgeParser.rl -o GCAgeParser.m";
-			buildConfigurationList = 3E75837015F8EA7200A9B096 /* Build configuration list for PBXLegacyTarget "Build Age Parser" */;
-			buildPhases = (
-			);
-			buildToolPath = /opt/local/bin/ragel;
-			buildWorkingDirectory = Gedcom;
-			dependencies = (
-			);
-			name = "Build Age Parser";
-			passBuildSettingsInEnvironment = 1;
-			productName = "Build Age Parser";
 		};
 /* End PBXLegacyTarget section */
 
@@ -2063,10 +1987,6 @@
 				3E8C1E0416255344005B3BE6 /* GedcomTools */,
 				3E29DB2F154AE1F100756CF4 /* Documentation */,
 				3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */,
-				3E75836F15F8EA7200A9B096 /* Build Age Parser */,
-				3E02E7A71606C12B008728D9 /* Build Date Parser */,
-				3E52C020171AAF5500A4D800 /* Build Node Parser */,
-				3E75837315F8EA7D00A9B096 /* Build Parsers */,
 			);
 		};
 /* End PBXProject section */
@@ -2404,11 +2324,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3E02E7AD1606C150008728D9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E02E7A71606C12B008728D9 /* Build Date Parser */;
-			targetProxy = 3E02E7AC1606C150008728D9 /* PBXContainerItemProxy */;
-		};
 		3E1C3E83151C319D005E09E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
@@ -2424,11 +2339,6 @@
 			target = 3E1C3E65151C319C005E09E1 /* Gedcom */;
 			targetProxy = 3E39987B162858F70069041F /* PBXContainerItemProxy */;
 		};
-		3E4E842E171AB70700889651 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E52C020171AAF5500A4D800 /* Build Node Parser */;
-			targetProxy = 3E4E842D171AB70700889651 /* PBXContainerItemProxy */;
-		};
 		3E75835815F7F09F00A9B096 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */;
@@ -2438,11 +2348,6 @@
 			isa = PBXTargetDependency;
 			target = 3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */;
 			targetProxy = 3E75835D15F7F77200A9B096 /* PBXContainerItemProxy */;
-		};
-		3E75837815F8EA8200A9B096 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E75836F15F8EA7200A9B096 /* Build Age Parser */;
-			targetProxy = 3E75837715F8EA8200A9B096 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2530,35 +2435,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3E02E7A81606C12B008728D9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3E02E7A91606C12B008728D9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		3E1C3E8E151C319D005E09E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2742,37 +2618,6 @@
 			};
 			name = Release;
 		};
-		3E52C022171AAF5500A4D800 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_EMPTY_BODY = YES;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3E52C023171AAF5500A4D800 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_EMPTY_BODY = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		3E75835515F7EEE500A9B096 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2798,51 +2643,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		3E75837115F8EA7200A9B096 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3E75837215F8EA7200A9B096 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		3E75837515F8EA7D00A9B096 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3E75837615F8EA7D00A9B096 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2880,15 +2680,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E02E7AA1606C12B008728D9 /* Build configuration list for PBXLegacyTarget "Build Date Parser" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E02E7A81606C12B008728D9 /* Debug */,
-				3E02E7A91606C12B008728D9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3E1C3E5F151C319C005E09E1 /* Build configuration list for PBXProject "Gedcom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2934,38 +2725,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E52C021171AAF5500A4D800 /* Build configuration list for PBXLegacyTarget "Build Node Parser" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E52C022171AAF5500A4D800 /* Debug */,
-				3E52C023171AAF5500A4D800 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3E75835415F7EEE500A9B096 /* Build configuration list for PBXLegacyTarget "Generate GCObject Subclasses" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E75835515F7EEE500A9B096 /* Debug */,
 				3E75835615F7EEE500A9B096 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3E75837015F8EA7200A9B096 /* Build configuration list for PBXLegacyTarget "Build Age Parser" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E75837115F8EA7200A9B096 /* Debug */,
-				3E75837215F8EA7200A9B096 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3E75837415F8EA7D00A9B096 /* Build configuration list for PBXAggregateTarget "Build Parsers" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E75837515F8EA7D00A9B096 /* Debug */,
-				3E75837615F8EA7D00A9B096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
