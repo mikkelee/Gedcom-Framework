@@ -116,6 +116,12 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 	}
 	
 	action finish {
+        if (currentRoot) {
+            nodeCount++;
+            if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNode:)]) {
+                [_delegate parser:self didParseNode:currentRoot];
+            }
+        }
 		didFinish = YES;
 	}
     
@@ -170,23 +176,17 @@ __strong static id _sharedNodeParser = nil;
         GCNode *currentNode = nil;
         GCNode *currentRoot = nil;
         
-#ifdef DEBUGLEVEL
-        clock_t start, end;
-        double elapsed;
-        start = clock();
-        //NSLog(@"Began parsing gedcom.");
-#endif
-
         long tag = 0;
         int currentNumber = 0;
         NSString *currentString = nil;
-        BOOL didFinish = NO;
         
         int level = -1;
         NSString *xref = nil;
         NSString *code = nil;
         NSString *value = nil;
         GCNode* node = nil;
+        
+        BOOL didFinish = NO;
 
         int cs = 0;
         const char *data = [gedString UTF8String];
@@ -194,17 +194,16 @@ __strong static id _sharedNodeParser = nil;
         const char *pe = p + [gedString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         const char *eof = pe;
         
+#ifdef DEBUGLEVEL
+        clock_t start, end;
+        double elapsed;
+        start = clock();
+        //NSLog(@"Began parsing gedcom.");
+#endif
+        
         %% write init;
         %% write exec;
-        
-        // TODO fix order so this is unneeded.
-        if (currentRoot) {
-            nodeCount++;
-            if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNode:)]) {
-                [_delegate parser:self didParseNode:currentRoot];
-            }
-        }
-        
+                
 #ifdef DEBUGLEVEL
         end = clock();
         elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
