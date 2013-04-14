@@ -65,6 +65,7 @@
 	"family": {
 		"code": "FAM",
 		"objectType": "entity",
+        "plural": "families",
         "hasXref": 1,
 		"validSubTags": [
                          { "groupName": "@familyEvent" },
@@ -143,6 +144,7 @@
 	"repository": {
 		"code": "REPO",
 		"objectType": "entity",
+        "plural": "repositories",
         "hasXref": 1,
 		"validSubTags": [
                          { "name": "descriptiveName", "min": 0, "max": 1 },
