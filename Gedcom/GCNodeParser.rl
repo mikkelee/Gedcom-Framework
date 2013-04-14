@@ -11,7 +11,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 #import "GCNodeParser.h"
 #import "GCNodeParserDelegate.h"
 
-#import "GCNode.h"
+#import "GCNode_internal.h"
 
 #import "GedcomErrors.h"
 
@@ -100,7 +100,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
             }
 
             if (parent) {
-                [parent.mutableSubNodes addObject:node];
+                [parent _addSubNode:node];
             } else {
                 currentRoot = node;
             }

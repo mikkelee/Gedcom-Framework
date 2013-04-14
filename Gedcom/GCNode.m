@@ -426,6 +426,19 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     return [_subNodes objectAtIndex:index];
 }
 
+- (void)_addSubNode:(GCNode *)node
+{
+	NSParameterAssert(self != node);
+    NSParameterAssert([node isKindOfClass:[GCNode class]]);
+    
+    if (!_subNodes) {
+        _subNodes = [NSMutableArray array];
+    }
+    
+    [_subNodes addObject:node];
+    [node setParent:self];
+}
+
 - (void)insertObject:(GCNode *)node inSubNodesAtIndex:(NSUInteger)index
 {
 	NSParameterAssert(self != node);
