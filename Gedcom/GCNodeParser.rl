@@ -15,33 +15,34 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 
 #import "GedcomErrors.h"
 
+#define DEBUGLINECOUNT 84300
+
 %%{
-    machine node;
+    machine nodeParser;
 	
 	action log {
-		NSLog(@"%p log: %c", fpc, fc);
+		//if (lineCount > DEBUGLINECOUNT) NSLog(@"%p log: (%X) '%c'", fpc, fc, fc);
 	}
-	
+    
 	action tag {
 		tag = fpc - data;
-		//NSLog(@"%p     TAG: %d", fpc, tag);
+        //if (lineCount > DEBUGLINECOUNT) NSLog(@"%p     TAG: %ld", fpc, tag);
 	}
 	
 	action number {
 		long len = (fpc - data) - tag;
 		currentNumber = [[[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding] intValue];
-		//NSLog(@"%p num: %d", fpc, currentNumber);
+		//if (lineCount > DEBUGLINECOUNT) NSLog(@"%p num: %d", fpc, currentNumber);
 	}
 	
 	action string {
 		long len = (fpc - data) - tag;
 		currentString = [[NSString alloc] initWithBytes:fpc-len length:len encoding:NSUTF8StringEncoding];
-		//NSLog(@"%p string: %@", fpc, currentString);
+		//if (lineCount > DEBUGLINECOUNT) NSLog(@"%p string: %@", fpc, currentString);
 	}
 	
 	action saveLevel {
         level = currentNumber;
-		//NSLog(@"%p saveLevel: %d", fpc, currentNumber);
 	}
     
     action saveXref {
@@ -58,19 +59,20 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 	
 	action saveNode {
         lineCount++;
-
+        
         // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
+        // TODO: refactor (use dict?)
         if ([code isEqualToString:@"CONT"]) {
-            if (currentNode.gedValue == nil) {
+            if (!currentNode.gedValue) {
                 currentNode.gedValue = value;
             } else {
-                currentNode.gedValue = [NSString stringWithFormat:@"%@\n%@", currentNode.gedValue, value];
+                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, @"\n", value ? value : @""];
             }
         } else if ([code isEqualToString:@"CONC"]) {
-            if (currentNode.gedValue == nil) {
+            if (!currentNode.gedValue) {
                 currentNode.gedValue = value;
             } else {
-                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, value];
+                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, value ? value : @""];
             }
         } else {
             if (xref) {
@@ -114,7 +116,6 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 	}
 	
 	action finish {
-		//NSLog(@"%p finish.", fpc);
 		didFinish = YES;
 	}
     
@@ -126,9 +127,9 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
     level                   = ( digit+ >tag %number ) %saveLevel;
     xref                    = ( ( '@' keyword '@' ) >tag %string ) %saveXref;
     tagCode                 = ( ( '_'? keyword ) >tag %string ) %saveTagCode;
-    value                   = ( ( print - terminator )+ >tag %string ) %saveValue;
+    value                   = ( ( extend - terminator )+ >tag %string ) %saveValue;
 
-    contents                = ( ( xref delim tagCode ) | ( tagCode delim value ) | ( tagCode ) );
+    contents                = ( ( xref delim tagCode ) | ( tagCode delim value ) | ( tagCode delim? ) );
 
     node                    = ( level delim contents terminator ) %saveNode;
     
@@ -190,7 +191,7 @@ __strong static id _sharedNodeParser = nil;
         int cs = 0;
         const char *data = [gedString UTF8String];
         const char *p = data;
-        const char *pe = p + [gedString length];
+        const char *pe = p + [gedString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         const char *eof = pe;
         
         %% write init;
@@ -207,7 +208,7 @@ __strong static id _sharedNodeParser = nil;
 #ifdef DEBUGLEVEL
         end = clock();
         elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-        NSLog(@"arrayOfNodesFromString - Time: %f seconds",elapsed);
+        NSLog(@"parsed %ld nodes in %ld lines - Time: %f seconds", nodeCount, lineCount, elapsed);
 #endif
         
         if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNodesWithCount:)]) {
@@ -218,7 +219,7 @@ __strong static id _sharedNodeParser = nil;
             if (error != NULL) {
                 *error = [NSError errorWithDomain:GCErrorDomain
                                              code:GCNodeParsingError
-                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Parser stopped at node #%ld (line %ld): %@", nodeCount, lineCount, currentNode], NSAffectedObjectsErrorKey: currentNode}];
+                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Parser stopped at node #%ld (line %ld)", nodeCount, lineCount], NSAffectedObjectsErrorKey: currentNode}];
             }
         }
         

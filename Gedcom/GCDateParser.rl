@@ -374,7 +374,7 @@ __strong static NSArray *_frenchRevolutionaryMonthNames;
         int cs = 0;
         const char *data = [str UTF8String];
         const char *p = data;
-        const char *pe = p + [str length];
+        const char *pe = p + [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         const char *eof = pe;
         
         %% write init;
