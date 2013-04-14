@@ -5,6 +5,7 @@
 #import "GCDataAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCDateAttribute.h"
@@ -60,6 +61,9 @@
 
 - (void)setDate:(GCProperty *)obj
 {
+	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.context.undoManager setActionName:@"Undo date"]; //TODO
+	
 	if (_date) {
 		obj.describedObject = nil;
 	}
@@ -93,6 +97,10 @@
  
 - (void)insertObject:(GCProperty *)obj inTextsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTextAttribute class]]);
+	
+	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo texts"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -104,7 +112,11 @@
 }
 
 - (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
+	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_texts[index] inTextsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo texts"]; //TODO
+	
 	((GCProperty *)_texts[index]).describedObject = nil;
+	
     [_texts removeObjectAtIndex:index];
 }
 	

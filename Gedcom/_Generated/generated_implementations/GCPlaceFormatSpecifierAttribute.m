@@ -5,6 +5,7 @@
 #import "GCPlaceFormatSpecifierAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCPlaceFormatAttribute.h"
@@ -58,6 +59,9 @@
 
 - (void)setPlaceFormat:(GCProperty *)obj
 {
+	[(GCPlaceFormatSpecifierAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlaceFormat:_placeFormat];
+	[self.context.undoManager setActionName:@"Undo placeFormat"]; //TODO
+	
 	if (_placeFormat) {
 		obj.describedObject = nil;
 	}

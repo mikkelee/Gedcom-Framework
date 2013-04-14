@@ -5,6 +5,7 @@
 #import "GCMultimediaEmbeddedAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCFileAttribute.h"
@@ -67,6 +68,9 @@
 
 - (void)setMultimediaFormat:(GCProperty *)obj
 {
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setMultimediaFormat:_multimediaFormat];
+	[self.context.undoManager setActionName:@"Undo multimediaFormat"]; //TODO
+	
 	if (_multimediaFormat) {
 		obj.describedObject = nil;
 	}
@@ -88,6 +92,9 @@
 
 - (void)setTitle:(GCProperty *)obj
 {
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTitle:_title];
+	[self.context.undoManager setActionName:@"Undo title"]; //TODO
+	
 	if (_title) {
 		obj.describedObject = nil;
 	}
@@ -109,6 +116,9 @@
 
 - (void)setFile:(GCProperty *)obj
 {
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setFile:_file];
+	[self.context.undoManager setActionName:@"Undo file"]; //TODO
+	
 	if (_file) {
 		obj.describedObject = nil;
 	}
@@ -143,6 +153,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+	
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -154,7 +168,11 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 	
@@ -173,6 +191,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -184,7 +206,11 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 	

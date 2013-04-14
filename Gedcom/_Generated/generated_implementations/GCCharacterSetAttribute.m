@@ -5,6 +5,7 @@
 #import "GCCharacterSetAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCVersionAttribute.h"
@@ -58,6 +59,9 @@
 
 - (void)setVersion:(GCProperty *)obj
 {
+	[(GCCharacterSetAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
+	[self.context.undoManager setActionName:@"Undo version"]; //TODO
+	
 	if (_version) {
 		obj.describedObject = nil;
 	}

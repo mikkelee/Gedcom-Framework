@@ -5,6 +5,7 @@
 #import "GCUserReferenceNumberAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCTypeDescriptionAttribute.h"
@@ -58,6 +59,9 @@
 
 - (void)setTypeDescription:(GCProperty *)obj
 {
+	[(GCUserReferenceNumberAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTypeDescription:_typeDescription];
+	[self.context.undoManager setActionName:@"Undo typeDescription"]; //TODO
+	
 	if (_typeDescription) {
 		obj.describedObject = nil;
 	}

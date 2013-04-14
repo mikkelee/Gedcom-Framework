@@ -5,6 +5,7 @@
 #import "GCHeaderEntity.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCCharacterSetAttribute.h"
@@ -63,6 +64,9 @@
 
 - (void)setHeaderSource:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderSource:_headerSource];
+	[self.context.undoManager setActionName:@"Undo headerSource"]; //TODO
+	
 	if (_headerSource) {
 		obj.describedObject = nil;
 	}
@@ -96,6 +100,10 @@
  
 - (void)insertObject:(GCProperty *)obj inDestinationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDestinationAttribute class]]);
+	
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromDestinationsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo destinations"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -107,13 +115,20 @@
 }
 
 - (void)removeObjectFromDestinationsAtIndex:(NSUInteger)index {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_destinations[index] inDestinationsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo destinations"]; //TODO
+	
 	((GCProperty *)_destinations[index]).describedObject = nil;
+	
     [_destinations removeObjectAtIndex:index];
 }
 	
 
 - (void)setHeaderDate:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderDate:_headerDate];
+	[self.context.undoManager setActionName:@"Undo headerDate"]; //TODO
+	
 	if (_headerDate) {
 		obj.describedObject = nil;
 	}
@@ -135,6 +150,9 @@
 
 - (void)setSubmitterReference:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
+	[self.context.undoManager setActionName:@"Undo submitterReference"]; //TODO
+	
 	if (_submitterReference) {
 		obj.describedObject = nil;
 	}
@@ -168,6 +186,10 @@
  
 - (void)insertObject:(GCProperty *)obj inSubmissionReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmissionReferenceRelationship class]]);
+	
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSubmissionReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo submissionReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -179,13 +201,20 @@
 }
 
 - (void)removeObjectFromSubmissionReferencesAtIndex:(NSUInteger)index {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_submissionReferences[index] inSubmissionReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo submissionReferences"]; //TODO
+	
 	((GCProperty *)_submissionReferences[index]).describedObject = nil;
+	
     [_submissionReferences removeObjectAtIndex:index];
 }
 	
 
 - (void)setFile:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setFile:_file];
+	[self.context.undoManager setActionName:@"Undo file"]; //TODO
+	
 	if (_file) {
 		obj.describedObject = nil;
 	}
@@ -207,6 +236,9 @@
 
 - (void)setCopyright:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setCopyright:_copyright];
+	[self.context.undoManager setActionName:@"Undo copyright"]; //TODO
+	
 	if (_copyright) {
 		obj.describedObject = nil;
 	}
@@ -228,6 +260,9 @@
 
 - (void)setGedcom:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setGedcom:_gedcom];
+	[self.context.undoManager setActionName:@"Undo gedcom"]; //TODO
+	
 	if (_gedcom) {
 		obj.describedObject = nil;
 	}
@@ -249,6 +284,9 @@
 
 - (void)setCharacterSet:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setCharacterSet:_characterSet];
+	[self.context.undoManager setActionName:@"Undo characterSet"]; //TODO
+	
 	if (_characterSet) {
 		obj.describedObject = nil;
 	}
@@ -270,6 +308,9 @@
 
 - (void)setLanguage:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setLanguage:_language];
+	[self.context.undoManager setActionName:@"Undo language"]; //TODO
+	
 	if (_language) {
 		obj.describedObject = nil;
 	}
@@ -291,6 +332,9 @@
 
 - (void)setPlaceFormatSpecifier:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setPlaceFormatSpecifier:_placeFormatSpecifier];
+	[self.context.undoManager setActionName:@"Undo placeFormatSpecifier"]; //TODO
+	
 	if (_placeFormatSpecifier) {
 		obj.describedObject = nil;
 	}
@@ -312,6 +356,9 @@
 
 - (void)setNoteEmbedded:(GCProperty *)obj
 {
+	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setNoteEmbedded:_noteEmbedded];
+	[self.context.undoManager setActionName:@"Undo noteEmbedded"]; //TODO
+	
 	if (_noteEmbedded) {
 		obj.describedObject = nil;
 	}

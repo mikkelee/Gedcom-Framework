@@ -5,6 +5,7 @@
 #import "GCRepositoryEntity.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCAddressAttribute.h"
@@ -57,6 +58,9 @@
 
 - (void)setDescriptiveName:(GCProperty *)obj
 {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
+	[self.context.undoManager setActionName:@"Undo descriptiveName"]; //TODO
+	
 	if (_descriptiveName) {
 		obj.describedObject = nil;
 	}
@@ -78,6 +82,9 @@
 
 - (void)setAddress:(GCProperty *)obj
 {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setAddress:_address];
+	[self.context.undoManager setActionName:@"Undo address"]; //TODO
+	
 	if (_address) {
 		obj.describedObject = nil;
 	}
@@ -111,6 +118,10 @@
  
 - (void)insertObject:(GCProperty *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
+	
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -122,7 +133,11 @@
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	
 	((GCProperty *)_phoneNumbers[index]).describedObject = nil;
+	
     [_phoneNumbers removeObjectAtIndex:index];
 }
 	
@@ -142,6 +157,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+	
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -153,7 +172,11 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 	
@@ -172,6 +195,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -183,7 +210,11 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 	
@@ -202,6 +233,10 @@
  
 - (void)insertObject:(GCProperty *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -213,13 +248,20 @@
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
+	
 	((GCProperty *)_userReferenceNumbers[index]).describedObject = nil;
+	
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 	
 
 - (void)setRecordIdNumber:(GCProperty *)obj
 {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
+	[self.context.undoManager setActionName:@"Undo recordIdNumber"]; //TODO
+	
 	if (_recordIdNumber) {
 		obj.describedObject = nil;
 	}
@@ -241,6 +283,9 @@
 
 - (void)setChangeInfo:(GCProperty *)obj
 {
+	[(GCRepositoryEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
+	[self.context.undoManager setActionName:@"Undo changeInfo"]; //TODO
+	
 	if (_changeInfo) {
 		obj.describedObject = nil;
 	}

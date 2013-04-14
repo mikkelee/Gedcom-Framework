@@ -5,6 +5,7 @@
 #import "GCSpouseInFamilyRelationship.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCNoteEmbeddedAttribute.h"
@@ -56,6 +57,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+	
+	[(GCSpouseInFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -67,7 +72,11 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[(GCSpouseInFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 	
@@ -86,6 +95,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	
+	[(GCSpouseInFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -97,7 +110,11 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCSpouseInFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 	

@@ -5,6 +5,7 @@
 #import "GCCallNumberAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCMediaTypeAttribute.h"
@@ -58,6 +59,9 @@
 
 - (void)setMediaType:(GCProperty *)obj
 {
+	[(GCCallNumberAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setMediaType:_mediaType];
+	[self.context.undoManager setActionName:@"Undo mediaType"]; //TODO
+	
 	if (_mediaType) {
 		obj.describedObject = nil;
 	}

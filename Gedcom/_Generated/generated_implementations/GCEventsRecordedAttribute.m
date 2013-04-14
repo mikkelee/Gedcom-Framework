@@ -5,6 +5,7 @@
 #import "GCEventsRecordedAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCDateAttribute.h"
@@ -60,6 +61,9 @@
 
 - (void)setDate:(GCProperty *)obj
 {
+	[(GCEventsRecordedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.context.undoManager setActionName:@"Undo date"]; //TODO
+	
 	if (_date) {
 		obj.describedObject = nil;
 	}
@@ -81,6 +85,9 @@
 
 - (void)setPlace:(GCProperty *)obj
 {
+	[(GCEventsRecordedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlace:_place];
+	[self.context.undoManager setActionName:@"Undo place"]; //TODO
+	
 	if (_place) {
 		obj.describedObject = nil;
 	}

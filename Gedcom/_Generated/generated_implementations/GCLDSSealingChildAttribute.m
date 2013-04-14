@@ -5,6 +5,7 @@
 #import "GCLDSSealingChildAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCDateAttribute.h"
@@ -77,6 +78,9 @@
 
 - (void)setLDSSealingChildStatus:(GCProperty *)obj
 {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setLDSSealingChildStatus:_lDSSealingChildStatus];
+	[self.context.undoManager setActionName:@"Undo lDSSealingChildStatus"]; //TODO
+	
 	if (_lDSSealingChildStatus) {
 		obj.describedObject = nil;
 	}
@@ -98,6 +102,9 @@
 
 - (void)setSealedToFamily:(GCProperty *)obj
 {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setSealedToFamily:_sealedToFamily];
+	[self.context.undoManager setActionName:@"Undo sealedToFamily"]; //TODO
+	
 	if (_sealedToFamily) {
 		obj.describedObject = nil;
 	}
@@ -119,6 +126,9 @@
 
 - (void)setDate:(GCProperty *)obj
 {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.context.undoManager setActionName:@"Undo date"]; //TODO
+	
 	if (_date) {
 		obj.describedObject = nil;
 	}
@@ -140,6 +150,9 @@
 
 - (void)setTemple:(GCProperty *)obj
 {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTemple:_temple];
+	[self.context.undoManager setActionName:@"Undo temple"]; //TODO
+	
 	if (_temple) {
 		obj.describedObject = nil;
 	}
@@ -161,6 +174,9 @@
 
 - (void)setPlace:(GCProperty *)obj
 {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlace:_place];
+	[self.context.undoManager setActionName:@"Undo place"]; //TODO
+	
 	if (_place) {
 		obj.describedObject = nil;
 	}
@@ -195,6 +211,10 @@
  
 - (void)insertObject:(GCProperty *)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
+	
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -206,7 +226,11 @@
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
+	
 	((GCProperty *)_sourceCitations[index]).describedObject = nil;
+	
     [_sourceCitations removeObjectAtIndex:index];
 }
 	
@@ -225,6 +249,10 @@
  
 - (void)insertObject:(GCProperty *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
+	
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -236,7 +264,11 @@
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
+	
 	((GCProperty *)_sourceEmbeddeds[index]).describedObject = nil;
+	
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
 	
@@ -256,6 +288,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+	
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -267,7 +303,11 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 	
@@ -286,6 +326,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -297,7 +341,11 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCLDSSealingChildAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 	

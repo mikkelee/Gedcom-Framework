@@ -5,6 +5,7 @@
 #import "GCAddressAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCAddressLine1Attribute.h"
@@ -68,6 +69,9 @@
 
 - (void)setAddressLine1:(GCProperty *)obj
 {
+	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine1:_addressLine1];
+	[self.context.undoManager setActionName:@"Undo addressLine1"]; //TODO
+	
 	if (_addressLine1) {
 		obj.describedObject = nil;
 	}
@@ -89,6 +93,9 @@
 
 - (void)setAddressLine2:(GCProperty *)obj
 {
+	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine2:_addressLine2];
+	[self.context.undoManager setActionName:@"Undo addressLine2"]; //TODO
+	
 	if (_addressLine2) {
 		obj.describedObject = nil;
 	}
@@ -110,6 +117,9 @@
 
 - (void)setCity:(GCProperty *)obj
 {
+	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCity:_city];
+	[self.context.undoManager setActionName:@"Undo city"]; //TODO
+	
 	if (_city) {
 		obj.describedObject = nil;
 	}
@@ -131,6 +141,9 @@
 
 - (void)setState:(GCProperty *)obj
 {
+	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setState:_state];
+	[self.context.undoManager setActionName:@"Undo state"]; //TODO
+	
 	if (_state) {
 		obj.describedObject = nil;
 	}
@@ -152,6 +165,9 @@
 
 - (void)setPostalCode:(GCProperty *)obj
 {
+	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPostalCode:_postalCode];
+	[self.context.undoManager setActionName:@"Undo postalCode"]; //TODO
+	
 	if (_postalCode) {
 		obj.describedObject = nil;
 	}
@@ -173,6 +189,9 @@
 
 - (void)setCountry:(GCProperty *)obj
 {
+	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCountry:_country];
+	[self.context.undoManager setActionName:@"Undo country"]; //TODO
+	
 	if (_country) {
 		obj.describedObject = nil;
 	}

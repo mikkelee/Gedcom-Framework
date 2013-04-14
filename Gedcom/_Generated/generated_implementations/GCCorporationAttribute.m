@@ -5,6 +5,7 @@
 #import "GCCorporationAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCAddressAttribute.h"
@@ -60,6 +61,9 @@
 
 - (void)setAddress:(GCProperty *)obj
 {
+	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddress:_address];
+	[self.context.undoManager setActionName:@"Undo address"]; //TODO
+	
 	if (_address) {
 		obj.describedObject = nil;
 	}
@@ -93,6 +97,10 @@
  
 - (void)insertObject:(GCProperty *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
+	
+	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -104,7 +112,11 @@
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	
 	((GCProperty *)_phoneNumbers[index]).describedObject = nil;
+	
     [_phoneNumbers removeObjectAtIndex:index];
 }
 	

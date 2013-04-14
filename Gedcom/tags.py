@@ -41,6 +41,10 @@ collectionAccessorsT = Template("""
  
 - (void)insertObject:(GCProperty *)obj in${capName}AtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[$type class]]);
+	
+	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
+	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -52,7 +56,11 @@ collectionAccessorsT = Template("""
 }
 
 - (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
+	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
+	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
+	
 	((GCProperty *)_$name[index]).describedObject = nil;
+	
     [_$name removeObjectAtIndex:index];
 }
 	""")
@@ -60,6 +68,9 @@ collectionAccessorsT = Template("""
 singleAccessorsT = Template("""
 - (void)set$capName:(GCProperty *)obj
 {
+	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
+	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
+	
 	if (_$name) {
 		obj.describedObject = nil;
 	}
@@ -108,6 +119,7 @@ implementationFileT = Template("""/*
 #import "$className.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 $includeHeaders
@@ -169,7 +181,7 @@ def pluralize(s):
 
 forwardDeclarations = set()
 
-def property(key, type, doc, is_plural, is_required, is_property_group=False):
+def property(selfClass, key, type, doc, is_plural, is_required, is_property_group=False):
 	name = pluralize(key) if is_plural else key
 	ivar = None
 	definition = ''
@@ -195,6 +207,7 @@ def property(key, type, doc, is_plural, is_required, is_property_group=False):
 				doc='. '.join([doc, name])
 			))
 			implementation = collectionAccessorsT.substitute(
+				selfClass=selfClass,
 				name=name,
 				capName='%s%s' % (name[0].upper(), name[1:]),
 				type=classify(key, type)
@@ -207,6 +220,7 @@ def property(key, type, doc, is_plural, is_required, is_property_group=False):
 			doc='. '.join([doc, ' NB: required property.' if is_required else ''])
 		)
 		implementation = singleAccessorsT.substitute(
+			selfClass=selfClass,
 			type=classify(key, type),
 			name=name,
 			capName='%s%s' % (name[0].upper(), name[1:])
@@ -283,8 +297,8 @@ for key in sorted(tags):
 	if key[0] == '@':
 		propagate(key)
 
-def expand_group(group, propertyDeclarations, propertyImplementations, ivars):
-	dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
+def expand_group(className, group, propertyDeclarations, propertyImplementations, ivars):
+	dec, imp, ivar = property(className, group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
 					
 	propertyDeclarations.append(dec)
 	propertyImplementations.append(imp)
@@ -292,17 +306,17 @@ def expand_group(group, propertyDeclarations, propertyImplementations, ivars):
 	
 	for variant in tags[group]['variants']:
 		if variant.has_key('groupName'):
-			dec, imp, ivar = property(group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
+			dec, imp, ivar = property(className, group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
 			
 			if dec not in propertyDeclarations:
 				propertyDeclarations.append(dec)
 				propertyImplementations.append(imp)
 				if ivar: ivars.append(ivar)
 			
-			expand_group(variant['groupName'], propertyDeclarations, propertyImplementations, ivars)
+			expand_group(className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars)
 			continue
 		print '		PROCESSING VARIANT "%s": %s' % (variant['name'], tags[variant['name']])
-		dec, imp, ivar = property(variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
+		dec, imp, ivar = property(className, variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
 		propertyDeclarations.append(dec)
 		propertyImplementations.append(imp)
 		if ivar: ivars.append(ivar)
@@ -335,10 +349,10 @@ for key in sorted(tags):
 			for prop in tags[key]['validSubTags']:
 				print '	PROCESSING SUBTAG %s' % prop
 				if prop.has_key('groupName'):
-					expand_group(prop['groupName'], propertyDeclarations, propertyImplementations, ivars)
+					expand_group(className, prop['groupName'], propertyDeclarations, propertyImplementations, ivars)
 					
 				else:
-					dec, imp, ivar = property(prop['name'], tags[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
+					dec, imp, ivar = property(className, prop['name'], tags[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
 					propertyDeclarations.append(dec)
 					propertyImplementations.append(imp)
 					if ivar: ivars.append(ivar)

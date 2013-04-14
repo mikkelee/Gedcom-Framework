@@ -5,6 +5,7 @@
 #import "GCSubmitterEntity.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCAddressAttribute.h"
@@ -64,6 +65,9 @@
 
 - (void)setDescriptiveName:(GCProperty *)obj
 {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
+	[self.context.undoManager setActionName:@"Undo descriptiveName"]; //TODO
+	
 	if (_descriptiveName) {
 		obj.describedObject = nil;
 	}
@@ -85,6 +89,9 @@
 
 - (void)setAddress:(GCProperty *)obj
 {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setAddress:_address];
+	[self.context.undoManager setActionName:@"Undo address"]; //TODO
+	
 	if (_address) {
 		obj.describedObject = nil;
 	}
@@ -118,6 +125,10 @@
  
 - (void)insertObject:(GCProperty *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
+	
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -129,7 +140,11 @@
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	
 	((GCProperty *)_phoneNumbers[index]).describedObject = nil;
+	
     [_phoneNumbers removeObjectAtIndex:index];
 }
 	
@@ -149,6 +164,10 @@
  
 - (void)insertObject:(GCProperty *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -160,7 +179,11 @@
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
+	
 	((GCProperty *)_multimediaReferences[index]).describedObject = nil;
+	
     [_multimediaReferences removeObjectAtIndex:index];
 }
 	
@@ -179,6 +202,10 @@
  
 - (void)insertObject:(GCProperty *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -190,7 +217,11 @@
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
+	
 	((GCProperty *)_multimediaEmbeddeds[index]).describedObject = nil;
+	
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 	
@@ -209,6 +240,10 @@
  
 - (void)insertObject:(GCProperty *)obj inLanguagesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLanguageAttribute class]]);
+	
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLanguagesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo languages"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -220,13 +255,20 @@
 }
 
 - (void)removeObjectFromLanguagesAtIndex:(NSUInteger)index {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_languages[index] inLanguagesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo languages"]; //TODO
+	
 	((GCProperty *)_languages[index]).describedObject = nil;
+	
     [_languages removeObjectAtIndex:index];
 }
 	
 
 - (void)setRecordFileNumber:(GCProperty *)obj
 {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordFileNumber:_recordFileNumber];
+	[self.context.undoManager setActionName:@"Undo recordFileNumber"]; //TODO
+	
 	if (_recordFileNumber) {
 		obj.describedObject = nil;
 	}
@@ -248,6 +290,9 @@
 
 - (void)setAncestralFileNumber:(GCProperty *)obj
 {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setAncestralFileNumber:_ancestralFileNumber];
+	[self.context.undoManager setActionName:@"Undo ancestralFileNumber"]; //TODO
+	
 	if (_ancestralFileNumber) {
 		obj.describedObject = nil;
 	}
@@ -281,6 +326,10 @@
  
 - (void)insertObject:(GCProperty *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
+	
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -292,13 +341,20 @@
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
+	
 	((GCProperty *)_userReferenceNumbers[index]).describedObject = nil;
+	
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 	
 
 - (void)setRecordIdNumber:(GCProperty *)obj
 {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
+	[self.context.undoManager setActionName:@"Undo recordIdNumber"]; //TODO
+	
 	if (_recordIdNumber) {
 		obj.describedObject = nil;
 	}
@@ -320,6 +376,9 @@
 
 - (void)setChangeInfo:(GCProperty *)obj
 {
+	[(GCSubmitterEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
+	[self.context.undoManager setActionName:@"Undo changeInfo"]; //TODO
+	
 	if (_changeInfo) {
 		obj.describedObject = nil;
 	}

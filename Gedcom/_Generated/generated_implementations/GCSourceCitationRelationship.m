@@ -5,6 +5,7 @@
 #import "GCSourceCitationRelationship.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCDataAttribute.h"
@@ -57,6 +58,9 @@
 
 - (void)setPage:(GCProperty *)obj
 {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setPage:_page];
+	[self.context.undoManager setActionName:@"Undo page"]; //TODO
+	
 	if (_page) {
 		obj.describedObject = nil;
 	}
@@ -78,6 +82,9 @@
 
 - (void)setData:(GCProperty *)obj
 {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setData:_data];
+	[self.context.undoManager setActionName:@"Undo data"]; //TODO
+	
 	if (_data) {
 		obj.describedObject = nil;
 	}
@@ -99,6 +106,9 @@
 
 - (void)setEventCited:(GCProperty *)obj
 {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setEventCited:_eventCited];
+	[self.context.undoManager setActionName:@"Undo eventCited"]; //TODO
+	
 	if (_eventCited) {
 		obj.describedObject = nil;
 	}
@@ -120,6 +130,9 @@
 
 - (void)setQualityOfData:(GCProperty *)obj
 {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setQualityOfData:_qualityOfData];
+	[self.context.undoManager setActionName:@"Undo qualityOfData"]; //TODO
+	
 	if (_qualityOfData) {
 		obj.describedObject = nil;
 	}
@@ -154,6 +167,10 @@
  
 - (void)insertObject:(GCProperty *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
+	
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -165,7 +182,11 @@
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
+	
 	((GCProperty *)_multimediaReferences[index]).describedObject = nil;
+	
     [_multimediaReferences removeObjectAtIndex:index];
 }
 	
@@ -184,6 +205,10 @@
  
 - (void)insertObject:(GCProperty *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
+	
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -195,7 +220,11 @@
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
+	
 	((GCProperty *)_multimediaEmbeddeds[index]).describedObject = nil;
+	
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
 	
@@ -215,6 +244,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+	
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -226,7 +259,11 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 	
@@ -245,6 +282,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -256,7 +297,11 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 	

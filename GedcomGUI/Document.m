@@ -10,6 +10,8 @@
 
 #import "GCGUIAdditions.h"
 
+#import <math.h>
+
 @interface Document ()
 
 @property GCContext *context;
@@ -129,7 +131,7 @@
 
 - (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount
 {
-    if (entityCount < 100 || entityCount % 100 == 0) {
+    if ( (rand()%1000) < 6) {
         [recordCountField setIntegerValue:entityCount];
     }
 }

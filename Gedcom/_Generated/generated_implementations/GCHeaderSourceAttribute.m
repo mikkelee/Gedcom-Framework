@@ -5,6 +5,7 @@
 #import "GCHeaderSourceAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCCorporationAttribute.h"
@@ -64,6 +65,9 @@
 
 - (void)setVersion:(GCProperty *)obj
 {
+	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
+	[self.context.undoManager setActionName:@"Undo version"]; //TODO
+	
 	if (_version) {
 		obj.describedObject = nil;
 	}
@@ -85,6 +89,9 @@
 
 - (void)setDescriptiveName:(GCProperty *)obj
 {
+	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
+	[self.context.undoManager setActionName:@"Undo descriptiveName"]; //TODO
+	
 	if (_descriptiveName) {
 		obj.describedObject = nil;
 	}
@@ -106,6 +113,9 @@
 
 - (void)setCorporation:(GCProperty *)obj
 {
+	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCorporation:_corporation];
+	[self.context.undoManager setActionName:@"Undo corporation"]; //TODO
+	
 	if (_corporation) {
 		obj.describedObject = nil;
 	}
@@ -127,6 +137,9 @@
 
 - (void)setHeaderSourceData:(GCProperty *)obj
 {
+	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderSourceData:_headerSourceData];
+	[self.context.undoManager setActionName:@"Undo headerSourceData"]; //TODO
+	
 	if (_headerSourceData) {
 		obj.describedObject = nil;
 	}

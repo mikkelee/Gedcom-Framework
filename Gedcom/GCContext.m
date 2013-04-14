@@ -36,7 +36,6 @@
 @end
 
 //TODO: split into categories?
-//TODO: transactions? NSUndoManager groups
 //TODO: renumber xrefs
 //TODO: merging contexts etc.
 
@@ -110,6 +109,8 @@ __strong static NSArray *_rootKeys = nil;
         
         _group = dispatch_group_create();
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
+        
+        _undoManager = [[NSUndoManager alloc] init];
         
         @synchronized (_contextsByName) {
             _contextsByName[_name] = self;
@@ -811,6 +812,26 @@ NSString *GCErrorDomain = @"GCErrorDomain";
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key
 {
     return [self setValue:object forKey:(NSString *)key];
+}
+
+@end
+
+@implementation GCContext (GCTransactionAdditions)
+
+- (void)beginTransaction
+{
+    [_undoManager beginUndoGrouping];
+}
+
+- (void)rollback
+{
+    [_undoManager endUndoGrouping];
+    [_undoManager undoNestedGroup];
+}
+
+- (void)commit
+{
+    [_undoManager endUndoGrouping];
 }
 
 @end

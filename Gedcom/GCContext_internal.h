@@ -24,4 +24,6 @@
 
 - (void)_addEntity:(GCEntity *)entity;
 
+@property (strong, readonly) NSUndoManager *undoManager;
+
 @end

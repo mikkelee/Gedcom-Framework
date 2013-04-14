@@ -229,3 +229,13 @@ typedef enum : NSUInteger {
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key;
 
 @end
+
+@interface GCContext (GCTransactionAdditions)
+
+- (void)beginTransaction;
+
+- (void)rollback;
+
+- (void)commit;
+
+@end

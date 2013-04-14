@@ -5,6 +5,7 @@
 #import "GCRepositoryCitationRelationship.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCCallNumberAttribute.h"
@@ -59,6 +60,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
+	
+	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -70,7 +75,11 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
 	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 	
@@ -89,6 +98,10 @@
  
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
+	
+	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -100,7 +113,11 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
 	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 	
@@ -119,6 +136,10 @@
  
 - (void)insertObject:(GCProperty *)obj inCallNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCallNumberAttribute class]]);
+	
+	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCallNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo callNumbers"]; //TODO
+	
 	if (obj.describedObject == self) {
 		return;
 	}
@@ -130,7 +151,11 @@
 }
 
 - (void)removeObjectFromCallNumbersAtIndex:(NSUInteger)index {
+	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_callNumbers[index] inCallNumbersAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo callNumbers"]; //TODO
+	
 	((GCProperty *)_callNumbers[index]).describedObject = nil;
+	
     [_callNumbers removeObjectAtIndex:index];
 }
 	

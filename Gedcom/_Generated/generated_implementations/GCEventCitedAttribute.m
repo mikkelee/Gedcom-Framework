@@ -5,6 +5,7 @@
 #import "GCEventCitedAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCRoleAttribute.h"
@@ -58,6 +59,9 @@
 
 - (void)setRole:(GCProperty *)obj
 {
+	[(GCEventCitedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setRole:_role];
+	[self.context.undoManager setActionName:@"Undo role"]; //TODO
+	
 	if (_role) {
 		obj.describedObject = nil;
 	}

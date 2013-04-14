@@ -5,6 +5,7 @@
 #import "GCGedcomAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCContext_internal.h"
 #import "GCProperty_internal.h"
 
 #import "GCGedcomFormatAttribute.h"
@@ -60,6 +61,9 @@
 
 - (void)setVersion:(GCProperty *)obj
 {
+	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
+	[self.context.undoManager setActionName:@"Undo version"]; //TODO
+	
 	if (_version) {
 		obj.describedObject = nil;
 	}
@@ -81,6 +85,9 @@
 
 - (void)setGedcomFormat:(GCProperty *)obj
 {
+	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setGedcomFormat:_gedcomFormat];
+	[self.context.undoManager setActionName:@"Undo gedcomFormat"]; //TODO
+	
 	if (_gedcomFormat) {
 		obj.describedObject = nil;
 	}
