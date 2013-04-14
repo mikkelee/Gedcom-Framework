@@ -184,13 +184,10 @@
 - (void)testCoding
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
-	NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-	
-	NSArray *nodes = [GCNodeParser arrayOfNodesFromString:fileContents];
 	
 	GCContext *ctx = [GCContext context];
     
-    [ctx parseNodes:nodes error:nil];
+    [ctx readContentsOfFile:path error:nil];
     
     NSData *ctxData = [NSKeyedArchiver archivedDataWithRootObject:ctx];
     

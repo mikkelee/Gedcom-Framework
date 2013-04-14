@@ -71,16 +71,6 @@ typedef enum : NSUInteger {
 #pragma mark Parsing nodes
 /// @name Parsing nodes
 
-/** Causes the receiver to parse the nodes.
- 
- Will throw an exception if the receiver already contains entities.
- 
- @param nodes A collection of nodes.
- @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
- @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.
- */
-- (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error;
-
 /** Causes the receiver to determine the encoding of the text contained in the data. It will then create an array of nodes and use parseNodes: to parse them. The determined encoding will be available on the fileEncoding property.
  
  Will throw an exception if the receiver already contains entities.
@@ -91,8 +81,10 @@ typedef enum : NSUInteger {
  */
 - (BOOL)parseData:(NSData *)data error:(NSError **)error;
 
-/** Causes the receiver to parse the contents of the file into an NSData object and pass it to parseData:error:.
+/** Causes the receiver to parse the contents of the file into an NSData object and parse it using GCNodeParser.
   
+ Will throw an exception if the receiver already contains entities.
+ 
  @param path A path to a Gedcom file.
  @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
  @return `YES` if the parse was successful. If the receiver was unable to parse the nodes, it will return `NO` and set the error pointer to an NSError describing the problem.

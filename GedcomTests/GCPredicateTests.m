@@ -17,10 +17,9 @@
 
 - (void)testPredicates
 {
-    GCContext *ctx = [[GCContext alloc] init];
-    
     NSString *gedcomString =
     @"0 HEAD\n"
+    @"1 CHAR ASCII\n"
     @"0 @I1@ INDI\n"
     @"1 NAME Jens /Hansen/\n"
     @"1 SEX M\n"
@@ -47,7 +46,17 @@
     @"2 PLAC Stockholm, Sweden\n"
     @"0 TRLR";
     
-    [ctx parseNodes:[GCNodeParser arrayOfNodesFromString:gedcomString] error:nil];
+    GCContext *ctx = [GCContext context];
+    
+    NSError *error = nil;
+    
+    BOOL succeeded = [ctx parseData:[gedcomString dataUsingEncoding:NSASCIIStringEncoding] error:&error];
+    
+    STAssertTrue(succeeded, nil);
+    STAssertNil(error, nil);
+    if (error) {
+        NSLog(@"error: %@", error);
+    }
     
     NSPredicate *birthPredicate = [NSPredicate predicateWithFormat:@"ANY births.date.value < %@", [GCDate valueWithGedcomString:@"1905"]];
     NSArray *birthResult = [ctx.individuals filteredArrayUsingPredicate:birthPredicate];

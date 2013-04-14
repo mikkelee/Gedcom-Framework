@@ -54,13 +54,13 @@
 	[self testGedString:gc_inputString countShouldBe:countShouldBe];
 }
 
--(void)testSomeSimpleRecords
+-(void)testCountSimpleRecords
 {
 	[self testGedString:@"0 @I1@ INDI\n1 NAME John /Johnson/\n" countShouldBe:1];
 	[self testGedString:@"0 @N1@ NOTE\n1 CONC This is a test\n" countShouldBe:1];
 }
 
--(void)testSimpleGed
+-(void)testCountSimpleGed
 {
 	//from http://www.heiner-eichmann.de/gedcom/gedcom.htm
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"simple" ofType:@"ged"];
@@ -68,7 +68,7 @@
 	[self testFile:path countShouldBe:7];
 }
 
--(void)testAllGed
+-(void)testCountAllGed
 {
 	//from http://www.heiner-eichmann.de/gedcom/gedcom.htm
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"allged" ofType:@"ged"];
@@ -76,7 +76,7 @@
 	[self testFile:path countShouldBe:18];
 }
 
-- (void)testConcatenation
+- (void)testCountConcatenation
 {
     NSString *gedcom = 
     @"0 @N1@ NOTE\n"

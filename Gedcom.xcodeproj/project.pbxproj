@@ -468,7 +468,7 @@
 			outputFiles = (
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m",
 			);
-			script = "/opt/local/bin/ragel ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl -G2 -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\n/opt/local/bin/ragel ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl -V -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.dot\n";
+			script = "/opt/local/bin/ragel ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl -G2 -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\n/opt/local/bin/ragel ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl -V -p -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.dot";
 		};
 /* End PBXBuildRule section */
 

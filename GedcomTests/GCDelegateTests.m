@@ -42,14 +42,21 @@
     
     NSString *gedcomString =
     @"0 HEAD\n"
+    @"1 CHAR ASCII\n"
     @"0 @F1@ FAM\n"
     @"1 _UMR Y\n"
     @"0 TRLR";
     
-    [ctx parseNodes:[GCNodeParser arrayOfNodesFromString:gedcomString] error:nil];
+    NSError *error = nil;
+    
+    BOOL succeeded = [ctx parseData:[gedcomString dataUsingEncoding:NSASCIIStringEncoding] error:&error];
+    
+    STAssertTrue(succeeded, nil);
+    STAssertNil(error, nil);
     
     NSString *expected =
     @"0 HEAD\n"
+    @"1 CHAR ASCII\n"
     @"0 @F1@ FAM\n"
     @"1 NOTE @NOTE1@\n"
     @"0 @NOTE1@ NOTE\n"

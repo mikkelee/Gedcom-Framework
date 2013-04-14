@@ -82,7 +82,7 @@ __strong static NSArray *_rootKeys = nil;
         _entityStore = [NSMutableDictionary dictionary];
         
         _group = dispatch_group_create();
-        _queue = dispatch_queue_create([_name cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+        _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
         
         @synchronized (_contextsByName) {
             _contextsByName[_name] = self;
@@ -116,17 +116,20 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
 {
-    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    dispatch_group_async(_group, _queue, ^{
+        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
     
-    if (tag.objectClass != [GCTrailerEntity class]) {
-        dispatch_group_async(_group, _queue, ^{
+        if (tag.objectClass != [GCTrailerEntity class]) {
             (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self];
-        });
-    }
+        }
+    });
 }
 
 - (void)parser:(GCNodeParser *)parser didParseNodesWithCount:(NSUInteger)nodeCount
 {
+    dispatch_group_async(_group, _queue, ^{
+        NSLog(@"didParseNodesWithCount: %ld", nodeCount);
+    });
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
             [_delegate context:self didParseNodesWithEntityCount:self.countOfEntities];
@@ -136,65 +139,10 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Loading nodes into a context
 
-- (BOOL)parseNodes:(NSArray *)nodes error:(NSError **)error
-{
-    GCParameterAssert(nodes);
-    GCParameterAssert([nodes count] > 0);
-    GCParameterAssert([self countOfEntities] == 1); // 1 for trailer
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:willParseNodes:)]) {
-            [_delegate context:self willParseNodes:[nodes count]];
-        }
-    });
-    
-#ifdef DEBUGLEVEL
-    clock_t start, end;
-    double elapsed;
-    start = clock();
-#endif
-    
-    NSUInteger handledNodes = 0;
-    
-    for (GCNode *node in nodes) {
-        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
-        
-        handledNodes++;
-        
-        if (tag.objectClass == [GCTrailerEntity class]) {
-            break;
-        } else {
-            (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self]; // it will add itself to the context
-        }
-    }
-    
-#ifdef DEBUGLEVEL
-    end = clock();
-    elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-    NSLog(@"parseNodes - Time: %f seconds",elapsed);
-#endif
-    
-    if (handledNodes != [nodes count]) {
-        if (error != NULL) {
-            *error = [NSError errorWithDomain:GCErrorDomain
-                                         code:GCParsingInconcistencyError
-                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Unexpected number of entities after handling nodes: %ld should be %ld (a misplaced TRLR?)", handledNodes, [nodes count]]}];
-        }
-        
-        return NO;
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
-            [_delegate context:self didParseNodesWithEntityCount:self.countOfEntities];
-        }
-    });
-    
-    return YES;
-}
-
 - (BOOL)parseData:(NSData *)data error:(NSError **)error
 {
+    GCParameterAssert([self countOfEntities] == 1); // 1 for trailer
+    
     GCFileEncoding fileEncoding = encodingForData(data);
     
     GCNodeParser *nodeParser = [[GCNodeParser alloc] init];
