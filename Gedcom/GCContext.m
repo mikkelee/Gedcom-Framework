@@ -129,11 +129,11 @@ __strong static NSArray *_rootKeys = nil;
 {
     dispatch_group_async(_group, _queue, ^{
         NSLog(@"didParseNodesWithCount: %ld", nodeCount);
-    });
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
-            [_delegate context:self didParseNodesWithEntityCount:self.countOfEntities];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
+                [_delegate context:self didParseNodesWithEntityCount:self.countOfEntities];
+            }
+        });
     });
 }
 
