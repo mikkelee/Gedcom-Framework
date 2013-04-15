@@ -161,4 +161,4 @@
 
 @end
 
-#import "GCObject+GCObjectKeyValueAdditions.h"
+#import "GCObject+GCKeyValueAdditions.h"

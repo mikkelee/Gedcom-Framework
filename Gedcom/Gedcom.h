@@ -14,18 +14,20 @@
 #import "GCTag.h"
 
 #import "GCObject.h"
+
+#import "GCObjects_generated.h"
+
+#import "GCObject+GCKeyValueAdditions.h"
+#import "GCObject+GCGedcomLoadingAdditions.h"
+#import "GCObject+GCHelpers.h"
+#import "GCObject+GCSanityCheckAdditions.h"
+
 #import "GCEntity.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
-#import "GCObject+GCGedcomLoadingAdditions.h"
-
-#import "GCObjects_generated.h"
-
 #import "GCValue.h"
-
-#import "GCObject+GCSanityCheckAdditions.h"
 
 #import "GCIndividualEntity+GCObjectAdditions.h"
 #import "GCBinaryObjectAttribute+GCObjectAdditions.h"

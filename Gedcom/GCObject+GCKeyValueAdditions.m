@@ -1,5 +1,5 @@
 //
-//  GCObject+GCObjectKeyValueAdditions.m
+//  GCObject+GCKeyValueAdditions.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 28/09/12.
@@ -13,7 +13,7 @@
 #import "GCRelationship.h"
 #import "GCValue.h"
 
-@implementation GCObject (GCObjectKeyValueAdditions)
+@implementation GCObject (GCKeyValueAdditions)
 
 #pragma mark NSKeyValueCoding overrides
 
