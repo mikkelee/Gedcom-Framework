@@ -119,9 +119,9 @@ __strong static NSDictionary *_defaultColors;
     return NSOrderedSame;
 }
 
-- (BOOL)isEqualTo:(id)other
+- (BOOL)isEqualTo:(GCObject *)other
 {
-    return [self.gedcomString isEqualToString:[other gedcomString]];
+    return [self.gedcomString isEqualToString:other.gedcomString];
 }
 
 #pragma mark NSCoding conformance

@@ -27,14 +27,14 @@
     age = [GCAge ageFromDate:date1 toDate:date2];
     
 	STAssertEqualObjects([age className], @"GCSimpleAge", nil);
-	STAssertEqualObjects([age gedcomString], @"10y", nil);
+	STAssertEqualObjects(age.gedcomString, @"10y", nil);
     
     date2 = [GCDate valueWithGedcomString:@"MAY 1910"];
     
     age = [GCAge ageFromDate:date1 toDate:date2];
     
 	STAssertEqualObjects([age className], @"GCSimpleAge", nil);
-	STAssertEqualObjects([age gedcomString], @"10y 4m", nil); // 1900-01-01 -> 1900-05-01
+	STAssertEqualObjects(age.gedcomString, @"10y 4m", nil); // 1900-01-01 -> 1900-05-01
 }
 
 - (void)testDateByAddingAge
@@ -45,7 +45,7 @@
     GCDate *date2 = [date dateByAddingAge:age];
     
 	STAssertEqualObjects([date2 className], @"GCSimpleDate", nil);
-	STAssertEqualObjects([date2 gedcomString], @"12 JAN 2015", nil);
+	STAssertEqualObjects(date2.gedcomString, @"12 JAN 2015", nil);
 }
 
 @end

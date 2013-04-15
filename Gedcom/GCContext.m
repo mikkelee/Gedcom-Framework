@@ -233,13 +233,13 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Equality
 
-- (BOOL)isEqualTo:(id)object
+- (BOOL)isEqualTo:(GCObject *)object
 {
     if (![object isKindOfClass:[self class]]) {
         return NO;
     }
     
-    return [self.gedcomString isEqualToString:[(GCContext *)object gedcomString]];
+    return [self.gedcomString isEqualToString:object.gedcomString];
 }
 
 #pragma mark Xref handling

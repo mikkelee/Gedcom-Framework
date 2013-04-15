@@ -12,15 +12,15 @@
     NSString *_cachedDisplayString;
 }
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCNamestring *)other
 {
-    return [self.displayString localizedCaseInsensitiveCompare:[other displayString]];
+    return [self.displayString localizedCaseInsensitiveCompare:other.displayString];
 }
 
 - (NSString *)displayString
 {
     if (!_cachedDisplayString) {
-        NSArray *nameParts = [[super displayString] componentsSeparatedByString:@"/"];
+        NSArray *nameParts = [super.displayString componentsSeparatedByString:@"/"];
         
         switch ([nameParts count]) {
             case 1: // - no surname, "Jens"
@@ -42,7 +42,7 @@
             }
                 
             default:
-                _cachedDisplayString = [super displayString];
+                _cachedDisplayString = super.displayString;
                 break;
         }
     }

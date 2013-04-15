@@ -48,7 +48,7 @@
     
     STAssertEqualObjects(changeDate, expectedDate, nil);
     
-    STAssertEqualObjects([changeNode gedcomString], [nodeFromDate(expectedDate) gedcomString], nil);
+    STAssertEqualObjects(changeNode.gedcomString, nodeFromDate(expectedDate).gedcomString, nil);
     
     //and the reverse:
     
@@ -56,7 +56,7 @@
     
     //NSLog(@"newNode: %@", newNode);
     
-    STAssertEqualObjects([changeNode gedcomString], [newNode gedcomString], nil);
+    STAssertEqualObjects(changeNode.gedcomString, newNode.gedcomString, nil);
 }
 
 - (void)testDates

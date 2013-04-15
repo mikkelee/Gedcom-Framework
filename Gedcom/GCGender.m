@@ -60,9 +60,9 @@ __strong static NSDictionary *_genderStore;
     return [self valueWithGedcomString:@"U"];
 }
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCGender *)other
 {
-    return [_gedcomString compare:[other gedcomString]];
+    return [_gedcomString compare:other.gedcomString];
 }
 
 @synthesize gedcomString = _gedcomString;

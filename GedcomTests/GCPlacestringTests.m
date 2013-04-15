@@ -36,7 +36,7 @@
     
     STAssertEqualObjects(placeStrings, expectedOrder, nil);
     
-    STAssertEqualObjects([a displayString], @"Fuglafjør∂ur, Eysturoy, Eysturoyar sýsla, Færøerne", nil);
+    STAssertEqualObjects(a.displayString, @"Fuglafjør∂ur, Eysturoy, Eysturoyar sýsla, Færøerne", nil);
 }
 
 - (void)testCopying

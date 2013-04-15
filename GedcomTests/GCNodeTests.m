@@ -28,9 +28,9 @@
 	NSMutableString *gc_outputString = [NSMutableString stringWithString:@""];
 	NSMutableArray *gc_outputLines = [NSMutableArray arrayWithCapacity:[nodes count]];
 	
-	for (id node in nodes) {
-		[gc_outputString appendString:[node gedcomString]];
-		[gc_outputLines addObjectsFromArray:[node gedcomLines]];
+	for (GCNode *node in nodes) {
+		[gc_outputString appendString:node.gedcomString];
+		[gc_outputLines addObjectsFromArray:node.gedcomLines];
 	}
 	
 	STAssertEquals([gc_inputLines count], [gc_outputLines count], nil);

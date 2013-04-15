@@ -28,9 +28,9 @@
     return [[self alloc] initWithGedcomString:gedcomString];
 }
 
-- (NSComparisonResult)compare:(id)other
+- (NSComparisonResult)compare:(GCString *)other
 {
-    return [self.gedcomString compare:[other gedcomString]];
+    return [self.gedcomString compare:other.gedcomString];
 }
 
 - (NSString *)gedcomString

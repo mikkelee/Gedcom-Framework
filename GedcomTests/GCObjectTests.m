@@ -21,11 +21,11 @@
     
     date.value = [GCDate valueWithGedcomString:@"1 JAN 1901"];
     
-    STAssertEqualObjects([[date value] gedcomString], @"1 JAN 1901", nil);
+    STAssertEqualObjects(date.value.gedcomString, @"1 JAN 1901", nil);
     
     GCAttribute *name = [GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"];
     
-    STAssertEqualObjects([[name value] displayString], @"Hansen, Jens (Smed)", nil);
+    STAssertEqualObjects(name.value.displayString, @"Hansen, Jens (Smed)", nil);
 }
 
 - (void)testSimpleObjects
@@ -61,7 +61,7 @@
     // Setting a known date so output is testable:
     [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"modificationDate"];
     
-    STAssertEqualObjects([indi gedcomString], 
+    STAssertEqualObjects(indi.gedcomString,
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
@@ -94,9 +94,9 @@
     
     GCEntity *object = [[GCIndividualEntity alloc] initWithGedcomNode:node inContext:ctx];
     
-    STAssertEqualObjects([node gedcomString], [object gedcomString], nil);
+    STAssertEqualObjects(node.gedcomString, object.gedcomString, nil);
     
-    STAssertEqualObjects([object gedcomString], 
+    STAssertEqualObjects(object.gedcomString,
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 NAME Jens /Hansen/ Smed\n"
@@ -140,7 +140,7 @@
     [wife setValue:knownDate forKey:@"modificationDate"];
     [chil setValue:knownDate forKey:@"modificationDate"];
 
-    STAssertEqualObjects([fam gedcomString], 
+    STAssertEqualObjects(fam.gedcomString,
                          @"0 @FAM1@ FAM\n"
                          @"1 HUSB @INDI1@\n"
                          @"1 WIFE @INDI2@\n"
@@ -150,7 +150,7 @@
                          @"3 TIME 12:00:00"
                          , nil);
 	
-    STAssertEqualObjects([husb gedcomString], 
+    STAssertEqualObjects(husb.gedcomString,
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
 						 @"1 SEX M\n"
@@ -160,7 +160,7 @@
                          @"3 TIME 12:00:00"
                          , nil);
 	
-    STAssertEqualObjects([wife gedcomString], 
+    STAssertEqualObjects(wife.gedcomString,
                          @"0 @INDI2@ INDI\n"
                          @"1 NAME Anne /Larsdatter/\n"
 						 @"1 SEX F\n"
@@ -170,7 +170,7 @@
                          @"3 TIME 12:00:00"
                          , nil);
 	
-    STAssertEqualObjects([chil gedcomString], 
+    STAssertEqualObjects(chil.gedcomString,
                          @"0 @INDI3@ INDI\n"
                          @"1 NAME Hans /Jensen/\n"
 						 @"1 SEX M\n"

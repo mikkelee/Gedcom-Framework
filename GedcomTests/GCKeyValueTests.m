@@ -138,7 +138,7 @@
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"];
     [indi setValue:knownDate forKey:@"modificationDate"];
     
-    STAssertEqualObjects([indi gedcomString], 
+    STAssertEqualObjects(indi.gedcomString,
                          @"0 @INDI1@ INDI\n"
                          @"1 NAME Jens /Hansen/\n"
                          @"1 CHAN\n"

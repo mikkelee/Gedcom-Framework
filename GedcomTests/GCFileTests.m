@@ -98,8 +98,8 @@
     
     GCContext *decodedCtx = [NSKeyedUnarchiver unarchiveObjectWithData:ctxData];
     
-    //NSLog(@"ctx: %@", [ctx gedcomString]);
-    //NSLog(@"decodedCtx: %@", [decodedCtx gedcomString]);
+    //NSLog(@"ctx: %@", ctx.gedcomString);
+    //NSLog(@"decodedCtx: %@", decodedCtx.gedcomString);
     
     STAssertTrue([ctx isEqualTo:decodedCtx], nil);
 }

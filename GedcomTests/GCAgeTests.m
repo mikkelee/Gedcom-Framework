@@ -21,7 +21,7 @@
 	GCAge *age = [GCAge valueWithGedcomString:@"INFANT"];
 	
 	STAssertEqualObjects([age className], @"GCAgeKeyword", nil);
-	STAssertEqualObjects([age gedcomString], @"INFANT", nil);
+	STAssertEqualObjects(age.gedcomString, @"INFANT", nil);
 }
 
 - (void)testQualifiedAge
@@ -29,7 +29,7 @@
 	GCAge *age = [GCAge valueWithGedcomString:@"< 10d"];
 	
 	STAssertEqualObjects([age className], @"GCSimpleAge", nil);
-	STAssertEqualObjects([age gedcomString], @"<10d", nil);
+	STAssertEqualObjects(age.gedcomString, @"<10d", nil);
 }
 
 - (void)testUnqualifiedAge
@@ -37,10 +37,10 @@
 	GCAge *age = [GCAge valueWithGedcomString:@"3y 1m 2d"];
 	
 	STAssertEqualObjects([age className], @"GCSimpleAge", nil);
-	STAssertEqualObjects([age gedcomString], @"3y 1m 2d", nil);
+	STAssertEqualObjects(age.gedcomString, @"3y 1m 2d", nil);
 	
     //will only pass if localization isn't changed from English:
-    STAssertEqualObjects([age displayString], @"3 years, 1 month, 2 days", nil);
+    STAssertEqualObjects(age.displayString, @"3 years, 1 month, 2 days", nil);
 }
 
 - (void)testInvalidAge
@@ -48,7 +48,7 @@
 	GCAge *age = [GCAge valueWithGedcomString:@"Not an age"];
 	
 	STAssertEqualObjects([age className], @"GCInvalidAge", nil);
-	STAssertEqualObjects([age gedcomString], @"Not an age", nil);
+	STAssertEqualObjects(age.gedcomString, @"Not an age", nil);
 }
 
 - (void)testAgeSort
