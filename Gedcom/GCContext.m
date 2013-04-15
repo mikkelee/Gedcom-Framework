@@ -242,6 +242,14 @@ __strong static NSArray *_rootKeys = nil;
     return [self.gedcomString isEqualToString:object.gedcomString];
 }
 
+#pragma mark NSCopying conformance
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    // deep copy
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+}
+
 #pragma mark Xref handling
 
 - (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity

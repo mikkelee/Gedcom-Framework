@@ -57,7 +57,7 @@ typedef enum : NSUInteger {
  ```
  
  */
-@interface GCContext : NSObject <NSCoding, GCNodeParserDelegate>
+@interface GCContext : NSObject <NSCoding, NSCopying, GCNodeParserDelegate>
 
 #pragma mark Obtaining a context
 /// @name Obtaining a context
