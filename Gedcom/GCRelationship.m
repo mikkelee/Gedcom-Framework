@@ -8,10 +8,9 @@
 
 #import "GCRelationship.h"
 
-#import "GCEntity.h"
 #import "GCNode.h"
-#import "GCContext_internal.h"
 
+#import "GCContext_internal.h"
 #import "GCObject_internal.h"
 #import "GCEntity_internal.h"
 

@@ -7,12 +7,11 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject.h"
+#import "GCObject_internal.h"
 
 #import "GCNodeParser.h"
 #import "GCNode.h"
 
-#import "GCObject_internal.h"
 #import "GCContext_internal.h"
 #import "GCProperty.h"
 

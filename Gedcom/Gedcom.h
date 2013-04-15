@@ -36,4 +36,5 @@
 
 #import "GCXrefProtocol.h"
 
+#import "GedcomTypedefs.h"
 #import "GedcomErrors.h"

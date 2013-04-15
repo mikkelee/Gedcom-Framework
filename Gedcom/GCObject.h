@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GCTag.h"
+#import "GedcomTypedefs.h"
 
 @class GCContext;
 @class GCNode;
 @class GCProperty;
+@class GCTag;
 
 /**
  

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "GCNodeParserDelegate.h"
+#import "GedcomTypedefs.h"
 
 @class GCEntity;
 @class GCHeaderEntity;
@@ -16,14 +17,6 @@
 
 @protocol GCContextDelegate;
 @protocol GCNodeParserDelegate;
-
-typedef enum : NSUInteger {
-    GCUnknownFileEncoding = -1,
-    GCASCIIFileEncoding = NSASCIIStringEncoding,
-    GCUTF8FileEncoding = NSUTF8StringEncoding,
-    GCUTF16FileEncoding = NSUTF16StringEncoding,
-    GCANSELFileEncoding = kCFStringEncodingANSEL
-} GCFileEncoding;
 
 /**
  

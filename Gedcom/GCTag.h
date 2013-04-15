@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef struct {
-    NSInteger min;
-    NSInteger max;
-} GCAllowedOccurrences;
+#import "GedcomTypedefs.h"
 
 /**
  
