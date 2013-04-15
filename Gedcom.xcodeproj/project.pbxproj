@@ -84,6 +84,9 @@
 		3E5F50CA151E02C300A433A6 /* GCEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C8151E02C300A433A6 /* GCEntity.m */; };
 		3E5F50CD151E27BA00A433A6 /* GCObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */; };
 		3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */; };
+		3E83FF23171CC5240093B685 /* Tags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF25171CC5240093B685 /* Tags.strings */; };
+		3E83FF26171CC5270093B685 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF28171CC5270093B685 /* Errors.strings */; };
+		3E83FF29171CC52B0093B685 /* Misc.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF2B171CC52B0093B685 /* Misc.strings */; };
 		3E8C1D72161BDA52005B3BE6 /* GCGUIAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1D71161BDA52005B3BE6 /* GCGUIAdditions.m */; };
 		3E8C1D75161BDA83005B3BE6 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8C1D73161BDA83005B3BE6 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E8C1D76161BDA83005B3BE6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1D74161BDA83005B3BE6 /* NSData+Base64.m */; };
@@ -433,7 +436,6 @@
 		3EDD4114156D022200002352 /* Values.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD4112156D022200002352 /* Values.strings */; };
 		3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD4117156D8EE200002352 /* GCPlacestring.m */; };
 		3EDD411D156E335000002352 /* GCPlacestringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD411C156E335000002352 /* GCPlacestringTests.m */; };
-		3EDD411F156F047A00002352 /* Tags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD411E156F047A00002352 /* Tags.strings */; };
 		3EDDB429154EC63C0068E85F /* GCString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDB427154EC63C0068E85F /* GCString.m */; };
 		3EDDB42E154EC6470068E85F /* GCBool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDB42C154EC6470068E85F /* GCBool.m */; };
 		3EDDB432154EC6550068E85F /* GCNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDB430154EC6550068E85F /* GCNumber.m */; };
@@ -443,8 +445,6 @@
 		3EECFD8B151C32630074E26C /* GCNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD5F151C32630074E26C /* GCNode.m */; };
 		3EF13698171B43EF00EDB33C /* GCNode_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF13697171B43D700EDB33C /* GCNode_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3EF1369C171B476400EDB33C /* GCTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1369B171B476400EDB33C /* GCTransactionTests.m */; };
-		3EF1369E171C05F500EDB33C /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1369D171C05F500EDB33C /* Errors.strings */; };
-		3EF136A0171C0BDA00EDB33C /* Misc.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1369F171C0BDA00EDB33C /* Misc.strings */; };
 		3EF136A4171C0E7800EDB33C /* GCContext+GCKeyValueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */; };
 		3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C6151C3873004A8540 /* GCAgeTests.m */; };
 		3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C7151C3873004A8540 /* GCDateTests.m */; };
@@ -595,6 +595,9 @@
 		3E75836615F8DF3E00A9B096 /* GCDate_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCDate_internal.h; path = Values/GCDate_internal.h; sourceTree = "<group>"; };
 		3E75837915F8EAB900A9B096 /* GCAgeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCAgeParser.rl; path = Values/GCAgeParser.rl; sourceTree = "<group>"; };
 		3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCKeyValueTests.m; sourceTree = "<group>"; };
+		3E83FF24171CC5240093B685 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Tags.strings; sourceTree = "<group>"; };
+		3E83FF27171CC5270093B685 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
+		3E83FF2A171CC52B0093B685 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Misc.strings; sourceTree = "<group>"; };
 		3E8C1D70161BDA52005B3BE6 /* GCGUIAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGUIAdditions.h; sourceTree = "<group>"; };
 		3E8C1D71161BDA52005B3BE6 /* GCGUIAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGUIAdditions.m; sourceTree = "<group>"; };
 		3E8C1D73161BDA83005B3BE6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -946,7 +949,6 @@
 		3EDD4113156D022200002352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Values.strings; sourceTree = "<group>"; };
 		3EDD4117156D8EE200002352 /* GCPlacestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCPlacestring.m; path = Values/GCPlacestring.m; sourceTree = "<group>"; };
 		3EDD411C156E335000002352 /* GCPlacestringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlacestringTests.m; sourceTree = "<group>"; };
-		3EDD411E156F047A00002352 /* Tags.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Tags.strings; sourceTree = "<group>"; };
 		3EDDB427154EC63C0068E85F /* GCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCString.m; path = Values/GCString.m; sourceTree = "<group>"; };
 		3EDDB42C154EC6470068E85F /* GCBool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCBool.m; path = Values/GCBool.m; sourceTree = "<group>"; };
 		3EDDB430154EC6550068E85F /* GCNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNumber.m; path = Values/GCNumber.m; sourceTree = "<group>"; };
@@ -956,8 +958,6 @@
 		3EECFD5F151C32630074E26C /* GCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNode.m; path = Nodes/GCNode.m; sourceTree = "<group>"; };
 		3EF13697171B43D700EDB33C /* GCNode_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCNode_internal.h; path = Nodes/GCNode_internal.h; sourceTree = "<group>"; };
 		3EF1369B171B476400EDB33C /* GCTransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTransactionTests.m; sourceTree = "<group>"; };
-		3EF1369D171C05F500EDB33C /* Errors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
-		3EF1369F171C0BDA00EDB33C /* Misc.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Misc.strings; sourceTree = "<group>"; };
 		3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCKeyValueAdditions.m"; sourceTree = "<group>"; };
 		3EF7A1C6151C3873004A8540 /* GCAgeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeTests.m; sourceTree = "<group>"; };
 		3EF7A1C7151C3873004A8540 /* GCDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateTests.m; sourceTree = "<group>"; };
@@ -1165,9 +1165,9 @@
 				3EB5ABD5153619280036B4D5 /* tags.json */,
 				3E8C1E9216264837005B3BE6 /* sanity.json */,
 				3EDD4112156D022200002352 /* Values.strings */,
-				3EDD411E156F047A00002352 /* Tags.strings */,
-				3EF1369D171C05F500EDB33C /* Errors.strings */,
-				3EF1369F171C0BDA00EDB33C /* Misc.strings */,
+				3E83FF25171CC5240093B685 /* Tags.strings */,
+				3E83FF28171CC5270093B685 /* Errors.strings */,
+				3E83FF2B171CC52B0093B685 /* Misc.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2042,13 +2042,13 @@
 				3E5F5098151DCC7B00A433A6 /* README.md in Resources */,
 				3EB5ABD6153619280036B4D5 /* tags.json in Resources */,
 				3EDD4114156D022200002352 /* Values.strings in Resources */,
-				3EDD411F156F047A00002352 /* Tags.strings in Resources */,
+				3E83FF23171CC5240093B685 /* Tags.strings in Resources */,
 				3E8C1EA11626BED7005B3BE6 /* sanity.json in Resources */,
 				3E4E8432171ADFD700889651 /* GCNodeParser.rl in Resources */,
 				3E4E8433171ADFDB00889651 /* GCAgeParser.rl in Resources */,
 				3E4E8434171ADFDE00889651 /* GCDateParser.rl in Resources */,
-				3EF1369E171C05F500EDB33C /* Errors.strings in Resources */,
-				3EF136A0171C0BDA00EDB33C /* Misc.strings in Resources */,
+				3E83FF26171CC5270093B685 /* Errors.strings in Resources */,
+				3E83FF29171CC52B0093B685 /* Misc.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2446,6 +2446,30 @@
 				3E3995BE155DE4B500228946 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		3E83FF25171CC5240093B685 /* Tags.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E83FF24171CC5240093B685 /* en */,
+			);
+			name = Tags.strings;
+			sourceTree = "<group>";
+		};
+		3E83FF28171CC5270093B685 /* Errors.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E83FF27171CC5270093B685 /* en */,
+			);
+			name = Errors.strings;
+			sourceTree = "<group>";
+		};
+		3E83FF2B171CC52B0093B685 /* Misc.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E83FF2A171CC52B0093B685 /* en */,
+			);
+			name = Misc.strings;
 			sourceTree = "<group>";
 		};
 		3E8C1E0B1625534A005B3BE6 /* InfoPlist.strings */ = {
