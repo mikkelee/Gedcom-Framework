@@ -121,6 +121,10 @@ typedef enum : NSUInteger {
  */
 + (GCEntity *)entityForURL:(NSURL *)url;
 
+#pragma mark Merging entities
+
+- (BOOL)mergeContext:(GCContext *)context error:(NSError **)error;
+
 #pragma mark - Objective-C properties -
 
 #pragma mark Accessing properties

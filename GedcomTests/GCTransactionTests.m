@@ -110,4 +110,82 @@
     STAssertEqualObjects(ctx.gedcomString, expected, nil);
 }
 
+- (void)testMerge
+{
+    NSString *gedcomStringA =
+    @"0 HEAD\n"
+    @"1 CHAR ASCII\n"
+    @"0 @INDI3@ INDI\n"
+    @"1 NAME Jens /Hansen/\n"
+    @"0 @INDI2@ INDI\n"
+    @"1 NAME Hans /Jensen/\n"
+    @"0 @INDI1@ INDI\n"
+    @"1 NAME Lars /Hansen/\n"
+    @"0 @INDI4@ INDI\n"
+    @"1 NAME Peder /Hansen/\n"
+    @"0 TRLR";
+    
+    GCContext *ctxA = [GCContext context];
+    
+    NSError *errorA = nil;
+    
+    BOOL succeededA = [ctxA parseData:[gedcomStringA dataUsingEncoding:NSASCIIStringEncoding] error:&errorA];
+    
+    STAssertTrue(succeededA, nil);
+    STAssertNil(errorA, nil);
+    if (errorA) {
+        NSLog(@"errorA: %@", errorA);
+    }
+    
+    NSString *gedcomStringB =
+    @"0 HEAD\n"
+    @"1 CHAR ASCII\n"
+    @"0 @INDI1@ INDI\n"
+    @"1 NAME Tom /Larsen/\n"
+    @"0 @INDI2@ INDI\n"
+    @"1 NAME Lars /Hansen/\n"
+    @"0 TRLR";
+    
+    GCContext *ctxB = [GCContext context];
+    
+    NSError *errorB = nil;
+    
+    BOOL succeededB = [ctxB parseData:[gedcomStringB dataUsingEncoding:NSASCIIStringEncoding] error:&errorB];
+    
+    STAssertTrue(succeededB, nil);
+    STAssertNil(errorB, nil);
+    if (errorB) {
+        NSLog(@"errorB: %@", errorB);
+    }
+    
+    NSError *errorM = nil;
+    
+    BOOL succeededM = [ctxA mergeContext:ctxB error:&errorM];
+    
+    STAssertTrue(succeededM, nil);
+    STAssertNil(errorM, nil);
+    if (errorM) {
+        NSLog(@"errorM: %@", errorM);
+    }
+
+    NSString *expected =
+    @"0 HEAD\n"
+    @"1 CHAR ASCII\n"
+    @"0 @INDI1@ INDI\n"
+    @"1 NAME Jens /Hansen/\n"
+    @"0 @INDI2@ INDI\n"
+    @"1 NAME Hans /Jensen/\n"
+    @"0 @INDI3@ INDI\n"
+    @"1 NAME Lars /Hansen/\n"
+    @"0 @INDI4@ INDI\n"
+    @"1 NAME Peder /Hansen/\n"
+    @"0 @INDI5@ INDI\n"
+    @"1 NAME Tom /Larsen/\n"
+    @"0 @INDI6@ INDI\n"
+    @"1 NAME Lars /Hansen/\n"
+    @"0 TRLR";
+    
+    STAssertEqualObjects(ctxA.gedcomString, expected, nil);
+}
+
 @end

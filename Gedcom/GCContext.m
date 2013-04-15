@@ -36,7 +36,6 @@
 @end
 
 //TODO: split into categories?
-//TODO: merging contexts etc.
 
 @interface NSMapTable (GCSubscriptAdditions)
 
@@ -231,6 +230,33 @@ __strong static NSArray *_rootKeys = nil;
     return [context _entityForXref:[url.path lastPathComponent] create:NO withClass:nil];
 }
 
+#pragma mark Merging contexts
+
+- (BOOL)mergeContext:(GCContext *)context error:(NSError **)error
+{
+    context = [context copy];
+    
+    [self beginTransaction];
+    
+    BOOL succeeded = YES; //TODO
+    
+    for (NSString *rootKey in _rootKeys) {
+        for (GCEntity *entity in context[rootKey]) {
+            [self _addEntity:entity];
+        }
+    }
+    
+    if (!succeeded) {
+        [self rollback];
+        *error = [NSError errorWithDomain:GCErrorDomain code:GCMergeFailedError userInfo:@{}]; //TODO
+    } else {
+        [self commit];
+        [self _renumberXrefs];
+    }
+    
+    return succeeded;
+}
+
 #pragma mark Equality
 
 - (BOOL)isEqualTo:(GCObject *)object
@@ -393,10 +419,6 @@ __strong static NSArray *_rootKeys = nil;
 {
     _xrefToEntityMap = [NSMapTable strongToWeakObjectsMapTable];
     _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
-    
-    for (GCEntity *entity in self.entities) {
-        (void)[self _xrefForEntity:entity];
-    }
 }
 
 #pragma mark Xref link methods
@@ -550,6 +572,8 @@ __strong static NSArray *_rootKeys = nil;
 - (void)_addEntity:(GCEntity *)entity
 {
 	NSParameterAssert([entity isKindOfClass:[GCEntity class]]);
+    
+    [entity setValue:self forKey:@"context"]; //TODO
     
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         self.header = (GCHeaderEntity *)entity;

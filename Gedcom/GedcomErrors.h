@@ -14,6 +14,7 @@ typedef enum : NSInteger {
     // context errors:
     GCUnhandledFileEncodingError = -1,
     GCParsingInconcistencyError = -2,
+    GCMergeFailedError = -3,
     
     // validation errors:
     GCIncorrectValueTypeError = -101,
