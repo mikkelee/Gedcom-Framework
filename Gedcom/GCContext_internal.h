@@ -10,6 +10,9 @@
 
 #import "GedcomErrors.h"
 
+@class GCTag;
+@class GCObject;
+
 @interface GCContext () {
     GCHeaderEntity  *_header;
     GCSubmissionEntity *_submission;
@@ -24,7 +27,7 @@
     
     NSMutableArray *_customEntities;
     
-    __weak id<GCContextDelegate> _delegate;
+    __weak id<NSObject, GCContextDelegate> _delegate;
 }
 
 - (NSString *)_xrefForEntity:(GCEntity *)entity;

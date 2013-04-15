@@ -5,7 +5,6 @@
 #import "GCHusbandDetailAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCAgeAttribute.h"
 
@@ -68,8 +67,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHusbandDetailAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAge:_age];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHusbandDetailAttribute *)[self.undoManager prepareWithInvocationTarget:self] setAge:_age];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_age) {
 		[obj setValue:nil forKey:@"describedObject"];

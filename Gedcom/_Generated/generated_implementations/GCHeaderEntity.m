@@ -5,7 +5,6 @@
 #import "GCHeaderEntity.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCCharacterSetAttribute.h"
 #import "GCCopyrightAttribute.h"
@@ -73,8 +72,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderSource:_headerSource];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setHeaderSource:_headerSource];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_headerSource) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -120,8 +119,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromDestinationsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromDestinationsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -147,8 +146,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_destinations[index] inDestinationsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_destinations[index] inDestinationsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_destinations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -168,8 +167,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderDate:_headerDate];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setHeaderDate:_headerDate];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_headerDate) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -202,8 +201,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_submitterReference) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -249,8 +248,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSubmissionReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromSubmissionReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -276,8 +275,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_submissionReferences[index] inSubmissionReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_submissionReferences[index] inSubmissionReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_submissionReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -297,8 +296,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setFile:_file];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setFile:_file];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_file) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -331,8 +330,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setCopyright:_copyright];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setCopyright:_copyright];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_copyright) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -365,8 +364,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setGedcom:_gedcom];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setGedcom:_gedcom];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_gedcom) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -399,8 +398,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setCharacterSet:_characterSet];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setCharacterSet:_characterSet];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_characterSet) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -433,8 +432,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setLanguage:_language];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setLanguage:_language];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_language) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -467,8 +466,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setPlaceFormatSpecifier:_placeFormatSpecifier];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setPlaceFormatSpecifier:_placeFormatSpecifier];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_placeFormatSpecifier) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -501,8 +500,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setNoteEmbedded:_noteEmbedded];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setNoteEmbedded:_noteEmbedded];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_noteEmbedded) {
 		[obj setValue:nil forKey:@"describedObject"];

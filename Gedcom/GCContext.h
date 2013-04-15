@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GCContextDelegate.h"
 #import "GCNodeParserDelegate.h"
 
 @class GCEntity;
 @class GCHeaderEntity;
 @class GCSubmissionEntity;
+
+@protocol GCContextDelegate;
+@protocol GCNodeParserDelegate;
 
 typedef enum : NSUInteger {
     GCUnknownFileEncoding = -1,

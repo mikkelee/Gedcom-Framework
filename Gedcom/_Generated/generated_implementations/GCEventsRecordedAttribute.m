@@ -5,7 +5,6 @@
 #import "GCEventsRecordedAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCDateAttribute.h"
 #import "GCPlaceAttribute.h"
@@ -70,8 +69,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCEventsRecordedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCEventsRecordedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_date) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -104,8 +103,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCEventsRecordedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlace:_place];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCEventsRecordedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setPlace:_place];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_place) {
 		[obj setValue:nil forKey:@"describedObject"];

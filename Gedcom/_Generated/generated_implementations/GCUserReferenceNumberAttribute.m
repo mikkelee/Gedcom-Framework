@@ -5,7 +5,6 @@
 #import "GCUserReferenceNumberAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCTypeDescriptionAttribute.h"
 
@@ -68,8 +67,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCUserReferenceNumberAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTypeDescription:_typeDescription];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCUserReferenceNumberAttribute *)[self.undoManager prepareWithInvocationTarget:self] setTypeDescription:_typeDescription];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_typeDescription) {
 		[obj setValue:nil forKey:@"describedObject"];

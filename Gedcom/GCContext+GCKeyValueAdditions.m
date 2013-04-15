@@ -20,6 +20,8 @@
 #import "GCSourceEntity.h"
 #import "GCSubmitterEntity.h"
 
+#import "GCContextDelegate.h"
+
 @implementation GCContext (GCKeyValueAdditions)
 
 __strong static NSArray *_rootKeys = nil;
@@ -169,7 +171,7 @@ __strong static NSArray *_rootKeys = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
+            [_delegate context:self didUpdateEntityCount:[self.entities count]];
         }
     });
 }

@@ -19,6 +19,8 @@
 
 #import "GCObject+GCGedcomLoadingAdditions.h"
 
+#import "GCContextDelegate.h"
+
 #import "CharacterSetHelpers.h"
 
 @interface GCTrailerEntity : NSObject //empty class to match trailer objects

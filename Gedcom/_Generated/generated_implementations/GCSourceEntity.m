@@ -5,7 +5,6 @@
 #import "GCSourceEntity.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCAbbreviationAttribute.h"
 #import "GCAuthorAttribute.h"
@@ -79,8 +78,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSourceData:_sourceData];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setSourceData:_sourceData];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_sourceData) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -113,8 +112,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setAuthor:_author];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setAuthor:_author];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_author) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -147,8 +146,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setTitle:_title];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setTitle:_title];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_title) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -181,8 +180,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setAbbreviation:_abbreviation];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setAbbreviation:_abbreviation];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_abbreviation) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -215,8 +214,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setPublicationFacts:_publicationFacts];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setPublicationFacts:_publicationFacts];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_publicationFacts) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -249,8 +248,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setText:_text];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setText:_text];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_text) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -283,8 +282,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRepositoryCitation:_repositoryCitation];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setRepositoryCitation:_repositoryCitation];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_repositoryCitation) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -331,8 +330,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -358,8 +357,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_multimediaReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -392,8 +391,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -419,8 +418,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_multimediaEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -454,8 +453,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -481,8 +480,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -515,8 +514,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -542,8 +541,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -563,8 +562,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setUserReferenceNumber:_userReferenceNumber];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setUserReferenceNumber:_userReferenceNumber];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_userReferenceNumber) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -597,8 +596,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_recordIdNumber) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -631,8 +630,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceEntity *)[self.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_changeInfo) {
 		[obj setValue:nil forKey:@"describedObject"];

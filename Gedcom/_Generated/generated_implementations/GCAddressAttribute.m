@@ -5,7 +5,6 @@
 #import "GCAddressAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCAddressLine1Attribute.h"
 #import "GCAddressLine2Attribute.h"
@@ -78,8 +77,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine1:_addressLine1];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAddressAttribute *)[self.undoManager prepareWithInvocationTarget:self] setAddressLine1:_addressLine1];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_addressLine1) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -112,8 +111,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine2:_addressLine2];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAddressAttribute *)[self.undoManager prepareWithInvocationTarget:self] setAddressLine2:_addressLine2];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_addressLine2) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -146,8 +145,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCity:_city];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAddressAttribute *)[self.undoManager prepareWithInvocationTarget:self] setCity:_city];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_city) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -180,8 +179,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setState:_state];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAddressAttribute *)[self.undoManager prepareWithInvocationTarget:self] setState:_state];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_state) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -214,8 +213,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPostalCode:_postalCode];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAddressAttribute *)[self.undoManager prepareWithInvocationTarget:self] setPostalCode:_postalCode];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_postalCode) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -248,8 +247,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCountry:_country];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAddressAttribute *)[self.undoManager prepareWithInvocationTarget:self] setCountry:_country];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_country) {
 		[obj setValue:nil forKey:@"describedObject"];

@@ -168,6 +168,11 @@
     _value = value;
 }
 
+- (NSString *)xref
+{
+    return [self.context _xrefForEntity:self];
+}
+
 @synthesize context = _context;
 @dynamic changeInfo;
 

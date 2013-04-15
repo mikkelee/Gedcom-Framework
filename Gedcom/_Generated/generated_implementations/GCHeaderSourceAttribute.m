@@ -5,7 +5,6 @@
 #import "GCHeaderSourceAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCCorporationAttribute.h"
 #import "GCDescriptiveNameAttribute.h"
@@ -74,8 +73,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderSourceAttribute *)[self.undoManager prepareWithInvocationTarget:self] setVersion:_version];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_version) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -108,8 +107,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderSourceAttribute *)[self.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_descriptiveName) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -142,8 +141,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCorporation:_corporation];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderSourceAttribute *)[self.undoManager prepareWithInvocationTarget:self] setCorporation:_corporation];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_corporation) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -176,8 +175,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderSourceData:_headerSourceData];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderSourceAttribute *)[self.undoManager prepareWithInvocationTarget:self] setHeaderSourceData:_headerSourceData];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_headerSourceData) {
 		[obj setValue:nil forKey:@"describedObject"];

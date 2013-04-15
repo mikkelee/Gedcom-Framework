@@ -5,7 +5,6 @@
 #import "GCHeaderDateAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCTimeAttribute.h"
 
@@ -68,8 +67,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderDateAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTime:_time];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderDateAttribute *)[self.undoManager prepareWithInvocationTarget:self] setTime:_time];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_time) {
 		[obj setValue:nil forKey:@"describedObject"];

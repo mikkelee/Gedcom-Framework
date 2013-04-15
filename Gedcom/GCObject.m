@@ -12,8 +12,6 @@
 #import "GCNodeParser.h"
 #import "GCNode.h"
 
-#import "GCContext.h"
-
 #import "GCObject+GCGedcomLoadingAdditions.h"
 
 #import "GCObject_internal.h"
@@ -200,6 +198,11 @@ __strong static NSDictionary *_defaultColors;
 @dynamic gedcomNode;
 @dynamic displayValue;
 @dynamic attributedDisplayValue;
+
+- (NSUndoManager *)undoManager
+{
+    return self.context.undoManager;
+}
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {

@@ -5,7 +5,6 @@
 #import "GCSourceDataAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCEventsRecordedAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"
@@ -89,8 +88,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromEventsRecordedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromEventsRecordedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -116,8 +115,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_eventsRecordeds[index] inEventsRecordedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_eventsRecordeds[index] inEventsRecordedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_eventsRecordeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -137,8 +136,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setResponsibleAgency:_responsibleAgency];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] setResponsibleAgency:_responsibleAgency];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_responsibleAgency) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -185,8 +184,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -212,8 +211,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -246,8 +245,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -273,8 +272,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	

@@ -5,7 +5,6 @@
 #import "GCDataAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCDateAttribute.h"
 #import "GCTextAttribute.h"
@@ -70,8 +69,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_date) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -117,8 +116,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -144,8 +143,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_texts[index] inTextsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_texts[index] inTextsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_texts[index]) setValue:nil forKey:@"describedObject"];
 	

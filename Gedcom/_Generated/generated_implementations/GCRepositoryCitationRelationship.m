@@ -5,7 +5,6 @@
 #import "GCRepositoryCitationRelationship.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCCallNumberAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"
@@ -70,8 +69,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCRepositoryCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -97,8 +96,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCRepositoryCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -131,8 +130,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCRepositoryCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -158,8 +157,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCRepositoryCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -192,8 +191,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCallNumbersAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCRepositoryCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromCallNumbersAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -219,8 +218,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCRepositoryCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_callNumbers[index] inCallNumbersAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCRepositoryCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_callNumbers[index] inCallNumbersAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_callNumbers[index]) setValue:nil forKey:@"describedObject"];
 	

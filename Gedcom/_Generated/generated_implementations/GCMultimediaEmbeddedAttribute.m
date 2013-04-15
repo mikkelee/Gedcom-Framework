@@ -5,7 +5,6 @@
 #import "GCMultimediaEmbeddedAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCFileAttribute.h"
 #import "GCMultimediaFormatAttribute.h"
@@ -77,8 +76,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setMultimediaFormat:_multimediaFormat];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setMultimediaFormat:_multimediaFormat];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_multimediaFormat) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -111,8 +110,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTitle:_title];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setTitle:_title];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_title) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -145,8 +144,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setFile:_file];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setFile:_file];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_file) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -193,8 +192,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -220,8 +219,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -254,8 +253,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -281,8 +280,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCMultimediaEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCMultimediaEmbeddedAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	

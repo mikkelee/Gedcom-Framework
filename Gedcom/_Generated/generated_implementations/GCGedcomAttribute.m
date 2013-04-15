@@ -5,7 +5,6 @@
 #import "GCGedcomAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCGedcomFormatAttribute.h"
 #import "GCVersionAttribute.h"
@@ -70,8 +69,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCGedcomAttribute *)[self.undoManager prepareWithInvocationTarget:self] setVersion:_version];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_version) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -104,8 +103,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setGedcomFormat:_gedcomFormat];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCGedcomAttribute *)[self.undoManager prepareWithInvocationTarget:self] setGedcomFormat:_gedcomFormat];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_gedcomFormat) {
 		[obj setValue:nil forKey:@"describedObject"];

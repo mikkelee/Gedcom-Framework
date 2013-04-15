@@ -5,7 +5,6 @@
 #import "GCCorporationAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCAddressAttribute.h"
 #import "GCPhoneNumberAttribute.h"
@@ -70,8 +69,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddress:_address];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCCorporationAttribute *)[self.undoManager prepareWithInvocationTarget:self] setAddress:_address];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_address) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -117,8 +116,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCCorporationAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -144,8 +143,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCCorporationAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_phoneNumbers[index]) setValue:nil forKey:@"describedObject"];
 	

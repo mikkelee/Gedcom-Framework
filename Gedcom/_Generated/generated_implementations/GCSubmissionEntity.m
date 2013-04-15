@@ -5,7 +5,6 @@
 #import "GCSubmissionEntity.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCChangeInfoAttribute.h"
 #import "GCFamilyFileAttribute.h"
@@ -66,8 +65,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_submitterReference) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -100,8 +99,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setFamilyFile:_familyFile];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setFamilyFile:_familyFile];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_familyFile) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -134,8 +133,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setTemple:_temple];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setTemple:_temple];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_temple) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -168,8 +167,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setGenerationsOfAncestors:_generationsOfAncestors];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setGenerationsOfAncestors:_generationsOfAncestors];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_generationsOfAncestors) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -202,8 +201,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setGenerationsOfDescendants:_generationsOfDescendants];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setGenerationsOfDescendants:_generationsOfDescendants];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_generationsOfDescendants) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -236,8 +235,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setOrdinanceFlag:_ordinanceFlag];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setOrdinanceFlag:_ordinanceFlag];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_ordinanceFlag) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -283,8 +282,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -310,8 +309,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_userReferenceNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -331,8 +330,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_recordIdNumber) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -365,8 +364,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_changeInfo) {
 		[obj setValue:nil forKey:@"describedObject"];

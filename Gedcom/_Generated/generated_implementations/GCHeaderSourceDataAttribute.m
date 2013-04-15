@@ -5,7 +5,6 @@
 #import "GCHeaderSourceDataAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCCopyrightAttribute.h"
 #import "GCDateAttribute.h"
@@ -70,8 +69,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_date) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -104,8 +103,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCHeaderSourceDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCopyright:_copyright];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCHeaderSourceDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] setCopyright:_copyright];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_copyright) {
 		[obj setValue:nil forKey:@"describedObject"];

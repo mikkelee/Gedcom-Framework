@@ -33,10 +33,14 @@
 
 @property (nonatomic) NSArray *subNodes;
 
+@property (nonatomic, readonly) NSUndoManager *undoManager;
+
 @end
 
 @interface GCEntity ()
 
 - (id)_initWithType:(NSString *)type inContext:(GCContext *)context;
+
+@property (nonatomic, readonly) NSString *xref;
 
 @end

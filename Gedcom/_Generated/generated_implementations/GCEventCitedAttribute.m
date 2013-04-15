@@ -5,7 +5,6 @@
 #import "GCEventCitedAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCRoleAttribute.h"
 
@@ -68,8 +67,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCEventCitedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setRole:_role];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCEventCitedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setRole:_role];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_role) {
 		[obj setValue:nil forKey:@"describedObject"];

@@ -45,7 +45,7 @@
     GCParameterAssert(_target);
     
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:[self.context _xrefForEntity:_target]
+								 value:_target.xref
 								  xref:nil
 							  subNodes:self.subNodes];
 }
@@ -84,7 +84,7 @@
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (describing: %p target: %@) {\n%@%@};\n", indent, [self className], self, self.describedObject, _target ? [self.context _xrefForEntity:_target] : nil, [self _propertyDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (describing: %p target: %@) {\n%@%@};\n", indent, [self className], self, self.describedObject, _target.xref, [self _propertyDescriptionWithIndent:level+1], indent];
 }
 //COV_NF_END
 
@@ -166,13 +166,13 @@
 
 - (NSString *)displayValue
 {
-    return [self.context _xrefForEntity:_target];
+    return _target.xref;
 }
 
 - (NSAttributedString *)attributedDisplayValue
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue 
-                                           attributes:@{NSLinkAttributeName: [self.context _xrefForEntity:_target]}];
+                                           attributes:@{NSLinkAttributeName: _target.xref}];
 }
 
 @end

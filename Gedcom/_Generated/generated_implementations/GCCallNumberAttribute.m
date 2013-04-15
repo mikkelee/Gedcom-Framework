@@ -5,7 +5,6 @@
 #import "GCCallNumberAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCMediaTypeAttribute.h"
 
@@ -68,8 +67,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCCallNumberAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setMediaType:_mediaType];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCCallNumberAttribute *)[self.undoManager prepareWithInvocationTarget:self] setMediaType:_mediaType];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_mediaType) {
 		[obj setValue:nil forKey:@"describedObject"];

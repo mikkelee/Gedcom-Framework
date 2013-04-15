@@ -52,8 +52,8 @@ collectionAccessorsT = Template("""
 													      value:self.type
 														  table:@"Misc"];
     
-	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -79,8 +79,8 @@ collectionAccessorsT = Template("""
 															  value:self.type
 															  table:@"Misc"];
     
-	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_$name[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -101,8 +101,8 @@ singleAccessorsT = Template("""
 															  value:self.type
 															  table:@"Misc"];
     
-	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_$name) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -152,7 +152,6 @@ implementationFileT = Template("""/*
 #import "$className.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 $includeHeaders
 

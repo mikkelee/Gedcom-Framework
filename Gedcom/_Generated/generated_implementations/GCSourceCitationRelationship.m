@@ -5,7 +5,6 @@
 #import "GCSourceCitationRelationship.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCDataAttribute.h"
 #import "GCEventCitedAttribute.h"
@@ -67,8 +66,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setPage:_page];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] setPage:_page];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_page) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -101,8 +100,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setData:_data];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] setData:_data];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_data) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -135,8 +134,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setEventCited:_eventCited];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] setEventCited:_eventCited];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_eventCited) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -169,8 +168,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setQualityOfData:_qualityOfData];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] setQualityOfData:_qualityOfData];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_qualityOfData) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -217,8 +216,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -244,8 +243,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_multimediaReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -278,8 +277,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -305,8 +304,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_multimediaEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -340,8 +339,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -367,8 +366,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -401,8 +400,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -428,8 +427,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCSourceCitationRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCSourceCitationRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	

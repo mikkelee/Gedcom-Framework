@@ -5,7 +5,6 @@
 #import "GCPlaceFormatSpecifierAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCPlaceFormatAttribute.h"
 
@@ -68,8 +67,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCPlaceFormatSpecifierAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlaceFormat:_placeFormat];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCPlaceFormatSpecifierAttribute *)[self.undoManager prepareWithInvocationTarget:self] setPlaceFormat:_placeFormat];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_placeFormat) {
 		[obj setValue:nil forKey:@"describedObject"];

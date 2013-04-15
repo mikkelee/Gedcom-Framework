@@ -18,7 +18,6 @@
 #import "GCGedcomFormatAttribute.h"
 #import "GCSubmitterEntity.h"
 #import "GCSubmitterReferenceRelationship.h"
-#import "GCSubmissionEntity.h"
 
 @implementation GCHeaderEntity (GCObjectAdditions)
 

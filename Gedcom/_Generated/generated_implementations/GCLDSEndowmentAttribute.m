@@ -5,7 +5,6 @@
 #import "GCLDSEndowmentAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCDateAttribute.h"
 #import "GCLDSEndowmentStatusAttribute.h"
@@ -85,8 +84,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setLDSEndowmentStatus:_lDSEndowmentStatus];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] setLDSEndowmentStatus:_lDSEndowmentStatus];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_lDSEndowmentStatus) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -119,8 +118,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] setDate:_date];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_date) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -153,8 +152,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTemple:_temple];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] setTemple:_temple];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_temple) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -187,8 +186,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlace:_place];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] setPlace:_place];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_place) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -235,8 +234,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -262,8 +261,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_sourceCitations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -296,8 +295,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -323,8 +322,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_sourceEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -358,8 +357,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -385,8 +384,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -419,8 +418,8 @@
 													      value:self.type
 														  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -446,8 +445,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCLDSEndowmentAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCLDSEndowmentAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	

@@ -16,7 +16,6 @@
 #import "GCNoteReferenceRelationship.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 @interface GCChangeInfoAttribute ()
 
@@ -111,8 +110,8 @@
                                                           value:self.type
                                                           table:@"Misc"];
     
-    [(GCChangeInfoAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+    [(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -128,7 +127,21 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+                                                          value:self.type
+                                                          table:@"Misc"];
+    
+	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
+	
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -154,8 +167,8 @@
                                                           value:self.type
                                                           table:@"Misc"];
     
-	[(GCChangeInfoAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -171,7 +184,21 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+                                                          value:self.type
+                                                          table:@"Misc"];
+    
+	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
+	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 

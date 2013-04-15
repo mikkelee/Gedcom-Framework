@@ -5,7 +5,6 @@
 #import "GCAdoptedIntoFamilyRelationship.h"
 
 #import "GCObject_internal.h"
-#import "GCContext_internal.h"
 
 #import "GCAdoptedByWhichParentAttribute.h"
 
@@ -50,8 +49,8 @@
 															  value:self.type
 															  table:@"Misc"];
     
-	[(GCAdoptedIntoFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setAdoptedByWhichParent:_adoptedByWhichParent];
-	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[(GCAdoptedIntoFamilyRelationship *)[self.undoManager prepareWithInvocationTarget:self] setAdoptedByWhichParent:_adoptedByWhichParent];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_adoptedByWhichParent) {
 		[obj setValue:nil forKey:@"describedObject"];
