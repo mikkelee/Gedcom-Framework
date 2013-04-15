@@ -159,6 +159,11 @@
     return self;
 }
 
+- (NSUndoManager *)undoManager
+{
+    return self.context.undoManager;
+}
+
 @synthesize value = _value;
 
 - (void)setValue:(GCString *)value
@@ -171,6 +176,16 @@
 - (NSString *)xref
 {
     return [self.context _xrefForEntity:self];
+}
+
+- (NSURL *)URL
+{
+    return [[NSURL alloc] initWithString:[NSString stringWithFormat:
+                                          @"%@://%@/%@",
+                                          @"xref",
+                                          self.context.name,
+                                          self.xref
+                                          ]];
 }
 
 @synthesize context = _context;
@@ -212,36 +227,6 @@
     }
     
     [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
-}
-
-@end
-
-@implementation GCEntity (GCGedcomLoadingAdditions)
-
-- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
-{
-    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
-    
-    if (tag.hasXref) {
-        self = [context _entityForXref:node.xref create:YES withClass:tag.objectClass];
-    } else if (tag.isCustom) {
-        self = [self _initWithType:tag.name inContext:context];
-    } else {
-        self = [self initInContext:context];
-    }
-    
-    if (self) {
-        _isBuildingFromGedcom = YES;
-        
-        if (tag.hasValue)
-            self.value = [GCString valueWithGedcomString:node.gedValue];
-        
-        [self addPropertiesWithGedcomNodes:node.subNodes];
-        
-        _isBuildingFromGedcom = NO;
-    }
-    
-    return self;
 }
 
 @end

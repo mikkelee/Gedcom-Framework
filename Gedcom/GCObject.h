@@ -120,46 +120,6 @@
 
 @property (nonatomic, readonly) NSMutableArray *mutableCustomProperties;
 
-@end
-
-#pragma mark -
-
-@class GCValue;
-@class GCEntity;
-
-@interface GCObject (GCConvenienceMethods)
-
-/// @name Accessing GCProperties
-
-/** Creates a GCProperty based on the node and adds it to the receiver via Key-Value coding.
- 
- @param node A node.
- */
-- (void)addPropertyWithGedcomNode:(GCNode *)node;
-
-/** Creates a collection of GCProperties based on the nodes and adds them to the receiver via Key-Value coding.
- 
- @param nodes An array of nodes.
- */
-- (void)addPropertiesWithGedcomNodes:(NSArray *)nodes;
+@property (nonatomic, readonly) NSURL *URL;
 
 @end
-
-#pragma mark -
-
-@interface GCObject (GCValidationMethods)
-
-/// @name Validating objects
-
-/** Returns whether the receiver is a valid Gedcom object.
- 
- If the object is invalid, the error pointer will be updated with an NSError describing the problem.
- 
- @param error A pointer to an NSError object
- @return `YES` if the object is valid, otherwise `NO`.
- */
-- (BOOL)validateObject:(NSError **)error;
-
-@end
-
-#import "GCObject+GCKeyValueAdditions.h"

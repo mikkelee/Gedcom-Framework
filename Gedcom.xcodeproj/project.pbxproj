@@ -103,6 +103,12 @@
 		3E8C1EA01626BECE005B3BE6 /* GCObject+GCSanityCheckAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1E9516264861005B3BE6 /* GCObject+GCSanityCheckAdditions.m */; };
 		3E8C1EA11626BED7005B3BE6 /* sanity.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C1E9216264837005B3BE6 /* sanity.json */; };
 		3E8F87C1171C9FDB003111D2 /* GedcomTypedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C0171C9F42003111D2 /* GedcomTypedefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E8F87C4171CAE01003111D2 /* GCObject+GCConvenienceMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceMethods.h */; };
+		3E8F87C5171CAE01003111D2 /* GCObject+GCConvenienceMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceMethods.m */; };
+		3E8F87C8171CAE0D003111D2 /* GCValidationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C6171CAE0D003111D2 /* GCValidationMethods.h */; };
+		3E8F87C9171CAE0D003111D2 /* GCValidationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87C7171CAE0D003111D2 /* GCValidationMethods.m */; };
+		3E8F87CC171CAFFD003111D2 /* GCGedcomLoadingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */; };
+		3E8F87CD171CAFFD003111D2 /* GCGedcomLoadingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */; };
 		3EAF25261710D3FC00385071 /* GCRelationship+GCReverseRelationshipAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */; };
 		3EB5ABD6153619280036B4D5 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json */; };
 		3EB826761719C54F004C1811 /* GCObjects_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EB8253D1719C54E004C1811 /* GCObjects_generated.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -612,6 +618,12 @@
 		3E8C1E98162648DF005B3BE6 /* GCIndividualEntity+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCIndividualEntity+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3E8C1E9C1626BBA5005B3BE6 /* GCSanityCheckTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSanityCheckTests.m; sourceTree = "<group>"; };
 		3E8F87C0171C9F42003111D2 /* GedcomTypedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomTypedefs.h; sourceTree = "<group>"; };
+		3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCConvenienceMethods.h"; sourceTree = "<group>"; };
+		3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCConvenienceMethods.m"; sourceTree = "<group>"; };
+		3E8F87C6171CAE0D003111D2 /* GCValidationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValidationMethods.h; sourceTree = "<group>"; };
+		3E8F87C7171CAE0D003111D2 /* GCValidationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValidationMethods.m; sourceTree = "<group>"; };
+		3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomLoadingAdditions.h; sourceTree = "<group>"; };
+		3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomLoadingAdditions.m; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
 		3EB8253D1719C54E004C1811 /* GCObjects_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjects_generated.h; sourceTree = "<group>"; };
 		3EB8253F1719C54E004C1811 /* GCAbbreviationAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAbbreviationAttribute.h; sourceTree = "<group>"; };
@@ -1032,6 +1044,12 @@
 				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
 				3EF136A5171C497400EDB33C /* GCObject+GCHelpers.h */,
 				3EF136A6171C497500EDB33C /* GCObject+GCHelpers.m */,
+				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceMethods.h */,
+				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceMethods.m */,
+				3E8F87C6171CAE0D003111D2 /* GCValidationMethods.h */,
+				3E8F87C7171CAE0D003111D2 /* GCValidationMethods.m */,
+				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
+				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
 				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
 				3E43DC67171C99D600A9A497 /* GCEntity_internal.h */,
 				3E5F50C8151E02C300A433A6 /* GCEntity.m */,
@@ -1886,6 +1904,9 @@
 				3E325D2D170D0CC800109A18 /* GCNodeParserDelegate.h in Headers */,
 				3EF13698171B43EF00EDB33C /* GCNode_internal.h in Headers */,
 				3E8F87C1171C9FDB003111D2 /* GedcomTypedefs.h in Headers */,
+				3E8F87C4171CAE01003111D2 /* GCObject+GCConvenienceMethods.h in Headers */,
+				3E8F87C8171CAE0D003111D2 /* GCValidationMethods.h in Headers */,
+				3E8F87CC171CAFFD003111D2 /* GCGedcomLoadingAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2307,6 +2328,9 @@
 				3E4E8437171ADFFE00889651 /* GCDateParser.rl in Sources */,
 				3EF136A4171C0E7800EDB33C /* GCContext+GCKeyValueAdditions.m in Sources */,
 				3EF136A8171C497600EDB33C /* GCObject+GCHelpers.m in Sources */,
+				3E8F87C5171CAE01003111D2 /* GCObject+GCConvenienceMethods.m in Sources */,
+				3E8F87C9171CAE0D003111D2 /* GCValidationMethods.m in Sources */,
+				3E8F87CD171CAFFD003111D2 /* GCGedcomLoadingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

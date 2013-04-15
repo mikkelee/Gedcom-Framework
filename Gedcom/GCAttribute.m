@@ -115,23 +115,6 @@
 
 @end
 
-@implementation GCAttribute (GCGedcomLoadingAdditions)
-
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
-{
-    self = [super initWithGedcomNode:node onObject:object];
-    
-    if (self) {
-        if (node.gedValue) {
-            [self setValueWithGedcomString:node.gedValue];
-        }
-    }
-    
-    return self;
-}
-
-@end
-
 @implementation GCAttribute (GCConvenienceMethods)
 
 - (id)initWithValue:(GCValue *)value
@@ -161,83 +144,6 @@
     NSParameterAssert(self.gedTag.valueType);
     
     self.value = [self.gedTag.valueType valueWithGedcomString:string];
-}
-
-@end
-
-@implementation GCAttribute (GCValidationMethods)
-
-- (BOOL)validateObject:(NSError **)outError
-{
-    BOOL isValid = YES;
-    
-    NSError *returnError = nil;
-    
-    NSError *err = nil;
-    
-    BOOL superValid = [super validateObject:&err];
-    
-    if (!superValid) {
-        isValid &= NO;
-        returnError = combineErrors(returnError, err);
-    }
-    
-    returnError = combineErrors(returnError, err);
-    
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    if (self.gedTag.valueType) {
-        if (_value) {
-            if (![_value isKindOfClass:self.gedTag.valueType]) {
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is incorrect type for %@ (should be %@)"
-                                                                          value:@"Value %@ is incorrect type for %@ (should be %@)"
-                                                                          table:@"Errors"];
-                NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, _value, self.type, self.gedTag.valueType],
-                                           NSAffectedObjectsErrorKey: self
-                                           };
-                
-                returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                             code:GCIncorrectValueTypeError
-                                                                         userInfo:userInfo]);
-                isValid &= NO;
-            } else if ([self.gedTag.allowedValues count] > 0 && ![_value _isContainedInArray:self.gedTag.allowedValues]) {
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is not allowed for %@ (should be one of %@)"
-                                                                          value:@"Value %@ is not allowed for %@ (should be one of %@)"
-                                                                          table:@"Errors"];
-                NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, _value, self.type, self.gedTag.allowedValues],
-                                           NSAffectedObjectsErrorKey: self
-                                           };
-                
-                returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                             code:GCIncorrectValueTypeError
-                                                                         userInfo:userInfo]);
-                isValid &= NO;
-            }
-        } else {
-            if (!self.gedTag.allowsNilValue) {
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value is missing for %@ (should be a %@)"
-                                                                          value:@"Value is missing for %@ (should be a %@)"
-                                                                          table:@"Errors"];
-                NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString,  self.type, self.gedTag.valueType],
-                                           NSAffectedObjectsErrorKey: self
-                                           };
-                
-                returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                             code:GCValueMissingError
-                                                                         userInfo:userInfo]);
-                isValid &= NO;
-            }
-        }
-    }
-    
-    if (!isValid) {
-        *outError = returnError;
-    }
-    
-    return isValid;
 }
 
 @end

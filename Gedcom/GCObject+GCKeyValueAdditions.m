@@ -14,6 +14,9 @@
 #import "GCRelationship.h"
 #import "GCValue.h"
 
+#import "GCObject+GCConvenienceMethods.h"
+#import "GCObject+GCKeyValueAdditions.h"
+
 @implementation GCObject (GCKeyValueAdditions)
 
 #pragma mark NSKeyValueCoding overrides

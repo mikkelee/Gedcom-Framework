@@ -9,10 +9,11 @@
 
 #import "GCObject_internal.h"
 
+#import "GCObject+GCConvenienceMethods.h"
+
 #import "GCNodeParser.h"
 #import "GCNode.h"
 
-#import "GCContext_internal.h"
 #import "GCProperty.h"
 
 __strong static NSMutableDictionary *_validPropertiesByType;
@@ -196,10 +197,11 @@ __strong static NSDictionary *_defaultColors;
 @dynamic gedcomNode;
 @dynamic displayValue;
 @dynamic attributedDisplayValue;
+@dynamic URL;
 
 - (NSUndoManager *)undoManager
 {
-    return self.context.undoManager;
+    return self.rootObject.undoManager;
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
@@ -378,12 +380,7 @@ __strong static NSDictionary *_defaultColors;
                                       } else if (attrs[GCTagAttributeName]) {
                                           [gedcomString addAttribute:NSForegroundColorAttributeName value:colors[GCTagAttributeName] range:range];
                                       } else if (attrs[GCLinkAttributeName]) {
-                                          NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@/%@",
-                                                                                      @"xref",
-                                                                                      [self.context name],
-                                                                                      attrs[GCLinkAttributeName]]];
-                                          
-                                          [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
+                                          [gedcomString addAttribute:NSLinkAttributeName value:self.URL range:range]; //TODO
                                       } else if (attrs[GCValueAttributeName]) {
                                           //nothing
                                       }
@@ -395,125 +392,6 @@ __strong static NSDictionary *_defaultColors;
 - (void)setAttributedGedcomString:(NSAttributedString *)attributedGedcomString
 {
     self.gedcomString = [attributedGedcomString string];
-}
-
-@end
-
-@implementation GCObject (GCConvenienceMethods)
-
-- (void)addPropertyWithGedcomNode:(GCNode *)node
-{
-    GCTag *tag = [self.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
-    
-    if (tag.isCustom) {
-        if (![self.context _shouldHandleCustomTag:tag forNode:node onObject:self]) {
-            return;
-        }
-    }
-    
-    (void)[[tag.objectClass alloc] initWithGedcomNode:node onObject:self];
-}
-
-- (void)addPropertiesWithGedcomNodes:(NSArray *)nodes
-{
-    for (id node in nodes) {
-        [self addPropertyWithGedcomNode:node];
-    }
-}
-
-@end
-
-@implementation GCObject (GCValidationMethods)
-
-- (BOOL)validateObject:(NSError **)outError
-{
-    //NSLog(@"validating: %@", self);
-    
-    BOOL isValid = YES;
-    
-    NSError *returnError = nil;
-    
-    NSSet *propertyKeys = [self.validPropertyTypes set];
-    /*
-     @synchronized (_propertyStore) {
-     propertyKeys = [[NSSet setWithArray:[_propertyStore allKeys]] setByAddingObjectsFromSet:[self.validPropertyTypes set]];
-     }*/
-    
-    for (NSString *propertyKey in propertyKeys) {
-        GCTag *subTag = [GCTag tagNamed:propertyKey];
-        
-        NSInteger propertyCount = 0;
-        
-        if ([self _allowsMultipleOccurrencesOfPropertyType:propertyKey]) {
-            propertyCount = [[self valueForKey:propertyKey] count];
-            
-            for (id property in [self valueForKey:propertyKey]) {
-                NSError *err = nil;
-                
-                BOOL propertyValid = [property validateObject:&err];
-                
-                if (!propertyValid) {
-                    isValid &= NO;
-                    returnError = combineErrors(returnError, err);
-                }
-            }
-        } else {
-            propertyCount = [self valueForKey:propertyKey] ? 1 : 0;
-            
-            if (propertyCount) {
-                NSError *err = nil;
-                
-                BOOL propertyValid = [[self valueForKey:propertyKey] validateObject:&err];
-                
-                if (!propertyValid) {
-                    isValid &= NO;
-                    returnError = combineErrors(returnError, err);
-                }
-            }
-        }
-        
-        GCAllowedOccurrences allowedOccurrences = [self.gedTag allowedOccurrencesOfSubTag:subTag];
-        
-        NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-        
-        if (propertyCount > allowedOccurrences.max) {
-            isValid &= NO;
-            
-            NSString *formatString = [frameworkBundle localizedStringForKey:@"Too many values for key %@ on %@"
-                                                                      value:@"Too many values for key %@ on %@"
-                                                                      table:@"Errors"];
-            NSDictionary *userInfo = @{
-                                       NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, propertyKey, self.type],
-                                       NSAffectedObjectsErrorKey: self
-                                       };
-            
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                         code:GCTooManyValuesError
-                                                                     userInfo:userInfo]);
-        }
-        
-        if (propertyCount < allowedOccurrences.min) {
-            isValid &= NO;
-            
-            NSString *formatString = [frameworkBundle localizedStringForKey:@"Too few values for key %@ on %@"
-                                                                      value:@"Too few values for key %@ on %@"
-                                                                      table:@"Errors"];
-            NSDictionary *userInfo = @{
-                                       NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, propertyKey, self.type],
-                                       NSAffectedObjectsErrorKey: self
-                                       };
-            
-            returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                         code:GCTooFewValuesError
-                                                                     userInfo:userInfo]);
-        }
-    }
-    
-    if (!isValid && outError != NULL) {
-        *outError = returnError;
-    }
-    
-    return isValid;
 }
 
 @end

@@ -140,7 +140,7 @@
         if (target && self.other.rootObject != target) {
             //NSLog(@"test: %@", [target[self.reverseRelationshipType] valueForKey:@"target"]);
             
-            if (![[target[self.reverseRelationshipType] valueForKey:@"target"] containsObject:self.rootObject]) {
+            if (![[[target valueForKey:self.reverseRelationshipType] valueForKey:@"target"] containsObject:self.rootObject]) {
                 // set up new reverse relationship
                 //NSLog(@"Adding reverse relationship %@ with target: %@", self.reverseRelationshipType, self.rootObject);
                 
@@ -173,97 +173,6 @@
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue 
                                            attributes:@{NSLinkAttributeName: _target.xref}];
-}
-
-@end
-
-@implementation GCRelationship (GCGedcomLoadingAdditions)
-
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
-//TODO: cleanup
-{
-    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
-    
-    id target = [object.context _entityForXref:node.gedValue create:YES withClass:tag.targetType];
-    
-    if ([object.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
-        if ([[object[tag.pluralName] valueForKey:@"target"] containsObject:target]) {
-            return nil; // already exists
-        }
-    } else {
-        if ([object[tag.name] valueForKey:@"target"] == target) {
-            return nil; // already exists
-        }
-    }
-    
-    self = [super initWithGedcomNode:node onObject:object];
-    
-    if (self) {
-        NSParameterAssert(self.describedObject == object);
-        GCParameterAssert(object.context);
-        
-        self.target = target;
-        
-        NSParameterAssert(self.target);
-    }
-    
-    return self;
-}
-
-@end
-
-@implementation GCRelationship (GCValidationMethods)
-
-- (BOOL)validateObject:(NSError **)outError
-{
-    BOOL isValid = YES;
-    
-    NSError *returnError = nil;
-    
-    NSError *err = nil;
-    
-    BOOL superValid = [super validateObject:&err];
-    
-    if (!superValid) {
-        isValid &= NO;
-        returnError = combineErrors(returnError, err);
-    }
-    
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    if (_target == nil) {
-        NSString *formatString = [frameworkBundle localizedStringForKey:@"Target is missing for key %@ (should be a %@)"
-                                                                  value:@"Target is missing for key %@ (should be a %@)"
-                                                                  table:@"Errors"];
-        NSDictionary *userInfo = @{
-                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.type, self.gedTag.targetType],
-                                   NSAffectedObjectsErrorKey: self
-                                   };
-        
-        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                   code:GCTargetMissingError
-                                                                 userInfo:userInfo]);
-        isValid &= NO;
-    } else if (![_target isKindOfClass:self.gedTag.targetType]) {
-        NSString *formatString = [frameworkBundle localizedStringForKey:@"Target %@ is incorrect type for key %@ (should be %@)"
-                                                                  value:@"Target %@ is incorrect type for key %@ (should be %@)"
-                                                                  table:@"Errors"];
-        NSDictionary *userInfo = @{
-                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, _target, self.type, self.gedTag.targetType],
-                                   NSAffectedObjectsErrorKey: self
-                                   };
-        
-        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
-                                                                     code:GCIncorrectTargetTypeError
-                                                                 userInfo:userInfo]);
-        isValid &= NO;
-    }
-    
-    if (!isValid) {
-        *outError = returnError;
-    }
-    
-    return isValid;
 }
 
 @end

@@ -21,6 +21,10 @@
 
 #import "CharacterSetHelpers.h"
 
+#import "GCGedcomLoadingAdditions.h"
+
+#import "GCObject+GCKeyValueAdditions.h"
+
 @interface GCTrailerEntity : NSObject //empty class to match trailer objects
 @end
 @implementation GCTrailerEntity
@@ -527,40 +531,6 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(useEncoding != GCANSELFileEncoding);
     
     return [self.gedcomString dataUsingEncoding:useEncoding];
-}
-
-@end
-
-#pragma mark -
-
-NSString *GCErrorDomain = @"GCErrorDomain";
-
-@implementation GCContext (GCValidationMethods)
-
-- (BOOL)validateContext:(NSError *__autoreleasing *)error
-{
-    BOOL isValid = YES;
-    NSError *returnError = nil;
-    
-    // TODO validate missing header!
-    
-    for (GCEntity *entity in self.mutableEntities) {
-        //NSLog(@"validating %@", [self xrefForEntity:entity]);
-        
-        NSError *err = nil;
-        
-        isValid &= [entity validateObject:&err];
-        
-        if (err) {
-            returnError = combineErrors(returnError, err);
-        }
-    }
-    
-    if (!isValid) {
-        *error = returnError;
-    }
-    
-    return isValid;
 }
 
 @end
