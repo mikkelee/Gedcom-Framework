@@ -16,8 +16,7 @@
 #import "GCNoteReferenceRelationship.h"
 
 #import "GCObject_internal.h"
-
-#import "GCProperty_internal.h"
+#import "GCContext_internal.h"
 
 @interface GCChangeInfoAttribute ()
 
@@ -101,15 +100,25 @@
 
 - (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+
+    [(GCChangeInfoAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
 	}
-	obj.describedObject = self;
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+    
     [_noteReferences insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-    ((GCProperty *)_noteReferences[index]).describedObject = nil;
+	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
     [_noteReferences removeObjectAtIndex:index];
 }
 
@@ -124,15 +133,25 @@
 
 - (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+    
+	[(GCChangeInfoAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
+	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
 	}
-	obj.describedObject = self;
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+    
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-    ((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
 

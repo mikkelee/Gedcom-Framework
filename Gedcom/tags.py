@@ -39,19 +39,22 @@ collectionAccessorsT = Template("""
     return [_$name objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj in${capName}AtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj in${capName}AtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[$type class]]);
 	
 	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
 	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_$name insertObject:obj atIndex:index];
 }
 
@@ -59,27 +62,27 @@ collectionAccessorsT = Template("""
 	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
 	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
 	
-	((GCProperty *)_$name[index]).describedObject = nil;
+	[((GCObject *)_$name[index]) setValue:nil forKey:@"describedObject"];
 	
     [_$name removeObjectAtIndex:index];
 }
 	""")
 
 singleAccessorsT = Template("""
-- (void)set$capName:(GCProperty *)obj
+- (void)set$capName:(id)obj
 {
 	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
 	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
 	
 	if (_$name) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_$name = (id)obj;
 }
@@ -120,7 +123,6 @@ implementationFileT = Template("""/*
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 $includeHeaders
 

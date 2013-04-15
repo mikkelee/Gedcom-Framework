@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCGedcomFormatAttribute.h"
 #import "GCVersionAttribute.h"
@@ -59,20 +58,20 @@
 
 // Properties:
 
-- (void)setVersion:(GCProperty *)obj
+- (void)setVersion:(id)obj
 {
 	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
 	[self.context.undoManager setActionName:@"Undo version"]; //TODO
 	
 	if (_version) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_version = (id)obj;
 }
@@ -83,20 +82,20 @@
 }
 
 
-- (void)setGedcomFormat:(GCProperty *)obj
+- (void)setGedcomFormat:(id)obj
 {
 	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setGedcomFormat:_gedcomFormat];
 	[self.context.undoManager setActionName:@"Undo gedcomFormat"]; //TODO
 	
 	if (_gedcomFormat) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_gedcomFormat = (id)obj;
 }

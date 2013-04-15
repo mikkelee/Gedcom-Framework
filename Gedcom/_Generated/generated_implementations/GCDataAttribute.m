@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCDateAttribute.h"
 #import "GCTextAttribute.h"
@@ -59,20 +58,20 @@
 
 // Properties:
 
-- (void)setDate:(GCProperty *)obj
+- (void)setDate:(id)obj
 {
 	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
 	[self.context.undoManager setActionName:@"Undo date"]; //TODO
 	
 	if (_date) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_date = (id)obj;
 }
@@ -95,19 +94,22 @@
     return [_texts objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inTextsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inTextsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTextAttribute class]]);
 	
 	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo texts"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_texts insertObject:obj atIndex:index];
 }
 
@@ -115,7 +117,7 @@
 	[(GCDataAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_texts[index] inTextsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo texts"]; //TODO
 	
-	((GCProperty *)_texts[index]).describedObject = nil;
+	[((GCObject *)_texts[index]) setValue:nil forKey:@"describedObject"];
 	
     [_texts removeObjectAtIndex:index];
 }

@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCDateAttribute.h"
 #import "GCPlaceAttribute.h"
@@ -59,20 +58,20 @@
 
 // Properties:
 
-- (void)setDate:(GCProperty *)obj
+- (void)setDate:(id)obj
 {
 	[(GCEventsRecordedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDate:_date];
 	[self.context.undoManager setActionName:@"Undo date"]; //TODO
 	
 	if (_date) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_date = (id)obj;
 }
@@ -83,20 +82,20 @@
 }
 
 
-- (void)setPlace:(GCProperty *)obj
+- (void)setPlace:(id)obj
 {
 	[(GCEventsRecordedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPlace:_place];
 	[self.context.undoManager setActionName:@"Undo place"]; //TODO
 	
 	if (_place) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_place = (id)obj;
 }

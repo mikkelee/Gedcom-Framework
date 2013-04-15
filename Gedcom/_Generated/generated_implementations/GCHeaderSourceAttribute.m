@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCCorporationAttribute.h"
 #import "GCDescriptiveNameAttribute.h"
@@ -63,20 +62,20 @@
 
 // Properties:
 
-- (void)setVersion:(GCProperty *)obj
+- (void)setVersion:(id)obj
 {
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
 	[self.context.undoManager setActionName:@"Undo version"]; //TODO
 	
 	if (_version) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_version = (id)obj;
 }
@@ -87,20 +86,20 @@
 }
 
 
-- (void)setDescriptiveName:(GCProperty *)obj
+- (void)setDescriptiveName:(id)obj
 {
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
 	[self.context.undoManager setActionName:@"Undo descriptiveName"]; //TODO
 	
 	if (_descriptiveName) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_descriptiveName = (id)obj;
 }
@@ -111,20 +110,20 @@
 }
 
 
-- (void)setCorporation:(GCProperty *)obj
+- (void)setCorporation:(id)obj
 {
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCorporation:_corporation];
 	[self.context.undoManager setActionName:@"Undo corporation"]; //TODO
 	
 	if (_corporation) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_corporation = (id)obj;
 }
@@ -135,20 +134,20 @@
 }
 
 
-- (void)setHeaderSourceData:(GCProperty *)obj
+- (void)setHeaderSourceData:(id)obj
 {
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderSourceData:_headerSourceData];
 	[self.context.undoManager setActionName:@"Undo headerSourceData"]; //TODO
 	
 	if (_headerSourceData) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_headerSourceData = (id)obj;
 }

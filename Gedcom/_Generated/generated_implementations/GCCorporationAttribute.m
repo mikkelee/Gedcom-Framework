@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCAddressAttribute.h"
 #import "GCPhoneNumberAttribute.h"
@@ -59,20 +58,20 @@
 
 // Properties:
 
-- (void)setAddress:(GCProperty *)obj
+- (void)setAddress:(id)obj
 {
 	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddress:_address];
 	[self.context.undoManager setActionName:@"Undo address"]; //TODO
 	
 	if (_address) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_address = (id)obj;
 }
@@ -95,19 +94,22 @@
     return [_phoneNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inPhoneNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
 	
 	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_phoneNumbers insertObject:obj atIndex:index];
 }
 
@@ -115,7 +117,7 @@
 	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
 	
-	((GCProperty *)_phoneNumbers[index]).describedObject = nil;
+	[((GCObject *)_phoneNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_phoneNumbers removeObjectAtIndex:index];
 }

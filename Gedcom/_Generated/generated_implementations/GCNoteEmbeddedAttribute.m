@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCSourceCitationRelationship.h"
 #import "GCSourceEmbeddedAttribute.h"
@@ -73,19 +72,22 @@
     return [_sourceCitations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSourceCitationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
 	
 	[(GCNoteEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
@@ -93,7 +95,7 @@
 	[(GCNoteEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
 	
-	((GCProperty *)_sourceCitations[index]).describedObject = nil;
+	[((GCObject *)_sourceCitations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_sourceCitations removeObjectAtIndex:index];
 }
@@ -111,19 +113,22 @@
     return [_sourceEmbeddeds objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
 	
 	[(GCNoteEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
@@ -131,7 +136,7 @@
 	[(GCNoteEmbeddedAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
 	
-	((GCProperty *)_sourceEmbeddeds[index]).describedObject = nil;
+	[((GCObject *)_sourceEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }

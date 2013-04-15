@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCChangeInfoAttribute.h"
 #import "GCFamilyFileAttribute.h"
@@ -55,20 +54,20 @@
 
 // Properties:
 
-- (void)setSubmitterReference:(GCProperty *)obj
+- (void)setSubmitterReference:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
 	[self.context.undoManager setActionName:@"Undo submitterReference"]; //TODO
 	
 	if (_submitterReference) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_submitterReference = (id)obj;
 }
@@ -79,20 +78,20 @@
 }
 
 
-- (void)setFamilyFile:(GCProperty *)obj
+- (void)setFamilyFile:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setFamilyFile:_familyFile];
 	[self.context.undoManager setActionName:@"Undo familyFile"]; //TODO
 	
 	if (_familyFile) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_familyFile = (id)obj;
 }
@@ -103,20 +102,20 @@
 }
 
 
-- (void)setTemple:(GCProperty *)obj
+- (void)setTemple:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setTemple:_temple];
 	[self.context.undoManager setActionName:@"Undo temple"]; //TODO
 	
 	if (_temple) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_temple = (id)obj;
 }
@@ -127,20 +126,20 @@
 }
 
 
-- (void)setGenerationsOfAncestors:(GCProperty *)obj
+- (void)setGenerationsOfAncestors:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setGenerationsOfAncestors:_generationsOfAncestors];
 	[self.context.undoManager setActionName:@"Undo generationsOfAncestors"]; //TODO
 	
 	if (_generationsOfAncestors) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_generationsOfAncestors = (id)obj;
 }
@@ -151,20 +150,20 @@
 }
 
 
-- (void)setGenerationsOfDescendants:(GCProperty *)obj
+- (void)setGenerationsOfDescendants:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setGenerationsOfDescendants:_generationsOfDescendants];
 	[self.context.undoManager setActionName:@"Undo generationsOfDescendants"]; //TODO
 	
 	if (_generationsOfDescendants) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_generationsOfDescendants = (id)obj;
 }
@@ -175,20 +174,20 @@
 }
 
 
-- (void)setOrdinanceFlag:(GCProperty *)obj
+- (void)setOrdinanceFlag:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setOrdinanceFlag:_ordinanceFlag];
 	[self.context.undoManager setActionName:@"Undo ordinanceFlag"]; //TODO
 	
 	if (_ordinanceFlag) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_ordinanceFlag = (id)obj;
 }
@@ -211,19 +210,22 @@
     return [_userReferenceNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
 	
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
@@ -231,26 +233,26 @@
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
 	
-	((GCProperty *)_userReferenceNumbers[index]).describedObject = nil;
+	[((GCObject *)_userReferenceNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 	
 
-- (void)setRecordIdNumber:(GCProperty *)obj
+- (void)setRecordIdNumber:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
 	[self.context.undoManager setActionName:@"Undo recordIdNumber"]; //TODO
 	
 	if (_recordIdNumber) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_recordIdNumber = (id)obj;
 }
@@ -261,20 +263,20 @@
 }
 
 
-- (void)setChangeInfo:(GCProperty *)obj
+- (void)setChangeInfo:(id)obj
 {
 	[(GCSubmissionEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
 	[self.context.undoManager setActionName:@"Undo changeInfo"]; //TODO
 	
 	if (_changeInfo) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
 }

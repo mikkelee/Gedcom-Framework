@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCAdoptionAttribute.h"
 #import "GCAdultChristeningAttribute.h"
@@ -218,20 +217,20 @@
 
 // Properties:
 
-- (void)setRestrictionNotice:(GCProperty *)obj
+- (void)setRestrictionNotice:(id)obj
 {
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRestrictionNotice:_restrictionNotice];
 	[self.context.undoManager setActionName:@"Undo restrictionNotice"]; //TODO
 	
 	if (_restrictionNotice) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_restrictionNotice = (id)obj;
 }
@@ -254,19 +253,22 @@
     return [_personalNames objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inPersonalNamesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inPersonalNamesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPersonalNameAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPersonalNamesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo personalNames"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_personalNames insertObject:obj atIndex:index];
 }
 
@@ -274,26 +276,26 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_personalNames[index] inPersonalNamesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo personalNames"]; //TODO
 	
-	((GCProperty *)_personalNames[index]).describedObject = nil;
+	[((GCObject *)_personalNames[index]) setValue:nil forKey:@"describedObject"];
 	
     [_personalNames removeObjectAtIndex:index];
 }
 	
 
-- (void)setSex:(GCProperty *)obj
+- (void)setSex:(id)obj
 {
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSex:_sex];
 	[self.context.undoManager setActionName:@"Undo sex"]; //TODO
 	
 	if (_sex) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_sex = (id)obj;
 }
@@ -317,19 +319,22 @@
     return [_births objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inBirthsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inBirthsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBirthAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBirthsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo births"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_births insertObject:obj atIndex:index];
 }
 
@@ -337,7 +342,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_births[index] inBirthsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo births"]; //TODO
 	
-	((GCProperty *)_births[index]).describedObject = nil;
+	[((GCObject *)_births[index]) setValue:nil forKey:@"describedObject"];
 	
     [_births removeObjectAtIndex:index];
 }
@@ -355,19 +360,22 @@
     return [_christenings objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inChristeningsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inChristeningsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChristeningAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromChristeningsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo christenings"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_christenings insertObject:obj atIndex:index];
 }
 
@@ -375,7 +383,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_christenings[index] inChristeningsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo christenings"]; //TODO
 	
-	((GCProperty *)_christenings[index]).describedObject = nil;
+	[((GCObject *)_christenings[index]) setValue:nil forKey:@"describedObject"];
 	
     [_christenings removeObjectAtIndex:index];
 }
@@ -393,19 +401,22 @@
     return [_deaths objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inDeathsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inDeathsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDeathAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromDeathsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo deaths"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_deaths insertObject:obj atIndex:index];
 }
 
@@ -413,7 +424,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_deaths[index] inDeathsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo deaths"]; //TODO
 	
-	((GCProperty *)_deaths[index]).describedObject = nil;
+	[((GCObject *)_deaths[index]) setValue:nil forKey:@"describedObject"];
 	
     [_deaths removeObjectAtIndex:index];
 }
@@ -431,19 +442,22 @@
     return [_burials objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inBurialsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inBurialsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBurialAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBurialsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo burials"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_burials insertObject:obj atIndex:index];
 }
 
@@ -451,7 +465,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_burials[index] inBurialsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo burials"]; //TODO
 	
-	((GCProperty *)_burials[index]).describedObject = nil;
+	[((GCObject *)_burials[index]) setValue:nil forKey:@"describedObject"];
 	
     [_burials removeObjectAtIndex:index];
 }
@@ -469,19 +483,22 @@
     return [_cremations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inCremationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inCremationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCremationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCremationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo cremations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_cremations insertObject:obj atIndex:index];
 }
 
@@ -489,7 +506,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_cremations[index] inCremationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo cremations"]; //TODO
 	
-	((GCProperty *)_cremations[index]).describedObject = nil;
+	[((GCObject *)_cremations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_cremations removeObjectAtIndex:index];
 }
@@ -507,19 +524,22 @@
     return [_adoptions objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inAdoptionsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inAdoptionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAdoptionAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAdoptionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo adoptions"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_adoptions insertObject:obj atIndex:index];
 }
 
@@ -527,7 +547,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_adoptions[index] inAdoptionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo adoptions"]; //TODO
 	
-	((GCProperty *)_adoptions[index]).describedObject = nil;
+	[((GCObject *)_adoptions[index]) setValue:nil forKey:@"describedObject"];
 	
     [_adoptions removeObjectAtIndex:index];
 }
@@ -545,19 +565,22 @@
     return [_baptisms objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inBaptismsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inBaptismsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBaptismAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBaptismsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo baptisms"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_baptisms insertObject:obj atIndex:index];
 }
 
@@ -565,7 +588,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_baptisms[index] inBaptismsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo baptisms"]; //TODO
 	
-	((GCProperty *)_baptisms[index]).describedObject = nil;
+	[((GCObject *)_baptisms[index]) setValue:nil forKey:@"describedObject"];
 	
     [_baptisms removeObjectAtIndex:index];
 }
@@ -583,19 +606,22 @@
     return [_barMitzvahs objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inBarMitzvahsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inBarMitzvahsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBarMitzvahAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBarMitzvahsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo barMitzvahs"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_barMitzvahs insertObject:obj atIndex:index];
 }
 
@@ -603,7 +629,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_barMitzvahs[index] inBarMitzvahsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo barMitzvahs"]; //TODO
 	
-	((GCProperty *)_barMitzvahs[index]).describedObject = nil;
+	[((GCObject *)_barMitzvahs[index]) setValue:nil forKey:@"describedObject"];
 	
     [_barMitzvahs removeObjectAtIndex:index];
 }
@@ -621,19 +647,22 @@
     return [_basMitzvahs objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inBasMitzvahsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inBasMitzvahsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBasMitzvahAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBasMitzvahsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo basMitzvahs"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_basMitzvahs insertObject:obj atIndex:index];
 }
 
@@ -641,7 +670,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_basMitzvahs[index] inBasMitzvahsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo basMitzvahs"]; //TODO
 	
-	((GCProperty *)_basMitzvahs[index]).describedObject = nil;
+	[((GCObject *)_basMitzvahs[index]) setValue:nil forKey:@"describedObject"];
 	
     [_basMitzvahs removeObjectAtIndex:index];
 }
@@ -659,19 +688,22 @@
     return [_blessings objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inBlessingsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inBlessingsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBlessingAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBlessingsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo blessings"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_blessings insertObject:obj atIndex:index];
 }
 
@@ -679,7 +711,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_blessings[index] inBlessingsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo blessings"]; //TODO
 	
-	((GCProperty *)_blessings[index]).describedObject = nil;
+	[((GCObject *)_blessings[index]) setValue:nil forKey:@"describedObject"];
 	
     [_blessings removeObjectAtIndex:index];
 }
@@ -697,19 +729,22 @@
     return [_adultChristenings objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inAdultChristeningsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inAdultChristeningsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAdultChristeningAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAdultChristeningsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo adultChristenings"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_adultChristenings insertObject:obj atIndex:index];
 }
 
@@ -717,7 +752,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_adultChristenings[index] inAdultChristeningsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo adultChristenings"]; //TODO
 	
-	((GCProperty *)_adultChristenings[index]).describedObject = nil;
+	[((GCObject *)_adultChristenings[index]) setValue:nil forKey:@"describedObject"];
 	
     [_adultChristenings removeObjectAtIndex:index];
 }
@@ -735,19 +770,22 @@
     return [_confirmations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inConfirmationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inConfirmationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCConfirmationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromConfirmationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo confirmations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_confirmations insertObject:obj atIndex:index];
 }
 
@@ -755,7 +793,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_confirmations[index] inConfirmationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo confirmations"]; //TODO
 	
-	((GCProperty *)_confirmations[index]).describedObject = nil;
+	[((GCObject *)_confirmations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_confirmations removeObjectAtIndex:index];
 }
@@ -773,19 +811,22 @@
     return [_firstCommunions objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inFirstCommunionsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inFirstCommunionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCFirstCommunionAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromFirstCommunionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo firstCommunions"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_firstCommunions insertObject:obj atIndex:index];
 }
 
@@ -793,7 +834,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_firstCommunions[index] inFirstCommunionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo firstCommunions"]; //TODO
 	
-	((GCProperty *)_firstCommunions[index]).describedObject = nil;
+	[((GCObject *)_firstCommunions[index]) setValue:nil forKey:@"describedObject"];
 	
     [_firstCommunions removeObjectAtIndex:index];
 }
@@ -811,19 +852,22 @@
     return [_ordinations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inOrdinationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inOrdinationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCOrdinationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromOrdinationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo ordinations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_ordinations insertObject:obj atIndex:index];
 }
 
@@ -831,7 +875,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_ordinations[index] inOrdinationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo ordinations"]; //TODO
 	
-	((GCProperty *)_ordinations[index]).describedObject = nil;
+	[((GCObject *)_ordinations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_ordinations removeObjectAtIndex:index];
 }
@@ -849,19 +893,22 @@
     return [_naturalizations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inNaturalizationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inNaturalizationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNaturalizationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNaturalizationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo naturalizations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_naturalizations insertObject:obj atIndex:index];
 }
 
@@ -869,7 +916,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_naturalizations[index] inNaturalizationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo naturalizations"]; //TODO
 	
-	((GCProperty *)_naturalizations[index]).describedObject = nil;
+	[((GCObject *)_naturalizations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_naturalizations removeObjectAtIndex:index];
 }
@@ -887,19 +934,22 @@
     return [_emigrations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inEmigrationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inEmigrationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEmigrationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromEmigrationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo emigrations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_emigrations insertObject:obj atIndex:index];
 }
 
@@ -907,7 +957,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_emigrations[index] inEmigrationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo emigrations"]; //TODO
 	
-	((GCProperty *)_emigrations[index]).describedObject = nil;
+	[((GCObject *)_emigrations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_emigrations removeObjectAtIndex:index];
 }
@@ -925,19 +975,22 @@
     return [_immigrations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inImmigrationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inImmigrationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCImmigrationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromImmigrationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo immigrations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_immigrations insertObject:obj atIndex:index];
 }
 
@@ -945,7 +998,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_immigrations[index] inImmigrationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo immigrations"]; //TODO
 	
-	((GCProperty *)_immigrations[index]).describedObject = nil;
+	[((GCObject *)_immigrations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_immigrations removeObjectAtIndex:index];
 }
@@ -963,19 +1016,22 @@
     return [_censuses objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inCensusesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inCensusesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCensusAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCensusesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo censuses"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_censuses insertObject:obj atIndex:index];
 }
 
@@ -983,7 +1039,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_censuses[index] inCensusesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo censuses"]; //TODO
 	
-	((GCProperty *)_censuses[index]).describedObject = nil;
+	[((GCObject *)_censuses[index]) setValue:nil forKey:@"describedObject"];
 	
     [_censuses removeObjectAtIndex:index];
 }
@@ -1001,19 +1057,22 @@
     return [_probates objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inProbatesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inProbatesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCProbateAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromProbatesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo probates"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_probates insertObject:obj atIndex:index];
 }
 
@@ -1021,7 +1080,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_probates[index] inProbatesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo probates"]; //TODO
 	
-	((GCProperty *)_probates[index]).describedObject = nil;
+	[((GCObject *)_probates[index]) setValue:nil forKey:@"describedObject"];
 	
     [_probates removeObjectAtIndex:index];
 }
@@ -1039,19 +1098,22 @@
     return [_wills objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inWillsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inWillsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCWillAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromWillsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo wills"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_wills insertObject:obj atIndex:index];
 }
 
@@ -1059,7 +1121,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_wills[index] inWillsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo wills"]; //TODO
 	
-	((GCProperty *)_wills[index]).describedObject = nil;
+	[((GCObject *)_wills[index]) setValue:nil forKey:@"describedObject"];
 	
     [_wills removeObjectAtIndex:index];
 }
@@ -1077,19 +1139,22 @@
     return [_graduations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inGraduationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inGraduationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGraduationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromGraduationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo graduations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_graduations insertObject:obj atIndex:index];
 }
 
@@ -1097,7 +1162,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_graduations[index] inGraduationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo graduations"]; //TODO
 	
-	((GCProperty *)_graduations[index]).describedObject = nil;
+	[((GCObject *)_graduations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_graduations removeObjectAtIndex:index];
 }
@@ -1115,19 +1180,22 @@
     return [_retirements objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inRetirementsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inRetirementsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRetirementAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromRetirementsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo retirements"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_retirements insertObject:obj atIndex:index];
 }
 
@@ -1135,7 +1203,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_retirements[index] inRetirementsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo retirements"]; //TODO
 	
-	((GCProperty *)_retirements[index]).describedObject = nil;
+	[((GCObject *)_retirements[index]) setValue:nil forKey:@"describedObject"];
 	
     [_retirements removeObjectAtIndex:index];
 }
@@ -1153,19 +1221,22 @@
     return [_genericEvents objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inGenericEventsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inGenericEventsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenericEventAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromGenericEventsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo genericEvents"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_genericEvents insertObject:obj atIndex:index];
 }
 
@@ -1173,7 +1244,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_genericEvents[index] inGenericEventsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo genericEvents"]; //TODO
 	
-	((GCProperty *)_genericEvents[index]).describedObject = nil;
+	[((GCObject *)_genericEvents[index]) setValue:nil forKey:@"describedObject"];
 	
     [_genericEvents removeObjectAtIndex:index];
 }
@@ -1192,19 +1263,22 @@
     return [_castes objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inCastesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inCastesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCasteAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCastesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo castes"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_castes insertObject:obj atIndex:index];
 }
 
@@ -1212,7 +1286,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_castes[index] inCastesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo castes"]; //TODO
 	
-	((GCProperty *)_castes[index]).describedObject = nil;
+	[((GCObject *)_castes[index]) setValue:nil forKey:@"describedObject"];
 	
     [_castes removeObjectAtIndex:index];
 }
@@ -1230,19 +1304,22 @@
     return [_physicalDescriptions objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inPhysicalDescriptionsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inPhysicalDescriptionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhysicalDescriptionAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhysicalDescriptionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo physicalDescriptions"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_physicalDescriptions insertObject:obj atIndex:index];
 }
 
@@ -1250,7 +1327,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_physicalDescriptions[index] inPhysicalDescriptionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo physicalDescriptions"]; //TODO
 	
-	((GCProperty *)_physicalDescriptions[index]).describedObject = nil;
+	[((GCObject *)_physicalDescriptions[index]) setValue:nil forKey:@"describedObject"];
 	
     [_physicalDescriptions removeObjectAtIndex:index];
 }
@@ -1268,19 +1345,22 @@
     return [_generationsOfDescendantss objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inGenerationsOfDescendantssAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inGenerationsOfDescendantssAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenerationsOfDescendantsAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromGenerationsOfDescendantssAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo generationsOfDescendantss"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_generationsOfDescendantss insertObject:obj atIndex:index];
 }
 
@@ -1288,7 +1368,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_generationsOfDescendantss[index] inGenerationsOfDescendantssAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo generationsOfDescendantss"]; //TODO
 	
-	((GCProperty *)_generationsOfDescendantss[index]).describedObject = nil;
+	[((GCObject *)_generationsOfDescendantss[index]) setValue:nil forKey:@"describedObject"];
 	
     [_generationsOfDescendantss removeObjectAtIndex:index];
 }
@@ -1306,19 +1386,22 @@
     return [_educations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inEducationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inEducationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEducationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromEducationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo educations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_educations insertObject:obj atIndex:index];
 }
 
@@ -1326,7 +1409,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_educations[index] inEducationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo educations"]; //TODO
 	
-	((GCProperty *)_educations[index]).describedObject = nil;
+	[((GCObject *)_educations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_educations removeObjectAtIndex:index];
 }
@@ -1344,19 +1427,22 @@
     return [_identNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inIdentNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inIdentNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCIdentNumberAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromIdentNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo identNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_identNumbers insertObject:obj atIndex:index];
 }
 
@@ -1364,7 +1450,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_identNumbers[index] inIdentNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo identNumbers"]; //TODO
 	
-	((GCProperty *)_identNumbers[index]).describedObject = nil;
+	[((GCObject *)_identNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_identNumbers removeObjectAtIndex:index];
 }
@@ -1382,19 +1468,22 @@
     return [_nationalities objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inNationalitiesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inNationalitiesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNationalityAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNationalitiesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo nationalities"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_nationalities insertObject:obj atIndex:index];
 }
 
@@ -1402,7 +1491,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_nationalities[index] inNationalitiesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo nationalities"]; //TODO
 	
-	((GCProperty *)_nationalities[index]).describedObject = nil;
+	[((GCObject *)_nationalities[index]) setValue:nil forKey:@"describedObject"];
 	
     [_nationalities removeObjectAtIndex:index];
 }
@@ -1420,19 +1509,22 @@
     return [_numberOfChildrens objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inNumberOfChildrensAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inNumberOfChildrensAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNumberOfChildrenAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNumberOfChildrensAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo numberOfChildrens"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_numberOfChildrens insertObject:obj atIndex:index];
 }
 
@@ -1440,7 +1532,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_numberOfChildrens[index] inNumberOfChildrensAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo numberOfChildrens"]; //TODO
 	
-	((GCProperty *)_numberOfChildrens[index]).describedObject = nil;
+	[((GCObject *)_numberOfChildrens[index]) setValue:nil forKey:@"describedObject"];
 	
     [_numberOfChildrens removeObjectAtIndex:index];
 }
@@ -1458,19 +1550,22 @@
     return [_numberOfMarriagess objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inNumberOfMarriagessAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inNumberOfMarriagessAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNumberOfMarriagesAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNumberOfMarriagessAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo numberOfMarriagess"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_numberOfMarriagess insertObject:obj atIndex:index];
 }
 
@@ -1478,7 +1573,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_numberOfMarriagess[index] inNumberOfMarriagessAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo numberOfMarriagess"]; //TODO
 	
-	((GCProperty *)_numberOfMarriagess[index]).describedObject = nil;
+	[((GCObject *)_numberOfMarriagess[index]) setValue:nil forKey:@"describedObject"];
 	
     [_numberOfMarriagess removeObjectAtIndex:index];
 }
@@ -1496,19 +1591,22 @@
     return [_occupations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inOccupationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inOccupationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCOccupationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromOccupationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo occupations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_occupations insertObject:obj atIndex:index];
 }
 
@@ -1516,7 +1614,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_occupations[index] inOccupationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo occupations"]; //TODO
 	
-	((GCProperty *)_occupations[index]).describedObject = nil;
+	[((GCObject *)_occupations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_occupations removeObjectAtIndex:index];
 }
@@ -1534,19 +1632,22 @@
     return [_propertyOwneds objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inPropertyOwnedsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inPropertyOwnedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPropertyOwnedAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPropertyOwnedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo propertyOwneds"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_propertyOwneds insertObject:obj atIndex:index];
 }
 
@@ -1554,7 +1655,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_propertyOwneds[index] inPropertyOwnedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo propertyOwneds"]; //TODO
 	
-	((GCProperty *)_propertyOwneds[index]).describedObject = nil;
+	[((GCObject *)_propertyOwneds[index]) setValue:nil forKey:@"describedObject"];
 	
     [_propertyOwneds removeObjectAtIndex:index];
 }
@@ -1572,19 +1673,22 @@
     return [_religions objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inReligionsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inReligionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCReligionAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromReligionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo religions"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_religions insertObject:obj atIndex:index];
 }
 
@@ -1592,7 +1696,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_religions[index] inReligionsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo religions"]; //TODO
 	
-	((GCProperty *)_religions[index]).describedObject = nil;
+	[((GCObject *)_religions[index]) setValue:nil forKey:@"describedObject"];
 	
     [_religions removeObjectAtIndex:index];
 }
@@ -1610,19 +1714,22 @@
     return [_residences objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inResidencesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inResidencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCResidenceAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromResidencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo residences"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_residences insertObject:obj atIndex:index];
 }
 
@@ -1630,7 +1737,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_residences[index] inResidencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo residences"]; //TODO
 	
-	((GCProperty *)_residences[index]).describedObject = nil;
+	[((GCObject *)_residences[index]) setValue:nil forKey:@"describedObject"];
 	
     [_residences removeObjectAtIndex:index];
 }
@@ -1648,19 +1755,22 @@
     return [_socialSecurityNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSocialSecurityNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSocialSecurityNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSocialSecurityNumberAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSocialSecurityNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo socialSecurityNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_socialSecurityNumbers insertObject:obj atIndex:index];
 }
 
@@ -1668,7 +1778,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_socialSecurityNumbers[index] inSocialSecurityNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo socialSecurityNumbers"]; //TODO
 	
-	((GCProperty *)_socialSecurityNumbers[index]).describedObject = nil;
+	[((GCObject *)_socialSecurityNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_socialSecurityNumbers removeObjectAtIndex:index];
 }
@@ -1686,19 +1796,22 @@
     return [_titles objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inTitlesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inTitlesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTitleAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromTitlesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo titles"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_titles insertObject:obj atIndex:index];
 }
 
@@ -1706,7 +1819,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_titles[index] inTitlesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo titles"]; //TODO
 	
-	((GCProperty *)_titles[index]).describedObject = nil;
+	[((GCObject *)_titles[index]) setValue:nil forKey:@"describedObject"];
 	
     [_titles removeObjectAtIndex:index];
 }
@@ -1725,19 +1838,22 @@
     return [_lDSBaptisms objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inLDSBaptismsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inLDSBaptismsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSBaptismAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSBaptismsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSBaptisms"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_lDSBaptisms insertObject:obj atIndex:index];
 }
 
@@ -1745,7 +1861,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSBaptisms[index] inLDSBaptismsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSBaptisms"]; //TODO
 	
-	((GCProperty *)_lDSBaptisms[index]).describedObject = nil;
+	[((GCObject *)_lDSBaptisms[index]) setValue:nil forKey:@"describedObject"];
 	
     [_lDSBaptisms removeObjectAtIndex:index];
 }
@@ -1763,19 +1879,22 @@
     return [_lDSConfirmations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inLDSConfirmationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inLDSConfirmationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSConfirmationAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSConfirmationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSConfirmations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_lDSConfirmations insertObject:obj atIndex:index];
 }
 
@@ -1783,7 +1902,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSConfirmations[index] inLDSConfirmationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSConfirmations"]; //TODO
 	
-	((GCProperty *)_lDSConfirmations[index]).describedObject = nil;
+	[((GCObject *)_lDSConfirmations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_lDSConfirmations removeObjectAtIndex:index];
 }
@@ -1801,19 +1920,22 @@
     return [_lDSEndowments objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inLDSEndowmentsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inLDSEndowmentsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSEndowmentAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSEndowmentsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSEndowments"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_lDSEndowments insertObject:obj atIndex:index];
 }
 
@@ -1821,7 +1943,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSEndowments[index] inLDSEndowmentsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSEndowments"]; //TODO
 	
-	((GCProperty *)_lDSEndowments[index]).describedObject = nil;
+	[((GCObject *)_lDSEndowments[index]) setValue:nil forKey:@"describedObject"];
 	
     [_lDSEndowments removeObjectAtIndex:index];
 }
@@ -1839,19 +1961,22 @@
     return [_lDSSealingChilds objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inLDSSealingChildsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inLDSSealingChildsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSSealingChildAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSSealingChildsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSSealingChilds"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_lDSSealingChilds insertObject:obj atIndex:index];
 }
 
@@ -1859,7 +1984,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSSealingChilds[index] inLDSSealingChildsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo lDSSealingChilds"]; //TODO
 	
-	((GCProperty *)_lDSSealingChilds[index]).describedObject = nil;
+	[((GCObject *)_lDSSealingChilds[index]) setValue:nil forKey:@"describedObject"];
 	
     [_lDSSealingChilds removeObjectAtIndex:index];
 }
@@ -1877,19 +2002,22 @@
     return [_childInFamilies objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inChildInFamiliesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inChildInFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChildInFamilyRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromChildInFamiliesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo childInFamilies"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_childInFamilies insertObject:obj atIndex:index];
 }
 
@@ -1897,7 +2025,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_childInFamilies[index] inChildInFamiliesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo childInFamilies"]; //TODO
 	
-	((GCProperty *)_childInFamilies[index]).describedObject = nil;
+	[((GCObject *)_childInFamilies[index]) setValue:nil forKey:@"describedObject"];
 	
     [_childInFamilies removeObjectAtIndex:index];
 }
@@ -1915,19 +2043,22 @@
     return [_spouseInFamilies objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSpouseInFamiliesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSpouseInFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSpouseInFamilyRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSpouseInFamiliesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo spouseInFamilies"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_spouseInFamilies insertObject:obj atIndex:index];
 }
 
@@ -1935,7 +2066,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_spouseInFamilies[index] inSpouseInFamiliesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo spouseInFamilies"]; //TODO
 	
-	((GCProperty *)_spouseInFamilies[index]).describedObject = nil;
+	[((GCObject *)_spouseInFamilies[index]) setValue:nil forKey:@"describedObject"];
 	
     [_spouseInFamilies removeObjectAtIndex:index];
 }
@@ -1953,19 +2084,22 @@
     return [_submitterReferences objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSubmitterReferencesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSubmitterReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmitterReferenceRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSubmitterReferencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo submitterReferences"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_submitterReferences insertObject:obj atIndex:index];
 }
 
@@ -1973,7 +2107,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_submitterReferences[index] inSubmitterReferencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo submitterReferences"]; //TODO
 	
-	((GCProperty *)_submitterReferences[index]).describedObject = nil;
+	[((GCObject *)_submitterReferences[index]) setValue:nil forKey:@"describedObject"];
 	
     [_submitterReferences removeObjectAtIndex:index];
 }
@@ -1991,19 +2125,22 @@
     return [_associations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inAssociationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inAssociationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAssociationRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAssociationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo associations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_associations insertObject:obj atIndex:index];
 }
 
@@ -2011,7 +2148,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_associations[index] inAssociationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo associations"]; //TODO
 	
-	((GCProperty *)_associations[index]).describedObject = nil;
+	[((GCObject *)_associations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_associations removeObjectAtIndex:index];
 }
@@ -2029,19 +2166,22 @@
     return [_aliases objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inAliasesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inAliasesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAliasRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAliasesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo aliases"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_aliases insertObject:obj atIndex:index];
 }
 
@@ -2049,7 +2189,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_aliases[index] inAliasesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo aliases"]; //TODO
 	
-	((GCProperty *)_aliases[index]).describedObject = nil;
+	[((GCObject *)_aliases[index]) setValue:nil forKey:@"describedObject"];
 	
     [_aliases removeObjectAtIndex:index];
 }
@@ -2067,19 +2207,22 @@
     return [_ancestorInterests objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inAncestorInterestsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inAncestorInterestsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAncestorInterestRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAncestorInterestsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo ancestorInterests"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_ancestorInterests insertObject:obj atIndex:index];
 }
 
@@ -2087,7 +2230,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_ancestorInterests[index] inAncestorInterestsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo ancestorInterests"]; //TODO
 	
-	((GCProperty *)_ancestorInterests[index]).describedObject = nil;
+	[((GCObject *)_ancestorInterests[index]) setValue:nil forKey:@"describedObject"];
 	
     [_ancestorInterests removeObjectAtIndex:index];
 }
@@ -2105,19 +2248,22 @@
     return [_descendantInterests objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inDescendantInterestsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inDescendantInterestsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDescendantInterestRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromDescendantInterestsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo descendantInterests"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_descendantInterests insertObject:obj atIndex:index];
 }
 
@@ -2125,7 +2271,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_descendantInterests[index] inDescendantInterestsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo descendantInterests"]; //TODO
 	
-	((GCProperty *)_descendantInterests[index]).describedObject = nil;
+	[((GCObject *)_descendantInterests[index]) setValue:nil forKey:@"describedObject"];
 	
     [_descendantInterests removeObjectAtIndex:index];
 }
@@ -2144,19 +2290,22 @@
     return [_sourceCitations objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSourceCitationsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_sourceCitations insertObject:obj atIndex:index];
 }
 
@@ -2164,7 +2313,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
 	
-	((GCProperty *)_sourceCitations[index]).describedObject = nil;
+	[((GCObject *)_sourceCitations[index]) setValue:nil forKey:@"describedObject"];
 	
     [_sourceCitations removeObjectAtIndex:index];
 }
@@ -2182,19 +2331,22 @@
     return [_sourceEmbeddeds objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
@@ -2202,7 +2354,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
 	
-	((GCProperty *)_sourceEmbeddeds[index]).describedObject = nil;
+	[((GCObject *)_sourceEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
     [_sourceEmbeddeds removeObjectAtIndex:index];
 }
@@ -2221,19 +2373,22 @@
     return [_multimediaReferences objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_multimediaReferences insertObject:obj atIndex:index];
 }
 
@@ -2241,7 +2396,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
 	
-	((GCProperty *)_multimediaReferences[index]).describedObject = nil;
+	[((GCObject *)_multimediaReferences[index]) setValue:nil forKey:@"describedObject"];
 	
     [_multimediaReferences removeObjectAtIndex:index];
 }
@@ -2259,19 +2414,22 @@
     return [_multimediaEmbeddeds objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_multimediaEmbeddeds insertObject:obj atIndex:index];
 }
 
@@ -2279,7 +2437,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
 	
-	((GCProperty *)_multimediaEmbeddeds[index]).describedObject = nil;
+	[((GCObject *)_multimediaEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
     [_multimediaEmbeddeds removeObjectAtIndex:index];
 }
@@ -2298,19 +2456,22 @@
     return [_noteReferences objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_noteReferences insertObject:obj atIndex:index];
 }
 
@@ -2318,7 +2479,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
 	
-	((GCProperty *)_noteReferences[index]).describedObject = nil;
+	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
     [_noteReferences removeObjectAtIndex:index];
 }
@@ -2336,19 +2497,22 @@
     return [_noteEmbeddeds objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_noteEmbeddeds insertObject:obj atIndex:index];
 }
 
@@ -2356,7 +2520,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
 	
-	((GCProperty *)_noteEmbeddeds[index]).describedObject = nil;
+	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
     [_noteEmbeddeds removeObjectAtIndex:index];
 }
@@ -2374,19 +2538,22 @@
     return [_recordFileNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inRecordFileNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inRecordFileNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRecordFileNumberAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromRecordFileNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo recordFileNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_recordFileNumbers insertObject:obj atIndex:index];
 }
 
@@ -2394,7 +2561,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_recordFileNumbers[index] inRecordFileNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo recordFileNumbers"]; //TODO
 	
-	((GCProperty *)_recordFileNumbers[index]).describedObject = nil;
+	[((GCObject *)_recordFileNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_recordFileNumbers removeObjectAtIndex:index];
 }
@@ -2412,19 +2579,22 @@
     return [_ancestralFileNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inAncestralFileNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inAncestralFileNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAncestralFileNumberAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAncestralFileNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo ancestralFileNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_ancestralFileNumbers insertObject:obj atIndex:index];
 }
 
@@ -2432,7 +2602,7 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_ancestralFileNumbers[index] inAncestralFileNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo ancestralFileNumbers"]; //TODO
 	
-	((GCProperty *)_ancestralFileNumbers[index]).describedObject = nil;
+	[((GCObject *)_ancestralFileNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_ancestralFileNumbers removeObjectAtIndex:index];
 }
@@ -2450,19 +2620,22 @@
     return [_userReferenceNumbers objectAtIndex:index];
 }
  
-- (void)insertObject:(GCProperty *)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
+- (void)insertObject:(id)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
 	
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
 	
-	if (obj.describedObject == self) {
+	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
-	obj.describedObject = self;
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
     [_userReferenceNumbers insertObject:obj atIndex:index];
 }
 
@@ -2470,26 +2643,26 @@
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
 	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
 	
-	((GCProperty *)_userReferenceNumbers[index]).describedObject = nil;
+	[((GCObject *)_userReferenceNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
     [_userReferenceNumbers removeObjectAtIndex:index];
 }
 	
 
-- (void)setRecordIdNumber:(GCProperty *)obj
+- (void)setRecordIdNumber:(id)obj
 {
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
 	[self.context.undoManager setActionName:@"Undo recordIdNumber"]; //TODO
 	
 	if (_recordIdNumber) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_recordIdNumber = (id)obj;
 }
@@ -2500,20 +2673,20 @@
 }
 
 
-- (void)setChangeInfo:(GCProperty *)obj
+- (void)setChangeInfo:(id)obj
 {
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
 	[self.context.undoManager setActionName:@"Undo changeInfo"]; //TODO
 	
 	if (_changeInfo) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
 }

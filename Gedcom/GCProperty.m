@@ -6,7 +6,13 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCProperty_internal.h"
+#import "GCProperty.h"
+
+@interface GCProperty ()
+
+@property (weak, nonatomic) GCObject *describedObject;
+
+@end
 
 @implementation GCProperty
 

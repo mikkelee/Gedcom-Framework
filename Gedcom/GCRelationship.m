@@ -13,7 +13,13 @@
 #import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
-#import "GCProperty_internal.h"
+
+@interface GCRelationship ()
+
+@property (weak) GCRelationship *other;
+@property (readonly) NSString *reverseRelationshipType;
+
+@end
 
 @implementation GCRelationship {
 	GCEntity *_target;

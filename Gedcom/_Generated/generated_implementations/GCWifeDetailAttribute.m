@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCAgeAttribute.h"
 
@@ -57,20 +56,20 @@
 
 // Properties:
 
-- (void)setAge:(GCProperty *)obj
+- (void)setAge:(id)obj
 {
 	[(GCWifeDetailAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAge:_age];
 	[self.context.undoManager setActionName:@"Undo age"]; //TODO
 	
 	if (_age) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_age = (id)obj;
 }

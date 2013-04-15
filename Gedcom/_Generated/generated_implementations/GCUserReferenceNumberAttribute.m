@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCTypeDescriptionAttribute.h"
 
@@ -57,20 +56,20 @@
 
 // Properties:
 
-- (void)setTypeDescription:(GCProperty *)obj
+- (void)setTypeDescription:(id)obj
 {
 	[(GCUserReferenceNumberAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTypeDescription:_typeDescription];
 	[self.context.undoManager setActionName:@"Undo typeDescription"]; //TODO
 	
 	if (_typeDescription) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_typeDescription = (id)obj;
 }

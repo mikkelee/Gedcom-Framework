@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCTimeAttribute.h"
 
@@ -57,20 +56,20 @@
 
 // Properties:
 
-- (void)setTime:(GCProperty *)obj
+- (void)setTime:(id)obj
 {
 	[(GCHeaderDateAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTime:_time];
 	[self.context.undoManager setActionName:@"Undo time"]; //TODO
 	
 	if (_time) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_time = (id)obj;
 }

@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCAdoptedByWhichParentAttribute.h"
 
@@ -39,20 +38,20 @@
 
 // Properties:
 
-- (void)setAdoptedByWhichParent:(GCProperty *)obj
+- (void)setAdoptedByWhichParent:(id)obj
 {
 	[(GCAdoptedIntoFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setAdoptedByWhichParent:_adoptedByWhichParent];
 	[self.context.undoManager setActionName:@"Undo adoptedByWhichParent"]; //TODO
 	
 	if (_adoptedByWhichParent) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_adoptedByWhichParent = (id)obj;
 }

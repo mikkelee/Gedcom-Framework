@@ -6,7 +6,6 @@
 
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
-#import "GCProperty_internal.h"
 
 #import "GCAddressLine1Attribute.h"
 #import "GCAddressLine2Attribute.h"
@@ -67,20 +66,20 @@
 
 // Properties:
 
-- (void)setAddressLine1:(GCProperty *)obj
+- (void)setAddressLine1:(id)obj
 {
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine1:_addressLine1];
 	[self.context.undoManager setActionName:@"Undo addressLine1"]; //TODO
 	
 	if (_addressLine1) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_addressLine1 = (id)obj;
 }
@@ -91,20 +90,20 @@
 }
 
 
-- (void)setAddressLine2:(GCProperty *)obj
+- (void)setAddressLine2:(id)obj
 {
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine2:_addressLine2];
 	[self.context.undoManager setActionName:@"Undo addressLine2"]; //TODO
 	
 	if (_addressLine2) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_addressLine2 = (id)obj;
 }
@@ -115,20 +114,20 @@
 }
 
 
-- (void)setCity:(GCProperty *)obj
+- (void)setCity:(id)obj
 {
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCity:_city];
 	[self.context.undoManager setActionName:@"Undo city"]; //TODO
 	
 	if (_city) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_city = (id)obj;
 }
@@ -139,20 +138,20 @@
 }
 
 
-- (void)setState:(GCProperty *)obj
+- (void)setState:(id)obj
 {
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setState:_state];
 	[self.context.undoManager setActionName:@"Undo state"]; //TODO
 	
 	if (_state) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_state = (id)obj;
 }
@@ -163,20 +162,20 @@
 }
 
 
-- (void)setPostalCode:(GCProperty *)obj
+- (void)setPostalCode:(id)obj
 {
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPostalCode:_postalCode];
 	[self.context.undoManager setActionName:@"Undo postalCode"]; //TODO
 	
 	if (_postalCode) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_postalCode = (id)obj;
 }
@@ -187,20 +186,20 @@
 }
 
 
-- (void)setCountry:(GCProperty *)obj
+- (void)setCountry:(id)obj
 {
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCountry:_country];
 	[self.context.undoManager setActionName:@"Undo country"]; //TODO
 	
 	if (_country) {
-		obj.describedObject = nil;
+		[obj setValue:nil forKey:@"describedObject"];
 	}
 	
-	if (obj.describedObject) {
-		[obj.describedObject.mutableProperties removeObject:obj];
+	if ([obj valueForKey:@"describedObject"]) {
+		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
 	}
 	
-	obj.describedObject = self;
+	[obj setValue:self forKey:@"describedObject"];
 	
 	_country = (id)obj;
 }

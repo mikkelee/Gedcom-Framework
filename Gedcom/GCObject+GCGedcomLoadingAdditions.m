@@ -9,9 +9,10 @@
 #import "GCObject+GCGedcomLoadingAdditions.h"
 #import "GCNode.h"
 #import "GCObject_internal.h"
-#import "GCProperty_internal.h"
 #import "GCContext_internal.h"
+#import "GCProperty.h"
 #import "GCAttribute.h"
+#import "GCRelationship.h"
 #import "GCValue.h"
 
 @implementation GCEntity (GCGedcomLoadingAdditions)
