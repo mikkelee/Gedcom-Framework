@@ -8,6 +8,9 @@
 
 #import "GCProperty.h"
 
+#import "GCNode.h"
+#import "GCObject_internal.h"
+
 @interface GCProperty ()
 
 @property (weak, nonatomic) GCObject *describedObject;
@@ -71,6 +74,37 @@
 - (GCContext *)context
 {
     return self.describedObject.context;
+}
+
+@end
+
+@implementation GCProperty (GCGedcomLoadingAdditions)
+
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+{
+    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    
+    if (tag.isCustom) {
+        self = [self _initWithType:tag.name];
+    } else {
+        self = [self init];
+    }
+    
+    if (self) {
+        if (tag.isCustom || object.gedTag.isCustom) {
+            [object.mutableCustomProperties addObject:self];
+        } else if ([object.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+            [[object mutableArrayValueForKey:tag.pluralName] addObject:self];
+        } else {
+            [object setValue:self forKey:tag.name];
+        }
+        
+        NSParameterAssert(self.describedObject == object);
+        
+        [self addPropertiesWithGedcomNodes:node.subNodes];
+    }
+    
+    return self;
 }
 
 @end

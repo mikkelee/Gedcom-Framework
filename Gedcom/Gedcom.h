@@ -18,7 +18,6 @@
 #import "GCObjects_generated.h"
 
 #import "GCObject+GCKeyValueAdditions.h"
-#import "GCObject+GCGedcomLoadingAdditions.h"
 #import "GCObject+GCHelpers.h"
 #import "GCObject+GCSanityCheckAdditions.h"
 

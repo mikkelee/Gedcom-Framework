@@ -12,10 +12,9 @@
 #import "GCNodeParser.h"
 #import "GCNode.h"
 
-#import "GCObject+GCGedcomLoadingAdditions.h"
-
 #import "GCObject_internal.h"
 #import "GCContext_internal.h"
+#import "GCProperty.h"
 
 __strong static NSMutableDictionary *_validPropertiesByType;
 __strong static NSDictionary *_defaultColors;
@@ -243,7 +242,7 @@ __strong static NSDictionary *_defaultColors;
     return [self.properties objectAtIndex:index];
 }
 
-- (void)insertObject:(GCProperty *)prop inPropertiesAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCObject *)prop inPropertiesAtIndex:(NSUInteger)index {
     GCTag *tag = [GCTag tagNamed:prop.type];
     
     if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
@@ -254,7 +253,7 @@ __strong static NSDictionary *_defaultColors;
 }
 
 - (void)removeObjectFromPropertiesAtIndex:(NSUInteger)index {
-    GCProperty *prop = self.properties[index];
+    GCObject *prop = self.properties[index];
     
     GCTag *tag = [GCTag tagNamed:prop.type];
     

@@ -17,8 +17,6 @@
 #import "GCCharacterSetAttribute.h"
 #import "GCHeaderEntity+GCObjectAdditions.h"
 
-#import "GCObject+GCGedcomLoadingAdditions.h"
-
 #import "GCContextDelegate.h"
 
 #import "CharacterSetHelpers.h"

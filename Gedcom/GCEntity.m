@@ -215,3 +215,33 @@
 }
 
 @end
+
+@implementation GCEntity (GCGedcomLoadingAdditions)
+
+- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
+{
+    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    
+    if (tag.hasXref) {
+        self = [context _entityForXref:node.xref create:YES withClass:tag.objectClass];
+    } else if (tag.isCustom) {
+        self = [self _initWithType:tag.name inContext:context];
+    } else {
+        self = [self initInContext:context];
+    }
+    
+    if (self) {
+        _isBuildingFromGedcom = YES;
+        
+        if (tag.hasValue)
+            self.value = [GCString valueWithGedcomString:node.gedValue];
+        
+        [self addPropertiesWithGedcomNodes:node.subNodes];
+        
+        _isBuildingFromGedcom = NO;
+    }
+    
+    return self;
+}
+
+@end

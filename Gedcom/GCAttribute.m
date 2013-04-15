@@ -116,6 +116,23 @@
 
 @end
 
+@implementation GCAttribute (GCGedcomLoadingAdditions)
+
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+{
+    self = [super initWithGedcomNode:node onObject:object];
+    
+    if (self) {
+        if (node.gedValue) {
+            [self setValueWithGedcomString:node.gedValue];
+        }
+    }
+    
+    return self;
+}
+
+@end
+
 @implementation GCAttribute (GCConvenienceMethods)
 
 - (id)initWithValue:(GCValue *)value

@@ -177,6 +177,41 @@
 
 @end
 
+@implementation GCRelationship (GCGedcomLoadingAdditions)
+
+- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+//TODO: cleanup
+{
+    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
+    
+    id target = [object.context _entityForXref:node.gedValue create:YES withClass:tag.targetType];
+    
+    if ([object.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+        if ([[object[tag.pluralName] valueForKey:@"target"] containsObject:target]) {
+            return nil; // already exists
+        }
+    } else {
+        if ([object[tag.name] valueForKey:@"target"] == target) {
+            return nil; // already exists
+        }
+    }
+    
+    self = [super initWithGedcomNode:node onObject:object];
+    
+    if (self) {
+        NSParameterAssert(self.describedObject == object);
+        GCParameterAssert(object.context);
+        
+        self.target = target;
+        
+        NSParameterAssert(self.target);
+    }
+    
+    return self;
+}
+
+@end
+
 @implementation GCRelationship (GCValidationMethods)
 
 - (BOOL)validateObject:(NSError **)outError
