@@ -250,6 +250,70 @@ __strong static NSArray *_rootKeys = nil;
     return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
 }
 
+#pragma mark NSCoding conformance
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super init];
+    
+    if (self) {
+        NSString *decodedName = [aDecoder decodeObjectForKey:@"name"];
+        
+        NSString *key = decodedName;
+        int i = 0;
+        while (_contextsByName[key]) {
+            key = [NSString stringWithFormat:@"%@::%d", decodedName, ++i];
+        }
+        _name = key;
+        _contextsByName[_name] = self;
+        
+        _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
+        _entityToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
+        _header = [aDecoder decodeObjectForKey:@"header"];
+        _submission = [aDecoder decodeObjectForKey:@"submission"];
+        
+        _families = [aDecoder decodeObjectForKey:@"families"];
+        _individuals = [aDecoder decodeObjectForKey:@"individuals"];
+        _multimedias = [aDecoder decodeObjectForKey:@"multimedias"];
+        _notes = [aDecoder decodeObjectForKey:@"notes"];
+        _repositories = [aDecoder decodeObjectForKey:@"repositories"];
+        _sources = [aDecoder decodeObjectForKey:@"sources"];
+        _submitters = [aDecoder decodeObjectForKey:@"submitters"];
+        
+        _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_name forKey:@"name"];
+    [aCoder encodeObject:_xrefToEntityMap forKey:@"xrefStore"];
+    [aCoder encodeObject:_entityToXrefMap forKey:@"entityToXref"];
+    [aCoder encodeObject:_header forKey:@"header"];
+    [aCoder encodeObject:_submission forKey:@"submission"];
+    
+    [aCoder encodeObject:_families forKey:@"families"];
+    [aCoder encodeObject:_individuals forKey:@"individuals"];
+    [aCoder encodeObject:_multimedias forKey:@"multimedias"];
+    [aCoder encodeObject:_notes forKey:@"notes"];
+    [aCoder encodeObject:_repositories forKey:@"repositories"];
+    [aCoder encodeObject:_sources forKey:@"sources"];
+    [aCoder encodeObject:_submitters forKey:@"submitters"];
+    
+    [aCoder encodeObject:_customEntities forKey:@"customEntities"];
+}
+
+#pragma mark Description
+
+//COV_NF_START
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToEntityMap];
+}
+//COV_NF_END
+
 #pragma mark Xref handling
 
 - (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity
@@ -332,6 +396,26 @@ __strong static NSArray *_rootKeys = nil;
     
     for (GCEntity *entity in self.entities) {
         (void)[self _xrefForEntity:entity];
+    }
+}
+
+#pragma mark Xref link methods
+
+- (void)_activateEntity:(GCEntity *)entity
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForEntity:)]) {
+        [_delegate context:self didReceiveActionForEntity:entity];
+    }
+}
+
+#pragma mark Custom tag methods
+
+- (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(context:shouldHandleCustomTag:forNode:onObject:)]) {
+        return [_delegate context:self shouldHandleCustomTag:tag forNode:node onObject:object];
+    } else {
+        return YES;
     }
 }
 
@@ -702,90 +786,6 @@ __strong static NSArray *_rootKeys = nil;
 - (void)removeObjectFromSubmittersAtIndex:(NSUInteger)index {
     NSParameterAssert(!((GCEntity *)_submitters[index]).context);
     [_submitters removeObjectAtIndex:index];
-}
-
-#pragma mark NSCoding conformance
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-	self = [super init];
-    
-    if (self) {
-        NSString *decodedName = [aDecoder decodeObjectForKey:@"name"];
-        
-        NSString *key = decodedName;
-        int i = 0;
-        while (_contextsByName[key]) {
-            key = [NSString stringWithFormat:@"%@::%d", decodedName, ++i];
-        }
-        _name = key;
-        _contextsByName[_name] = self;
-        
-        _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
-        _entityToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
-        _header = [aDecoder decodeObjectForKey:@"header"];
-        _submission = [aDecoder decodeObjectForKey:@"submission"];
-        
-        _families = [aDecoder decodeObjectForKey:@"families"];
-        _individuals = [aDecoder decodeObjectForKey:@"individuals"];
-        _multimedias = [aDecoder decodeObjectForKey:@"multimedias"];
-        _notes = [aDecoder decodeObjectForKey:@"notes"];
-        _repositories = [aDecoder decodeObjectForKey:@"repositories"];
-        _sources = [aDecoder decodeObjectForKey:@"sources"];
-        _submitters = [aDecoder decodeObjectForKey:@"submitters"];
-        
-        _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
-	}
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_xrefToEntityMap forKey:@"xrefStore"];
-    [aCoder encodeObject:_entityToXrefMap forKey:@"entityToXref"];
-    [aCoder encodeObject:_header forKey:@"header"];
-    [aCoder encodeObject:_submission forKey:@"submission"];
-    
-    [aCoder encodeObject:_families forKey:@"families"];
-    [aCoder encodeObject:_individuals forKey:@"individuals"];
-    [aCoder encodeObject:_multimedias forKey:@"multimedias"];
-    [aCoder encodeObject:_notes forKey:@"notes"];
-    [aCoder encodeObject:_repositories forKey:@"repositories"];
-    [aCoder encodeObject:_sources forKey:@"sources"];
-    [aCoder encodeObject:_submitters forKey:@"submitters"];
-    
-    [aCoder encodeObject:_customEntities forKey:@"customEntities"];
-}
-
-#pragma mark Description
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToEntityMap];
-}
-//COV_NF_END
-
-#pragma mark Xref link methods
-
-- (void)_activateEntity:(GCEntity *)entity
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForEntity:)]) {
-        [_delegate context:self didReceiveActionForEntity:entity];
-    }
-}
-
-#pragma mark Custom tag methods
-
-- (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(context:shouldHandleCustomTag:forNode:onObject:)]) {
-        return [_delegate context:self shouldHandleCustomTag:tag forNode:node onObject:object];
-    } else {
-        return YES;
-    }
 }
 
 @end
