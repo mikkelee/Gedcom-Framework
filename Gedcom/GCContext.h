@@ -142,12 +142,26 @@ typedef enum : NSUInteger {
 /// The receiver's delegate. See GCContextDelegate.
 @property (weak) id<NSObject, GCContextDelegate> delegate;
 
+#pragma mark Accessing Gedcom output
+/// @name Accessing Gedcom output
+
+/// The receiver as an ordered collection of Gedcom nodes.
+@property (readonly) NSArray *gedcomNodes;
+
+/// The receiver as a Gedcom string.
+@property (readonly) NSString *gedcomString;
+
+/// The receiver's gedcomString as an NSData object using the encoding from fileEncoding
+@property (readonly) NSData *gedcomData;
+
+@end
+
+#pragma mark -
+
+@interface GCContext (GCKeyValueAdditions)
+
 #pragma mark Accessing entities
 /// @name Accessing entities
-
-/// A collection of all the receiver's entities.
-@property (readonly) NSArray *entities;
-@property (readonly) NSMutableArray *mutableEntities;
 
 /// The header of the receiver.
 @property GCHeaderEntity *header;
@@ -183,17 +197,9 @@ typedef enum : NSUInteger {
 @property (readonly) NSArray *submitters;
 @property (readonly) NSMutableArray *mutableSubmitters;
 
-#pragma mark Accessing Gedcom output
-/// @name Accessing Gedcom output
-
-/// The receiver as an ordered collection of Gedcom nodes.
-@property (readonly) NSArray *gedcomNodes;
-
-/// The receiver as a Gedcom string.
-@property (readonly) NSString *gedcomString;
-
-/// The receiver's gedcomString as an NSData object using the encoding from fileEncoding
-@property (readonly) NSData *gedcomData;
+/// A collection of all the receiver's entities.
+@property (readonly) NSArray *entities;
+@property (readonly) NSMutableArray *mutableEntities;
 
 @end
 

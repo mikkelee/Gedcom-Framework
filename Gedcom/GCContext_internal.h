@@ -10,7 +10,22 @@
 
 #import "GedcomErrors.h"
 
-@interface GCContext ()
+@interface GCContext () {
+    GCHeaderEntity  *_header;
+    GCSubmissionEntity *_submission;
+    
+    NSMutableArray *_families;
+    NSMutableArray *_individuals;
+    NSMutableArray *_multimedias;
+    NSMutableArray *_notes;
+    NSMutableArray *_repositories;
+    NSMutableArray *_sources;
+    NSMutableArray *_submitters;
+    
+    NSMutableArray *_customEntities;
+    
+    __weak id<GCContextDelegate> _delegate;
+}
 
 - (NSString *)_xrefForEntity:(GCEntity *)entity;
 
@@ -22,10 +37,14 @@
 
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
-- (void)_addEntity:(GCEntity *)entity;
-
 - (void)_renumberXrefs;
 
 @property (strong, readonly) NSUndoManager *undoManager;
+
+@end
+
+@interface GCContext (GCMoreKeyValueAdditions)
+
+- (void)_addEntity:(GCEntity *)entity;
 
 @end

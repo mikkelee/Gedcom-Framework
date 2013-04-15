@@ -439,6 +439,7 @@
 		3EF1369C171B476400EDB33C /* GCTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1369B171B476400EDB33C /* GCTransactionTests.m */; };
 		3EF1369E171C05F500EDB33C /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1369D171C05F500EDB33C /* Errors.strings */; };
 		3EF136A0171C0BDA00EDB33C /* Misc.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1369F171C0BDA00EDB33C /* Misc.strings */; };
+		3EF136A4171C0E7800EDB33C /* GCContext+GCKeyValueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */; };
 		3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C6151C3873004A8540 /* GCAgeTests.m */; };
 		3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C7151C3873004A8540 /* GCDateTests.m */; };
 		3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF7A1CA151C57A2004A8540 /* GCTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -945,6 +946,7 @@
 		3EF1369B171B476400EDB33C /* GCTransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTransactionTests.m; sourceTree = "<group>"; };
 		3EF1369D171C05F500EDB33C /* Errors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
 		3EF1369F171C0BDA00EDB33C /* Misc.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Misc.strings; sourceTree = "<group>"; };
+		3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCKeyValueAdditions.m"; sourceTree = "<group>"; };
 		3EF7A1C6151C3873004A8540 /* GCAgeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeTests.m; sourceTree = "<group>"; };
 		3EF7A1C7151C3873004A8540 /* GCDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateTests.m; sourceTree = "<group>"; };
 		3EF7A1CA151C57A2004A8540 /* GCTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTag.h; sourceTree = "<group>"; };
@@ -1125,6 +1127,7 @@
 				3E14EDC815230DAE00080364 /* GCContext.h */,
 				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,
 				3E14EDC915230DAE00080364 /* GCContext.m */,
+				3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */,
 				3E57558A15217C1600A918D1 /* Objects */,
 				3E14EDCC15230FE400080364 /* Values */,
 				3EB5ABCF153615CD0036B4D5 /* Helpers */,
@@ -2297,6 +2300,7 @@
 				3E4E8435171ADFF600889651 /* GCNodeParser.rl in Sources */,
 				3E4E8436171ADFFC00889651 /* GCAgeParser.rl in Sources */,
 				3E4E8437171ADFFE00889651 /* GCDateParser.rl in Sources */,
+				3EF136A4171C0E7800EDB33C /* GCContext+GCKeyValueAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
