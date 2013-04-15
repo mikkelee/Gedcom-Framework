@@ -78,12 +78,12 @@
     dispatch_queue_t _queue;
 }
 
-__strong static NSMutableDictionary *_contextsByName = nil;
+__strong static NSMapTable *_contextsByName = nil;
 __strong static NSArray *_rootKeys = nil;
 
 + (void)initialize
 {
-    _contextsByName = [NSMutableDictionary dictionary];
+    _contextsByName = [NSMapTable strongToWeakObjectsMapTable];
     _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ];
 }
 
@@ -694,7 +694,16 @@ __strong static NSArray *_rootKeys = nil;
 	self = [super init];
     
     if (self) {
-        _name = [aDecoder decodeObjectForKey:@"name"];
+        NSString *decodedName = [aDecoder decodeObjectForKey:@"name"];
+        
+        NSString *key = decodedName;
+        int i = 0;
+        while (_contextsByName[key]) {
+            key = [NSString stringWithFormat:@"%@::%d", decodedName, ++i];
+        }
+        _name = key;
+        _contextsByName[_name] = self;
+        
         _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
         _entityToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
         _header = [aDecoder decodeObjectForKey:@"header"];
@@ -709,8 +718,6 @@ __strong static NSArray *_rootKeys = nil;
         _submitters = [aDecoder decodeObjectForKey:@"submitters"];
         
         _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
-        
-        _contextsByName[_name] = self;
 	}
     
     return self;
