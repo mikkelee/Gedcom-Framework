@@ -524,7 +524,6 @@
 		3E02E7B61607D968008728D9 /* GCCustomObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCustomObjects.h; sourceTree = "<group>"; };
 		3E02E7B71607D968008728D9 /* GCCustomObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCustomObjects.m; sourceTree = "<group>"; };
 		3E09D18C15F9427C00BAA69E /* GCObject_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCObject_internal.h; sourceTree = "<group>"; };
-		3E0E6801161112B4000CF845 /* anselmap.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = anselmap.py; path = Misc/anselmap.py; sourceTree = "<group>"; };
 		3E14EDC815230DAE00080364 /* GCContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContext.h; sourceTree = "<group>"; };
 		3E14EDC915230DAE00080364 /* GCContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContext.m; sourceTree = "<group>"; };
 		3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDelegateTests.m; sourceTree = "<group>"; };
@@ -582,7 +581,6 @@
 		3E5A68621610A6E8005B2319 /* GCList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCList.m; path = Values/GCList.m; sourceTree = "<group>"; };
 		3E5A68661610B51B005B2319 /* GCValue_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCValue_internal.h; path = Values/GCValue_internal.h; sourceTree = "<group>"; };
 		3E5A68671610CA16005B2319 /* GedcomErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomErrors.h; sourceTree = "<group>"; };
-		3E5A68681610EB2D005B2319 /* ans2uni.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ans2uni.out; path = Misc/ans2uni.out; sourceTree = "<group>"; };
 		3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomCharacterSetHelpers.h; sourceTree = "<group>"; };
 		3E5A686B1610F57A005B2319 /* TGC55.ged */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TGC55.ged; sourceTree = "<group>"; };
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -1341,8 +1339,6 @@
 				3ED92D411563D76500E53E47 /* Delegate protocols */,
 				3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */,
 				3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */,
-				3E0E6801161112B4000CF845 /* anselmap.py */,
-				3E5A68681610EB2D005B2319 /* ans2uni.out */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
