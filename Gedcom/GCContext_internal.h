@@ -24,6 +24,8 @@
 
 - (void)_addEntity:(GCEntity *)entity;
 
+- (void)_renumberXrefs;
+
 @property (strong, readonly) NSUndoManager *undoManager;
 
 @end

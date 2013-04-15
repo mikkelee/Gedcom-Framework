@@ -36,7 +36,6 @@
 @end
 
 //TODO: split into categories?
-//TODO: renumber xrefs
 //TODO: merging contexts etc.
 
 @interface NSMapTable (GCSubscriptAdditions)
@@ -94,7 +93,7 @@ __strong static NSArray *_rootKeys = nil;
 	if (self) {
         _name = [[NSUUID UUID] UUIDString];
         
-        _xrefToEntityMap = [NSMapTable strongToStrongObjectsMapTable];
+        _xrefToEntityMap = [NSMapTable strongToWeakObjectsMapTable];
         _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
         
         _families = [NSMutableArray array];
@@ -315,6 +314,16 @@ __strong static NSArray *_rootKeys = nil;
             //NSLog(@"NOT creating: %@", xref);
             return nil;
         }
+    }
+}
+
+- (void)_renumberXrefs
+{
+    _xrefToEntityMap = [NSMapTable strongToWeakObjectsMapTable];
+    _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+    
+    for (GCEntity *entity in self.entities) {
+        (void)[self _xrefForEntity:entity];
     }
 }
 
@@ -807,6 +816,8 @@ NSString *GCErrorDomain = @"GCErrorDomain";
 
 @end
 
+#pragma mark -
+
 @implementation GCContext (GCContextKeyValueAdditions)
 
 #pragma mark Subscript accessors
@@ -822,6 +833,8 @@ NSString *GCErrorDomain = @"GCErrorDomain";
 }
 
 @end
+
+#pragma mark -
 
 @implementation GCContext (GCTransactionAdditions)
 
