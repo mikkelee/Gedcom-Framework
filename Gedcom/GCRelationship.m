@@ -45,7 +45,7 @@
     GCParameterAssert(_target);
     
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:_target.xref
+								 value:self.target.xref
 								  xref:nil
 							  subNodes:self.subNodes];
 }

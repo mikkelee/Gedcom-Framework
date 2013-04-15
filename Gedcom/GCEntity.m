@@ -115,7 +115,7 @@
     
     NSString *extraValues;
     if (self.gedTag.hasXref)
-        extraValues = [NSString stringWithFormat:@"xref: %@", [_context _xrefForEntity:self]];
+        extraValues = [NSString stringWithFormat:@"xref: %@", self.xref];
     else if (self.gedTag.hasValue)
         extraValues = [NSString stringWithFormat:@"value: %@", self.value];
     
@@ -129,13 +129,13 @@
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
 								 value:self.gedTag.hasValue ? self.value.gedcomString : nil
-								  xref:self.gedTag.hasXref ? [self.context _xrefForEntity:self] : nil
+								  xref:self.gedTag.hasXref ? self.xref : nil
 							  subNodes:self.subNodes];
 }
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSParameterAssert(!self.gedTag.hasXref || [gedcomNode.xref isEqualToString:[self.context _xrefForEntity:self]]);
+    NSParameterAssert(!self.gedTag.hasXref || [gedcomNode.xref isEqualToString:self.xref]);
     
     [super setSubNodes:gedcomNode.subNodes];
 }
@@ -143,7 +143,7 @@
 - (NSString *)displayValue
 {
     if (self.gedTag.hasXref)
-        return [self.context _xrefForEntity:self];
+        return self.xref;
     else
         return self.value.displayString;
 }
@@ -151,7 +151,7 @@
 - (NSAttributedString *)attributedDisplayValue
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue 
-                                           attributes:self.gedTag.hasXref ? @{NSLinkAttributeName: [self.context _xrefForEntity:self]} : nil];
+                                           attributes:self.gedTag.hasXref ? @{NSLinkAttributeName: self.xref} : nil];
 }
 
 - (GCObject *)rootObject
