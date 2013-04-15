@@ -227,8 +227,12 @@ __strong static NSArray *_rootKeys = nil;
     
     BOOL succeeded = YES; //TODO
     
+    [self _clearXrefs]; //TODO undo?
+    
     for (NSString *rootKey in _rootKeys) {
-        for (GCEntity *entity in context[rootKey]) {
+        GCEntity *entity = nil;
+        // can't enumerate as they are being removed when adding to the new...
+        while ( [context[rootKey] count] > 0 && (entity = context[rootKey][0]) ) {
             [self _addEntity:entity];
         }
     }
@@ -407,10 +411,18 @@ __strong static NSArray *_rootKeys = nil;
     }
 }
 
-- (void)_renumberXrefs
+- (void)_clearXrefs
 {
     _xrefToEntityMap = [NSMapTable strongToWeakObjectsMapTable];
     _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+}
+
+- (void)_renumberXrefs
+{
+    [self _clearXrefs];
+    for (GCEntity *entity in self.entities) {
+        (void)[self _xrefForEntity:entity];
+    }
 }
 
 #pragma mark Xref link methods

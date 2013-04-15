@@ -11,12 +11,9 @@
 #import "GCContextDelegate.h"
 #import "GCNodeParserDelegate.h"
 
-@class GCHeaderEntity;
 @class GCEntity;
+@class GCHeaderEntity;
 @class GCSubmissionEntity;
-@class GCObject;
-@class GCNode;
-@class GCTag;
 
 typedef enum : NSUInteger {
     GCUnknownFileEncoding = -1,

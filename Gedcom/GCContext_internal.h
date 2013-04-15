@@ -37,6 +37,7 @@
 
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
+- (void)_clearXrefs;
 - (void)_renumberXrefs;
 
 @property (strong, readonly) NSUndoManager *undoManager;

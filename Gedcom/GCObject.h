@@ -79,7 +79,7 @@
 @property (nonatomic, readonly) GCObject *rootObject;
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
-@property (nonatomic, readonly) GCContext *context;
+@property (nonatomic, readonly, weak) GCContext *context;
 
 /** The value of the receiver appropiate for displaying in the user interface.
  

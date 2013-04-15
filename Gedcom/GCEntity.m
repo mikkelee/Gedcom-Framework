@@ -24,7 +24,7 @@
 @end
 
 @implementation GCEntity {
-    GCContext *_context;
+    __weak GCContext *_context;
 }
 
 #pragma mark Initialization
@@ -53,9 +53,9 @@
     self = [self _initWithType:type];
     
     if (self) {
-		_context = context;
         _isBuildingFromGedcom = NO;
-        [_context _addEntity:self];
+        [context _addEntity:self];
+        NSParameterAssert(self.context == context);
     }
     
     return self;

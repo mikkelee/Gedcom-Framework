@@ -117,6 +117,7 @@
 - (void)setTarget:(GCEntity *)target
 {
     NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
+    NSAssert(self.context, @"You must add the root object to a context before setting the target!");
     NSParameterAssert([target isKindOfClass:self.gedTag.targetType]);
     
     //NSLog(@"%p target: %p => %p", self, _target, target);

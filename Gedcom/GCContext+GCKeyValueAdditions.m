@@ -8,6 +8,8 @@
 
 #import "GCContext_internal.h"
 
+#import "GCObject+GCHelpers.h"
+
 #import "GCHeaderEntity.h"
 #import "GCSubmissionEntity.h"
 #import "GCFamilyEntity.h"
@@ -30,6 +32,13 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)setHeader:(GCHeaderEntity *)header
 {
+    if (_header == header) {
+        return;
+    }
+    if (_header) {
+        [_header setValue:nil forKey:@"context"];
+    }
+    [header setValue:self forKey:@"context"];
     _header = header;
 }
 
@@ -38,14 +47,21 @@ __strong static NSArray *_rootKeys = nil;
     return _header;
 }
 
+- (void)setSubmission:(GCSubmissionEntity *)submission
+{
+    if (_submission == submission) {
+        return;
+    }
+    if (_submission) {
+        [_submission setValue:nil forKey:@"context"];
+    }
+    [submission setValue:self forKey:@"context"];
+    _submission = submission;
+}
+
 - (GCSubmissionEntity *)submission
 {
     return _submission;
-}
-
-- (void)setSubmission:(GCSubmissionEntity *)submission
-{
-    _submission = submission;
 }
 
 - (NSArray *)families
@@ -119,7 +135,13 @@ __strong static NSArray *_rootKeys = nil;
 {
 	NSParameterAssert([entity isKindOfClass:[GCEntity class]]);
     
-    [entity setValue:self forKey:@"context"]; //TODO
+    if (entity.context == self) {
+        return;
+    }
+    
+    GCContext *oldContext = entity.context;
+    
+    [oldContext.mutableEntities removeObject:entity];
     
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         self.header = (GCHeaderEntity *)entity;
@@ -130,9 +152,18 @@ __strong static NSArray *_rootKeys = nil;
             if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
                 [[self mutableArrayValueForKey:entity.gedTag.pluralName] addObject:entity];
             } else {
+                [entity setValue:self forKey:@"context"];
                 [_customEntities addObject:entity];
                 NSLog(@"entity");
             }
+        }
+    }
+    
+    NSParameterAssert(entity.context == self);
+    
+    if (oldContext != self) {
+        for (GCEntity *relatedEntity in entity.relatedEntities) {
+            [self _addEntity:relatedEntity];
         }
     }
     
@@ -152,14 +183,12 @@ __strong static NSArray *_rootKeys = nil;
 {
     GCEntity *entity = self.entities[index];
     
-    NSParameterAssert(entity.context == self);
-    
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
-        if (_header == entity) {
+        if (self.header == entity) {
             self.header = nil;
         }
     } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
-        if (_submission == entity) {
+        if (self.submission == entity) {
             self.submission = nil;
         }
     } else if ([entity isKindOfClass:[GCEntity class]]) {
@@ -167,12 +196,15 @@ __strong static NSArray *_rootKeys = nil;
             if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
                 [[self mutableArrayValueForKey:entity.gedTag.pluralName] removeObject:entity];
             } else {
+                [entity setValue:nil forKey:@"context"];
                 [_customEntities removeObject:entity];
             }
         }
     } else {
         NSAssert(NO, @"Unknown class: %@", entity);
     }
+    
+    NSParameterAssert(!entity.context);
     
     // TODO handle xrefs, remove self as ctx param, and any relationships...
     
@@ -199,12 +231,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCFamilyEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_families insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromFamiliesAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_families[index]).context);
+    [_families[index] setValue:nil forKey:@"context"];
     [_families removeObjectAtIndex:index];
 }
 
@@ -224,12 +259,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inIndividualsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCIndividualEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_individuals insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromIndividualsAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_individuals[index]).context);
+    [_individuals[index] setValue:nil forKey:@"context"];
     [_individuals removeObjectAtIndex:index];
 }
 
@@ -249,12 +287,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inMultimediasAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_multimedias insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediasAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_multimedias[index]).context);
+    [_multimedias[index] setValue:nil forKey:@"context"];
     [_multimedias removeObjectAtIndex:index];
 }
 
@@ -274,12 +315,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inNotesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_notes insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNotesAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_notes[index]).context);
+    [_notes[index] setValue:nil forKey:@"context"];
     [_notes removeObjectAtIndex:index];
 }
 
@@ -299,12 +343,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inRepositoriesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRepositoryEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_repositories insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromRepositoriesAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_repositories[index]).context);
+    [_repositories[index] setValue:nil forKey:@"context"];
     [_repositories removeObjectAtIndex:index];
 }
 
@@ -324,12 +371,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inSourcesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_sources insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourcesAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_sources[index]).context);
+    [_sources[index] setValue:nil forKey:@"context"];
     [_sources removeObjectAtIndex:index];
 }
 
@@ -349,12 +399,15 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)insertObject:(GCEntity *)obj inSubmittersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmitterEntity class]]);
-    NSParameterAssert(obj.context == self);
+    if (obj.context == self) {
+        return;
+    }
+    [obj setValue:self forKey:@"context"];
     [_submitters insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSubmittersAtIndex:(NSUInteger)index {
-    NSParameterAssert(!((GCEntity *)_submitters[index]).context);
+    [_submitters[index] setValue:nil forKey:@"context"];
     [_submitters removeObjectAtIndex:index];
 }
 
