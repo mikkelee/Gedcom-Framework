@@ -294,6 +294,11 @@ __strong static NSArray *_rootKeys = nil;
         _submitters = [aDecoder decodeObjectForKey:@"submitters"];
         
         _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
+        
+        _group = dispatch_group_create();
+        _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
+        
+        _undoManager = [[NSUndoManager alloc] init];
 	}
     
     return self;
@@ -434,6 +439,8 @@ __strong static NSArray *_rootKeys = nil;
 {
     NSString *encoding = self.header.characterSet.displayValue;
     
+    NSParameterAssert(encoding);
+    
     if ([encoding isEqualToString:@"ANSEL"]) {
         return GCANSELFileEncoding;
     } else if ([encoding isEqualToString:@"ASCII"]) {
@@ -478,12 +485,6 @@ __strong static NSArray *_rootKeys = nil;
         self.header = [GCHeaderEntity defaultHeaderInContext:self];
     }
     
-	[nodes addObject:self.header.gedcomNode];
-    
-    if (self.submission) {
-        [nodes addObject:self.submission.gedcomNode];
-    }
-	
     @synchronized (self) {
         for (GCEntity *entity in self.entities) {
             [nodes addObject:entity.gedcomNode];

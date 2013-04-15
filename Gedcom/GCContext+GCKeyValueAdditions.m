@@ -89,6 +89,13 @@ __strong static NSArray *_rootKeys = nil;
 {
     NSMutableArray *entities = [NSMutableArray array];
     
+    if (self.header) {
+        [entities addObject:self.header];
+    }
+    if (self.submission) {
+        [entities addObject:self.submission];
+    }
+    
     for (NSString *entityType in _rootKeys) {
         [entities addObjectsFromArray:[super valueForKey:entityType]];
     }
@@ -105,22 +112,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (NSUInteger)countOfEntities
 {
-    NSUInteger count = 0;
-    
-    if (self.header)
-        count++;
-    if (self.submission)
-        count++;
-    
-    @synchronized (self) {
-        for (NSString *key in _rootKeys) {
-            count += [[self valueForKey:key] count];
-        }
-    }
-    
-    count++; //trailer
-    
-    return count;
+    return [self.entities count];
 }
 
 - (void)_addEntity:(GCEntity *)entity
