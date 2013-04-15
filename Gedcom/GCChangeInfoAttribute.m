@@ -10,14 +10,14 @@
 
 #import "GCNode.h"
 
-#import "DateHelpers.h"
+#import "GedcomDateHelpers.h"
 
 #import "GCNoteEmbeddedAttribute.h"
 #import "GCNoteReferenceRelationship.h"
 
 #import "GCObject_internal.h"
 
-#import "GCObject+GCConvenienceMethods.h"
+#import "GCObject+GCConvenienceAdditions.h"
 
 @interface GCChangeInfoAttribute ()
 

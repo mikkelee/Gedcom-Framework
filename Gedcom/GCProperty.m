@@ -9,7 +9,6 @@
 #import "GCProperty.h"
 
 #import "GCNode.h"
-#import "GCObject_internal.h"
 
 @interface GCProperty ()
 

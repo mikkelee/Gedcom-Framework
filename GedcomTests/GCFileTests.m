@@ -10,7 +10,7 @@
 
 #import "Gedcom.h"
 
-#import "CharacterSetHelpers.h"
+#import "GedcomCharacterSetHelpers.h"
 
 @interface GCFileTests : SenTestCase 
 @end

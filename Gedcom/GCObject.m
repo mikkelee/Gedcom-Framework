@@ -9,12 +9,10 @@
 
 #import "GCObject_internal.h"
 
-#import "GCObject+GCConvenienceMethods.h"
+#import "GCObject+GCConvenienceAdditions.h"
 
 #import "GCNodeParser.h"
 #import "GCNode.h"
-
-#import "GCProperty.h"
 
 __strong static NSMutableDictionary *_validPropertiesByType;
 __strong static NSDictionary *_defaultColors;
@@ -292,8 +290,8 @@ __strong static NSDictionary *_defaultColors;
 {
     NSMutableArray *subNodes = [NSMutableArray array];
     
-    for (GCProperty *property in self.properties) {
-        [subNodes addObject:property.gedcomNode];
+    for (id property in self.properties) {
+        [subNodes addObject:[property valueForKey:@"gedcomNode"]];
     }
     
 	return subNodes;

@@ -68,7 +68,7 @@
 		3E52C01D171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57557C15202A9600A918D1 /* GCValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557A15202A9600A918D1 /* GCValue.m */; };
-		3E575580152057B200A918D1 /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* DateHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E575580152057B200A918D1 /* GedcomDateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* GedcomDateHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57558815217C0E00A918D1 /* GCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558615217C0D00A918D1 /* GCObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57558915217C0E00A918D1 /* GCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57558715217C0D00A918D1 /* GCObject.m */; };
 		3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57558B15217C2F00A918D1 /* GCProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -103,12 +103,13 @@
 		3E8C1EA01626BECE005B3BE6 /* GCObject+GCSanityCheckAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C1E9516264861005B3BE6 /* GCObject+GCSanityCheckAdditions.m */; };
 		3E8C1EA11626BED7005B3BE6 /* sanity.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C1E9216264837005B3BE6 /* sanity.json */; };
 		3E8F87C1171C9FDB003111D2 /* GedcomTypedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C0171C9F42003111D2 /* GedcomTypedefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E8F87C4171CAE01003111D2 /* GCObject+GCConvenienceMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceMethods.h */; };
-		3E8F87C5171CAE01003111D2 /* GCObject+GCConvenienceMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceMethods.m */; };
-		3E8F87C8171CAE0D003111D2 /* GCValidationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C6171CAE0D003111D2 /* GCValidationMethods.h */; };
-		3E8F87C9171CAE0D003111D2 /* GCValidationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87C7171CAE0D003111D2 /* GCValidationMethods.m */; };
+		3E8F87C4171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */; };
+		3E8F87C5171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */; };
+		3E8F87C8171CAE0D003111D2 /* GCValidationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */; };
+		3E8F87C9171CAE0D003111D2 /* GCValidationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */; };
 		3E8F87CC171CAFFD003111D2 /* GCGedcomLoadingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */; };
 		3E8F87CD171CAFFD003111D2 /* GCGedcomLoadingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */; };
+		3E8F87CE171CBAE7003111D2 /* GedcomCharacterSetHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAF25261710D3FC00385071 /* GCRelationship+GCReverseRelationshipAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */; };
 		3EB5ABD6153619280036B4D5 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json */; };
 		3EB826761719C54F004C1811 /* GCObjects_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EB8253D1719C54E004C1811 /* GCObjects_generated.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -445,8 +446,6 @@
 		3EF1369E171C05F500EDB33C /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1369D171C05F500EDB33C /* Errors.strings */; };
 		3EF136A0171C0BDA00EDB33C /* Misc.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1369F171C0BDA00EDB33C /* Misc.strings */; };
 		3EF136A4171C0E7800EDB33C /* GCContext+GCKeyValueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */; };
-		3EF136A7171C497600EDB33C /* GCObject+GCHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF136A5171C497400EDB33C /* GCObject+GCHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3EF136A8171C497600EDB33C /* GCObject+GCHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF136A6171C497500EDB33C /* GCObject+GCHelpers.m */; };
 		3EF7A1C8151C3873004A8540 /* GCAgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C6151C3873004A8540 /* GCAgeTests.m */; };
 		3EF7A1C9151C3873004A8540 /* GCDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7A1C7151C3873004A8540 /* GCDateTests.m */; };
 		3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF7A1CA151C57A2004A8540 /* GCTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -573,7 +572,7 @@
 		3E52C01E171AAF2E00A4D800 /* GCNodeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCNodeParser.rl; path = Nodes/GCNodeParser.rl; sourceTree = "<group>"; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCValue.h; path = Values/GCValue.h; sourceTree = "<group>"; };
 		3E57557A15202A9600A918D1 /* GCValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCValue.m; path = Values/GCValue.m; sourceTree = "<group>"; };
-		3E57557E152057B200A918D1 /* DateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelpers.h; sourceTree = "<group>"; };
+		3E57557E152057B200A918D1 /* GedcomDateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GedcomDateHelpers.h; sourceTree = "<group>"; };
 		3E57558615217C0D00A918D1 /* GCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObject.h; sourceTree = "<group>"; };
 		3E57558715217C0D00A918D1 /* GCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObject.m; sourceTree = "<group>"; };
 		3E57558B15217C2F00A918D1 /* GCProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCProperty.h; sourceTree = "<group>"; };
@@ -584,7 +583,7 @@
 		3E5A68661610B51B005B2319 /* GCValue_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCValue_internal.h; path = Values/GCValue_internal.h; sourceTree = "<group>"; };
 		3E5A68671610CA16005B2319 /* GedcomErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomErrors.h; sourceTree = "<group>"; };
 		3E5A68681610EB2D005B2319 /* ans2uni.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ans2uni.out; sourceTree = "<group>"; };
-		3E5A686A1610EFEF005B2319 /* CharacterSetHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterSetHelpers.h; sourceTree = "<group>"; };
+		3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomCharacterSetHelpers.h; sourceTree = "<group>"; };
 		3E5A686B1610F57A005B2319 /* TGC55.ged */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TGC55.ged; sourceTree = "<group>"; };
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3E5F50C0151DF2E800A433A6 /* Gedcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom.h; sourceTree = "<group>"; };
@@ -618,10 +617,10 @@
 		3E8C1E98162648DF005B3BE6 /* GCIndividualEntity+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCIndividualEntity+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3E8C1E9C1626BBA5005B3BE6 /* GCSanityCheckTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSanityCheckTests.m; sourceTree = "<group>"; };
 		3E8F87C0171C9F42003111D2 /* GedcomTypedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomTypedefs.h; sourceTree = "<group>"; };
-		3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCConvenienceMethods.h"; sourceTree = "<group>"; };
-		3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCConvenienceMethods.m"; sourceTree = "<group>"; };
-		3E8F87C6171CAE0D003111D2 /* GCValidationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValidationMethods.h; sourceTree = "<group>"; };
-		3E8F87C7171CAE0D003111D2 /* GCValidationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValidationMethods.m; sourceTree = "<group>"; };
+		3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCConvenienceAdditions.h"; sourceTree = "<group>"; };
+		3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCConvenienceAdditions.m"; sourceTree = "<group>"; };
+		3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValidationAdditions.h; sourceTree = "<group>"; };
+		3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValidationAdditions.m; sourceTree = "<group>"; };
 		3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomLoadingAdditions.h; sourceTree = "<group>"; };
 		3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomLoadingAdditions.m; sourceTree = "<group>"; };
 		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
@@ -960,8 +959,6 @@
 		3EF1369D171C05F500EDB33C /* Errors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
 		3EF1369F171C0BDA00EDB33C /* Misc.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Misc.strings; sourceTree = "<group>"; };
 		3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCKeyValueAdditions.m"; sourceTree = "<group>"; };
-		3EF136A5171C497400EDB33C /* GCObject+GCHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCHelpers.h"; sourceTree = "<group>"; };
-		3EF136A6171C497500EDB33C /* GCObject+GCHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCHelpers.m"; sourceTree = "<group>"; };
 		3EF7A1C6151C3873004A8540 /* GCAgeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAgeTests.m; sourceTree = "<group>"; };
 		3EF7A1C7151C3873004A8540 /* GCDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateTests.m; sourceTree = "<group>"; };
 		3EF7A1CA151C57A2004A8540 /* GCTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTag.h; sourceTree = "<group>"; };
@@ -1042,12 +1039,10 @@
 				3E57558715217C0D00A918D1 /* GCObject.m */,
 				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
 				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
-				3EF136A5171C497400EDB33C /* GCObject+GCHelpers.h */,
-				3EF136A6171C497500EDB33C /* GCObject+GCHelpers.m */,
-				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceMethods.h */,
-				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceMethods.m */,
-				3E8F87C6171CAE0D003111D2 /* GCValidationMethods.h */,
-				3E8F87C7171CAE0D003111D2 /* GCValidationMethods.m */,
+				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */,
+				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */,
+				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
+				3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */,
 				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
 				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
 				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
@@ -1146,6 +1141,8 @@
 				3E5F50C0151DF2E800A433A6 /* Gedcom.h */,
 				3E5A68671610CA16005B2319 /* GedcomErrors.h */,
 				3E8F87C0171C9F42003111D2 /* GedcomTypedefs.h */,
+				3E57557E152057B200A918D1 /* GedcomDateHelpers.h */,
+				3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */,
 				3E14EDC715230A3000080364 /* Nodes */,
 				3E14EDC815230DAE00080364 /* GCContext.h */,
 				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,
@@ -1341,8 +1338,6 @@
 			isa = PBXGroup;
 			children = (
 				3ED1712F161647F200B5B83F /* Third party */,
-				3E57557E152057B200A918D1 /* DateHelpers.h */,
-				3E5A686A1610EFEF005B2319 /* CharacterSetHelpers.h */,
 				3ED92D411563D76500E53E47 /* Delegate protocols */,
 				3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */,
 				3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */,
@@ -1719,7 +1714,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EF136A7171C497600EDB33C /* GCObject+GCHelpers.h in Headers */,
 				3EB826761719C54F004C1811 /* GCObjects_generated.h in Headers */,
 				3E52C01C171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h in Headers */,
 				3EB826771719C54F004C1811 /* GCAbbreviationAttribute.h in Headers */,
@@ -1882,7 +1876,7 @@
 				3EF7A1CC151C57A4004A8540 /* GCTag.h in Headers */,
 				3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */,
 				3E57557B15202A9600A918D1 /* GCValue.h in Headers */,
-				3E575580152057B200A918D1 /* DateHelpers.h in Headers */,
+				3E575580152057B200A918D1 /* GedcomDateHelpers.h in Headers */,
 				3E57558815217C0E00A918D1 /* GCObject.h in Headers */,
 				3E57558D15217C2F00A918D1 /* GCProperty.h in Headers */,
 				3E57559115217C3B00A918D1 /* GCRelationship.h in Headers */,
@@ -1904,9 +1898,10 @@
 				3E325D2D170D0CC800109A18 /* GCNodeParserDelegate.h in Headers */,
 				3EF13698171B43EF00EDB33C /* GCNode_internal.h in Headers */,
 				3E8F87C1171C9FDB003111D2 /* GedcomTypedefs.h in Headers */,
-				3E8F87C4171CAE01003111D2 /* GCObject+GCConvenienceMethods.h in Headers */,
-				3E8F87C8171CAE0D003111D2 /* GCValidationMethods.h in Headers */,
+				3E8F87C4171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h in Headers */,
+				3E8F87C8171CAE0D003111D2 /* GCValidationAdditions.h in Headers */,
 				3E8F87CC171CAFFD003111D2 /* GCGedcomLoadingAdditions.h in Headers */,
+				3E8F87CE171CBAE7003111D2 /* GedcomCharacterSetHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2327,9 +2322,8 @@
 				3E4E8436171ADFFC00889651 /* GCAgeParser.rl in Sources */,
 				3E4E8437171ADFFE00889651 /* GCDateParser.rl in Sources */,
 				3EF136A4171C0E7800EDB33C /* GCContext+GCKeyValueAdditions.m in Sources */,
-				3EF136A8171C497600EDB33C /* GCObject+GCHelpers.m in Sources */,
-				3E8F87C5171CAE01003111D2 /* GCObject+GCConvenienceMethods.m in Sources */,
-				3E8F87C9171CAE0D003111D2 /* GCValidationMethods.m in Sources */,
+				3E8F87C5171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m in Sources */,
+				3E8F87C9171CAE0D003111D2 /* GCValidationAdditions.m in Sources */,
 				3E8F87CD171CAFFD003111D2 /* GCGedcomLoadingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

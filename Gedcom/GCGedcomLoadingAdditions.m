@@ -8,7 +8,7 @@
 
 #import "GCGedcomLoadingAdditions.h"
 
-#import "GCObject+GCConvenienceMethods.h"
+#import "GCObject+GCConvenienceAdditions.h"
 
 #import "GCNode.h"
 #import "GCContext_internal.h"

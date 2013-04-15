@@ -8,7 +8,7 @@
 
 #import "GCContext_internal.h"
 
-#import "GCObject+GCHelpers.h"
+#import "GCObject+GCConvenienceAdditions.h"
 
 #import "GCHeaderEntity.h"
 #import "GCSubmissionEntity.h"

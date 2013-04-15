@@ -17,13 +17,12 @@
 
 #import "GCObjects_generated.h"
 
-#import "GCObject+GCConvenienceMethods.h"
-#import "GCObject+GCHelpers.h"
+#import "GCObject+GCConvenienceAdditions.h"
 #import "GCObject+GCKeyValueAdditions.h"
 #import "GCObject+GCSanityCheckAdditions.h"
 
 #import "GCGedcomLoadingAdditions.h"
-#import "GCValidationMethods.h"
+#import "GCValidationAdditions.h"
 
 #import "GCEntity.h"
 #import "GCProperty.h"

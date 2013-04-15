@@ -1,18 +1,19 @@
 //
-//  GCObject+GCConvenienceMethods.m
+//  GCObject+GCConvenienceAdditions.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 15/04/13.
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject+GCConvenienceMethods.h"
+#import "GCObject+GCConvenienceAdditions.h"
 
 #import "GCNode.h"
 #import "GCContext_internal.h"
 #import "GCGedcomLoadingAdditions.h"
+#import "GCRelationship.h"
 
-@implementation GCObject (GCConvenienceMethods)
+@implementation GCObject (GCConvenienceAdditions)
 
 - (void)addPropertyWithGedcomNode:(GCNode *)node
 {
@@ -32,6 +33,20 @@
     for (id node in nodes) {
         [self addPropertyWithGedcomNode:node];
     }
+}
+
+- (NSArray *)relatedEntities
+{
+    NSMutableArray *targets = [NSMutableArray array];
+    
+    for (GCObject *object in self.properties) {
+        if ([object isKindOfClass:[GCRelationship class]]) {
+            [targets addObject:((GCRelationship *)object).target];
+        }
+        [targets addObjectsFromArray:object.relatedEntities];
+    }
+    
+    return [targets copy];
 }
 
 @end

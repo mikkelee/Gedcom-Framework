@@ -1,5 +1,5 @@
 //
-//  GCObject+GCConvenienceMethods.h
+//  GCObject+GCConvenienceAdditions.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 15/04/13.
@@ -11,7 +11,7 @@
 @class GCValue;
 @class GCEntity;
 
-@interface GCObject (GCConvenienceMethods)
+@interface GCObject (GCConvenienceAdditions)
 
 /// @name Accessing GCProperties
 
@@ -26,5 +26,7 @@
  @param nodes An array of nodes.
  */
 - (void)addPropertiesWithGedcomNodes:(NSArray *)nodes;
+
+@property (nonatomic, readonly) NSArray *relatedEntities;
 
 @end

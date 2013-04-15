@@ -1,12 +1,12 @@
 //
-//  GCValidationMethods.m
+//  GCValidationAdditions.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 15/04/13.
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCValidationMethods.h"
+#import "GCValidationAdditions.h"
 
 #import "GCEntity.h"
 #import "GCAttribute.h"
@@ -16,7 +16,7 @@
 
 NSString *GCErrorDomain = @"GCErrorDomain";
 
-@implementation GCContext (GCValidationMethods)
+@implementation GCContext (GCValidationAdditions)
 
 - (BOOL)validateContext:(NSError *__autoreleasing *)error
 {

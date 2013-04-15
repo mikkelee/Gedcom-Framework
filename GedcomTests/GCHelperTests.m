@@ -10,8 +10,8 @@
 
 #import "Gedcom.h"
 
-#import "DateHelpers.h"
-#import "CharacterSetHelpers.h"
+#import "GedcomDateHelpers.h"
+#import "GedcomCharacterSetHelpers.h"
 
 #import "NSData+Base64.h"
 

@@ -8,18 +8,15 @@
 
 #import "GCContext_internal.h"
 
+#import "GedcomCharacterSetHelpers.h"
+
 #import "GCNodeParser.h"
 #import "GCNode.h"
-
-#import "GCEntity.h"
-#import "GCSubmissionEntity.h"
 
 #import "GCCharacterSetAttribute.h"
 #import "GCHeaderEntity+GCObjectAdditions.h"
 
 #import "GCContextDelegate.h"
-
-#import "CharacterSetHelpers.h"
 
 #import "GCGedcomLoadingAdditions.h"
 
@@ -234,7 +231,7 @@ __strong static NSArray *_rootKeys = nil;
     [self _clearXrefs]; //TODO undo?
     
     for (NSString *rootKey in _rootKeys) {
-        GCEntity *entity = nil;
+        id entity = nil;
         // can't enumerate as they are being removed when adding to the new...
         while ( [context[rootKey] count] > 0 && (entity = context[rootKey][0]) ) {
             [self _addEntity:entity];

@@ -1,5 +1,5 @@
 //
-//  GCValidationMethods.h
+//  GCValidationAdditions.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 15/04/13.
@@ -9,7 +9,7 @@
 #import "GCContext.h"
 #import "GCObject_internal.h"
 
-@interface GCContext (GCValidationMethods)
+@interface GCContext (GCValidationAdditions)
 
 /// @name Validating contexts
 

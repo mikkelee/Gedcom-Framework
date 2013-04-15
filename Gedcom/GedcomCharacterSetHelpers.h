@@ -1,5 +1,5 @@
 //
-//  CharacterSetHelpers.h
+//  GedcomCharacterSetHelpers.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 24/09/12.
