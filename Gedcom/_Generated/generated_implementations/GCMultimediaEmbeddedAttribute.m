@@ -5,6 +5,7 @@
 #import "GCMultimediaEmbeddedAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCFileAttribute.h"
 #import "GCMultimediaFormatAttribute.h"

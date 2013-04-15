@@ -5,6 +5,7 @@
 #import "GCFamilyEntity.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCAnnulmentAttribute.h"
 #import "GCCensusAttribute.h"

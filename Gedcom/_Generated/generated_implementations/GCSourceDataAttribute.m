@@ -5,6 +5,7 @@
 #import "GCSourceDataAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCEventsRecordedAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"

@@ -5,6 +5,7 @@
 #import "GCSurnamePrefixAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 
 

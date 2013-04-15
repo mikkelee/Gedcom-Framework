@@ -5,6 +5,7 @@
 #import "GCLDSEndowmentAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCDateAttribute.h"
 #import "GCLDSEndowmentStatusAttribute.h"

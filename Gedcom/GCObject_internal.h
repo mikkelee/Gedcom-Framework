@@ -7,14 +7,13 @@
 //
 
 #import "GCObject.h"
-#import "GCEntity.h"
 
 #import "GCTag.h"
 
 #import "GedcomErrors.h"
 
 @interface GCObject () {
-    @protected
+@protected
     GCTag *_gedTag;
     BOOL _isBuildingFromGedcom;
 }
@@ -34,13 +33,5 @@
 @property (nonatomic) NSArray *subNodes;
 
 @property (nonatomic, readonly) NSUndoManager *undoManager;
-
-@end
-
-@interface GCEntity ()
-
-- (id)_initWithType:(NSString *)type inContext:(GCContext *)context;
-
-@property (nonatomic, readonly) NSString *xref;
 
 @end

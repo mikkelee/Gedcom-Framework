@@ -152,6 +152,7 @@ implementationFileT = Template("""/*
 #import "$className.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 $includeHeaders
 

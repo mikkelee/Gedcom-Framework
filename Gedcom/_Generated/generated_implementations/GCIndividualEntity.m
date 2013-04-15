@@ -5,6 +5,7 @@
 #import "GCIndividualEntity.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCAdoptionAttribute.h"
 #import "GCAdultChristeningAttribute.h"

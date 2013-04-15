@@ -5,6 +5,7 @@
 #import "GCBurialAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCAddressAttribute.h"
 #import "GCAgeAttribute.h"

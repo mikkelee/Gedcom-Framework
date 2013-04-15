@@ -5,6 +5,7 @@
 #import "GCPedigreeAttribute.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 #import "GCNoteEmbeddedAttribute.h"
 #import "GCNoteReferenceRelationship.h"

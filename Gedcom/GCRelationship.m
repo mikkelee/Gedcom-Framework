@@ -13,6 +13,7 @@
 #import "GCContext_internal.h"
 
 #import "GCObject_internal.h"
+#import "GCEntity_internal.h"
 
 @interface GCRelationship ()
 
