@@ -14,6 +14,7 @@
 @class GCObject;
 
 @interface GCContext () {
+@protected
     GCHeaderEntity  *_header;
     GCSubmissionEntity *_submission;
     
