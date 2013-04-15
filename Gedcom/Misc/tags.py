@@ -3,7 +3,7 @@
 import os.path, time
 
 selfModified = os.path.getmtime(os.path.abspath(os.path.dirname(__file__)))
-jsonModified = os.path.getmtime('tags.json')
+jsonModified = os.path.getmtime('Misc/tags.json')
 headerModified = os.path.getmtime('_Generated/GCObjects_generated.h')
 
 if selfModified < headerModified and jsonModified < headerModified:
@@ -308,7 +308,7 @@ def constructors(key, type):
 			)
 	return cons
 
-f = open('tags.json')
+f = open('Misc/tags.json')
 tags = json.load(f)
 
 def propagate(key):

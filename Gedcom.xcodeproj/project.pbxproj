@@ -524,7 +524,7 @@
 		3E02E7B61607D968008728D9 /* GCCustomObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCustomObjects.h; sourceTree = "<group>"; };
 		3E02E7B71607D968008728D9 /* GCCustomObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCustomObjects.m; sourceTree = "<group>"; };
 		3E09D18C15F9427C00BAA69E /* GCObject_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCObject_internal.h; sourceTree = "<group>"; };
-		3E0E6801161112B4000CF845 /* anselmap.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = anselmap.py; sourceTree = "<group>"; };
+		3E0E6801161112B4000CF845 /* anselmap.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = anselmap.py; path = Misc/anselmap.py; sourceTree = "<group>"; };
 		3E14EDC815230DAE00080364 /* GCContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContext.h; sourceTree = "<group>"; };
 		3E14EDC915230DAE00080364 /* GCContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContext.m; sourceTree = "<group>"; };
 		3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDelegateTests.m; sourceTree = "<group>"; };
@@ -582,7 +582,7 @@
 		3E5A68621610A6E8005B2319 /* GCList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCList.m; path = Values/GCList.m; sourceTree = "<group>"; };
 		3E5A68661610B51B005B2319 /* GCValue_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCValue_internal.h; path = Values/GCValue_internal.h; sourceTree = "<group>"; };
 		3E5A68671610CA16005B2319 /* GedcomErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomErrors.h; sourceTree = "<group>"; };
-		3E5A68681610EB2D005B2319 /* ans2uni.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ans2uni.out; sourceTree = "<group>"; };
+		3E5A68681610EB2D005B2319 /* ans2uni.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ans2uni.out; path = Misc/ans2uni.out; sourceTree = "<group>"; };
 		3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GedcomCharacterSetHelpers.h; sourceTree = "<group>"; };
 		3E5A686B1610F57A005B2319 /* TGC55.ged */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TGC55.ged; sourceTree = "<group>"; };
 		3E5F5097151DCC7B00A433A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -610,7 +610,7 @@
 		3E8C1E141625534A005B3BE6 /* GCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCAppDelegate.h; sourceTree = "<group>"; };
 		3E8C1E151625534A005B3BE6 /* GCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCAppDelegate.m; sourceTree = "<group>"; };
 		3E8C1E181625534C005B3BE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		3E8C1E9216264837005B3BE6 /* sanity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sanity.json; path = Gedcom/sanity.json; sourceTree = SOURCE_ROOT; };
+		3E8C1E9216264837005B3BE6 /* sanity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sanity.json; path = Gedcom/Misc/sanity.json; sourceTree = SOURCE_ROOT; };
 		3E8C1E9416264861005B3BE6 /* GCObject+GCSanityCheckAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GCObject+GCSanityCheckAdditions.h"; path = "Gedcom/GCObject+GCSanityCheckAdditions.h"; sourceTree = SOURCE_ROOT; };
 		3E8C1E9516264861005B3BE6 /* GCObject+GCSanityCheckAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GCObject+GCSanityCheckAdditions.m"; path = "Gedcom/GCObject+GCSanityCheckAdditions.m"; sourceTree = SOURCE_ROOT; };
 		3E8C1E97162648DE005B3BE6 /* GCIndividualEntity+GCObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCIndividualEntity+GCObjectAdditions.h"; sourceTree = "<group>"; };
@@ -623,7 +623,7 @@
 		3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValidationAdditions.m; sourceTree = "<group>"; };
 		3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomLoadingAdditions.h; sourceTree = "<group>"; };
 		3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomLoadingAdditions.m; sourceTree = "<group>"; };
-		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; usesTabs = 0; };
+		3EB5ABD5153619280036B4D5 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tags.json; path = Misc/tags.json; sourceTree = "<group>"; usesTabs = 0; };
 		3EB8253D1719C54E004C1811 /* GCObjects_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjects_generated.h; sourceTree = "<group>"; };
 		3EB8253F1719C54E004C1811 /* GCAbbreviationAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAbbreviationAttribute.h; sourceTree = "<group>"; };
 		3EB825401719C54E004C1811 /* GCAddressAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAddressAttribute.h; sourceTree = "<group>"; };
@@ -942,7 +942,7 @@
 		3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCXrefProtocol.h; sourceTree = "<group>"; };
 		3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCXrefProtocol.m; sourceTree = "<group>"; };
 		3ED92D421563D78C00E53E47 /* GCContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCContextDelegate.h; sourceTree = "<group>"; };
-		3EDBBE6115F7EE15008C1E50 /* tags.py */ = {isa = PBXFileReference; explicitFileType = text.script.python; fileEncoding = 4; path = tags.py; sourceTree = "<group>"; usesTabs = 1; };
+		3EDBBE6115F7EE15008C1E50 /* tags.py */ = {isa = PBXFileReference; explicitFileType = text.script.python; fileEncoding = 4; name = tags.py; path = Misc/tags.py; sourceTree = "<group>"; usesTabs = 1; };
 		3EDD4113156D022200002352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Values.strings; sourceTree = "<group>"; };
 		3EDD4117156D8EE200002352 /* GCPlacestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCPlacestring.m; path = Values/GCPlacestring.m; sourceTree = "<group>"; };
 		3EDD411C156E335000002352 /* GCPlacestringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlacestringTests.m; sourceTree = "<group>"; };
@@ -1910,7 +1910,7 @@
 /* Begin PBXLegacyTarget section */
 		3E75835315F7EEE500A9B096 /* Generate GCObject Subclasses */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = tags.py;
+			buildArgumentsString = Misc/tags.py;
 			buildConfigurationList = 3E75835415F7EEE500A9B096 /* Build configuration list for PBXLegacyTarget "Generate GCObject Subclasses" */;
 			buildPhases = (
 			);
