@@ -42,8 +42,18 @@ collectionAccessorsT = Template("""
 - (void)insertObject:(id)obj in${capName}AtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[$type class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
-	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -59,8 +69,18 @@ collectionAccessorsT = Template("""
 }
 
 - (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
-	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_$name[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -71,8 +91,18 @@ collectionAccessorsT = Template("""
 singleAccessorsT = Template("""
 - (void)set$capName:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[($selfClass *)[self.context.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
-	[self.context.undoManager setActionName:@"Undo $name"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_$name) {
 		[obj setValue:nil forKey:@"describedObject"];

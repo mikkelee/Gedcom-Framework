@@ -64,8 +64,18 @@
 
 - (void)setVersion:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
-	[self.context.undoManager setActionName:@"Undo version"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_version) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -88,8 +98,18 @@
 
 - (void)setDescriptiveName:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setDescriptiveName:_descriptiveName];
-	[self.context.undoManager setActionName:@"Undo descriptiveName"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_descriptiveName) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -112,8 +132,18 @@
 
 - (void)setCorporation:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCorporation:_corporation];
-	[self.context.undoManager setActionName:@"Undo corporation"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_corporation) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -136,8 +166,18 @@
 
 - (void)setHeaderSourceData:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCHeaderSourceAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setHeaderSourceData:_headerSourceData];
-	[self.context.undoManager setActionName:@"Undo headerSourceData"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_headerSourceData) {
 		[obj setValue:nil forKey:@"describedObject"];

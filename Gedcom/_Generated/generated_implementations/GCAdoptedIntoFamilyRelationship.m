@@ -40,8 +40,18 @@
 
 - (void)setAdoptedByWhichParent:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAdoptedIntoFamilyRelationship *)[self.context.undoManager prepareWithInvocationTarget:self] setAdoptedByWhichParent:_adoptedByWhichParent];
-	[self.context.undoManager setActionName:@"Undo adoptedByWhichParent"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_adoptedByWhichParent) {
 		[obj setValue:nil forKey:@"describedObject"];

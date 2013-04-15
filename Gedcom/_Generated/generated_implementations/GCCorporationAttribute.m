@@ -60,8 +60,18 @@
 
 - (void)setAddress:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddress:_address];
-	[self.context.undoManager setActionName:@"Undo address"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_address) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -97,8 +107,18 @@
 - (void)insertObject:(id)obj inPhoneNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -114,8 +134,18 @@
 }
 
 - (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCCorporationAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo phoneNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_phoneNumbers[index]) setValue:nil forKey:@"describedObject"];
 	

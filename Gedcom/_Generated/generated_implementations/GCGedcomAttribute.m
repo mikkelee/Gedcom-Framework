@@ -60,8 +60,18 @@
 
 - (void)setVersion:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
-	[self.context.undoManager setActionName:@"Undo version"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_version) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -84,8 +94,18 @@
 
 - (void)setGedcomFormat:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCGedcomAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setGedcomFormat:_gedcomFormat];
-	[self.context.undoManager setActionName:@"Undo gedcomFormat"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_gedcomFormat) {
 		[obj setValue:nil forKey:@"describedObject"];

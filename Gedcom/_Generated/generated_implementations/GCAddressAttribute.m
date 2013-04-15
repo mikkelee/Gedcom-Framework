@@ -68,8 +68,18 @@
 
 - (void)setAddressLine1:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine1:_addressLine1];
-	[self.context.undoManager setActionName:@"Undo addressLine1"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_addressLine1) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -92,8 +102,18 @@
 
 - (void)setAddressLine2:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAddressLine2:_addressLine2];
-	[self.context.undoManager setActionName:@"Undo addressLine2"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_addressLine2) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -116,8 +136,18 @@
 
 - (void)setCity:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCity:_city];
-	[self.context.undoManager setActionName:@"Undo city"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_city) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -140,8 +170,18 @@
 
 - (void)setState:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setState:_state];
-	[self.context.undoManager setActionName:@"Undo state"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_state) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -164,8 +204,18 @@
 
 - (void)setPostalCode:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setPostalCode:_postalCode];
-	[self.context.undoManager setActionName:@"Undo postalCode"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_postalCode) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -188,8 +238,18 @@
 
 - (void)setCountry:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCAddressAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setCountry:_country];
-	[self.context.undoManager setActionName:@"Undo country"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_country) {
 		[obj setValue:nil forKey:@"describedObject"];

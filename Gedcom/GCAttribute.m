@@ -168,24 +168,50 @@
     
     returnError = combineErrors(returnError, err);
     
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
     if (self.gedTag.valueType) {
         if (_value) {
             if (![_value isKindOfClass:self.gedTag.valueType]) {
+                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is incorrect type for %@ (should be %@)"
+                                                                          value:@"Value %@ is incorrect type for %@ (should be %@)"
+                                                                          table:@"Errors"];
+                NSDictionary *userInfo = @{
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, _value, self.type, self.gedTag.valueType],
+                                           NSAffectedObjectsErrorKey: self
+                                           };
+                
                 returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                              code:GCIncorrectValueTypeError
-                                                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is incorrect type for %@ (should be %@)", _value, self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
+                                                                         userInfo:userInfo]);
                 isValid &= NO;
             } else if ([self.gedTag.allowedValues count] > 0 && ![_value _isContainedInArray:self.gedTag.allowedValues]) {
+                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is not allowed for %@ (should be one of %@)"
+                                                                          value:@"Value %@ is not allowed for %@ (should be one of %@)"
+                                                                          table:@"Errors"];
+                NSDictionary *userInfo = @{
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, _value, self.type, self.gedTag.allowedValues],
+                                           NSAffectedObjectsErrorKey: self
+                                           };
+                
                 returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                              code:GCIncorrectValueTypeError
-                                                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value %@ is not allowed for %@ (should be one of %@)", _value, self.type, self.gedTag.allowedValues], NSAffectedObjectsErrorKey: self}]);
+                                                                         userInfo:userInfo]);
                 isValid &= NO;
             }
         } else {
             if (!self.gedTag.allowsNilValue) {
+                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value is missing for %@ (should be a %@)"
+                                                                          value:@"Value is missing for %@ (should be a %@)"
+                                                                          table:@"Errors"];
+                NSDictionary *userInfo = @{
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString,  self.type, self.gedTag.valueType],
+                                           NSAffectedObjectsErrorKey: self
+                                           };
+                
                 returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                              code:GCValueMissingError
-                                                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Value is missing for %@ (should be a %@)",  self.type, self.gedTag.valueType], NSAffectedObjectsErrorKey: self}]);
+                                                                         userInfo:userInfo]);
                 isValid &= NO;
             }
         }

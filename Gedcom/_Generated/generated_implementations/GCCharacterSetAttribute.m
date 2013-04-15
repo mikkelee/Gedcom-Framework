@@ -58,8 +58,18 @@
 
 - (void)setVersion:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCCharacterSetAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setVersion:_version];
-	[self.context.undoManager setActionName:@"Undo version"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_version) {
 		[obj setValue:nil forKey:@"describedObject"];

@@ -58,8 +58,18 @@
 
 - (void)setAge:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCHusbandDetailAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setAge:_age];
-	[self.context.undoManager setActionName:@"Undo age"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_age) {
 		[obj setValue:nil forKey:@"describedObject"];

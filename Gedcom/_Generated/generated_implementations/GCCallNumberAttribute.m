@@ -58,8 +58,18 @@
 
 - (void)setMediaType:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCCallNumberAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setMediaType:_mediaType];
-	[self.context.undoManager setActionName:@"Undo mediaType"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_mediaType) {
 		[obj setValue:nil forKey:@"describedObject"];

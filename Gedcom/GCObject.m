@@ -473,18 +473,38 @@ __strong static NSDictionary *_defaultColors;
         
         GCAllowedOccurrences allowedOccurrences = [self.gedTag allowedOccurrencesOfSubTag:subTag];
         
+        NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+        
         if (propertyCount > allowedOccurrences.max) {
             isValid &= NO;
+            
+            NSString *formatString = [frameworkBundle localizedStringForKey:@"Too many values for key %@ on %@"
+                                                                      value:@"Too many values for key %@ on %@"
+                                                                      table:@"Errors"];
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, propertyKey, self.type],
+                                       NSAffectedObjectsErrorKey: self
+                                       };
+            
             returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCTooManyValuesError
-                                                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too many values for key %@ on %@", propertyKey, self.type], NSAffectedObjectsErrorKey: self}]);
+                                                                     userInfo:userInfo]);
         }
         
         if (propertyCount < allowedOccurrences.min) {
             isValid &= NO;
+            
+            NSString *formatString = [frameworkBundle localizedStringForKey:@"Too few values for key %@ on %@"
+                                                                      value:@"Too few values for key %@ on %@"
+                                                                      table:@"Errors"];
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, propertyKey, self.type],
+                                       NSAffectedObjectsErrorKey: self
+                                       };
+            
             returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                          code:GCTooFewValuesError
-                                                                     userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Too few values for key %@ on %@", propertyKey, self.type], NSAffectedObjectsErrorKey: self}]);
+                                                                     userInfo:userInfo]);
         }
     }
     

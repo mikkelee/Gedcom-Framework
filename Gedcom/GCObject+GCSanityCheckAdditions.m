@@ -67,6 +67,8 @@
     
 	id settings = sanity[self.type];
     
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
 	[settings[@"orderRequirements"] enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *eventsThatMustOccurLater, BOOL *stop){
 		NSString *keyPath = [NSString stringWithFormat:@"%@s.date.value", key];
 		for (GCDate *eventDate in [self valueForKeyPath:keyPath]) {
@@ -79,9 +81,18 @@
                     //NSLog(@"comparing %@ : %@ :: %@ : %@", key, eventType, eventDate, otherEventDate);
 					if ([otherEventDate isLessThan:eventDate]) {
 						isSane &= NO;
+                        
+                        NSString *formatString = [frameworkBundle localizedStringForKey:@"%@ usually occurs before %@"
+                                                                                  value:@"%@ usually occurs before %@"
+                                                                                  table:@"Errors"];
+                        NSDictionary *userInfo = @{
+                                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, key, eventType],
+                                                   NSAffectedObjectsErrorKey: self
+                                                   };
+
                         returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                                      code:GCSanityCheckInconsistency
-                                                                                 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"%@ usually occurs before %@", key, eventType], NSAffectedObjectsErrorKey: self}]);
+                                                                                 userInfo:userInfo]);
 					}
 				}
 			}
@@ -97,9 +108,18 @@
             }
 			if ([ageAtEvent isLessThan:requiredAge]) {
 				isSane &= NO;
+                
+                NSString *formatString = [frameworkBundle localizedStringForKey:@"%@ is young for %@"
+                                                                          value:@"%@ is young for %@"
+                                                                          table:@"Errors"];
+                NSDictionary *userInfo = @{
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, ageAtEvent, key],
+                                           NSAffectedObjectsErrorKey: self
+                                           };
+                
                 returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                              code:GCSanityCheckInconsistency
-                                                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"%@ is young for %@", ageAtEvent, key], NSAffectedObjectsErrorKey: self}]);
+                                                                         userInfo:userInfo]);
 			}
 		}
 	}];

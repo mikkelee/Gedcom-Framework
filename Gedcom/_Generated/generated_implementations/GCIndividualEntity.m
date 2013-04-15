@@ -219,8 +219,18 @@
 
 - (void)setRestrictionNotice:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRestrictionNotice:_restrictionNotice];
-	[self.context.undoManager setActionName:@"Undo restrictionNotice"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_restrictionNotice) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -256,8 +266,18 @@
 - (void)insertObject:(id)obj inPersonalNamesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPersonalNameAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPersonalNamesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo personalNames"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -273,8 +293,18 @@
 }
 
 - (void)removeObjectFromPersonalNamesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_personalNames[index] inPersonalNamesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo personalNames"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_personalNames[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -284,8 +314,18 @@
 
 - (void)setSex:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setSex:_sex];
-	[self.context.undoManager setActionName:@"Undo sex"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_sex) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -322,8 +362,18 @@
 - (void)insertObject:(id)obj inBirthsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBirthAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBirthsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo births"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -339,8 +389,18 @@
 }
 
 - (void)removeObjectFromBirthsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_births[index] inBirthsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo births"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_births[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -363,8 +423,18 @@
 - (void)insertObject:(id)obj inChristeningsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChristeningAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromChristeningsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo christenings"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -380,8 +450,18 @@
 }
 
 - (void)removeObjectFromChristeningsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_christenings[index] inChristeningsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo christenings"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_christenings[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -404,8 +484,18 @@
 - (void)insertObject:(id)obj inDeathsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDeathAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromDeathsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo deaths"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -421,8 +511,18 @@
 }
 
 - (void)removeObjectFromDeathsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_deaths[index] inDeathsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo deaths"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_deaths[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -445,8 +545,18 @@
 - (void)insertObject:(id)obj inBurialsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBurialAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBurialsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo burials"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -462,8 +572,18 @@
 }
 
 - (void)removeObjectFromBurialsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_burials[index] inBurialsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo burials"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_burials[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -486,8 +606,18 @@
 - (void)insertObject:(id)obj inCremationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCremationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCremationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo cremations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -503,8 +633,18 @@
 }
 
 - (void)removeObjectFromCremationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_cremations[index] inCremationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo cremations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_cremations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -527,8 +667,18 @@
 - (void)insertObject:(id)obj inAdoptionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAdoptionAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAdoptionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo adoptions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -544,8 +694,18 @@
 }
 
 - (void)removeObjectFromAdoptionsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_adoptions[index] inAdoptionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo adoptions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_adoptions[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -568,8 +728,18 @@
 - (void)insertObject:(id)obj inBaptismsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBaptismAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBaptismsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo baptisms"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -585,8 +755,18 @@
 }
 
 - (void)removeObjectFromBaptismsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_baptisms[index] inBaptismsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo baptisms"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_baptisms[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -609,8 +789,18 @@
 - (void)insertObject:(id)obj inBarMitzvahsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBarMitzvahAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBarMitzvahsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo barMitzvahs"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -626,8 +816,18 @@
 }
 
 - (void)removeObjectFromBarMitzvahsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_barMitzvahs[index] inBarMitzvahsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo barMitzvahs"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_barMitzvahs[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -650,8 +850,18 @@
 - (void)insertObject:(id)obj inBasMitzvahsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBasMitzvahAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBasMitzvahsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo basMitzvahs"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -667,8 +877,18 @@
 }
 
 - (void)removeObjectFromBasMitzvahsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_basMitzvahs[index] inBasMitzvahsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo basMitzvahs"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_basMitzvahs[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -691,8 +911,18 @@
 - (void)insertObject:(id)obj inBlessingsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCBlessingAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromBlessingsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo blessings"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -708,8 +938,18 @@
 }
 
 - (void)removeObjectFromBlessingsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_blessings[index] inBlessingsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo blessings"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_blessings[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -732,8 +972,18 @@
 - (void)insertObject:(id)obj inAdultChristeningsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAdultChristeningAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAdultChristeningsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo adultChristenings"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -749,8 +999,18 @@
 }
 
 - (void)removeObjectFromAdultChristeningsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_adultChristenings[index] inAdultChristeningsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo adultChristenings"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_adultChristenings[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -773,8 +1033,18 @@
 - (void)insertObject:(id)obj inConfirmationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCConfirmationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromConfirmationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo confirmations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -790,8 +1060,18 @@
 }
 
 - (void)removeObjectFromConfirmationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_confirmations[index] inConfirmationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo confirmations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_confirmations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -814,8 +1094,18 @@
 - (void)insertObject:(id)obj inFirstCommunionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCFirstCommunionAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromFirstCommunionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo firstCommunions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -831,8 +1121,18 @@
 }
 
 - (void)removeObjectFromFirstCommunionsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_firstCommunions[index] inFirstCommunionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo firstCommunions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_firstCommunions[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -855,8 +1155,18 @@
 - (void)insertObject:(id)obj inOrdinationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCOrdinationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromOrdinationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo ordinations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -872,8 +1182,18 @@
 }
 
 - (void)removeObjectFromOrdinationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_ordinations[index] inOrdinationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo ordinations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_ordinations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -896,8 +1216,18 @@
 - (void)insertObject:(id)obj inNaturalizationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNaturalizationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNaturalizationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo naturalizations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -913,8 +1243,18 @@
 }
 
 - (void)removeObjectFromNaturalizationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_naturalizations[index] inNaturalizationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo naturalizations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_naturalizations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -937,8 +1277,18 @@
 - (void)insertObject:(id)obj inEmigrationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEmigrationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromEmigrationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo emigrations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -954,8 +1304,18 @@
 }
 
 - (void)removeObjectFromEmigrationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_emigrations[index] inEmigrationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo emigrations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_emigrations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -978,8 +1338,18 @@
 - (void)insertObject:(id)obj inImmigrationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCImmigrationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromImmigrationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo immigrations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -995,8 +1365,18 @@
 }
 
 - (void)removeObjectFromImmigrationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_immigrations[index] inImmigrationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo immigrations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_immigrations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1019,8 +1399,18 @@
 - (void)insertObject:(id)obj inCensusesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCensusAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCensusesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo censuses"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1036,8 +1426,18 @@
 }
 
 - (void)removeObjectFromCensusesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_censuses[index] inCensusesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo censuses"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_censuses[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1060,8 +1460,18 @@
 - (void)insertObject:(id)obj inProbatesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCProbateAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromProbatesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo probates"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1077,8 +1487,18 @@
 }
 
 - (void)removeObjectFromProbatesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_probates[index] inProbatesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo probates"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_probates[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1101,8 +1521,18 @@
 - (void)insertObject:(id)obj inWillsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCWillAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromWillsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo wills"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1118,8 +1548,18 @@
 }
 
 - (void)removeObjectFromWillsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_wills[index] inWillsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo wills"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_wills[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1142,8 +1582,18 @@
 - (void)insertObject:(id)obj inGraduationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGraduationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromGraduationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo graduations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1159,8 +1609,18 @@
 }
 
 - (void)removeObjectFromGraduationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_graduations[index] inGraduationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo graduations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_graduations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1183,8 +1643,18 @@
 - (void)insertObject:(id)obj inRetirementsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRetirementAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromRetirementsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo retirements"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1200,8 +1670,18 @@
 }
 
 - (void)removeObjectFromRetirementsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_retirements[index] inRetirementsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo retirements"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_retirements[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1224,8 +1704,18 @@
 - (void)insertObject:(id)obj inGenericEventsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenericEventAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromGenericEventsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo genericEvents"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1241,8 +1731,18 @@
 }
 
 - (void)removeObjectFromGenericEventsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_genericEvents[index] inGenericEventsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo genericEvents"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_genericEvents[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1266,8 +1766,18 @@
 - (void)insertObject:(id)obj inCastesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCCasteAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromCastesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo castes"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1283,8 +1793,18 @@
 }
 
 - (void)removeObjectFromCastesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_castes[index] inCastesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo castes"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_castes[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1307,8 +1827,18 @@
 - (void)insertObject:(id)obj inPhysicalDescriptionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPhysicalDescriptionAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPhysicalDescriptionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo physicalDescriptions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1324,8 +1854,18 @@
 }
 
 - (void)removeObjectFromPhysicalDescriptionsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_physicalDescriptions[index] inPhysicalDescriptionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo physicalDescriptions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_physicalDescriptions[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1348,8 +1888,18 @@
 - (void)insertObject:(id)obj inGenerationsOfDescendantssAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCGenerationsOfDescendantsAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromGenerationsOfDescendantssAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo generationsOfDescendantss"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1365,8 +1915,18 @@
 }
 
 - (void)removeObjectFromGenerationsOfDescendantssAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_generationsOfDescendantss[index] inGenerationsOfDescendantssAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo generationsOfDescendantss"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_generationsOfDescendantss[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1389,8 +1949,18 @@
 - (void)insertObject:(id)obj inEducationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCEducationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromEducationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo educations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1406,8 +1976,18 @@
 }
 
 - (void)removeObjectFromEducationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_educations[index] inEducationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo educations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_educations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1430,8 +2010,18 @@
 - (void)insertObject:(id)obj inIdentNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCIdentNumberAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromIdentNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo identNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1447,8 +2037,18 @@
 }
 
 - (void)removeObjectFromIdentNumbersAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_identNumbers[index] inIdentNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo identNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_identNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1471,8 +2071,18 @@
 - (void)insertObject:(id)obj inNationalitiesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNationalityAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNationalitiesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo nationalities"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1488,8 +2098,18 @@
 }
 
 - (void)removeObjectFromNationalitiesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_nationalities[index] inNationalitiesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo nationalities"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_nationalities[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1512,8 +2132,18 @@
 - (void)insertObject:(id)obj inNumberOfChildrensAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNumberOfChildrenAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNumberOfChildrensAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo numberOfChildrens"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1529,8 +2159,18 @@
 }
 
 - (void)removeObjectFromNumberOfChildrensAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_numberOfChildrens[index] inNumberOfChildrensAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo numberOfChildrens"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_numberOfChildrens[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1553,8 +2193,18 @@
 - (void)insertObject:(id)obj inNumberOfMarriagessAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNumberOfMarriagesAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNumberOfMarriagessAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo numberOfMarriagess"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1570,8 +2220,18 @@
 }
 
 - (void)removeObjectFromNumberOfMarriagessAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_numberOfMarriagess[index] inNumberOfMarriagessAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo numberOfMarriagess"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_numberOfMarriagess[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1594,8 +2254,18 @@
 - (void)insertObject:(id)obj inOccupationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCOccupationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromOccupationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo occupations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1611,8 +2281,18 @@
 }
 
 - (void)removeObjectFromOccupationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_occupations[index] inOccupationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo occupations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_occupations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1635,8 +2315,18 @@
 - (void)insertObject:(id)obj inPropertyOwnedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCPropertyOwnedAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromPropertyOwnedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo propertyOwneds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1652,8 +2342,18 @@
 }
 
 - (void)removeObjectFromPropertyOwnedsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_propertyOwneds[index] inPropertyOwnedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo propertyOwneds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_propertyOwneds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1676,8 +2376,18 @@
 - (void)insertObject:(id)obj inReligionsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCReligionAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromReligionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo religions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1693,8 +2403,18 @@
 }
 
 - (void)removeObjectFromReligionsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_religions[index] inReligionsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo religions"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_religions[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1717,8 +2437,18 @@
 - (void)insertObject:(id)obj inResidencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCResidenceAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromResidencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo residences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1734,8 +2464,18 @@
 }
 
 - (void)removeObjectFromResidencesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_residences[index] inResidencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo residences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_residences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1758,8 +2498,18 @@
 - (void)insertObject:(id)obj inSocialSecurityNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSocialSecurityNumberAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSocialSecurityNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo socialSecurityNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1775,8 +2525,18 @@
 }
 
 - (void)removeObjectFromSocialSecurityNumbersAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_socialSecurityNumbers[index] inSocialSecurityNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo socialSecurityNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_socialSecurityNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1799,8 +2559,18 @@
 - (void)insertObject:(id)obj inTitlesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTitleAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromTitlesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo titles"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1816,8 +2586,18 @@
 }
 
 - (void)removeObjectFromTitlesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_titles[index] inTitlesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo titles"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_titles[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1841,8 +2621,18 @@
 - (void)insertObject:(id)obj inLDSBaptismsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSBaptismAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSBaptismsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSBaptisms"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1858,8 +2648,18 @@
 }
 
 - (void)removeObjectFromLDSBaptismsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSBaptisms[index] inLDSBaptismsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSBaptisms"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_lDSBaptisms[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1882,8 +2682,18 @@
 - (void)insertObject:(id)obj inLDSConfirmationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSConfirmationAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSConfirmationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSConfirmations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1899,8 +2709,18 @@
 }
 
 - (void)removeObjectFromLDSConfirmationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSConfirmations[index] inLDSConfirmationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSConfirmations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_lDSConfirmations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1923,8 +2743,18 @@
 - (void)insertObject:(id)obj inLDSEndowmentsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSEndowmentAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSEndowmentsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSEndowments"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1940,8 +2770,18 @@
 }
 
 - (void)removeObjectFromLDSEndowmentsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSEndowments[index] inLDSEndowmentsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSEndowments"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_lDSEndowments[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -1964,8 +2804,18 @@
 - (void)insertObject:(id)obj inLDSSealingChildsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCLDSSealingChildAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromLDSSealingChildsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSSealingChilds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -1981,8 +2831,18 @@
 }
 
 - (void)removeObjectFromLDSSealingChildsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_lDSSealingChilds[index] inLDSSealingChildsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo lDSSealingChilds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_lDSSealingChilds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2005,8 +2865,18 @@
 - (void)insertObject:(id)obj inChildInFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCChildInFamilyRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromChildInFamiliesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo childInFamilies"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2022,8 +2892,18 @@
 }
 
 - (void)removeObjectFromChildInFamiliesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_childInFamilies[index] inChildInFamiliesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo childInFamilies"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_childInFamilies[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2046,8 +2926,18 @@
 - (void)insertObject:(id)obj inSpouseInFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSpouseInFamilyRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSpouseInFamiliesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo spouseInFamilies"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2063,8 +2953,18 @@
 }
 
 - (void)removeObjectFromSpouseInFamiliesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_spouseInFamilies[index] inSpouseInFamiliesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo spouseInFamilies"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_spouseInFamilies[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2087,8 +2987,18 @@
 - (void)insertObject:(id)obj inSubmitterReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmitterReferenceRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSubmitterReferencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo submitterReferences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2104,8 +3014,18 @@
 }
 
 - (void)removeObjectFromSubmitterReferencesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_submitterReferences[index] inSubmitterReferencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo submitterReferences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_submitterReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2128,8 +3048,18 @@
 - (void)insertObject:(id)obj inAssociationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAssociationRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAssociationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo associations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2145,8 +3075,18 @@
 }
 
 - (void)removeObjectFromAssociationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_associations[index] inAssociationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo associations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_associations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2169,8 +3109,18 @@
 - (void)insertObject:(id)obj inAliasesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAliasRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAliasesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo aliases"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2186,8 +3136,18 @@
 }
 
 - (void)removeObjectFromAliasesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_aliases[index] inAliasesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo aliases"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_aliases[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2210,8 +3170,18 @@
 - (void)insertObject:(id)obj inAncestorInterestsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAncestorInterestRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAncestorInterestsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo ancestorInterests"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2227,8 +3197,18 @@
 }
 
 - (void)removeObjectFromAncestorInterestsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_ancestorInterests[index] inAncestorInterestsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo ancestorInterests"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_ancestorInterests[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2251,8 +3231,18 @@
 - (void)insertObject:(id)obj inDescendantInterestsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCDescendantInterestRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromDescendantInterestsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo descendantInterests"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2268,8 +3258,18 @@
 }
 
 - (void)removeObjectFromDescendantInterestsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_descendantInterests[index] inDescendantInterestsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo descendantInterests"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_descendantInterests[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2293,8 +3293,18 @@
 - (void)insertObject:(id)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2310,8 +3320,18 @@
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo sourceCitations"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_sourceCitations[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2334,8 +3354,18 @@
 - (void)insertObject:(id)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2351,8 +3381,18 @@
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo sourceEmbeddeds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_sourceEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2376,8 +3416,18 @@
 - (void)insertObject:(id)obj inMultimediaReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaReferenceRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2393,8 +3443,18 @@
 }
 
 - (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaReferences[index] inMultimediaReferencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo multimediaReferences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_multimediaReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2417,8 +3477,18 @@
 - (void)insertObject:(id)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaEmbeddedAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2434,8 +3504,18 @@
 }
 
 - (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[index] inMultimediaEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo multimediaEmbeddeds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_multimediaEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2459,8 +3539,18 @@
 - (void)insertObject:(id)obj inNoteReferencesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2476,8 +3566,18 @@
 }
 
 - (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo noteReferences"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2500,8 +3600,18 @@
 - (void)insertObject:(id)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2517,8 +3627,18 @@
 }
 
 - (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo noteEmbeddeds"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2541,8 +3661,18 @@
 - (void)insertObject:(id)obj inRecordFileNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRecordFileNumberAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromRecordFileNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo recordFileNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2558,8 +3688,18 @@
 }
 
 - (void)removeObjectFromRecordFileNumbersAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_recordFileNumbers[index] inRecordFileNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo recordFileNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_recordFileNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2582,8 +3722,18 @@
 - (void)insertObject:(id)obj inAncestralFileNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCAncestralFileNumberAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromAncestralFileNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo ancestralFileNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2599,8 +3749,18 @@
 }
 
 - (void)removeObjectFromAncestralFileNumbersAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_ancestralFileNumbers[index] inAncestralFileNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo ancestralFileNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_ancestralFileNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2623,8 +3783,18 @@
 - (void)insertObject:(id)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
 	
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+													      value:self.type
+														  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -2640,8 +3810,18 @@
 }
 
 - (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
-	[self.context.undoManager setActionName:@"Undo userReferenceNumbers"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	[((GCObject *)_userReferenceNumbers[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -2651,8 +3831,18 @@
 
 - (void)setRecordIdNumber:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
-	[self.context.undoManager setActionName:@"Undo recordIdNumber"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_recordIdNumber) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -2675,8 +3865,18 @@
 
 - (void)setChangeInfo:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCIndividualEntity *)[self.context.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
-	[self.context.undoManager setActionName:@"Undo changeInfo"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_changeInfo) {
 		[obj setValue:nil forKey:@"describedObject"];

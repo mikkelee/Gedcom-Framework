@@ -176,11 +176,18 @@ __strong static NSArray *_rootKeys = nil;
     
     NSString *gedString = nil;
     
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
     if (fileEncoding == GCUnknownFileEncoding) {
         if (error != NULL) {
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: [frameworkBundle localizedStringForKey:@"Could not determine encoding for the file."
+                                                                                                   value:@"Could not determine encoding for the file."
+                                                                                                   table:@"Errors"]
+                                       };
             *error = [NSError errorWithDomain:GCErrorDomain
                                          code:GCUnhandledFileEncodingError
-                                     userInfo:@{NSLocalizedDescriptionKey: @"Could not determine encoding for the file."}];
+                                     userInfo:userInfo];
         }
         return NO;
     } else if (fileEncoding == GCANSELFileEncoding) {

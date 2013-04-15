@@ -216,9 +216,20 @@ __strong static id _sharedNodeParser = nil;
         
         if (!didFinish) {
             if (error != NULL) {
+                NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+                NSString *formatString = [frameworkBundle localizedStringForKey:@"Parser stopped at node #%ld (line %ld)"
+                                                                          value:@"Parser stopped at node #%ld (line %ld)"
+                                                                          table:@"Errors"];
+                NSDictionary *userInfo = @{
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, nodeCount, lineCount],
+                                           NSAffectedObjectsErrorKey: currentNode
+                                           };
+                
+                
                 *error = [NSError errorWithDomain:GCErrorDomain
                                              code:GCNodeParsingError
-                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Parser stopped at node #%ld (line %ld)", nodeCount, lineCount], NSAffectedObjectsErrorKey: currentNode}];
+                                         userInfo:userInfo];
             }
         }
         

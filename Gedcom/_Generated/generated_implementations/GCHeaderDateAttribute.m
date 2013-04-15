@@ -58,8 +58,18 @@
 
 - (void)setTime:(id)obj
 {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+															  value:@"Undo %@"
+															  table:@"Misc"];
+    
+    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
+															  value:self.type
+															  table:@"Misc"];
+    
 	[(GCHeaderDateAttribute *)[self.context.undoManager prepareWithInvocationTarget:self] setTime:_time];
-	[self.context.undoManager setActionName:@"Undo time"]; //TODO
+	[self.context.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
 	
 	if (_time) {
 		[obj setValue:nil forKey:@"describedObject"];

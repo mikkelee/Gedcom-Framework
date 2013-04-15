@@ -193,15 +193,33 @@
         returnError = combineErrors(returnError, err);
     }
     
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
     if (_target == nil) {
+        NSString *formatString = [frameworkBundle localizedStringForKey:@"Target is missing for key %@ (should be a %@)"
+                                                                  value:@"Target is missing for key %@ (should be a %@)"
+                                                                  table:@"Errors"];
+        NSDictionary *userInfo = @{
+                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.type, self.gedTag.targetType],
+                                   NSAffectedObjectsErrorKey: self
+                                   };
+        
         returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                    code:GCTargetMissingError
-                                                               userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target is missing for key %@ (should be a %@)",  self.type, self.gedTag.targetType], NSAffectedObjectsErrorKey: self}]);
+                                                                 userInfo:userInfo]);
         isValid &= NO;
     } else if (![_target isKindOfClass:self.gedTag.targetType]) {
+        NSString *formatString = [frameworkBundle localizedStringForKey:@"Target %@ is incorrect type for key %@ (should be %@)"
+                                                                  value:@"Target %@ is incorrect type for key %@ (should be %@)"
+                                                                  table:@"Errors"];
+        NSDictionary *userInfo = @{
+                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, _target, self.type, self.gedTag.targetType],
+                                   NSAffectedObjectsErrorKey: self
+                                   };
+        
         returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
                                                                      code:GCIncorrectTargetTypeError
-                                                                 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Target %@ is incorrect type for key %@ (should be %@)", _target, self.type, self.gedTag.targetType], NSAffectedObjectsErrorKey: self}]);
+                                                                 userInfo:userInfo]);
         isValid &= NO;
     }
     
