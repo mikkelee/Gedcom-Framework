@@ -59,31 +59,7 @@
 
 
 // Properties:
-
-- (void)setHeaderSource:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setHeaderSource:_headerSource];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_headerSource) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_headerSource = (id)obj;
-}
-
+@dynamic headerSource;
 
 - (NSMutableArray *)mutableDestinations {
 	return [self mutableArrayValueForKey:@"destinations"];
@@ -137,56 +113,8 @@
 	[_destinations removeObjectAtIndex:index];
 }
 
-
-- (void)setHeaderDate:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setHeaderDate:_headerDate];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_headerDate) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_headerDate = (id)obj;
-}
-
-
-- (void)setSubmitterReference:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setSubmitterReference:_submitterReference];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_submitterReference) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_submitterReference = (id)obj;
-}
-
+@dynamic headerDate;
+@dynamic submitterReference;
 
 - (NSMutableArray *)mutableSubmissionReferences {
 	return [self mutableArrayValueForKey:@"submissionReferences"];
@@ -240,181 +168,13 @@
 	[_submissionReferences removeObjectAtIndex:index];
 }
 
-
-- (void)setFile:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setFile:_file];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_file) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_file = (id)obj;
-}
-
-
-- (void)setCopyright:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setCopyright:_copyright];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_copyright) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_copyright = (id)obj;
-}
-
-
-- (void)setGedcom:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setGedcom:_gedcom];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_gedcom) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_gedcom = (id)obj;
-}
-
-
-- (void)setCharacterSet:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setCharacterSet:_characterSet];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_characterSet) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_characterSet = (id)obj;
-}
-
-
-- (void)setLanguage:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setLanguage:_language];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_language) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_language = (id)obj;
-}
-
-
-- (void)setPlaceFormatSpecifier:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setPlaceFormatSpecifier:_placeFormatSpecifier];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_placeFormatSpecifier) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_placeFormatSpecifier = (id)obj;
-}
-
-
-- (void)setNoteEmbedded:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] setNoteEmbedded:_noteEmbedded];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_noteEmbedded) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_noteEmbedded = (id)obj;
-}
-
+@dynamic file;
+@dynamic copyright;
+@dynamic gedcom;
+@dynamic characterSet;
+@dynamic language;
+@dynamic placeFormatSpecifier;
+@dynamic noteEmbedded;
 
 @end
 

@@ -52,56 +52,8 @@
 
 
 // Properties:
-
-- (void)setMultimediaFormat:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCMultimediaEntity *)[self.undoManager prepareWithInvocationTarget:self] setMultimediaFormat:_multimediaFormat];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_multimediaFormat) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_multimediaFormat = (id)obj;
-}
-
-
-- (void)setTitle:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCMultimediaEntity *)[self.undoManager prepareWithInvocationTarget:self] setTitle:_title];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_title) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_title = (id)obj;
-}
-
+@dynamic multimediaFormat;
+@dynamic title;
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -209,31 +161,7 @@
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
 
-
-- (void)setBinaryObject:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCMultimediaEntity *)[self.undoManager prepareWithInvocationTarget:self] setBinaryObject:_binaryObject];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_binaryObject) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_binaryObject = (id)obj;
-}
-
+@dynamic binaryObject;
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
@@ -287,56 +215,8 @@
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
 
-
-- (void)setRecordIdNumber:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCMultimediaEntity *)[self.undoManager prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_recordIdNumber) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_recordIdNumber = (id)obj;
-}
-
-
-- (void)setChangeInfo:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCMultimediaEntity *)[self.undoManager prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_changeInfo) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_changeInfo = (id)obj;
-}
-
+@dynamic recordIdNumber;
+@dynamic changeInfo;
 
 @end
 

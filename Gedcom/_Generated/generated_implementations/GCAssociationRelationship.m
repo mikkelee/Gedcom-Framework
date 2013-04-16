@@ -49,56 +49,8 @@
 
 
 // Properties:
-
-- (void)setRecordType:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCAssociationRelationship *)[self.undoManager prepareWithInvocationTarget:self] setRecordType:_recordType];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_recordType) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_recordType = (id)obj;
-}
-
-
-- (void)setRelationshipDescriptor:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCAssociationRelationship *)[self.undoManager prepareWithInvocationTarget:self] setRelationshipDescriptor:_relationshipDescriptor];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_relationshipDescriptor) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_relationshipDescriptor = (id)obj;
-}
-
+@dynamic recordType;
+@dynamic relationshipDescriptor;
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {

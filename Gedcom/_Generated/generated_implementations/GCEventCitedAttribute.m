@@ -54,31 +54,7 @@
 
 
 // Properties:
-
-- (void)setRole:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCEventCitedAttribute *)[self.undoManager prepareWithInvocationTarget:self] setRole:_role];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_role) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_role = (id)obj;
-}
-
+@dynamic role;
 
 @end
 

@@ -56,31 +56,7 @@
 
 
 // Properties:
-
-- (void)setAddress:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCCorporationAttribute *)[self.undoManager prepareWithInvocationTarget:self] setAddress:_address];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_address) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_address = (id)obj;
-}
-
+@dynamic address;
 
 - (NSMutableArray *)mutablePhoneNumbers {
 	return [self mutableArrayValueForKey:@"phoneNumbers"];

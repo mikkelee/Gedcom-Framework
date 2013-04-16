@@ -54,31 +54,7 @@
 
 
 // Properties:
-
-- (void)setTypeDescription:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCUserReferenceNumberAttribute *)[self.undoManager prepareWithInvocationTarget:self] setTypeDescription:_typeDescription];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_typeDescription) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_typeDescription = (id)obj;
-}
-
+@dynamic typeDescription;
 
 @end
 

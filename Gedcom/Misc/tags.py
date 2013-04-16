@@ -66,32 +66,6 @@ collectionAccessorsT = Template("""
 }
 """)
 
-singleAccessorsT = Template("""
-- (void)set$capName:(id)obj
-{
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if (_$name) {
-		[obj setValue:nil forKey:@"describedObject"];
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	_$name = (id)obj;
-}
-""")
-
 constructorDeclarationT = Template("""/** Initializes and returns a $name.
 
  $doc
@@ -217,12 +191,7 @@ def property(tags, selfClass, key, type, doc, forwardDeclarations, is_plural, is
 			name=name,
 			doc='. '.join([doc, ' NB: required property.' if is_required else ''])
 		)
-		implementation = singleAccessorsT.substitute(
-			selfClass=selfClass,
-			type=classify(key, type),
-			name=name,
-			capName='%s%s' % (name[0].upper(), name[1:])
-		)
+		implementation = '@dynamic %s;' % name
 		ivar = '%s *_%s' % (classify(key, type), name)
 
 	return definition, implementation, ivar
