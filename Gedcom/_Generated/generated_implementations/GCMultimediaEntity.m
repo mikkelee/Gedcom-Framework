@@ -5,7 +5,6 @@
 #import "GCMultimediaEntity.h"
 
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
 
 #import "GCBinaryObjectAttribute.h"
 #import "GCChangeInfoAttribute.h"

@@ -14,7 +14,6 @@
 #import "GCContext_internal.h"
 
 #import "GCEntity_internal.h"
-#import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 

@@ -5,7 +5,6 @@
 #import "GCCallNumberAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
 
 #import "GCMediaTypeAttribute.h"
 

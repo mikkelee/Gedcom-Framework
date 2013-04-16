@@ -8,8 +8,6 @@
 
 #import "GCProperty.h"
 
-#import "GCNode.h"
-
 @interface GCProperty ()
 
 @property (weak, nonatomic) GCObject *describedObject;

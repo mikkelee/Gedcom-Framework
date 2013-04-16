@@ -152,7 +152,6 @@ implementationFileT = Template("""/*
 #import "$className.h"
 
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
 
 $includeHeaders
 
@@ -409,10 +408,11 @@ for key in sorted(tags):
 			propertyImplementations="\n".join(propertyImplementations),
 			ivars="\n".join(['\t%s;' % x for x in ivars])
 		)
-	
+		
+		superClass = classify(tags[key]['objectType'], '')
 		h_file = open('_Generated/generated_headers/%s.h' % className, 'w')
 		h_file.write(headerFileT.substitute(
-			superClass=classify(tags[key]['objectType'], ''),
+			superClass=superClass if not tags[key]['objectType'] == 'entity' else ('%s_internal' % superClass),
 			forwardDeclarations="\n".join(sorted([("@class %s;" % x) for x in forwardDeclarations])),
 			classDefinition=classDefinition
 		))

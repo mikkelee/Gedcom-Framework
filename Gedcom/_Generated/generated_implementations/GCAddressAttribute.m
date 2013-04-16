@@ -5,7 +5,6 @@
 #import "GCAddressAttribute.h"
 
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
 
 #import "GCAddressLine1Attribute.h"
 #import "GCAddressLine2Attribute.h"

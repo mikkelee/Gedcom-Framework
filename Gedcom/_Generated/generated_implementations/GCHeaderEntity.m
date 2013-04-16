@@ -5,7 +5,6 @@
 #import "GCHeaderEntity.h"
 
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
 
 #import "GCCharacterSetAttribute.h"
 #import "GCCopyrightAttribute.h"

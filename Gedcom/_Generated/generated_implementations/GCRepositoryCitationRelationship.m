@@ -5,7 +5,6 @@
 #import "GCRepositoryCitationRelationship.h"
 
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
 
 #import "GCCallNumberAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"
