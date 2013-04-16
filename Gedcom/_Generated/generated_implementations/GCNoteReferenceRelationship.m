@@ -42,7 +42,7 @@
 @dynamic sources;
 
 - (NSMutableArray *)mutableSourceCitations {
-    return [self mutableArrayValueForKey:@"sourceCitations"];
+	return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
 - (NSUInteger)countOfSourceCitations {
@@ -50,24 +50,20 @@
 }
 
 - (id)objectInSourceCitationsAtIndex:(NSUInteger)index {
-    return [_sourceCitations objectAtIndex:index];
+	return [_sourceCitations objectAtIndex:index];
 }
  
 - (void)insertObject:(id)obj inSourceCitationsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceCitationRelationship class]]);
 	
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-													      value:self.type
-														  table:@"Misc"];
-    
+	
 	[(GCNoteReferenceRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -79,31 +75,27 @@
 	
 	[obj setValue:self forKey:@"describedObject"];
 	
-    [_sourceCitations insertObject:obj atIndex:index];
+	[_sourceCitations insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)index {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-															  value:self.type
-															  table:@"Misc"];
-    
+	
 	[(GCNoteReferenceRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_sourceCitations[index] inSourceCitationsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	[((GCObject *)_sourceCitations[index]) setValue:nil forKey:@"describedObject"];
 	
-    [_sourceCitations removeObjectAtIndex:index];
+	[_sourceCitations removeObjectAtIndex:index];
 }
 	
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
-    return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
 }
 
 - (NSUInteger)countOfSourceEmbeddeds {
@@ -111,24 +103,20 @@
 }
 
 - (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)index {
-    return [_sourceEmbeddeds objectAtIndex:index];
+	return [_sourceEmbeddeds objectAtIndex:index];
 }
  
 - (void)insertObject:(id)obj inSourceEmbeddedsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceEmbeddedAttribute class]]);
 	
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-													      value:self.type
-														  table:@"Misc"];
-    
+	
 	[(GCNoteReferenceRelationship *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -140,26 +128,22 @@
 	
 	[obj setValue:self forKey:@"describedObject"];
 	
-    [_sourceEmbeddeds insertObject:obj atIndex:index];
+	[_sourceEmbeddeds insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)index {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-															  value:self.type
-															  table:@"Misc"];
-    
+	
 	[(GCNoteReferenceRelationship *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[index] inSourceEmbeddedsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	[((GCObject *)_sourceEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	
-    [_sourceEmbeddeds removeObjectAtIndex:index];
+	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
 	
 

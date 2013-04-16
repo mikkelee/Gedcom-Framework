@@ -1,18 +1,6 @@
 ﻿#!/usr/bin/env python
 
-import os.path, time
-
-selfModified = os.path.getmtime(os.path.abspath(os.path.dirname(__file__)))
-jsonModified = os.path.getmtime('Misc/tags.json')
-headerModified = os.path.getmtime('_Generated/GCObjects_generated.h')
-
-if selfModified < headerModified and jsonModified < headerModified:
-	print 'selfModified: %s' % time.ctime(selfModified)
-	print 'jsonModified: %s' % time.ctime(jsonModified)
-	print 'headerModified: %s' % time.ctime(headerModified)
-	print 'NOT GOING TO RUN; touch tags.json to force.'
-	exit()
-
+import sys, argparse
 import json
 from string import Template
 
@@ -21,14 +9,12 @@ specialClasses = [ #don't generate classes for these
 	'GCChangeInfoAttribute'
 ];
 
-classList = set()
-
 # Templates:
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
 
 collectionAccessorsT = Template("""
 - (NSMutableArray *)mutable$capName {
-    return [self mutableArrayValueForKey:@"$name"];
+	return [self mutableArrayValueForKey:@"$name"];
 }
 
 - (NSUInteger)countOf$capName {
@@ -36,24 +22,20 @@ collectionAccessorsT = Template("""
 }
 
 - (id)objectIn${capName}AtIndex:(NSUInteger)index {
-    return [_$name objectAtIndex:index];
+	return [_$name objectAtIndex:index];
 }
  
 - (void)insertObject:(id)obj in${capName}AtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[$type class]]);
 	
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-													      value:self.type
-														  table:@"Misc"];
-    
+	
 	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -65,44 +47,36 @@ collectionAccessorsT = Template("""
 	
 	[obj setValue:self forKey:@"describedObject"];
 	
-    [_$name insertObject:obj atIndex:index];
+	[_$name insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-															  value:self.type
-															  table:@"Misc"];
-    
+	
 	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	[((GCObject *)_$name[index]) setValue:nil forKey:@"describedObject"];
 	
-    [_$name removeObjectAtIndex:index];
+	[_$name removeObjectAtIndex:index];
 }
 	""")
 
 singleAccessorsT = Template("""
 - (void)set$capName:(id)obj
 {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-															  value:self.type
-															  table:@"Misc"];
-    
+	
 	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] set$capName:_$name];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	if (_$name) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -202,7 +176,7 @@ def classify(name, type):
 	else:
 		return 'GC%s%s' % (name[0].upper(), name[1:])
 
-def pluralize(s):
+def pluralize(s, tags):
 	if not tags.has_key(s):
 		return '%ss' % s
 	if tags[s].has_key('plural'):
@@ -210,10 +184,8 @@ def pluralize(s):
 	else:
 		return '%ss' % s
 
-forwardDeclarations = set()
-
-def property(selfClass, key, type, doc, is_plural, is_required, is_property_group=False):
-	name = pluralize(key) if is_plural else key
+def property(tags, selfClass, key, type, doc, forwardDeclarations, is_plural, is_required, is_property_group=False):
+	name = pluralize(key, tags) if is_plural else key
 	ivar = None
 	definition = ''
 	implementation = ''
@@ -267,9 +239,9 @@ def constructors(key, type):
 			returnType=classify(key, type),
 			name=key, 
 			extra='InContext:(GCContext *)context',
-            doc='@param context The context in which to create the entity.'
+			doc='@param context The context in which to create the entity.'
 		)] = constructorBodyT.substitute(
-			objectType=tags[key]['objectType'],
+			objectType=type,
 			name=key,
 			extra='InContext:context'
 		)
@@ -280,7 +252,7 @@ def constructors(key, type):
 			extra='',
 			doc=''
 		)] = constructorBodyT.substitute(
-			objectType=tags[key]['objectType'],
+			objectType=type,
 			name=key,
 			extra=''
 		)
@@ -291,7 +263,7 @@ def constructors(key, type):
 				extra='WithValue:(GCValue *)value',
 				doc='@param value The value as a GCValue object.'
 			)] = constructorBodyT.substitute(
-				objectType=tags[key]['objectType'],
+				objectType=type,
 				name=key,
 				extra='WithValue:value'
 			)
@@ -301,35 +273,14 @@ def constructors(key, type):
 				extra='WithGedcomStringValue:(NSString *)value',
 				doc='@param value The value as an NSString.'
 			)] = constructorBodyT.substitute(
-				objectType=tags[key]['objectType'],
+				objectType=type,
 				name=key,
 				extra='WithGedcomStringValue:value'
 			)
 	return cons
 
-f = open('Misc/tags.json')
-tags = json.load(f)
-
-def propagate(key):
-	print 'PROPAGATING VALUES FOR "%s"' % key
-	if not tags[key].has_key('validSubTags'):
-		tags[key]['validSubTags'] = []
-	for variant in tags[key]['variants']:
-		if variant.has_key('groupName'):
-			propagate(variant['groupName'])
-			continue
-		if not tags[variant['name']].has_key('validSubTags'):
-			tags[variant['name']]['validSubTags'] = []
-		tags[variant['name']]['validSubTags'].extend([x for x in tags[key]['validSubTags'] if x not in tags[variant['name']]['validSubTags']])
-		if tags[key].has_key('objectType') and not tags[variant['name']].has_key('objectType'):
-			tags[variant['name']]['objectType'] = tags[key]['objectType']
-
-for key in sorted(tags):
-	if key[0] == '@':
-		propagate(key)
-
-def expand_group(className, group, propertyDeclarations, propertyImplementations, ivars):
-	dec, imp, ivar = property(className, group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
+def expand_group(tags, className, group, propertyDeclarations, propertyImplementations, ivars, forwardDeclarations):
+	dec, imp, ivar = property(tags, className, group[1:], '', 'Property for accessing the following properties', forwardDeclarations, True, False, is_property_group=True)
 					
 	propertyDeclarations.append(dec)
 	propertyImplementations.append(imp)
@@ -337,32 +288,31 @@ def expand_group(className, group, propertyDeclarations, propertyImplementations
 	
 	for variant in tags[group]['variants']:
 		if variant.has_key('groupName'):
-			dec, imp, ivar = property(className, group[1:], '', 'Property for accessing the following properties', True, False, is_property_group=True)
+			dec, imp, ivar = property(tags, className, group[1:], '', 'Property for accessing the following properties', forwardDeclarations, True, False, is_property_group=True)
 			
 			if dec not in propertyDeclarations:
 				propertyDeclarations.append(dec)
 				propertyImplementations.append(imp)
 				if ivar: ivars.append(ivar)
 			
-			expand_group(className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars)
+			expand_group(tags, className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
 			continue
-		print '		PROCESSING VARIANT "%s": %s' % (variant['name'], tags[variant['name']])
-		dec, imp, ivar = property(className, variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
+		print >> sys.stderr, '		PROCESSING VARIANT "%s": %s' % (variant['name'], tags[variant['name']])
+		dec, imp, ivar = property(tags, className, variant['name'], tags[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), forwardDeclarations, variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
 		propertyDeclarations.append(dec)
 		propertyImplementations.append(imp)
 		if ivar: ivars.append(ivar)
 
-
-for key in sorted(tags):
-	print 'PROCESSING KEY "%s": %s' % (key, tags[key])
+def process(key, tags):
+	print >> sys.stderr, 'PROCESSING KEY "%s": %s' % (key, tags[key])
 	if key[0] != '@':
 		forwardDeclarations = set()
 		classDefinitions = []
 		classImplementations = []
 		className = classify(key, tags[key]['objectType'])
 		if not tags[key]['objectType'] in ['entity', 'attribute', 'relationship'] or className in specialClasses:
-			print 'SKIPPING KEY "%s"' % key
-			continue
+			print >> sys.stderr, 'SKIPPING KEY "%s"' % key
+			return
 		cons = constructors(key, tags[key]['objectType'])
 		
 		methodDefs = []
@@ -378,12 +328,12 @@ for key in sorted(tags):
 		
 		if tags[key].has_key('validSubTags'):
 			for prop in tags[key]['validSubTags']:
-				print '	PROCESSING SUBTAG %s' % prop
+				print >> sys.stderr, '	PROCESSING SUBTAG %s' % prop
 				if prop.has_key('groupName'):
-					expand_group(className, prop['groupName'], propertyDeclarations, propertyImplementations, ivars)
+					expand_group(tags, className, prop['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
 					
 				else:
-					dec, imp, ivar = property(className, prop['name'], tags[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
+					dec, imp, ivar = property(tags, className, prop['name'], tags[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', forwardDeclarations, prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
 					propertyDeclarations.append(dec)
 					propertyImplementations.append(imp)
 					if ivar: ivars.append(ivar)
@@ -410,7 +360,7 @@ for key in sorted(tags):
 		)
 		
 		superClass = classify(tags[key]['objectType'], '')
-		h_file = open('_Generated/generated_headers/%s.h' % className, 'w')
+		h_file = open('Gedcom/_Generated/generated_headers/%s.h' % className, 'w')
 		h_file.write(headerFileT.substitute(
 			superClass=superClass if not tags[key]['objectType'] == 'entity' else ('%s_internal' % superClass),
 			forwardDeclarations="\n".join(sorted([("@class %s;" % x) for x in forwardDeclarations])),
@@ -418,7 +368,7 @@ for key in sorted(tags):
 		))
 		h_file.close()
 		
-		m_file = open('_Generated/generated_implementations/%s.m' % className, 'w')
+		m_file = open('Gedcom/_Generated/generated_implementations/%s.m' % className, 'w')
 		m_file.write(implementationFileT.substitute(
 			className=className,
 			includeHeaders="\n".join(sorted([('#import "%s.h"' % x) for x in forwardDeclarations])),
@@ -426,11 +376,104 @@ for key in sorted(tags):
 		))
 		m_file.close()
 		
-		classList.add(className)
-	
-	print 'DONE PROCESSING %s' % key
+		print >> sys.stderr, 'DONE PROCESSING %s' % key
 
-h_file = open('_Generated/GCObjects_generated.h', 'w')
-for className in classList:
-	h_file.write('#import "%s.h"\n' % className);
-h_file.close()
+def uniq(seq):
+	seen = set()
+	seen_add = seen.add
+	return [ x for x in seq if x not in seen and not seen_add(x)]
+
+def propagate(variantKey, sourceDict, tagInfo):
+	print >> sys.stderr, 'PROPAGATING VALUES FOR "%s"' % variantKey
+	print >> sys.stderr, sourceDict
+	
+	variantDict = tagInfo[variantKey]
+	
+	if not variantDict.has_key('validSubTags'):
+		variantDict['validSubTags'] = []
+	
+	print >> sys.stderr, variantDict['validSubTags']
+	
+	if sourceDict.has_key('validSubTags'):
+		variantDict['validSubTags'].extend([x for x in sourceDict['validSubTags'] if x not in variantDict['validSubTags']])
+	
+	if sourceDict.has_key('valueType') and not variantDict.has_key('valueType'):
+		variantDict['valueType'] = sourceDict['valueType']
+	if sourceDict.has_key('objectType') and not variantDict.has_key('objectType'):
+		variantDict['objectType'] = sourceDict['objectType']
+	if sourceDict.has_key('allowsNil') and not variantDict.has_key('allowsNil'):
+		variantDict['allowsNil'] = sourceDict['allowsNil']
+		
+	print >> sys.stderr, tagInfo[variantKey]
+
+def setupKey(key, tagInfo, done):
+	if key in done:
+		return
+	
+	done.add(key)
+	
+	classList = set()
+	
+	tagDict = tagInfo[key]
+	
+	# name
+	tagDict['name'] = key[1:] if key[0] == '@' else key
+	
+	# pluralName
+	if not tagDict.has_key('plural'):
+		tagDict['plural'] = '%ss' % tagDict['name']
+	
+	# allowsNil
+	if not tagDict.has_key('allowsNil'):
+		tagDict['allowsNil'] = False
+	
+	if not key[0] == '@':
+		tagDict['className'] = classify(key, tagDict['objectType'])
+	
+	print >> sys.stderr, 'PROCESSING KEY "%s": %s' % (key, tagInfo[key])
+	
+	# propagate info to variants
+	if tagDict.has_key('variants'):
+		for variant in tagDict['variants']:
+			if variant.has_key('groupName'):
+				for subVariant in tagInfo[variant['groupName']]['variants']:
+					propagate(subVariant['name'], tagDict, tagInfo)
+					
+					setupKey(subVariant['name'], tagInfo, done)
+			elif variant.has_key('name'):
+				propagate(variant['name'], tagDict, tagInfo)
+				
+				setupKey(variant['name'], tagInfo, done)
+	
+	# set up subtags
+	if tagDict.has_key('validSubTags'):
+		for subTag in tagDict['validSubTags']:
+			if subTag.has_key('groupName'):
+				setupKey(subTag['groupName'], tagInfo, done);
+			else:
+				setupKey(subTag['name'], tagInfo, done);
+	
+	process(key, tagInfo)
+	
+	return done
+
+
+if __name__=='__main__':
+	parser = argparse.ArgumentParser()
+	parser.add_argument("input_path", help="path to tags.json")
+	args = parser.parse_args()
+	
+	f = open(args.input_path)
+	tagDicts = json.load(f)
+	
+	tags = setupKey('@rootObject', tagDicts, set())
+	
+	h_file = open('Gedcom/_Generated/GCObjects_generated.h', 'w')
+	for key in tags:
+		if tagDicts[key].has_key('className') and tagDicts[key]['className'] not in specialClasses:
+			h_file.write('#import "%s.h"\n' % tagDicts[key]['className']);
+	h_file.close()
+	
+	print >> sys.stderr, 'DUMPING JSON'
+	
+	print json.dumps(tagDicts)

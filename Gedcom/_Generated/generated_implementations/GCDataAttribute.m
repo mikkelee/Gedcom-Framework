@@ -59,18 +59,14 @@
 
 - (void)setDate:(id)obj
 {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-															  value:self.type
-															  table:@"Misc"];
-    
+	
 	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] setDate:_date];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	if (_date) {
 		[obj setValue:nil forKey:@"describedObject"];
@@ -92,7 +88,7 @@
 
 
 - (NSMutableArray *)mutableTexts {
-    return [self mutableArrayValueForKey:@"texts"];
+	return [self mutableArrayValueForKey:@"texts"];
 }
 
 - (NSUInteger)countOfTexts {
@@ -100,24 +96,20 @@
 }
 
 - (id)objectInTextsAtIndex:(NSUInteger)index {
-    return [_texts objectAtIndex:index];
+	return [_texts objectAtIndex:index];
 }
  
 - (void)insertObject:(id)obj inTextsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCTextAttribute class]]);
 	
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-													      value:self.type
-														  table:@"Misc"];
-    
+	
 	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -129,26 +121,22 @@
 	
 	[obj setValue:self forKey:@"describedObject"];
 	
-    [_texts insertObject:obj atIndex:index];
+	[_texts insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+	
+	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
 															  value:@"Undo %@"
 															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-															  value:self.type
-															  table:@"Misc"];
-    
+	
 	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_texts[index] inTextsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
 	
 	[((GCObject *)_texts[index]) setValue:nil forKey:@"describedObject"];
 	
-    [_texts removeObjectAtIndex:index];
+	[_texts removeObjectAtIndex:index];
 }
 	
 
