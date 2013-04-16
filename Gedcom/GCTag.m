@@ -35,22 +35,25 @@
 
 const NSString *kRootObject = @"@rootObject";
 
-const NSString *kName = @"name";
-const NSString *kCode = @"code";
+const NSString *kTagName = @"name";
+const NSString *kPluralName = @"plural";
+const NSString *kGroupName = @"groupName";
+
+const NSString *kTagCode = @"code";
 
 const NSString *kVariants = @"variants";
 
 const NSString *kValidSubTags = @"validSubTags";
-const NSString *kGroupName = @"groupName";
+
 const NSString *kMin = @"min";
 const NSString *kMax = @"max";
 
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
-const NSString *kAllowsNil = @"allowsNil";
-const NSString *kAllowedValues = @"allowedValues";
 const NSString *kTargetType = @"target";
-const NSString *kPlural = @"plural";
+
+const NSString *kAllowsNilValue = @"allowsNil";
+const NSString *kAllowedValues = @"allowedValues";
 
 const NSString *kHasXref = @"hasXref";
 const NSString *kHasValue = @"hasValue";
@@ -76,24 +79,24 @@ static inline void setupKey(NSString *key) {
     for (NSDictionary *variant in tagDict[kVariants]) {
         if (variant[kGroupName]) {
             for (NSDictionary *subVariant in _tagInfo[variant[kGroupName]][kVariants]) {
-                setupKey(subVariant[kName]);
+                setupKey(subVariant[kTagName]);
             }
         } else {
-            setupKey(variant[kName]);
+            setupKey(variant[kTagName]);
         }
     }
     
     // store tags
-    if (tagDict[kCode] != nil) {
+    if (tagDict[kTagCode] != nil) {
         GCTag *tag = [[GCTag alloc] initWithName:key
                                         settings:tagDict];
         
         _tagStore[key] = tag;
-        _tagStore[tagDict[kPlural]] = tag;
+        _tagStore[tagDict[kPluralName]] = tag;
         
         if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
             //NSLog(@"storing root tag: %@", tag);
-            _rootTagsByCode[tagDict[kCode]] = tag;
+            _rootTagsByCode[tagDict[kTagCode]] = tag;
         }
     }
     
@@ -102,7 +105,7 @@ static inline void setupKey(NSString *key) {
         if (subTag[kGroupName]) {
             setupKey(subTag[kGroupName]);
         } else {
-            setupKey(subTag[kName]);
+            setupKey(subTag[kTagName]);
         }
     }
 }
@@ -142,10 +145,10 @@ static inline void setupKey(NSString *key) {
         _name = name;
         _settings = settings;
         
-        _code = _settings[kCode];
+        _code = _settings[kTagCode];
         _isCustom = [_name hasPrefix:@"custom"];
         _localizedName = [[NSBundle bundleForClass:[self class]] localizedStringForKey:_name value:_name table:@"Tags"];
-        _pluralName = _settings[kPlural];
+        _pluralName = _settings[kPluralName];
         
         // objectClass
         NSString *lookupName = self.name;
@@ -161,7 +164,7 @@ static inline void setupKey(NSString *key) {
         
         // for attributes:
         _valueType = NSClassFromString([NSString stringWithFormat:@"GC%@", [_settings[kValueType] capitalizedString]]);
-        _allowsNilValue = [_settings[kAllowsNil] boolValue];
+        _allowsNilValue = [_settings[kAllowsNilValue] boolValue];
         _allowedValues = [_settings[kAllowedValues] valueForKey:@"uppercaseString"];
         
         // for relationships:
@@ -192,9 +195,9 @@ static inline void setupKey(NSString *key) {
             return [_tagStore valueForKey:tagName];
         }
         GCTag *tag = [[GCTag alloc] initWithName:tagName
-                                        settings:@{kCode: code,
-                                                  kName: tagName,
-                                                  kPlural: pluralName,
+                                        settings:@{kTagCode: code,
+                                                  kTagName: tagName,
+                                                  kPluralName: pluralName,
                                                   kHasValue: @(1),
                                                   kObjectType: @"entity",
                                                   kValidSubTags: [NSArray array]}];
@@ -245,9 +248,9 @@ static inline void setupKey(NSString *key) {
             }
             
             GCTag *tag = [[GCTag alloc] initWithName:tagName
-                                            settings:@{kCode: code,
-                                               kName: tagName,
-                                             kPlural: pluralName,
+                                            settings:@{kTagCode: code,
+                                               kTagName: tagName,
+                                             kPluralName: pluralName,
                                           kValueType: @"string",
                                          kTargetType: @"entity",
                                          kObjectType: type,
@@ -280,13 +283,13 @@ static inline void setupKey(NSString *key) {
         [_settings[kValidSubTags] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSString *key = obj[kGroupName];
             if (key) {
-                NSString *variantGroupName = _tagInfo[key][kPlural];
+                NSString *variantGroupName = _tagInfo[key][kPluralName];
                 for (NSDictionary *variant in _tagInfo[key][kVariants]) {
-                    if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kName]]]) {
+                    if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kTagName]]]) {
                         if (!byGroup[variantGroupName]) {
                             byGroup[variantGroupName] = [NSMutableArray array];
                         }
-                        [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kName]]];
+                        [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kTagName]]];
                     }
                 }
             }
@@ -309,7 +312,7 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
             expandOccurences(occurrencesDicts, variant);
         }
     } else {
-        occurrencesDicts[subtag[kName]] = subtag;
+        occurrencesDicts[subtag[kTagName]] = subtag;
     }
 }
 
@@ -418,7 +421,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
             expandSubtag(set, variant);
         }
     } else {
-        [set addObject:[GCTag tagNamed:valid[kName]]];
+        [set addObject:[GCTag tagNamed:valid[kTagName]]];
     }
 }
 
