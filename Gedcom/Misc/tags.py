@@ -13,9 +13,7 @@ specialClasses = [ #don't generate classes for these
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
 
 collectionAccessorsT = Template("""
-- (NSMutableArray *)mutable$capName {
-	return [self mutableArrayValueForKey:@"$name"];
-}
+@dynamic mutable$capName;
 
 - (NSUInteger)countOf$capName {
 	return [_$name count];

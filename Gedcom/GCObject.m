@@ -399,116 +399,143 @@ __strong static NSDictionary *_defaultColors;
 
 @implementation GCObject (GCHelperAdditions)
 
-+ (GCTag *)gedTag
+- (BOOL)respondsToSelector:(SEL)aSelector
 {
-    return [GCTag tagWithClassName:[self className]];
+    NSLog(@"%@ %@", NSStringFromSelector(_cmd), NSStringFromSelector(aSelector));
+    
+    return [super respondsToSelector:aSelector];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    NSLog(@"%@ %@", NSStringFromSelector(_cmd), NSStringFromSelector(aSelector));
+    
+    return [super methodSignatureForSelector:aSelector];
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)sel
 {
-    Class cls = [self class];
-    
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:cls];
-    
-    NSString *selName = NSStringFromSelector(sel);
-    //NSLog(@"selName: %@", selName);
-    
-    IMP imp;
-    Method method;
-    
-    if ([selName hasPrefix:@"insertObject"]) {
+    @synchronized (self) {
+        Class cls = [self class];
         
-    } if ([selName hasPrefix:@"removeObject"]) {
+        NSBundle *frameworkBundle = [NSBundle bundleForClass:cls];
         
-    } if ([selName hasPrefix:@"countOf"]) {
+        NSString *selName = NSStringFromSelector(sel);
         
-    } if ([selName hasPrefix:@"mutable"]) {
+        BOOL didReplace = NO;
         
-    } if ([selName hasPrefix:@"objectIn"]) {
-        
-    } if ([selName hasPrefix:@"set"]) {
-        // single setter
-        
-        NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:4] substringFromIndex:3] lowercaseString], [selName substringFromIndex:4]];
-        propName = [propName substringToIndex:[propName length]-1];
-        NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
-        
-        if (![[cls gedTag].validSubTags containsObject:[GCTag tagNamed:propName]]) {
-            return NO;
-        }
-        
-        //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, propName, selName, ivarName);
-        
-        Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
-        
-        // creating fake method first, so I can call it below for the undo manager:
-        imp = imp_implementationWithBlock(^(id _s, id newObj) { return; });
-        class_addMethod(cls, sel, imp, "v@:@");
-        
-        imp = imp_implementationWithBlock(^(id _s, id newObj) {
-            id _ivar = object_getIvar(_s, ivar);
+        if ([selName hasPrefix:@"insertObject"]) {
+            //NSLog(@"insertObject %@ selName: %@", [self className], selName);
             
-            NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-                                                                      value:@"Undo %@"
-                                                                      table:@"Misc"];
+        } else if ([selName hasPrefix:@"removeObject"]) {
+            //NSLog(@"removeObject %@ selName: %@", [self className], selName);
             
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [[[_s valueForKey:@"undoManager"] prepareWithInvocationTarget:_s] performSelector:sel withObject:_ivar];
-#pragma clang diagnostic pop
-            [[_s valueForKey:@"undoManager"] setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+        } else if ([selName hasPrefix:@"objectIn"]) {
+            //NSLog(@"objectIn %@ selName: %@", [self className], selName);
             
-            if (_ivar) {
-                [_ivar setValue:nil forKey:@"describedObject"];
+        } else if ([selName hasPrefix:@"countOf"]) {
+            //NSLog(@"countOf %@ selName: %@", [self className], selName);
+            
+        } else if ([selName hasPrefix:@"mutable"]) {
+            // mutable getter
+            
+            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:8] substringFromIndex:7] lowercaseString], [selName substringFromIndex:8]];
+            
+            if (![[cls gedTag].validSubTags containsObject:[GCTag tagNamed:propName]]) {
+                return NO;
             }
             
-            [[newObj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:newObj];
+            NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
             
-            [newObj setValue:_s forKey:@"describedObject"];
+            IMP imp = imp_implementationWithBlock(^(id _s) {
+                //NSLog(@"!!swizz called!! ::: %@ : %@ :::", cls, selName);
+                
+                return [_s mutableArrayValueForKey:propName];
+            });
             
-            NSParameterAssert(!newObj || [newObj valueForKey:@"describedObject"] == _s);
+            didReplace = class_addMethod(cls, sel, imp, "@@:");
+        } else if ([selName hasPrefix:@"set"]) {
+            // single setter
             
-            object_setIvar(_s, ivar, newObj);
+            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:4] substringFromIndex:3] lowercaseString], [selName substringFromIndex:4]];
+            propName = [propName substringToIndex:[propName length]-1];
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
             
-            //NSLog(@"!!swizz called!! ::: %@ : %@ ::: %@ => %@", cls, selName, _ivar, object_getIvar(_s, ivar));
-    });
-        
-        method = class_getInstanceMethod(cls, sel);
-    } else {
-        // single getter
-        
-        NSString *propName = selName;
-        NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
-        
-        if (![[cls gedTag].validSubTags containsObject:[GCTag tagNamed:propName]]) {
-            return NO;
+            if (![[cls gedTag].validSubTags containsObject:[GCTag tagNamed:propName]]) {
+                return NO;
+            }
+            
+            //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
+            
+            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+            
+            // creating fake method first, so I can call it below for the undo manager:
+            IMP imp = imp_implementationWithBlock(^(id _s, id newObj) { return; });
+            class_addMethod(cls, sel, imp, "v@:@");
+            
+            imp = imp_implementationWithBlock(^(id _s, id newObj) {
+                id _ivar = object_getIvar(_s, ivar);
+                
+                NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
+                                                                          value:@"Undo %@"
+                                                                          table:@"Misc"];
+                
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                [[[_s valueForKey:@"undoManager"] prepareWithInvocationTarget:_s] performSelector:sel withObject:_ivar];
+#pragma clang diagnostic pop
+                [[_s valueForKey:@"undoManager"] setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                
+                if (_ivar) {
+                    [_ivar setValue:nil forKey:@"describedObject"];
+                }
+                
+                [[newObj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:newObj];
+                
+                [newObj setValue:_s forKey:@"describedObject"];
+                
+                NSParameterAssert(!newObj || [newObj valueForKey:@"describedObject"] == _s);
+                
+                object_setIvar(_s, ivar, newObj);
+                
+                //NSLog(@"!!swizz called!! ::: %@ : %@ ::: %@ => %@", cls, selName, _ivar, object_getIvar(_s, ivar));
+            });
+            
+            Method method = class_getInstanceMethod(cls, sel);
+            
+            method_setImplementation(method, imp);
+            
+            didReplace = YES;
+        } else {
+            // single getter
+            
+            NSString *propName = selName;
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            
+            if (![[cls gedTag].validSubTags containsObject:[GCTag tagNamed:propName]]) {
+                return NO;
+            }
+            
+            //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
+            
+            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+            
+            IMP imp = imp_implementationWithBlock(^(id _s) {
+                //NSLog(@"!!swizz called!! ::: %@ : %@ ::: => %@", cls, selName, object_getIvar(_s, ivar));
+                
+                return object_getIvar(_s, ivar);
+            });
+            
+            didReplace = class_addMethod(cls, sel, imp, "@@:");
         }
         
-        //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, propName, selName, ivarName);
-        
-        Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
-        
-        // creating fake method first, so I can call it below the undo manager or replace it outside the if/then:
-        imp = imp_implementationWithBlock(^(id _s) { return nil; });
-        class_addMethod(cls, sel, imp, "@@:");
-        
-        imp = imp_implementationWithBlock(^(id _s) {
-            //NSLog(@"!!swizz called!! ::: %@ : %@ ::: => %@", cls, selName, object_getIvar(_s, ivar));
+        if (didReplace) {
+            NSLog(@" -> added %@", selName);
             
-            return object_getIvar(_s, ivar);
-        });
-
-        method = class_getInstanceMethod(cls, sel);
-    }
-    
-    if (imp) {
-        //NSLog(@" -> adding %@", selName);
-        
-        method_setImplementation(method, imp);
-        
-        return YES;
-    } else {
-        return [super resolveInstanceMethod:sel];
+            return YES;
+        } else {
+            return [super resolveInstanceMethod:sel];
+        }
     }
 }
 
