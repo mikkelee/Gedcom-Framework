@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCountryAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a country.
 

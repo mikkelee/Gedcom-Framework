@@ -20,6 +20,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCNoteEntity"];
+}
+
 // Methods:
 /** Initializes and returns a note.
 
@@ -48,9 +53,7 @@
 // Properties:
 @dynamic sources;
 
-- (NSMutableArray *)mutableSourceCitations {
-	return [self mutableArrayValueForKey:@"sourceCitations"];
-}
+@dynamic mutableSourceCitations;
 
 - (NSUInteger)countOfSourceCitations {
 	return [_sourceCitations count];
@@ -101,9 +104,7 @@
 }
 
 
-- (NSMutableArray *)mutableSourceEmbeddeds {
-	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
-}
+@dynamic mutableSourceEmbeddeds;
 
 - (NSUInteger)countOfSourceEmbeddeds {
 	return [_sourceEmbeddeds count];
@@ -154,9 +155,7 @@
 }
 
 
-- (NSMutableArray *)mutableUserReferenceNumbers {
-	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
-}
+@dynamic mutableUserReferenceNumbers;
 
 - (NSUInteger)countOfUserReferenceNumbers {
 	return [_userReferenceNumbers count];

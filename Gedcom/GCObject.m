@@ -512,4 +512,11 @@ __strong static NSDictionary *_defaultColors;
     }
 }
 
++ (GCTag *)gedTag
+{
+    NSLog(@"You override this method in your subclass!");
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 @end

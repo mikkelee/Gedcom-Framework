@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCDescriptiveNameAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a descriptiveName.
 

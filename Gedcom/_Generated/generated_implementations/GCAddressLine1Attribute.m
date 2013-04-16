@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAddressLine1Attribute"];
+}
+
 // Methods:
 /** Initializes and returns a addressLine1.
 

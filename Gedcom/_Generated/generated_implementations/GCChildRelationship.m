@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCChildRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a child.
 

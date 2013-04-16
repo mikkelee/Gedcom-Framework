@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCStateAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a state.
 

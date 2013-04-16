@@ -12,6 +12,11 @@
 	GCPlaceFormatAttribute *_placeFormat;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCPlaceFormatSpecifierAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a placeFormatSpecifier.
 

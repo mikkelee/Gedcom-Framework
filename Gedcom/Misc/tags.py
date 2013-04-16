@@ -118,6 +118,11 @@ classImplementationT = Template("""@implementation $name {
 $ivars
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"$name"];
+}
+
 // Methods:
 $methods
 

@@ -14,6 +14,11 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSpouseInFamilyRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a spouseInFamily.
 
@@ -41,9 +46,7 @@
 // Properties:
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -94,9 +97,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];

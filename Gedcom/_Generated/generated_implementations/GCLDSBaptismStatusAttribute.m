@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCLDSBaptismStatusAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a lDSBaptismStatus.
 

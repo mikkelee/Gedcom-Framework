@@ -20,6 +20,11 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCPlaceAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a place.
 
@@ -68,9 +73,7 @@
 @dynamic placeFormat;
 @dynamic sources;
 
-- (NSMutableArray *)mutableSourceCitations {
-	return [self mutableArrayValueForKey:@"sourceCitations"];
-}
+@dynamic mutableSourceCitations;
 
 - (NSUInteger)countOfSourceCitations {
 	return [_sourceCitations count];
@@ -121,9 +124,7 @@
 }
 
 
-- (NSMutableArray *)mutableSourceEmbeddeds {
-	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
-}
+@dynamic mutableSourceEmbeddeds;
 
 - (NSUInteger)countOfSourceEmbeddeds {
 	return [_sourceEmbeddeds count];
@@ -175,9 +176,7 @@
 
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -228,9 +227,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];

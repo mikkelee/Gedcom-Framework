@@ -12,6 +12,11 @@
 	GCTypeDescriptionAttribute *_typeDescription;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCUserReferenceNumberAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a userReferenceNumber.
 

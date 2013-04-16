@@ -26,6 +26,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCMultimediaEntity"];
+}
+
 // Methods:
 /** Initializes and returns a multimedia.
 
@@ -56,9 +61,7 @@
 @dynamic title;
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -109,9 +112,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];
@@ -163,9 +164,7 @@
 
 @dynamic binaryObject;
 
-- (NSMutableArray *)mutableUserReferenceNumbers {
-	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
-}
+@dynamic mutableUserReferenceNumbers;
 
 - (NSUInteger)countOfUserReferenceNumbers {
 	return [_userReferenceNumbers count];

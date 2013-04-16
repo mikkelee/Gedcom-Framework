@@ -26,6 +26,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCRepositoryEntity"];
+}
+
 // Methods:
 /** Initializes and returns a repository.
 
@@ -56,9 +61,7 @@
 @dynamic descriptiveName;
 @dynamic address;
 
-- (NSMutableArray *)mutablePhoneNumbers {
-	return [self mutableArrayValueForKey:@"phoneNumbers"];
-}
+@dynamic mutablePhoneNumbers;
 
 - (NSUInteger)countOfPhoneNumbers {
 	return [_phoneNumbers count];
@@ -110,9 +113,7 @@
 
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -163,9 +164,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];
@@ -216,9 +215,7 @@
 }
 
 
-- (NSMutableArray *)mutableUserReferenceNumbers {
-	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
-}
+@dynamic mutableUserReferenceNumbers;
 
 - (NSUInteger)countOfUserReferenceNumbers {
 	return [_userReferenceNumbers count];

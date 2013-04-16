@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCTypeDescriptionAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a typeDescription.
 

@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCRecordIdNumberAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a recordIdNumber.
 

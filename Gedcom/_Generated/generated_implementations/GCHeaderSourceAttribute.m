@@ -18,6 +18,11 @@
 	GCHeaderSourceDataAttribute *_headerSourceData;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCHeaderSourceAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a headerSource.
 

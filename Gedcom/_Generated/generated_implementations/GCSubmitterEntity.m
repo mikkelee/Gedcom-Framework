@@ -32,6 +32,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSubmitterEntity"];
+}
+
 // Methods:
 /** Initializes and returns a submitter.
 
@@ -63,9 +68,7 @@
 @dynamic descriptiveName;
 @dynamic address;
 
-- (NSMutableArray *)mutablePhoneNumbers {
-	return [self mutableArrayValueForKey:@"phoneNumbers"];
-}
+@dynamic mutablePhoneNumbers;
 
 - (NSUInteger)countOfPhoneNumbers {
 	return [_phoneNumbers count];
@@ -117,9 +120,7 @@
 
 @dynamic multimedias;
 
-- (NSMutableArray *)mutableMultimediaReferences {
-	return [self mutableArrayValueForKey:@"multimediaReferences"];
-}
+@dynamic mutableMultimediaReferences;
 
 - (NSUInteger)countOfMultimediaReferences {
 	return [_multimediaReferences count];
@@ -170,9 +171,7 @@
 }
 
 
-- (NSMutableArray *)mutableMultimediaEmbeddeds {
-	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
-}
+@dynamic mutableMultimediaEmbeddeds;
 
 - (NSUInteger)countOfMultimediaEmbeddeds {
 	return [_multimediaEmbeddeds count];
@@ -223,9 +222,7 @@
 }
 
 
-- (NSMutableArray *)mutableLanguages {
-	return [self mutableArrayValueForKey:@"languages"];
-}
+@dynamic mutableLanguages;
 
 - (NSUInteger)countOfLanguages {
 	return [_languages count];
@@ -278,9 +275,7 @@
 @dynamic recordFileNumber;
 @dynamic ancestralFileNumber;
 
-- (NSMutableArray *)mutableUserReferenceNumbers {
-	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
-}
+@dynamic mutableUserReferenceNumbers;
 
 - (NSUInteger)countOfUserReferenceNumbers {
 	return [_userReferenceNumbers count];

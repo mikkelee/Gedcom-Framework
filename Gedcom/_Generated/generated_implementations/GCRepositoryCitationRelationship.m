@@ -16,6 +16,11 @@
 	NSMutableArray *_callNumbers;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCRepositoryCitationRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a repositoryCitation.
 
@@ -44,9 +49,7 @@
 // Properties:
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -97,9 +100,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];
@@ -150,9 +151,7 @@
 }
 
 
-- (NSMutableArray *)mutableCallNumbers {
-	return [self mutableArrayValueForKey:@"callNumbers"];
-}
+@dynamic mutableCallNumbers;
 
 - (NSUInteger)countOfCallNumbers {
 	return [_callNumbers count];

@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCQualityOfDataAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a qualityOfData.
 

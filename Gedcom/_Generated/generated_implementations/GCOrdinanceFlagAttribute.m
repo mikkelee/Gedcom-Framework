@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCOrdinanceFlagAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a ordinanceFlag.
 

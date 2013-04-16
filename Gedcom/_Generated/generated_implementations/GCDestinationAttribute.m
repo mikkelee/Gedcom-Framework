@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCDestinationAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a destination.
 

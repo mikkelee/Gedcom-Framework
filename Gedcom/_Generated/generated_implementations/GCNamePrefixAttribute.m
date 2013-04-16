@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCNamePrefixAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a namePrefix.
 

@@ -14,6 +14,11 @@
 	NSMutableArray *_phoneNumbers;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCorporationAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a corporation.
 
@@ -58,9 +63,7 @@
 // Properties:
 @dynamic address;
 
-- (NSMutableArray *)mutablePhoneNumbers {
-	return [self mutableArrayValueForKey:@"phoneNumbers"];
-}
+@dynamic mutablePhoneNumbers;
 
 - (NSUInteger)countOfPhoneNumbers {
 	return [_phoneNumbers count];

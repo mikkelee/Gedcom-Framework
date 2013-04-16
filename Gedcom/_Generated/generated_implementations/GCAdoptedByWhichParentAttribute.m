@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAdoptedByWhichParentAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a adoptedByWhichParent.
 

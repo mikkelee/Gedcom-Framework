@@ -14,6 +14,11 @@
 	GCCopyrightAttribute *_copyright;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCHeaderSourceDataAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a headerSourceData.
 

@@ -134,6 +134,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCIndividualEntity"];
+}
+
 // Methods:
 /** Initializes and returns a individual.
 
@@ -217,9 +222,7 @@
 // Properties:
 @dynamic restrictionNotice;
 
-- (NSMutableArray *)mutablePersonalNames {
-	return [self mutableArrayValueForKey:@"personalNames"];
-}
+@dynamic mutablePersonalNames;
 
 - (NSUInteger)countOfPersonalNames {
 	return [_personalNames count];
@@ -272,9 +275,7 @@
 @dynamic sex;
 @dynamic individualEvents;
 
-- (NSMutableArray *)mutableBirths {
-	return [self mutableArrayValueForKey:@"births"];
-}
+@dynamic mutableBirths;
 
 - (NSUInteger)countOfBirths {
 	return [_births count];
@@ -325,9 +326,7 @@
 }
 
 
-- (NSMutableArray *)mutableChristenings {
-	return [self mutableArrayValueForKey:@"christenings"];
-}
+@dynamic mutableChristenings;
 
 - (NSUInteger)countOfChristenings {
 	return [_christenings count];
@@ -378,9 +377,7 @@
 }
 
 
-- (NSMutableArray *)mutableDeaths {
-	return [self mutableArrayValueForKey:@"deaths"];
-}
+@dynamic mutableDeaths;
 
 - (NSUInteger)countOfDeaths {
 	return [_deaths count];
@@ -431,9 +428,7 @@
 }
 
 
-- (NSMutableArray *)mutableBurials {
-	return [self mutableArrayValueForKey:@"burials"];
-}
+@dynamic mutableBurials;
 
 - (NSUInteger)countOfBurials {
 	return [_burials count];
@@ -484,9 +479,7 @@
 }
 
 
-- (NSMutableArray *)mutableCremations {
-	return [self mutableArrayValueForKey:@"cremations"];
-}
+@dynamic mutableCremations;
 
 - (NSUInteger)countOfCremations {
 	return [_cremations count];
@@ -537,9 +530,7 @@
 }
 
 
-- (NSMutableArray *)mutableAdoptions {
-	return [self mutableArrayValueForKey:@"adoptions"];
-}
+@dynamic mutableAdoptions;
 
 - (NSUInteger)countOfAdoptions {
 	return [_adoptions count];
@@ -590,9 +581,7 @@
 }
 
 
-- (NSMutableArray *)mutableBaptisms {
-	return [self mutableArrayValueForKey:@"baptisms"];
-}
+@dynamic mutableBaptisms;
 
 - (NSUInteger)countOfBaptisms {
 	return [_baptisms count];
@@ -643,9 +632,7 @@
 }
 
 
-- (NSMutableArray *)mutableBarMitzvahs {
-	return [self mutableArrayValueForKey:@"barMitzvahs"];
-}
+@dynamic mutableBarMitzvahs;
 
 - (NSUInteger)countOfBarMitzvahs {
 	return [_barMitzvahs count];
@@ -696,9 +683,7 @@
 }
 
 
-- (NSMutableArray *)mutableBasMitzvahs {
-	return [self mutableArrayValueForKey:@"basMitzvahs"];
-}
+@dynamic mutableBasMitzvahs;
 
 - (NSUInteger)countOfBasMitzvahs {
 	return [_basMitzvahs count];
@@ -749,9 +734,7 @@
 }
 
 
-- (NSMutableArray *)mutableBlessings {
-	return [self mutableArrayValueForKey:@"blessings"];
-}
+@dynamic mutableBlessings;
 
 - (NSUInteger)countOfBlessings {
 	return [_blessings count];
@@ -802,9 +785,7 @@
 }
 
 
-- (NSMutableArray *)mutableAdultChristenings {
-	return [self mutableArrayValueForKey:@"adultChristenings"];
-}
+@dynamic mutableAdultChristenings;
 
 - (NSUInteger)countOfAdultChristenings {
 	return [_adultChristenings count];
@@ -855,9 +836,7 @@
 }
 
 
-- (NSMutableArray *)mutableConfirmations {
-	return [self mutableArrayValueForKey:@"confirmations"];
-}
+@dynamic mutableConfirmations;
 
 - (NSUInteger)countOfConfirmations {
 	return [_confirmations count];
@@ -908,9 +887,7 @@
 }
 
 
-- (NSMutableArray *)mutableFirstCommunions {
-	return [self mutableArrayValueForKey:@"firstCommunions"];
-}
+@dynamic mutableFirstCommunions;
 
 - (NSUInteger)countOfFirstCommunions {
 	return [_firstCommunions count];
@@ -961,9 +938,7 @@
 }
 
 
-- (NSMutableArray *)mutableOrdinations {
-	return [self mutableArrayValueForKey:@"ordinations"];
-}
+@dynamic mutableOrdinations;
 
 - (NSUInteger)countOfOrdinations {
 	return [_ordinations count];
@@ -1014,9 +989,7 @@
 }
 
 
-- (NSMutableArray *)mutableNaturalizations {
-	return [self mutableArrayValueForKey:@"naturalizations"];
-}
+@dynamic mutableNaturalizations;
 
 - (NSUInteger)countOfNaturalizations {
 	return [_naturalizations count];
@@ -1067,9 +1040,7 @@
 }
 
 
-- (NSMutableArray *)mutableEmigrations {
-	return [self mutableArrayValueForKey:@"emigrations"];
-}
+@dynamic mutableEmigrations;
 
 - (NSUInteger)countOfEmigrations {
 	return [_emigrations count];
@@ -1120,9 +1091,7 @@
 }
 
 
-- (NSMutableArray *)mutableImmigrations {
-	return [self mutableArrayValueForKey:@"immigrations"];
-}
+@dynamic mutableImmigrations;
 
 - (NSUInteger)countOfImmigrations {
 	return [_immigrations count];
@@ -1173,9 +1142,7 @@
 }
 
 
-- (NSMutableArray *)mutableCensuses {
-	return [self mutableArrayValueForKey:@"censuses"];
-}
+@dynamic mutableCensuses;
 
 - (NSUInteger)countOfCensuses {
 	return [_censuses count];
@@ -1226,9 +1193,7 @@
 }
 
 
-- (NSMutableArray *)mutableProbates {
-	return [self mutableArrayValueForKey:@"probates"];
-}
+@dynamic mutableProbates;
 
 - (NSUInteger)countOfProbates {
 	return [_probates count];
@@ -1279,9 +1244,7 @@
 }
 
 
-- (NSMutableArray *)mutableWills {
-	return [self mutableArrayValueForKey:@"wills"];
-}
+@dynamic mutableWills;
 
 - (NSUInteger)countOfWills {
 	return [_wills count];
@@ -1332,9 +1295,7 @@
 }
 
 
-- (NSMutableArray *)mutableGraduations {
-	return [self mutableArrayValueForKey:@"graduations"];
-}
+@dynamic mutableGraduations;
 
 - (NSUInteger)countOfGraduations {
 	return [_graduations count];
@@ -1385,9 +1346,7 @@
 }
 
 
-- (NSMutableArray *)mutableRetirements {
-	return [self mutableArrayValueForKey:@"retirements"];
-}
+@dynamic mutableRetirements;
 
 - (NSUInteger)countOfRetirements {
 	return [_retirements count];
@@ -1438,9 +1397,7 @@
 }
 
 
-- (NSMutableArray *)mutableGenericEvents {
-	return [self mutableArrayValueForKey:@"genericEvents"];
-}
+@dynamic mutableGenericEvents;
 
 - (NSUInteger)countOfGenericEvents {
 	return [_genericEvents count];
@@ -1492,9 +1449,7 @@
 
 @dynamic individualAttributes;
 
-- (NSMutableArray *)mutableCastes {
-	return [self mutableArrayValueForKey:@"castes"];
-}
+@dynamic mutableCastes;
 
 - (NSUInteger)countOfCastes {
 	return [_castes count];
@@ -1545,9 +1500,7 @@
 }
 
 
-- (NSMutableArray *)mutablePhysicalDescriptions {
-	return [self mutableArrayValueForKey:@"physicalDescriptions"];
-}
+@dynamic mutablePhysicalDescriptions;
 
 - (NSUInteger)countOfPhysicalDescriptions {
 	return [_physicalDescriptions count];
@@ -1598,9 +1551,7 @@
 }
 
 
-- (NSMutableArray *)mutableGenerationsOfDescendantss {
-	return [self mutableArrayValueForKey:@"generationsOfDescendantss"];
-}
+@dynamic mutableGenerationsOfDescendantss;
 
 - (NSUInteger)countOfGenerationsOfDescendantss {
 	return [_generationsOfDescendantss count];
@@ -1651,9 +1602,7 @@
 }
 
 
-- (NSMutableArray *)mutableEducations {
-	return [self mutableArrayValueForKey:@"educations"];
-}
+@dynamic mutableEducations;
 
 - (NSUInteger)countOfEducations {
 	return [_educations count];
@@ -1704,9 +1653,7 @@
 }
 
 
-- (NSMutableArray *)mutableIdentNumbers {
-	return [self mutableArrayValueForKey:@"identNumbers"];
-}
+@dynamic mutableIdentNumbers;
 
 - (NSUInteger)countOfIdentNumbers {
 	return [_identNumbers count];
@@ -1757,9 +1704,7 @@
 }
 
 
-- (NSMutableArray *)mutableNationalities {
-	return [self mutableArrayValueForKey:@"nationalities"];
-}
+@dynamic mutableNationalities;
 
 - (NSUInteger)countOfNationalities {
 	return [_nationalities count];
@@ -1810,9 +1755,7 @@
 }
 
 
-- (NSMutableArray *)mutableNumberOfChildrens {
-	return [self mutableArrayValueForKey:@"numberOfChildrens"];
-}
+@dynamic mutableNumberOfChildrens;
 
 - (NSUInteger)countOfNumberOfChildrens {
 	return [_numberOfChildrens count];
@@ -1863,9 +1806,7 @@
 }
 
 
-- (NSMutableArray *)mutableNumberOfMarriagess {
-	return [self mutableArrayValueForKey:@"numberOfMarriagess"];
-}
+@dynamic mutableNumberOfMarriagess;
 
 - (NSUInteger)countOfNumberOfMarriagess {
 	return [_numberOfMarriagess count];
@@ -1916,9 +1857,7 @@
 }
 
 
-- (NSMutableArray *)mutableOccupations {
-	return [self mutableArrayValueForKey:@"occupations"];
-}
+@dynamic mutableOccupations;
 
 - (NSUInteger)countOfOccupations {
 	return [_occupations count];
@@ -1969,9 +1908,7 @@
 }
 
 
-- (NSMutableArray *)mutablePropertyOwneds {
-	return [self mutableArrayValueForKey:@"propertyOwneds"];
-}
+@dynamic mutablePropertyOwneds;
 
 - (NSUInteger)countOfPropertyOwneds {
 	return [_propertyOwneds count];
@@ -2022,9 +1959,7 @@
 }
 
 
-- (NSMutableArray *)mutableReligions {
-	return [self mutableArrayValueForKey:@"religions"];
-}
+@dynamic mutableReligions;
 
 - (NSUInteger)countOfReligions {
 	return [_religions count];
@@ -2075,9 +2010,7 @@
 }
 
 
-- (NSMutableArray *)mutableResidences {
-	return [self mutableArrayValueForKey:@"residences"];
-}
+@dynamic mutableResidences;
 
 - (NSUInteger)countOfResidences {
 	return [_residences count];
@@ -2128,9 +2061,7 @@
 }
 
 
-- (NSMutableArray *)mutableSocialSecurityNumbers {
-	return [self mutableArrayValueForKey:@"socialSecurityNumbers"];
-}
+@dynamic mutableSocialSecurityNumbers;
 
 - (NSUInteger)countOfSocialSecurityNumbers {
 	return [_socialSecurityNumbers count];
@@ -2181,9 +2112,7 @@
 }
 
 
-- (NSMutableArray *)mutableTitles {
-	return [self mutableArrayValueForKey:@"titles"];
-}
+@dynamic mutableTitles;
 
 - (NSUInteger)countOfTitles {
 	return [_titles count];
@@ -2235,9 +2164,7 @@
 
 @dynamic individualLDSOrdinances;
 
-- (NSMutableArray *)mutableLDSBaptisms {
-	return [self mutableArrayValueForKey:@"lDSBaptisms"];
-}
+@dynamic mutableLDSBaptisms;
 
 - (NSUInteger)countOfLDSBaptisms {
 	return [_lDSBaptisms count];
@@ -2288,9 +2215,7 @@
 }
 
 
-- (NSMutableArray *)mutableLDSConfirmations {
-	return [self mutableArrayValueForKey:@"lDSConfirmations"];
-}
+@dynamic mutableLDSConfirmations;
 
 - (NSUInteger)countOfLDSConfirmations {
 	return [_lDSConfirmations count];
@@ -2341,9 +2266,7 @@
 }
 
 
-- (NSMutableArray *)mutableLDSEndowments {
-	return [self mutableArrayValueForKey:@"lDSEndowments"];
-}
+@dynamic mutableLDSEndowments;
 
 - (NSUInteger)countOfLDSEndowments {
 	return [_lDSEndowments count];
@@ -2394,9 +2317,7 @@
 }
 
 
-- (NSMutableArray *)mutableLDSSealingChilds {
-	return [self mutableArrayValueForKey:@"lDSSealingChilds"];
-}
+@dynamic mutableLDSSealingChilds;
 
 - (NSUInteger)countOfLDSSealingChilds {
 	return [_lDSSealingChilds count];
@@ -2447,9 +2368,7 @@
 }
 
 
-- (NSMutableArray *)mutableChildInFamilies {
-	return [self mutableArrayValueForKey:@"childInFamilies"];
-}
+@dynamic mutableChildInFamilies;
 
 - (NSUInteger)countOfChildInFamilies {
 	return [_childInFamilies count];
@@ -2500,9 +2419,7 @@
 }
 
 
-- (NSMutableArray *)mutableSpouseInFamilies {
-	return [self mutableArrayValueForKey:@"spouseInFamilies"];
-}
+@dynamic mutableSpouseInFamilies;
 
 - (NSUInteger)countOfSpouseInFamilies {
 	return [_spouseInFamilies count];
@@ -2553,9 +2470,7 @@
 }
 
 
-- (NSMutableArray *)mutableSubmitterReferences {
-	return [self mutableArrayValueForKey:@"submitterReferences"];
-}
+@dynamic mutableSubmitterReferences;
 
 - (NSUInteger)countOfSubmitterReferences {
 	return [_submitterReferences count];
@@ -2606,9 +2521,7 @@
 }
 
 
-- (NSMutableArray *)mutableAssociations {
-	return [self mutableArrayValueForKey:@"associations"];
-}
+@dynamic mutableAssociations;
 
 - (NSUInteger)countOfAssociations {
 	return [_associations count];
@@ -2659,9 +2572,7 @@
 }
 
 
-- (NSMutableArray *)mutableAliases {
-	return [self mutableArrayValueForKey:@"aliases"];
-}
+@dynamic mutableAliases;
 
 - (NSUInteger)countOfAliases {
 	return [_aliases count];
@@ -2712,9 +2623,7 @@
 }
 
 
-- (NSMutableArray *)mutableAncestorInterests {
-	return [self mutableArrayValueForKey:@"ancestorInterests"];
-}
+@dynamic mutableAncestorInterests;
 
 - (NSUInteger)countOfAncestorInterests {
 	return [_ancestorInterests count];
@@ -2765,9 +2674,7 @@
 }
 
 
-- (NSMutableArray *)mutableDescendantInterests {
-	return [self mutableArrayValueForKey:@"descendantInterests"];
-}
+@dynamic mutableDescendantInterests;
 
 - (NSUInteger)countOfDescendantInterests {
 	return [_descendantInterests count];
@@ -2819,9 +2726,7 @@
 
 @dynamic sources;
 
-- (NSMutableArray *)mutableSourceCitations {
-	return [self mutableArrayValueForKey:@"sourceCitations"];
-}
+@dynamic mutableSourceCitations;
 
 - (NSUInteger)countOfSourceCitations {
 	return [_sourceCitations count];
@@ -2872,9 +2777,7 @@
 }
 
 
-- (NSMutableArray *)mutableSourceEmbeddeds {
-	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
-}
+@dynamic mutableSourceEmbeddeds;
 
 - (NSUInteger)countOfSourceEmbeddeds {
 	return [_sourceEmbeddeds count];
@@ -2926,9 +2829,7 @@
 
 @dynamic multimedias;
 
-- (NSMutableArray *)mutableMultimediaReferences {
-	return [self mutableArrayValueForKey:@"multimediaReferences"];
-}
+@dynamic mutableMultimediaReferences;
 
 - (NSUInteger)countOfMultimediaReferences {
 	return [_multimediaReferences count];
@@ -2979,9 +2880,7 @@
 }
 
 
-- (NSMutableArray *)mutableMultimediaEmbeddeds {
-	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
-}
+@dynamic mutableMultimediaEmbeddeds;
 
 - (NSUInteger)countOfMultimediaEmbeddeds {
 	return [_multimediaEmbeddeds count];
@@ -3033,9 +2932,7 @@
 
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -3086,9 +2983,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];
@@ -3139,9 +3034,7 @@
 }
 
 
-- (NSMutableArray *)mutableRecordFileNumbers {
-	return [self mutableArrayValueForKey:@"recordFileNumbers"];
-}
+@dynamic mutableRecordFileNumbers;
 
 - (NSUInteger)countOfRecordFileNumbers {
 	return [_recordFileNumbers count];
@@ -3192,9 +3085,7 @@
 }
 
 
-- (NSMutableArray *)mutableAncestralFileNumbers {
-	return [self mutableArrayValueForKey:@"ancestralFileNumbers"];
-}
+@dynamic mutableAncestralFileNumbers;
 
 - (NSUInteger)countOfAncestralFileNumbers {
 	return [_ancestralFileNumbers count];
@@ -3245,9 +3136,7 @@
 }
 
 
-- (NSMutableArray *)mutableUserReferenceNumbers {
-	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
-}
+@dynamic mutableUserReferenceNumbers;
 
 - (NSUInteger)countOfUserReferenceNumbers {
 	return [_userReferenceNumbers count];

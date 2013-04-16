@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCNameSuffixAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a nameSuffix.
 

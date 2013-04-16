@@ -12,6 +12,11 @@
 	GCMediaTypeAttribute *_mediaType;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCallNumberAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a callNumber.
 

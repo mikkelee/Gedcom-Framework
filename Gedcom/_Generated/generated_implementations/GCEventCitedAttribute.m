@@ -12,6 +12,11 @@
 	GCRoleAttribute *_role;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCEventCitedAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a eventCited.
 

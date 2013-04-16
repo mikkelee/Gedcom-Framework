@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCHusbandRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a husband.
 

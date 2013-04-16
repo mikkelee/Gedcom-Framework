@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCTimeAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a time.
 

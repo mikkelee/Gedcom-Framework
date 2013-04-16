@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCMultimediaReferenceRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a multimediaReference.
 

@@ -12,6 +12,11 @@
 	GCAgeAttribute *_age;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCHusbandDetailAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a husbandDetail.
 

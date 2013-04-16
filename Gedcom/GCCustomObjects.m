@@ -8,14 +8,31 @@
 
 #import "GCCustomObjects.h"
 
+#import "GCTag.h"
+
 @implementation GCCustomEntity
+
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"tagWithClassName"];
+}
 
 @end
 
 @implementation GCCustomAttribute
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCustomAttribute"];
+}
+
 @end
 
 @implementation GCCustomRelationship
+
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCustomRelationship"];
+}
 
 @end

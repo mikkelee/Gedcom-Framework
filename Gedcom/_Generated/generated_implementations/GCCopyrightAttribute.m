@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCopyrightAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a copyright.
 

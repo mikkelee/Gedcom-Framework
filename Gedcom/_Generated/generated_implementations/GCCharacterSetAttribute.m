@@ -12,6 +12,11 @@
 	GCVersionAttribute *_version;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCharacterSetAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a characterSet.
 

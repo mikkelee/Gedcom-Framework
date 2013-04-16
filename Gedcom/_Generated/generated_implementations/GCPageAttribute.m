@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCPageAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a page.
 

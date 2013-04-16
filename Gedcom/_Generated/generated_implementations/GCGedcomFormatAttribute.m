@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCGedcomFormatAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a gedcomFormat.
 

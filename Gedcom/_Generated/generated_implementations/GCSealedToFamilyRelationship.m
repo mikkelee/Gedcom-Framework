@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSealedToFamilyRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a sealedToFamily.
 

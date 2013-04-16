@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCFileAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a file.
 

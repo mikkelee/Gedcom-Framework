@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCTempleAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a temple.
 

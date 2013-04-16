@@ -16,6 +16,11 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSourceEmbeddedAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a sourceEmbedded.
 
@@ -61,9 +66,7 @@
 
 // Properties:
 
-- (NSMutableArray *)mutableTexts {
-	return [self mutableArrayValueForKey:@"texts"];
-}
+@dynamic mutableTexts;
 
 - (NSUInteger)countOfTexts {
 	return [_texts count];
@@ -115,9 +118,7 @@
 
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -168,9 +169,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];

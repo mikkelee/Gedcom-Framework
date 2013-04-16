@@ -38,6 +38,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSourceEntity"];
+}
+
 // Methods:
 /** Initializes and returns a source.
 
@@ -74,9 +79,7 @@
 @dynamic repositoryCitation;
 @dynamic multimedias;
 
-- (NSMutableArray *)mutableMultimediaReferences {
-	return [self mutableArrayValueForKey:@"multimediaReferences"];
-}
+@dynamic mutableMultimediaReferences;
 
 - (NSUInteger)countOfMultimediaReferences {
 	return [_multimediaReferences count];
@@ -127,9 +130,7 @@
 }
 
 
-- (NSMutableArray *)mutableMultimediaEmbeddeds {
-	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
-}
+@dynamic mutableMultimediaEmbeddeds;
 
 - (NSUInteger)countOfMultimediaEmbeddeds {
 	return [_multimediaEmbeddeds count];
@@ -181,9 +182,7 @@
 
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -234,9 +233,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];

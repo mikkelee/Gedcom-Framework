@@ -12,6 +12,11 @@
 	GCTimeAttribute *_time;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCHeaderDateAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a headerDate.
 

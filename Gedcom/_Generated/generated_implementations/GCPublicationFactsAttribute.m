@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCPublicationFactsAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a publicationFacts.
 

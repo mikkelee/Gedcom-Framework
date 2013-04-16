@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCauseAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a cause.
 

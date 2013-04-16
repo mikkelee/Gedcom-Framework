@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCPhoneNumberAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a phoneNumber.
 

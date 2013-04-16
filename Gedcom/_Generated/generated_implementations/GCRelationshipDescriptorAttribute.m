@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCRelationshipDescriptorAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a relationshipDescriptor.
 

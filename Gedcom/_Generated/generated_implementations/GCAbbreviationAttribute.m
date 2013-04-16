@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAbbreviationAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a abbreviation.
 

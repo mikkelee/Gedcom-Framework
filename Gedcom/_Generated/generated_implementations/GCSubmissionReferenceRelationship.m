@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSubmissionReferenceRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a submissionReference.
 

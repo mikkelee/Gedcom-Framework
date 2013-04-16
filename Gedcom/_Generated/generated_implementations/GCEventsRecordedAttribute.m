@@ -14,6 +14,11 @@
 	GCPlaceAttribute *_place;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCEventsRecordedAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a eventsRecorded.
 

@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAncestorInterestRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a ancestorInterest.
 

@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCRoleAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a role.
 

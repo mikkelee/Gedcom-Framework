@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCTextAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a text.
 

@@ -12,6 +12,11 @@
 	GCAdoptedByWhichParentAttribute *_adoptedByWhichParent;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAdoptedIntoFamilyRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a adoptedIntoFamily.
 

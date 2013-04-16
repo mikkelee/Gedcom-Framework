@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAncestralFileNumberAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a ancestralFileNumber.
 

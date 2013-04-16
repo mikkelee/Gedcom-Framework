@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCResponsibleAgencyAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a responsibleAgency.
 

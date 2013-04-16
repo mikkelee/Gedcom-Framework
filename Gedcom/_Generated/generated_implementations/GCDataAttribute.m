@@ -14,6 +14,11 @@
 	NSMutableArray *_texts;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCDataAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a data.
 
@@ -58,9 +63,7 @@
 // Properties:
 @dynamic date;
 
-- (NSMutableArray *)mutableTexts {
-	return [self mutableArrayValueForKey:@"texts"];
-}
+@dynamic mutableTexts;
 
 - (NSUInteger)countOfTexts {
 	return [_texts count];

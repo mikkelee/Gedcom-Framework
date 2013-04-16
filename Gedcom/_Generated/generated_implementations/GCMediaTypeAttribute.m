@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCMediaTypeAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a mediaType.
 

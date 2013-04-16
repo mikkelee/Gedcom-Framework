@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCVersionAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a version.
 

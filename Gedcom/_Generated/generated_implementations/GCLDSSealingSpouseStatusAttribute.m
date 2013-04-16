@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCLDSSealingSpouseStatusAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a lDSSealingSpouseStatus.
 

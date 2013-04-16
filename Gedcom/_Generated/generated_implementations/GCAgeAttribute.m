@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAgeAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a age.
 

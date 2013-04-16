@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCCityAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a city.
 

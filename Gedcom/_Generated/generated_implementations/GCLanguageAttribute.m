@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCLanguageAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a language.
 

@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSexAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a sex.
 

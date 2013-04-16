@@ -14,6 +14,11 @@
 	NSMutableArray *_sourceEmbeddeds;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCNoteReferenceRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a noteReference.
 
@@ -41,9 +46,7 @@
 // Properties:
 @dynamic sources;
 
-- (NSMutableArray *)mutableSourceCitations {
-	return [self mutableArrayValueForKey:@"sourceCitations"];
-}
+@dynamic mutableSourceCitations;
 
 - (NSUInteger)countOfSourceCitations {
 	return [_sourceCitations count];
@@ -94,9 +97,7 @@
 }
 
 
-- (NSMutableArray *)mutableSourceEmbeddeds {
-	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
-}
+@dynamic mutableSourceEmbeddeds;
 
 - (NSUInteger)countOfSourceEmbeddeds {
 	return [_sourceEmbeddeds count];

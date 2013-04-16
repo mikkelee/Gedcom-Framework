@@ -30,6 +30,11 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCChangeInfoAttribute"];
+}
+
 #pragma mark Initialization
 
 - (id)_init

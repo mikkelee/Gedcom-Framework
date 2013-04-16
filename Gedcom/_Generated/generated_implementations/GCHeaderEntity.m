@@ -34,6 +34,11 @@
 	GCNoteEmbeddedAttribute *_noteEmbedded;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCHeaderEntity"];
+}
+
 // Methods:
 /** Initializes and returns a header.
 
@@ -61,9 +66,7 @@
 // Properties:
 @dynamic headerSource;
 
-- (NSMutableArray *)mutableDestinations {
-	return [self mutableArrayValueForKey:@"destinations"];
-}
+@dynamic mutableDestinations;
 
 - (NSUInteger)countOfDestinations {
 	return [_destinations count];
@@ -116,9 +119,7 @@
 @dynamic headerDate;
 @dynamic submitterReference;
 
-- (NSMutableArray *)mutableSubmissionReferences {
-	return [self mutableArrayValueForKey:@"submissionReferences"];
-}
+@dynamic mutableSubmissionReferences;
 
 - (NSUInteger)countOfSubmissionReferences {
 	return [_submissionReferences count];

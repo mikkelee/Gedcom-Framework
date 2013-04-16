@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCBinaryObjectAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a binaryObject.
 

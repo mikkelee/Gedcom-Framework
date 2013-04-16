@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCRestrictionNoticeAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a restrictionNotice.
 

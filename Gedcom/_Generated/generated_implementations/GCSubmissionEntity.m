@@ -28,6 +28,11 @@
 	GCChangeInfoAttribute *_changeInfo;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSubmissionEntity"];
+}
+
 // Methods:
 /** Initializes and returns a submission.
 
@@ -59,9 +64,7 @@
 @dynamic generationsOfDescendants;
 @dynamic ordinanceFlag;
 
-- (NSMutableArray *)mutableUserReferenceNumbers {
-	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
-}
+@dynamic mutableUserReferenceNumbers;
 
 - (NSUInteger)countOfUserReferenceNumbers {
 	return [_userReferenceNumbers count];

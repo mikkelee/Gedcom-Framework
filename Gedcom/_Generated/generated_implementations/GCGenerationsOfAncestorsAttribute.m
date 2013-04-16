@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCGenerationsOfAncestorsAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a generationsOfAncestors.
 

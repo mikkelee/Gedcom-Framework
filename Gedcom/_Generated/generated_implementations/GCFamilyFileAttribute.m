@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCFamilyFileAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a familyFile.
 

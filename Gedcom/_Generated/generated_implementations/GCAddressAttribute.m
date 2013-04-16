@@ -22,6 +22,11 @@
 	GCCountryAttribute *_country;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAddressAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a address.
 

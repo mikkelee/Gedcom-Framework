@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCBornToFamilyRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a bornToFamily.
 

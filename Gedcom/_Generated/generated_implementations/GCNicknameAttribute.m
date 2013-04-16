@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCNicknameAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a nickname.
 

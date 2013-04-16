@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCLDSEndowmentStatusAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a lDSEndowmentStatus.
 

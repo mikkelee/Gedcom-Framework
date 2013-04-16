@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCMultimediaFormatAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a multimediaFormat.
 

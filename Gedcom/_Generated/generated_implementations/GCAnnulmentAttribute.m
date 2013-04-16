@@ -42,6 +42,11 @@
 	GCWifeDetailAttribute *_wifeDetail;
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAnnulmentAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a annulment.
 
@@ -100,9 +105,7 @@
 @dynamic cause;
 @dynamic sources;
 
-- (NSMutableArray *)mutableSourceCitations {
-	return [self mutableArrayValueForKey:@"sourceCitations"];
-}
+@dynamic mutableSourceCitations;
 
 - (NSUInteger)countOfSourceCitations {
 	return [_sourceCitations count];
@@ -153,9 +156,7 @@
 }
 
 
-- (NSMutableArray *)mutableSourceEmbeddeds {
-	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
-}
+@dynamic mutableSourceEmbeddeds;
 
 - (NSUInteger)countOfSourceEmbeddeds {
 	return [_sourceEmbeddeds count];
@@ -207,9 +208,7 @@
 
 @dynamic multimedias;
 
-- (NSMutableArray *)mutableMultimediaReferences {
-	return [self mutableArrayValueForKey:@"multimediaReferences"];
-}
+@dynamic mutableMultimediaReferences;
 
 - (NSUInteger)countOfMultimediaReferences {
 	return [_multimediaReferences count];
@@ -260,9 +259,7 @@
 }
 
 
-- (NSMutableArray *)mutableMultimediaEmbeddeds {
-	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
-}
+@dynamic mutableMultimediaEmbeddeds;
 
 - (NSUInteger)countOfMultimediaEmbeddeds {
 	return [_multimediaEmbeddeds count];
@@ -314,9 +311,7 @@
 
 @dynamic notes;
 
-- (NSMutableArray *)mutableNoteReferences {
-	return [self mutableArrayValueForKey:@"noteReferences"];
-}
+@dynamic mutableNoteReferences;
 
 - (NSUInteger)countOfNoteReferences {
 	return [_noteReferences count];
@@ -367,9 +362,7 @@
 }
 
 
-- (NSMutableArray *)mutableNoteEmbeddeds {
-	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
+@dynamic mutableNoteEmbeddeds;
 
 - (NSUInteger)countOfNoteEmbeddeds {
 	return [_noteEmbeddeds count];

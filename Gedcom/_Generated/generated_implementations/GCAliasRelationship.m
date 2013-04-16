@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAliasRelationship"];
+}
+
 // Methods:
 /** Initializes and returns a alias.
 

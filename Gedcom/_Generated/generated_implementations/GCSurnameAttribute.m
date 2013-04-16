@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCSurnameAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a surname.
 

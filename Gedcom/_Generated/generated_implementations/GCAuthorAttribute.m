@@ -12,6 +12,11 @@
 
 }
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:@"GCAuthorAttribute"];
+}
+
 // Methods:
 /** Initializes and returns a author.
 
