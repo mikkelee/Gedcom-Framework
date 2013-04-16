@@ -22,19 +22,26 @@
 #pragma mark Obtaining tags
 /// @name Obtaining tags
 
-/** Returns a tag with the given name.
+/** Returns the tag with the given name.
  
  @param name The name of the requested tag.
  @return A tag or `nil` if none exists.
  */
 + (GCTag *)tagNamed:(NSString *)name;
 
-/** Returns a root tag with the given code.
+/** Returns the root tag with the given code.
  
  @param code The code of the requested tag.
  @return A tag or `nil` if none exists.
  */
 + (GCTag *)rootTagWithCode:(NSString *)code;
+
+/** Returns the tag for the given class name.
+ 
+ @param name The name of the requested tag.
+ @return A tag or `nil` if none exists.
+ */
++ (GCTag *)tagWithClassName:(NSString *)className;
 
 #pragma mark Accessing subtags
 /// @name Accessing subtags

@@ -105,6 +105,7 @@ static inline void setupKey(NSString *key) {
         
         _tagStore[key] = tag;
         _tagStore[tagDict[kPluralName]] = tag;
+        _tagStore[tagDict[kClassName]] = tag;
         
         if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
             _rootTagsByCode[tagDict[kTagCode]] = tag;
@@ -267,6 +268,11 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     }
     
     return _rootTagsByCode[code];
+}
+
++ (GCTag *)tagWithClassName:(NSString *)className
+{
+    return _tagStore[className];
 }
 
 #pragma mark Subtags

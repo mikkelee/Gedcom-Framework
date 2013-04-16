@@ -123,3 +123,9 @@
 @property (nonatomic, readonly) NSURL *URL;
 
 @end
+
+@interface GCObject (GCHelperAdditions)
+
++ (GCTag *)gedTag;
+
+@end
