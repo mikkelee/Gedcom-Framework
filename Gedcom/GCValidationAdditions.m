@@ -8,6 +8,8 @@
 
 #import "GCValidationAdditions.h"
 
+#import "GCContext+GCKeyValueAdditions.h"
+
 #import "GCEntity.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"

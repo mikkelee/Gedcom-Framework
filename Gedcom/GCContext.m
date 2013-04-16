@@ -9,9 +9,13 @@
 #import "GCContext_internal.h"
 
 #import "GedcomCharacterSetHelpers.h"
+#import "GedcomErrors.h"
+
+#import "GCContext+GCKeyValueAdditions.h"
 
 #import "GCNodeParser.h"
 #import "GCNode.h"
+#import "GCTag.h"
 
 #import "GCCharacterSetAttribute.h"
 #import "GCHeaderEntity+GCObjectAdditions.h"
@@ -528,24 +532,6 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(useEncoding != GCANSELFileEncoding);
     
     return [self.gedcomString dataUsingEncoding:useEncoding];
-}
-
-@end
-
-#pragma mark -
-
-@implementation GCContext (GCContextKeyValueAdditions)
-
-#pragma mark Subscript accessors
-
-- (id)objectForKeyedSubscript:(id)key
-{
-    return [super valueForKey:key];
-}
-
-- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key
-{
-    return [self setValue:object forKey:(NSString *)key];
 }
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
+#import "GCContext+GCKeyValueAdditions.h"
+
 #import "GCContext_internal.h"
 
 #import "GCObject+GCConvenienceAdditions.h"
@@ -411,6 +413,18 @@ __strong static NSArray *_rootKeys = nil;
 - (void)removeObjectFromSubmittersAtIndex:(NSUInteger)index {
     [_submitters[index] setValue:nil forKey:@"context"];
     [_submitters removeObjectAtIndex:index];
+}
+
+#pragma mark Subscript accessors
+
+- (id)objectForKeyedSubscript:(id)key
+{
+    return [super valueForKey:key];
+}
+
+- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key
+{
+    return [self setValue:object forKey:(NSString *)key];
 }
 
 @end

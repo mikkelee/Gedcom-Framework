@@ -8,10 +8,6 @@
 
 #import "GCContext.h"
 
-#import "GCTag.h"
-
-#import "GedcomErrors.h"
-
 @class GCTag;
 @class GCObject;
 

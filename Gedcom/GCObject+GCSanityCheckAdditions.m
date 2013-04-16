@@ -7,6 +7,7 @@
 //
 
 #import "GCObject+GCSanityCheckAdditions.h"
+#import "GCContext+GCKeyValueAdditions.h"
 
 #import "GCIndividualEntity.h"
 #import "GedcomErrors.h"
