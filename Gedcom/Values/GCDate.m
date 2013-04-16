@@ -356,9 +356,9 @@
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    static dispatch_once_t predDate = 0;
+    static dispatch_once_t pred = 0;
     __strong static id _sharedDatePlaceholder = nil;
-    dispatch_once(&predDate, ^{
+    dispatch_once(&pred, ^{
         _sharedDatePlaceholder = [super allocWithZone:zone];
     });
     return _sharedDatePlaceholder;

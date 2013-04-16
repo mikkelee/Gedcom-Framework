@@ -187,9 +187,9 @@ NSString * const GCAgeQualifier_toString[] = {
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    static dispatch_once_t predAge = 0;
+    static dispatch_once_t pred = 0;
     __strong static id _sharedAgePlaceholder = nil;
-    dispatch_once(&predAge, ^{
+    dispatch_once(&pred, ^{
         _sharedAgePlaceholder = [super allocWithZone:zone];
     });
     return _sharedAgePlaceholder;
