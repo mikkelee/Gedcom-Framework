@@ -18,7 +18,6 @@
 @implementation GCTag {
 	NSDictionary *_settings;
     
-    NSArray *_cachedValidSubTags;
     NSDictionary *_cachedSubTagsByName;
     NSDictionary *_cachedSubTagsByCode;
     NSDictionary *_cachedSubTagsByGroup;
@@ -62,6 +61,35 @@ __strong static NSMutableDictionary *_tagInfo;
 __strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
 
+static dispatch_group_t _group;
+static dispatch_queue_t _queue;
+
++ (void)initialize
+{
+    _singularToPlural = [NSMutableDictionary dictionary];
+    _tagStore = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+    _rootTagsByCode = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+    
+    NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags"
+                                                                          ofType:@"json"];
+    NSData *jsonData = [[NSFileManager defaultManager] contentsAtPath:jsonPath];
+    
+    NSError *err = nil;
+    
+    _tagInfo = [NSJSONSerialization JSONObjectWithData:jsonData
+                                               options:NSJSONReadingMutableContainers
+                                                 error:&err];
+    
+    NSAssert(_tagInfo != nil, @"error: %@", err);
+    
+    _group = dispatch_group_create();
+    _queue = dispatch_queue_create("dk.kildekort.Gedcom.tagSetup", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_group_async(_group, _queue, ^{
+        setupKey((NSString *)kRootObject);
+    });
+}
+
 static inline void setupKey(NSString *key) {
     if (_tagStore[key]) {
         return;
@@ -104,25 +132,63 @@ static inline void setupKey(NSString *key) {
     }
 }
 
-+ (void)initialize
+static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *occurrencesDicts, NSDictionary *subtag) {
+    if (subtag[kGroupName]) {
+        for (NSDictionary *variant in _tagInfo[subtag[kGroupName]][kVariants]) {
+            expandSubtag(set, occurrencesDicts, variant);
+        }
+    } else {
+        [set addObject:[GCTag tagNamed:subtag[kTagName]]];
+        occurrencesDicts[subtag[kTagName]] = subtag;
+    }
+}
+
+- (void)_buildSubTagCaches
 {
-    _singularToPlural = [NSMutableDictionary dictionary];
-    _tagStore = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
-    _rootTagsByCode = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+    NSMutableDictionary *occurrencesDicts = [NSMutableDictionary dictionary];
+    NSMutableOrderedSet *subTags = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
+    for (NSDictionary *subtag in _settings[kValidSubTags]) {
+        expandSubtag(subTags, occurrencesDicts, subtag);
+    }
     
-    NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags"
-                                                                          ofType:@"json"];
-    NSData *jsonData = [[NSFileManager defaultManager] contentsAtPath:jsonPath];
+    _validSubTags = [subTags copy];
+    _cachedOccurencesDicts = [occurrencesDicts copy];
     
-    NSError *err = nil;
+    NSMutableDictionary *byCode = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   [NSMutableDictionary dictionary], @"attribute",
+                                   [NSMutableDictionary dictionary], @"relationship",
+                                   nil];
+    NSMutableDictionary *byName = [NSMutableDictionary dictionary];
     
-    _tagInfo = [NSJSONSerialization JSONObjectWithData:jsonData
-                                               options:NSJSONReadingMutableContainers
-                                                 error:&err];
+    for (GCTag *subTag in self.validSubTags) {
+        NSString *typeKey = [NSStringFromClass(subTag.objectClass) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
+        
+        byCode[typeKey][subTag.code] = subTag;
+        byName[subTag.name] = subTag;
+        byName[subTag.pluralName] = subTag;
+    }
     
-    NSAssert(_tagInfo != nil, @"error: %@", err);
+    _cachedSubTagsByCode = [byCode copy];
+    _cachedSubTagsByName = [byName copy];
     
-    setupKey((NSString *)kRootObject);
+    NSMutableDictionary *byGroup = [NSMutableDictionary dictionary];
+    
+    [_settings[kValidSubTags] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *key = obj[kGroupName];
+        if (key) {
+            NSString *variantGroupName = _tagInfo[key][kPluralName];
+            for (NSDictionary *variant in _tagInfo[key][kVariants]) {
+                if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kTagName]]]) {
+                    if (!byGroup[variantGroupName]) {
+                        byGroup[variantGroupName] = [NSMutableArray array];
+                    }
+                    [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kTagName]]];
+                }
+            }
+        }
+    }];
+    
+    _cachedSubTagsByGroup = [byGroup copy];
 }
 
 - (id)initWithName:(NSString *)name settings:(NSDictionary *)settings
@@ -158,6 +224,10 @@ static inline void setupKey(NSString *key) {
         
         // for relationships:
         _targetType = _isCustom ? NSClassFromString(@"GCEntity") :  NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [_settings[kTargetType] capitalizedString]]);
+        
+        dispatch_group_async(_group, _queue, ^{
+            [self _buildSubTagCaches];
+        });
     }
     
     return self;    
@@ -201,32 +271,8 @@ static inline void setupKey(NSString *key) {
 
 #pragma mark Subtags
 
-- (void)_buildSubTagCaches
-{
-    NSMutableDictionary *byCode = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSMutableDictionary dictionary], @"attribute",
-                                   [NSMutableDictionary dictionary], @"relationship",
-                                   nil];
-    NSMutableDictionary *byName = [NSMutableDictionary dictionary];
-    
-    for (GCTag *subTag in self.validSubTags) {
-        NSString *typeKey = [NSStringFromClass(subTag.objectClass) hasSuffix:@"Attribute"] ? @"attribute" : @"relationship";
-        
-        byCode[typeKey][subTag.code] = subTag;
-        byName[subTag.name] = subTag;
-        byName[subTag.pluralName] = subTag;
-    }
-    
-    _cachedSubTagsByCode = [byCode copy];
-    _cachedSubTagsByName = [byName copy];
-}
-
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
 {
-    if (!_cachedSubTagsByCode) {
-        [self _buildSubTagCaches];
-    }
-    
     if ([code hasPrefix:@"_"]) {
         @synchronized (self) {
             NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
@@ -257,52 +303,17 @@ static inline void setupKey(NSString *key) {
 
 - (GCTag *)subTagWithName:(NSString *)name
 {
-    if (!_cachedSubTagsByName) {
-        [self _buildSubTagCaches];
-    }
-    
     return _cachedSubTagsByName[name];
 }
 
 - (NSArray *)subTagsInGroup:(NSString *)groupName
 {
-    if (!_cachedSubTagsByGroup) {
-        NSMutableDictionary *byGroup = [NSMutableDictionary dictionary];
-        
-        [_settings[kValidSubTags] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSString *key = obj[kGroupName];
-            if (key) {
-                NSString *variantGroupName = _tagInfo[key][kPluralName];
-                for (NSDictionary *variant in _tagInfo[key][kVariants]) {
-                    if (!variant[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:variant[kTagName]]]) {
-                        if (!byGroup[variantGroupName]) {
-                            byGroup[variantGroupName] = [NSMutableArray array];
-                        }
-                        [byGroup[variantGroupName] addObject:[GCTag tagNamed:variant[kTagName]]];
-                    }
-                }
-            }
-        }];
-        
-        _cachedSubTagsByGroup = [byGroup copy];
-    }
-    
     return _cachedSubTagsByGroup[groupName];
 }
 
 - (BOOL)isValidSubTag:(GCTag *)tag
 {
     return tag.isCustom || [self.validSubTags containsObject:tag];
-}
-
-static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDictionary *subtag) {
-    if (subtag[kGroupName]) {
-        for (NSDictionary *variant in _tagInfo[subtag[kGroupName]][kVariants]) {
-            expandOccurences(occurrencesDicts, variant);
-        }
-    } else {
-        occurrencesDicts[subtag[kTagName]] = subtag;
-    }
 }
 
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag
@@ -313,18 +324,6 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
     
     if (_settings[kValidSubTags] == nil) {
         return (GCAllowedOccurrences){0, 0};
-    }
-    
-    if (!_cachedOccurencesDicts) {
-        NSMutableDictionary *occurrencesDicts = [NSMutableDictionary dictionary];
-        
-        for (NSDictionary *subtag in _settings[kValidSubTags]) {
-            expandOccurences(occurrencesDicts, subtag);
-        }
-        
-        @synchronized (self) {
-            _cachedOccurencesDicts = [occurrencesDicts copy];
-        }
     }
     
     NSDictionary *validDict = _cachedOccurencesDicts[tag.name];
@@ -400,31 +399,6 @@ static inline void expandOccurences(NSMutableDictionary *occurrencesDicts, NSDic
 - (id)copyWithZone:(NSZone *)zone
 {
     return self; //safe, since GCTags are immutable
-}
-
-#pragma mark Objective-C properties
-
-static inline void expandSubtag(NSMutableOrderedSet *set, NSDictionary *valid) {
-    if (valid[kGroupName]) {
-        for (NSDictionary *variant in _tagInfo[valid[kGroupName]][kVariants]) {
-            expandSubtag(set, variant);
-        }
-    } else {
-        [set addObject:[GCTag tagNamed:valid[kTagName]]];
-    }
-}
-
-- (NSArray *)validSubTags
-{
-    if (!_cachedValidSubTags) {
-        NSMutableOrderedSet *subTags = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
-        for (NSDictionary *valid in _settings[kValidSubTags]) {
-            expandSubtag(subTags, valid);
-        }
-        _cachedValidSubTags = [subTags copy];
-    }
-    
-    return _cachedValidSubTags;
 }
 
 @end
