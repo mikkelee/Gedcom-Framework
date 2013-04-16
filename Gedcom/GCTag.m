@@ -23,10 +23,6 @@
     NSDictionary *_cachedSubTagsByCode;
     NSDictionary *_cachedSubTagsByGroup;
     NSDictionary *_cachedOccurencesDicts;
-    Class _cachedValueClass;
-    Class _cachedObjectClass;
-    Class _cachedTargetType;
-    NSArray *_cachedAllowedValues;
     NSArray *_multipleAllowedCache;
     NSArray *_onlySingleAllowedCache;
 }
