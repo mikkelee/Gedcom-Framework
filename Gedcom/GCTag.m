@@ -70,21 +70,8 @@ static inline void setupKey(NSString *key) {
         return;
     }
     
-    //NSLog(@"setupKey: %@", key);
-    
     NSMutableDictionary *tagDict = _tagInfo[key];
     assert(tagDict != nil);
-    
-    // propagate info to variants
-    for (NSDictionary *variant in tagDict[kVariants]) {
-        if (variant[kGroupName]) {
-            for (NSDictionary *subVariant in _tagInfo[variant[kGroupName]][kVariants]) {
-                setupKey(subVariant[kTagName]);
-            }
-        } else {
-            setupKey(variant[kTagName]);
-        }
-    }
     
     // store tags
     if (tagDict[kTagCode] != nil) {
@@ -95,8 +82,18 @@ static inline void setupKey(NSString *key) {
         _tagStore[tagDict[kPluralName]] = tag;
         
         if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
-            //NSLog(@"storing root tag: %@", tag);
             _rootTagsByCode[tagDict[kTagCode]] = tag;
+        }
+    }
+    
+    // set up variants
+    for (NSDictionary *variant in tagDict[kVariants]) {
+        if (variant[kGroupName]) {
+            for (NSDictionary *subVariant in _tagInfo[variant[kGroupName]][kVariants]) {
+                setupKey(subVariant[kTagName]);
+            }
+        } else {
+            setupKey(variant[kTagName]);
         }
     }
     
@@ -126,13 +123,9 @@ static inline void setupKey(NSString *key) {
                                                options:NSJSONReadingMutableContainers
                                                  error:&err];
     
-    //NSLog(@"tagInfo: %@", tagInfo);
     NSAssert(_tagInfo != nil, @"error: %@", err);
     
     setupKey((NSString *)kRootObject);
-    
-    //NSLog(@"_tagInfo: %@", _tagInfo);
-    //NSLog(@"_tagStore: %@", _tagStore);
 }
 
 - (id)initWithName:(NSString *)name settings:(NSDictionary *)settings
