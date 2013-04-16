@@ -254,4 +254,13 @@
     STAssertEqualObjects(afn.localizedType, @"Ancestral File number", nil);
 }
 
+- (void)testGetterSetter
+{
+    GCBirthAttribute *birt = [GCBirthAttribute birth];
+    
+    birt.cause = [GCCauseAttribute causeWithGedcomStringValue:@"cesarian"];
+    
+    STAssertEqualObjects(birt.cause.value.gedcomString, @"cesarian", nil);
+}
+
 @end
