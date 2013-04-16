@@ -48,6 +48,7 @@ const NSString *kValidSubTags = @"validSubTags";
 const NSString *kMin = @"min";
 const NSString *kMax = @"max";
 
+const NSString *kClassName = @"className";
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
 const NSString *kTargetType = @"target";
@@ -144,12 +145,11 @@ static inline void setupKey(NSString *key) {
         _pluralName = _settings[kPluralName];
         
         // objectClass
-        NSString *lookupName = self.name;
-        if (self.isCustom) {
-            lookupName = @"custom";
+        if (_isCustom) {
+            _objectClass = NSClassFromString([NSString stringWithFormat:@"GCCustom%@", [_settings[kObjectType] capitalizedString]]);
+        } else {
+            _objectClass = NSClassFromString(_settings[kClassName]);
         }
-        NSString *objectClassString = [NSString stringWithFormat:@"GC%@%@%@", [[lookupName substringToIndex:1] uppercaseString], [lookupName substringFromIndex:1], [_settings[kObjectType] capitalizedString]];
-        _objectClass = NSClassFromString(objectClassString);
         
         // for entities:
         _hasXref = _settings[kHasXref] != nil;
