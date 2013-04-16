@@ -88,11 +88,6 @@
 	_multimediaFormat = (id)obj;
 }
 
-- (GCMultimediaFormatAttribute *)multimediaFormat
-{
-	return _multimediaFormat;
-}
-
 
 - (void)setTitle:(id)obj
 {
@@ -118,11 +113,6 @@
 	_title = (id)obj;
 }
 
-- (GCTitleAttribute *)title
-{
-	return _title;
-}
-
 
 - (void)setFile:(id)obj
 {
@@ -146,11 +136,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_file = (id)obj;
-}
-
-- (GCFileAttribute *)file
-{
-	return _file;
 }
 
 @dynamic notes;
@@ -206,7 +191,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -259,7 +244,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

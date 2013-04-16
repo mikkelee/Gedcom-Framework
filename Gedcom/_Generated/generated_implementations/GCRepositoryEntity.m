@@ -78,11 +78,6 @@
 	_descriptiveName = (id)obj;
 }
 
-- (GCDescriptiveNameAttribute *)descriptiveName
-{
-	return _descriptiveName;
-}
-
 
 - (void)setAddress:(id)obj
 {
@@ -106,11 +101,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_address = (id)obj;
-}
-
-- (GCAddressAttribute *)address
-{
-	return _address;
 }
 
 
@@ -165,7 +155,7 @@
 	
 	[_phoneNumbers removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -219,7 +209,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -272,7 +262,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
@@ -325,7 +315,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -351,11 +341,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -379,11 +364,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

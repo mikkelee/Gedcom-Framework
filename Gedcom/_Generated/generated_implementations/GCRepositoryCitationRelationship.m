@@ -95,7 +95,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -148,7 +148,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableCallNumbers {
 	return [self mutableArrayValueForKey:@"callNumbers"];
@@ -201,7 +201,7 @@
 	
 	[_callNumbers removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

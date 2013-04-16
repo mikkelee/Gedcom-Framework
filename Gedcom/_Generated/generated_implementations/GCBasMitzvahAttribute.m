@@ -111,11 +111,6 @@
 	_typeDescription = (id)obj;
 }
 
-- (GCTypeDescriptionAttribute *)typeDescription
-{
-	return _typeDescription;
-}
-
 
 - (void)setDate:(id)obj
 {
@@ -139,11 +134,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_date = (id)obj;
-}
-
-- (GCDateAttribute *)date
-{
-	return _date;
 }
 
 
@@ -171,11 +161,6 @@
 	_place = (id)obj;
 }
 
-- (GCPlaceAttribute *)place
-{
-	return _place;
-}
-
 
 - (void)setAddress:(id)obj
 {
@@ -199,11 +184,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_address = (id)obj;
-}
-
-- (GCAddressAttribute *)address
-{
-	return _address;
 }
 
 
@@ -231,11 +211,6 @@
 	_phoneNumber = (id)obj;
 }
 
-- (GCPhoneNumberAttribute *)phoneNumber
-{
-	return _phoneNumber;
-}
-
 
 - (void)setAge:(id)obj
 {
@@ -259,11 +234,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_age = (id)obj;
-}
-
-- (GCAgeAttribute *)age
-{
-	return _age;
 }
 
 
@@ -291,11 +261,6 @@
 	_responsibleAgency = (id)obj;
 }
 
-- (GCResponsibleAgencyAttribute *)responsibleAgency
-{
-	return _responsibleAgency;
-}
-
 
 - (void)setCause:(id)obj
 {
@@ -319,11 +284,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_cause = (id)obj;
-}
-
-- (GCCauseAttribute *)cause
-{
-	return _cause;
 }
 
 @dynamic sources;
@@ -379,7 +339,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -432,7 +392,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic multimedias;
 
 - (NSMutableArray *)mutableMultimediaReferences {
@@ -486,7 +446,7 @@
 	
 	[_multimediaReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -539,7 +499,7 @@
 	
 	[_multimediaEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -593,7 +553,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -646,7 +606,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

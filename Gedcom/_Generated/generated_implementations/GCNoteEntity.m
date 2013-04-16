@@ -99,7 +99,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -152,7 +152,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
@@ -205,7 +205,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -231,11 +231,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -259,11 +254,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

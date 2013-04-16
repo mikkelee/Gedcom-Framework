@@ -79,11 +79,6 @@
 	_time = (id)obj;
 }
 
-- (GCTimeAttribute *)time
-{
-	return _time;
-}
-
 
 @end
 

@@ -79,11 +79,6 @@
 	_typeDescription = (id)obj;
 }
 
-- (GCTypeDescriptionAttribute *)typeDescription
-{
-	return _typeDescription;
-}
-
 
 @end
 

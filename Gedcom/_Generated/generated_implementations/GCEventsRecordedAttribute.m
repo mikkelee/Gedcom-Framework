@@ -81,11 +81,6 @@
 	_date = (id)obj;
 }
 
-- (GCDateAttribute *)date
-{
-	return _date;
-}
-
 
 - (void)setPlace:(id)obj
 {
@@ -109,11 +104,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_place = (id)obj;
-}
-
-- (GCPlaceAttribute *)place
-{
-	return _place;
 }
 
 

@@ -81,11 +81,6 @@
 	_address = (id)obj;
 }
 
-- (GCAddressAttribute *)address
-{
-	return _address;
-}
-
 
 - (NSMutableArray *)mutablePhoneNumbers {
 	return [self mutableArrayValueForKey:@"phoneNumbers"];
@@ -138,7 +133,7 @@
 	
 	[_phoneNumbers removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

@@ -77,11 +77,6 @@
 	_submitterReference = (id)obj;
 }
 
-- (GCSubmitterReferenceRelationship *)submitterReference
-{
-	return _submitterReference;
-}
-
 
 - (void)setFamilyFile:(id)obj
 {
@@ -105,11 +100,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_familyFile = (id)obj;
-}
-
-- (GCFamilyFileAttribute *)familyFile
-{
-	return _familyFile;
 }
 
 
@@ -137,11 +127,6 @@
 	_temple = (id)obj;
 }
 
-- (GCTempleAttribute *)temple
-{
-	return _temple;
-}
-
 
 - (void)setGenerationsOfAncestors:(id)obj
 {
@@ -165,11 +150,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_generationsOfAncestors = (id)obj;
-}
-
-- (GCGenerationsOfAncestorsAttribute *)generationsOfAncestors
-{
-	return _generationsOfAncestors;
 }
 
 
@@ -197,11 +177,6 @@
 	_generationsOfDescendants = (id)obj;
 }
 
-- (GCGenerationsOfDescendantsAttribute *)generationsOfDescendants
-{
-	return _generationsOfDescendants;
-}
-
 
 - (void)setOrdinanceFlag:(id)obj
 {
@@ -225,11 +200,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_ordinanceFlag = (id)obj;
-}
-
-- (GCOrdinanceFlagAttribute *)ordinanceFlag
-{
-	return _ordinanceFlag;
 }
 
 
@@ -284,7 +254,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -310,11 +280,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -338,11 +303,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

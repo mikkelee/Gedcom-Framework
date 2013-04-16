@@ -90,11 +90,6 @@
 	_placeFormat = (id)obj;
 }
 
-- (GCPlaceFormatAttribute *)placeFormat
-{
-	return _placeFormat;
-}
-
 @dynamic sources;
 
 - (NSMutableArray *)mutableSourceCitations {
@@ -148,7 +143,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -201,7 +196,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -255,7 +250,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -308,7 +303,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

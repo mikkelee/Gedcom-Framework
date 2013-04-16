@@ -77,11 +77,6 @@
 	_multimediaFormat = (id)obj;
 }
 
-- (GCMultimediaFormatAttribute *)multimediaFormat
-{
-	return _multimediaFormat;
-}
-
 
 - (void)setTitle:(id)obj
 {
@@ -105,11 +100,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_title = (id)obj;
-}
-
-- (GCTitleAttribute *)title
-{
-	return _title;
 }
 
 @dynamic notes;
@@ -165,7 +155,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -218,7 +208,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setBinaryObject:(id)obj
 {
@@ -242,11 +232,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_binaryObject = (id)obj;
-}
-
-- (GCBinaryObjectAttribute *)binaryObject
-{
-	return _binaryObject;
 }
 
 
@@ -301,7 +286,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -327,11 +312,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -355,11 +335,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

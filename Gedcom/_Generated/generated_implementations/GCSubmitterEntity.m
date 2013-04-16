@@ -85,11 +85,6 @@
 	_descriptiveName = (id)obj;
 }
 
-- (GCDescriptiveNameAttribute *)descriptiveName
-{
-	return _descriptiveName;
-}
-
 
 - (void)setAddress:(id)obj
 {
@@ -113,11 +108,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_address = (id)obj;
-}
-
-- (GCAddressAttribute *)address
-{
-	return _address;
 }
 
 
@@ -172,7 +162,7 @@
 	
 	[_phoneNumbers removeObjectAtIndex:index];
 }
-	
+
 @dynamic multimedias;
 
 - (NSMutableArray *)mutableMultimediaReferences {
@@ -226,7 +216,7 @@
 	
 	[_multimediaReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -279,7 +269,7 @@
 	
 	[_multimediaEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableLanguages {
 	return [self mutableArrayValueForKey:@"languages"];
@@ -332,7 +322,7 @@
 	
 	[_languages removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordFileNumber:(id)obj
 {
@@ -358,11 +348,6 @@
 	_recordFileNumber = (id)obj;
 }
 
-- (GCRecordFileNumberAttribute *)recordFileNumber
-{
-	return _recordFileNumber;
-}
-
 
 - (void)setAncestralFileNumber:(id)obj
 {
@@ -386,11 +371,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_ancestralFileNumber = (id)obj;
-}
-
-- (GCAncestralFileNumberAttribute *)ancestralFileNumber
-{
-	return _ancestralFileNumber;
 }
 
 
@@ -445,7 +425,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -471,11 +451,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -499,11 +474,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

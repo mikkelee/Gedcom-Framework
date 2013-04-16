@@ -79,11 +79,6 @@
 	_role = (id)obj;
 }
 
-- (GCRoleAttribute *)role
-{
-	return _role;
-}
-
 
 @end
 

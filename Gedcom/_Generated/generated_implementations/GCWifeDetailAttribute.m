@@ -79,11 +79,6 @@
 	_age = (id)obj;
 }
 
-- (GCAgeAttribute *)age
-{
-	return _age;
-}
-
 
 @end
 

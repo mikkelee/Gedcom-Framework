@@ -79,11 +79,6 @@
 	_placeFormat = (id)obj;
 }
 
-- (GCPlaceFormatAttribute *)placeFormat
-{
-	return _placeFormat;
-}
-
 
 @end
 

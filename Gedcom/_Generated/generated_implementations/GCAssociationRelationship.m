@@ -74,11 +74,6 @@
 	_recordType = (id)obj;
 }
 
-- (GCRecordTypeAttribute *)recordType
-{
-	return _recordType;
-}
-
 
 - (void)setRelationshipDescriptor:(id)obj
 {
@@ -102,11 +97,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_relationshipDescriptor = (id)obj;
-}
-
-- (GCRelationshipDescriptorAttribute *)relationshipDescriptor
-{
-	return _relationshipDescriptor;
 }
 
 @dynamic notes;
@@ -162,7 +152,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -215,7 +205,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic sources;
 
 - (NSMutableArray *)mutableSourceCitations {
@@ -269,7 +259,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -322,7 +312,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

@@ -84,11 +84,6 @@
 	_headerSource = (id)obj;
 }
 
-- (GCHeaderSourceAttribute *)headerSource
-{
-	return _headerSource;
-}
-
 
 - (NSMutableArray *)mutableDestinations {
 	return [self mutableArrayValueForKey:@"destinations"];
@@ -141,7 +136,7 @@
 	
 	[_destinations removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setHeaderDate:(id)obj
 {
@@ -167,11 +162,6 @@
 	_headerDate = (id)obj;
 }
 
-- (GCHeaderDateAttribute *)headerDate
-{
-	return _headerDate;
-}
-
 
 - (void)setSubmitterReference:(id)obj
 {
@@ -195,11 +185,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_submitterReference = (id)obj;
-}
-
-- (GCSubmitterReferenceRelationship *)submitterReference
-{
-	return _submitterReference;
 }
 
 
@@ -254,7 +239,7 @@
 	
 	[_submissionReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setFile:(id)obj
 {
@@ -278,11 +263,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_file = (id)obj;
-}
-
-- (GCFileAttribute *)file
-{
-	return _file;
 }
 
 
@@ -310,11 +290,6 @@
 	_copyright = (id)obj;
 }
 
-- (GCCopyrightAttribute *)copyright
-{
-	return _copyright;
-}
-
 
 - (void)setGedcom:(id)obj
 {
@@ -338,11 +313,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_gedcom = (id)obj;
-}
-
-- (GCGedcomAttribute *)gedcom
-{
-	return _gedcom;
 }
 
 
@@ -370,11 +340,6 @@
 	_characterSet = (id)obj;
 }
 
-- (GCCharacterSetAttribute *)characterSet
-{
-	return _characterSet;
-}
-
 
 - (void)setLanguage:(id)obj
 {
@@ -398,11 +363,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_language = (id)obj;
-}
-
-- (GCLanguageAttribute *)language
-{
-	return _language;
 }
 
 
@@ -430,11 +390,6 @@
 	_placeFormatSpecifier = (id)obj;
 }
 
-- (GCPlaceFormatSpecifierAttribute *)placeFormatSpecifier
-{
-	return _placeFormatSpecifier;
-}
-
 
 - (void)setNoteEmbedded:(id)obj
 {
@@ -458,11 +413,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_noteEmbedded = (id)obj;
-}
-
-- (GCNoteEmbeddedAttribute *)noteEmbedded
-{
-	return _noteEmbedded;
 }
 
 

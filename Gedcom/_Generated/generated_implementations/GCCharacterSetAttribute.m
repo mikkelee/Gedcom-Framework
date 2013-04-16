@@ -79,11 +79,6 @@
 	_version = (id)obj;
 }
 
-- (GCVersionAttribute *)version
-{
-	return _version;
-}
-
 
 @end
 

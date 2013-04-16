@@ -79,11 +79,6 @@
 	_mediaType = (id)obj;
 }
 
-- (GCMediaTypeAttribute *)mediaType
-{
-	return _mediaType;
-}
-
 
 @end
 

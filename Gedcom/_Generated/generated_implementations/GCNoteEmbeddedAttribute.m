@@ -110,7 +110,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -163,7 +163,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

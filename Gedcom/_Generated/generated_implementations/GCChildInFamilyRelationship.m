@@ -66,11 +66,6 @@
 	_pedigree = (id)obj;
 }
 
-- (GCPedigreeAttribute *)pedigree
-{
-	return _pedigree;
-}
-
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -124,7 +119,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -177,7 +172,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

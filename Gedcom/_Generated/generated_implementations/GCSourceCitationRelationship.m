@@ -78,11 +78,6 @@
 	_page = (id)obj;
 }
 
-- (GCPageAttribute *)page
-{
-	return _page;
-}
-
 
 - (void)setData:(id)obj
 {
@@ -106,11 +101,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_data = (id)obj;
-}
-
-- (GCDataAttribute *)data
-{
-	return _data;
 }
 
 
@@ -138,11 +128,6 @@
 	_eventCited = (id)obj;
 }
 
-- (GCEventCitedAttribute *)eventCited
-{
-	return _eventCited;
-}
-
 
 - (void)setQualityOfData:(id)obj
 {
@@ -166,11 +151,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_qualityOfData = (id)obj;
-}
-
-- (GCQualityOfDataAttribute *)qualityOfData
-{
-	return _qualityOfData;
 }
 
 @dynamic multimedias;
@@ -226,7 +206,7 @@
 	
 	[_multimediaReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -279,7 +259,7 @@
 	
 	[_multimediaEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -333,7 +313,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -386,7 +366,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

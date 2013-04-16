@@ -85,11 +85,6 @@
 	_version = (id)obj;
 }
 
-- (GCVersionAttribute *)version
-{
-	return _version;
-}
-
 
 - (void)setDescriptiveName:(id)obj
 {
@@ -113,11 +108,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_descriptiveName = (id)obj;
-}
-
-- (GCDescriptiveNameAttribute *)descriptiveName
-{
-	return _descriptiveName;
 }
 
 
@@ -145,11 +135,6 @@
 	_corporation = (id)obj;
 }
 
-- (GCCorporationAttribute *)corporation
-{
-	return _corporation;
-}
-
 
 - (void)setHeaderSourceData:(id)obj
 {
@@ -173,11 +158,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_headerSourceData = (id)obj;
-}
-
-- (GCHeaderSourceDataAttribute *)headerSourceData
-{
-	return _headerSourceData;
 }
 
 

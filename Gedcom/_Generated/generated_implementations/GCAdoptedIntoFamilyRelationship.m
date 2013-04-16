@@ -61,11 +61,6 @@
 	_adoptedByWhichParent = (id)obj;
 }
 
-- (GCAdoptedByWhichParentAttribute *)adoptedByWhichParent
-{
-	return _adoptedByWhichParent;
-}
-
 
 @end
 

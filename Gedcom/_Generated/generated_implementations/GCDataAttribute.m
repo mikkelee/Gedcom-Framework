@@ -81,11 +81,6 @@
 	_date = (id)obj;
 }
 
-- (GCDateAttribute *)date
-{
-	return _date;
-}
-
 
 - (NSMutableArray *)mutableTexts {
 	return [self mutableArrayValueForKey:@"texts"];
@@ -138,7 +133,7 @@
 	
 	[_texts removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

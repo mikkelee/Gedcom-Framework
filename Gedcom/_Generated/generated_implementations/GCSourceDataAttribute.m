@@ -114,7 +114,7 @@
 	
 	[_eventsRecordeds removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setResponsibleAgency:(id)obj
 {
@@ -138,11 +138,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_responsibleAgency = (id)obj;
-}
-
-- (GCResponsibleAgencyAttribute *)responsibleAgency
-{
-	return _responsibleAgency;
 }
 
 @dynamic notes;
@@ -198,7 +193,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -251,7 +246,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

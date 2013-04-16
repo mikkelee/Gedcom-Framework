@@ -159,7 +159,7 @@
 	
 	[_annulments removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableCensuses {
 	return [self mutableArrayValueForKey:@"censuses"];
@@ -212,7 +212,7 @@
 	
 	[_censuses removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableDivorces {
 	return [self mutableArrayValueForKey:@"divorces"];
@@ -265,7 +265,7 @@
 	
 	[_divorces removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableDivorceFileds {
 	return [self mutableArrayValueForKey:@"divorceFileds"];
@@ -318,7 +318,7 @@
 	
 	[_divorceFileds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableEngagements {
 	return [self mutableArrayValueForKey:@"engagements"];
@@ -371,7 +371,7 @@
 	
 	[_engagements removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMarriages {
 	return [self mutableArrayValueForKey:@"marriages"];
@@ -424,7 +424,7 @@
 	
 	[_marriages removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMarriageBanns {
 	return [self mutableArrayValueForKey:@"marriageBanns"];
@@ -477,7 +477,7 @@
 	
 	[_marriageBanns removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMarriageContracts {
 	return [self mutableArrayValueForKey:@"marriageContracts"];
@@ -530,7 +530,7 @@
 	
 	[_marriageContracts removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMarriageLicenses {
 	return [self mutableArrayValueForKey:@"marriageLicenses"];
@@ -583,7 +583,7 @@
 	
 	[_marriageLicenses removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMarriageSettlements {
 	return [self mutableArrayValueForKey:@"marriageSettlements"];
@@ -636,7 +636,7 @@
 	
 	[_marriageSettlements removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableGenericEvents {
 	return [self mutableArrayValueForKey:@"genericEvents"];
@@ -689,7 +689,7 @@
 	
 	[_genericEvents removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setHusband:(id)obj
 {
@@ -715,11 +715,6 @@
 	_husband = (id)obj;
 }
 
-- (GCHusbandRelationship *)husband
-{
-	return _husband;
-}
-
 
 - (void)setWife:(id)obj
 {
@@ -743,11 +738,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_wife = (id)obj;
-}
-
-- (GCWifeRelationship *)wife
-{
-	return _wife;
 }
 
 
@@ -802,7 +792,7 @@
 	
 	[_children removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setNumberOfChildren:(id)obj
 {
@@ -826,11 +816,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_numberOfChildren = (id)obj;
-}
-
-- (GCNumberOfChildrenAttribute *)numberOfChildren
-{
-	return _numberOfChildren;
 }
 
 
@@ -885,7 +870,7 @@
 	
 	[_submitterReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableLDSSealingSpouses {
 	return [self mutableArrayValueForKey:@"lDSSealingSpouses"];
@@ -938,7 +923,7 @@
 	
 	[_lDSSealingSpouses removeObjectAtIndex:index];
 }
-	
+
 @dynamic sources;
 
 - (NSMutableArray *)mutableSourceCitations {
@@ -992,7 +977,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -1045,7 +1030,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic multimedias;
 
 - (NSMutableArray *)mutableMultimediaReferences {
@@ -1099,7 +1084,7 @@
 	
 	[_multimediaReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -1152,7 +1137,7 @@
 	
 	[_multimediaEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -1206,7 +1191,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -1259,7 +1244,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
@@ -1312,7 +1297,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -1338,11 +1323,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -1366,11 +1346,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

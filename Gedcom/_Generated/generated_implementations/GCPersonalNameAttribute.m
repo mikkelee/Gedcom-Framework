@@ -100,11 +100,6 @@
 	_namePrefix = (id)obj;
 }
 
-- (GCNamePrefixAttribute *)namePrefix
-{
-	return _namePrefix;
-}
-
 
 - (void)setGivenName:(id)obj
 {
@@ -128,11 +123,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_givenName = (id)obj;
-}
-
-- (GCGivenNameAttribute *)givenName
-{
-	return _givenName;
 }
 
 
@@ -160,11 +150,6 @@
 	_nickname = (id)obj;
 }
 
-- (GCNicknameAttribute *)nickname
-{
-	return _nickname;
-}
-
 
 - (void)setSurnamePrefix:(id)obj
 {
@@ -188,11 +173,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_surnamePrefix = (id)obj;
-}
-
-- (GCSurnamePrefixAttribute *)surnamePrefix
-{
-	return _surnamePrefix;
 }
 
 
@@ -220,11 +200,6 @@
 	_surname = (id)obj;
 }
 
-- (GCSurnameAttribute *)surname
-{
-	return _surname;
-}
-
 
 - (void)setNameSuffix:(id)obj
 {
@@ -248,11 +223,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_nameSuffix = (id)obj;
-}
-
-- (GCNameSuffixAttribute *)nameSuffix
-{
-	return _nameSuffix;
 }
 
 @dynamic sources;
@@ -308,7 +278,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -361,7 +331,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -415,7 +385,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -468,7 +438,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

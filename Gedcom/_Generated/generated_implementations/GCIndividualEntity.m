@@ -240,11 +240,6 @@
 	_restrictionNotice = (id)obj;
 }
 
-- (GCRestrictionNoticeAttribute *)restrictionNotice
-{
-	return _restrictionNotice;
-}
-
 
 - (NSMutableArray *)mutablePersonalNames {
 	return [self mutableArrayValueForKey:@"personalNames"];
@@ -297,7 +292,7 @@
 	
 	[_personalNames removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setSex:(id)obj
 {
@@ -321,11 +316,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_sex = (id)obj;
-}
-
-- (GCSexAttribute *)sex
-{
-	return _sex;
 }
 
 @dynamic individualEvents;
@@ -381,7 +371,7 @@
 	
 	[_births removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableChristenings {
 	return [self mutableArrayValueForKey:@"christenings"];
@@ -434,7 +424,7 @@
 	
 	[_christenings removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableDeaths {
 	return [self mutableArrayValueForKey:@"deaths"];
@@ -487,7 +477,7 @@
 	
 	[_deaths removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableBurials {
 	return [self mutableArrayValueForKey:@"burials"];
@@ -540,7 +530,7 @@
 	
 	[_burials removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableCremations {
 	return [self mutableArrayValueForKey:@"cremations"];
@@ -593,7 +583,7 @@
 	
 	[_cremations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableAdoptions {
 	return [self mutableArrayValueForKey:@"adoptions"];
@@ -646,7 +636,7 @@
 	
 	[_adoptions removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableBaptisms {
 	return [self mutableArrayValueForKey:@"baptisms"];
@@ -699,7 +689,7 @@
 	
 	[_baptisms removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableBarMitzvahs {
 	return [self mutableArrayValueForKey:@"barMitzvahs"];
@@ -752,7 +742,7 @@
 	
 	[_barMitzvahs removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableBasMitzvahs {
 	return [self mutableArrayValueForKey:@"basMitzvahs"];
@@ -805,7 +795,7 @@
 	
 	[_basMitzvahs removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableBlessings {
 	return [self mutableArrayValueForKey:@"blessings"];
@@ -858,7 +848,7 @@
 	
 	[_blessings removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableAdultChristenings {
 	return [self mutableArrayValueForKey:@"adultChristenings"];
@@ -911,7 +901,7 @@
 	
 	[_adultChristenings removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableConfirmations {
 	return [self mutableArrayValueForKey:@"confirmations"];
@@ -964,7 +954,7 @@
 	
 	[_confirmations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableFirstCommunions {
 	return [self mutableArrayValueForKey:@"firstCommunions"];
@@ -1017,7 +1007,7 @@
 	
 	[_firstCommunions removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableOrdinations {
 	return [self mutableArrayValueForKey:@"ordinations"];
@@ -1070,7 +1060,7 @@
 	
 	[_ordinations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNaturalizations {
 	return [self mutableArrayValueForKey:@"naturalizations"];
@@ -1123,7 +1113,7 @@
 	
 	[_naturalizations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableEmigrations {
 	return [self mutableArrayValueForKey:@"emigrations"];
@@ -1176,7 +1166,7 @@
 	
 	[_emigrations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableImmigrations {
 	return [self mutableArrayValueForKey:@"immigrations"];
@@ -1229,7 +1219,7 @@
 	
 	[_immigrations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableCensuses {
 	return [self mutableArrayValueForKey:@"censuses"];
@@ -1282,7 +1272,7 @@
 	
 	[_censuses removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableProbates {
 	return [self mutableArrayValueForKey:@"probates"];
@@ -1335,7 +1325,7 @@
 	
 	[_probates removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableWills {
 	return [self mutableArrayValueForKey:@"wills"];
@@ -1388,7 +1378,7 @@
 	
 	[_wills removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableGraduations {
 	return [self mutableArrayValueForKey:@"graduations"];
@@ -1441,7 +1431,7 @@
 	
 	[_graduations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableRetirements {
 	return [self mutableArrayValueForKey:@"retirements"];
@@ -1494,7 +1484,7 @@
 	
 	[_retirements removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableGenericEvents {
 	return [self mutableArrayValueForKey:@"genericEvents"];
@@ -1547,7 +1537,7 @@
 	
 	[_genericEvents removeObjectAtIndex:index];
 }
-	
+
 @dynamic individualAttributes;
 
 - (NSMutableArray *)mutableCastes {
@@ -1601,7 +1591,7 @@
 	
 	[_castes removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutablePhysicalDescriptions {
 	return [self mutableArrayValueForKey:@"physicalDescriptions"];
@@ -1654,7 +1644,7 @@
 	
 	[_physicalDescriptions removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableGenerationsOfDescendantss {
 	return [self mutableArrayValueForKey:@"generationsOfDescendantss"];
@@ -1707,7 +1697,7 @@
 	
 	[_generationsOfDescendantss removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableEducations {
 	return [self mutableArrayValueForKey:@"educations"];
@@ -1760,7 +1750,7 @@
 	
 	[_educations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableIdentNumbers {
 	return [self mutableArrayValueForKey:@"identNumbers"];
@@ -1813,7 +1803,7 @@
 	
 	[_identNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNationalities {
 	return [self mutableArrayValueForKey:@"nationalities"];
@@ -1866,7 +1856,7 @@
 	
 	[_nationalities removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNumberOfChildrens {
 	return [self mutableArrayValueForKey:@"numberOfChildrens"];
@@ -1919,7 +1909,7 @@
 	
 	[_numberOfChildrens removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNumberOfMarriagess {
 	return [self mutableArrayValueForKey:@"numberOfMarriagess"];
@@ -1972,7 +1962,7 @@
 	
 	[_numberOfMarriagess removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableOccupations {
 	return [self mutableArrayValueForKey:@"occupations"];
@@ -2025,7 +2015,7 @@
 	
 	[_occupations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutablePropertyOwneds {
 	return [self mutableArrayValueForKey:@"propertyOwneds"];
@@ -2078,7 +2068,7 @@
 	
 	[_propertyOwneds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableReligions {
 	return [self mutableArrayValueForKey:@"religions"];
@@ -2131,7 +2121,7 @@
 	
 	[_religions removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableResidences {
 	return [self mutableArrayValueForKey:@"residences"];
@@ -2184,7 +2174,7 @@
 	
 	[_residences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSocialSecurityNumbers {
 	return [self mutableArrayValueForKey:@"socialSecurityNumbers"];
@@ -2237,7 +2227,7 @@
 	
 	[_socialSecurityNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableTitles {
 	return [self mutableArrayValueForKey:@"titles"];
@@ -2290,7 +2280,7 @@
 	
 	[_titles removeObjectAtIndex:index];
 }
-	
+
 @dynamic individualLDSOrdinances;
 
 - (NSMutableArray *)mutableLDSBaptisms {
@@ -2344,7 +2334,7 @@
 	
 	[_lDSBaptisms removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableLDSConfirmations {
 	return [self mutableArrayValueForKey:@"lDSConfirmations"];
@@ -2397,7 +2387,7 @@
 	
 	[_lDSConfirmations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableLDSEndowments {
 	return [self mutableArrayValueForKey:@"lDSEndowments"];
@@ -2450,7 +2440,7 @@
 	
 	[_lDSEndowments removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableLDSSealingChilds {
 	return [self mutableArrayValueForKey:@"lDSSealingChilds"];
@@ -2503,7 +2493,7 @@
 	
 	[_lDSSealingChilds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableChildInFamilies {
 	return [self mutableArrayValueForKey:@"childInFamilies"];
@@ -2556,7 +2546,7 @@
 	
 	[_childInFamilies removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSpouseInFamilies {
 	return [self mutableArrayValueForKey:@"spouseInFamilies"];
@@ -2609,7 +2599,7 @@
 	
 	[_spouseInFamilies removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSubmitterReferences {
 	return [self mutableArrayValueForKey:@"submitterReferences"];
@@ -2662,7 +2652,7 @@
 	
 	[_submitterReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableAssociations {
 	return [self mutableArrayValueForKey:@"associations"];
@@ -2715,7 +2705,7 @@
 	
 	[_associations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableAliases {
 	return [self mutableArrayValueForKey:@"aliases"];
@@ -2768,7 +2758,7 @@
 	
 	[_aliases removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableAncestorInterests {
 	return [self mutableArrayValueForKey:@"ancestorInterests"];
@@ -2821,7 +2811,7 @@
 	
 	[_ancestorInterests removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableDescendantInterests {
 	return [self mutableArrayValueForKey:@"descendantInterests"];
@@ -2874,7 +2864,7 @@
 	
 	[_descendantInterests removeObjectAtIndex:index];
 }
-	
+
 @dynamic sources;
 
 - (NSMutableArray *)mutableSourceCitations {
@@ -2928,7 +2918,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -2981,7 +2971,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic multimedias;
 
 - (NSMutableArray *)mutableMultimediaReferences {
@@ -3035,7 +3025,7 @@
 	
 	[_multimediaReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -3088,7 +3078,7 @@
 	
 	[_multimediaEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -3142,7 +3132,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -3195,7 +3185,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableRecordFileNumbers {
 	return [self mutableArrayValueForKey:@"recordFileNumbers"];
@@ -3248,7 +3238,7 @@
 	
 	[_recordFileNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableAncestralFileNumbers {
 	return [self mutableArrayValueForKey:@"ancestralFileNumbers"];
@@ -3301,7 +3291,7 @@
 	
 	[_ancestralFileNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableUserReferenceNumbers {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
@@ -3354,7 +3344,7 @@
 	
 	[_userReferenceNumbers removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setRecordIdNumber:(id)obj
 {
@@ -3380,11 +3370,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -3408,11 +3393,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 

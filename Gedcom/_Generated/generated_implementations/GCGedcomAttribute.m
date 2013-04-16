@@ -81,11 +81,6 @@
 	_version = (id)obj;
 }
 
-- (GCVersionAttribute *)version
-{
-	return _version;
-}
-
 
 - (void)setGedcomFormat:(id)obj
 {
@@ -109,11 +104,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_gedcomFormat = (id)obj;
-}
-
-- (GCGedcomFormatAttribute *)gedcomFormat
-{
-	return _gedcomFormat;
 }
 
 

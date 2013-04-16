@@ -89,11 +89,6 @@
 	_addressLine1 = (id)obj;
 }
 
-- (GCAddressLine1Attribute *)addressLine1
-{
-	return _addressLine1;
-}
-
 
 - (void)setAddressLine2:(id)obj
 {
@@ -117,11 +112,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_addressLine2 = (id)obj;
-}
-
-- (GCAddressLine2Attribute *)addressLine2
-{
-	return _addressLine2;
 }
 
 
@@ -149,11 +139,6 @@
 	_city = (id)obj;
 }
 
-- (GCCityAttribute *)city
-{
-	return _city;
-}
-
 
 - (void)setState:(id)obj
 {
@@ -177,11 +162,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_state = (id)obj;
-}
-
-- (GCStateAttribute *)state
-{
-	return _state;
 }
 
 
@@ -209,11 +189,6 @@
 	_postalCode = (id)obj;
 }
 
-- (GCPostalCodeAttribute *)postalCode
-{
-	return _postalCode;
-}
-
 
 - (void)setCountry:(id)obj
 {
@@ -237,11 +212,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_country = (id)obj;
-}
-
-- (GCCountryAttribute *)country
-{
-	return _country;
 }
 
 

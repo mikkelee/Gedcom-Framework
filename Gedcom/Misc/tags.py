@@ -64,7 +64,7 @@ collectionAccessorsT = Template("""
 	
 	[_$name removeObjectAtIndex:index];
 }
-	""")
+""")
 
 singleAccessorsT = Template("""
 - (void)set$capName:(id)obj
@@ -89,11 +89,6 @@ singleAccessorsT = Template("""
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_$name = (id)obj;
-}
-
-- ($type *)$name
-{
-	return _$name;
 }
 """)
 

@@ -98,11 +98,6 @@
 	_lDSSealingChildStatus = (id)obj;
 }
 
-- (GCLDSSealingChildStatusAttribute *)lDSSealingChildStatus
-{
-	return _lDSSealingChildStatus;
-}
-
 
 - (void)setSealedToFamily:(id)obj
 {
@@ -126,11 +121,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_sealedToFamily = (id)obj;
-}
-
-- (GCSealedToFamilyRelationship *)sealedToFamily
-{
-	return _sealedToFamily;
 }
 
 
@@ -158,11 +148,6 @@
 	_date = (id)obj;
 }
 
-- (GCDateAttribute *)date
-{
-	return _date;
-}
-
 
 - (void)setTemple:(id)obj
 {
@@ -188,11 +173,6 @@
 	_temple = (id)obj;
 }
 
-- (GCTempleAttribute *)temple
-{
-	return _temple;
-}
-
 
 - (void)setPlace:(id)obj
 {
@@ -216,11 +196,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_place = (id)obj;
-}
-
-- (GCPlaceAttribute *)place
-{
-	return _place;
 }
 
 @dynamic sources;
@@ -276,7 +251,7 @@
 	
 	[_sourceCitations removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableSourceEmbeddeds {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -329,7 +304,7 @@
 	
 	[_sourceEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -383,7 +358,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -436,7 +411,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 @end
 

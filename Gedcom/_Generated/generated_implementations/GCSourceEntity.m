@@ -90,11 +90,6 @@
 	_sourceData = (id)obj;
 }
 
-- (GCSourceDataAttribute *)sourceData
-{
-	return _sourceData;
-}
-
 
 - (void)setAuthor:(id)obj
 {
@@ -118,11 +113,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_author = (id)obj;
-}
-
-- (GCAuthorAttribute *)author
-{
-	return _author;
 }
 
 
@@ -150,11 +140,6 @@
 	_title = (id)obj;
 }
 
-- (GCTitleAttribute *)title
-{
-	return _title;
-}
-
 
 - (void)setAbbreviation:(id)obj
 {
@@ -178,11 +163,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_abbreviation = (id)obj;
-}
-
-- (GCAbbreviationAttribute *)abbreviation
-{
-	return _abbreviation;
 }
 
 
@@ -210,11 +190,6 @@
 	_publicationFacts = (id)obj;
 }
 
-- (GCPublicationFactsAttribute *)publicationFacts
-{
-	return _publicationFacts;
-}
-
 
 - (void)setText:(id)obj
 {
@@ -240,11 +215,6 @@
 	_text = (id)obj;
 }
 
-- (GCTextAttribute *)text
-{
-	return _text;
-}
-
 
 - (void)setRepositoryCitation:(id)obj
 {
@@ -268,11 +238,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_repositoryCitation = (id)obj;
-}
-
-- (GCRepositoryCitationRelationship *)repositoryCitation
-{
-	return _repositoryCitation;
 }
 
 @dynamic multimedias;
@@ -328,7 +293,7 @@
 	
 	[_multimediaReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableMultimediaEmbeddeds {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -381,7 +346,7 @@
 	
 	[_multimediaEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 @dynamic notes;
 
 - (NSMutableArray *)mutableNoteReferences {
@@ -435,7 +400,7 @@
 	
 	[_noteReferences removeObjectAtIndex:index];
 }
-	
+
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
@@ -488,7 +453,7 @@
 	
 	[_noteEmbeddeds removeObjectAtIndex:index];
 }
-	
+
 
 - (void)setUserReferenceNumber:(id)obj
 {
@@ -512,11 +477,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_userReferenceNumber = (id)obj;
-}
-
-- (GCUserReferenceNumberAttribute *)userReferenceNumber
-{
-	return _userReferenceNumber;
 }
 
 
@@ -544,11 +504,6 @@
 	_recordIdNumber = (id)obj;
 }
 
-- (GCRecordIdNumberAttribute *)recordIdNumber
-{
-	return _recordIdNumber;
-}
-
 
 - (void)setChangeInfo:(id)obj
 {
@@ -572,11 +527,6 @@
 	[obj setValue:self forKey:@"describedObject"];
 	
 	_changeInfo = (id)obj;
-}
-
-- (GCChangeInfoAttribute *)changeInfo
-{
-	return _changeInfo;
 }
 
 
