@@ -422,7 +422,7 @@ __strong static NSDictionary *_defaultColors;
         
         NSString *selName = NSStringFromSelector(sel);
         
-        BOOL didReplace = NO;
+        BOOL didResolve = NO;
         
         if ([selName hasPrefix:@"insertObject"]) {
             //NSLog(@"insertObject %@ selName: %@", [self className], selName);
@@ -435,6 +435,8 @@ __strong static NSDictionary *_defaultColors;
             
         } else if ([selName hasPrefix:@"countOf"]) {
             //NSLog(@"countOf %@ selName: %@", [self className], selName);
+            
+            
             
         } else if ([selName hasPrefix:@"mutable"]) {
             // mutable getter
@@ -453,7 +455,7 @@ __strong static NSDictionary *_defaultColors;
                 return [_s mutableArrayValueForKey:propName];
             });
             
-            didReplace = class_addMethod(cls, sel, imp, "@@:");
+            didResolve = class_addMethod(cls, sel, imp, "@@:");
         } else if ([selName hasPrefix:@"set"]) {
             // single setter
             
@@ -505,7 +507,7 @@ __strong static NSDictionary *_defaultColors;
             
             method_setImplementation(method, imp);
             
-            didReplace = YES;
+            didResolve = YES;
         } else {
             // single getter
             
@@ -526,10 +528,10 @@ __strong static NSDictionary *_defaultColors;
                 return object_getIvar(_s, ivar);
             });
             
-            didReplace = class_addMethod(cls, sel, imp, "@@:");
+            didResolve = class_addMethod(cls, sel, imp, "@@:");
         }
         
-        if (didReplace) {
+        if (didResolve) {
             NSLog(@" -> added %@", selName);
             
             return YES;
