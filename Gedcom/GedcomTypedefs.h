@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef struct {
-    NSInteger min;
-    NSInteger max;
+    NSUInteger min;
+    NSUInteger max;
 } GCAllowedOccurrences;
 
 typedef enum : NSUInteger {

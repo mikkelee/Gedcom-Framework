@@ -325,7 +325,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
 - (GCAllowedOccurrences)allowedOccurrencesOfSubTag:(GCTag *)tag
 {
     if (tag.isCustom) {
-        return (GCAllowedOccurrences){0, NSIntegerMax};
+        return (GCAllowedOccurrences){0, NSUIntegerMax};
     }
     
     if (_settings[kValidSubTags] == nil) {
@@ -336,11 +336,11 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     
     GCParameterAssert(validDict);
     
-    NSInteger min = [validDict[kMin] integerValue];
+    NSInteger min = [validDict[kMin] unsignedIntegerValue];
     
     NSInteger max = [validDict[kMax] isEqual:@"M"]
-                  ? NSIntegerMax
-                  : [validDict[kMax] integerValue]
+                  ? NSUIntegerMax
+                  : [validDict[kMax] unsignedIntegerValue]
                   ;
 	
     return (GCAllowedOccurrences){min, max};
