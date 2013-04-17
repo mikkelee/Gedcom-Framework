@@ -93,6 +93,7 @@ __strong static NSArray *_rootKeys = nil;
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
         
         _undoManager = [[NSUndoManager alloc] init];
+        [_undoManager setGroupsByEvent:NO];
         
         @synchronized (_contextsByName) {
             _contextsByName[_name] = self;
@@ -308,6 +309,7 @@ __strong static NSArray *_rootKeys = nil;
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
         
         _undoManager = [[NSUndoManager alloc] init];
+        [_undoManager setGroupsByEvent:NO];
 	}
     
     return self;

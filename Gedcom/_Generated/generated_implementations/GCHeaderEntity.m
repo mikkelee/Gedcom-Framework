@@ -65,110 +65,12 @@
 
 // Properties:
 @dynamic headerSource;
-
+@dynamic destinations;
 @dynamic mutableDestinations;
-
-- (NSUInteger)countOfDestinations {
-	return [_destinations count];
-}
-
-- (id)objectInDestinationsAtIndex:(NSUInteger)index {
-	return [_destinations objectAtIndex:index];
-}
- 
-- (void)insertObject:(id)obj inDestinationsAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCDestinationAttribute class]]);
-	
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromDestinationsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	[_destinations insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromDestinationsAtIndex:(NSUInteger)index {
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_destinations[index] inDestinationsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	[((GCObject *)_destinations[index]) setValue:nil forKey:@"describedObject"];
-	
-	[_destinations removeObjectAtIndex:index];
-}
-
 @dynamic headerDate;
 @dynamic submitterReference;
-
+@dynamic submissionReferences;
 @dynamic mutableSubmissionReferences;
-
-- (NSUInteger)countOfSubmissionReferences {
-	return [_submissionReferences count];
-}
-
-- (id)objectInSubmissionReferencesAtIndex:(NSUInteger)index {
-	return [_submissionReferences objectAtIndex:index];
-}
- 
-- (void)insertObject:(id)obj inSubmissionReferencesAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCSubmissionReferenceRelationship class]]);
-	
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromSubmissionReferencesAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	[_submissionReferences insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromSubmissionReferencesAtIndex:(NSUInteger)index {
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCHeaderEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_submissionReferences[index] inSubmissionReferencesAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	[((GCObject *)_submissionReferences[index]) setValue:nil forKey:@"describedObject"];
-	
-	[_submissionReferences removeObjectAtIndex:index];
-}
-
 @dynamic file;
 @dynamic copyright;
 @dynamic gedcom;

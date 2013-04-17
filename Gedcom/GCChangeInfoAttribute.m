@@ -117,8 +117,10 @@
                                                           value:self.type
                                                           table:@"Misc"];
     
+    [self.undoManager beginUndoGrouping];
     [(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
 	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+    [self.undoManager endUndoGrouping];
 	
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
@@ -144,8 +146,10 @@
                                                           value:self.type
                                                           table:@"Misc"];
     
+    [self.undoManager beginUndoGrouping];
 	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
 	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+    [self.undoManager endUndoGrouping];
 	
 	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
 	
@@ -174,9 +178,11 @@
                                                           value:self.type
                                                           table:@"Misc"];
     
+    [self.undoManager beginUndoGrouping];
 	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
 	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
-	
+    [self.undoManager endUndoGrouping];
+    
 	if ([obj valueForKey:@"describedObject"] == self) {
 		return;
 	}
@@ -201,8 +207,10 @@
                                                           value:self.type
                                                           table:@"Misc"];
     
+    [self.undoManager beginUndoGrouping];
 	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
 	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
+    [self.undoManager endUndoGrouping];
 	
 	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
 	

@@ -62,57 +62,8 @@
 
 // Properties:
 @dynamic address;
-
+@dynamic phoneNumbers;
 @dynamic mutablePhoneNumbers;
-
-- (NSUInteger)countOfPhoneNumbers {
-	return [_phoneNumbers count];
-}
-
-- (id)objectInPhoneNumbersAtIndex:(NSUInteger)index {
-	return [_phoneNumbers objectAtIndex:index];
-}
- 
-- (void)insertObject:(id)obj inPhoneNumbersAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCPhoneNumberAttribute class]]);
-	
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCCorporationAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromPhoneNumbersAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	[_phoneNumbers insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromPhoneNumbersAtIndex:(NSUInteger)index {
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCCorporationAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_phoneNumbers[index] inPhoneNumbersAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	[((GCObject *)_phoneNumbers[index]) setValue:nil forKey:@"describedObject"];
-	
-	[_phoneNumbers removeObjectAtIndex:index];
-}
-
 
 @end
 

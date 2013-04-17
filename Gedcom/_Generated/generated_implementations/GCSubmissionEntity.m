@@ -63,57 +63,8 @@
 @dynamic generationsOfAncestors;
 @dynamic generationsOfDescendants;
 @dynamic ordinanceFlag;
-
+@dynamic userReferenceNumbers;
 @dynamic mutableUserReferenceNumbers;
-
-- (NSUInteger)countOfUserReferenceNumbers {
-	return [_userReferenceNumbers count];
-}
-
-- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)index {
-	return [_userReferenceNumbers objectAtIndex:index];
-}
- 
-- (void)insertObject:(id)obj inUserReferenceNumbersAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCUserReferenceNumberAttribute class]]);
-	
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	[_userReferenceNumbers insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)index {
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCSubmissionEntity *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[index] inUserReferenceNumbersAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	[((GCObject *)_userReferenceNumbers[index]) setValue:nil forKey:@"describedObject"];
-	
-	[_userReferenceNumbers removeObjectAtIndex:index];
-}
-
 @dynamic recordIdNumber;
 @dynamic changeInfo;
 

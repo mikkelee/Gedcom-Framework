@@ -12,58 +12,6 @@ specialClasses = [ #don't generate classes for these
 # Templates:
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
 
-collectionAccessorsT = Template("""
-@dynamic mutable$capName;
-
-- (NSUInteger)countOf$capName {
-	return [_$name count];
-}
-
-- (id)objectIn${capName}AtIndex:(NSUInteger)index {
-	return [_$name objectAtIndex:index];
-}
- 
-- (void)insertObject:(id)obj in${capName}AtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[$type class]]);
-	
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	[_$name insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFrom${capName}AtIndex:(NSUInteger)index {
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[($selfClass *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_$name[index] in${capName}AtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	[((GCObject *)_$name[index]) setValue:nil forKey:@"describedObject"];
-	
-	[_$name removeObjectAtIndex:index];
-}
-""")
-
 constructorDeclarationT = Template("""/** Initializes and returns a $name.
 
  $doc
@@ -181,12 +129,7 @@ def property(tags, selfClass, key, type, doc, forwardDeclarations, is_plural, is
 				name='mutable%s%s' % (name[0].upper(), name[1:]),
 				doc='. '.join([doc, name])
 			))
-			implementation = collectionAccessorsT.substitute(
-				selfClass=selfClass,
-				name=name,
-				capName='%s%s' % (name[0].upper(), name[1:]),
-				type=classify(key, type)
-			)
+			implementation = '@dynamic %s;\n@dynamic mutable%s%s;' % (name, name[:1].upper(), name[1:])
 			ivar = 'NSMutableArray *_%s' % name
 	else:
 		definition = propertyT.substitute(

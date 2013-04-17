@@ -62,57 +62,8 @@
 
 // Properties:
 @dynamic date;
-
+@dynamic texts;
 @dynamic mutableTexts;
-
-- (NSUInteger)countOfTexts {
-	return [_texts count];
-}
-
-- (id)objectInTextsAtIndex:(NSUInteger)index {
-	return [_texts objectAtIndex:index];
-}
- 
-- (void)insertObject:(id)obj inTextsAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCTextAttribute class]]);
-	
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-	
-	[_texts insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromTextsAtIndex:(NSUInteger)index {
-	NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-	
-	NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-	
-	[(GCDataAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_texts[index] inTextsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, self.localizedType]];
-	
-	[((GCObject *)_texts[index]) setValue:nil forKey:@"describedObject"];
-	
-	[_texts removeObjectAtIndex:index];
-}
-
 
 @end
 
