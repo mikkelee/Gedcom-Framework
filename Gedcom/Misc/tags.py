@@ -340,8 +340,6 @@ def setupKey(key, tagInfo, done):
 	if not key[0] == '@':
 		tagDict['className'] = classify(key, tagDict['objectType'])
 	
-	print >> sys.stderr, 'PROCESSING KEY "%s": %s' % (key, tagInfo[key])
-	
 	# propagate info to variants
 	if tagDict.has_key('variants'):
 		for variant in tagDict['variants']:
