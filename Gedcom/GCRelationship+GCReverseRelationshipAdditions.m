@@ -38,7 +38,7 @@
 - (NSString *)reverseRelationshipType
 {
     GCGender *gender = (GCGender *)((GCIndividualEntity *)self.rootObject).sex.value;
-    NSParameterAssert(gender);
+    NSAssert(!gender || gender != [GCGender unknownGender], @"Gender must be defined, and must not be unknown to add an individual as a spouse to a family.");
     
     return gender == [GCGender maleGender] ? @"husband" : @"wife";
 }
