@@ -115,14 +115,6 @@ __strong static NSArray *_rootKeys = nil;
     }
 }
 
-#pragma mark Teardown
-
-- (void)dealloc
-{
-    dispatch_release(_group);
-    dispatch_release(_queue);
-}
-
 #pragma mark GCNodeParser delegate methods
 
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
