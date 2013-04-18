@@ -158,7 +158,6 @@ __strong static NSArray *_rootKeys = nil;
             } else {
                 [entity setValue:self forKey:@"context"];
                 [_customEntities addObject:entity];
-                NSLog(@"entity");
             }
         }
     }
