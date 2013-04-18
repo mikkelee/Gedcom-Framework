@@ -36,7 +36,7 @@
 - (void)testUnknownTag
 {
     GCContextDelegateTester *delegate = [[GCContextDelegateTester alloc] init];
-    GCContext *ctx = [[GCContext alloc] init];
+    GCContext *ctx = [GCContext context];
     
     ctx.delegate = delegate;
     
