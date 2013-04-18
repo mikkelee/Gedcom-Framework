@@ -214,6 +214,12 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
             _objectClass = NSClassFromString(_settings[kClassName]);
         }
         
+        _type =
+          [_settings[kObjectType] isEqualToString:@"entity"] ? GCTagTypeEntity
+        : [_settings[kObjectType] isEqualToString:@"attribute"] ? GCTagTypeAttribute
+        : [_settings[kObjectType] isEqualToString:@"relationship"] ? GCTagTypeRelationship
+        : GCTagTypeUnknown;
+        
         // for entities:
         _hasXref = _settings[kHasXref] != nil;
         _hasValue = _settings[kHasValue] != nil;

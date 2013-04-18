@@ -13,10 +13,17 @@ typedef struct {
     NSUInteger max;
 } GCAllowedOccurrences;
 
-typedef enum : NSUInteger {
+typedef enum : NSInteger {
     GCUnknownFileEncoding = -1,
     GCASCIIFileEncoding = NSASCIIStringEncoding,
     GCUTF8FileEncoding = NSUTF8StringEncoding,
     GCUTF16FileEncoding = NSUTF16StringEncoding,
     GCANSELFileEncoding = kCFStringEncodingANSEL
 } GCFileEncoding;
+
+typedef enum : NSInteger {
+    GCTagTypeUnknown = -1,
+    GCTagTypeEntity,
+    GCTagTypeAttribute,
+    GCTagTypeRelationship
+} GCTagType;

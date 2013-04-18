@@ -101,6 +101,9 @@
 /// The Gedcom code of the receiver.
 @property (readonly, nonatomic) NSString *code;
 
+/// The type of the receiver.
+@property (readonly, nonatomic) GCTagType type;
+
 /// The human readable name of the receiver.
 @property (readonly) NSString *name;
 
