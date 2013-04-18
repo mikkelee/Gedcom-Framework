@@ -61,10 +61,10 @@ __strong static NSMutableDictionary *_tagInfo;
 __strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
 
-static dispatch_group_t _group;
-static dispatch_queue_t _queue;
+static dispatch_group_t _tagSetupGroup;
+static dispatch_queue_t _tagSetupQueue;
 
-+ (void)initialize
++ (void)load
 {
     _singularToPlural = [NSMutableDictionary dictionary];
     _tagStore = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
@@ -82,10 +82,10 @@ static dispatch_queue_t _queue;
     
     NSAssert(_tagInfo != nil, @"error: %@", err);
     
-    _group = dispatch_group_create();
-    _queue = dispatch_queue_create("dk.kildekort.Gedcom.tagSetup", DISPATCH_QUEUE_SERIAL);
+    _tagSetupGroup = dispatch_group_create();
+    _tagSetupQueue = dispatch_queue_create("dk.kildekort.Gedcom.tagSetup", DISPATCH_QUEUE_CONCURRENT);
     
-    dispatch_group_async(_group, _queue, ^{
+    dispatch_group_async(_tagSetupGroup, _tagSetupQueue, ^{
         setupKey((NSString *)kRootObject);
     });
 }
@@ -232,7 +232,8 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         // for relationships:
         _targetType = _isCustom ? NSClassFromString(@"GCEntity") :  NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [_settings[kTargetType] capitalizedString]]);
         
-        dispatch_group_async(_group, _queue, ^{
+        dispatch_async(_tagSetupQueue, ^{
+            dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
             [self _buildSubTagCaches];
         });
     }
@@ -246,12 +247,16 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
 {
     GCParameterAssert(name);
     
+    dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
+    
     return _tagStore[name];
 }
 
 + (GCTag *)rootTagWithCode:(NSString *)code
 {
     GCParameterAssert(code);
+    
+    dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
     
     if ([code hasPrefix:@"_"]) {
         NSString *tagName = [NSString stringWithFormat:@"custom%@Entity", code];
@@ -278,6 +283,10 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
 
 + (GCTag *)tagWithClassName:(NSString *)className
 {
+    GCParameterAssert(className);
+    
+    dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
+    
     return _tagStore[className];
 }
 

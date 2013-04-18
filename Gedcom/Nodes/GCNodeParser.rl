@@ -201,6 +201,10 @@ __strong static id _sharedNodeParser = nil;
         //NSLog(@"Began parsing gedcom.");
 #endif
         
+        if (_delegate && [_delegate respondsToSelector:@selector(parser:willParseCharacterCount:)]) {
+            [_delegate parser:self willParseCharacterCount:[gedString length]];
+        }
+        
         %% write init;
         %% write exec;
                 

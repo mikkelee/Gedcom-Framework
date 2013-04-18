@@ -17,7 +17,7 @@
 
 #import "GCObject_internal.h"
 
-#import "GCObject+GCConvenienceAdditions.h"
+#import "GCGedcomLoadingAdditions.h"
 
 @interface GCChangeInfoAttribute ()
 
@@ -69,7 +69,7 @@
         
         self.modificationDate = dateFromNode(node[@"DATE"][0]);
 		
-        [self addPropertiesWithGedcomNodes:node[@"NOTE"]];
+        [self _addPropertiesWithGedcomNodes:node[@"NOTE"]];
     }
     
     return self;

@@ -37,6 +37,8 @@
 
 - (void)_activateEntity:(GCEntity *)entity;
 
+- (void)_defer:(void (^)())block;
+
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 - (void)_clearXrefs;

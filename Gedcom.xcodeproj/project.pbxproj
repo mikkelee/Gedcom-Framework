@@ -1039,14 +1039,11 @@
 				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
 				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */,
 				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */,
+				3E91773C171FEAE100FF7E2C /* Abstract subclasses */,
 				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
 				3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */,
 				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
 				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
-				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
-				3E43DC67171C99D600A9A497 /* GCEntity_internal.h */,
-				3E5F50C8151E02C300A433A6 /* GCEntity.m */,
-				3E4373591521CF1400BA362F /* Properties */,
 				3E17B4AF16013AFD009D2CCB /* Concrete subclasses */,
 			);
 			name = "Object hierarchy";
@@ -1332,6 +1329,17 @@
 				3E8C1E9516264861005B3BE6 /* GCObject+GCSanityCheckAdditions.m */,
 			);
 			name = "Sanity Checking";
+			sourceTree = "<group>";
+		};
+		3E91773C171FEAE100FF7E2C /* Abstract subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F50C7151E02C300A433A6 /* GCEntity.h */,
+				3E43DC67171C99D600A9A497 /* GCEntity_internal.h */,
+				3E5F50C8151E02C300A433A6 /* GCEntity.m */,
+				3E4373591521CF1400BA362F /* Properties */,
+			);
+			name = "Abstract subclasses";
 			sourceTree = "<group>";
 		};
 		3EB5ABCF153615CD0036B4D5 /* Helpers */ = {

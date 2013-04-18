@@ -92,7 +92,7 @@
                                                       value:@"Y"],
                                         ]];
     
-    GCEntity *object = [[GCIndividualEntity alloc] initWithGedcomNode:node inContext:ctx];
+    GCEntity *object = [GCIndividualEntity entityWithGedcomNode:node inContext:ctx];
     
     STAssertEqualObjects(node.gedcomString, object.gedcomString, nil);
     
@@ -187,7 +187,7 @@
     
     NSArray *malformedNodes = [GCNodeParser arrayOfNodesFromString:nodeString];
     
-    GCEntity *submitter = [[GCSubmitterEntity alloc] initWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
+    GCEntity *submitter = [GCSubmitterEntity entityWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
     
     NSError *error = nil;
     

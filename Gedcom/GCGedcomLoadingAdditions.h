@@ -9,6 +9,14 @@
 #import "GCEntity.h"
 #import "GCProperty.h"
 
+@interface GCObject (GCGedcomLoadingAdditions)
+
+- (void)_addPropertyWithGedcomNode:(GCNode *)node;
+
+- (void)_addPropertiesWithGedcomNodes:(NSArray *)nodes;
+
+@end
+
 @interface GCEntity (GCGedcomLoadingAdditions)
 
 /** Returns an entity whose properties reflect the GCNode in the given GCContext.
@@ -17,7 +25,7 @@
  @param context The context of the entity.
  @return A new entity.
  */
-- (id)initWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
++ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
 @end
 
@@ -35,6 +43,7 @@
  @param node A GCNode. Its tag code must correspond to a valid property on the object.
  @return A new attribute.
  */
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object;
++ (id)propertyWithGedcomNode:(GCNode *)node onObject:(GCObject *)object;
+
 
 @end

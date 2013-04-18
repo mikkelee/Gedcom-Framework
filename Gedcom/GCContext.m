@@ -57,7 +57,10 @@
     NSMapTable *_entityToXrefMap;
     
     dispatch_group_t _group;
+    dispatch_group_t _sensitiveGroup;
     dispatch_queue_t _queue;
+    dispatch_queue_t _sensitiveQueue;
+    dispatch_semaphore_t _groupSemaphore;
 }
 
 __strong static NSMapTable *_contextsByName = nil;
@@ -92,6 +95,9 @@ __strong static NSArray *_rootKeys = nil;
         _group = dispatch_group_create();
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
         
+        _sensitiveGroup = dispatch_group_create();
+        _sensitiveQueue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@.sensitive", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
+        
         _undoManager = [[NSUndoManager alloc] init];
         [_undoManager setGroupsByEvent:NO];
         
@@ -117,13 +123,26 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark GCNodeParser delegate methods
 
+- (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount
+{
+    // set up a wait
+    _groupSemaphore = dispatch_semaphore_create(0);
+    dispatch_group_async(_sensitiveGroup, _sensitiveQueue, ^{
+        dispatch_semaphore_wait(_groupSemaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"GO");
+    });
+}
+
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
 {
-    dispatch_group_async(_group, _queue, ^{
-        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
     
+    NSParameterAssert(tag);
+    
+    dispatch_group_async(_group, _queue, ^{
         if (tag.objectClass != [GCTrailerEntity class]) {
-            (void)[[tag.objectClass alloc] initWithGedcomNode:node inContext:self];
+            GCObject *obj = [tag.objectClass entityWithGedcomNode:node inContext:self];
+            NSParameterAssert(obj.context == self);
         }
     });
 }
@@ -132,12 +151,15 @@ __strong static NSArray *_rootKeys = nil;
 {
     dispatch_group_async(_group, _queue, ^{
         NSLog(@"didParseNodesWithCount: %ld", nodeCount);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
-                [_delegate context:self didParseNodesWithEntityCount:[self.entities count]];
-            }
-        });
+        
+        // signal done:
+        dispatch_semaphore_signal(_groupSemaphore);
     });
+}
+
+- (void)_defer:(void (^)())block
+{
+    dispatch_group_async(_sensitiveGroup, _sensitiveQueue, block);
 }
 
 #pragma mark Loading nodes into a context
@@ -173,9 +195,24 @@ __strong static NSArray *_rootKeys = nil;
         gedString = [[NSString alloc] initWithData:data encoding:fileEncoding];
     }
     
+#ifdef DEBUGLEVEL
+    clock_t start = clock();
+#endif
+    
     BOOL result = [nodeParser parseString:gedString error:error];
     
     dispatch_group_wait(_group, DISPATCH_TIME_FOREVER);
+    dispatch_group_wait(_sensitiveGroup, DISPATCH_TIME_FOREVER);
+    
+#ifdef DEBUGLEVEL
+    NSLog(@"parsed %ld entities - Time: %f seconds", [self.entities count], ((double) (clock() - start)) / CLOCKS_PER_SEC);
+#endif
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
+            [_delegate context:self didParseNodesWithEntityCount:[self.entities count]];
+        }
+    });
     
     return result;
 }

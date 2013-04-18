@@ -10,6 +10,7 @@
 #import "GCObject_internal.h"
 
 #import "GCObject+GCConvenienceAdditions.h"
+#import "GCGedcomLoadingAdditions.h"
 
 #import "GCNodeParser.h"
 #import "GCNode.h"
@@ -316,7 +317,7 @@ __strong static NSDictionary *_defaultColors;
         
         if (curMarker >= [curSubNodes count]) {
             //NSLog(@"INSERT %@", newSubNodes[newMarker]);
-            [self addPropertyWithGedcomNode:newSubNodes[newMarker]];
+            [self _addPropertyWithGedcomNode:newSubNodes[newMarker]];
             newMarker++;
         } else if ([curSubNodes[curMarker] isEqualTo:newSubNodes[newMarker]]) {
             //NSLog(@"SKIP; IDENTICAL");
@@ -330,7 +331,7 @@ __strong static NSDictionary *_defaultColors;
             if (nextIndex != NSNotFound) {
                 for (NSUInteger i = newMarker; i < nextIndex; i++) {
                     //NSLog(@"INSERT %@", newSubNodes[i]);
-                    [self addPropertyWithGedcomNode:newSubNodes[i]];
+                    [self _addPropertyWithGedcomNode:newSubNodes[i]];
                 }
                 newMarker = nextIndex+1;
             } else {

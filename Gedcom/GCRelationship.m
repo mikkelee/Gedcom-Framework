@@ -116,11 +116,11 @@
 
 - (void)setTarget:(GCEntity *)target
 {
+    //NSLog(@"%p :: %p :: %@ :: %@ = %p", self.rootObject, self, self.type, NSStringFromSelector(_cmd), target);
+    
     NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
     NSAssert(self.context, @"You must add the root object to a context before setting the target!");
     NSParameterAssert([target isKindOfClass:self.gedTag.targetType]);
-    
-    //NSLog(@"%p target: %p => %p", self, _target, target);
     
     GCEntity *oldTarget = _target;
     
@@ -140,7 +140,16 @@
         if (target && self.other.rootObject != target) {
             //NSLog(@"test: %@", [target[self.reverseRelationshipType] valueForKey:@"target"]);
             
-            if (![[[target valueForKey:self.reverseRelationshipType] valueForKey:@"target"] containsObject:self.rootObject]) {
+            id targetRels = [target valueForKey:self.reverseRelationshipType];
+            
+            NSArray *targets = nil;
+            if ([target allowedOccurrencesOfPropertyType:self.reverseRelationshipType].max > 1) {
+                targets = [targetRels valueForKey:@"target"];
+            } else {
+                targets = [targetRels valueForKey:@"target"] ? @[ [targetRels valueForKey:@"target"] ] : @[];
+            }
+            
+            if (![targets containsObject:self.rootObject]) {
                 // set up new reverse relationship
                 //NSLog(@"Adding reverse relationship %@ with target: %@", self.reverseRelationshipType, self.rootObject);
                 

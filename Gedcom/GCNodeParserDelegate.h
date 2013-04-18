@@ -15,6 +15,8 @@
 
 @optional
 
+- (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount;
+
 /** Will be called each time a complete root GCNode has been parsed.
  
  @param parser The parser that sent the message.
