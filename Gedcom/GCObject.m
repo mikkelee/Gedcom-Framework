@@ -444,14 +444,19 @@ __strong static NSDictionary *_defaultColors;
                         return;
                     }
                     
-                    [[_s valueForKey:@"undoManager"] beginUndoGrouping];
-                    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_s methodSignatureForSelector:reverseSel]];
-                    [invocation setSelector:reverseSel];
-                    [invocation setTarget:[[_s valueForKey:@"undoManager"] prepareWithInvocationTarget:_s]];
-                    [invocation setArgument:&index atIndex:2];
-                    [invocation invoke];
-                    [[_s valueForKey:@"undoManager"] setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
-                    [[_s valueForKey:@"undoManager"] endUndoGrouping];
+                    if (!((GCObject *)_s)->_isBuildingFromGedcom) {
+                        NSUndoManager *uM = [_s valueForKey:@"undoManager"];
+                        @synchronized (uM) {
+                            [uM beginUndoGrouping];
+                            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_s methodSignatureForSelector:reverseSel]];
+                            [invocation setSelector:reverseSel];
+                            [invocation setTarget:[uM prepareWithInvocationTarget:_s]];
+                            [invocation setArgument:&index atIndex:2];
+                            [invocation invoke];
+                            [uM setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                            [uM endUndoGrouping];
+                        }
+                    }
                     
                     if ([newObj valueForKey:@"describedObject"]) {
                         [((GCObject *)[newObj valueForKey:@"describedObject"]).mutableProperties removeObject:newObj];
@@ -480,7 +485,7 @@ __strong static NSDictionary *_defaultColors;
             
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
-
+                
                 NSString *reverseSelName = [NSString stringWithFormat:@"insertObject:in%@%@AtIndex:", [[propName substringToIndex:1] uppercaseString], [propName substringFromIndex:1]];
                 SEL reverseSel = NSSelectorFromString(reverseSelName);
                 
@@ -495,16 +500,21 @@ __strong static NSDictionary *_defaultColors;
                 imp = imp_implementationWithBlock(^(id _s, NSUInteger index) {
                     NSMutableArray *_ivar = object_getIvar(_s, ivar);
                     
-                    [[_s valueForKey:@"undoManager"] beginUndoGrouping];
-                    id obj = _ivar[index];
-                    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_s methodSignatureForSelector:reverseSel]];
-                    [invocation setSelector:reverseSel];
-                    [invocation setTarget:[[_s valueForKey:@"undoManager"] prepareWithInvocationTarget:_s]];
-                    [invocation setArgument:&obj atIndex:2];
-                    [invocation setArgument:&index atIndex:3];
-                    [invocation invoke];
-                    [[_s valueForKey:@"undoManager"] setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
-                    [[_s valueForKey:@"undoManager"] endUndoGrouping];
+                    if (!((GCObject *)_s)->_isBuildingFromGedcom) {
+                        NSUndoManager *uM = [_s valueForKey:@"undoManager"];
+                        @synchronized (uM) {
+                            [uM beginUndoGrouping];
+                            id obj = _ivar[index];
+                            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_s methodSignatureForSelector:reverseSel]];
+                            [invocation setSelector:reverseSel];
+                            [invocation setTarget:[uM prepareWithInvocationTarget:_s]];
+                            [invocation setArgument:&obj atIndex:2];
+                            [invocation setArgument:&index atIndex:3];
+                            [invocation invoke];
+                            [uM setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                            [uM endUndoGrouping];
+                        }
+                    }
                     
                     [((GCObject *)_ivar[index]) setValue:nil forKey:@"describedObject"];
                     
@@ -519,7 +529,7 @@ __strong static NSDictionary *_defaultColors;
                 
                 didResolve = YES;
             }
-                        
+            
         } else if ([selName hasPrefix:@"objectIn"]) {
             
             // indexed mutable object get
@@ -529,7 +539,7 @@ __strong static NSDictionary *_defaultColors;
             
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
-
+                
                 //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
                 
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
@@ -542,7 +552,7 @@ __strong static NSDictionary *_defaultColors;
                 
                 didResolve = class_addMethod(cls, sel, imp, "@@:I");
             }
-                        
+            
         } else if ([selName hasPrefix:@"countOf"]) {
             
             // indexed mutable count
@@ -574,7 +584,7 @@ __strong static NSDictionary *_defaultColors;
             
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
-
+                
                 //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
                 
                 IMP imp = imp_implementationWithBlock(^(id _s) {
@@ -597,7 +607,7 @@ __strong static NSDictionary *_defaultColors;
             
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag] && ![[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
-
+                
                 //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
                 
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
@@ -609,14 +619,19 @@ __strong static NSDictionary *_defaultColors;
                 imp = imp_implementationWithBlock(^(id _s, id newObj) {
                     id _ivar = object_getIvar(_s, ivar);
                     
-                    [[_s valueForKey:@"undoManager"] beginUndoGrouping];
-                    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_s methodSignatureForSelector:sel]];
-                    [invocation setSelector:sel];
-                    [invocation setTarget:[[_s valueForKey:@"undoManager"] prepareWithInvocationTarget:_s]];
-                    [invocation setArgument:&_ivar atIndex:2];
-                    [invocation invoke];
-                    [[_s valueForKey:@"undoManager"] setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
-                    [[_s valueForKey:@"undoManager"] endUndoGrouping];
+                    if (!((GCObject *)_s)->_isBuildingFromGedcom) {
+                        NSUndoManager *uM = [_s valueForKey:@"undoManager"];
+                        @synchronized (uM) {
+                            [uM beginUndoGrouping];
+                            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_s methodSignatureForSelector:sel]];
+                            [invocation setSelector:sel];
+                            [invocation setTarget:[uM prepareWithInvocationTarget:_s]];
+                            [invocation setArgument:&_ivar atIndex:2];
+                            [invocation invoke];
+                            [uM setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                            [uM endUndoGrouping];
+                        }
+                    }
                     
                     if (_ivar) {
                         [_ivar setValue:nil forKey:@"describedObject"];
@@ -637,7 +652,7 @@ __strong static NSDictionary *_defaultColors;
                 
                 method_setImplementation(method, imp);
                 
-                didResolve = YES;            
+                didResolve = YES;
             }
             
             
@@ -650,7 +665,7 @@ __strong static NSDictionary *_defaultColors;
             
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag]) {
-
+                
                 //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
                 
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
