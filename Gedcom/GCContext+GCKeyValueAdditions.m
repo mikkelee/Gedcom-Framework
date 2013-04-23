@@ -168,17 +168,17 @@ __strong static NSArray *_rootKeys = nil;
             [self _addEntity:relatedRecord];
         }
     }
+}
+
+- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
+{
+    [self _addEntity:entity];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
             [_delegate context:self didUpdateEntityCount:[self.entities count]];
         }
     });
-}
-
-- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
-{
-    [self _addEntity:entity];
 }
 
 - (void)removeObjectFromEntitiesAtIndex:(NSUInteger)index
@@ -212,7 +212,7 @@ __strong static NSArray *_rootKeys = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-            [_delegate context:self didUpdateEntityCount:self.countOfEntities];
+            [_delegate context:self didUpdateEntityCount:[self.entities count]];
         }
     });
 }

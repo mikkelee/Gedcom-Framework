@@ -57,11 +57,10 @@
 	NSMapTable *_xrefToRecordMap;
     NSMapTable *_recordToXrefMap;
     
-    dispatch_group_t _group;
-    dispatch_group_t _sensitiveGroup;
-    dispatch_queue_t _queue;
-    dispatch_queue_t _sensitiveQueue;
-    dispatch_semaphore_t _groupSemaphore;
+    NSOperationQueue *_mainQueue;
+    NSOperationQueue *_deferredQueue;
+    
+    NSUInteger _importCount;
 }
 
 __strong static NSMapTable *_contextsByName = nil;
@@ -80,8 +79,11 @@ __strong static NSArray *_rootKeys = nil;
 	if (self) {
         _name = [[NSUUID UUID] UUIDString];
         
-        _xrefToRecordMap = [NSMapTable strongToWeakObjectsMapTable];
-        _recordToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+        _xrefToRecordMap = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory
+                                                 valueOptions:(NSMapTableObjectPointerPersonality | NSMapTableWeakMemory)];
+        
+        _recordToXrefMap = [NSMapTable mapTableWithKeyOptions:(NSMapTableObjectPointerPersonality | NSMapTableWeakMemory)
+                                                 valueOptions:NSMapTableStrongMemory];
         
         _families = [NSMutableArray array];
         _individuals = [NSMutableArray array];
@@ -93,11 +95,12 @@ __strong static NSArray *_rootKeys = nil;
         
         _customEntities = [NSMutableArray array];
         
-        _group = dispatch_group_create();
-        _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
+        _mainQueue = [[NSOperationQueue alloc] init];
+        _deferredQueue = [[NSOperationQueue alloc] init];
+        [_deferredQueue setSuspended:YES];
+        [_mainQueue setSuspended:YES];
         
-        _sensitiveGroup = dispatch_group_create();
-        _sensitiveQueue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@.sensitive", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
+        _importCount = 0;
         
         _undoManager = [[NSUndoManager alloc] init];
         [_undoManager setGroupsByEvent:NO];
@@ -126,12 +129,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount
 {
-    // set up a wait
-    _groupSemaphore = dispatch_semaphore_create(0);
-    dispatch_group_async(_sensitiveGroup, _sensitiveQueue, ^{
-        dispatch_semaphore_wait(_groupSemaphore, DISPATCH_TIME_FOREVER);
-        NSLog(@"GO");
-    });
+
 }
 
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
@@ -140,27 +138,31 @@ __strong static NSArray *_rootKeys = nil;
     
     NSParameterAssert(tag);
     
-    dispatch_group_async(_group, _queue, ^{
+    [_mainQueue addOperationWithBlock:^{
         if (tag.objectClass != [GCTrailerEntity class]) {
             GCObject *obj = [tag.objectClass newWithGedcomNode:node inContext:self];
             NSParameterAssert(obj.context == self);
         }
-    });
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
+                [_delegate context:self didUpdateEntityCount:++_importCount];
+            }
+        });
+    }];
 }
 
 - (void)parser:(GCNodeParser *)parser didParseNodesWithCount:(NSUInteger)nodeCount
 {
-    dispatch_group_async(_group, _queue, ^{
-        NSLog(@"didParseNodesWithCount: %ld", nodeCount);
-        
-        // signal done:
-        dispatch_semaphore_signal(_groupSemaphore);
-    });
+    [_mainQueue addOperationWithBlock:^{
+        [_deferredQueue setSuspended:NO];
+    }];
+    [_mainQueue setSuspended:NO];
 }
 
 - (void)_defer:(void (^)())block
 {
-    dispatch_group_async(_sensitiveGroup, _sensitiveQueue, block);
+    [_deferredQueue addOperationWithBlock:block];
 }
 
 #pragma mark Loading nodes into a context
@@ -202,8 +204,8 @@ __strong static NSArray *_rootKeys = nil;
     
     BOOL result = [nodeParser parseString:gedString error:error];
     
-    dispatch_group_wait(_group, DISPATCH_TIME_FOREVER);
-    dispatch_group_wait(_sensitiveGroup, DISPATCH_TIME_FOREVER);
+    [_mainQueue waitUntilAllOperationsAreFinished];
+    [_deferredQueue waitUntilAllOperationsAreFinished];
     
 #ifdef DEBUGLEVEL
     NSLog(@"parsed %ld entities - Time: %f seconds", [self.entities count], ((double) (clock() - start)) / CLOCKS_PER_SEC);
@@ -335,8 +337,9 @@ __strong static NSArray *_rootKeys = nil;
         
         _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
         
-        _group = dispatch_group_create();
-        _queue = dispatch_queue_create([[NSString stringWithFormat:@"dk.kildekort.Gedcom.context.%@", _name] UTF8String], DISPATCH_QUEUE_SERIAL);
+        _mainQueue = [[NSOperationQueue alloc] init];
+        _deferredQueue = [[NSOperationQueue alloc] init];
+        [_deferredQueue setSuspended:YES];
         
         _undoManager = [[NSUndoManager alloc] init];
         [_undoManager setGroupsByEvent:NO];
