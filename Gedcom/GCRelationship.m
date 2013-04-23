@@ -10,8 +10,6 @@
 
 #import "GCRecord.h"
 
-#import "GCGedcomAccessAdditions.h"
-
 @interface GCRelationship ()
 
 @property (weak) GCRelationship *other;
@@ -19,9 +17,7 @@
 
 @end
 
-@implementation GCRelationship {
-	GCRecord *_target;
-}
+@implementation GCRelationship
 
 #pragma mark NSKeyValueCoding overrides
 

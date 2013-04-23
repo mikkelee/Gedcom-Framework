@@ -149,7 +149,7 @@ __strong static NSDictionary *_defaultColors;
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.gedTag.takesValue ? self.value.gedcomString : nil
+								 value:self.takesValue ? self.value.gedcomString : nil
 								  xref:nil
 							  subNodes:self.subNodes];
 }
@@ -171,7 +171,7 @@ __strong static NSDictionary *_defaultColors;
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.gedTag.takesValue ? self.value.gedcomString : nil
+								 value:self.takesValue ? self.value.gedcomString : nil
 								  xref:self.xref
 							  subNodes:self.subNodes];
 }

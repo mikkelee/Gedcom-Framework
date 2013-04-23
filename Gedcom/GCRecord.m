@@ -15,8 +15,6 @@
 
 #import "GCObject_internal.h"
 
-#import "GCGedcomAccessAdditions.h"
-
 @interface GCRecord ()
 
 @property (nonatomic) NSDate *modificationDate;

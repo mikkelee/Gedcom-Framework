@@ -26,3 +26,9 @@
 @property (nonatomic) GCRecord *target;
 
 @end
+
+@interface GCRelationship (GCGedcomAccessAdditions)
+
+@property (nonatomic, readonly) Class targetType;
+
+@end

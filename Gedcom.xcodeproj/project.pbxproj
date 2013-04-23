@@ -557,7 +557,7 @@
 		3E1C3E87151C319D005E09E1 /* GedcomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomTests-Info.plist"; sourceTree = "<group>"; };
 		3E1C3E89151C319D005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCChangeInfoAttribute.h; sourceTree = "<group>"; };
-		3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCChangeInfoAttribute.m; sourceTree = "<group>"; };
+		3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCChangeInfoAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateAgeMathTests.m; sourceTree = "<group>"; };
 		3E29DB35154E622600756CF4 /* GCGender.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = GCGender.m; path = Values/GCGender.m; sourceTree = "<group>"; };
 		3E325D2C170D0CC000109A18 /* GCNodeParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCNodeParserDelegate.h; sourceTree = "<group>"; };
@@ -957,7 +957,7 @@
 		3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCValidationAdditions.h; sourceTree = "<group>"; };
 		3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCValidationAdditions.m; sourceTree = "<group>"; };
 		3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomLoadingAdditions.h; sourceTree = "<group>"; };
-		3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomLoadingAdditions.m; sourceTree = "<group>"; };
+		3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCGedcomLoadingAdditions.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3EB5ABD5153619280036B4D5 /* tags.json.pre */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; name = tags.json.pre; path = Misc/tags.json.pre; sourceTree = "<group>"; usesTabs = 0; };
 		3ED171221614B4FC00B5B83F /* Predicates.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Predicates.strings; path = GedcomGUI/Predicates.strings; sourceTree = SOURCE_ROOT; };
 		3ED171291614C16200B5B83F /* GCPredicateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPredicateTests.m; sourceTree = "<group>"; };
@@ -976,7 +976,7 @@
 		3EECFD3B151C32630074E26C /* GCAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCAge.m; path = Values/GCAge.m; sourceTree = "<group>"; };
 		3EECFD49151C32630074E26C /* GCDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDate.m; path = Values/GCDate.m; sourceTree = "<group>"; };
 		3EECFD5E151C32630074E26C /* GCNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCNode.h; path = Nodes/GCNode.h; sourceTree = "<group>"; };
-		3EECFD5F151C32630074E26C /* GCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNode.m; path = Nodes/GCNode.m; sourceTree = "<group>"; };
+		3EECFD5F151C32630074E26C /* GCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = GCNode.m; path = Nodes/GCNode.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3EF13697171B43D700EDB33C /* GCNode_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCNode_internal.h; path = Nodes/GCNode_internal.h; sourceTree = "<group>"; };
 		3EF1369B171B476400EDB33C /* GCTransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTransactionTests.m; sourceTree = "<group>"; };
 		3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCKeyValueAdditions.m"; sourceTree = "<group>"; };

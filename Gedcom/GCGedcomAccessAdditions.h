@@ -31,21 +31,3 @@
 @property (nonatomic) NSAttributedString *attributedGedcomString;
 
 @end
-
-@interface GCEntity (GCGedcomAccessAdditions)
-
-@property (nonatomic, readonly) BOOL takesValue;
-
-@end
-
-@interface GCAttribute (GCGedcomAccessAdditions)
-
-@property (nonatomic, readonly) Class valueType;
-
-@end
-
-@interface GCRelationship (GCGedcomAccessAdditions)
-
-@property (nonatomic, readonly) Class targetType;
-
-@end

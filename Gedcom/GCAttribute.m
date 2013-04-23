@@ -11,8 +11,6 @@
 #import "GCObject_internal.h"
 #import "GCValue.h"
 
-#import "GCGedcomAccessAdditions.h"
-
 @implementation GCAttribute
 
 #pragma mark NSKeyValueCoding overrides

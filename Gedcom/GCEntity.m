@@ -10,8 +10,6 @@
 
 #import "GCContext_internal.h"
 
-#import "GCGedcomAccessAdditions.h"
-
 @implementation GCEntity {
     __weak GCContext *_context;
 }
