@@ -431,20 +431,25 @@ __strong static NSArray *_rootKeys = nil;
 
 - (GCRecord *)_recordForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass
 {
+    id record;
+    
     @synchronized (_xrefToRecordMap) {
-        id record = _xrefToRecordMap[xref];
-        if (record) {
-            //NSLog(@"Found existing: %@ > %p", xref, record);
-            return record;
-        } else if (create) {
-            record = [[aClass alloc] initInContext:self];
-            //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, record);
-            [self _setXref:xref forRecord:record];
-            return record;
-        } else {
-            //NSLog(@"NOT creating: %@", xref);
-            return nil;
-        }
+        record = _xrefToRecordMap[xref];
+    }
+    
+    if (record) {
+        //NSLog(@"Found existing: %@ > %p", xref, record);
+        NSParameterAssert([record isKindOfClass:aClass]);
+        return record;
+    } else if (create) {
+        record = [[aClass alloc] initInContext:self];
+        //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, record);
+        [self _setXref:xref forRecord:record];
+        return record;
+    } else {
+        //NSLog(@"NOT creating: %@", xref);
+        return nil;
+    }
 }
 
 - (void)_clearXrefs
