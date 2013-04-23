@@ -17,19 +17,19 @@
  
  @return A new nameSuffix.
 */
-+(GCNameSuffixAttribute *)nameSuffix;
++(instancetype)nameSuffix;
 /** Initializes and returns a nameSuffix.
 
  @param value The value as a GCValue object.
  @return A new nameSuffix.
 */
-+(GCNameSuffixAttribute *)nameSuffixWithValue:(GCValue *)value;
++(instancetype)nameSuffixWithValue:(GCValue *)value;
 /** Initializes and returns a nameSuffix.
 
  @param value The value as an NSString.
  @return A new nameSuffix.
 */
-+(GCNameSuffixAttribute *)nameSuffixWithGedcomStringValue:(NSString *)value;
++(instancetype)nameSuffixWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

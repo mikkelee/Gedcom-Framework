@@ -17,7 +17,7 @@
  
  @return A new multimediaReference.
 */
-+(GCMultimediaReferenceRelationship *)multimediaReference;
++(instancetype)multimediaReference;
 
 // Properties:
 

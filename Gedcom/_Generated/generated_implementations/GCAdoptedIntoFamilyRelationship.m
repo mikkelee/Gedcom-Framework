@@ -12,24 +12,19 @@
 	GCAdoptedByWhichParentAttribute *_adoptedByWhichParent;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAdoptedIntoFamilyRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a adoptedIntoFamily.
 
  
  @return A new adoptedIntoFamily.
 */
-+(GCAdoptedIntoFamilyRelationship *)adoptedIntoFamily
++(instancetype)adoptedIntoFamily
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"adoptedIntoFamily"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

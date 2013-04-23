@@ -34,7 +34,7 @@
 	GCContext *ctx = [GCContext context];
 	
     // Create an individual entity in the context.
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     // Create an array of names and set them on the individual for the property key "personalNames".
     // When an object receives GCValues for a property key, it will implicitly create attributes.
@@ -92,7 +92,7 @@
                                                       value:@"Y"],
                                         ]];
     
-    GCEntity *object = [GCIndividualEntity entityWithGedcomNode:node inContext:ctx];
+    GCEntity *object = [GCIndividualRecord newWithGedcomNode:node inContext:ctx];
     
     STAssertEqualObjects(node.gedcomString, object.gedcomString, nil);
     
@@ -110,19 +110,19 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-	GCIndividualEntity *husb = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *husb = [GCIndividualRecord individualInContext:ctx];
 	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCIndividualEntity *wife = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *wife = [GCIndividualRecord individualInContext:ctx];
 	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCIndividualEntity *chil = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *chil = [GCIndividualRecord individualInContext:ctx];
 	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCFamilyEntity *fam = [GCFamilyEntity familyInContext:ctx];
+    GCFamilyRecord *fam = [GCFamilyRecord familyInContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
     [wife setValue:@[ fam ] forKey:@"spouseInFamilies"];
@@ -187,7 +187,7 @@
     
     NSArray *malformedNodes = [GCNodeParser arrayOfNodesFromString:nodeString];
     
-    GCEntity *submitter = [GCSubmitterEntity entityWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
+    GCRecord *submitter = [GCSubmitterRecord newWithGedcomNode:[malformedNodes lastObject] inContext:ctx];
     
     NSError *error = nil;
     
@@ -224,7 +224,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
     
@@ -245,7 +245,7 @@
 {
 	GCContext *ctx = [GCContext context];
     
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     STAssertEqualObjects(indi.localizedType, @"Individual", nil);
     
@@ -258,9 +258,9 @@
 {
     GCBirthAttribute *birt = [GCBirthAttribute birth];
     
-    birt.cause = [GCCauseAttribute causeWithGedcomStringValue:@"cesarian"];
+    birt.place = [GCPlaceAttribute placeWithGedcomStringValue:@"Denmark"];
     
-    STAssertEqualObjects(birt.cause.value.gedcomString, @"cesarian", nil);
+    STAssertEqualObjects(birt.place.value.gedcomString, @"Denmark", nil);
 }
 
 @end

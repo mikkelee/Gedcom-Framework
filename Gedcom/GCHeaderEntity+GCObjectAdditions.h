@@ -12,6 +12,6 @@
 
 @interface GCHeaderEntity (GCObjectAdditions)
 
-+ (id)defaultHeaderInContext:(GCContext *)context;
++ (instancetype)defaultHeaderInContext:(GCContext *)context;
 
 @end

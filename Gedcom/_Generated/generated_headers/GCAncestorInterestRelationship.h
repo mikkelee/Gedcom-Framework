@@ -17,7 +17,7 @@
  
  @return A new ancestorInterest.
 */
-+(GCAncestorInterestRelationship *)ancestorInterest;
++(instancetype)ancestorInterest;
 
 // Properties:
 

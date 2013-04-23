@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCRecordIdNumberAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a recordIdNumber.
 
  
  @return A new recordIdNumber.
 */
-+(GCRecordIdNumberAttribute *)recordIdNumber
++(instancetype)recordIdNumber
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new recordIdNumber.
 */
-+(GCRecordIdNumberAttribute *)recordIdNumberWithValue:(GCValue *)value
++(instancetype)recordIdNumberWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new recordIdNumber.
 */
-+(GCRecordIdNumberAttribute *)recordIdNumberWithGedcomStringValue:(NSString *)value
++(instancetype)recordIdNumberWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"recordIdNumber"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

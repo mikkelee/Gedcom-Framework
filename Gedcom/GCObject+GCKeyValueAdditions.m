@@ -153,7 +153,7 @@
     }
 }
 
-- (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target
+- (void)addRelationshipWithType:(NSString *)type target:(GCRecord *)target
 {
     GCTag *tag = [GCTag tagNamed:type];
     

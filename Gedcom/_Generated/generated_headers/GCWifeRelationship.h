@@ -17,7 +17,7 @@
  
  @return A new wife.
 */
-+(GCWifeRelationship *)wife;
++(instancetype)wife;
 
 // Properties:
 

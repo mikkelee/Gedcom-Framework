@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCLDSSealingSpouseStatusAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a lDSSealingSpouseStatus.
 
  
  @return A new lDSSealingSpouseStatus.
 */
-+(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatus
++(instancetype)lDSSealingSpouseStatus
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new lDSSealingSpouseStatus.
 */
-+(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatusWithValue:(GCValue *)value
++(instancetype)lDSSealingSpouseStatusWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new lDSSealingSpouseStatus.
 */
-+(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatusWithGedcomStringValue:(NSString *)value
++(instancetype)lDSSealingSpouseStatusWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"lDSSealingSpouseStatus"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

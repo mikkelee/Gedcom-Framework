@@ -17,19 +17,19 @@
  
  @return A new eventCited.
 */
-+(GCEventCitedAttribute *)eventCited;
++(instancetype)eventCited;
 /** Initializes and returns a eventCited.
 
  @param value The value as a GCValue object.
  @return A new eventCited.
 */
-+(GCEventCitedAttribute *)eventCitedWithValue:(GCValue *)value;
++(instancetype)eventCitedWithValue:(GCValue *)value;
 /** Initializes and returns a eventCited.
 
  @param value The value as an NSString.
  @return A new eventCited.
 */
-+(GCEventCitedAttribute *)eventCitedWithGedcomStringValue:(NSString *)value;
++(instancetype)eventCitedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

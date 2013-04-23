@@ -14,18 +14,13 @@
 	NSMutableArray *_phoneNumbers;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCCorporationAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a corporation.
 
  
  @return A new corporation.
 */
-+(GCCorporationAttribute *)corporation
++(instancetype)corporation
 {
 	return [[self alloc] init];
 }
@@ -34,7 +29,7 @@
  @param value The value as a GCValue object.
  @return A new corporation.
 */
-+(GCCorporationAttribute *)corporationWithValue:(GCValue *)value
++(instancetype)corporationWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -43,13 +38,13 @@
  @param value The value as an NSString.
  @return A new corporation.
 */
-+(GCCorporationAttribute *)corporationWithGedcomStringValue:(NSString *)value
++(instancetype)corporationWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"corporation"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -62,8 +57,13 @@
 
 // Properties:
 @dynamic address;
-@dynamic phoneNumbers;
-@dynamic mutablePhoneNumbers;
+@synthesize phoneNumbers = _phoneNumbers;
+
+- (NSMutableArray *)mutablePhoneNumbers
+{
+	return [self mutableArrayValueForKey:@"phoneNumbers"];
+}
+
 
 @end
 

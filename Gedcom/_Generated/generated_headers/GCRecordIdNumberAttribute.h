@@ -17,19 +17,19 @@
  
  @return A new recordIdNumber.
 */
-+(GCRecordIdNumberAttribute *)recordIdNumber;
++(instancetype)recordIdNumber;
 /** Initializes and returns a recordIdNumber.
 
  @param value The value as a GCValue object.
  @return A new recordIdNumber.
 */
-+(GCRecordIdNumberAttribute *)recordIdNumberWithValue:(GCValue *)value;
++(instancetype)recordIdNumberWithValue:(GCValue *)value;
 /** Initializes and returns a recordIdNumber.
 
  @param value The value as an NSString.
  @return A new recordIdNumber.
 */
-+(GCRecordIdNumberAttribute *)recordIdNumberWithGedcomStringValue:(NSString *)value;
++(instancetype)recordIdNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

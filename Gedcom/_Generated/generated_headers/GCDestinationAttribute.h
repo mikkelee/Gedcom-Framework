@@ -17,19 +17,19 @@
  
  @return A new destination.
 */
-+(GCDestinationAttribute *)destination;
++(instancetype)destination;
 /** Initializes and returns a destination.
 
  @param value The value as a GCValue object.
  @return A new destination.
 */
-+(GCDestinationAttribute *)destinationWithValue:(GCValue *)value;
++(instancetype)destinationWithValue:(GCValue *)value;
 /** Initializes and returns a destination.
 
  @param value The value as an NSString.
  @return A new destination.
 */
-+(GCDestinationAttribute *)destinationWithGedcomStringValue:(NSString *)value;
++(instancetype)destinationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

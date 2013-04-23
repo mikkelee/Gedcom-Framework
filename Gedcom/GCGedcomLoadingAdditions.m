@@ -13,7 +13,7 @@
 #import "GCNode.h"
 #import "GCContext_internal.h"
 
-#import "GCEntity_internal.h"
+#import "GCEntity.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
@@ -33,13 +33,13 @@
         case GCTagTypeRelationship:
         {
             [self.context _defer:^{
-                (void)[tag.objectClass propertyWithGedcomNode:node onObject:self];
+                (void)[tag.objectClass newWithGedcomNode:node onObject:self];
             }];
         }
             break;
             
         case GCTagTypeAttribute:
-            (void)[tag.objectClass propertyWithGedcomNode:node onObject:self];
+            (void)[tag.objectClass newWithGedcomNode:node onObject:self];
             break;
             
         default:
@@ -59,19 +59,11 @@
 
 @implementation GCEntity (GCGedcomLoadingAdditions)
 
-+ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
++ (instancetype)newWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
     GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
     
-    GCEntity *entity;
-    
-    if (tag.isCustom) {
-        entity = [[tag.objectClass alloc] _initWithType:tag.name inContext:context];
-    } else if (tag.hasXref) {
-        entity = [context _entityForXref:node.xref create:YES withClass:tag.objectClass];
-    } else {
-        entity = [[tag.objectClass alloc] initInContext:context];
-    }
+    GCEntity *entity = [[tag.objectClass alloc] initInContext:context];
     
     NSParameterAssert(entity);
     
@@ -91,20 +83,48 @@
 
 @end
 
-@implementation GCProperty (GCGedcomLoadingAdditions)
+@implementation GCRecord (GCGedcomLoadingAdditions)
 
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
++ (instancetype)newWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    
+    GCRecord *record;
     
     if (tag.isCustom) {
-        self = [self _initWithType:tag.name];
+        record = [[tag.objectClass alloc] initInContext:context];
     } else {
-        self = [self init];
+        record = [context _recordForXref:node.xref create:YES withClass:tag.objectClass];
     }
+    
+    NSParameterAssert(record);
+    
+    if (record) {
+        record->_isBuildingFromGedcom = YES;
+        
+        if (tag.hasValue)
+            record.value = [GCString valueWithGedcomString:node.gedValue];
+        
+        [record _addPropertiesWithGedcomNodes:node.subNodes];
+        
+        record->_isBuildingFromGedcom = NO;
+    }
+    
+    return record;
+}
+
+@end
+
+@implementation GCProperty (GCGedcomLoadingAdditions)
+
+- (instancetype)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+{
+    self = [self init];
     
     if (self) {
         _isBuildingFromGedcom = YES;
+        
+        GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
         
         if (tag.isCustom || object.gedTag.isCustom) {
             [object.mutableCustomProperties addObject:self];
@@ -124,9 +144,9 @@
     return self;
 }
 
-+ (id)propertyWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
++ (instancetype)newWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
-    NSAssert(NO, @"");
+    NSAssert(NO, @"You must use a subclass to instantiate properties");
     return nil;
 }
 
@@ -134,7 +154,7 @@
 
 @implementation GCAttribute (GCGedcomLoadingAdditions)
 
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+- (instancetype)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
     self = [super initWithGedcomNode:node onObject:object];
     
@@ -151,7 +171,7 @@
     return self;
 }
 
-+ (id)propertyWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
++ (instancetype)newWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
     return [[self alloc] initWithGedcomNode:node onObject:object];
 }
@@ -160,7 +180,7 @@
 
 @implementation GCRelationship (GCGedcomLoadingAdditions)
 
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+- (instancetype)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
     self = [super initWithGedcomNode:node onObject:object];
     
@@ -172,7 +192,7 @@
         
         GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
         
-        id target = [self.context _entityForXref:node.gedValue create:YES withClass:tag.targetType];
+        id target = [self.context _recordForXref:node.gedValue create:YES withClass:tag.targetType];
         
         NSParameterAssert(self.describedObject == object);
         
@@ -186,11 +206,11 @@
     return self;
 }
 
-+ (id)propertyWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
++ (instancetype)newWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
     GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
     
-    id target = [object.context _entityForXref:node.gedValue create:YES withClass:tag.targetType];
+    id target = [object.context _recordForXref:node.gedValue create:YES withClass:tag.targetType];
     
     if ([object.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
         if ([[[object valueForKey:tag.pluralName] valueForKey:@"target"] containsObject:target]) {

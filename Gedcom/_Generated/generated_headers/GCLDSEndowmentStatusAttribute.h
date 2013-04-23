@@ -17,19 +17,19 @@
  
  @return A new lDSEndowmentStatus.
 */
-+(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatus;
++(instancetype)lDSEndowmentStatus;
 /** Initializes and returns a lDSEndowmentStatus.
 
  @param value The value as a GCValue object.
  @return A new lDSEndowmentStatus.
 */
-+(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatusWithValue:(GCValue *)value;
++(instancetype)lDSEndowmentStatusWithValue:(GCValue *)value;
 /** Initializes and returns a lDSEndowmentStatus.
 
  @param value The value as an NSString.
  @return A new lDSEndowmentStatus.
 */
-+(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatusWithGedcomStringValue:(NSString *)value;
++(instancetype)lDSEndowmentStatusWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCLDSEndowmentStatusAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a lDSEndowmentStatus.
 
  
  @return A new lDSEndowmentStatus.
 */
-+(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatus
++(instancetype)lDSEndowmentStatus
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new lDSEndowmentStatus.
 */
-+(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatusWithValue:(GCValue *)value
++(instancetype)lDSEndowmentStatusWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new lDSEndowmentStatus.
 */
-+(GCLDSEndowmentStatusAttribute *)lDSEndowmentStatusWithGedcomStringValue:(NSString *)value
++(instancetype)lDSEndowmentStatusWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"lDSEndowmentStatus"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

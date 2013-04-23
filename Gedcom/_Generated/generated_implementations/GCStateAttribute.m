@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCStateAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a state.
 
  
  @return A new state.
 */
-+(GCStateAttribute *)state
++(instancetype)state
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new state.
 */
-+(GCStateAttribute *)stateWithValue:(GCValue *)value
++(instancetype)stateWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new state.
 */
-+(GCStateAttribute *)stateWithGedcomStringValue:(NSString *)value
++(instancetype)stateWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"state"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

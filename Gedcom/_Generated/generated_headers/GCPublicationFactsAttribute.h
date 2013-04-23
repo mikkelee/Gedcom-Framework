@@ -17,19 +17,19 @@
  
  @return A new publicationFacts.
 */
-+(GCPublicationFactsAttribute *)publicationFacts;
++(instancetype)publicationFacts;
 /** Initializes and returns a publicationFacts.
 
  @param value The value as a GCValue object.
  @return A new publicationFacts.
 */
-+(GCPublicationFactsAttribute *)publicationFactsWithValue:(GCValue *)value;
++(instancetype)publicationFactsWithValue:(GCValue *)value;
 /** Initializes and returns a publicationFacts.
 
  @param value The value as an NSString.
  @return A new publicationFacts.
 */
-+(GCPublicationFactsAttribute *)publicationFactsWithGedcomStringValue:(NSString *)value;
++(instancetype)publicationFactsWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

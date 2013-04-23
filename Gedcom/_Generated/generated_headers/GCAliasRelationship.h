@@ -17,7 +17,7 @@
  
  @return A new alias.
 */
-+(GCAliasRelationship *)alias;
++(instancetype)alias;
 
 // Properties:
 

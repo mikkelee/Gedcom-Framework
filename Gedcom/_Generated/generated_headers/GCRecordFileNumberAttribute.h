@@ -17,19 +17,19 @@
  
  @return A new recordFileNumber.
 */
-+(GCRecordFileNumberAttribute *)recordFileNumber;
++(instancetype)recordFileNumber;
 /** Initializes and returns a recordFileNumber.
 
  @param value The value as a GCValue object.
  @return A new recordFileNumber.
 */
-+(GCRecordFileNumberAttribute *)recordFileNumberWithValue:(GCValue *)value;
++(instancetype)recordFileNumberWithValue:(GCValue *)value;
 /** Initializes and returns a recordFileNumber.
 
  @param value The value as an NSString.
  @return A new recordFileNumber.
 */
-+(GCRecordFileNumberAttribute *)recordFileNumberWithGedcomStringValue:(NSString *)value;
++(instancetype)recordFileNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -16,18 +16,13 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSourceEmbeddedAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a sourceEmbedded.
 
  
  @return A new sourceEmbedded.
 */
-+(GCSourceEmbeddedAttribute *)sourceEmbedded
++(instancetype)sourceEmbedded
 {
 	return [[self alloc] init];
 }
@@ -36,7 +31,7 @@
  @param value The value as a GCValue object.
  @return A new sourceEmbedded.
 */
-+(GCSourceEmbeddedAttribute *)sourceEmbeddedWithValue:(GCValue *)value
++(instancetype)sourceEmbeddedWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -45,13 +40,13 @@
  @param value The value as an NSString.
  @return A new sourceEmbedded.
 */
-+(GCSourceEmbeddedAttribute *)sourceEmbeddedWithGedcomStringValue:(NSString *)value
++(instancetype)sourceEmbeddedWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"sourceEmbedded"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -65,13 +60,28 @@
 
 
 // Properties:
-@dynamic texts;
-@dynamic mutableTexts;
+@synthesize texts = _texts;
+
+- (NSMutableArray *)mutableTexts
+{
+	return [self mutableArrayValueForKey:@"texts"];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

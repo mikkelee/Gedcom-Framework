@@ -4,8 +4,7 @@
 
 #import "GCRelationship.h"
 
-@class GCSourceCitationRelationship;
-@class GCSourceEmbeddedAttribute;
+
 
 /**
  
@@ -18,21 +17,9 @@
  
  @return A new noteReference.
 */
-+(GCNoteReferenceRelationship *)noteReference;
++(instancetype)noteReference;
 
 // Properties:
-/// Property for accessing the following properties
-@property (nonatomic) NSArray *sources;
-
-/// Also contained in sources. . GCSourceCitationRelationship
-@property (nonatomic) NSArray *sourceCitations;
-/// Also contained in sources. . sourceCitations
-@property (nonatomic) NSMutableArray *mutableSourceCitations;
-
-/// Also contained in sources. . GCSourceEmbeddedAttribute
-@property (nonatomic) NSArray *sourceEmbeddeds;
-/// Also contained in sources. . sourceEmbeddeds
-@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 
 @end

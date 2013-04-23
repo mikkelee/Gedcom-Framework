@@ -34,24 +34,19 @@
 	GCNoteEmbeddedAttribute *_noteEmbedded;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCHeaderEntity"];
-}
-
 // Methods:
 /** Initializes and returns a header.
 
  @param context The context in which to create the entity.
  @return A new header.
 */
-+(GCHeaderEntity *)headerInContext:(GCContext *)context
++(instancetype)headerInContext:(GCContext *)context
 {
 	return [[self alloc] initInContext:context];
 }
-- (id)initInContext:(GCContext *)context
+- (instancetype)initInContext:(GCContext *)context
 {
-	self = [super _initWithType:@"header" inContext:context];
+	self = [super initInContext:context];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -65,12 +60,22 @@
 
 // Properties:
 @dynamic headerSource;
-@dynamic destinations;
-@dynamic mutableDestinations;
+@synthesize destinations = _destinations;
+
+- (NSMutableArray *)mutableDestinations
+{
+	return [self mutableArrayValueForKey:@"destinations"];
+}
+
 @dynamic headerDate;
 @dynamic submitterReference;
-@dynamic submissionReferences;
-@dynamic mutableSubmissionReferences;
+@synthesize submissionReferences = _submissionReferences;
+
+- (NSMutableArray *)mutableSubmissionReferences
+{
+	return [self mutableArrayValueForKey:@"submissionReferences"];
+}
+
 @dynamic file;
 @dynamic copyright;
 @dynamic gedcom;

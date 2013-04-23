@@ -17,19 +17,19 @@
  
  @return A new addressLine2.
 */
-+(GCAddressLine2Attribute *)addressLine2;
++(instancetype)addressLine2;
 /** Initializes and returns a addressLine2.
 
  @param value The value as a GCValue object.
  @return A new addressLine2.
 */
-+(GCAddressLine2Attribute *)addressLine2WithValue:(GCValue *)value;
++(instancetype)addressLine2WithValue:(GCValue *)value;
 /** Initializes and returns a addressLine2.
 
  @param value The value as an NSString.
  @return A new addressLine2.
 */
-+(GCAddressLine2Attribute *)addressLine2WithGedcomStringValue:(NSString *)value;
++(instancetype)addressLine2WithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

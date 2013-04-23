@@ -18,7 +18,7 @@
  
  @return A new spouseInFamily.
 */
-+(GCSpouseInFamilyRelationship *)spouseInFamily;
++(instancetype)spouseInFamily;
 
 // Properties:
 /// Property for accessing the following properties

@@ -30,39 +30,24 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCChangeInfoAttribute"];
-}
-
 #pragma mark Initialization
 
-- (id)_init
+- (instancetype)init
 {
-	self = [super _initWithType:@"changeInfo"];
+    self = [super init];
     
     if (self) {
         _noteReferences = [NSMutableArray array];
         _noteEmbeddeds = [NSMutableArray array];
-    }
-    
-    return self;
-}
-
-- (id)init
-{
-    self = [self _init];
-    
-    if (self) {
         self.modificationDate = [NSDate date];
     }
     
     return self;
 }
 
-- (id)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
+- (instancetype)initWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
-    self = [self _init];
+    self = [self init];
     
     if (self) {
         [object setValue:self forKey:@"changeInfo"];
@@ -77,7 +62,7 @@
 
 #pragma mark NSCoding conformance
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super initWithCoder:aDecoder];
     

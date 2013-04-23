@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCEntity.h"
+#import "GCRecord.h"
 #import "GCProperty.h"
 
 @interface GCObject (GCGedcomLoadingAdditions)
@@ -17,7 +17,7 @@
 
 @end
 
-@interface GCEntity (GCGedcomLoadingAdditions)
+@interface GCRecord (GCGedcomLoadingAdditions)
 
 /** Returns an entity whose properties reflect the GCNode in the given GCContext.
  
@@ -25,7 +25,7 @@
  @param context The context of the entity.
  @return A new entity.
  */
-+ (id)entityWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
++ (instancetype)newWithGedcomNode:(GCNode *)node inContext:(GCContext *)context;
 
 @end
 
@@ -43,7 +43,7 @@
  @param node A GCNode. Its tag code must correspond to a valid property on the object.
  @return A new attribute.
  */
-+ (id)propertyWithGedcomNode:(GCNode *)node onObject:(GCObject *)object;
++ (instancetype)newWithGedcomNode:(GCNode *)node onObject:(GCObject *)object;
 
 
 @end

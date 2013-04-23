@@ -22,14 +22,14 @@
 #pragma mark Initialization
 
 //COV_NF_START
-- (id)init
+- (instancetype)init
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 //COV_NF_END
 
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
+- (instancetype)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     NSParameterAssert(tag != nil && ([tag length] <= 4 || [tag hasPrefix:@"_"]));
     
@@ -380,7 +380,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     [encoder encodeObject:_subNodes forKey:@"subNodes"];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
 	self = [super init];
     

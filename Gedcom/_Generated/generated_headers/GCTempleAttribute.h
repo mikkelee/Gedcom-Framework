@@ -17,19 +17,19 @@
  
  @return A new temple.
 */
-+(GCTempleAttribute *)temple;
++(instancetype)temple;
 /** Initializes and returns a temple.
 
  @param value The value as a GCValue object.
  @return A new temple.
 */
-+(GCTempleAttribute *)templeWithValue:(GCValue *)value;
++(instancetype)templeWithValue:(GCValue *)value;
 /** Initializes and returns a temple.
 
  @param value The value as an NSString.
  @return A new temple.
 */
-+(GCTempleAttribute *)templeWithGedcomStringValue:(NSString *)value;
++(instancetype)templeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

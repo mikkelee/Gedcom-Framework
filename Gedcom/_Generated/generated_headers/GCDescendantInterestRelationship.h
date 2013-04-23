@@ -17,7 +17,7 @@
  
  @return A new descendantInterest.
 */
-+(GCDescendantInterestRelationship *)descendantInterest;
++(instancetype)descendantInterest;
 
 // Properties:
 

@@ -28,18 +28,13 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCLDSSealingChildAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a lDSSealingChild.
 
  
  @return A new lDSSealingChild.
 */
-+(GCLDSSealingChildAttribute *)lDSSealingChild
++(instancetype)lDSSealingChild
 {
 	return [[self alloc] init];
 }
@@ -48,7 +43,7 @@
  @param value The value as a GCValue object.
  @return A new lDSSealingChild.
 */
-+(GCLDSSealingChildAttribute *)lDSSealingChildWithValue:(GCValue *)value
++(instancetype)lDSSealingChildWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -57,13 +52,13 @@
  @param value The value as an NSString.
  @return A new lDSSealingChild.
 */
-+(GCLDSSealingChildAttribute *)lDSSealingChildWithGedcomStringValue:(NSString *)value
++(instancetype)lDSSealingChildWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"lDSSealingChild"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -84,15 +79,35 @@
 @dynamic temple;
 @dynamic place;
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic mutableSourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+@synthesize sourceCitations = _sourceCitations;
+
+- (NSMutableArray *)mutableSourceCitations
+{
+	return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+@synthesize sourceEmbeddeds = _sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

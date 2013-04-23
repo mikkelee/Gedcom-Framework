@@ -17,19 +17,19 @@
  
  @return A new language.
 */
-+(GCLanguageAttribute *)language;
++(instancetype)language;
 /** Initializes and returns a language.
 
  @param value The value as a GCValue object.
  @return A new language.
 */
-+(GCLanguageAttribute *)languageWithValue:(GCValue *)value;
++(instancetype)languageWithValue:(GCValue *)value;
 /** Initializes and returns a language.
 
  @param value The value as an NSString.
  @return A new language.
 */
-+(GCLanguageAttribute *)languageWithGedcomStringValue:(NSString *)value;
++(instancetype)languageWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

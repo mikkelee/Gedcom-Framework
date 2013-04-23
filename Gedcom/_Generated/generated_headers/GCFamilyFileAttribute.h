@@ -17,19 +17,19 @@
  
  @return A new familyFile.
 */
-+(GCFamilyFileAttribute *)familyFile;
++(instancetype)familyFile;
 /** Initializes and returns a familyFile.
 
  @param value The value as a GCValue object.
  @return A new familyFile.
 */
-+(GCFamilyFileAttribute *)familyFileWithValue:(GCValue *)value;
++(instancetype)familyFileWithValue:(GCValue *)value;
 /** Initializes and returns a familyFile.
 
  @param value The value as an NSString.
  @return A new familyFile.
 */
-+(GCFamilyFileAttribute *)familyFileWithGedcomStringValue:(NSString *)value;
++(instancetype)familyFileWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -18,19 +18,19 @@
  
  @return A new gedcom.
 */
-+(GCGedcomAttribute *)gedcom;
++(instancetype)gedcom;
 /** Initializes and returns a gedcom.
 
  @param value The value as a GCValue object.
  @return A new gedcom.
 */
-+(GCGedcomAttribute *)gedcomWithValue:(GCValue *)value;
++(instancetype)gedcomWithValue:(GCValue *)value;
 /** Initializes and returns a gedcom.
 
  @param value The value as an NSString.
  @return A new gedcom.
 */
-+(GCGedcomAttribute *)gedcomWithGedcomStringValue:(NSString *)value;
++(instancetype)gedcomWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// .  NB: required property.

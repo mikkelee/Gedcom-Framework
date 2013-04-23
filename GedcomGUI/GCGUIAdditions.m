@@ -116,7 +116,7 @@
 
 @end
 
-@implementation GCIndividualEntity (GCGUIAdditions)
+@implementation GCIndividualRecord (GCGUIAdditions)
 
 + (NSArray *)defaultPredicateEditorRowTemplates
 {

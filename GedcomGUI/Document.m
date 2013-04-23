@@ -23,7 +23,7 @@
     NSMutableArray *_individuals;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -117,7 +117,7 @@
 - (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex
 {
     if ([[link scheme] isEqualToString:@"xref"]) {
-        GCEntity *entity = [GCContext entityForURL:link];
+        GCEntity *entity = [GCContext recordForURL:link];
         
         return [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
     } else {
@@ -131,7 +131,7 @@
 
 - (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount
 {
-    if ( (rand()%1000) < 6) {
+    if ( (rand()%1000) < 16) {
         [recordCountField setIntegerValue:entityCount];
     }
 }
@@ -149,10 +149,10 @@
     // TODO bind array controller to s.c.i instead
     self.individuals = self.context.individuals;
     
-    [individualsPredicateEditor setRowTemplates:[GCIndividualEntity defaultPredicateEditorRowTemplates]];
+    [individualsPredicateEditor setRowTemplates:[GCIndividualRecord defaultPredicateEditorRowTemplates]];
 }
 
-- (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity
+- (void)context:(GCContext *)context didReceiveActionForRecord:(GCEntity *)entity
 {
     NSLog(@"Clicked: %@", entity);
     

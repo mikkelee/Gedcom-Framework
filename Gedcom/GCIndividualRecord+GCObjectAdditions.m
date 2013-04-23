@@ -1,14 +1,18 @@
 //
-//  GCIndividualEntity+GCObjectAdditions.m
+//  GCIndividualRecord+GCObjectAdditions.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 11/10/12.
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCIndividualEntity+GCObjectAdditions.h"
+#import "GCIndividualRecord+GCObjectAdditions.h"
 
-@implementation GCIndividualEntity (GCObjectAdditions)
+#import "GCSpouseInFamilyRelationship.h"
+#import "GCMarriageAttribute.h"
+#import "GCFamilyRecord.h"
+
+@implementation GCIndividualRecord (GCObjectAdditions)
 
 - (GCDate *)estimatedBirthDate
 {
@@ -32,7 +36,7 @@
 		estimatedBirthDate = [eventDate dateBySubtractingAge:teen];
 	} else if ([self.spouseInFamilies count] > 0) {
 		for (GCSpouseInFamilyRelationship *spouseInFamily in self.spouseInFamilies) {
-			for (GCMarriageAttribute *marriage in ((GCFamilyEntity *)spouseInFamily.target).marriages) {
+			for (GCMarriageAttribute *marriage in ((GCFamilyRecord *)spouseInFamily.target).marriages) {
 				GCDate *eventDate = [marriage valueForKeyPath:@"date.value"];
 				estimatedBirthDate = [eventDate dateBySubtractingAge:adult];
 			}

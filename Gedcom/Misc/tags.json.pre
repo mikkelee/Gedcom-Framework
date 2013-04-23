@@ -1,15 +1,15 @@
 {
-	"@rootObject": {
-		"variants": [
+	"!entity": {
+		"objectType": "entity",
+		"subClasses": [
                      { "name": "header", "min": 1, "max": 1 },
-                     { "groupName": "@record" },
+                     { "subClassName": "!record" },
                      { "name": "trailer", "min": 1, "max": 1 }
                      ]
 	},
     
 	"header": {
 		"code": "HEAD",
-		"objectType": "entity",
 		"validSubTags": [
                          { "name": "headerSource", "min": 1, "max": 1 },
                          { "name": "destination", "min": 0, "max": "M" },
@@ -27,8 +27,9 @@
         "doc": "The header structure provides information about the entire transmission. The headerSource identifies which system sent the data. The destination identifies the intended receiving system."
 	},
     
-	"@record": {
-		"variants": [
+	"!record": {
+		"objectType": "record",
+		"subClasses": [
                      { "name": "submission", "min": 0, "max": 1 },
                      { "name": "family", "min": 0, "max": "M" },
                      { "name": "individual", "min": 0, "max": "M" },
@@ -41,14 +42,11 @@
 	},
     
 	"trailer": {
-		"code": "TRLR",
-		"objectType": "entity"
+		"code": "TRLR"
 	},
     
 	"submission": {
 		"code": "SUBN",
-		"objectType": "entity",
-        "hasXref": 1,
 		"validSubTags": [
                          { "name": "submitterReference", "min": 0, "max": 1 },
                          { "name": "familyFile", "min": 0, "max": 1 },
@@ -64,11 +62,9 @@
 	},
 	"family": {
 		"code": "FAM",
-		"objectType": "entity",
         "plural": "families",
-        "hasXref": 1,
 		"validSubTags": [
-                         { "groupName": "@familyEvent" },
+                         { "subClassName": "!familyEvent" },
                          { "name": "husband", "min": 0, "max": 1 },
                          { "name": "wife", "min": 0, "max": 1 },
                          { "name": "child", "min": 0, "max": "M" },
@@ -86,15 +82,13 @@
 	},
 	"individual": {
 		"code": "INDI",
-		"objectType": "entity",
-        "hasXref": 1,
 		"validSubTags": [
                          { "name": "restrictionNotice", "min": 0, "max": 1 },
                          { "name": "personalName", "min": 0, "max": "M" },
                          { "name": "sex", "min": 0, "max": 1 },
-                         { "groupName": "@individualEvent" },
-                         { "groupName": "@individualAttribute" },
-                         { "groupName": "@individualLDSOrdinance" },
+                         { "subClassName": "!individualEvent" },
+                         { "subClassName": "!individualAttribute" },
+                         { "subClassName": "!individualLDSOrdinance" },
                          { "name": "childInFamily", "min": 0, "max": "M" },
                          { "name": "spouseInFamily", "min": 0, "max": "M" },
                          { "name": "submitterReference", "min": 0, "max": "M" },
@@ -115,8 +109,6 @@
 	},
 	"multimedia": {
 		"code": "OBJE",
-		"objectType": "entity",
-        "hasXref": 1,
 		"validSubTags": [
                          { "name": "multimediaFormat", "min": 1, "max": 1 },
                          { "name": "title", "min": 0, "max": 1 },
@@ -130,8 +122,6 @@
 	},
 	"note": {
 		"code": "NOTE",
-		"objectType": "entity",
-        "hasXref": 1,
         "hasValue": 1,
 		"validSubTags": [
                          { "groupName": "@source" },
@@ -143,9 +133,7 @@
 	},
 	"repository": {
 		"code": "REPO",
-		"objectType": "entity",
         "plural": "repositories",
-        "hasXref": 1,
 		"validSubTags": [
                          { "name": "descriptiveName", "min": 0, "max": 1 },
                          { "name": "address", "min": 0, "max": 1 },
@@ -159,8 +147,6 @@
 	},
 	"source": {
 		"code": "SOUR",
-		"objectType": "entity",
-        "hasXref": 1,
 		"validSubTags": [
                          { "name": "sourceData", "min": 0, "max": 1 },
                          { "name": "author", "min": 0, "max": 1 },
@@ -179,8 +165,6 @@
 	},
 	"submitter": {
 		"code": "SUBM",
-		"objectType": "entity",
-        "hasXref": 1,
 		"validSubTags": [
                          { "name": "descriptiveName", "min": 1, "max": 1 },
                          { "name": "address", "min": 0, "max": 1 },
@@ -199,25 +183,25 @@
 	"husband": {
 		"code": "HUSB",
 		"objectType": "relationship",
-		"target": "individual"
+		"targetType": "individual"
 	},
 	"wife": {
 		"code": "WIFE",
 		"objectType": "relationship",
-		"target": "individual",
+		"targetType": "individual",
 		"plural": "wives"
 	},
 	"child": {
 		"code": "CHIL",
 		"objectType": "relationship",
-		"target": "individual",
+		"targetType": "individual",
 		"plural": "children"
 	},
 	
 	"childInFamily": {
 		"code": "FAMC",
 		"objectType": "relationship",
-		"target": "family",
+		"targetType": "family",
 		"plural": "childInFamilies",
 		"validSubTags": [
                          { "name": "pedigree", "min": 0, "max": 1 },
@@ -227,7 +211,7 @@
 	"spouseInFamily": {
 		"code": "FAMS",
 		"objectType": "relationship",
-		"target": "family",
+		"targetType": "family",
 		"plural": "spouseInFamilies",
 		"validSubTags": [
                          { "groupName": "@note" }
@@ -237,7 +221,7 @@
 	"adoptedIntoFamily": {
 		"code": "FAMC",
 		"objectType": "relationship",
-		"target": "family",
+		"targetType": "family",
 		"plural": "adoptedIntoFamilies",
 		"validSubTags": [
                          { "name": "adoptedByWhichParent", "min": 0, "max": 1 }
@@ -247,14 +231,14 @@
 	"sealedToFamily": {
 		"code": "FAMC",
 		"objectType": "relationship",
-		"target": "family",
+		"targetType": "family",
 		"plural": "sealedToFamilies"
 	},
 	
 	"bornToFamily": {
 		"code": "FAMC",
 		"objectType": "relationship",
-		"target": "family",
+		"targetType": "family",
 		"plural": "bornToFamilies"
 	},
     
@@ -276,12 +260,12 @@
 	"submitterReference": {
 		"code": "SUBM",
 		"objectType": "relationship",
-		"target": "submitter"
+		"targetType": "submitter"
 	},
 	"submissionReference": {
 		"code": "SUBN",
 		"objectType": "relationship",
-		"target": "submission"
+		"targetType": "submission"
 	},
     
 	"changeInfo": {
@@ -292,10 +276,11 @@
                          ]
 	},
     
-	"@individualEvent": {
+	"!individualEvent": {
+		"objectType": "attribute",
 		"valueType": "bool",
         "allowsNil": true,
-		"variants": [
+		"subClasses": [
                      { "name": "birth", "min": 0, "max": "M" },
                      { "name": "christening", "min": 0, "max": "M" },
                      { "name": "death", "min": 0, "max": "M" },
@@ -321,11 +306,12 @@
                      { "name": "genericEvent", "min": 0, "max": "M" }
                      ],
 		"validSubTags": [
-                         { "groupName": "@eventDetail" }
+                         { "subClassName": "!eventDetail" }
                          ]
 	},
-	"@individualAttribute": {
-		"variants": [
+	"!individualAttribute": {
+		"objectType": "attribute",
+		"subClasses": [
                      { "name": "caste", "min": 0, "max": "M" },
                      { "name": "physicalDescription", "min": 0, "max": "M" },
                      { "name": "generationsOfDescendants", "min": 0, "max": "M" },
@@ -342,11 +328,12 @@
                      { "name": "title", "min": 0, "max": "M" }
                      ],
 		"validSubTags": [
-                         { "groupName": "@eventDetail" }
+                         { "subClassName": "!eventDetail" }
                          ]
 	},
-	"@individualLDSOrdinance": {
-		"variants": [
+	"!individualLDSOrdinance": {
+		"objectType": "attribute",
+		"subClasses": [
                      { "name": "lDSBaptism", "min": 0, "max": "M" },
                      { "name": "lDSConfirmation", "min": 0, "max": "M" },
                      { "name": "lDSEndowment", "min": 0, "max": "M" },
@@ -360,10 +347,11 @@
                          { "groupName": "@note" }
                          ]
 	},
-	"@familyEvent": {
+	"!familyEvent": {
+		"objectType": "attribute",
 		"valueType": "bool",
         "allowsNil": true,
-		"variants": [
+		"subClasses": [
                      { "name": "annulment", "min": 0, "max": "M" },
                      { "name": "census", "min": 0, "max": "M" },
                      { "name": "divorce", "min": 0, "max": "M" },
@@ -377,13 +365,14 @@
                      { "name": "genericEvent", "min": 0, "max": "M" }
                      ],
 		"validSubTags": [
-                         { "groupName": "@eventDetail" },
+                         { "subClassName": "!eventDetail" },
                          { "name": "husbandDetail", "min": 0, "max": 1 },
                          { "name": "wifeDetail", "min": 0, "max": 1 }
                          ]
 	},
-	"@eventDetail": {
-		"variants": [
+	"!eventDetail": {
+		"objectType": "attribute",
+		"subClasses": [
                      { "name": "typeDescription", "min": 0, "max": 1 },
                      { "name": "date", "min": 0, "max": 1 },
                      { "name": "place", "min": 0, "max": 1 },
@@ -456,7 +445,7 @@
 	"sourceCitation": {
 		"code": "SOUR",
 		"objectType": "relationship",
-		"target": "source",
+		"targetType": "source",
 		"validSubTags": [
                          { "name": "page", "min": 0, "max": 1 },
                          { "name": "data", "min": 0, "max": 1 },
@@ -490,7 +479,7 @@
 	"repositoryCitation": {
 		"code": "REPO",
 		"objectType": "relationship",
-		"target": "repository",
+		"targetType": "repository",
 		"validSubTags": [
                          { "groupName": "@note" },
                          { "name": "callNumber", "min": 0, "max": "M" }
@@ -509,7 +498,7 @@
 	"noteReference": {
 		"code": "NOTE",
 		"objectType": "relationship",
-		"target": "note"
+		"targetType": "note"
 	},
 	"noteEmbedded": {
 		"code": "NOTE",
@@ -526,7 +515,7 @@
 	"multimediaReference": {
 		"code": "OBJE",
 		"objectType": "relationship",
-		"target": "multimedia"
+		"targetType": "multimedia"
 	},
 	"multimediaEmbedded": {
 		"code": "OBJE",
@@ -599,13 +588,13 @@
 	"alias": {
 		"code": "ALIA",
 		"objectType": "relationship",
-		"target": "individual",
+		"targetType": "individual",
 		"plural": "aliases"
 	},
 	"ancestorInterest": {
 		"code": "ANCI",
 		"objectType": "relationship",
-		"target": "submitter"
+		"targetType": "submitter"
 	},
 	"generationsOfAncestors": {
 		"code": "ANCE",
@@ -615,7 +604,7 @@
 	"association": {
 		"code": "ASSO",
 		"objectType": "relationship",
-		"target": "individual",
+		"targetType": "individual",
 		"validSubTags": [
                          { "name": "recordType", "min": 1, "max": 1 },
                          { "name": "relationshipDescriptor", "min": 1, "max": 1 },
@@ -807,7 +796,7 @@
 	"descendantInterest": {
 		"code": "DESI",
 		"objectType": "relationship",
-		"target": "submitter"
+		"targetType": "submitter"
 	},
 	"generationsOfDescendants": {
 		"code": "DESC",
@@ -938,10 +927,6 @@
 		"objectType": "attribute",
 		"valueType": "string",
         "allowedValues": [ "Afrikaans", "Albanian", "Anglo-Saxon", "Catalan", "Catalan_Spn", "Czech", "Danish", "Dutch", "English", "Esperanto", "Estonian", "Faroese", "Finnish", "French", "German", "Hawaiian", "Hungarian", "Icelandic", "Indonesian", "Italian", "Latvian", "Lithuanian", "Navaho", "Norwegian", "Polish", "Portuguese", "Romanian", "Serbo_Croa", "Slovak", "Slovene", "Spanish", "Swedish", "Turkish", "Wendic", "Amharic", "Arabic", "Armenian", "Assamese", "Belorusian", "Bengali", "Braj", "Bulgarian", "Burmese", "Cantonese", "Church-Slavic", "Dogri", "Georgian", "Greek", "Gujarati", "Hebrew", "Hindi", "Japanese", "Kannada", "Khmer", "Konkani", "Korean", "Lahnda", "Lao", "Macedonian", "Maithili", "Malayalam", "Mandrin", "Manipuri", "Marathi", "Mewari", "Nepali", "Oriya", "Pahari", "Pali", "Panjabi", "Persian", "Prakrit", "Pusto", "Rajasthani", "Russian", "Sanskrit", "Serb", "Tagalog", "Tamil", "Telugu", "Thai", "Tibetan", "Ukrainian", "Urdu", "Vietnamese", "Yiddish" ]
-	},
-	"legatee": {
-		"code": "LEGA",
-		"objectType": "attribute"
 	},
 	"marriageContract": {
 		"code": "MARC",

@@ -22,7 +22,7 @@ __strong static NSDictionary *_genderStore;
                      @"U": [[GCGender alloc] initWithGedcomString:@"U" displayString:@"Unknown"]};
 }
 
-- (id)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
+- (instancetype)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
 {
     self = [super init];
     

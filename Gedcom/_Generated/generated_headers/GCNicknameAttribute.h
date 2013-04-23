@@ -17,19 +17,19 @@
  
  @return A new nickname.
 */
-+(GCNicknameAttribute *)nickname;
++(instancetype)nickname;
 /** Initializes and returns a nickname.
 
  @param value The value as a GCValue object.
  @return A new nickname.
 */
-+(GCNicknameAttribute *)nicknameWithValue:(GCValue *)value;
++(instancetype)nicknameWithValue:(GCValue *)value;
 /** Initializes and returns a nickname.
 
  @param value The value as an NSString.
  @return A new nickname.
 */
-+(GCNicknameAttribute *)nicknameWithGedcomStringValue:(NSString *)value;
++(instancetype)nicknameWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

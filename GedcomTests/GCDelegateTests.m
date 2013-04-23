@@ -17,7 +17,7 @@
 
 - (BOOL)context:(GCContext *)context shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object
 {
-    GCNoteEntity *note = [GCNoteEntity noteInContext:context];
+    GCNoteRecord *note = [GCNoteRecord noteInContext:context];
     
     note.value = [GCString valueWithGedcomString:@"Unmarried."];
     

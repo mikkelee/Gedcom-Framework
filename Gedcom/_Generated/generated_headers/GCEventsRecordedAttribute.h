@@ -18,19 +18,19 @@
  
  @return A new eventsRecorded.
 */
-+(GCEventsRecordedAttribute *)eventsRecorded;
++(instancetype)eventsRecorded;
 /** Initializes and returns a eventsRecorded.
 
  @param value The value as a GCValue object.
  @return A new eventsRecorded.
 */
-+(GCEventsRecordedAttribute *)eventsRecordedWithValue:(GCValue *)value;
++(instancetype)eventsRecordedWithValue:(GCValue *)value;
 /** Initializes and returns a eventsRecorded.
 
  @param value The value as an NSString.
  @return A new eventsRecorded.
 */
-+(GCEventsRecordedAttribute *)eventsRecordedWithGedcomStringValue:(NSString *)value;
++(instancetype)eventsRecordedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

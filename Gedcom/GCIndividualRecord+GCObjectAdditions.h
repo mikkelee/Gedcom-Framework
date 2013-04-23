@@ -1,14 +1,15 @@
 //
-//  GCIndividualEntity+GCObjectAdditions.h
+//  GCIndividualRecord+GCObjectAdditions.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 11/10/12.
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Gedcom/Gedcom.h>
+#import "GCIndividualRecord.h"
+#import "GCValue.h"
 
-@interface GCIndividualEntity (GCObjectAdditions)
+@interface GCIndividualRecord (GCObjectAdditions)
 
 /// Attempts to estimate the birth date based on the events attached to the individual
 @property (readonly) GCDate *estimatedBirthDate;

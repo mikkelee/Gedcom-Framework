@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCQualityOfDataAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a qualityOfData.
 
  
  @return A new qualityOfData.
 */
-+(GCQualityOfDataAttribute *)qualityOfData
++(instancetype)qualityOfData
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new qualityOfData.
 */
-+(GCQualityOfDataAttribute *)qualityOfDataWithValue:(GCValue *)value
++(instancetype)qualityOfDataWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new qualityOfData.
 */
-+(GCQualityOfDataAttribute *)qualityOfDataWithGedcomStringValue:(NSString *)value
++(instancetype)qualityOfDataWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"qualityOfData"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

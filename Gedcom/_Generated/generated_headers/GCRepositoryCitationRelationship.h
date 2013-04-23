@@ -19,7 +19,7 @@
  
  @return A new repositoryCitation.
 */
-+(GCRepositoryCitationRelationship *)repositoryCitation;
++(instancetype)repositoryCitation;
 
 // Properties:
 /// Property for accessing the following properties

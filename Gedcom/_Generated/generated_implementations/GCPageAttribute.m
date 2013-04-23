@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCPageAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a page.
 
  
  @return A new page.
 */
-+(GCPageAttribute *)page
++(instancetype)page
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new page.
 */
-+(GCPageAttribute *)pageWithValue:(GCValue *)value
++(instancetype)pageWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new page.
 */
-+(GCPageAttribute *)pageWithGedcomStringValue:(NSString *)value
++(instancetype)pageWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"page"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

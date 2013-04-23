@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCBornToFamilyRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a bornToFamily.
 
  
  @return A new bornToFamily.
 */
-+(GCBornToFamilyRelationship *)bornToFamily
++(instancetype)bornToFamily
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"bornToFamily"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

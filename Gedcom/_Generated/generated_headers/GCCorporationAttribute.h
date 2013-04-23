@@ -18,19 +18,19 @@
  
  @return A new corporation.
 */
-+(GCCorporationAttribute *)corporation;
++(instancetype)corporation;
 /** Initializes and returns a corporation.
 
  @param value The value as a GCValue object.
  @return A new corporation.
 */
-+(GCCorporationAttribute *)corporationWithValue:(GCValue *)value;
++(instancetype)corporationWithValue:(GCValue *)value;
 /** Initializes and returns a corporation.
 
  @param value The value as an NSString.
  @return A new corporation.
 */
-+(GCCorporationAttribute *)corporationWithGedcomStringValue:(NSString *)value;
++(instancetype)corporationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

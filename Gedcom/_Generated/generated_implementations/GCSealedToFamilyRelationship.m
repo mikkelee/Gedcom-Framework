@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSealedToFamilyRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a sealedToFamily.
 
  
  @return A new sealedToFamily.
 */
-+(GCSealedToFamilyRelationship *)sealedToFamily
++(instancetype)sealedToFamily
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"sealedToFamily"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

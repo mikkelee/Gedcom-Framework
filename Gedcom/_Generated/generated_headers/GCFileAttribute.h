@@ -17,19 +17,19 @@
  
  @return A new file.
 */
-+(GCFileAttribute *)file;
++(instancetype)file;
 /** Initializes and returns a file.
 
  @param value The value as a GCValue object.
  @return A new file.
 */
-+(GCFileAttribute *)fileWithValue:(GCValue *)value;
++(instancetype)fileWithValue:(GCValue *)value;
 /** Initializes and returns a file.
 
  @param value The value as an NSString.
  @return A new file.
 */
-+(GCFileAttribute *)fileWithGedcomStringValue:(NSString *)value;
++(instancetype)fileWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -10,7 +10,7 @@
 
 @interface GCTag ()
 
-- (id)initWithName:(NSString *)name 
+- (instancetype)initWithName:(NSString *)name 
           settings:(NSDictionary *)settings;
 
 @end
@@ -28,7 +28,7 @@
 
 #pragma mark Constants
 
-const NSString *kRootObject = @"@rootObject";
+const NSString *kRootObject = @"!entity";
 
 const NSString *kTagName = @"name";
 const NSString *kPluralName = @"plural";
@@ -37,6 +37,8 @@ const NSString *kGroupName = @"groupName";
 const NSString *kTagCode = @"code";
 
 const NSString *kVariants = @"variants";
+const NSString *kSubClasses = @"subClasses";
+const NSString *kSubClassName = @"subClassName";
 
 const NSString *kValidSubTags = @"validSubTags";
 
@@ -46,12 +48,11 @@ const NSString *kMax = @"max";
 const NSString *kClassName = @"className";
 const NSString *kObjectType = @"objectType";
 const NSString *kValueType = @"valueType";
-const NSString *kTargetType = @"target";
+const NSString *kTargetType = @"targetType";
 
 const NSString *kAllowsNilValue = @"allowsNil";
 const NSString *kAllowedValues = @"allowedValues";
 
-const NSString *kHasXref = @"hasXref";
 const NSString *kHasValue = @"hasValue";
 
 #pragma mark Initialization
@@ -107,7 +108,7 @@ static inline void setupKey(NSString *key) {
         _tagStore[tagDict[kPluralName]] = tag;
         _tagStore[tagDict[kClassName]] = tag;
         
-        if ([tagDict[kObjectType] isEqualToString:@"entity"]) {
+        if ([tagDict[kObjectType] isEqualToString:@"entity"] || [tagDict[kObjectType] isEqualToString:@"record"]) {
             _rootTagsByCode[tagDict[kTagCode]] = tag;
         }
     }
@@ -127,8 +128,21 @@ static inline void setupKey(NSString *key) {
     for (NSDictionary *subTag in tagDict[kValidSubTags]) {
         if (subTag[kGroupName]) {
             setupKey(subTag[kGroupName]);
+        } else if (subTag[kSubClassName]) {
+            setupKey(subTag[kSubClassName]);
         } else {
             setupKey(subTag[kTagName]);
+        }
+    }
+    
+    // set up subtags
+    for (NSDictionary *subClass in tagDict[kSubClasses]) {
+        if (subClass[kGroupName]) {
+            setupKey(subClass[kGroupName]);
+        } else if (subClass[kSubClassName]) {
+            setupKey(subClass[kSubClassName]);
+        } else {
+            setupKey(subClass[kTagName]);
         }
     }
 }
@@ -137,6 +151,10 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     if (subtag[kGroupName]) {
         for (NSDictionary *variant in _tagInfo[subtag[kGroupName]][kVariants]) {
             expandSubtag(set, occurrencesDicts, variant);
+        }
+    } else if (subtag[kSubClassName]) {
+        for (NSDictionary *subClass in _tagInfo[subtag[kSubClassName]][kSubClasses]) {
+            expandSubtag(set, occurrencesDicts, subClass);
         }
     } else {
         [set addObject:[GCTag tagNamed:subtag[kTagName]]];
@@ -187,12 +205,25 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
                 }
             }
         }
+        
+        key = obj[kSubClassName];
+        if (key) {
+            NSString *variantGroupName = _tagInfo[key][kPluralName];
+            for (NSDictionary *subClass in _tagInfo[key][kSubClasses]) {
+                if (!subClass[kGroupName] && [self.validSubTags containsObject:[GCTag tagNamed:subClass[kTagName]]]) {
+                    if (!byGroup[variantGroupName]) {
+                        byGroup[variantGroupName] = [NSMutableArray array];
+                    }
+                    [byGroup[variantGroupName] addObject:[GCTag tagNamed:subClass[kTagName]]];
+                }
+            }
+        }
     }];
     
     _cachedSubTagsByGroup = [byGroup copy];
 }
 
-- (id)initWithName:(NSString *)name settings:(NSDictionary *)settings
+- (instancetype)initWithName:(NSString *)name settings:(NSDictionary *)settings
 {
     GCParameterAssert(name);
     
@@ -216,12 +247,12 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         
         _type =
           [_settings[kObjectType] isEqualToString:@"entity"] ? GCTagTypeEntity
+        : [_settings[kObjectType] isEqualToString:@"record"] ? GCTagTypeRecord
         : [_settings[kObjectType] isEqualToString:@"attribute"] ? GCTagTypeAttribute
         : [_settings[kObjectType] isEqualToString:@"relationship"] ? GCTagTypeRelationship
         : GCTagTypeUnknown;
         
         // for entities:
-        _hasXref = _settings[kHasXref] != nil;
         _hasValue = _settings[kHasValue] != nil;
         
         // for attributes:
@@ -230,7 +261,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         _allowedValues = [_settings[kAllowedValues] valueForKey:@"uppercaseString"];
         
         // for relationships:
-        _targetType = _isCustom ? NSClassFromString(@"GCEntity") :  NSClassFromString([NSString stringWithFormat:@"GC%@Entity", [_settings[kTargetType] capitalizedString]]);
+        _targetType = _isCustom ? NSClassFromString(@"GCRecord") :  NSClassFromString([NSString stringWithFormat:@"GC%@Record", [_settings[kTargetType] capitalizedString]]);
         
         dispatch_async(_tagSetupQueue, ^{
             dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
@@ -259,6 +290,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
     
     if ([code hasPrefix:@"_"]) {
+        NSString *className = @"GCCustomEntity";
         NSString *tagName = [NSString stringWithFormat:@"custom%@Entity", code];
         NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
         
@@ -276,6 +308,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         _rootTagsByCode[code] = tag;
         _tagStore[tagName] = tag;
         _tagStore[pluralName] = tag;
+        _tagStore[className] = tag;
     }
     
     return _rootTagsByCode[code];
@@ -296,6 +329,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
 {
     if ([code hasPrefix:@"_"]) {
         @synchronized (self) {
+            NSString *className = [NSString stringWithFormat:@"GCCustom%@", [type capitalizedString]];
             NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
             NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
             
@@ -308,12 +342,13 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
                                                kTagName: tagName,
                                              kPluralName: pluralName,
                                           kValueType: @"string",
-                                         kTargetType: @"entity",
+                                         kTargetType: @"record",
                                          kObjectType: type,
                                        kValidSubTags: [NSArray array]}];
             NSLog(@"Created %@: %@", tagName, tag);
             _tagStore[tagName] = tag;
             _tagStore[pluralName] = tag;
+            _tagStore[className] = tag;
             
             return tag;
         }
@@ -410,7 +445,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     [encoder setValue:_name forKey:@"tagName"];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
 	return [GCTag tagNamed:[decoder decodeObjectForKey:@"tagName"]];
 }

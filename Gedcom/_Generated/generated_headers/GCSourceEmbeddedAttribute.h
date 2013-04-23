@@ -19,19 +19,19 @@
  
  @return A new sourceEmbedded.
 */
-+(GCSourceEmbeddedAttribute *)sourceEmbedded;
++(instancetype)sourceEmbedded;
 /** Initializes and returns a sourceEmbedded.
 
  @param value The value as a GCValue object.
  @return A new sourceEmbedded.
 */
-+(GCSourceEmbeddedAttribute *)sourceEmbeddedWithValue:(GCValue *)value;
++(instancetype)sourceEmbeddedWithValue:(GCValue *)value;
 /** Initializes and returns a sourceEmbedded.
 
  @param value The value as an NSString.
  @return A new sourceEmbedded.
 */
-+(GCSourceEmbeddedAttribute *)sourceEmbeddedWithGedcomStringValue:(NSString *)value;
++(instancetype)sourceEmbeddedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . GCTextAttribute

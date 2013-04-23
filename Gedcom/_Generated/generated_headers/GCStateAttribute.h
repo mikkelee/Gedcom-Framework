@@ -17,19 +17,19 @@
  
  @return A new state.
 */
-+(GCStateAttribute *)state;
++(instancetype)state;
 /** Initializes and returns a state.
 
  @param value The value as a GCValue object.
  @return A new state.
 */
-+(GCStateAttribute *)stateWithValue:(GCValue *)value;
++(instancetype)stateWithValue:(GCValue *)value;
 /** Initializes and returns a state.
 
  @param value The value as an NSString.
  @return A new state.
 */
-+(GCStateAttribute *)stateWithGedcomStringValue:(NSString *)value;
++(instancetype)stateWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

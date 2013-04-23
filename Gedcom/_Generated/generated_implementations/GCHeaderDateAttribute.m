@@ -12,18 +12,13 @@
 	GCTimeAttribute *_time;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCHeaderDateAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a headerDate.
 
  
  @return A new headerDate.
 */
-+(GCHeaderDateAttribute *)headerDate
++(instancetype)headerDate
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new headerDate.
 */
-+(GCHeaderDateAttribute *)headerDateWithValue:(GCValue *)value
++(instancetype)headerDateWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new headerDate.
 */
-+(GCHeaderDateAttribute *)headerDateWithGedcomStringValue:(NSString *)value
++(instancetype)headerDateWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"headerDate"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

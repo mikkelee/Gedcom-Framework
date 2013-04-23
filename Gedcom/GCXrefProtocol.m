@@ -38,9 +38,9 @@ __attribute__((destructor)) static void unregister_protocol() {
     NSURLRequest *request = [self request];
     
     GCContext *context = [GCContext contextsByName][request.URL.host];
-    GCEntity *entity = [GCContext entityForURL:request.URL];
+    GCRecord *record = [GCContext recordForURL:request.URL];
     
-    [context _activateEntity:entity];
+    [context _activateRecord:record];
 }
 
 - (void)stopLoading

@@ -9,11 +9,12 @@ A short summary of the functionality follows:
 * GEDCOM is parsed and serialized in layers: text <=> GCNode <=> GCObject.
 * Closest to the metal are GCNodes (parsed via GCNodeParser), a simple representation of the nested structure of GEDCOM text data with accessors for tag/value/xref/etc.
 * Above GCNodes are GCObjects, which allow for more abstracted data access. There are two basic types of GCObject:
-    - GCEntity: Root level records - INDI, FAM, etc.
+    - GCEntity: Root level entities - HEAD, TRLR, etc.
+        * GCRecord: Root level records with xrefs - INDI, FAM, etc.
     - GCProperty: Objects can have a number of properties of which there are two kinds:
         * GCAttribute: Any node that describes an object - NAME, DATE, PLAC, etc.
         * GCRelationship: Any node that references other entities - FAMC, HUSB, ASSO, etc.
-* These are then further subclassed as for instance GCIndividualEntity, GCSpouseInFamilyRelationship, etc, providing accessors to their properties.
+* These are then further subclassed as for instance GCIndividualRecord, GCSpouseInFamilyRelationship, etc, providing accessors to their properties.
 * Translation between GCNodes and GCObjects is facilitated by GCTags which map between object types and tag codes, as well as know what subtags are valid, what type a value is, whether it's an entity or a property, etc.
 * Attribute values are handled via subclasses of GCValue, which can be one of several types (like NSValue). Sorting (via compare:) and NSFormatters are provided. The types are:
     - GCGender
@@ -38,6 +39,7 @@ Additionally two application targets are included:
 
 # Version history #
 
+* 0.9.3 – Refactor.
 * 0.9.2 — BLOB decoding functional.
 * 0.9.1 — all info in TGC55.ged can be losslessly handled, though it will not pass validation due to non-standard tags.
 * 0.9.0 — Functionality is there; 1.0 comes after a bit more thorough testing/bugsquashing + documentation.
@@ -62,7 +64,7 @@ Showing some different ways to add attributes to an object:
 	GCContext *ctx = [GCContext context];
 	
     // Create an individual entity in the context.
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     // Create an array of names and set them on the individual for the property key "personalNames".
     // When an object receives GCValues for a property key, it will implicitly create attributes.
@@ -122,19 +124,19 @@ Similarly, for relationships, the following:
 ```objective-c
 	GCContext *ctx = [GCContext context];
 	
-	GCIndividualEntity *husb = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *husb = [GCIndividualRecord individualInContext:ctx];
 	[husb addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[husb addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-	GCIndividualEntity *wife = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *wife = [GCIndividualRecord individualInContext:ctx];
 	[wife addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Anne /Larsdatter/"]];
 	[wife addAttributeWithType:@"sex" value:[GCGender femaleGender]];
 	
-	GCIndividualEntity *chil = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *chil = [GCIndividualRecord individualInContext:ctx];
 	[chil addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Hans /Jensen/"]];
 	[chil addAttributeWithType:@"sex" value:[GCGender maleGender]];
 	
-    GCFamilyEntity *fam = [GCFamilyEntity familyInContext:ctx];
+    GCFamilyRecord *fam = [GCFamilyRecord familyInContext:ctx];
     
     [fam setValue:husb forKey:@"husband"];
     [fam setValue:wife forKey:@"wife"];

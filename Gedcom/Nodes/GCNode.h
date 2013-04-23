@@ -43,7 +43,7 @@
  @param subNodes An ordered collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-- (id)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(id)subNodes;
+- (instancetype)initWithTag:(NSString *)tag value:(NSString *)value xref:(NSString *)xref subNodes:(id)subNodes;
 
 #pragma mark Subscript accessors
 

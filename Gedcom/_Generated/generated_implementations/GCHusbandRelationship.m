@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCHusbandRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a husband.
 
  
  @return A new husband.
 */
-+(GCHusbandRelationship *)husband
++(instancetype)husband
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"husband"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCTimeAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a time.
 
  
  @return A new time.
 */
-+(GCTimeAttribute *)time
++(instancetype)time
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new time.
 */
-+(GCTimeAttribute *)timeWithValue:(GCValue *)value
++(instancetype)timeWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new time.
 */
-+(GCTimeAttribute *)timeWithGedcomStringValue:(NSString *)value
++(instancetype)timeWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"time"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

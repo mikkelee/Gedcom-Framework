@@ -17,19 +17,19 @@
  
  @return A new givenName.
 */
-+(GCGivenNameAttribute *)givenName;
++(instancetype)givenName;
 /** Initializes and returns a givenName.
 
  @param value The value as a GCValue object.
  @return A new givenName.
 */
-+(GCGivenNameAttribute *)givenNameWithValue:(GCValue *)value;
++(instancetype)givenNameWithValue:(GCValue *)value;
 /** Initializes and returns a givenName.
 
  @param value The value as an NSString.
  @return A new givenName.
 */
-+(GCGivenNameAttribute *)givenNameWithGedcomStringValue:(NSString *)value;
++(instancetype)givenNameWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

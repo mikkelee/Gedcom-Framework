@@ -17,19 +17,19 @@
  
  @return A new generationsOfAncestors.
 */
-+(GCGenerationsOfAncestorsAttribute *)generationsOfAncestors;
++(instancetype)generationsOfAncestors;
 /** Initializes and returns a generationsOfAncestors.
 
  @param value The value as a GCValue object.
  @return A new generationsOfAncestors.
 */
-+(GCGenerationsOfAncestorsAttribute *)generationsOfAncestorsWithValue:(GCValue *)value;
++(instancetype)generationsOfAncestorsWithValue:(GCValue *)value;
 /** Initializes and returns a generationsOfAncestors.
 
  @param value The value as an NSString.
  @return A new generationsOfAncestors.
 */
-+(GCGenerationsOfAncestorsAttribute *)generationsOfAncestorsWithGedcomStringValue:(NSString *)value;
++(instancetype)generationsOfAncestorsWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

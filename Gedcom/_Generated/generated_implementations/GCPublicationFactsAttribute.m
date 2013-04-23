@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCPublicationFactsAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a publicationFacts.
 
  
  @return A new publicationFacts.
 */
-+(GCPublicationFactsAttribute *)publicationFacts
++(instancetype)publicationFacts
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new publicationFacts.
 */
-+(GCPublicationFactsAttribute *)publicationFactsWithValue:(GCValue *)value
++(instancetype)publicationFactsWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new publicationFacts.
 */
-+(GCPublicationFactsAttribute *)publicationFactsWithGedcomStringValue:(NSString *)value
++(instancetype)publicationFactsWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"publicationFacts"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

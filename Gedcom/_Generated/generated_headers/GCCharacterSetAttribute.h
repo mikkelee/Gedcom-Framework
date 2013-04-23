@@ -17,19 +17,19 @@
  
  @return A new characterSet.
 */
-+(GCCharacterSetAttribute *)characterSet;
++(instancetype)characterSet;
 /** Initializes and returns a characterSet.
 
  @param value The value as a GCValue object.
  @return A new characterSet.
 */
-+(GCCharacterSetAttribute *)characterSetWithValue:(GCValue *)value;
++(instancetype)characterSetWithValue:(GCValue *)value;
 /** Initializes and returns a characterSet.
 
  @param value The value as an NSString.
  @return A new characterSet.
 */
-+(GCCharacterSetAttribute *)characterSetWithGedcomStringValue:(NSString *)value;
++(instancetype)characterSetWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

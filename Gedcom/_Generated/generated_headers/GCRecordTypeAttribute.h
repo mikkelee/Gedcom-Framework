@@ -17,19 +17,19 @@
  
  @return A new recordType.
 */
-+(GCRecordTypeAttribute *)recordType;
++(instancetype)recordType;
 /** Initializes and returns a recordType.
 
  @param value The value as a GCValue object.
  @return A new recordType.
 */
-+(GCRecordTypeAttribute *)recordTypeWithValue:(GCValue *)value;
++(instancetype)recordTypeWithValue:(GCValue *)value;
 /** Initializes and returns a recordType.
 
  @param value The value as an NSString.
  @return A new recordType.
 */
-+(GCRecordTypeAttribute *)recordTypeWithGedcomStringValue:(NSString *)value;
++(instancetype)recordTypeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

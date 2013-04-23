@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCRoleAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a role.
 
  
  @return A new role.
 */
-+(GCRoleAttribute *)role
++(instancetype)role
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new role.
 */
-+(GCRoleAttribute *)roleWithValue:(GCValue *)value
++(instancetype)roleWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new role.
 */
-+(GCRoleAttribute *)roleWithGedcomStringValue:(NSString *)value
++(instancetype)roleWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"role"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

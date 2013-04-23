@@ -17,19 +17,19 @@
  
  @return A new relationshipDescriptor.
 */
-+(GCRelationshipDescriptorAttribute *)relationshipDescriptor;
++(instancetype)relationshipDescriptor;
 /** Initializes and returns a relationshipDescriptor.
 
  @param value The value as a GCValue object.
  @return A new relationshipDescriptor.
 */
-+(GCRelationshipDescriptorAttribute *)relationshipDescriptorWithValue:(GCValue *)value;
++(instancetype)relationshipDescriptorWithValue:(GCValue *)value;
 /** Initializes and returns a relationshipDescriptor.
 
  @param value The value as an NSString.
  @return A new relationshipDescriptor.
 */
-+(GCRelationshipDescriptorAttribute *)relationshipDescriptorWithGedcomStringValue:(NSString *)value;
++(instancetype)relationshipDescriptorWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

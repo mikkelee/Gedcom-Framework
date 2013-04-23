@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSexAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a sex.
 
  
  @return A new sex.
 */
-+(GCSexAttribute *)sex
++(instancetype)sex
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new sex.
 */
-+(GCSexAttribute *)sexWithValue:(GCValue *)value
++(instancetype)sexWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new sex.
 */
-+(GCSexAttribute *)sexWithGedcomStringValue:(NSString *)value
++(instancetype)sexWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"sex"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

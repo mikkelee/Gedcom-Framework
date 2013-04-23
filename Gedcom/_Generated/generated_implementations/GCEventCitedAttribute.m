@@ -12,18 +12,13 @@
 	GCRoleAttribute *_role;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCEventCitedAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a eventCited.
 
  
  @return A new eventCited.
 */
-+(GCEventCitedAttribute *)eventCited
++(instancetype)eventCited
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new eventCited.
 */
-+(GCEventCitedAttribute *)eventCitedWithValue:(GCValue *)value
++(instancetype)eventCitedWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new eventCited.
 */
-+(GCEventCitedAttribute *)eventCitedWithGedcomStringValue:(NSString *)value
++(instancetype)eventCitedWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"eventCited"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

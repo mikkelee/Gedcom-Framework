@@ -24,19 +24,19 @@
  
  @return A new lDSSealingSpouse.
 */
-+(GCLDSSealingSpouseAttribute *)lDSSealingSpouse;
++(instancetype)lDSSealingSpouse;
 /** Initializes and returns a lDSSealingSpouse.
 
  @param value The value as a GCValue object.
  @return A new lDSSealingSpouse.
 */
-+(GCLDSSealingSpouseAttribute *)lDSSealingSpouseWithValue:(GCValue *)value;
++(instancetype)lDSSealingSpouseWithValue:(GCValue *)value;
 /** Initializes and returns a lDSSealingSpouse.
 
  @param value The value as an NSString.
  @return A new lDSSealingSpouse.
 */
-+(GCLDSSealingSpouseAttribute *)lDSSealingSpouseWithGedcomStringValue:(NSString *)value;
++(instancetype)lDSSealingSpouseWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

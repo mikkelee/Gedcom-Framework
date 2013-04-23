@@ -17,19 +17,19 @@
  
  @return A new restrictionNotice.
 */
-+(GCRestrictionNoticeAttribute *)restrictionNotice;
++(instancetype)restrictionNotice;
 /** Initializes and returns a restrictionNotice.
 
  @param value The value as a GCValue object.
  @return A new restrictionNotice.
 */
-+(GCRestrictionNoticeAttribute *)restrictionNoticeWithValue:(GCValue *)value;
++(instancetype)restrictionNoticeWithValue:(GCValue *)value;
 /** Initializes and returns a restrictionNotice.
 
  @param value The value as an NSString.
  @return A new restrictionNotice.
 */
-+(GCRestrictionNoticeAttribute *)restrictionNoticeWithGedcomStringValue:(NSString *)value;
++(instancetype)restrictionNoticeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

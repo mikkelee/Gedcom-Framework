@@ -17,19 +17,19 @@
  
  @return A new ordinanceFlag.
 */
-+(GCOrdinanceFlagAttribute *)ordinanceFlag;
++(instancetype)ordinanceFlag;
 /** Initializes and returns a ordinanceFlag.
 
  @param value The value as a GCValue object.
  @return A new ordinanceFlag.
 */
-+(GCOrdinanceFlagAttribute *)ordinanceFlagWithValue:(GCValue *)value;
++(instancetype)ordinanceFlagWithValue:(GCValue *)value;
 /** Initializes and returns a ordinanceFlag.
 
  @param value The value as an NSString.
  @return A new ordinanceFlag.
 */
-+(GCOrdinanceFlagAttribute *)ordinanceFlagWithGedcomStringValue:(NSString *)value;
++(instancetype)ordinanceFlagWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

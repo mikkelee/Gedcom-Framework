@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSubmitterReferenceRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a submitterReference.
 
  
  @return A new submitterReference.
 */
-+(GCSubmitterReferenceRelationship *)submitterReference
++(instancetype)submitterReference
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"submitterReference"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

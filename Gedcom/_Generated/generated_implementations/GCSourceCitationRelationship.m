@@ -26,24 +26,19 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSourceCitationRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a sourceCitation.
 
  
  @return A new sourceCitation.
 */
-+(GCSourceCitationRelationship *)sourceCitation
++(instancetype)sourceCitation
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"sourceCitation"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -63,15 +58,35 @@
 @dynamic eventCited;
 @dynamic qualityOfData;
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic mutableMultimediaReferences;
-@dynamic multimediaEmbeddeds;
-@dynamic mutableMultimediaEmbeddeds;
+@synthesize multimediaReferences = _multimediaReferences;
+
+- (NSMutableArray *)mutableMultimediaReferences
+{
+	return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+@synthesize multimediaEmbeddeds = _multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

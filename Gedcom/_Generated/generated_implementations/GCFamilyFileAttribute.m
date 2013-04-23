@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCFamilyFileAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a familyFile.
 
  
  @return A new familyFile.
 */
-+(GCFamilyFileAttribute *)familyFile
++(instancetype)familyFile
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new familyFile.
 */
-+(GCFamilyFileAttribute *)familyFileWithValue:(GCValue *)value
++(instancetype)familyFileWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new familyFile.
 */
-+(GCFamilyFileAttribute *)familyFileWithGedcomStringValue:(NSString *)value
++(instancetype)familyFileWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"familyFile"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

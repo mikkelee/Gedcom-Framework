@@ -17,19 +17,19 @@
  
  @return A new placeFormatSpecifier.
 */
-+(GCPlaceFormatSpecifierAttribute *)placeFormatSpecifier;
++(instancetype)placeFormatSpecifier;
 /** Initializes and returns a placeFormatSpecifier.
 
  @param value The value as a GCValue object.
  @return A new placeFormatSpecifier.
 */
-+(GCPlaceFormatSpecifierAttribute *)placeFormatSpecifierWithValue:(GCValue *)value;
++(instancetype)placeFormatSpecifierWithValue:(GCValue *)value;
 /** Initializes and returns a placeFormatSpecifier.
 
  @param value The value as an NSString.
  @return A new placeFormatSpecifier.
 */
-+(GCPlaceFormatSpecifierAttribute *)placeFormatSpecifierWithGedcomStringValue:(NSString *)value;
++(instancetype)placeFormatSpecifierWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// .  NB: required property.

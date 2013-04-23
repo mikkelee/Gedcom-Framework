@@ -23,7 +23,7 @@
     NSMutableArray *_observations;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     
@@ -131,7 +131,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     [indi.mutableProperties addObject:[GCPersonalNameAttribute personalNameWithValue:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]]];
     
@@ -152,7 +152,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     GCProperty *name1 = [GCPersonalNameAttribute personalNameWithValue:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
     GCProperty *name2 = [GCPersonalNameAttribute personalNameWithValue:[GCNamestring valueWithGedcomString:@"Jens /Jensen/"]];
@@ -185,7 +185,7 @@
     
 	GCContext *ctx = [GCContext context];
 	
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     observer.entity = indi;
     
@@ -219,7 +219,7 @@
 
 	GCContext *ctx = [GCContext context];
 	
-    GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+    GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
     indi.gedcomString =
      @"0 @INDI1@ INDI\n"

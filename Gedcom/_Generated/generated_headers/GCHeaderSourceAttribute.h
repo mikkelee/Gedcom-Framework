@@ -20,19 +20,19 @@
  
  @return A new headerSource.
 */
-+(GCHeaderSourceAttribute *)headerSource;
++(instancetype)headerSource;
 /** Initializes and returns a headerSource.
 
  @param value The value as a GCValue object.
  @return A new headerSource.
 */
-+(GCHeaderSourceAttribute *)headerSourceWithValue:(GCValue *)value;
++(instancetype)headerSourceWithValue:(GCValue *)value;
 /** Initializes and returns a headerSource.
 
  @param value The value as an NSString.
  @return A new headerSource.
 */
-+(GCHeaderSourceAttribute *)headerSourceWithGedcomStringValue:(NSString *)value;
++(instancetype)headerSourceWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

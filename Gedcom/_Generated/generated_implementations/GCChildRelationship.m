@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCChildRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a child.
 
  
  @return A new child.
 */
-+(GCChildRelationship *)child
++(instancetype)child
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"child"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

@@ -17,19 +17,19 @@
  
  @return A new binaryObject.
 */
-+(GCBinaryObjectAttribute *)binaryObject;
++(instancetype)binaryObject;
 /** Initializes and returns a binaryObject.
 
  @param value The value as a GCValue object.
  @return A new binaryObject.
 */
-+(GCBinaryObjectAttribute *)binaryObjectWithValue:(GCValue *)value;
++(instancetype)binaryObjectWithValue:(GCValue *)value;
 /** Initializes and returns a binaryObject.
 
  @param value The value as an NSString.
  @return A new binaryObject.
 */
-+(GCBinaryObjectAttribute *)binaryObjectWithGedcomStringValue:(NSString *)value;
++(instancetype)binaryObjectWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

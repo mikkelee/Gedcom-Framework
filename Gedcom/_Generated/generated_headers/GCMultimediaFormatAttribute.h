@@ -17,19 +17,19 @@
  
  @return A new multimediaFormat.
 */
-+(GCMultimediaFormatAttribute *)multimediaFormat;
++(instancetype)multimediaFormat;
 /** Initializes and returns a multimediaFormat.
 
  @param value The value as a GCValue object.
  @return A new multimediaFormat.
 */
-+(GCMultimediaFormatAttribute *)multimediaFormatWithValue:(GCValue *)value;
++(instancetype)multimediaFormatWithValue:(GCValue *)value;
 /** Initializes and returns a multimediaFormat.
 
  @param value The value as an NSString.
  @return A new multimediaFormat.
 */
-+(GCMultimediaFormatAttribute *)multimediaFormatWithGedcomStringValue:(NSString *)value;
++(instancetype)multimediaFormatWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

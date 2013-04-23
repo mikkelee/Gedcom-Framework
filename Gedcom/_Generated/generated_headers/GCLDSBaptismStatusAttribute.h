@@ -17,19 +17,19 @@
  
  @return A new lDSBaptismStatus.
 */
-+(GCLDSBaptismStatusAttribute *)lDSBaptismStatus;
++(instancetype)lDSBaptismStatus;
 /** Initializes and returns a lDSBaptismStatus.
 
  @param value The value as a GCValue object.
  @return A new lDSBaptismStatus.
 */
-+(GCLDSBaptismStatusAttribute *)lDSBaptismStatusWithValue:(GCValue *)value;
++(instancetype)lDSBaptismStatusWithValue:(GCValue *)value;
 /** Initializes and returns a lDSBaptismStatus.
 
  @param value The value as an NSString.
  @return A new lDSBaptismStatus.
 */
-+(GCLDSBaptismStatusAttribute *)lDSBaptismStatusWithGedcomStringValue:(NSString *)value;
++(instancetype)lDSBaptismStatusWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

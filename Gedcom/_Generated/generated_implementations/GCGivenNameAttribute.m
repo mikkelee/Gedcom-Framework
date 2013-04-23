@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCGivenNameAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a givenName.
 
  
  @return A new givenName.
 */
-+(GCGivenNameAttribute *)givenName
++(instancetype)givenName
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new givenName.
 */
-+(GCGivenNameAttribute *)givenNameWithValue:(GCValue *)value
++(instancetype)givenNameWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new givenName.
 */
-+(GCGivenNameAttribute *)givenNameWithGedcomStringValue:(NSString *)value
++(instancetype)givenNameWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"givenName"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

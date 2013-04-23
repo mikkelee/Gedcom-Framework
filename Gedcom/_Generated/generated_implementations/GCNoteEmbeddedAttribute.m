@@ -6,17 +6,10 @@
 
 #import "GCObject_internal.h"
 
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
+
 
 @implementation GCNoteEmbeddedAttribute {
-	NSMutableArray *_sourceCitations;
-	NSMutableArray *_sourceEmbeddeds;
-}
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCNoteEmbeddedAttribute"];
 }
 
 // Methods:
@@ -25,7 +18,7 @@
  
  @return A new noteEmbedded.
 */
-+(GCNoteEmbeddedAttribute *)noteEmbedded
++(instancetype)noteEmbedded
 {
 	return [[self alloc] init];
 }
@@ -34,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new noteEmbedded.
 */
-+(GCNoteEmbeddedAttribute *)noteEmbeddedWithValue:(GCValue *)value
++(instancetype)noteEmbeddedWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -43,18 +36,17 @@
  @param value The value as an NSString.
  @return A new noteEmbedded.
 */
-+(GCNoteEmbeddedAttribute *)noteEmbeddedWithGedcomStringValue:(NSString *)value
++(instancetype)noteEmbeddedWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"noteEmbedded"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
-		_sourceCitations = [NSMutableArray array];
-		_sourceEmbeddeds = [NSMutableArray array];
+
 	}
 	
 	return self;
@@ -62,11 +54,7 @@
 
 
 // Properties:
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic mutableSourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+
 
 @end
 

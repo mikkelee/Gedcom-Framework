@@ -20,18 +20,13 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCMultimediaEmbeddedAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a multimediaEmbedded.
 
  
  @return A new multimediaEmbedded.
 */
-+(GCMultimediaEmbeddedAttribute *)multimediaEmbedded
++(instancetype)multimediaEmbedded
 {
 	return [[self alloc] init];
 }
@@ -40,7 +35,7 @@
  @param value The value as a GCValue object.
  @return A new multimediaEmbedded.
 */
-+(GCMultimediaEmbeddedAttribute *)multimediaEmbeddedWithValue:(GCValue *)value
++(instancetype)multimediaEmbeddedWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -49,13 +44,13 @@
  @param value The value as an NSString.
  @return A new multimediaEmbedded.
 */
-+(GCMultimediaEmbeddedAttribute *)multimediaEmbeddedWithGedcomStringValue:(NSString *)value
++(instancetype)multimediaEmbeddedWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"multimediaEmbedded"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -72,10 +67,20 @@
 @dynamic title;
 @dynamic file;
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCResponsibleAgencyAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a responsibleAgency.
 
  
  @return A new responsibleAgency.
 */
-+(GCResponsibleAgencyAttribute *)responsibleAgency
++(instancetype)responsibleAgency
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new responsibleAgency.
 */
-+(GCResponsibleAgencyAttribute *)responsibleAgencyWithValue:(GCValue *)value
++(instancetype)responsibleAgencyWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new responsibleAgency.
 */
-+(GCResponsibleAgencyAttribute *)responsibleAgencyWithGedcomStringValue:(NSString *)value
++(instancetype)responsibleAgencyWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"responsibleAgency"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

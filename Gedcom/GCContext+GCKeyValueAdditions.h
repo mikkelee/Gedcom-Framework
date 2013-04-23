@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCContext.h"
+#import "GCContext_internal.h"
 
 #pragma mark -
 
@@ -19,7 +19,7 @@
 @property GCHeaderEntity *header;
 
 /// An optional submission entity.
-@property GCSubmissionEntity *submission;
+@property GCSubmissionRecord *submission;
 
 /// An ordered collection of the receiver's families.
 @property (readonly) NSArray *families;

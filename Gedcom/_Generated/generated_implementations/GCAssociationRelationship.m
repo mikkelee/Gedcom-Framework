@@ -22,24 +22,19 @@
 	NSMutableArray *_sourceEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAssociationRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a association.
 
  
  @return A new association.
 */
-+(GCAssociationRelationship *)association
++(instancetype)association
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"association"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -57,15 +52,35 @@
 @dynamic recordType;
 @dynamic relationshipDescriptor;
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic mutableSourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+@synthesize sourceCitations = _sourceCitations;
+
+- (NSMutableArray *)mutableSourceCitations
+{
+	return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+@synthesize sourceEmbeddeds = _sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
 
 @end
 

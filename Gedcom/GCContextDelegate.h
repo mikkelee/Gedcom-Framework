@@ -30,7 +30,7 @@
  @param context The context that sent the message. 
  @param entity The entity.
  */
-- (void)context:(GCContext *)context didReceiveActionForEntity:(GCEntity *)entity;
+- (void)context:(GCContext *)context didReceiveActionForRecord:(GCEntity *)entity;
 
 /** Will be called when a custom tag is encountered in a context.
  

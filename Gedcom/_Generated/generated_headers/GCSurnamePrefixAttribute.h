@@ -17,19 +17,19 @@
  
  @return A new surnamePrefix.
 */
-+(GCSurnamePrefixAttribute *)surnamePrefix;
++(instancetype)surnamePrefix;
 /** Initializes and returns a surnamePrefix.
 
  @param value The value as a GCValue object.
  @return A new surnamePrefix.
 */
-+(GCSurnamePrefixAttribute *)surnamePrefixWithValue:(GCValue *)value;
++(instancetype)surnamePrefixWithValue:(GCValue *)value;
 /** Initializes and returns a surnamePrefix.
 
  @param value The value as an NSString.
  @return A new surnamePrefix.
 */
-+(GCSurnamePrefixAttribute *)surnamePrefixWithGedcomStringValue:(NSString *)value;
++(instancetype)surnamePrefixWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCCountryAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a country.
 
  
  @return A new country.
 */
-+(GCCountryAttribute *)country
++(instancetype)country
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new country.
 */
-+(GCCountryAttribute *)countryWithValue:(GCValue *)value
++(instancetype)countryWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new country.
 */
-+(GCCountryAttribute *)countryWithGedcomStringValue:(NSString *)value
++(instancetype)countryWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"country"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

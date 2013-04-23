@@ -24,7 +24,7 @@
  
  @return A new sourceCitation.
 */
-+(GCSourceCitationRelationship *)sourceCitation;
++(instancetype)sourceCitation;
 
 // Properties:
 /// . 

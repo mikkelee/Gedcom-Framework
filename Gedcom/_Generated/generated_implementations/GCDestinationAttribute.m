@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCDestinationAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a destination.
 
  
  @return A new destination.
 */
-+(GCDestinationAttribute *)destination
++(instancetype)destination
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new destination.
 */
-+(GCDestinationAttribute *)destinationWithValue:(GCValue *)value
++(instancetype)destinationWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new destination.
 */
-+(GCDestinationAttribute *)destinationWithGedcomStringValue:(NSString *)value
++(instancetype)destinationWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"destination"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

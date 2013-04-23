@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAncestorInterestRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a ancestorInterest.
 
  
  @return A new ancestorInterest.
 */
-+(GCAncestorInterestRelationship *)ancestorInterest
++(instancetype)ancestorInterest
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"ancestorInterest"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

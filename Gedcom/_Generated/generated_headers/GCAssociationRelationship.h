@@ -22,7 +22,7 @@
  
  @return A new association.
 */
-+(GCAssociationRelationship *)association;
++(instancetype)association;
 
 // Properties:
 /// .  NB: required property.

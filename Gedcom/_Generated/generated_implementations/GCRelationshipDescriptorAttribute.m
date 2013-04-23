@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCRelationshipDescriptorAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a relationshipDescriptor.
 
  
  @return A new relationshipDescriptor.
 */
-+(GCRelationshipDescriptorAttribute *)relationshipDescriptor
++(instancetype)relationshipDescriptor
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new relationshipDescriptor.
 */
-+(GCRelationshipDescriptorAttribute *)relationshipDescriptorWithValue:(GCValue *)value
++(instancetype)relationshipDescriptorWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new relationshipDescriptor.
 */
-+(GCRelationshipDescriptorAttribute *)relationshipDescriptorWithGedcomStringValue:(NSString *)value
++(instancetype)relationshipDescriptorWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"relationshipDescriptor"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

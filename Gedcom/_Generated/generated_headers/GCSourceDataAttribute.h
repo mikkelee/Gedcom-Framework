@@ -20,19 +20,19 @@
  
  @return A new sourceData.
 */
-+(GCSourceDataAttribute *)sourceData;
++(instancetype)sourceData;
 /** Initializes and returns a sourceData.
 
  @param value The value as a GCValue object.
  @return A new sourceData.
 */
-+(GCSourceDataAttribute *)sourceDataWithValue:(GCValue *)value;
++(instancetype)sourceDataWithValue:(GCValue *)value;
 /** Initializes and returns a sourceData.
 
  @param value The value as an NSString.
  @return A new sourceData.
 */
-+(GCSourceDataAttribute *)sourceDataWithGedcomStringValue:(NSString *)value;
++(instancetype)sourceDataWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . GCEventsRecordedAttribute

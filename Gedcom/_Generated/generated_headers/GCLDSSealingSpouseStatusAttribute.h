@@ -17,19 +17,19 @@
  
  @return A new lDSSealingSpouseStatus.
 */
-+(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatus;
++(instancetype)lDSSealingSpouseStatus;
 /** Initializes and returns a lDSSealingSpouseStatus.
 
  @param value The value as a GCValue object.
  @return A new lDSSealingSpouseStatus.
 */
-+(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatusWithValue:(GCValue *)value;
++(instancetype)lDSSealingSpouseStatusWithValue:(GCValue *)value;
 /** Initializes and returns a lDSSealingSpouseStatus.
 
  @param value The value as an NSString.
  @return A new lDSSealingSpouseStatus.
 */
-+(GCLDSSealingSpouseStatusAttribute *)lDSSealingSpouseStatusWithGedcomStringValue:(NSString *)value;
++(instancetype)lDSSealingSpouseStatusWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -17,19 +17,19 @@
  
  @return A new qualityOfData.
 */
-+(GCQualityOfDataAttribute *)qualityOfData;
++(instancetype)qualityOfData;
 /** Initializes and returns a qualityOfData.
 
  @param value The value as a GCValue object.
  @return A new qualityOfData.
 */
-+(GCQualityOfDataAttribute *)qualityOfDataWithValue:(GCValue *)value;
++(instancetype)qualityOfDataWithValue:(GCValue *)value;
 /** Initializes and returns a qualityOfData.
 
  @param value The value as an NSString.
  @return A new qualityOfData.
 */
-+(GCQualityOfDataAttribute *)qualityOfDataWithGedcomStringValue:(NSString *)value;
++(instancetype)qualityOfDataWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCGedcomFormatAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a gedcomFormat.
 
  
  @return A new gedcomFormat.
 */
-+(GCGedcomFormatAttribute *)gedcomFormat
++(instancetype)gedcomFormat
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new gedcomFormat.
 */
-+(GCGedcomFormatAttribute *)gedcomFormatWithValue:(GCValue *)value
++(instancetype)gedcomFormatWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new gedcomFormat.
 */
-+(GCGedcomFormatAttribute *)gedcomFormatWithGedcomStringValue:(NSString *)value
++(instancetype)gedcomFormatWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"gedcomFormat"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

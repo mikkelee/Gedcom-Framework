@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAliasRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a alias.
 
  
  @return A new alias.
 */
-+(GCAliasRelationship *)alias
++(instancetype)alias
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"alias"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

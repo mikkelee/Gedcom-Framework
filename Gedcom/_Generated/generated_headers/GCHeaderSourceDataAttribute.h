@@ -18,19 +18,19 @@
  
  @return A new headerSourceData.
 */
-+(GCHeaderSourceDataAttribute *)headerSourceData;
++(instancetype)headerSourceData;
 /** Initializes and returns a headerSourceData.
 
  @param value The value as a GCValue object.
  @return A new headerSourceData.
 */
-+(GCHeaderSourceDataAttribute *)headerSourceDataWithValue:(GCValue *)value;
++(instancetype)headerSourceDataWithValue:(GCValue *)value;
 /** Initializes and returns a headerSourceData.
 
  @param value The value as an NSString.
  @return A new headerSourceData.
 */
-+(GCHeaderSourceDataAttribute *)headerSourceDataWithGedcomStringValue:(NSString *)value;
++(instancetype)headerSourceDataWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

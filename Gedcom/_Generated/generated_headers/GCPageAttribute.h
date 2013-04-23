@@ -17,19 +17,19 @@
  
  @return A new page.
 */
-+(GCPageAttribute *)page;
++(instancetype)page;
 /** Initializes and returns a page.
 
  @param value The value as a GCValue object.
  @return A new page.
 */
-+(GCPageAttribute *)pageWithValue:(GCValue *)value;
++(instancetype)pageWithValue:(GCValue *)value;
 /** Initializes and returns a page.
 
  @param value The value as an NSString.
  @return A new page.
 */
-+(GCPageAttribute *)pageWithGedcomStringValue:(NSString *)value;
++(instancetype)pageWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

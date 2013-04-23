@@ -10,11 +10,15 @@
 
 @class GCTag;
 @class GCObject;
+@class GCRecord;
+@class GCEntity;
+@class GCHeaderEntity;
+@class GCSubmissionRecord;
 
 @interface GCContext () {
 @protected
     GCHeaderEntity  *_header;
-    GCSubmissionEntity *_submission;
+    GCSubmissionRecord *_submission;
     
     NSMutableArray *_families;
     NSMutableArray *_individuals;
@@ -29,13 +33,13 @@
     __weak id<NSObject, GCContextDelegate> _delegate;
 }
 
-- (NSString *)_xrefForEntity:(GCEntity *)entity;
+- (NSString *)_xrefForRecord:(GCRecord *)record;
 
-- (GCEntity *)_entityForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass;
+- (GCRecord *)_recordForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass;
 
-- (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity;
+- (void)_setXref:(NSString *)xref forRecord:(GCRecord *)record;
 
-- (void)_activateEntity:(GCEntity *)entity;
+- (void)_activateRecord:(GCRecord *)record;
 
 - (void)_defer:(void (^)())block;
 

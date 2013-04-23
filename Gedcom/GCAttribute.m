@@ -64,7 +64,7 @@
 
 #pragma mark NSCoding conformance
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super initWithCoder:aDecoder];
     
@@ -117,7 +117,7 @@
 
 @implementation GCAttribute (GCConvenienceMethods)
 
-- (id)initWithValue:(GCValue *)value
+- (instancetype)initWithValue:(GCValue *)value
 {
     self = [self init];
     
@@ -128,7 +128,7 @@
     return self;
 }
 
-- (id)initWithGedcomStringValue:(NSString *)value
+- (instancetype)initWithGedcomStringValue:(NSString *)value
 {
     self = [self init];
     

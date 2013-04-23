@@ -14,18 +14,13 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCPedigreeAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a pedigree.
 
  
  @return A new pedigree.
 */
-+(GCPedigreeAttribute *)pedigree
++(instancetype)pedigree
 {
 	return [[self alloc] init];
 }
@@ -34,7 +29,7 @@
  @param value The value as a GCValue object.
  @return A new pedigree.
 */
-+(GCPedigreeAttribute *)pedigreeWithValue:(GCValue *)value
++(instancetype)pedigreeWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -43,13 +38,13 @@
  @param value The value as an NSString.
  @return A new pedigree.
 */
-+(GCPedigreeAttribute *)pedigreeWithGedcomStringValue:(NSString *)value
++(instancetype)pedigreeWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"pedigree"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -63,10 +58,20 @@
 
 // Properties:
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

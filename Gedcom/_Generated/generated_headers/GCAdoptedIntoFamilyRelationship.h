@@ -17,7 +17,7 @@
  
  @return A new adoptedIntoFamily.
 */
-+(GCAdoptedIntoFamilyRelationship *)adoptedIntoFamily;
++(instancetype)adoptedIntoFamily;
 
 // Properties:
 /// . 

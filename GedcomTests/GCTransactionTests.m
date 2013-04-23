@@ -21,7 +21,7 @@
 {
 	GCContext *ctx = [GCContext context];
 	
-	GCIndividualEntity *indi = [GCIndividualEntity individualInContext:ctx];
+	GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
 	[indi addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[indi addAttributeWithType:@"sex" value:[GCGender maleGender]];
     

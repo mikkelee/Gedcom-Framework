@@ -12,18 +12,13 @@
 	GCAgeAttribute *_age;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCWifeDetailAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a wifeDetail.
 
  
  @return A new wifeDetail.
 */
-+(GCWifeDetailAttribute *)wifeDetail
++(instancetype)wifeDetail
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new wifeDetail.
 */
-+(GCWifeDetailAttribute *)wifeDetailWithValue:(GCValue *)value
++(instancetype)wifeDetailWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new wifeDetail.
 */
-+(GCWifeDetailAttribute *)wifeDetailWithGedcomStringValue:(NSString *)value
++(instancetype)wifeDetailWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"wifeDetail"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

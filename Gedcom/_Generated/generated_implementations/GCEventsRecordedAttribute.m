@@ -14,18 +14,13 @@
 	GCPlaceAttribute *_place;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCEventsRecordedAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a eventsRecorded.
 
  
  @return A new eventsRecorded.
 */
-+(GCEventsRecordedAttribute *)eventsRecorded
++(instancetype)eventsRecorded
 {
 	return [[self alloc] init];
 }
@@ -34,7 +29,7 @@
  @param value The value as a GCValue object.
  @return A new eventsRecorded.
 */
-+(GCEventsRecordedAttribute *)eventsRecordedWithValue:(GCValue *)value
++(instancetype)eventsRecordedWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -43,13 +38,13 @@
  @param value The value as an NSString.
  @return A new eventsRecorded.
 */
-+(GCEventsRecordedAttribute *)eventsRecordedWithGedcomStringValue:(NSString *)value
++(instancetype)eventsRecordedWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"eventsRecorded"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

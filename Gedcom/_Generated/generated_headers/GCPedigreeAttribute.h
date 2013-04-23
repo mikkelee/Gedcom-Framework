@@ -18,19 +18,19 @@
  
  @return A new pedigree.
 */
-+(GCPedigreeAttribute *)pedigree;
++(instancetype)pedigree;
 /** Initializes and returns a pedigree.
 
  @param value The value as a GCValue object.
  @return A new pedigree.
 */
-+(GCPedigreeAttribute *)pedigreeWithValue:(GCValue *)value;
++(instancetype)pedigreeWithValue:(GCValue *)value;
 /** Initializes and returns a pedigree.
 
  @param value The value as an NSString.
  @return A new pedigree.
 */
-+(GCPedigreeAttribute *)pedigreeWithGedcomStringValue:(NSString *)value;
++(instancetype)pedigreeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// Property for accessing the following properties

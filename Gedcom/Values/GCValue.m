@@ -29,7 +29,7 @@
 
 #pragma mark NSCoding conformance
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     return [[self class] valueWithGedcomString:[aDecoder decodeObjectForKey:@"gedcomString"]];
 }

@@ -17,7 +17,7 @@
  
  @return A new submissionReference.
 */
-+(GCSubmissionReferenceRelationship *)submissionReference;
++(instancetype)submissionReference;
 
 // Properties:
 

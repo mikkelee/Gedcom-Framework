@@ -21,19 +21,19 @@
  
  @return A new multimediaEmbedded.
 */
-+(GCMultimediaEmbeddedAttribute *)multimediaEmbedded;
++(instancetype)multimediaEmbedded;
 /** Initializes and returns a multimediaEmbedded.
 
  @param value The value as a GCValue object.
  @return A new multimediaEmbedded.
 */
-+(GCMultimediaEmbeddedAttribute *)multimediaEmbeddedWithValue:(GCValue *)value;
++(instancetype)multimediaEmbeddedWithValue:(GCValue *)value;
 /** Initializes and returns a multimediaEmbedded.
 
  @param value The value as an NSString.
  @return A new multimediaEmbedded.
 */
-+(GCMultimediaEmbeddedAttribute *)multimediaEmbeddedWithGedcomStringValue:(NSString *)value;
++(instancetype)multimediaEmbeddedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// .  NB: required property.

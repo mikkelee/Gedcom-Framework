@@ -17,7 +17,7 @@
  
  @return A new child.
 */
-+(GCChildRelationship *)child;
++(instancetype)child;
 
 // Properties:
 

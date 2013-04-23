@@ -21,7 +21,7 @@ __strong static NSDictionary *_boolStore;
                     @"": [[GCBool alloc] initWithGedcomString:nil displayString:@"Undecided"]};
 }
 
-- (id)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
+- (instancetype)initWithGedcomString:(NSString *)gedcomString displayString:(NSString *)displayString
 {
     self = [super init];
     

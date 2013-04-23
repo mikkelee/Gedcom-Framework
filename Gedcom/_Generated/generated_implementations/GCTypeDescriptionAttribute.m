@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCTypeDescriptionAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a typeDescription.
 
  
  @return A new typeDescription.
 */
-+(GCTypeDescriptionAttribute *)typeDescription
++(instancetype)typeDescription
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new typeDescription.
 */
-+(GCTypeDescriptionAttribute *)typeDescriptionWithValue:(GCValue *)value
++(instancetype)typeDescriptionWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new typeDescription.
 */
-+(GCTypeDescriptionAttribute *)typeDescriptionWithGedcomStringValue:(NSString *)value
++(instancetype)typeDescriptionWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"typeDescription"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

@@ -12,24 +12,19 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCMultimediaReferenceRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a multimediaReference.
 
  
  @return A new multimediaReference.
 */
-+(GCMultimediaReferenceRelationship *)multimediaReference
++(instancetype)multimediaReference
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"multimediaReference"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

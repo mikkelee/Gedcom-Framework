@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAuthorAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a author.
 
  
  @return A new author.
 */
-+(GCAuthorAttribute *)author
++(instancetype)author
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new author.
 */
-+(GCAuthorAttribute *)authorWithValue:(GCValue *)value
++(instancetype)authorWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new author.
 */
-+(GCAuthorAttribute *)authorWithGedcomStringValue:(NSString *)value
++(instancetype)authorWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"author"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

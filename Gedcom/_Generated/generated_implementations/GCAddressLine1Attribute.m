@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAddressLine1Attribute"];
-}
-
 // Methods:
 /** Initializes and returns a addressLine1.
 
  
  @return A new addressLine1.
 */
-+(GCAddressLine1Attribute *)addressLine1
++(instancetype)addressLine1
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new addressLine1.
 */
-+(GCAddressLine1Attribute *)addressLine1WithValue:(GCValue *)value
++(instancetype)addressLine1WithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new addressLine1.
 */
-+(GCAddressLine1Attribute *)addressLine1WithGedcomStringValue:(NSString *)value
++(instancetype)addressLine1WithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"addressLine1"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

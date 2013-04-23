@@ -17,19 +17,19 @@
  
  @return A new abbreviation.
 */
-+(GCAbbreviationAttribute *)abbreviation;
++(instancetype)abbreviation;
 /** Initializes and returns a abbreviation.
 
  @param value The value as a GCValue object.
  @return A new abbreviation.
 */
-+(GCAbbreviationAttribute *)abbreviationWithValue:(GCValue *)value;
++(instancetype)abbreviationWithValue:(GCValue *)value;
 /** Initializes and returns a abbreviation.
 
  @param value The value as an NSString.
  @return A new abbreviation.
 */
-+(GCAbbreviationAttribute *)abbreviationWithGedcomStringValue:(NSString *)value;
++(instancetype)abbreviationWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

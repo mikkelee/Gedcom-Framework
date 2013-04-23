@@ -17,19 +17,19 @@
  
  @return A new postalCode.
 */
-+(GCPostalCodeAttribute *)postalCode;
++(instancetype)postalCode;
 /** Initializes and returns a postalCode.
 
  @param value The value as a GCValue object.
  @return A new postalCode.
 */
-+(GCPostalCodeAttribute *)postalCodeWithValue:(GCValue *)value;
++(instancetype)postalCodeWithValue:(GCValue *)value;
 /** Initializes and returns a postalCode.
 
  @param value The value as an NSString.
  @return A new postalCode.
 */
-+(GCPostalCodeAttribute *)postalCodeWithGedcomStringValue:(NSString *)value;
++(instancetype)postalCodeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

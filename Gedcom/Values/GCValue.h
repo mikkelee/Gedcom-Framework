@@ -114,7 +114,7 @@
  @param elements A collection of elements.
  @return A new list.
  */
-- (id)initWithElements:(NSArray *)elements;
+- (instancetype)initWithElements:(NSArray *)elements;
 
 /// Returns an array of the elements in the list.
 @property (readonly) NSArray *elements;

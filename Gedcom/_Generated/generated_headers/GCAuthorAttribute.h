@@ -17,19 +17,19 @@
  
  @return A new author.
 */
-+(GCAuthorAttribute *)author;
++(instancetype)author;
 /** Initializes and returns a author.
 
  @param value The value as a GCValue object.
  @return A new author.
 */
-+(GCAuthorAttribute *)authorWithValue:(GCValue *)value;
++(instancetype)authorWithValue:(GCValue *)value;
 /** Initializes and returns a author.
 
  @param value The value as an NSString.
  @return A new author.
 */
-+(GCAuthorAttribute *)authorWithGedcomStringValue:(NSString *)value;
++(instancetype)authorWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -17,19 +17,19 @@
  
  @return A new callNumber.
 */
-+(GCCallNumberAttribute *)callNumber;
++(instancetype)callNumber;
 /** Initializes and returns a callNumber.
 
  @param value The value as a GCValue object.
  @return A new callNumber.
 */
-+(GCCallNumberAttribute *)callNumberWithValue:(GCValue *)value;
++(instancetype)callNumberWithValue:(GCValue *)value;
 /** Initializes and returns a callNumber.
 
  @param value The value as an NSString.
  @return A new callNumber.
 */
-+(GCCallNumberAttribute *)callNumberWithGedcomStringValue:(NSString *)value;
++(instancetype)callNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

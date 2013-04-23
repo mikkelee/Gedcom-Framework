@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSurnameAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a surname.
 
  
  @return A new surname.
 */
-+(GCSurnameAttribute *)surname
++(instancetype)surname
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new surname.
 */
-+(GCSurnameAttribute *)surnameWithValue:(GCValue *)value
++(instancetype)surnameWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new surname.
 */
-+(GCSurnameAttribute *)surnameWithGedcomStringValue:(NSString *)value
++(instancetype)surnameWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"surname"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

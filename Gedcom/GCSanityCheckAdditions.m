@@ -1,15 +1,16 @@
 //
-//  GCObject+GCSanityCheckAdditions.m
+//  GCSanityCheckAdditions.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 11/10/12.
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCObject+GCSanityCheckAdditions.h"
+#import "GCSanityCheckAdditions.h"
 #import "GCContext+GCKeyValueAdditions.h"
 
-#import "GCIndividualEntity.h"
+#import "GCRecord.h"
+#import "GCIndividualRecord.h"
 #import "GedcomErrors.h"
 
 #import "GCValue.h"
@@ -47,7 +48,7 @@
 
 @end
 
-@implementation GCIndividualEntity (GCSanityCheckAdditions)
+@implementation GCIndividualRecord (GCSanityCheckAdditions)
 
 - (BOOL)sanityCheck:(NSError **)outError
 {

@@ -17,19 +17,19 @@
  
  @return A new surname.
 */
-+(GCSurnameAttribute *)surname;
++(instancetype)surname;
 /** Initializes and returns a surname.
 
  @param value The value as a GCValue object.
  @return A new surname.
 */
-+(GCSurnameAttribute *)surnameWithValue:(GCValue *)value;
++(instancetype)surnameWithValue:(GCValue *)value;
 /** Initializes and returns a surname.
 
  @param value The value as an NSString.
  @return A new surname.
 */
-+(GCSurnameAttribute *)surnameWithGedcomStringValue:(NSString *)value;
++(instancetype)surnameWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

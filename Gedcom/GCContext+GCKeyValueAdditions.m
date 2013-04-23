@@ -8,19 +8,18 @@
 
 #import "GCContext+GCKeyValueAdditions.h"
 
-#import "GCContext_internal.h"
-
 #import "GCObject+GCConvenienceAdditions.h"
 
+#import "GCRecord.h"
 #import "GCHeaderEntity.h"
-#import "GCSubmissionEntity.h"
-#import "GCFamilyEntity.h"
-#import "GCIndividualEntity.h"
-#import "GCMultimediaEntity.h"
-#import "GCNoteEntity.h"
-#import "GCRepositoryEntity.h"
-#import "GCSourceEntity.h"
-#import "GCSubmitterEntity.h"
+#import "GCSubmissionRecord.h"
+#import "GCFamilyRecord.h"
+#import "GCIndividualRecord.h"
+#import "GCMultimediaRecord.h"
+#import "GCNoteRecord.h"
+#import "GCRepositoryRecord.h"
+#import "GCSourceRecord.h"
+#import "GCSubmitterRecord.h"
 
 #import "GCContextDelegate.h"
 
@@ -51,7 +50,7 @@ __strong static NSArray *_rootKeys = nil;
     return _header;
 }
 
-- (void)setSubmission:(GCSubmissionEntity *)submission
+- (void)setSubmission:(GCSubmissionRecord *)submission
 {
     if (_submission == submission) {
         return;
@@ -63,7 +62,7 @@ __strong static NSArray *_rootKeys = nil;
     _submission = submission;
 }
 
-- (GCSubmissionEntity *)submission
+- (GCSubmissionRecord *)submission
 {
     return _submission;
 }
@@ -149,8 +148,8 @@ __strong static NSArray *_rootKeys = nil;
     
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         self.header = (GCHeaderEntity *)entity;
-    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
-        self.submission = (GCSubmissionEntity *)entity;
+    } else if ([entity isKindOfClass:[GCSubmissionRecord class]]) {
+        self.submission = (GCSubmissionRecord *)entity;
     } else  {
         @synchronized (self) {
             if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
@@ -190,7 +189,7 @@ __strong static NSArray *_rootKeys = nil;
         if (self.header == entity) {
             self.header = nil;
         }
-    } else if ([entity isKindOfClass:[GCSubmissionEntity class]]) {
+    } else if ([entity isKindOfClass:[GCSubmissionRecord class]]) {
         if (self.submission == entity) {
             self.submission = nil;
         }
@@ -233,7 +232,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inFamiliesAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCFamilyEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCFamilyRecord class]]);
     if (obj.context == self) {
         return;
     }
@@ -261,7 +260,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inIndividualsAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCIndividualEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCIndividualRecord class]]);
     if (obj.context == self) {
         return;
     }
@@ -289,7 +288,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inMultimediasAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCMultimediaEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCMultimediaRecord class]]);
     if (obj.context == self) {
         return;
     }
@@ -317,7 +316,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inNotesAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCNoteEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCNoteRecord class]]);
     if (obj.context == self) {
         return;
     }
@@ -345,7 +344,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inRepositoriesAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCRepositoryEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCRepositoryRecord class]]);
     if (obj.context == self) {
         return;
     }
@@ -373,7 +372,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inSourcesAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCSourceEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCSourceRecord class]]);
     if (obj.context == self) {
         return;
     }
@@ -401,7 +400,7 @@ __strong static NSArray *_rootKeys = nil;
 }
 
 - (void)insertObject:(GCEntity *)obj inSubmittersAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCSubmitterEntity class]]);
+	NSParameterAssert([obj isKindOfClass:[GCSubmitterRecord class]]);
     if (obj.context == self) {
         return;
     }

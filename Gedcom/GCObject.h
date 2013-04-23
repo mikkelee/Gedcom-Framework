@@ -68,15 +68,15 @@
 /// @name Accessing properties
 
 /// The type of the receiver.
-@property (readonly) NSString *type;
+@property (nonatomic, readonly) NSString *type;
 
 /// The localized type of the receiver.
 @property (nonatomic, readonly) NSString *localizedType;
 
 /// The GCTag corresponding to the receiver's type.
-@property (readonly) GCTag *gedTag;
+@property (nonatomic, readonly) GCTag *gedTag;
 
-/// The root object of a given tree of GCObjects. Will usually be a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
+/// The root object of a given tree of GCObjects. Will usually be a GCRecord or a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
 @property (nonatomic, readonly) GCObject *rootObject;
 
 /// The context associated with the receiver. Properties will forward the request to their describedObject.
@@ -84,7 +84,7 @@
 
 /** The value of the receiver appropiate for displaying in the user interface.
  
- For entities, it will be their xref; for attributes, their value; and for relationships, the target's xref.
+ For records, it will be their xref; for attributes, their value; and for relationships, the target's xref.
  
  */
 @property (nonatomic, readonly) NSString *displayValue;

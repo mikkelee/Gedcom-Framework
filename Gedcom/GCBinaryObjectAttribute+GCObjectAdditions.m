@@ -8,6 +8,8 @@
 
 #import "GCBinaryObjectAttribute+GCObjectAdditions.h"
 
+#import "GCValue.h"
+
 #import "NSData+Base64.h"
 
 @implementation GCBinaryObjectAttribute (GCObjectAdditions)

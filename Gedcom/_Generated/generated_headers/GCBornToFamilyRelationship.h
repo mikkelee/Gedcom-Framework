@@ -17,7 +17,7 @@
  
  @return A new bornToFamily.
 */
-+(GCBornToFamilyRelationship *)bornToFamily;
++(instancetype)bornToFamily;
 
 // Properties:
 

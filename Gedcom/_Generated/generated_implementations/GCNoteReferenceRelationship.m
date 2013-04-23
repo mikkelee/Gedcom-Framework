@@ -6,17 +6,10 @@
 
 #import "GCObject_internal.h"
 
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
+
 
 @implementation GCNoteReferenceRelationship {
-	NSMutableArray *_sourceCitations;
-	NSMutableArray *_sourceEmbeddeds;
-}
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCNoteReferenceRelationship"];
 }
 
 // Methods:
@@ -25,18 +18,17 @@
  
  @return A new noteReference.
 */
-+(GCNoteReferenceRelationship *)noteReference
++(instancetype)noteReference
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"noteReference"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
-		_sourceCitations = [NSMutableArray array];
-		_sourceEmbeddeds = [NSMutableArray array];
+
 	}
 	
 	return self;
@@ -44,11 +36,7 @@
 
 
 // Properties:
-@dynamic sources;
-@dynamic sourceCitations;
-@dynamic mutableSourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+
 
 @end
 

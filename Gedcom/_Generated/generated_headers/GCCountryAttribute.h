@@ -17,19 +17,19 @@
  
  @return A new country.
 */
-+(GCCountryAttribute *)country;
++(instancetype)country;
 /** Initializes and returns a country.
 
  @param value The value as a GCValue object.
  @return A new country.
 */
-+(GCCountryAttribute *)countryWithValue:(GCValue *)value;
++(instancetype)countryWithValue:(GCValue *)value;
 /** Initializes and returns a country.
 
  @param value The value as an NSString.
  @return A new country.
 */
-+(GCCountryAttribute *)countryWithGedcomStringValue:(NSString *)value;
++(instancetype)countryWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

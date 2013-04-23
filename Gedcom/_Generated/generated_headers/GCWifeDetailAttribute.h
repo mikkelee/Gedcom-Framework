@@ -17,19 +17,19 @@
  
  @return A new wifeDetail.
 */
-+(GCWifeDetailAttribute *)wifeDetail;
++(instancetype)wifeDetail;
 /** Initializes and returns a wifeDetail.
 
  @param value The value as a GCValue object.
  @return A new wifeDetail.
 */
-+(GCWifeDetailAttribute *)wifeDetailWithValue:(GCValue *)value;
++(instancetype)wifeDetailWithValue:(GCValue *)value;
 /** Initializes and returns a wifeDetail.
 
  @param value The value as an NSString.
  @return A new wifeDetail.
 */
-+(GCWifeDetailAttribute *)wifeDetailWithGedcomStringValue:(NSString *)value;
++(instancetype)wifeDetailWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// .  NB: required property.

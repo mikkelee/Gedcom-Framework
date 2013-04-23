@@ -12,7 +12,7 @@
     NSString *_contents;
 }
 
-- (id)initWithGedcomString:(NSString *)gedcomString
+- (instancetype)initWithGedcomString:(NSString *)gedcomString
 {
     self = [super init];
     

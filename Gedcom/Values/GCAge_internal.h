@@ -22,9 +22,9 @@ typedef enum : NSInteger {
 
 @interface GCAge ()
 
-- (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
-- (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q;
-- (id)initWithInvalidAgeString:(NSString *)s;
+- (instancetype)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
+- (instancetype)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q;
+- (instancetype)initWithInvalidAgeString:(NSString *)s;
 
 + (id)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
 + (id)ageWithAgeKeyword:(NSString *)p qualifier:(GCAgeQualifier)q;

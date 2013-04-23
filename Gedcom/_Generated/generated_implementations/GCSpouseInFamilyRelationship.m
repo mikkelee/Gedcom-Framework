@@ -14,24 +14,19 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCSpouseInFamilyRelationship"];
-}
-
 // Methods:
 /** Initializes and returns a spouseInFamily.
 
  
  @return A new spouseInFamily.
 */
-+(GCSpouseInFamilyRelationship *)spouseInFamily
++(instancetype)spouseInFamily
 {
 	return [[self alloc] init];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"spouseInFamily"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -45,10 +40,20 @@
 
 // Properties:
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

@@ -14,18 +14,13 @@
 	NSMutableArray *_texts;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCDataAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a data.
 
  
  @return A new data.
 */
-+(GCDataAttribute *)data
++(instancetype)data
 {
 	return [[self alloc] init];
 }
@@ -34,7 +29,7 @@
  @param value The value as a GCValue object.
  @return A new data.
 */
-+(GCDataAttribute *)dataWithValue:(GCValue *)value
++(instancetype)dataWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -43,13 +38,13 @@
  @param value The value as an NSString.
  @return A new data.
 */
-+(GCDataAttribute *)dataWithGedcomStringValue:(NSString *)value
++(instancetype)dataWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"data"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -62,8 +57,13 @@
 
 // Properties:
 @dynamic date;
-@dynamic texts;
-@dynamic mutableTexts;
+@synthesize texts = _texts;
+
+- (NSMutableArray *)mutableTexts
+{
+	return [self mutableArrayValueForKey:@"texts"];
+}
+
 
 @end
 

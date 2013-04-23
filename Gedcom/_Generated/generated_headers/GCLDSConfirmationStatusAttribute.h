@@ -17,19 +17,19 @@
  
  @return A new lDSConfirmationStatus.
 */
-+(GCLDSConfirmationStatusAttribute *)lDSConfirmationStatus;
++(instancetype)lDSConfirmationStatus;
 /** Initializes and returns a lDSConfirmationStatus.
 
  @param value The value as a GCValue object.
  @return A new lDSConfirmationStatus.
 */
-+(GCLDSConfirmationStatusAttribute *)lDSConfirmationStatusWithValue:(GCValue *)value;
++(instancetype)lDSConfirmationStatusWithValue:(GCValue *)value;
 /** Initializes and returns a lDSConfirmationStatus.
 
  @param value The value as an NSString.
  @return A new lDSConfirmationStatus.
 */
-+(GCLDSConfirmationStatusAttribute *)lDSConfirmationStatusWithGedcomStringValue:(NSString *)value;
++(instancetype)lDSConfirmationStatusWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

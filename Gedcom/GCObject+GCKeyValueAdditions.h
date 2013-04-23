@@ -47,6 +47,6 @@
  @param type The type of the relationship.
  @param target The target of the relationship.
  */
-- (void)addRelationshipWithType:(NSString *)type target:(GCEntity *)target;
+- (void)addRelationshipWithType:(NSString *)type target:(GCRecord *)target;
 
 @end

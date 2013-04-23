@@ -17,19 +17,19 @@
  
  @return A new time.
 */
-+(GCTimeAttribute *)time;
++(instancetype)time;
 /** Initializes and returns a time.
 
  @param value The value as a GCValue object.
  @return A new time.
 */
-+(GCTimeAttribute *)timeWithValue:(GCValue *)value;
++(instancetype)timeWithValue:(GCValue *)value;
 /** Initializes and returns a time.
 
  @param value The value as an NSString.
  @return A new time.
 */
-+(GCTimeAttribute *)timeWithGedcomStringValue:(NSString *)value;
++(instancetype)timeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

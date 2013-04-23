@@ -31,7 +31,7 @@ __strong static NSMutableDictionary *_allPlaces = nil;
     return _rootPlace;
 }
 
-- (id)initWithValue:(NSString *)value
+- (instancetype)initWithValue:(NSString *)value
 {
     self = [super init];
     

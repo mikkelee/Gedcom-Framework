@@ -17,19 +17,19 @@
  
  @return A new city.
 */
-+(GCCityAttribute *)city;
++(instancetype)city;
 /** Initializes and returns a city.
 
  @param value The value as a GCValue object.
  @return A new city.
 */
-+(GCCityAttribute *)cityWithValue:(GCValue *)value;
++(instancetype)cityWithValue:(GCValue *)value;
 /** Initializes and returns a city.
 
  @param value The value as an NSString.
  @return A new city.
 */
-+(GCCityAttribute *)cityWithGedcomStringValue:(NSString *)value;
++(instancetype)cityWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

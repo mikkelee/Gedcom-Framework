@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCLDSSealingChildStatusAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a lDSSealingChildStatus.
 
  
  @return A new lDSSealingChildStatus.
 */
-+(GCLDSSealingChildStatusAttribute *)lDSSealingChildStatus
++(instancetype)lDSSealingChildStatus
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new lDSSealingChildStatus.
 */
-+(GCLDSSealingChildStatusAttribute *)lDSSealingChildStatusWithValue:(GCValue *)value
++(instancetype)lDSSealingChildStatusWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new lDSSealingChildStatus.
 */
-+(GCLDSSealingChildStatusAttribute *)lDSSealingChildStatusWithGedcomStringValue:(NSString *)value
++(instancetype)lDSSealingChildStatusWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"lDSSealingChildStatus"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

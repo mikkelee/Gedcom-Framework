@@ -17,19 +17,19 @@
  
  @return A new sex.
 */
-+(GCSexAttribute *)sex;
++(instancetype)sex;
 /** Initializes and returns a sex.
 
  @param value The value as a GCValue object.
  @return A new sex.
 */
-+(GCSexAttribute *)sexWithValue:(GCValue *)value;
++(instancetype)sexWithValue:(GCValue *)value;
 /** Initializes and returns a sex.
 
  @param value The value as an NSString.
  @return A new sex.
 */
-+(GCSexAttribute *)sexWithGedcomStringValue:(NSString *)value;
++(instancetype)sexWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

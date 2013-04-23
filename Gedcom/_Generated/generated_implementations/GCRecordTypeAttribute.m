@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCRecordTypeAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a recordType.
 
  
  @return A new recordType.
 */
-+(GCRecordTypeAttribute *)recordType
++(instancetype)recordType
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new recordType.
 */
-+(GCRecordTypeAttribute *)recordTypeWithValue:(GCValue *)value
++(instancetype)recordTypeWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new recordType.
 */
-+(GCRecordTypeAttribute *)recordTypeWithGedcomStringValue:(NSString *)value
++(instancetype)recordTypeWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"recordType"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

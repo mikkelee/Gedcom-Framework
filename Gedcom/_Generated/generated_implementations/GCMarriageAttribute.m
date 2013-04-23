@@ -42,18 +42,13 @@
 	GCWifeDetailAttribute *_wifeDetail;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCMarriageAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a marriage.
 
  
  @return A new marriage.
 */
-+(GCMarriageAttribute *)marriage
++(instancetype)marriage
 {
 	return [[self alloc] init];
 }
@@ -62,7 +57,7 @@
  @param value The value as a GCValue object.
  @return A new marriage.
 */
-+(GCMarriageAttribute *)marriageWithValue:(GCValue *)value
++(instancetype)marriageWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -71,13 +66,13 @@
  @param value The value as an NSString.
  @return A new marriage.
 */
-+(GCMarriageAttribute *)marriageWithGedcomStringValue:(NSString *)value
++(instancetype)marriageWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"marriage"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -104,20 +99,50 @@
 @dynamic responsibleAgency;
 @dynamic cause;
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic mutableSourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+@synthesize sourceCitations = _sourceCitations;
+
+- (NSMutableArray *)mutableSourceCitations
+{
+	return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+@synthesize sourceEmbeddeds = _sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
 @dynamic multimedias;
-@dynamic multimediaReferences;
-@dynamic mutableMultimediaReferences;
-@dynamic multimediaEmbeddeds;
-@dynamic mutableMultimediaEmbeddeds;
+@synthesize multimediaReferences = _multimediaReferences;
+
+- (NSMutableArray *)mutableMultimediaReferences
+{
+	return [self mutableArrayValueForKey:@"multimediaReferences"];
+}
+
+@synthesize multimediaEmbeddeds = _multimediaEmbeddeds;
+
+- (NSMutableArray *)mutableMultimediaEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 @dynamic husbandDetail;
 @dynamic wifeDetail;
 

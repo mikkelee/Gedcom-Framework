@@ -24,6 +24,7 @@ typedef enum : NSInteger {
 typedef enum : NSInteger {
     GCTagTypeUnknown = -1,
     GCTagTypeEntity,
+    GCTagTypeRecord,
     GCTagTypeAttribute,
     GCTagTypeRelationship
 } GCTagType;

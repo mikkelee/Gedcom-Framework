@@ -17,23 +17,25 @@
 
 #import "GCObject.h"
 
-#import "GCObjects_generated.h"
-
 #import "GCObject+GCConvenienceAdditions.h"
 #import "GCObject+GCKeyValueAdditions.h"
-#import "GCObject+GCSanityCheckAdditions.h"
 
 #import "GCGedcomLoadingAdditions.h"
 #import "GCValidationAdditions.h"
+#import "GCSanityCheckAdditions.h"
 
 #import "GCEntity.h"
+#import "GCRecord.h"
 #import "GCProperty.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
+#import "GCObjects_generated.h"
+
 #import "GCValue.h"
 
-#import "GCIndividualEntity+GCObjectAdditions.h"
+#import "GCHeaderEntity+GCObjectAdditions.h"
+#import "GCIndividualRecord+GCObjectAdditions.h"
 #import "GCBinaryObjectAttribute+GCObjectAdditions.h"
 
 #import "GCContextDelegate.h"

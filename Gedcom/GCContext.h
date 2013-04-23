@@ -11,9 +11,7 @@
 #import "GCNodeParserDelegate.h"
 #import "GedcomTypedefs.h"
 
-@class GCEntity;
-@class GCHeaderEntity;
-@class GCSubmissionEntity;
+@class GCRecord;
 
 @protocol GCContextDelegate;
 @protocol GCNodeParserDelegate;
@@ -111,7 +109,7 @@
  @param url An URL with the scheme `xref://`.
  @return The entity indicated by the URL.
  */
-+ (GCEntity *)entityForURL:(NSURL *)url;
++ (GCRecord *)recordForURL:(NSURL *)url;
 
 #pragma mark Merging entities
 

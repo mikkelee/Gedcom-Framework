@@ -17,19 +17,19 @@
  
  @return A new userReferenceNumber.
 */
-+(GCUserReferenceNumberAttribute *)userReferenceNumber;
++(instancetype)userReferenceNumber;
 /** Initializes and returns a userReferenceNumber.
 
  @param value The value as a GCValue object.
  @return A new userReferenceNumber.
 */
-+(GCUserReferenceNumberAttribute *)userReferenceNumberWithValue:(GCValue *)value;
++(instancetype)userReferenceNumberWithValue:(GCValue *)value;
 /** Initializes and returns a userReferenceNumber.
 
  @param value The value as an NSString.
  @return A new userReferenceNumber.
 */
-+(GCUserReferenceNumberAttribute *)userReferenceNumberWithGedcomStringValue:(NSString *)value;
++(instancetype)userReferenceNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

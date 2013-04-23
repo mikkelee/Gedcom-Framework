@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCDateAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a date.
 
  
  @return A new date.
 */
-+(GCDateAttribute *)date
++(instancetype)date
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new date.
 */
-+(GCDateAttribute *)dateWithValue:(GCValue *)value
++(instancetype)dateWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new date.
 */
-+(GCDateAttribute *)dateWithGedcomStringValue:(NSString *)value
++(instancetype)dateWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"date"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

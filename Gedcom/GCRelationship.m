@@ -12,7 +12,7 @@
 
 #import "GCContext_internal.h"
 #import "GCObject_internal.h"
-#import "GCEntity_internal.h"
+#import "GCRecord.h"
 
 @interface GCRelationship ()
 
@@ -22,7 +22,7 @@
 @end
 
 @implementation GCRelationship {
-	GCEntity *_target;
+	GCRecord *_target;
 }
 
 #pragma mark NSKeyValueCoding overrides
@@ -52,7 +52,7 @@
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    self.target = [self.context _entityForXref:gedcomNode.gedValue create:NO withClass:nil];
+    self.target = [self.context _recordForXref:gedcomNode.gedValue create:NO withClass:nil];
     
     [super setSubNodes:gedcomNode.subNodes];
 }
@@ -90,7 +90,7 @@
 
 #pragma mark NSCoding conformance
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super initWithCoder:aDecoder];
     
@@ -109,12 +109,12 @@
 
 #pragma mark Objective-C properties
 
-- (GCEntity *)target
+- (GCRecord *)target
 {
     return _target;
 }
 
-- (void)setTarget:(GCEntity *)target
+- (void)setTarget:(GCRecord *)target
 {
     //NSLog(@"%p :: %p :: %@ :: %@ = %p", self.rootObject, self, self.type, NSStringFromSelector(_cmd), target);
     
@@ -162,7 +162,7 @@
                 
                 [target.mutableProperties addObject:other];
                 
-                other.target = (GCEntity *)self.rootObject;
+                other.target = (GCRecord *)self.rootObject;
             }
         }
     }

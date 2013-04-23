@@ -19,7 +19,7 @@
  
  @return A new childInFamily.
 */
-+(GCChildInFamilyRelationship *)childInFamily;
++(instancetype)childInFamily;
 
 // Properties:
 /// . 

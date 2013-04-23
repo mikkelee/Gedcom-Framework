@@ -17,19 +17,19 @@
  
  @return A new ancestralFileNumber.
 */
-+(GCAncestralFileNumberAttribute *)ancestralFileNumber;
++(instancetype)ancestralFileNumber;
 /** Initializes and returns a ancestralFileNumber.
 
  @param value The value as a GCValue object.
  @return A new ancestralFileNumber.
 */
-+(GCAncestralFileNumberAttribute *)ancestralFileNumberWithValue:(GCValue *)value;
++(instancetype)ancestralFileNumberWithValue:(GCValue *)value;
 /** Initializes and returns a ancestralFileNumber.
 
  @param value The value as an NSString.
  @return A new ancestralFileNumber.
 */
-+(GCAncestralFileNumberAttribute *)ancestralFileNumberWithGedcomStringValue:(NSString *)value;
++(instancetype)ancestralFileNumberWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -17,19 +17,19 @@
  
  @return A new mediaType.
 */
-+(GCMediaTypeAttribute *)mediaType;
++(instancetype)mediaType;
 /** Initializes and returns a mediaType.
 
  @param value The value as a GCValue object.
  @return A new mediaType.
 */
-+(GCMediaTypeAttribute *)mediaTypeWithValue:(GCValue *)value;
++(instancetype)mediaTypeWithValue:(GCValue *)value;
 /** Initializes and returns a mediaType.
 
  @param value The value as an NSString.
  @return A new mediaType.
 */
-+(GCMediaTypeAttribute *)mediaTypeWithGedcomStringValue:(NSString *)value;
++(instancetype)mediaTypeWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

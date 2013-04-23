@@ -17,7 +17,7 @@
  
  @return A new submitterReference.
 */
-+(GCSubmitterReferenceRelationship *)submitterReference;
++(instancetype)submitterReference;
 
 // Properties:
 

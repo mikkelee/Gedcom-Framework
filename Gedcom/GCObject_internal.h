@@ -14,11 +14,8 @@
 
 @interface GCObject () {
 @protected
-    GCTag *_gedTag;
     BOOL _isBuildingFromGedcom;
 }
-
-- (id)_initWithType:(NSString *)type;
 
 #pragma mark Misc
 

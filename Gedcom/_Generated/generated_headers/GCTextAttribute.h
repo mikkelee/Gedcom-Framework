@@ -17,19 +17,19 @@
  
  @return A new text.
 */
-+(GCTextAttribute *)text;
++(instancetype)text;
 /** Initializes and returns a text.
 
  @param value The value as a GCValue object.
  @return A new text.
 */
-+(GCTextAttribute *)textWithValue:(GCValue *)value;
++(instancetype)textWithValue:(GCValue *)value;
 /** Initializes and returns a text.
 
  @param value The value as an NSString.
  @return A new text.
 */
-+(GCTextAttribute *)textWithGedcomStringValue:(NSString *)value;
++(instancetype)textWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

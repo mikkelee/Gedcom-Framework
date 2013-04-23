@@ -8,7 +8,7 @@
 
 #import "GCHeaderEntity+GCObjectAdditions.h"
 
-#import "GCContext.h"
+#import "GCContext_internal.h"
 
 #import "GCCharacterSetAttribute.h"
 #import "GCHeaderSourceAttribute.h"
@@ -16,12 +16,12 @@
 #import "GCGedcomAttribute.h"
 #import "GCVersionAttribute.h"
 #import "GCGedcomFormatAttribute.h"
-#import "GCSubmitterEntity.h"
+#import "GCSubmitterRecord.h"
 #import "GCSubmitterReferenceRelationship.h"
 
 @implementation GCHeaderEntity (GCObjectAdditions)
 
-+ (id)defaultHeaderInContext:(GCContext *)context
++ (instancetype)defaultHeaderInContext:(GCContext *)context
 {
     GCHeaderEntity *head = [GCHeaderEntity headerInContext:context];
     
@@ -35,11 +35,11 @@
     head.gedcom.version = [GCVersionAttribute versionWithGedcomStringValue:@"5.5"];
     head.gedcom.gedcomFormat = [GCGedcomFormatAttribute gedcomFormatWithGedcomStringValue:@"LINEAGE-LINKED"];
     
-    GCSubmitterEntity *subm = [GCSubmitterEntity submitterInContext:context];
+    GCSubmitterRecord *subm = [GCSubmitterRecord submitterInContext:context];
     subm.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:NSFullUserName()];
     
     head.submitterReference = [GCSubmitterReferenceRelationship submitterReference];
-    head.submitterReference.target = subm;
+    head.submitterReference.target = (GCRecord *)subm;
     
     return head;
 }

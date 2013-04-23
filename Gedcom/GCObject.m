@@ -41,25 +41,17 @@ __strong static NSDictionary *_defaultColors;
 }
 
 //COV_NF_START
-- (id)init
-{
-    NSLog(@"You must use -initWithType: to initialize a GCObject!");
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
-}
-//COV_NF_END
-
-- (id)_initWithType:(NSString *)type
+- (instancetype)init
 {
     self = [super init];
     
     if (self) {
-        _gedTag = [GCTag tagNamed:type];
         _customProperties = [NSMutableArray array];
     }
     
     return self;
 }
+//COV_NF_END
 
 #pragma mark GCProperty access
 
@@ -69,10 +61,10 @@ __strong static NSDictionary *_defaultColors;
         NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
         
         if (!_validProperties) {
-            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[_gedTag.validSubTags count]];
+            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[self.gedTag.validSubTags count]];
             
-            for (GCTag *subTag in _gedTag.validSubTags) {
-                if ([_gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
+            for (GCTag *subTag in self.gedTag.validSubTags) {
+                if ([self.gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
                     [valid addObject:subTag.pluralName];
                 } else {
                     [valid addObject:subTag.name];
@@ -90,19 +82,19 @@ __strong static NSDictionary *_defaultColors;
 
 - (GCAllowedOccurrences)allowedOccurrencesOfPropertyType:(NSString *)type
 {
-    return [_gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
+    return [self.gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
 
 - (BOOL)_allowsMultipleOccurrencesOfPropertyType:(NSString *)type
 {
-    return [_gedTag allowsMultipleOccurrencesOfSubTag:[GCTag tagNamed:type]];
+    return [self.gedTag allowsMultipleOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
 
 - (NSArray *)propertyTypesInGroup:(NSString *)groupName
 {
     NSMutableArray *propertyTypes = [NSMutableArray array];
     
-    for (GCTag *tag in [_gedTag subTagsInGroup:groupName]) {
+    for (GCTag *tag in [self.gedTag subTagsInGroup:groupName]) {
         [propertyTypes addObject:tag.pluralName];
     }
     
@@ -125,9 +117,9 @@ __strong static NSDictionary *_defaultColors;
 
 #pragma mark NSCoding conformance
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [self _initWithType:[aDecoder decodeObjectForKey:@"type"]];
+    self = [self init];
     
     if (self) {
         for (NSString *propertyType in self.validPropertyTypes) {
@@ -184,14 +176,19 @@ __strong static NSDictionary *_defaultColors;
 
 #pragma mark Objective-C properties
 
+- (GCTag *)gedTag
+{
+    return [[self class] gedTag];
+}
+
 - (NSString *)type
 {
-    return _gedTag.name;
+    return self.gedTag.name;
 }
 
 - (NSString *)localizedType
 {
-    return _gedTag.localizedName;
+    return self.gedTag.localizedName;
 }
 
 @dynamic rootObject;
@@ -208,7 +205,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    NSLog(@"You override this method in your subclass!");
+    NSLog(@"You must override this method in your subclass!");
     [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -435,17 +432,17 @@ __strong static NSDictionary *_defaultColors;
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
                 
                 // creating fake method first, so I can call it below for the undo manager:
-                IMP imp = imp_implementationWithBlock(^(id _s, id newObj, NSUInteger index) { return; });
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s, id newObj, NSUInteger index) { return; });
                 class_addMethod(cls, sel, imp, "v@:@I");
                 
-                imp = imp_implementationWithBlock(^(id _s, id newObj, NSUInteger index) {
+                imp = imp_implementationWithBlock(^(GCObject *_s, id newObj, NSUInteger index) {
                     NSMutableArray *_ivar = object_getIvar(_s, ivar);
                     
                     if ([newObj valueForKey:@"describedObject"] == _s) {
                         return;
                     }
                     
-                    if (!((GCObject *)_s)->_isBuildingFromGedcom) {
+                    if (!_s->_isBuildingFromGedcom) {
                         NSUndoManager *uM = [_s valueForKey:@"undoManager"];
                         @synchronized (uM) {
                             [uM beginUndoGrouping];
@@ -466,8 +463,6 @@ __strong static NSDictionary *_defaultColors;
                     [newObj setValue:_s forKey:@"describedObject"];
                     
                     [_ivar insertObject:newObj atIndex:index];
-                    
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ ::: %@ => %@", cls, selName, _ivar, object_getIvar(_s, ivar));
                 });
                 
                 Method method = class_getInstanceMethod(cls, sel);
@@ -495,10 +490,10 @@ __strong static NSDictionary *_defaultColors;
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
                 
                 // creating fake method first, so I can call it below for the undo manager:
-                IMP imp = imp_implementationWithBlock(^(id _s, NSUInteger index) { return; });
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) { return; });
                 class_addMethod(cls, sel, imp, "v@:I");
                 
-                imp = imp_implementationWithBlock(^(id _s, NSUInteger index) {
+                imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
                     NSMutableArray *_ivar = object_getIvar(_s, ivar);
                     
                     if (!((GCObject *)_s)->_isBuildingFromGedcom) {
@@ -520,8 +515,6 @@ __strong static NSDictionary *_defaultColors;
                     [((GCObject *)_ivar[index]) setValue:nil forKey:@"describedObject"];
                     
                     [_ivar removeObjectAtIndex:index];
-                    
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ ::: %@ => %@", cls, selName, _ivar, object_getIvar(_s, ivar));
                 });
                 
                 Method method = class_getInstanceMethod(cls, sel);
@@ -538,16 +531,14 @@ __strong static NSDictionary *_defaultColors;
             NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:9] substringFromIndex:8] lowercaseString], [[selName substringFromIndex:9] substringToIndex:[selName length]-(9+8)]];
             NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
             
+            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+            
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
                 
                 //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
                 
-                Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
-                
-                IMP imp = imp_implementationWithBlock(^(id _s, NSUInteger index) {
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ :::", cls, selName);
-                    
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
                     return [object_getIvar(_s, ivar) objectAtIndex:index];
                 });
                 
@@ -561,42 +552,19 @@ __strong static NSDictionary *_defaultColors;
             NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:8] substringFromIndex:7] lowercaseString], [selName substringFromIndex:8]];
             NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
             
+            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+            
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
                 
                 //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
                 
-                Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
-                
-                IMP imp = imp_implementationWithBlock(^(id _s) {
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ :::", cls, selName);
-                    
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
                     return [object_getIvar(_s, ivar) count];
                 });
                 
                 didResolve = class_addMethod(cls, sel, imp, "I@:");
             }
-            
-        } else if ([selName hasPrefix:@"mutable"]) {
-            
-            // indexed mutable getter
-            
-            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:8] substringFromIndex:7] lowercaseString], [selName substringFromIndex:8]];
-            
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
-                
-                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
-                
-                IMP imp = imp_implementationWithBlock(^(id _s) {
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ :::", cls, selName);
-                    
-                    return [_s mutableArrayValueForKey:propName];
-                });
-                
-                didResolve = class_addMethod(cls, sel, imp, "@@:");
-            }
-            
             
         } else if ([selName hasPrefix:@"set"]) {
             
@@ -617,10 +585,10 @@ __strong static NSDictionary *_defaultColors;
                 IMP imp = imp_implementationWithBlock(^(id _s, id newObj) { return; });
                 class_addMethod(cls, sel, imp, "v@:@");
                 
-                imp = imp_implementationWithBlock(^(id _s, id newObj) {
+                imp = imp_implementationWithBlock(^(GCObject *_s, id newObj) {
                     id _ivar = object_getIvar(_s, ivar);
                     
-                    if (!((GCObject *)_s)->_isBuildingFromGedcom) {
+                    if (!_s->_isBuildingFromGedcom) {
                         NSUndoManager *uM = [_s valueForKey:@"undoManager"];
                         @synchronized (uM) {
                             [uM beginUndoGrouping];
@@ -664,12 +632,12 @@ __strong static NSDictionary *_defaultColors;
             NSString *propName = selName;
             NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
             
+            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+            
             GCTag *subtag = [GCTag tagNamed:propName];
             if ([[cls gedTag].validSubTags containsObject:subtag]) {
                 
                 //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
-                
-                Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
                 
                 IMP imp = imp_implementationWithBlock(^(id _s) {
                     //NSLog(@"!!swizz called!! ::: %@ : %@ ::: => %@", cls, selName, object_getIvar(_s, ivar));
@@ -693,9 +661,7 @@ __strong static NSDictionary *_defaultColors;
 
 + (GCTag *)gedTag
 {
-    NSLog(@"You override this method in your subclass!");
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
+	return [GCTag tagWithClassName:[self className]];
 }
 
 @end

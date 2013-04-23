@@ -10,6 +10,7 @@
 
 #import "GCContext+GCKeyValueAdditions.h"
 
+#import "GCRecord.h"
 #import "GCEntity.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"

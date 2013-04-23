@@ -17,19 +17,19 @@
  
  @return A new namePrefix.
 */
-+(GCNamePrefixAttribute *)namePrefix;
++(instancetype)namePrefix;
 /** Initializes and returns a namePrefix.
 
  @param value The value as a GCValue object.
  @return A new namePrefix.
 */
-+(GCNamePrefixAttribute *)namePrefixWithValue:(GCValue *)value;
++(instancetype)namePrefixWithValue:(GCValue *)value;
 /** Initializes and returns a namePrefix.
 
  @param value The value as an NSString.
  @return A new namePrefix.
 */
-+(GCNamePrefixAttribute *)namePrefixWithGedcomStringValue:(NSString *)value;
++(instancetype)namePrefixWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

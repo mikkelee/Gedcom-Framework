@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GCProperty.h"
 
-@class GCEntity;
+@class GCRecord;
 
 /**
  
@@ -23,6 +23,6 @@
 /// @name Accessing properties
 
 /// The target of the receiver.
-@property GCEntity *target;
+@property GCRecord *target;
 
 @end

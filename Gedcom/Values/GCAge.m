@@ -195,7 +195,7 @@ NSString * const GCAgeQualifier_toString[] = {
     return _sharedAgePlaceholder;
 }
 
-- (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
+- (instancetype)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
 	GCSimpleAge *age = [[GCSimpleAge alloc] init];
 	
@@ -207,7 +207,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	return (id)age;
 }
 
-- (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
+- (instancetype)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
 	GCAgeKeyword *age = [[GCAgeKeyword alloc] init];
 	
@@ -217,7 +217,7 @@ NSString * const GCAgeQualifier_toString[] = {
 	return (id)age;
 }
 
-- (id)initWithInvalidAgeString:(NSString *)s
+- (instancetype)initWithInvalidAgeString:(NSString *)s
 {
 	GCInvalidAge *age = [[GCInvalidAge alloc] init];
 	
@@ -243,25 +243,25 @@ NSString * const GCAgeQualifier_toString[] = {
     return [super allocWithZone:zone];
 }
 
-- (id)initWithGedcom:(NSString *)gedcom
+- (instancetype)initWithGedcom:(NSString *)gedcom
 {
 	return [[GCAgeParser sharedAgeParser] parseGedcom:gedcom];
 }
 
 //COV_NF_START
-- (id)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
+- (instancetype)initWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
+- (instancetype)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithInvalidAgeString:(NSString *)s
+- (instancetype)initWithInvalidAgeString:(NSString *)s
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;

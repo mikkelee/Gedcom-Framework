@@ -30,18 +30,13 @@
 	NSMutableArray *_noteEmbeddeds;
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCPersonalNameAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a personalName.
 
  
  @return A new personalName.
 */
-+(GCPersonalNameAttribute *)personalName
++(instancetype)personalName
 {
 	return [[self alloc] init];
 }
@@ -50,7 +45,7 @@
  @param value The value as a GCValue object.
  @return A new personalName.
 */
-+(GCPersonalNameAttribute *)personalNameWithValue:(GCValue *)value
++(instancetype)personalNameWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -59,13 +54,13 @@
  @param value The value as an NSString.
  @return A new personalName.
 */
-+(GCPersonalNameAttribute *)personalNameWithGedcomStringValue:(NSString *)value
++(instancetype)personalNameWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"personalName"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:
@@ -87,15 +82,35 @@
 @dynamic surname;
 @dynamic nameSuffix;
 @dynamic sources;
-@dynamic sourceCitations;
-@dynamic mutableSourceCitations;
-@dynamic sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+@synthesize sourceCitations = _sourceCitations;
+
+- (NSMutableArray *)mutableSourceCitations
+{
+	return [self mutableArrayValueForKey:@"sourceCitations"];
+}
+
+@synthesize sourceEmbeddeds = _sourceEmbeddeds;
+
+- (NSMutableArray *)mutableSourceEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
+}
+
 @dynamic notes;
-@dynamic noteReferences;
-@dynamic mutableNoteReferences;
-@dynamic noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+@synthesize noteReferences = _noteReferences;
+
+- (NSMutableArray *)mutableNoteReferences
+{
+	return [self mutableArrayValueForKey:@"noteReferences"];
+}
+
+@synthesize noteEmbeddeds = _noteEmbeddeds;
+
+- (NSMutableArray *)mutableNoteEmbeddeds
+{
+	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
+}
+
 
 @end
 

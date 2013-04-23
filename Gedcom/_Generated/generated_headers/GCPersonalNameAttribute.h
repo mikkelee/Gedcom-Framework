@@ -26,19 +26,19 @@
  
  @return A new personalName.
 */
-+(GCPersonalNameAttribute *)personalName;
++(instancetype)personalName;
 /** Initializes and returns a personalName.
 
  @param value The value as a GCValue object.
  @return A new personalName.
 */
-+(GCPersonalNameAttribute *)personalNameWithValue:(GCValue *)value;
++(instancetype)personalNameWithValue:(GCValue *)value;
 /** Initializes and returns a personalName.
 
  @param value The value as an NSString.
  @return A new personalName.
 */
-+(GCPersonalNameAttribute *)personalNameWithGedcomStringValue:(NSString *)value;
++(instancetype)personalNameWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

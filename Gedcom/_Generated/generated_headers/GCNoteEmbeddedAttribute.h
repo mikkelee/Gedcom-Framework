@@ -4,8 +4,7 @@
 
 #import "GCAttribute.h"
 
-@class GCSourceCitationRelationship;
-@class GCSourceEmbeddedAttribute;
+
 
 /**
  
@@ -18,33 +17,21 @@
  
  @return A new noteEmbedded.
 */
-+(GCNoteEmbeddedAttribute *)noteEmbedded;
++(instancetype)noteEmbedded;
 /** Initializes and returns a noteEmbedded.
 
  @param value The value as a GCValue object.
  @return A new noteEmbedded.
 */
-+(GCNoteEmbeddedAttribute *)noteEmbeddedWithValue:(GCValue *)value;
++(instancetype)noteEmbeddedWithValue:(GCValue *)value;
 /** Initializes and returns a noteEmbedded.
 
  @param value The value as an NSString.
  @return A new noteEmbedded.
 */
-+(GCNoteEmbeddedAttribute *)noteEmbeddedWithGedcomStringValue:(NSString *)value;
++(instancetype)noteEmbeddedWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// Property for accessing the following properties
-@property (nonatomic) NSArray *sources;
-
-/// Also contained in sources. . GCSourceCitationRelationship
-@property (nonatomic) NSArray *sourceCitations;
-/// Also contained in sources. . sourceCitations
-@property (nonatomic) NSMutableArray *mutableSourceCitations;
-
-/// Also contained in sources. . GCSourceEmbeddedAttribute
-@property (nonatomic) NSArray *sourceEmbeddeds;
-/// Also contained in sources. . sourceEmbeddeds
-@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 
 @end

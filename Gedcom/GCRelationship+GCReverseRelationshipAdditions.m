@@ -11,7 +11,7 @@
 #import "GCSpouseInFamilyRelationship.h"
 #import "GCHusbandRelationship.h"
 #import "GCWifeRelationship.h"
-#import "GCIndividualEntity.h"
+#import "GCIndividualRecord.h"
 #import "GCSexAttribute.h"
 #import "GCValue.h"
 
@@ -37,7 +37,7 @@
 
 - (NSString *)reverseRelationshipType
 {
-    GCGender *gender = (GCGender *)((GCIndividualEntity *)self.rootObject).sex.value;
+    GCGender *gender = (GCGender *)((GCIndividualRecord *)self.rootObject).sex.value;
     NSAssert(!gender || gender != [GCGender unknownGender], @"Gender must be defined, and must not be unknown to add an individual as a spouse to a family.");
     
     return gender == [GCGender maleGender] ? @"husband" : @"wife";

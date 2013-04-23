@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCAgeAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a age.
 
  
  @return A new age.
 */
-+(GCAgeAttribute *)age
++(instancetype)age
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new age.
 */
-+(GCAgeAttribute *)ageWithValue:(GCValue *)value
++(instancetype)ageWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new age.
 */
-+(GCAgeAttribute *)ageWithGedcomStringValue:(NSString *)value
++(instancetype)ageWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"age"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

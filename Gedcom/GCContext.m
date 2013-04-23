@@ -26,7 +26,7 @@
 
 #import "GCObject+GCKeyValueAdditions.h"
 
-@interface GCTrailerEntity : NSObject //empty class to match trailer objects
+@interface GCTrailerEntity : GCEntity //empty class to match trailer objects
 @end
 @implementation GCTrailerEntity
 @end
@@ -53,8 +53,8 @@
 @end
 
 @implementation GCContext {
-	NSMapTable *_xrefToEntityMap;
-    NSMapTable *_entityToXrefMap;
+	NSMapTable *_xrefToRecordMap;
+    NSMapTable *_recordToXrefMap;
     
     dispatch_group_t _group;
     dispatch_group_t _sensitiveGroup;
@@ -72,15 +72,15 @@ __strong static NSArray *_rootKeys = nil;
     _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ];
 }
 
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	
 	if (self) {
         _name = [[NSUUID UUID] UUIDString];
         
-        _xrefToEntityMap = [NSMapTable strongToWeakObjectsMapTable];
-        _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+        _xrefToRecordMap = [NSMapTable strongToWeakObjectsMapTable];
+        _recordToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
         
         _families = [NSMutableArray array];
         _individuals = [NSMutableArray array];
@@ -141,7 +141,7 @@ __strong static NSArray *_rootKeys = nil;
     
     dispatch_group_async(_group, _queue, ^{
         if (tag.objectClass != [GCTrailerEntity class]) {
-            GCObject *obj = [tag.objectClass entityWithGedcomNode:node inContext:self];
+            GCObject *obj = [tag.objectClass newWithGedcomNode:node inContext:self];
             NSParameterAssert(obj.context == self);
         }
     });
@@ -242,13 +242,13 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark Getting entities by URL
 
-+ (GCEntity *)entityForURL:(NSURL *)url
++ (GCEntity *)recordForURL:(NSURL *)url
 {
     NSParameterAssert([url.scheme isEqualToString:@"xref"]);
     
     GCContext *context = [GCContext contextsByName][url.host];
     
-    return [context _entityForXref:[url.path lastPathComponent] create:NO withClass:nil];
+    return [context _recordForXref:[url.path lastPathComponent] create:NO withClass:nil];
 }
 
 #pragma mark Merging contexts
@@ -304,7 +304,7 @@ __strong static NSArray *_rootKeys = nil;
 
 #pragma mark NSCoding conformance
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
     
@@ -319,8 +319,8 @@ __strong static NSArray *_rootKeys = nil;
         _name = key;
         _contextsByName[_name] = self;
         
-        _xrefToEntityMap = [aDecoder decodeObjectForKey:@"xrefStore"];
-        _entityToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
+        _xrefToRecordMap = [aDecoder decodeObjectForKey:@"xrefStore"];
+        _recordToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
         self.header = [aDecoder decodeObjectForKey:@"header"];
         self.submission = [aDecoder decodeObjectForKey:@"submission"];
         
@@ -347,8 +347,8 @@ __strong static NSArray *_rootKeys = nil;
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_xrefToEntityMap forKey:@"xrefStore"];
-    [aCoder encodeObject:_entityToXrefMap forKey:@"entityToXref"];
+    [aCoder encodeObject:_xrefToRecordMap forKey:@"xrefStore"];
+    [aCoder encodeObject:_recordToXrefMap forKey:@"entityToXref"];
     [aCoder encodeObject:self.header forKey:@"header"];
     [aCoder encodeObject:self.submission forKey:@"submission"];
     
@@ -368,58 +368,58 @@ __strong static NSArray *_rootKeys = nil;
 //COV_NF_START
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToEntityMap];
+	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToRecordMap];
 }
 //COV_NF_END
 
 #pragma mark Xref handling
 
-- (void)_setXref:(NSString *)xref forEntity:(GCEntity *)entity
+- (void)_setXref:(NSString *)xref forRecord:(GCRecord *)record
 {
     NSParameterAssert(xref);
-    NSParameterAssert(entity);
-    NSParameterAssert(!_xrefToEntityMap[xref]);
+    NSParameterAssert(record);
+    NSParameterAssert(!_xrefToRecordMap[xref]);
     
     //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
     
     // clear previously set xref, if any:
-    @synchronized (_entityToXrefMap) {
-        @synchronized (_xrefToEntityMap) {
-            if (_entityToXrefMap[entity]) {
-                [_xrefToEntityMap removeObjectForKey:_entityToXrefMap[entity]];
-                [_entityToXrefMap removeObjectForKey:entity];
+    @synchronized (_recordToXrefMap) {
+        @synchronized (_xrefToRecordMap) {
+            if (_recordToXrefMap[record]) {
+                [_xrefToRecordMap removeObjectForKey:_recordToXrefMap[record]];
+                [_recordToXrefMap removeObjectForKey:record];
             }
         }
     }
     
     // update maps:
-    @synchronized (_xrefToEntityMap) {
-        _xrefToEntityMap[xref] = entity;
+    @synchronized (_xrefToRecordMap) {
+        _xrefToRecordMap[xref] = record;
     }
-    @synchronized (_entityToXrefMap) {
-        _entityToXrefMap[entity] = xref;
+    @synchronized (_recordToXrefMap) {
+        _recordToXrefMap[record] = xref;
     }
 }
 
-- (NSString *)_xrefForEntity:(GCEntity *)entity
+- (NSString *)_xrefForRecord:(GCRecord *)record
 {
-    NSParameterAssert(entity);
-    NSParameterAssert(entity.gedTag.code);
+    NSParameterAssert(record);
+    NSParameterAssert(record.gedTag.code);
     
     NSString *xref = nil;
     
-    @synchronized (_entityToXrefMap) {
-        xref = _entityToXrefMap[entity];
+    @synchronized (_recordToXrefMap) {
+        xref = _recordToXrefMap[record];
     }
     
     if (!xref) {
-        @synchronized (_xrefToEntityMap) {
+        @synchronized (_xrefToRecordMap) {
             int i = 0;
             do {
-                xref = [NSString stringWithFormat:@"@%@%d@", entity.gedTag.code, ++i];
-            } while (_xrefToEntityMap[xref]);
+                xref = [NSString stringWithFormat:@"@%@%d@", record.gedTag.code, ++i];
+            } while (_xrefToRecordMap[xref]);
             
-            [self _setXref:xref forEntity:entity];
+            [self _setXref:xref forRecord:record];
         }
     }
     
@@ -428,18 +428,18 @@ __strong static NSArray *_rootKeys = nil;
     return xref;
 }
 
-- (GCEntity *)_entityForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass
+- (GCRecord *)_recordForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass
 {
-    @synchronized (_xrefToEntityMap) {
-        id entity = _xrefToEntityMap[xref];
-        if (entity) {
-            //NSLog(@"Found existing: %@ > %p", xref, entity);
-            return entity;
+    @synchronized (_xrefToRecordMap) {
+        id record = _xrefToRecordMap[xref];
+        if (record) {
+            //NSLog(@"Found existing: %@ > %p", xref, record);
+            return record;
         } else if (create) {
-            entity = [[aClass alloc] initInContext:self];
-            //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, entity);
-            [self _setXref:xref forEntity:entity];
-            return entity;
+            record = [[aClass alloc] initInContext:self];
+            //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, record);
+            [self _setXref:xref forRecord:record];
+            return record;
         } else {
             //NSLog(@"NOT creating: %@", xref);
             return nil;
@@ -449,24 +449,25 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)_clearXrefs
 {
-    _xrefToEntityMap = [NSMapTable strongToWeakObjectsMapTable];
-    _entityToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+    _xrefToRecordMap = [NSMapTable strongToWeakObjectsMapTable];
+    _recordToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
 }
 
 - (void)_renumberXrefs
 {
     [self _clearXrefs];
-    for (GCEntity *entity in self.entities) {
-        (void)[self _xrefForEntity:entity];
+    for (GCRecord *record in self.entities) {
+        //TODO only get actual records
+        (void)[self _xrefForRecord:record];
     }
 }
 
 #pragma mark Xref link methods
 
-- (void)_activateEntity:(GCEntity *)entity
+- (void)_activateRecord:(GCRecord *)record
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForEntity:)]) {
-        [_delegate context:self didReceiveActionForEntity:entity];
+    if (_delegate && [_delegate respondsToSelector:@selector(context:didReceiveActionForRecord:)]) {
+        [_delegate context:self didReceiveActionForRecord:record];
     }
 }
 
@@ -534,8 +535,8 @@ __strong static NSArray *_rootKeys = nil;
     }
     
     @synchronized (self) {
-        for (GCEntity *entity in self.entities) {
-            [nodes addObject:entity.gedcomNode];
+        for (GCRecord *record in self.entities) {
+            [nodes addObject:record.gedcomNode];
         }
 	}
     

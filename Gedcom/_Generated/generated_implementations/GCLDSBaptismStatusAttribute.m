@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCLDSBaptismStatusAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a lDSBaptismStatus.
 
  
  @return A new lDSBaptismStatus.
 */
-+(GCLDSBaptismStatusAttribute *)lDSBaptismStatus
++(instancetype)lDSBaptismStatus
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new lDSBaptismStatus.
 */
-+(GCLDSBaptismStatusAttribute *)lDSBaptismStatusWithValue:(GCValue *)value
++(instancetype)lDSBaptismStatusWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new lDSBaptismStatus.
 */
-+(GCLDSBaptismStatusAttribute *)lDSBaptismStatusWithGedcomStringValue:(NSString *)value
++(instancetype)lDSBaptismStatusWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"lDSBaptismStatus"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

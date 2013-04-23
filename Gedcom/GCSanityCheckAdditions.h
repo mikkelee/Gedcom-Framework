@@ -1,5 +1,5 @@
 //
-//  GCObject+GCSanityCheckAdditions.h
+//  GCSanityCheckAdditions.h
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 11/10/12.
@@ -7,7 +7,7 @@
 //
 
 #import "GCContext.h"
-#import "GCEntity.h"
+#import "GCRecord.h"
 
 @interface GCContext (GCSanityCheckAdditions)
 

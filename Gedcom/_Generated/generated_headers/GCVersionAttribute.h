@@ -17,19 +17,19 @@
  
  @return A new version.
 */
-+(GCVersionAttribute *)version;
++(instancetype)version;
 /** Initializes and returns a version.
 
  @param value The value as a GCValue object.
  @return A new version.
 */
-+(GCVersionAttribute *)versionWithValue:(GCValue *)value;
++(instancetype)versionWithValue:(GCValue *)value;
 /** Initializes and returns a version.
 
  @param value The value as an NSString.
  @return A new version.
 */
-+(GCVersionAttribute *)versionWithGedcomStringValue:(NSString *)value;
++(instancetype)versionWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

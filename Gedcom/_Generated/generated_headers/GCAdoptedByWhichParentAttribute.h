@@ -17,19 +17,19 @@
  
  @return A new adoptedByWhichParent.
 */
-+(GCAdoptedByWhichParentAttribute *)adoptedByWhichParent;
++(instancetype)adoptedByWhichParent;
 /** Initializes and returns a adoptedByWhichParent.
 
  @param value The value as a GCValue object.
  @return A new adoptedByWhichParent.
 */
-+(GCAdoptedByWhichParentAttribute *)adoptedByWhichParentWithValue:(GCValue *)value;
++(instancetype)adoptedByWhichParentWithValue:(GCValue *)value;
 /** Initializes and returns a adoptedByWhichParent.
 
  @param value The value as an NSString.
  @return A new adoptedByWhichParent.
 */
-+(GCAdoptedByWhichParentAttribute *)adoptedByWhichParentWithGedcomStringValue:(NSString *)value;
++(instancetype)adoptedByWhichParentWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

@@ -17,19 +17,19 @@
  
  @return A new headerDate.
 */
-+(GCHeaderDateAttribute *)headerDate;
++(instancetype)headerDate;
 /** Initializes and returns a headerDate.
 
  @param value The value as a GCValue object.
  @return A new headerDate.
 */
-+(GCHeaderDateAttribute *)headerDateWithValue:(GCValue *)value;
++(instancetype)headerDateWithValue:(GCValue *)value;
 /** Initializes and returns a headerDate.
 
  @param value The value as an NSString.
  @return A new headerDate.
 */
-+(GCHeaderDateAttribute *)headerDateWithGedcomStringValue:(NSString *)value;
++(instancetype)headerDateWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 

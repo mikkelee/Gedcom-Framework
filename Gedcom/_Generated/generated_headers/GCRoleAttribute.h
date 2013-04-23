@@ -17,19 +17,19 @@
  
  @return A new role.
 */
-+(GCRoleAttribute *)role;
++(instancetype)role;
 /** Initializes and returns a role.
 
  @param value The value as a GCValue object.
  @return A new role.
 */
-+(GCRoleAttribute *)roleWithValue:(GCValue *)value;
++(instancetype)roleWithValue:(GCValue *)value;
 /** Initializes and returns a role.
 
  @param value The value as an NSString.
  @return A new role.
 */
-+(GCRoleAttribute *)roleWithGedcomStringValue:(NSString *)value;
++(instancetype)roleWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

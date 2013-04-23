@@ -12,18 +12,13 @@
 
 }
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:@"GCVersionAttribute"];
-}
-
 // Methods:
 /** Initializes and returns a version.
 
  
  @return A new version.
 */
-+(GCVersionAttribute *)version
++(instancetype)version
 {
 	return [[self alloc] init];
 }
@@ -32,7 +27,7 @@
  @param value The value as a GCValue object.
  @return A new version.
 */
-+(GCVersionAttribute *)versionWithValue:(GCValue *)value
++(instancetype)versionWithValue:(GCValue *)value
 {
 	return [[self alloc] initWithValue:value];
 }
@@ -41,13 +36,13 @@
  @param value The value as an NSString.
  @return A new version.
 */
-+(GCVersionAttribute *)versionWithGedcomStringValue:(NSString *)value
++(instancetype)versionWithGedcomStringValue:(NSString *)value
 {
 	return [[self alloc] initWithGedcomStringValue:value];
 }
-- (id)init
+- (instancetype)init
 {
-	self = [super _initWithType:@"version"];
+	self = [super init];
 	
 	if (self) {
 		// initialize ivars, if any:

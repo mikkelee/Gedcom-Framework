@@ -17,7 +17,7 @@
  
  @return A new sealedToFamily.
 */
-+(GCSealedToFamilyRelationship *)sealedToFamily;
++(instancetype)sealedToFamily;
 
 // Properties:
 

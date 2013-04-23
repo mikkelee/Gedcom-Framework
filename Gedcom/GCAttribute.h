@@ -42,7 +42,7 @@
  @return A new attribute.
  
  */
-- (id)initWithValue:(GCValue *)value;
+- (instancetype)initWithValue:(GCValue *)value;
 
 /** Returns an attribute with the specified value.
  
@@ -52,7 +52,7 @@
  @return A new attribute.
  
  */
-- (id)initWithGedcomStringValue:(NSString *)value;
+- (instancetype)initWithGedcomStringValue:(NSString *)value;
 
 /// @name Accessing values
 /** Convenience method for setting the attribute's value with a given string.

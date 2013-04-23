@@ -16,7 +16,7 @@
 
 @implementation GCList
 
-- (id)initWithElements:(NSArray *)elements
+- (instancetype)initWithElements:(NSArray *)elements
 {
     self = [super init];
     

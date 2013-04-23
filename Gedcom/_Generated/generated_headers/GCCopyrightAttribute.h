@@ -17,19 +17,19 @@
  
  @return A new copyright.
 */
-+(GCCopyrightAttribute *)copyright;
++(instancetype)copyright;
 /** Initializes and returns a copyright.
 
  @param value The value as a GCValue object.
  @return A new copyright.
 */
-+(GCCopyrightAttribute *)copyrightWithValue:(GCValue *)value;
++(instancetype)copyrightWithValue:(GCValue *)value;
 /** Initializes and returns a copyright.
 
  @param value The value as an NSString.
  @return A new copyright.
 */
-+(GCCopyrightAttribute *)copyrightWithGedcomStringValue:(NSString *)value;
++(instancetype)copyrightWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

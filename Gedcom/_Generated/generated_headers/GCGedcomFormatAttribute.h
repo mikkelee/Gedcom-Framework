@@ -17,19 +17,19 @@
  
  @return A new gedcomFormat.
 */
-+(GCGedcomFormatAttribute *)gedcomFormat;
++(instancetype)gedcomFormat;
 /** Initializes and returns a gedcomFormat.
 
  @param value The value as a GCValue object.
  @return A new gedcomFormat.
 */
-+(GCGedcomFormatAttribute *)gedcomFormatWithValue:(GCValue *)value;
++(instancetype)gedcomFormatWithValue:(GCValue *)value;
 /** Initializes and returns a gedcomFormat.
 
  @param value The value as an NSString.
  @return A new gedcomFormat.
 */
-+(GCGedcomFormatAttribute *)gedcomFormatWithGedcomStringValue:(NSString *)value;
++(instancetype)gedcomFormatWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 

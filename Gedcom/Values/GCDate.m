@@ -364,7 +364,7 @@
     return _sharedDatePlaceholder;
 }
 
-- (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
+- (instancetype)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
 	GCSimpleDate *date = [[GCSimpleDate alloc] init];
 	
@@ -374,7 +374,7 @@
 	return (id)date;
 }
 
-- (id)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
+- (instancetype)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
 	GCApproximateDate *date = [[GCApproximateDate alloc] init];
 	
@@ -384,7 +384,7 @@
 	return (id)date;
 }
 
-- (id)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
+- (instancetype)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
 	GCInterpretedDate *date = [[GCInterpretedDate alloc] init];
 	
@@ -394,7 +394,7 @@
 	return (id)date;
 }
 
-- (id)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+- (instancetype)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
 	GCDatePeriod *date = [[GCDatePeriod alloc] init];
 	
@@ -404,7 +404,7 @@
 	return (id)date;
 }
 
-- (id)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+- (instancetype)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
 	GCDateRange *date = [[GCDateRange alloc] init];
 	
@@ -414,7 +414,7 @@
 	return (id)date;
 }
 
-- (id)initWithDatePhrase:(NSString *)p
+- (instancetype)initWithDatePhrase:(NSString *)p
 {
 	GCDatePhrase *date = [[GCDatePhrase alloc] init];
 	
@@ -423,7 +423,7 @@
 	return (id)date;
 }
 
-- (id)initWithInvalidDateString:(NSString *)s
+- (instancetype)initWithInvalidDateString:(NSString *)s
 {
 	GCInvalidDate *date = [[GCInvalidDate alloc] init];
 	
@@ -449,12 +449,12 @@
     return [super allocWithZone:zone];
 }
 
-- (id)initWithGedcom:(NSString *)gedcom
+- (instancetype)initWithGedcom:(NSString *)gedcom
 {
 	return [[GCDateParser sharedDateParser] parseGedcom:gedcom];
 }
 
-- (id)initWithDate:(NSDate *)date
+- (instancetype)initWithDate:(NSDate *)date
 {
     NSTimeZone *utc = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -468,43 +468,43 @@
 }
 
 //COV_NF_START
-- (id)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
+- (instancetype)initWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
+- (instancetype)initWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
+- (instancetype)initWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+- (instancetype)initWithDatePeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
+- (instancetype)initWithDateRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithDatePhrase:(NSString *)p
+- (instancetype)initWithDatePhrase:(NSString *)p
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;
 }
 
-- (id)initWithInvalidDateString:(NSString *)s
+- (instancetype)initWithInvalidDateString:(NSString *)s
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;

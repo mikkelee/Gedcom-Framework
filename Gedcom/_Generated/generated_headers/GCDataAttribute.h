@@ -18,19 +18,19 @@
  
  @return A new data.
 */
-+(GCDataAttribute *)data;
++(instancetype)data;
 /** Initializes and returns a data.
 
  @param value The value as a GCValue object.
  @return A new data.
 */
-+(GCDataAttribute *)dataWithValue:(GCValue *)value;
++(instancetype)dataWithValue:(GCValue *)value;
 /** Initializes and returns a data.
 
  @param value The value as an NSString.
  @return A new data.
 */
-+(GCDataAttribute *)dataWithGedcomStringValue:(NSString *)value;
++(instancetype)dataWithGedcomStringValue:(NSString *)value;
 
 // Properties:
 /// . 
