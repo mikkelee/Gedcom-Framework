@@ -8,10 +8,6 @@
 
 #import "GCRelationship.h"
 
-#import "GCNode.h"
-
-#import "GCContext_internal.h"
-#import "GCObject_internal.h"
 #import "GCRecord.h"
 
 @interface GCRelationship ()
@@ -36,25 +32,6 @@
     }
     
     return keyPaths;
-}
-
-#pragma mark Gedcom access
-
-- (GCNode *)gedcomNode
-{
-    GCParameterAssert(_target);
-    
-    return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.target.xref
-								  xref:nil
-							  subNodes:self.subNodes];
-}
-
-- (void)setGedcomNode:(GCNode *)gedcomNode
-{
-    self.target = [self.context _recordForXref:gedcomNode.gedValue create:NO withClass:nil];
-    
-    [super setSubNodes:gedcomNode.subNodes];
 }
 
 #pragma mark Comparison
@@ -171,17 +148,6 @@
 - (NSString *)reverseRelationshipType
 {
     return nil; // override this to set up a reverse relationship
-}
-
-- (NSString *)displayValue
-{
-    return _target.xref;
-}
-
-- (NSAttributedString *)attributedDisplayValue
-{
-    return [[NSAttributedString alloc] initWithString:self.displayValue 
-                                           attributes:@{NSLinkAttributeName: _target.xref}];
 }
 
 @end

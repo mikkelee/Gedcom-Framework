@@ -8,10 +8,7 @@
 
 #import "GCEntity.h"
 
-#import "GCNode.h"
 #import "GCContext_internal.h"
-
-#import "GCValue.h"
 
 @implementation GCEntity {
     __weak GCContext *_context;
@@ -74,19 +71,6 @@
 //COV_NF_END
 
 #pragma mark Objective-C properties
-
-- (GCNode *)gedcomNode
-{
-    return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.gedTag.hasValue ? self.value.gedcomString : nil
-								  xref:nil
-							  subNodes:self.subNodes];
-}
-
-- (void)setGedcomNode:(GCNode *)gedcomNode
-{
-    [super setSubNodes:gedcomNode.subNodes];
-}
 
 - (GCObject *)rootObject
 {

@@ -8,8 +8,6 @@
 
 #import "GCRecord.h"
 
-#import "GCNode.h"
-
 #import "GCValue.h"
 #import "GCChangeInfoAttribute.h"
 
@@ -64,36 +62,6 @@
 //COV_NF_END
 
 #pragma mark Objective-C properties
-
-- (GCNode *)gedcomNode
-{
-    return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.gedTag.hasValue ? self.value.gedcomString : nil
-								  xref:self.xref
-							  subNodes:self.subNodes];
-}
-
-- (void)setGedcomNode:(GCNode *)gedcomNode
-{
-    NSParameterAssert([gedcomNode.xref isEqualToString:self.xref]);
-    
-    [super setSubNodes:gedcomNode.subNodes];
-}
-
-- (NSString *)displayValue
-{
-    // TODO ???
-    if (self.value)
-        return self.value.displayString;
-    else
-        return self.xref;
-}
-
-- (NSAttributedString *)attributedDisplayValue
-{
-    return [[NSAttributedString alloc] initWithString:self.displayValue
-                                           attributes:@{NSLinkAttributeName: self.xref}];
-}
 
 - (NSString *)xref
 {

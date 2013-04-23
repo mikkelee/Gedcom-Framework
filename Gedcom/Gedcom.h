@@ -21,6 +21,7 @@
 #import "GCObject+GCKeyValueAdditions.h"
 
 #import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomAccessAdditions.h"
 #import "GCValidationAdditions.h"
 #import "GCSanityCheckAdditions.h"
 

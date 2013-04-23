@@ -10,6 +10,9 @@
 #import "GCRecord.h"
 #import "GCProperty.h"
 
+@class GCNode;
+@class GCContext;
+
 @interface GCObject (GCGedcomLoadingAdditions)
 
 - (void)_addPropertyWithGedcomNode:(GCNode *)node;

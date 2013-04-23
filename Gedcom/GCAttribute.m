@@ -8,10 +8,8 @@
 
 #import "GCAttribute.h"
 
-#import "GCNode.h"
-
 #import "GCObject_internal.h"
-#import "GCValue_internal.h"
+#import "GCValue.h"
 
 @implementation GCAttribute
 
@@ -26,23 +24,6 @@
     }
     
     return keyPaths;
-}
-
-#pragma mark Gedcom access
-
-- (GCNode *)gedcomNode
-{
-    return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.value.gedcomString
-								  xref:nil
-							  subNodes:self.subNodes];
-}
-
-- (void)setGedcomNode:(GCNode *)gedcomNode
-{
-    [self setValueWithGedcomString:gedcomNode.gedValue];
-    
-    [super setSubNodes:gedcomNode.subNodes];
 }
 
 #pragma mark Comparison
@@ -101,16 +82,6 @@
 {
     NSParameterAssert(!value || [value isKindOfClass:[GCValue class]]);
     _value = value;
-}
-
-- (NSString *)displayValue
-{
-    return self.value.displayString;
-}
-
-- (NSAttributedString *)attributedDisplayValue
-{
-    return [[NSAttributedString alloc] initWithString:self.displayValue];
 }
 
 @end

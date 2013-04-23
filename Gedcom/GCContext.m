@@ -23,6 +23,7 @@
 #import "GCContextDelegate.h"
 
 #import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomAccessAdditions.h"
 
 #import "GCObject+GCKeyValueAdditions.h"
 
