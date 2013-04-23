@@ -445,13 +445,16 @@ __strong static NSArray *_rootKeys = nil;
             //NSLog(@"NOT creating: %@", xref);
             return nil;
         }
-    }
 }
 
 - (void)_clearXrefs
 {
-    _xrefToRecordMap = [NSMapTable strongToWeakObjectsMapTable];
-    _recordToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+    @synchronized (_xrefToRecordMap) {
+        _xrefToRecordMap = [NSMapTable strongToWeakObjectsMapTable];
+    }
+    @synchronized (_recordToXrefMap) {
+        _recordToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
+    }
 }
 
 - (void)_renumberXrefs
