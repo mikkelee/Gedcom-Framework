@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
+#import "GCObject.h"
 #import "GCRecord.h"
 #import "GCProperty.h"
 
