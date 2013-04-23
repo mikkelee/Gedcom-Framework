@@ -1,4 +1,3 @@
-
 //
 //  GCObject.m
 //  Gedcom
