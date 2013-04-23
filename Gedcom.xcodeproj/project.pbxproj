@@ -25,6 +25,8 @@
 		3E02E7B91607D968008728D9 /* GCCustomObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02E7B71607D968008728D9 /* GCCustomObjects.m */; };
 		3E053D8E1726B70F0060A622 /* GCGedcomAccessAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */; };
 		3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */; };
+		3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */; };
+		3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */; };
 		3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E09D18C15F9427C00BAA69E /* GCObject_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836515F8DDF800A9B096 /* GCAge_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19315F9816900BAA69E /* GCDate_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836615F8DF3E00A9B096 /* GCDate_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -535,6 +537,8 @@
 		3E02E7B71607D968008728D9 /* GCCustomObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCustomObjects.m; sourceTree = "<group>"; };
 		3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomAccessAdditions.h; sourceTree = "<group>"; };
 		3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomAccessAdditions.m; sourceTree = "<group>"; };
+		3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCSwizzlingAdditions.h"; sourceTree = "<group>"; };
+		3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCSwizzlingAdditions.m"; sourceTree = "<group>"; };
 		3E09D18C15F9427C00BAA69E /* GCObject_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCObject_internal.h; sourceTree = "<group>"; };
 		3E0C32FE17241EE90022E4D1 /* GCRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRecord.h; sourceTree = "<group>"; };
 		3E0C32FF17241EE90022E4D1 /* GCRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRecord.m; sourceTree = "<group>"; };
@@ -1058,6 +1062,8 @@
 				3E57558615217C0D00A918D1 /* GCObject.h */,
 				3E09D18C15F9427C00BAA69E /* GCObject_internal.h */,
 				3E57558715217C0D00A918D1 /* GCObject.m */,
+				3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */,
+				3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */,
 				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
 				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
 				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */,
@@ -1941,6 +1947,7 @@
 				3E83FF2D171CDFA10093B685 /* GCContext+GCKeyValueAdditions.h in Headers */,
 				3E0C330017241EE90022E4D1 /* GCRecord.h in Headers */,
 				3E053D8E1726B70F0060A622 /* GCGedcomAccessAdditions.h in Headers */,
+				3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2353,6 +2360,7 @@
 				3E41BFCB1725FBFA003286E7 /* GCWifeRelationship.m in Sources */,
 				3E41BFCC1725FBFA003286E7 /* GCWillAttribute.m in Sources */,
 				3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */,
+				3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
