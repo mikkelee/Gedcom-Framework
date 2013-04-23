@@ -12,7 +12,7 @@
 
 @implementation GCObject (GCConvenienceAdditions)
 
-- (NSArray *)relatedEntities
+- (NSArray *)relatedRecords
 {
     NSMutableArray *targets = [NSMutableArray array];
     
@@ -20,7 +20,7 @@
         if ([object isKindOfClass:[GCRelationship class]]) {
             [targets addObject:((GCRelationship *)object).target];
         }
-        [targets addObjectsFromArray:object.relatedEntities];
+        [targets addObjectsFromArray:object.relatedRecords];
     }
     
     return [targets copy];

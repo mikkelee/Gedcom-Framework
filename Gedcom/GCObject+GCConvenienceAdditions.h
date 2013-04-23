@@ -8,11 +8,8 @@
 
 #import "GCObject_internal.h"
 
-@class GCValue;
-@class GCEntity;
-
 @interface GCObject (GCConvenienceAdditions)
 
-@property (nonatomic, readonly) NSArray *relatedEntities;
+@property (nonatomic, readonly) NSArray *relatedRecords;
 
 @end

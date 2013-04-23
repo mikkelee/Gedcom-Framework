@@ -164,8 +164,8 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(entity.context == self);
     
     if (oldContext != self) {
-        for (GCEntity *relatedEntity in entity.relatedEntities) {
-            [self _addEntity:relatedEntity];
+        for (GCRecord *relatedRecord in entity.relatedRecords) {
+            [self _addEntity:relatedRecord];
         }
     }
     
