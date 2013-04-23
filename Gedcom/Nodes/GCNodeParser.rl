@@ -194,24 +194,20 @@ __strong static id _sharedNodeParser = nil;
         const char *pe = p + [gedString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         const char *eof = pe;
         
-#ifdef DEBUGLEVEL
-        clock_t start, end;
-        double elapsed;
-        start = clock();
-        //NSLog(@"Began parsing gedcom.");
-#endif
-        
         if (_delegate && [_delegate respondsToSelector:@selector(parser:willParseCharacterCount:)]) {
             [_delegate parser:self willParseCharacterCount:[gedString length]];
         }
+        
+#ifdef DEBUGLEVEL
+        NSDate *start = [NSDate date];
+#endif
         
         %% write init;
         %% write exec;
                 
 #ifdef DEBUGLEVEL
-        end = clock();
-        elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-        NSLog(@"parsed %ld nodes in %ld lines - Time: %f seconds", nodeCount, lineCount, elapsed);
+        NSTimeInterval timeInterval = fabs([start timeIntervalSinceNow]);
+        NSLog(@"parsed %ld nodes in %ld lines - Time: %f seconds", nodeCount, lineCount, timeInterval);
 #endif
         
         if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNodesWithCount:)]) {

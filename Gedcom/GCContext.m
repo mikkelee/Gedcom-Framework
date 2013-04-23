@@ -199,7 +199,7 @@ __strong static NSArray *_rootKeys = nil;
     }
     
 #ifdef DEBUGLEVEL
-    clock_t start = clock();
+    NSDate *start = [NSDate date];
 #endif
     
     BOOL result = [nodeParser parseString:gedString error:error];
@@ -208,7 +208,8 @@ __strong static NSArray *_rootKeys = nil;
     [_deferredQueue waitUntilAllOperationsAreFinished];
     
 #ifdef DEBUGLEVEL
-    NSLog(@"parsed %ld entities - Time: %f seconds", [self.entities count], ((double) (clock() - start)) / CLOCKS_PER_SEC);
+    NSTimeInterval timeInterval = fabs([start timeIntervalSinceNow]);
+    NSLog(@"parsed %ld entities - Time: %f seconds", [self.entities count], timeInterval);
 #endif
     
     dispatch_async(dispatch_get_main_queue(), ^{
