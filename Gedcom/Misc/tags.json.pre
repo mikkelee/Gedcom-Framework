@@ -122,7 +122,7 @@
 	},
 	"note": {
 		"code": "NOTE",
-        "hasValue": 1,
+        "takesValue": 1,
 		"validSubTags": [
                          { "groupName": "@source" },
                          { "name": "userReferenceNumber", "min": 0, "max": "M" },

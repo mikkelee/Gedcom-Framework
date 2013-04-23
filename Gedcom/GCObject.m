@@ -28,7 +28,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     _validPropertiesByType = [NSMutableDictionary dictionary];
 }
 
-//COV_NF_START
 - (instancetype)init
 {
     self = [super init];
@@ -39,7 +38,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     
     return self;
 }
-//COV_NF_END
 
 #pragma mark GCProperty access
 
@@ -164,9 +162,14 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 
 #pragma mark Objective-C properties
 
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithClassName:[self className]];
+}
+
 - (GCTag *)gedTag
 {
-    return [[self class] gedTag];
+    return [GCTag tagWithClassName:[self className]];
 }
 
 - (NSString *)type
@@ -532,11 +535,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
             return [super resolveInstanceMethod:sel];
         }
     }
-}
-
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithClassName:[self className]];
 }
 
 @end

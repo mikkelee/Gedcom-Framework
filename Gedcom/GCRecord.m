@@ -15,6 +15,8 @@
 
 #import "GCObject_internal.h"
 
+#import "GCGedcomAccessAdditions.h"
+
 @interface GCRecord ()
 
 @property (nonatomic) NSDate *modificationDate;
@@ -53,7 +55,7 @@
     
     NSString *extraValues = [NSString stringWithFormat:@"xref: %@", self.xref];;
     
-    if (self.gedTag.hasValue) {
+    if (self.takesValue) {
         extraValues = [NSString stringWithFormat:@"%@ value: %@", extraValues, self.value];
     }
     

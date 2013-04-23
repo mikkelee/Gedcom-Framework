@@ -11,6 +11,8 @@
 #import "GCObject_internal.h"
 #import "GCValue.h"
 
+#import "GCGedcomAccessAdditions.h"
+
 @implementation GCAttribute
 
 #pragma mark NSKeyValueCoding overrides
@@ -112,9 +114,9 @@
 
 - (void)setValueWithGedcomString:(NSString *)string
 {
-    NSParameterAssert(self.gedTag.valueType);
+    NSParameterAssert(self.valueType);
     
-    self.value = [self.gedTag.valueType valueWithGedcomString:string];
+    self.value = [self.valueType valueWithGedcomString:string];
 }
 
 @end

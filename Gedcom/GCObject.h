@@ -12,6 +12,7 @@
 
 @class GCContext;
 @class GCProperty;
+
 @class GCTag;
 
 /**
@@ -72,9 +73,6 @@
 /// The localized type of the receiver.
 @property (nonatomic, readonly) NSString *localizedType;
 
-/// The GCTag corresponding to the receiver's type.
-@property (nonatomic, readonly) GCTag *gedTag;
-
 /// The root object of a given tree of GCObjects. Will usually be a GCRecord or a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
 @property (nonatomic, readonly) GCObject *rootObject;
 
@@ -106,9 +104,8 @@
 
 @property (nonatomic, readonly) NSURL *URL;
 
-@end
-
-@interface GCObject (GCHelperAdditions)
+/// The GCTag corresponding to the receiver's type.
+@property (nonatomic, readonly) GCTag *gedTag;
 
 + (GCTag *)gedTag;
 

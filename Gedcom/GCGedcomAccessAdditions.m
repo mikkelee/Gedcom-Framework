@@ -149,7 +149,7 @@ __strong static NSDictionary *_defaultColors;
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.gedTag.hasValue ? self.value.gedcomString : nil
+								 value:self.gedTag.takesValue ? self.value.gedcomString : nil
 								  xref:nil
 							  subNodes:self.subNodes];
 }
@@ -159,6 +159,11 @@ __strong static NSDictionary *_defaultColors;
     [super setSubNodes:gedcomNode.subNodes];
 }
 
+- (BOOL)takesValue
+{
+    return self.gedTag.takesValue;
+}
+
 @end
 
 @implementation GCRecord (GCGedcomAccessAdditions)
@@ -166,7 +171,7 @@ __strong static NSDictionary *_defaultColors;
 - (GCNode *)gedcomNode
 {
     return [[GCNode alloc] initWithTag:self.gedTag.code
-								 value:self.gedTag.hasValue ? self.value.gedcomString : nil
+								 value:self.gedTag.takesValue ? self.value.gedcomString : nil
 								  xref:self.xref
 							  subNodes:self.subNodes];
 }
@@ -222,6 +227,11 @@ __strong static NSDictionary *_defaultColors;
     return [[NSAttributedString alloc] initWithString:self.displayValue];
 }
 
+- (Class)valueType
+{
+    return self.gedTag.valueType;
+}
+
 @end
 
 @implementation GCRelationship (GCGedcomAccessAdditions)
@@ -252,6 +262,11 @@ __strong static NSDictionary *_defaultColors;
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue
                                            attributes:@{NSLinkAttributeName: self.target.xref}];
+}
+
+- (Class)targetType
+{
+    return self.gedTag.targetType;
 }
 
 @end

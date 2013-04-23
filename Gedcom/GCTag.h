@@ -126,7 +126,7 @@
 /// @name Entity tags
 
 /// A BOOL indicating whether the entity for the tag should have a value.
-@property (readonly) BOOL hasValue;
+@property (readonly) BOOL takesValue;
 
 #pragma mark Attribute tags
 /// @name Attribute tags

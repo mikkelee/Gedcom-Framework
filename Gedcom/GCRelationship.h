@@ -23,6 +23,6 @@
 /// @name Accessing properties
 
 /// The target of the receiver.
-@property GCRecord *target;
+@property (nonatomic) GCRecord *target;
 
 @end

@@ -53,7 +53,7 @@ const NSString *kTargetType = @"targetType";
 const NSString *kAllowsNilValue = @"allowsNil";
 const NSString *kAllowedValues = @"allowedValues";
 
-const NSString *kHasValue = @"hasValue";
+const NSString *kTakesValue = @"takesValue";
 
 #pragma mark Initialization
 
@@ -253,7 +253,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         : GCTagTypeUnknown;
         
         // for entities:
-        _hasValue = _settings[kHasValue] != nil;
+        _takesValue = _settings[kTakesValue] != nil;
         
         // for attributes:
         _valueType = NSClassFromString([NSString stringWithFormat:@"GC%@", [_settings[kValueType] capitalizedString]]);
@@ -301,7 +301,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
                                         settings:@{kTagCode: code,
                                                   kTagName: tagName,
                                                   kPluralName: pluralName,
-                                                  kHasValue: @(1),
+                                                  kTakesValue: @(1),
                                                   kObjectType: @"entity",
                                                   kValidSubTags: [NSArray array]}];
         NSLog(@"Created %@: %@", tagName, tag);

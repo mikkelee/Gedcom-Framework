@@ -70,7 +70,7 @@
     if (entity) {
         entity->_isBuildingFromGedcom = YES;
         
-        if (tag.hasValue)
+        if (tag.takesValue)
             entity.value = [GCString valueWithGedcomString:node.gedValue];
         
         [entity _addPropertiesWithGedcomNodes:node.subNodes];
@@ -102,7 +102,7 @@
     if (record) {
         record->_isBuildingFromGedcom = YES;
         
-        if (tag.hasValue)
+        if (tag.takesValue)
             record.value = [GCString valueWithGedcomString:node.gedValue];
         
         [record _addPropertiesWithGedcomNodes:node.subNodes];

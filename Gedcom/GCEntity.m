@@ -10,6 +10,8 @@
 
 #import "GCContext_internal.h"
 
+#import "GCGedcomAccessAdditions.h"
+
 @implementation GCEntity {
     __weak GCContext *_context;
 }
@@ -39,7 +41,7 @@
     
     if (self) {
         _context = [aDecoder decodeObjectForKey:@"context"];
-        if (self.gedTag.hasValue) {
+        if (self.takesValue) {
             _value = [aDecoder decodeObjectForKey:@"value"];
         }
 	}
@@ -51,7 +53,7 @@
 {
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_context forKey:@"context"];
-    if (self.gedTag.hasValue) {
+    if (self.takesValue) {
         [aCoder encodeObject:_value forKey:@"value"];
     }
 }
@@ -88,7 +90,7 @@
 
 - (void)setValue:(GCString *)value
 {
-    NSParameterAssert(self.gedTag.hasValue);
+    NSParameterAssert(self.takesValue);
     
     _value = value;
 }

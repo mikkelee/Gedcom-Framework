@@ -10,6 +10,8 @@
 
 #import "GCRecord.h"
 
+#import "GCGedcomAccessAdditions.h"
+
 @interface GCRelationship ()
 
 @property (weak) GCRelationship *other;
@@ -86,10 +88,7 @@
 
 #pragma mark Objective-C properties
 
-- (GCRecord *)target
-{
-    return _target;
-}
+@synthesize target = _target;
 
 - (void)setTarget:(GCRecord *)target
 {
@@ -97,7 +96,7 @@
     
     NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
     NSAssert(self.context, @"You must add the root object to a context before setting the target!");
-    NSParameterAssert([target isKindOfClass:self.gedTag.targetType]);
+    NSParameterAssert([target isKindOfClass:self.targetType]);
     
     GCEntity *oldTarget = _target;
     
