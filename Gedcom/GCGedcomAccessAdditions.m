@@ -116,7 +116,7 @@ __strong static NSDictionary *_defaultColors;
 {
     NSMutableAttributedString *gedcomString = [self.gedcomNode.attributedGedcomString mutableCopy];
     
-    NSDictionary *colors = _defaultColors; //[[NSUserDefaults standardUserDefaults] dictionaryForKey:(NSString *)GCColorPreferenceKey];
+    NSDictionary *colors = _defaultColors; //TODO [[NSUserDefaults standardUserDefaults] dictionaryForKey:(NSString *)GCColorPreferenceKey];
     
     [gedcomString enumerateAttributesInRange:NSMakeRange(0, [gedcomString length])
                                      options:(kNilOptions)
@@ -128,7 +128,7 @@ __strong static NSDictionary *_defaultColors;
                                       } else if (attrs[GCTagAttributeName]) {
                                           [gedcomString addAttribute:NSForegroundColorAttributeName value:colors[GCTagAttributeName] range:range];
                                       } else if (attrs[GCLinkAttributeName]) {
-                                          [gedcomString addAttribute:NSLinkAttributeName value:self.URL range:range]; //TODO
+                                          [gedcomString addAttribute:NSLinkAttributeName value:self.URL range:range]; //TODO target not self
                                       } else if (attrs[GCValueAttributeName]) {
                                           //nothing
                                       }
