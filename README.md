@@ -1,6 +1,6 @@
 # README #
 
-**Note**: Functionality is there, so I have now started countdown to 1.0
+**Note**: Functionality is basically all there, but API is not frozen yet, so be careful if you use it, and let me know if certain methods are needed.
 
 A number of classes to ease [GEDCOM 5.5](http://www.gedcom.net/0g/gedcom55/)-manipulation in Cocoa through layers of abstraction. The intent is to hide the GEDCOM specifics, but to allow access if required.
 
@@ -39,7 +39,16 @@ Additionally two application targets are included:
 
 # Version history #
 
-* 0.9.3 – Refactor.
+```
+0 HEAD
+1 SOUR Gedcom.framework
+2 VERS 0.9.3
+2 NAME Gedcom.framework
+2 CORP Mikkel Eide Eriksen
+3 ADDR http://github.com/mikkelee/Gedcom-Framework
+```
+
+* 0.9.3 – Refactor, speed improvements. Counting down to API freeze.
 * 0.9.2 — BLOB decoding functional.
 * 0.9.1 — all info in TGC55.ged can be losslessly handled, though it will not pass validation due to non-standard tags.
 * 0.9.0 — Functionality is there; 1.0 comes after a bit more thorough testing/bugsquashing + documentation.

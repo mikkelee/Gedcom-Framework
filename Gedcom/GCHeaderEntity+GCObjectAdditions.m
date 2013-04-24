@@ -15,6 +15,8 @@
 #import "GCDescriptiveNameAttribute.h"
 #import "GCGedcomAttribute.h"
 #import "GCVersionAttribute.h"
+#import "GCCorporationAttribute.h"
+#import "GCAddressAttribute.h"
 #import "GCGedcomFormatAttribute.h"
 #import "GCSubmitterRecord.h"
 #import "GCSubmitterReferenceRelationship.h"
@@ -23,13 +25,18 @@
 
 + (instancetype)defaultHeaderInContext:(GCContext *)context
 {
+    NSDictionary *info = [[NSBundle bundleForClass:[self class]] infoDictionary];
+    NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
+    
     GCHeaderEntity *head = [GCHeaderEntity headerInContext:context];
     
     head.characterSet = [GCCharacterSetAttribute characterSetWithGedcomStringValue:@"UNICODE"];
     
     head.headerSource = [GCHeaderSourceAttribute headerSourceWithGedcomStringValue:@"Gedcom.framework"];
     head.headerSource.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:@"Gedcom.framework"];
-    head.headerSource.version = [GCVersionAttribute versionWithGedcomStringValue:@"0.9.1"];
+    head.headerSource.version = [GCVersionAttribute versionWithGedcomStringValue:version];
+    head.headerSource.corporation = [GCCorporationAttribute corporationWithGedcomStringValue:@"Mikkel Eide Eriksen"];
+    head.headerSource.corporation.address = [GCAddressAttribute addressWithGedcomStringValue:@"http://github.com/mikkelee/Gedcom-Framework"];
     
     head.gedcom = [GCGedcomAttribute gedcom];
     head.gedcom.version = [GCVersionAttribute versionWithGedcomStringValue:@"5.5"];
