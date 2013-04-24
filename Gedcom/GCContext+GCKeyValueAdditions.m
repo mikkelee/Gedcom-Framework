@@ -231,20 +231,19 @@ __strong static NSArray *_rootKeys = nil;
     return [_families objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inFamiliesAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCFamilyRecord *)obj inFamiliesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCFamilyRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_families insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromFamiliesAtIndex:(NSUInteger)index {
-    [_families[index] setValue:nil forKey:@"context"];
+    id old = _families[index];
     [_families removeObjectAtIndex:index];
+    if ([_families indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
-
 
 
 - (NSMutableArray *)mutableIndividuals {
@@ -259,18 +258,18 @@ __strong static NSArray *_rootKeys = nil;
     return [_individuals objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inIndividualsAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCIndividualRecord *)obj inIndividualsAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCIndividualRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_individuals insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromIndividualsAtIndex:(NSUInteger)index {
-    [_individuals[index] setValue:nil forKey:@"context"];
+    id old = _individuals[index];
     [_individuals removeObjectAtIndex:index];
+    if ([_individuals indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
 
 
@@ -287,18 +286,18 @@ __strong static NSArray *_rootKeys = nil;
     return [_multimedias objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inMultimediasAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCMultimediaRecord *)obj inMultimediasAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCMultimediaRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_multimedias insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromMultimediasAtIndex:(NSUInteger)index {
-    [_multimedias[index] setValue:nil forKey:@"context"];
+    id old = _multimedias[index];
     [_multimedias removeObjectAtIndex:index];
+    if ([_multimedias indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
 
 
@@ -315,18 +314,18 @@ __strong static NSArray *_rootKeys = nil;
     return [_notes objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inNotesAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCNoteRecord *)obj inNotesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCNoteRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_notes insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromNotesAtIndex:(NSUInteger)index {
-    [_notes[index] setValue:nil forKey:@"context"];
+    id old = _notes[index];
     [_notes removeObjectAtIndex:index];
+    if ([_notes indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
 
 
@@ -343,18 +342,18 @@ __strong static NSArray *_rootKeys = nil;
     return [_repositories objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inRepositoriesAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCRepositoryRecord *)obj inRepositoriesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCRepositoryRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_repositories insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromRepositoriesAtIndex:(NSUInteger)index {
-    [_repositories[index] setValue:nil forKey:@"context"];
+    id old = _repositories[index];
     [_repositories removeObjectAtIndex:index];
+    if ([_repositories indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
 
 
@@ -371,18 +370,18 @@ __strong static NSArray *_rootKeys = nil;
     return [_sources objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inSourcesAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCSourceRecord *)obj inSourcesAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSourceRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_sources insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSourcesAtIndex:(NSUInteger)index {
-    [_sources[index] setValue:nil forKey:@"context"];
+    id old = _sources[index];
     [_sources removeObjectAtIndex:index];
+    if ([_sources indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
 
 
@@ -399,18 +398,18 @@ __strong static NSArray *_rootKeys = nil;
     return [_submitters objectAtIndex:index];
 }
 
-- (void)insertObject:(GCEntity *)obj inSubmittersAtIndex:(NSUInteger)index {
+- (void)insertObject:(GCSubmitterRecord *)obj inSubmittersAtIndex:(NSUInteger)index {
 	NSParameterAssert([obj isKindOfClass:[GCSubmitterRecord class]]);
-    if (obj.context == self) {
-        return;
-    }
     [obj setValue:self forKey:@"context"];
     [_submitters insertObject:obj atIndex:index];
 }
 
 - (void)removeObjectFromSubmittersAtIndex:(NSUInteger)index {
-    [_submitters[index] setValue:nil forKey:@"context"];
+    id old = _submitters[index];
     [_submitters removeObjectAtIndex:index];
+    if ([_submitters indexOfObject:old] == NSNotFound) {
+        [old setValue:nil forKey:@"context"];
+    }
 }
 
 #pragma mark Subscript accessors
