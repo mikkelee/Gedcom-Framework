@@ -163,12 +163,12 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 
 + (GCTag *)gedTag
 {
-	return [GCTag tagWithClassName:[self className]];
+	return [GCTag tagWithObjectClass:[self class]];
 }
 
 - (GCTag *)gedTag
 {
-    return [GCTag tagWithClassName:[self className]];
+    return [[self class] gedTag];
 }
 
 - (NSString *)type

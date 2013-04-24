@@ -8,10 +8,24 @@
 
 #import "GCTag.h"
 
-@interface GCTag ()
+@interface NSMapTable (GCSubscriptAdditions)
 
-- (instancetype)initWithName:(NSString *)name 
-          settings:(NSDictionary *)settings;
+- (id)objectForKeyedSubscript:(id)key;
+- (void)setObject:(id)object forKeyedSubscript:(id)key;
+
+@end
+
+@implementation NSMapTable (GCSubscriptAdditions)
+
+- (id)objectForKeyedSubscript:(id)key
+{
+    return [self objectForKey:key];
+}
+
+- (void)setObject:(id)object forKeyedSubscript:(id)key
+{
+    return [self setObject:object forKey:key];
+}
 
 @end
 
@@ -59,7 +73,7 @@ const NSString *kIsMain = @"isMain";
 
 #pragma mark Initialization
 
-__strong static NSMutableDictionary *_tagStore;
+__strong static NSMapTable *_tagStore;
 __strong static NSMutableDictionary *_tagInfo;
 __strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
@@ -69,9 +83,9 @@ static dispatch_queue_t _tagSetupQueue;
 
 + (void)load
 {
+    _tagStore = [NSMapTable mapTableWithStrongToStrongObjects];
     _singularToPlural = [NSMutableDictionary dictionary];
-    _tagStore = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
-    _rootTagsByCode = [NSMutableDictionary dictionaryWithCapacity:[_tagInfo count]*2];
+    _rootTagsByCode = [NSMutableDictionary dictionary];
     
     NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags"
                                                                           ofType:@"json"];
@@ -108,7 +122,7 @@ static inline void setupKey(NSString *key) {
         
         _tagStore[key] = tag;
         _tagStore[tagDict[kPluralName]] = tag;
-        _tagStore[tagDict[kClassName]] = tag;
+        _tagStore[NSClassFromString(tagDict[kClassName])] = tag;
         
         if ([tagDict[kObjectType] isEqualToString:@"entity"] || [tagDict[kObjectType] isEqualToString:@"record"]) {
             _rootTagsByCode[tagDict[kTagCode]] = tag;
@@ -298,9 +312,10 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         NSString *tagName = [NSString stringWithFormat:@"custom%@Entity", code];
         NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
         
-        if ([_tagStore valueForKey:tagName]) {
-            return [_tagStore valueForKey:tagName];
+        if (_tagStore[tagName]) {
+            return _tagStore[tagName];
         }
+        
         GCTag *tag = [[GCTag alloc] initWithName:tagName
                                         settings:@{kTagCode: code,
                                                   kTagName: tagName,
@@ -312,19 +327,19 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         _rootTagsByCode[code] = tag;
         _tagStore[tagName] = tag;
         _tagStore[pluralName] = tag;
-        _tagStore[className] = tag;
+        _tagStore[NSClassFromString(className)] = tag;
     }
     
     return _rootTagsByCode[code];
 }
 
-+ (GCTag *)tagWithClassName:(NSString *)className
++ (GCTag *)tagWithObjectClass:(Class)aClass
 {
-    GCParameterAssert(className);
+    GCParameterAssert(aClass);
     
     dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
     
-    return _tagStore[className];
+    return _tagStore[aClass];
 }
 
 #pragma mark Subtags
@@ -337,8 +352,8 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
             NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
             NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
             
-            if ([_tagStore valueForKey:tagName]) {
-                return [_tagStore valueForKey:tagName];
+            if (_tagStore[tagName]) {
+                return _tagStore[tagName];
             }
             
             GCTag *tag = [[GCTag alloc] initWithName:tagName
@@ -352,7 +367,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
             NSLog(@"Created %@: %@", tagName, tag);
             _tagStore[tagName] = tag;
             _tagStore[pluralName] = tag;
-            _tagStore[className] = tag;
+            _tagStore[NSClassFromString(className)] = tag;
             
             return tag;
         }

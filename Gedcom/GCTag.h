@@ -36,12 +36,12 @@
  */
 + (GCTag *)rootTagWithCode:(NSString *)code;
 
-/** Returns the tag for the given class name.
+/** Returns the tag for the given class.
  
- @param name The name of the requested tag.
+ @param aClass The class associated with the requested tag.
  @return A tag or `nil` if none exists.
  */
-+ (GCTag *)tagWithClassName:(NSString *)className;
++ (GCTag *)tagWithObjectClass:(Class)aClass;
 
 #pragma mark Accessing subtags
 /// @name Accessing subtags
