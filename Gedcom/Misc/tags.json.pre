@@ -183,19 +183,22 @@
 	"husband": {
 		"code": "HUSB",
 		"objectType": "relationship",
-		"targetType": "individual"
+		"targetType": "individual",
+		"hasReverse": true
 	},
 	"wife": {
 		"code": "WIFE",
 		"objectType": "relationship",
 		"targetType": "individual",
-		"plural": "wives"
+		"plural": "wives",
+		"hasReverse": true
 	},
 	"child": {
 		"code": "CHIL",
 		"objectType": "relationship",
 		"targetType": "individual",
-		"plural": "children"
+		"plural": "children",
+		"hasReverse": true
 	},
 	
 	"childInFamily": {
@@ -203,6 +206,8 @@
 		"objectType": "relationship",
 		"targetType": "family",
 		"plural": "childInFamilies",
+		"hasReverse": true,
+		"isMain": true,
 		"validSubTags": [
                          { "name": "pedigree", "min": 0, "max": 1 },
                          { "groupName": "@note" }
@@ -213,6 +218,8 @@
 		"objectType": "relationship",
 		"targetType": "family",
 		"plural": "spouseInFamilies",
+		"hasReverse": true,
+		"isMain": true,
 		"validSubTags": [
                          { "groupName": "@note" }
                          ]

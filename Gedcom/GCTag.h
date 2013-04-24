@@ -146,4 +146,10 @@
 /// A class indicating which type its target is. Will be `nil` if the tag is not a relationship-tag.
 @property (readonly) Class targetType;
 
+/// A BOOL indicating whether the relationship has a reverse.
+@property (readonly) BOOL hasReverse;
+
+/// In the case of relationships which have a reverse, a BOOL indicating whether the relationship is the main one.
+@property (readonly) BOOL isMain;
+
 @end

@@ -54,6 +54,8 @@ const NSString *kAllowsNilValue = @"allowsNil";
 const NSString *kAllowedValues = @"allowedValues";
 
 const NSString *kTakesValue = @"takesValue";
+const NSString *kHasReverse = @"hasReverse";
+const NSString *kIsMain = @"isMain";
 
 #pragma mark Initialization
 
@@ -253,7 +255,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         : GCTagTypeUnknown;
         
         // for entities:
-        _takesValue = _settings[kTakesValue] != nil;
+        _takesValue = [_settings[kTakesValue] boolValue];
         
         // for attributes:
         _valueType = NSClassFromString([NSString stringWithFormat:@"GC%@", [_settings[kValueType] capitalizedString]]);
@@ -262,6 +264,8 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         
         // for relationships:
         _targetType = _isCustom ? NSClassFromString(@"GCRecord") :  NSClassFromString([NSString stringWithFormat:@"GC%@Record", [_settings[kTargetType] capitalizedString]]);
+        _hasReverse = [_settings[kHasReverse] boolValue];
+        _isMain = [_settings[kIsMain] boolValue];
         
         dispatch_async(_tagSetupQueue, ^{
             dispatch_group_wait(_tagSetupGroup, DISPATCH_TIME_FOREVER);
