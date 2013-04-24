@@ -131,7 +131,7 @@
 
 - (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount
 {
-    if ( (rand()%1000) < 16) {
+    if ( (rand()%1000) < 3) {
         [recordCountField setIntegerValue:entityCount];
     }
 }
