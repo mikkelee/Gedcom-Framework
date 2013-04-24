@@ -43,6 +43,8 @@
 		3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E88151C319D005E09E1 /* InfoPlist.strings */; };
+		3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2001E717287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h */; };
+		3E2001EA17287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2001E817287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m */; };
 		3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E21E9B6160E88EB001EE004 /* GCChangeInfoAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */; };
 		3E29DB1A154A1D9600756CF4 /* GCDateAgeMathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */; };
@@ -562,6 +564,8 @@
 		3E1C3E7F151C319D005E09E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3E1C3E87151C319D005E09E1 /* GedcomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomTests-Info.plist"; sourceTree = "<group>"; };
 		3E1C3E89151C319D005E09E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3E2001E717287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MELazyPropertySwizzlingAdditions.h"; sourceTree = "<group>"; };
+		3E2001E817287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MELazyPropertySwizzlingAdditions.m"; sourceTree = "<group>"; };
 		3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCChangeInfoAttribute.h; sourceTree = "<group>"; };
 		3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCChangeInfoAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3E29DB18154A1C3800756CF4 /* GCDateAgeMathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDateAgeMathTests.m; sourceTree = "<group>"; };
@@ -1726,6 +1730,8 @@
 				3ED92D411563D76500E53E47 /* Delegate protocols */,
 				3ED92D3D1563C70500E53E47 /* GCXrefProtocol.h */,
 				3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */,
+				3E2001E717287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h */,
+				3E2001E817287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1959,6 +1965,7 @@
 				3E0C330017241EE90022E4D1 /* GCRecord.h in Headers */,
 				3E053D8E1726B70F0060A622 /* GCGedcomAccessAdditions.h in Headers */,
 				3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */,
+				3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2372,6 +2379,7 @@
 				3E41BFCC1725FBFA003286E7 /* GCWillAttribute.m in Sources */,
 				3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */,
 				3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */,
+				3E2001EA17287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

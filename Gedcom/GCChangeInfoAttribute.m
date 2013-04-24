@@ -85,20 +85,9 @@
 
 #pragma mark Objective-C properties
 
-- (NSDate *)lazyModificationDate
+- (NSDate *)_lazyModificationDate
 {
     return dateFromNode(_lazyModificationDateNode);
-}
-
-- (NSDate *)modificationDate
-{
-    dispatch_once(&_lazyModificationDateToken, ^{
-        if (!_modificationDate) {
-            _modificationDate = [self lazyModificationDate];
-        }
-    });
-    
-    return _modificationDate;
 }
 
 @synthesize noteReferences = _noteReferences;
@@ -138,4 +127,3 @@
 }
 
 @end
-
