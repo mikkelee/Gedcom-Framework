@@ -253,6 +253,9 @@ __strong static NSArray *_rootKeys = nil;
     
     BOOL succeeded = YES; //TODO
     
+    [self _sortByXrefs];
+    [context _sortByXrefs];
+    
     [self _clearXrefs]; //TODO undo?
     
     for (NSString *rootKey in _rootKeys) {
@@ -366,27 +369,24 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)_setXref:(NSString *)xref forRecord:(GCRecord *)record
 {
+    //NSLog(@"%p: setting xref %@ on %p", self, xref, record);
+    
     NSParameterAssert(xref);
     NSParameterAssert(record);
     NSParameterAssert(!_xrefToRecordMap[xref]);
     
-    //NSLog(@"%p: setting xref %@ on %p", self, xref, entity);
-    
-    // clear previously set xref, if any:
-    @synchronized (_recordToXrefMap) {
-        @synchronized (_xrefToRecordMap) {
-            if (_recordToXrefMap[record]) {
-                [_xrefToRecordMap removeObjectForKey:_recordToXrefMap[record]];
-                [_recordToXrefMap removeObjectForKey:record];
-            }
+    @synchronized (self) {
+        
+        // clear previously set xref, if any
+        if (_recordToXrefMap[record]) {
+            [_xrefToRecordMap removeObjectForKey:_recordToXrefMap[record]];
+            [_recordToXrefMap removeObjectForKey:record];
         }
-    }
-    
-    // update maps:
-    @synchronized (_xrefToRecordMap) {
+        
+        // update map
         _xrefToRecordMap[xref] = record;
-    }
-    @synchronized (_recordToXrefMap) {
+        
+        // update map
         _recordToXrefMap[record] = xref;
     }
 }
@@ -396,14 +396,10 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(record);
     NSParameterAssert(record.gedTag.code);
     
-    NSString *xref = nil;
-    
-    @synchronized (_recordToXrefMap) {
-        xref = _recordToXrefMap[record];
-    }
-    
-    if (!xref) {
-        @synchronized (_xrefToRecordMap) {
+    @synchronized (self) {
+        NSString *xref = _recordToXrefMap[record];
+        
+        if (!xref) {
             int i = 0;
             do {
                 xref = [NSString stringWithFormat:@"@%@%d@", record.gedTag.code, ++i];
@@ -411,42 +407,40 @@ __strong static NSArray *_rootKeys = nil;
             
             [self _setXref:xref forRecord:record];
         }
+        
+        //NSLog(@"%p: found %@ for %p in %@", self, xref, entity, _entityToXrefMap);
+        
+        return xref;
     }
-    
-    //NSLog(@"%p: found %@ for %p in %@", self, xref, entity, _entityToXrefMap);
-    
-    return xref;
 }
 
 - (GCRecord *)_recordForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass
 {
     id record;
     
-    @synchronized (_xrefToRecordMap) {
+    @synchronized (self) {
         record = _xrefToRecordMap[xref];
-    }
-    
-    if (record) {
-        //NSLog(@"Found existing: %@ > %p", xref, record);
-        NSParameterAssert([record isKindOfClass:aClass]);
-        return record;
-    } else if (create) {
-        record = [[aClass alloc] initInContext:self];
-        //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, record);
-        [self _setXref:xref forRecord:record];
-        return record;
-    } else {
-        //NSLog(@"NOT creating: %@", xref);
-        return nil;
+        
+        if (record) {
+            //NSLog(@"Found existing: %@ > %p", xref, record);
+            NSParameterAssert([record isKindOfClass:aClass]);
+            return record;
+        } else if (create) {
+            record = [[aClass alloc] initInContext:self];
+            //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, record);
+            [self _setXref:xref forRecord:record];
+            return record;
+        } else {
+            //NSLog(@"NOT creating: %@", xref);
+            return nil;
+        }
     }
 }
 
 - (void)_clearXrefs
 {
-    @synchronized (_xrefToRecordMap) {
+    @synchronized (self) {
         _xrefToRecordMap = [NSMapTable strongToWeakObjectsMapTable];
-    }
-    @synchronized (_recordToXrefMap) {
         _recordToXrefMap = [NSMapTable weakToStrongObjectsMapTable];
     }
 }
@@ -454,9 +448,32 @@ __strong static NSArray *_rootKeys = nil;
 - (void)_renumberXrefs
 {
     [self _clearXrefs];
-    for (GCRecord *record in self.entities) {
-        //TODO only get actual records
-        (void)[self _xrefForRecord:record];
+    for (id record in self.entities) {
+        if ([record isKindOfClass:[GCRecord class]]) {
+            (void)[self _xrefForRecord:record];
+        }
+    }
+}
+
+- (void)_sortByXrefs
+{
+    @synchronized (self) {
+        NSComparisonResult (^comp)(id, id) = ^NSComparisonResult(GCRecord *obj1, GCRecord *obj2) {
+            NSComparisonResult res = [obj1.xref compare:obj2.xref];
+            //NSLog(@"%@ ~ %@ = %ld", obj1.xref, obj2.xref, res);
+            return res;
+        };
+        
+        [self.mutableFamilies sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableIndividuals sortUsingComparator:comp];
+        [self.mutableMultimedias sortUsingComparator:comp];
+        [self.mutableNotes sortUsingComparator:comp];
+        [self.mutableFamilies sortUsingComparator:comp];
+        [self.mutableRepositories sortUsingComparator:comp];
+        [self.mutableSources sortUsingComparator:comp];
+        [self.mutableSubmitters sortUsingComparator:comp];
+        
+        [self _renumberXrefs];
     }
 }
 

@@ -45,6 +45,7 @@
 
 - (void)_clearXrefs;
 - (void)_renumberXrefs;
+- (void)_sortByXrefs;
 
 @property (strong, readonly) NSUndoManager *undoManager;
 
