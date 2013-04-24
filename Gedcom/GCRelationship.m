@@ -133,7 +133,11 @@
                     other.other = self;
                     self.other = other;
                     
-                    [target.mutableProperties addObject:other];
+                    if ([target allowedOccurrencesOfPropertyType:self.reverseRelationshipType].max > 1) {
+                        [[target mutableArrayValueForKey:self.reverseRelationshipType] addObject:other];
+                    } else {
+                        [target setValue:other forKey:self.reverseRelationshipType];
+                    }
                     
                     other.target = (GCRecord *)self.rootObject;
                 }
