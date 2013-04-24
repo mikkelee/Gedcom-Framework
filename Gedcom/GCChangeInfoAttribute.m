@@ -81,125 +81,16 @@
 
 #pragma mark Objective-C properties
 
+@synthesize noteReferences = _noteReferences;
+
 - (NSMutableArray *)mutableNoteReferences {
     return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
-- (id)objectInNoteReferencesAtIndex:(NSUInteger)index {
-    return [_noteReferences objectAtIndex:index];
-}
-
-- (void)insertObject:(GCProperty *)obj inNoteReferencesAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCNoteReferenceRelationship class]]);
-
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-                                                              value:@"Undo %@"
-                                                              table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-                                                          value:self.type
-                                                          table:@"Misc"];
-    
-    [self.undoManager beginUndoGrouping];
-    [(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
-    [self.undoManager endUndoGrouping];
-	
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-    
-    [_noteReferences insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)index {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-                                                          value:self.type
-                                                          table:@"Misc"];
-    
-    [self.undoManager beginUndoGrouping];
-	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteReferences[index] inNoteReferencesAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
-    [self.undoManager endUndoGrouping];
-	
-	[((GCObject *)_noteReferences[index]) setValue:nil forKey:@"describedObject"];
-	
-    [_noteReferences removeObjectAtIndex:index];
-}
-
+@synthesize noteEmbeddeds = _noteEmbeddeds;
 
 - (NSMutableArray *)mutableNoteEmbeddeds {
     return [self mutableArrayValueForKey:@"noteEmbeddeds"];
-}
-
-- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)index {
-    return [_noteEmbeddeds objectAtIndex:index];
-}
-
-- (void)insertObject:(GCProperty *)obj inNoteEmbeddedsAtIndex:(NSUInteger)index {
-	NSParameterAssert([obj isKindOfClass:[GCNoteEmbeddedAttribute class]]);
-    
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-                                                              value:@"Undo %@"
-                                                              table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-                                                          value:self.type
-                                                          table:@"Misc"];
-    
-    [self.undoManager beginUndoGrouping];
-	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
-    [self.undoManager endUndoGrouping];
-    
-	if ([obj valueForKey:@"describedObject"] == self) {
-		return;
-	}
-	
-	if ([obj valueForKey:@"describedObject"]) {
-		[((GCObject *)[obj valueForKey:@"describedObject"]).mutableProperties removeObject:obj];
-	}
-	
-	[obj setValue:self forKey:@"describedObject"];
-    
-    [_noteEmbeddeds insertObject:obj atIndex:index];
-}
-
-- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)index {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-															  value:@"Undo %@"
-															  table:@"Misc"];
-    
-    NSString *typeName = [frameworkBundle localizedStringForKey:self.type
-                                                          value:self.type
-                                                          table:@"Misc"];
-    
-    [self.undoManager beginUndoGrouping];
-	[(GCChangeInfoAttribute *)[self.undoManager prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[index] inNoteEmbeddedsAtIndex:index];
-	[self.undoManager setActionName:[NSString stringWithFormat:formatString, typeName]];
-    [self.undoManager endUndoGrouping];
-	
-	[((GCObject *)_noteEmbeddeds[index]) setValue:nil forKey:@"describedObject"];
-	
-    [_noteEmbeddeds removeObjectAtIndex:index];
 }
 
 #pragma mark Gedcom access
