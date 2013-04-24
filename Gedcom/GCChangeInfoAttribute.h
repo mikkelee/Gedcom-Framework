@@ -20,7 +20,7 @@
 #pragma mark Objective-C properties
 
 /// Returns the last time the entity was modified.
-@property (readonly) NSDate *modificationDate;
+@property (nonatomic, readonly) NSDate *modificationDate;
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;

@@ -28,6 +28,9 @@
 @implementation GCChangeInfoAttribute {
 	NSMutableArray *_noteReferences;
 	NSMutableArray *_noteEmbeddeds;
+    
+    GCNode *_lazyModificationDateNode;
+    dispatch_once_t _lazyModificationDateToken;
 }
 
 #pragma mark Initialization
@@ -39,7 +42,7 @@
     if (self) {
         _noteReferences = [NSMutableArray array];
         _noteEmbeddeds = [NSMutableArray array];
-        self.modificationDate = [NSDate date];
+        _modificationDate = [NSDate date];
     }
     
     return self;
@@ -52,7 +55,8 @@
     if (self) {
         [object setValue:self forKey:@"changeInfo"];
         
-        self.modificationDate = dateFromNode(node[@"DATE"][0]);
+        _modificationDate = nil;
+        _lazyModificationDateNode = node[@"DATE"][0];
 		
         [self _addPropertiesWithGedcomNodes:node[@"NOTE"]];
     }
@@ -80,6 +84,22 @@
 }
 
 #pragma mark Objective-C properties
+
+- (NSDate *)lazyModificationDate
+{
+    return dateFromNode(_lazyModificationDateNode);
+}
+
+- (NSDate *)modificationDate
+{
+    dispatch_once(&_lazyModificationDateToken, ^{
+        if (!_modificationDate) {
+            _modificationDate = [self lazyModificationDate];
+        }
+    });
+    
+    return _modificationDate;
+}
 
 @synthesize noteReferences = _noteReferences;
 
