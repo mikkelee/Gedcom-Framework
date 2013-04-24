@@ -143,8 +143,8 @@
     @"1 HUSB @INDI3@\n"
     @"1 CHIL @INDI2@\n"
     @"0 @FAM2@ FAM\n"
-    @"1 HUSB @INDI4@\n"
-    @"1 CHIL @INDI5@\n"
+    @"1 HUSB @INDI5@\n"
+    @"1 CHIL @INDI4@\n"
     @"0 @INDI1@ INDI\n"
     @"1 NAME Lars /Hansen/\n"
     @"1 SEX M\n"
@@ -157,13 +157,13 @@
     @"1 SEX M\n"
     @"1 FAMS @FAM1@\n"
     @"0 @INDI4@ INDI\n"
-    @"1 NAME Lars /Hansen/\n"
-    @"1 SEX M\n"
-    @"1 FAMS @FAM2@\n"
-    @"0 @INDI5@ INDI\n"
     @"1 NAME Tom /Larsen/\n"
     @"1 SEX M\n"
     @"1 FAMC @FAM2@\n"
+    @"0 @INDI5@ INDI\n"
+    @"1 NAME Lars /Hansen/\n"
+    @"1 SEX M\n"
+    @"1 FAMS @FAM2@\n"
     @"0 TRLR";
     
     STAssertEqualObjects(ctxA.gedcomString, expected, nil);

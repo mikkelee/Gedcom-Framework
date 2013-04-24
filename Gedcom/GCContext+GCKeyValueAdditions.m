@@ -136,15 +136,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)_addEntity:(GCEntity *)entity
 {
-	NSParameterAssert([entity isKindOfClass:[GCEntity class]]);
-    
-    if (entity.context == self) {
-        return;
-    }
-    
-    GCContext *oldContext = entity.context;
-    
-    [oldContext.mutableEntities removeObject:entity];
+    [entity.context.mutableEntities removeObject:entity];
     
     if ([entity isKindOfClass:[GCHeaderEntity class]]) {
         self.header = (GCHeaderEntity *)entity;
@@ -162,17 +154,25 @@ __strong static NSArray *_rootKeys = nil;
     }
     
     NSParameterAssert(entity.context == self);
+}
+
+- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
+{
+	NSParameterAssert([entity isKindOfClass:[GCEntity class]]);
+    
+    if (entity.context == self) {
+        return;
+    }
+    
+    GCContext *oldContext = entity.context;
+    
+    [self _addEntity:entity];
     
     if (oldContext != self) {
         for (GCRecord *relatedRecord in entity.relatedRecords) {
             [self _addEntity:relatedRecord];
         }
     }
-}
-
-- (void)insertObject:(GCEntity *)entity inEntitiesAtIndex:(NSUInteger)index
-{
-    [self _addEntity:entity];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
