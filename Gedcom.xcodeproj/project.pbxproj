@@ -27,6 +27,7 @@
 		3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */; };
 		3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */; };
 		3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */; };
+		3E053D971728170F0060A622 /* GCXrefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D961728170F0060A622 /* GCXrefTests.m */; };
 		3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E09D18C15F9427C00BAA69E /* GCObject_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19215F9816600BAA69E /* GCAge_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836515F8DDF800A9B096 /* GCAge_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E09D19315F9816900BAA69E /* GCDate_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E75836615F8DF3E00A9B096 /* GCDate_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -51,7 +52,7 @@
 		3E39506B1560DFFC00FEEA9F /* GCNameString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3950691560DFFC00FEEA9F /* GCNameString.m */; };
 		3E3969FF154F34E600AE8636 /* GCFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3969FE154F34E600AE8636 /* GCFormatterTests.m */; };
 		3E396A04154F375400AE8636 /* GCValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A02154F375400AE8636 /* GCValueFormatter.m */; };
-		3E396A07155B43B600AE8636 /* GCFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A06155B43B600AE8636 /* GCFileTests.m */; };
+		3E396A07155B43B600AE8636 /* GCContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A06155B43B600AE8636 /* GCContextTests.m */; };
 		3E3995AA155DE4B500228946 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E3995B0155DE4B500228946 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E3995AE155DE4B500228946 /* InfoPlist.strings */; };
 		3E3995B2155DE4B500228946 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3995B1155DE4B500228946 /* main.m */; };
@@ -539,6 +540,7 @@
 		3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomAccessAdditions.m; sourceTree = "<group>"; };
 		3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCSwizzlingAdditions.h"; sourceTree = "<group>"; };
 		3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCSwizzlingAdditions.m"; sourceTree = "<group>"; };
+		3E053D961728170F0060A622 /* GCXrefTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCXrefTests.m; sourceTree = "<group>"; };
 		3E09D18C15F9427C00BAA69E /* GCObject_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCObject_internal.h; sourceTree = "<group>"; };
 		3E0C32FE17241EE90022E4D1 /* GCRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRecord.h; sourceTree = "<group>"; };
 		3E0C32FF17241EE90022E4D1 /* GCRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRecord.m; sourceTree = "<group>"; };
@@ -570,7 +572,7 @@
 		3E3950691560DFFC00FEEA9F /* GCNameString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNameString.m; path = Values/GCNameString.m; sourceTree = "<group>"; };
 		3E3969FE154F34E600AE8636 /* GCFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFormatterTests.m; sourceTree = "<group>"; };
 		3E396A02154F375400AE8636 /* GCValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCValueFormatter.m; path = Values/GCValueFormatter.m; sourceTree = "<group>"; };
-		3E396A06155B43B600AE8636 /* GCFileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFileTests.m; sourceTree = "<group>"; };
+		3E396A06155B43B600AE8636 /* GCContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContextTests.m; sourceTree = "<group>"; };
 		3E3995A8155DE4B500228946 /* GedcomGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GedcomGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3995AD155DE4B500228946 /* GedcomGUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GedcomGUI-Info.plist"; sourceTree = "<group>"; };
 		3E3995AF155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1033,6 +1035,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E053D941728167B0060A622 /* Context tests */ = {
+			isa = PBXGroup;
+			children = (
+				3E396A06155B43B600AE8636 /* GCContextTests.m */,
+				3E053D961728170F0060A622 /* GCXrefTests.m */,
+			);
+			name = "Context tests";
+			sourceTree = "<group>";
+		};
 		3E14EDC715230A3000080364 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1104,7 +1115,6 @@
 			children = (
 				3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */,
 				3ED171291614C16200B5B83F /* GCPredicateTests.m */,
-				3E396A06155B43B600AE8636 /* GCFileTests.m */,
 				3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */,
 				3E8C1E9C1626BBA5005B3BE6 /* GCSanityCheckTests.m */,
 			);
@@ -1200,6 +1210,7 @@
 				3EF7A1CE151C5F8E004A8540 /* GCNodeTests.m */,
 				3E5F50C5151DFB0000A433A6 /* GCTagTests.m */,
 				3E17B4B816042E51009D2CCB /* Object tests */,
+				3E053D941728167B0060A622 /* Context tests */,
 				3E17B4B716042E21009D2CCB /* Value tests */,
 				3EF13699171B474A00EDB33C /* Transactions */,
 				3E17B4B016013CCD009D2CCB /* GCDelegateTests.m */,
@@ -2376,13 +2387,14 @@
 				3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */,
 				3E29DB1A154A1D9600756CF4 /* GCDateAgeMathTests.m in Sources */,
 				3E3969FF154F34E600AE8636 /* GCFormatterTests.m in Sources */,
-				3E396A07155B43B600AE8636 /* GCFileTests.m in Sources */,
+				3E396A07155B43B600AE8636 /* GCContextTests.m in Sources */,
 				3EDD411D156E335000002352 /* GCPlacestringTests.m in Sources */,
 				3E17B4B216014180009D2CCB /* GCDelegateTests.m in Sources */,
 				3E17B4B61603F254009D2CCB /* GCHelperTests.m in Sources */,
 				3ED1712A1614C16200B5B83F /* GCPredicateTests.m in Sources */,
 				3E8C1E9D1626BBA5005B3BE6 /* GCSanityCheckTests.m in Sources */,
 				3EF1369C171B476400EDB33C /* GCTransactionTests.m in Sources */,
+				3E053D971728170F0060A622 /* GCXrefTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

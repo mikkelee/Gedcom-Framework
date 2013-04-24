@@ -12,10 +12,10 @@
 
 #import "GedcomCharacterSetHelpers.h"
 
-@interface GCFileTests : SenTestCase 
+@interface GCContextTests : SenTestCase 
 @end
 
-@implementation GCFileTests
+@implementation GCContextTests
 
 - (void)testFile:(NSString *)path expectedEncoding:(GCFileEncoding)expectedEncoding
 {
