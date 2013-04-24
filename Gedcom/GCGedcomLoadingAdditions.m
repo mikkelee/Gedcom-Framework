@@ -29,23 +29,7 @@
         return;
     }
     
-    switch (tag.type) {
-        case GCTagTypeRelationship:
-        {
-            [self.context _defer:^{
-                (void)[tag.objectClass newWithGedcomNode:node onObject:self];
-            }];
-        }
-            break;
-            
-        case GCTagTypeAttribute:
-            (void)[tag.objectClass newWithGedcomNode:node onObject:self];
-            break;
-            
-        default:
-            NSAssert(NO, @"WTF");
-            break;
-    }
+    (void)[tag.objectClass newWithGedcomNode:node onObject:self];
 }
 
 - (void)_addPropertiesWithGedcomNodes:(NSArray *)nodes
@@ -210,16 +194,9 @@
 {
     GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
     
-    id target = [object.context _recordForXref:node.gedValue create:YES withClass:tag.targetType];
-    
-    if ([object.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
-        if ([[[object valueForKey:tag.pluralName] valueForKey:@"target"] containsObject:target]) {
-            return nil; // already exists
-        }
-    } else {
-        if ([[object valueForKey:tag.name] valueForKey:@"target"] == target) {
-            return nil; // already exists
-        }
+    if (tag.hasReverse && !tag.isMain) {
+        //NSLog(@"WARNING: dropping non-main reverse: %@", node);
+        return nil;
     }
     
     return [[self alloc] initWithGedcomNode:node onObject:object];

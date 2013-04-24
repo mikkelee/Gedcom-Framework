@@ -41,8 +41,6 @@
 
 - (void)_activateRecord:(GCRecord *)record;
 
-- (void)_defer:(void (^)())block;
-
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
 - (void)_clearXrefs;

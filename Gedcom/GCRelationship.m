@@ -90,51 +90,53 @@
 {
     //NSLog(@"%p :: %p :: %@ :: %@ = %p", self.rootObject, self, self.type, NSStringFromSelector(_cmd), target);
     
-    NSAssert(self.describedObject, @"You must add the relationship to an object before setting the target!");
-    NSAssert(self.context, @"You must add the root object to a context before setting the target!");
-    NSParameterAssert([target isKindOfClass:self.targetType]);
-    
-    GCEntity *oldTarget = _target;
-    
-    _target = target;
-    
-    if (self.reverseRelationshipType) {
-        //NSLog(@"Got new target: %@ for self: %@", target, self);
+    @synchronized (self.context) {
+        NSParameterAssert([target isKindOfClass:self.targetType]);
         
-        if (oldTarget) {
-            // remove previous reverse relationship before changing target.
-            //NSLog(@"Removing %@", oldTarget);
-            
-            [oldTarget.mutableProperties removeObject:self.other];
-            self.other = nil;
-        }
+        GCEntity *oldTarget = _target;
         
-        if (target && self.other.rootObject != target) {
-            //NSLog(@"test: %@", [target[self.reverseRelationshipType] valueForKey:@"target"]);
+        _target = target;
+        
+        if (self.reverseRelationshipType) {
+            NSAssert(self.rootObject, @"You must add the relationship to an object before setting the target!");
+            NSAssert(self.context, @"You must add the root object to a context before setting the target!");
+            //NSLog(@"Got new target: %@ for self: %@", target, self);
             
-            id targetRels = [target valueForKey:self.reverseRelationshipType];
-            
-            NSArray *targets = nil;
-            if ([target allowedOccurrencesOfPropertyType:self.reverseRelationshipType].max > 1) {
-                targets = [targetRels valueForKey:@"target"];
-            } else {
-                targets = [targetRels valueForKey:@"target"] ? @[ [targetRels valueForKey:@"target"] ] : @[];
+            if (oldTarget) {
+                // remove previous reverse relationship before changing target.
+                //NSLog(@"Removing %@", oldTarget);
+                
+                [oldTarget.mutableProperties removeObject:self.other];
+                self.other = nil;
             }
             
-            if (![targets containsObject:self.rootObject]) {
-                // set up new reverse relationship
-                //NSLog(@"Adding reverse relationship %@ with target: %@", self.reverseRelationshipType, self.rootObject);
+            if (target && self.other.rootObject != target) {
+                //NSLog(@"test: %@", [target[self.reverseRelationshipType] valueForKey:@"target"]);
                 
-                GCTag *tag = [GCTag tagNamed:self.reverseRelationshipType];
+                id targetRels = [target valueForKey:self.reverseRelationshipType];
                 
-                GCRelationship *other = [[tag.objectClass alloc] init];
+                NSArray *targets = nil;
+                if ([target allowedOccurrencesOfPropertyType:self.reverseRelationshipType].max > 1) {
+                    targets = [targetRels valueForKey:@"target"];
+                } else {
+                    targets = [targetRels valueForKey:@"target"] ? @[ [targetRels valueForKey:@"target"] ] : @[];
+                }
                 
-                other.other = self;
-                self.other = other;
-                
-                [target.mutableProperties addObject:other];
-                
-                other.target = (GCRecord *)self.rootObject;
+                if (![targets containsObject:self.rootObject]) {
+                    // set up new reverse relationship
+                    //NSLog(@"Adding reverse relationship %@ with target: %@", self.reverseRelationshipType, self.rootObject);
+                    
+                    GCTag *tag = [GCTag tagNamed:self.reverseRelationshipType];
+                    
+                    GCRelationship *other = [[tag.objectClass alloc] init];
+                    
+                    other.other = self;
+                    self.other = other;
+                    
+                    [target.mutableProperties addObject:other];
+                    
+                    other.target = (GCRecord *)self.rootObject;
+                }
             }
         }
     }

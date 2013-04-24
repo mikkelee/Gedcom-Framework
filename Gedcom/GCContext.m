@@ -58,7 +58,6 @@
     NSMapTable *_recordToXrefMap;
     
     NSOperationQueue *_mainQueue;
-    NSOperationQueue *_deferredQueue;
     
     NSUInteger _importCount;
 }
@@ -96,9 +95,6 @@ __strong static NSArray *_rootKeys = nil;
         _customEntities = [NSMutableArray array];
         
         _mainQueue = [[NSOperationQueue alloc] init];
-        _deferredQueue = [[NSOperationQueue alloc] init];
-        [_deferredQueue setSuspended:YES];
-        [_mainQueue setSuspended:YES];
         
         _importCount = 0;
         
@@ -129,16 +125,16 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount
 {
-
+    
 }
 
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
 {
-    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
-    
-    NSParameterAssert(tag);
-    
     [_mainQueue addOperationWithBlock:^{
+        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+        
+        NSParameterAssert(tag);
+        
         if (tag.objectClass != [GCTrailerEntity class]) {
             GCObject *obj = [tag.objectClass newWithGedcomNode:node inContext:self];
             NSParameterAssert(obj.context == self);
@@ -154,15 +150,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (void)parser:(GCNodeParser *)parser didParseNodesWithCount:(NSUInteger)nodeCount
 {
-    [_mainQueue addOperationWithBlock:^{
-        [_deferredQueue setSuspended:NO];
-    }];
     [_mainQueue setSuspended:NO];
-}
-
-- (void)_defer:(void (^)())block
-{
-    [_deferredQueue addOperationWithBlock:block];
 }
 
 #pragma mark Loading nodes into a context
@@ -205,7 +193,6 @@ __strong static NSArray *_rootKeys = nil;
     BOOL result = [nodeParser parseString:gedString error:error];
     
     [_mainQueue waitUntilAllOperationsAreFinished];
-    [_deferredQueue waitUntilAllOperationsAreFinished];
     
 #ifdef DEBUGLEVEL
     NSTimeInterval timeInterval = fabs([start timeIntervalSinceNow]);
@@ -339,8 +326,6 @@ __strong static NSArray *_rootKeys = nil;
         _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
         
         _mainQueue = [[NSOperationQueue alloc] init];
-        _deferredQueue = [[NSOperationQueue alloc] init];
-        [_deferredQueue setSuspended:YES];
         
         _undoManager = [[NSUndoManager alloc] init];
         [_undoManager setGroupsByEvent:NO];
