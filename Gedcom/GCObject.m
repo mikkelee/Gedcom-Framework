@@ -100,6 +100,14 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     return [self.gedcomString isEqualToString:other.gedcomString];
 }
 
+#pragma mark NSCopying conformance
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    // deep copy
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+}
+
 #pragma mark NSCoding conformance
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder

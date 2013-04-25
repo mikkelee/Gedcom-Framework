@@ -20,7 +20,7 @@
  Abstract object. Subclasses are GCHeader, GCEntity and GCProperty.
  
  */
-@interface GCObject : NSObject <NSCoding>
+@interface GCObject : NSObject <NSCoding, NSCopying>
 
 #pragma mark Accessing GCProperties
 /// @name Accessing GCProperties
