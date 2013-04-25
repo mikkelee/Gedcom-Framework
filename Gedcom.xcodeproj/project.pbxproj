@@ -2158,7 +2158,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Mikkel Eide Eriksen\" --company-id dk.kildekort --output $SOURCE_ROOT/Documentation --logformat Xcode --keep-intermediate-files --warn-undocumented-object --warn-undocumented-member --keep-undocumented-objects --keep-undocumented-members --keep-merged-sections --prefix-merged-sections --no-repeat-first-par --ignore *_internal.h Gedcom/*.h";
+			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Mikkel Eide Eriksen\" --company-id dk.kildekort --output $SOURCE_ROOT/Documentation --logformat Xcode --keep-intermediate-files --warn-undocumented-object --warn-undocumented-member --keep-undocumented-objects --keep-undocumented-members --keep-merged-sections --prefix-merged-sections --no-repeat-first-par --ignore *_internal.h Gedcom/*.h Gedcom/Nodes/*.h Gedcom/Values/*.h Gedcom/_Generated/generated_headers/*.h";
 		};
 		3E325D34170EC90700109A18 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

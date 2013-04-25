@@ -38,25 +38,35 @@
 
 /// . GCPhoneNumberAttribute
 @property (nonatomic) NSArray *phoneNumbers;
-/// . phoneNumbers
+/// . Contains instances of phoneNumbers
 @property (nonatomic) NSMutableArray *mutablePhoneNumbers;
+
+/// @name Accessing multimedias
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *multimedias;
 
-/// Also contained in multimedias. . GCMultimediaReferenceRelationship
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaReferenceRelationship
 @property (nonatomic) NSArray *multimediaReferences;
-/// Also contained in multimedias. . multimediaReferences
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaReferences
 @property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
-/// Also contained in multimedias. . GCMultimediaEmbeddedAttribute
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaEmbeddedAttribute
 @property (nonatomic) NSArray *multimediaEmbeddeds;
-/// Also contained in multimedias. . multimediaEmbeddeds
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaEmbeddeds
 @property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
 
 /// . GCLanguageAttribute
 @property (nonatomic) NSArray *languages;
-/// . languages
+/// . Contains instances of languages
 @property (nonatomic) NSMutableArray *mutableLanguages;
 
 /// . 
@@ -67,7 +77,7 @@
 
 /// . GCUserReferenceNumberAttribute
 @property (nonatomic) NSArray *userReferenceNumbers;
-/// . userReferenceNumbers
+/// . Contains instances of userReferenceNumbers
 @property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 /// . 

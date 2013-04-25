@@ -36,7 +36,7 @@
 
 /// . GCDestinationAttribute
 @property (nonatomic) NSArray *destinations;
-/// . destinations
+/// . Contains instances of destinations
 @property (nonatomic) NSMutableArray *mutableDestinations;
 
 /// . 
@@ -47,7 +47,7 @@
 
 /// . GCSubmissionReferenceRelationship
 @property (nonatomic) NSArray *submissionReferences;
-/// . submissionReferences
+/// . Contains instances of submissionReferences
 @property (nonatomic) NSMutableArray *mutableSubmissionReferences;
 
 /// . 

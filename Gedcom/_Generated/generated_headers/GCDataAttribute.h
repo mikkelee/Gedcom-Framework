@@ -38,7 +38,7 @@
 
 /// . GCTextAttribute
 @property (nonatomic) NSArray *texts;
-/// . texts
+/// . Contains instances of texts
 @property (nonatomic) NSMutableArray *mutableTexts;
 
 

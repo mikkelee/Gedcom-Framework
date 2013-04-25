@@ -47,70 +47,118 @@
 +(instancetype)marriageContractWithGedcomStringValue:(NSString *)value;
 
 // Properties:
+/// @name Accessing event details
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *eventDetails;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCTypeDescriptionAttribute *typeDescription;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCDateAttribute *date;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCPlaceAttribute *place;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCAddressAttribute *address;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCPhoneNumberAttribute *phoneNumber;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCAgeAttribute *age;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCResponsibleAgencyAttribute *responsibleAgency;
 
-/// Also contained in eventDetails. . 
+/// @name Accessing event details 
+
+///Also contained in eventDetails. . 
 @property (nonatomic) GCCauseAttribute *cause;
+
+/// @name Accessing sources
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *sources;
 
-/// Also contained in sources. . GCSourceCitationRelationship
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceCitationRelationship
 @property (nonatomic) NSArray *sourceCitations;
-/// Also contained in sources. . sourceCitations
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceCitations
 @property (nonatomic) NSMutableArray *mutableSourceCitations;
 
-/// Also contained in sources. . GCSourceEmbeddedAttribute
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceEmbeddedAttribute
 @property (nonatomic) NSArray *sourceEmbeddeds;
-/// Also contained in sources. . sourceEmbeddeds
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceEmbeddeds
 @property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
+
+/// @name Accessing multimedias
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *multimedias;
 
-/// Also contained in multimedias. . GCMultimediaReferenceRelationship
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaReferenceRelationship
 @property (nonatomic) NSArray *multimediaReferences;
-/// Also contained in multimedias. . multimediaReferences
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaReferences
 @property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
-/// Also contained in multimedias. . GCMultimediaEmbeddedAttribute
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaEmbeddedAttribute
 @property (nonatomic) NSArray *multimediaEmbeddeds;
-/// Also contained in multimedias. . multimediaEmbeddeds
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaEmbeddeds
 @property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
+
+/// @name Accessing notes
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;
 
-/// Also contained in notes. . GCNoteReferenceRelationship
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteReferenceRelationship
 @property (nonatomic) NSArray *noteReferences;
-/// Also contained in notes. . noteReferences
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteReferences
 @property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Also contained in notes. . GCNoteEmbeddedAttribute
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteEmbeddedAttribute
 @property (nonatomic) NSArray *noteEmbeddeds;
-/// Also contained in notes. . noteEmbeddeds
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteEmbeddeds
 @property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 /// . 

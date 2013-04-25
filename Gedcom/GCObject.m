@@ -183,7 +183,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 
 @dynamic rootObject;
 @dynamic context;
-@dynamic URL;
 
 - (NSUndoManager *)undoManager
 {

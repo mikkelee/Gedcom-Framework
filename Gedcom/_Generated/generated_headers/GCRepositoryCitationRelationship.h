@@ -22,22 +22,32 @@
 +(instancetype)repositoryCitation;
 
 // Properties:
+/// @name Accessing notes
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;
 
-/// Also contained in notes. . GCNoteReferenceRelationship
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteReferenceRelationship
 @property (nonatomic) NSArray *noteReferences;
-/// Also contained in notes. . noteReferences
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteReferences
 @property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Also contained in notes. . GCNoteEmbeddedAttribute
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteEmbeddedAttribute
 @property (nonatomic) NSArray *noteEmbeddeds;
-/// Also contained in notes. . noteEmbeddeds
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteEmbeddeds
 @property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 /// . GCCallNumberAttribute
 @property (nonatomic) NSArray *callNumbers;
-/// . callNumbers
+/// . Contains instances of callNumbers
 @property (nonatomic) NSMutableArray *mutableCallNumbers;
 
 

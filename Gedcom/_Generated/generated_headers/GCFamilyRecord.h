@@ -45,62 +45,108 @@
 +(instancetype)familyInContext:(GCContext *)context;
 
 // Properties:
+/// @name Accessing family events
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *familyEvents;
 
-/// Also contained in familyEvents. . GCAnnulmentAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCAnnulmentAttribute
 @property (nonatomic) NSArray *annulments;
-/// Also contained in familyEvents. . annulments
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of annulments
 @property (nonatomic) NSMutableArray *mutableAnnulments;
 
-/// Also contained in familyEvents. . GCCensusAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCCensusAttribute
 @property (nonatomic) NSArray *censuses;
-/// Also contained in familyEvents. . censuses
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of censuses
 @property (nonatomic) NSMutableArray *mutableCensuses;
 
-/// Also contained in familyEvents. . GCDivorceAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCDivorceAttribute
 @property (nonatomic) NSArray *divorces;
-/// Also contained in familyEvents. . divorces
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of divorces
 @property (nonatomic) NSMutableArray *mutableDivorces;
 
-/// Also contained in familyEvents. . GCDivorceFiledAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCDivorceFiledAttribute
 @property (nonatomic) NSArray *divorceFileds;
-/// Also contained in familyEvents. . divorceFileds
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of divorceFileds
 @property (nonatomic) NSMutableArray *mutableDivorceFileds;
 
-/// Also contained in familyEvents. . GCEngagementAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCEngagementAttribute
 @property (nonatomic) NSArray *engagements;
-/// Also contained in familyEvents. . engagements
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of engagements
 @property (nonatomic) NSMutableArray *mutableEngagements;
 
-/// Also contained in familyEvents. . GCMarriageAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCMarriageAttribute
 @property (nonatomic) NSArray *marriages;
-/// Also contained in familyEvents. . marriages
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of marriages
 @property (nonatomic) NSMutableArray *mutableMarriages;
 
-/// Also contained in familyEvents. . GCMarriageBannAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCMarriageBannAttribute
 @property (nonatomic) NSArray *marriageBanns;
-/// Also contained in familyEvents. . marriageBanns
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of marriageBanns
 @property (nonatomic) NSMutableArray *mutableMarriageBanns;
 
-/// Also contained in familyEvents. . GCMarriageContractAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCMarriageContractAttribute
 @property (nonatomic) NSArray *marriageContracts;
-/// Also contained in familyEvents. . marriageContracts
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of marriageContracts
 @property (nonatomic) NSMutableArray *mutableMarriageContracts;
 
-/// Also contained in familyEvents. . GCMarriageLicenseAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCMarriageLicenseAttribute
 @property (nonatomic) NSArray *marriageLicenses;
-/// Also contained in familyEvents. . marriageLicenses
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of marriageLicenses
 @property (nonatomic) NSMutableArray *mutableMarriageLicenses;
 
-/// Also contained in familyEvents. . GCMarriageSettlementAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCMarriageSettlementAttribute
 @property (nonatomic) NSArray *marriageSettlements;
-/// Also contained in familyEvents. . marriageSettlements
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of marriageSettlements
 @property (nonatomic) NSMutableArray *mutableMarriageSettlements;
 
-/// Also contained in familyEvents. . GCGenericEventAttribute
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . GCGenericEventAttribute
 @property (nonatomic) NSArray *genericEvents;
-/// Also contained in familyEvents. . genericEvents
+/// @name Accessing family events 
+
+///Also contained in familyEvents. . Contains instances of genericEvents
 @property (nonatomic) NSMutableArray *mutableGenericEvents;
 
 /// . 
@@ -111,7 +157,7 @@
 
 /// . GCChildRelationship
 @property (nonatomic) NSArray *children;
-/// . children
+/// . Contains instances of children
 @property (nonatomic) NSMutableArray *mutableChildren;
 
 /// . 
@@ -119,56 +165,86 @@
 
 /// . GCSubmitterReferenceRelationship
 @property (nonatomic) NSArray *submitterReferences;
-/// . submitterReferences
+/// . Contains instances of submitterReferences
 @property (nonatomic) NSMutableArray *mutableSubmitterReferences;
 
 /// . GCLDSSealingSpouseAttribute
 @property (nonatomic) NSArray *lDSSealingSpouses;
-/// . lDSSealingSpouses
+/// . Contains instances of lDSSealingSpouses
 @property (nonatomic) NSMutableArray *mutableLDSSealingSpouses;
+
+/// @name Accessing sources
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *sources;
 
-/// Also contained in sources. . GCSourceCitationRelationship
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceCitationRelationship
 @property (nonatomic) NSArray *sourceCitations;
-/// Also contained in sources. . sourceCitations
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceCitations
 @property (nonatomic) NSMutableArray *mutableSourceCitations;
 
-/// Also contained in sources. . GCSourceEmbeddedAttribute
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceEmbeddedAttribute
 @property (nonatomic) NSArray *sourceEmbeddeds;
-/// Also contained in sources. . sourceEmbeddeds
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceEmbeddeds
 @property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
+
+/// @name Accessing multimedias
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *multimedias;
 
-/// Also contained in multimedias. . GCMultimediaReferenceRelationship
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaReferenceRelationship
 @property (nonatomic) NSArray *multimediaReferences;
-/// Also contained in multimedias. . multimediaReferences
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaReferences
 @property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
-/// Also contained in multimedias. . GCMultimediaEmbeddedAttribute
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaEmbeddedAttribute
 @property (nonatomic) NSArray *multimediaEmbeddeds;
-/// Also contained in multimedias. . multimediaEmbeddeds
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaEmbeddeds
 @property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
+
+/// @name Accessing notes
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;
 
-/// Also contained in notes. . GCNoteReferenceRelationship
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteReferenceRelationship
 @property (nonatomic) NSArray *noteReferences;
-/// Also contained in notes. . noteReferences
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteReferences
 @property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Also contained in notes. . GCNoteEmbeddedAttribute
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteEmbeddedAttribute
 @property (nonatomic) NSArray *noteEmbeddeds;
-/// Also contained in notes. . noteEmbeddeds
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteEmbeddeds
 @property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 /// . GCUserReferenceNumberAttribute
 @property (nonatomic) NSArray *userReferenceNumbers;
-/// . userReferenceNumbers
+/// . Contains instances of userReferenceNumbers
 @property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 /// . 

@@ -48,7 +48,7 @@
 
 /// . GCUserReferenceNumberAttribute
 @property (nonatomic) NSArray *userReferenceNumbers;
-/// . userReferenceNumbers
+/// . Contains instances of userReferenceNumbers
 @property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 /// . 

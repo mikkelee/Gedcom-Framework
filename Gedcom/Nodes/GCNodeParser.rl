@@ -140,18 +140,6 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 
 @implementation GCNodeParser
 
-__strong static id _sharedNodeParser = nil;
-
-+ (void)initialize
-{
-    _sharedNodeParser = [[self alloc] init];
-}
-
-+ (id)sharedNodeParser
-{
-    return _sharedNodeParser;
-}
-
 - (BOOL)parseString:(id)gedString error:(NSError *__autoreleasing *)error
 {
     static dispatch_once_t onceToken;

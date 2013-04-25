@@ -61,7 +61,9 @@
 #pragma mark Parsing nodes
 /// @name Parsing nodes
 
-/** Causes the receiver to determine the encoding of the text contained in the data. It will then create an array of nodes and use parseNodes: to parse them. The determined encoding will be available on the fileEncoding property.
+/** Causes the receiver to determine the encoding of the text contained in the data. It will then create a GCNodeParser, set itself as its delegate, and start the parser. As nodes come in from the parser, they are turned into entities, properties, etc.
+ 
+ The determined encoding will be available on the fileEncoding property.
  
  Will throw an exception if the receiver already contains entities.
  
@@ -113,6 +115,14 @@
 
 #pragma mark Merging entities
 
+/** Causes the receiver to merge another context into it.
+ 
+ Warning: Not very thoroughly tested at the moment. May blow up in your face, so back up first and carefully check out the resulting context.
+ 
+ @param context The context with which to merge.
+ @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
+ @return `YES` for success, `NO` for failure. If `NO`, the error parameter will be populated and the context will need to be reloaded.
+ */
 - (BOOL)mergeContext:(GCContext *)context error:(NSError **)error;
 
 #pragma mark - Objective-C properties -
@@ -147,6 +157,8 @@
 @end
 
 @interface GCContext (GCTransactionAdditions)
+
+/// @name Managing transactions
 
 - (void)beginTransaction;
 

@@ -33,6 +33,11 @@ static const char lazyPrefix[] = "_lazy";
 
 @interface NSObject (MELazyPropertySwizzlingAdditions)
 
+/**
+ 
+ Performs the setup of the getters by swizzling in the lazy properties to be called just prior to the first call of the normal properties.
+ 
+ */
 + (void)setupLazyProperties;
 
 @end

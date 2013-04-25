@@ -100,13 +100,10 @@
 /// The non-standard properties of the receiver, if any.
 @property (nonatomic, readonly) NSArray *customProperties;
 
-@property (nonatomic, readonly) NSMutableArray *mutableCustomProperties;
-
-@property (nonatomic, readonly) NSURL *URL;
-
-/// The GCTag corresponding to the receiver's type.
+/// The GCTag corresponding to the receiver's class.
 @property (nonatomic, readonly) GCTag *gedTag;
 
+/// The GCTag corresponding to the receiver's class.
 + (GCTag *)gedTag;
 
 @end

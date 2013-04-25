@@ -25,7 +25,7 @@
 
 #pragma mark Objective-C properties
 
-@property (nonatomic) NSMutableArray *customProperties;
+@property (nonatomic, readonly) NSMutableArray *mutableCustomProperties;
 
 @property (nonatomic) NSArray *subNodes;
 

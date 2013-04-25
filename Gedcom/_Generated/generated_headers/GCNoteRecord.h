@@ -24,22 +24,32 @@
 +(instancetype)noteInContext:(GCContext *)context;
 
 // Properties:
+/// @name Accessing sources
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *sources;
 
-/// Also contained in sources. . GCSourceCitationRelationship
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceCitationRelationship
 @property (nonatomic) NSArray *sourceCitations;
-/// Also contained in sources. . sourceCitations
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceCitations
 @property (nonatomic) NSMutableArray *mutableSourceCitations;
 
-/// Also contained in sources. . GCSourceEmbeddedAttribute
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceEmbeddedAttribute
 @property (nonatomic) NSArray *sourceEmbeddeds;
-/// Also contained in sources. . sourceEmbeddeds
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceEmbeddeds
 @property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
 
 /// . GCUserReferenceNumberAttribute
 @property (nonatomic) NSArray *userReferenceNumbers;
-/// . userReferenceNumbers
+/// . Contains instances of userReferenceNumbers
 @property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 /// . 

@@ -29,6 +29,7 @@
 
 @interface GCRelationship (GCGedcomAccessAdditions)
 
+/// The type of GCRecord this relationship can point to.
 @property (nonatomic, readonly) Class targetType;
 
 @end

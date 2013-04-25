@@ -10,6 +10,11 @@
 #import "GCObject_internal.h"
 @class GCString;
 
+/**
+ 
+ A root level entity in a context, such as a header, or a record (family, individual, etc).
+ 
+ */
 @interface GCEntity : GCObject
 
 #pragma mark Initialization

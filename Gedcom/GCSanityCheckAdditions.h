@@ -11,6 +11,8 @@
 
 @interface GCContext (GCSanityCheckAdditions)
 
+/// @name Sanity checking
+
 /** Runs various sanity checks on the receiver and its entities.
  
  @param error An NSError object describing the inconsistencies, if any.
@@ -21,6 +23,8 @@
 @end
 
 @interface GCEntity (GCSanityCheckAdditions)
+
+/// @name Sanity checking
 
 /** Runs various sanity checks on the receiver.
  

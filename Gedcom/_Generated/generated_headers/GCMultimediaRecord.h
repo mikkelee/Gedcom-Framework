@@ -33,17 +33,27 @@
 /// . 
 @property (nonatomic) GCTitleAttribute *title;
 
+/// @name Accessing notes
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;
 
-/// Also contained in notes. . GCNoteReferenceRelationship
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteReferenceRelationship
 @property (nonatomic) NSArray *noteReferences;
-/// Also contained in notes. . noteReferences
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteReferences
 @property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Also contained in notes. . GCNoteEmbeddedAttribute
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteEmbeddedAttribute
 @property (nonatomic) NSArray *noteEmbeddeds;
-/// Also contained in notes. . noteEmbeddeds
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteEmbeddeds
 @property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 /// . 
@@ -51,7 +61,7 @@
 
 /// . GCUserReferenceNumberAttribute
 @property (nonatomic) NSArray *userReferenceNumbers;
-/// . userReferenceNumbers
+/// . Contains instances of userReferenceNumbers
 @property (nonatomic) NSMutableArray *mutableUserReferenceNumbers;
 
 /// . 

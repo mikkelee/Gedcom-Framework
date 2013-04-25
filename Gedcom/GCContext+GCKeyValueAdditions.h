@@ -22,38 +22,64 @@
 @property GCSubmissionRecord *submission;
 
 /// An ordered collection of the receiver's families.
+/// @see mutableFamilies.
 @property (readonly) NSArray *families;
+/// A mutable KVC-compliant collection of the receiver's families.
+/// @see families.
 @property (readonly) NSMutableArray *mutableFamilies;
 
 /// An ordered collection of the receiver's individuals.
+/// @see mutableIndividuals.
 @property (readonly) NSArray *individuals;
+/// A mutable KVC-compliant collection of the receiver's individuals.
+/// @see individuals.
 @property (readonly) NSMutableArray *mutableIndividuals;
 
 /// An ordered collection of the receiver's multimedia objects.
+/// @see mutableMultimedias.
 @property (readonly) NSArray *multimedias;
+/// A mutable KVC-compliant collection of the receiver's multimedia objects.
+/// @see multimedias.
 @property (readonly) NSMutableArray *mutableMultimedias;
 
 /// An ordered collection of the receiver's notes.
+/// @see mutableNotes.
 @property (readonly) NSArray *notes;
+/// A mutable KVC-compliant collection of the receiver's notes.
+/// @see notes.
 @property (readonly) NSMutableArray *mutableNotes;
 
 /// An ordered collection of the receiver's repositories.
+/// @see mutableRepositories.
 @property (readonly) NSArray *repositories;
+/// A mutable KVC-compliant collection of the receiver's repositories.
+/// @see repositories.
 @property (readonly) NSMutableArray *mutableRepositories;
 
 /// An ordered collection of the receiver's sources.
+/// @see mutableSources.
 @property (readonly) NSArray *sources;
+/// A mutable KVC-compliant collection of the receiver's sources.
+/// @see sources.
 @property (readonly) NSMutableArray *mutableSources;
 
 /// An ordered collection of the receiver's submitters.
+/// @see mutableSubmitters.
 @property (readonly) NSArray *submitters;
+/// A mutable KVC-compliant collection of the receiver's submitters.
+/// @see submitters.
 @property (readonly) NSMutableArray *mutableSubmitters;
 
-/// A collection of all the receiver's entities.
+/// A collection of all the receiver's entities. That is, the header, submission, families, individuals, etc.
+/// @see mutableEntities.
 @property (readonly) NSArray *entities;
+/// A mutable KVC-compliant collection of the receiver's entities.
+/// @see entities.
 @property (readonly) NSMutableArray *mutableEntities;
 
 #pragma mark Keyed subscript accessors
+
+/// @name Key-Value coding
 
 /** Returns the property/ies with the given type. Used like on NSMutableDictionary.
  

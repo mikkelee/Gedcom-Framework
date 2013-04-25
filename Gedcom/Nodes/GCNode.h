@@ -112,9 +112,12 @@
 /// The line separator of the receiver; usually `\n`.
 @property (readonly, nonatomic) NSString *lineSeparator;
 
-/// A KVC-compliant ordered collection containing the subnodes of the receiver.
-@property (nonatomic) NSMutableArray *mutableSubNodes;
+/// An ordered collection containing the subnodes of the receiver.
+/// @see mutableSubNodes.
 @property (nonatomic) NSArray *subNodes;
+/// A mutable KVC-compliant ordered collection containing the subnodes of the receiver.
+/// @see subNodes.
+@property (nonatomic) NSMutableArray *mutableSubNodes;
 
 /// A uniquing collection containing the gedTags for all subNodes of the receiver.
 @property (readonly, nonatomic) NSSet *allSubTags;

@@ -39,30 +39,50 @@
 /// . 
 @property (nonatomic) GCPlaceFormatAttribute *placeFormat;
 
+/// @name Accessing sources
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *sources;
 
-/// Also contained in sources. . GCSourceCitationRelationship
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceCitationRelationship
 @property (nonatomic) NSArray *sourceCitations;
-/// Also contained in sources. . sourceCitations
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceCitations
 @property (nonatomic) NSMutableArray *mutableSourceCitations;
 
-/// Also contained in sources. . GCSourceEmbeddedAttribute
+/// @name Accessing sources 
+
+///Also contained in sources. . GCSourceEmbeddedAttribute
 @property (nonatomic) NSArray *sourceEmbeddeds;
-/// Also contained in sources. . sourceEmbeddeds
+/// @name Accessing sources 
+
+///Also contained in sources. . Contains instances of sourceEmbeddeds
 @property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
+
+/// @name Accessing notes
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;
 
-/// Also contained in notes. . GCNoteReferenceRelationship
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteReferenceRelationship
 @property (nonatomic) NSArray *noteReferences;
-/// Also contained in notes. . noteReferences
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteReferences
 @property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Also contained in notes. . GCNoteEmbeddedAttribute
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteEmbeddedAttribute
 @property (nonatomic) NSArray *noteEmbeddeds;
-/// Also contained in notes. . noteEmbeddeds
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteEmbeddeds
 @property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 

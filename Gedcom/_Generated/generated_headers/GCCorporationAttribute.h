@@ -38,7 +38,7 @@
 
 /// . GCPhoneNumberAttribute
 @property (nonatomic) NSArray *phoneNumbers;
-/// . phoneNumbers
+/// . Contains instances of phoneNumbers
 @property (nonatomic) NSMutableArray *mutablePhoneNumbers;
 
 

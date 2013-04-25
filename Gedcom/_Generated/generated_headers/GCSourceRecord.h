@@ -54,30 +54,50 @@
 /// . 
 @property (nonatomic) GCRepositoryCitationRelationship *repositoryCitation;
 
+/// @name Accessing multimedias
+
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *multimedias;
 
-/// Also contained in multimedias. . GCMultimediaReferenceRelationship
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaReferenceRelationship
 @property (nonatomic) NSArray *multimediaReferences;
-/// Also contained in multimedias. . multimediaReferences
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaReferences
 @property (nonatomic) NSMutableArray *mutableMultimediaReferences;
 
-/// Also contained in multimedias. . GCMultimediaEmbeddedAttribute
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . GCMultimediaEmbeddedAttribute
 @property (nonatomic) NSArray *multimediaEmbeddeds;
-/// Also contained in multimedias. . multimediaEmbeddeds
+/// @name Accessing multimedias 
+
+///Also contained in multimedias. . Contains instances of multimediaEmbeddeds
 @property (nonatomic) NSMutableArray *mutableMultimediaEmbeddeds;
+
+/// @name Accessing notes
 
 /// Property for accessing the following properties
 @property (nonatomic) NSArray *notes;
 
-/// Also contained in notes. . GCNoteReferenceRelationship
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteReferenceRelationship
 @property (nonatomic) NSArray *noteReferences;
-/// Also contained in notes. . noteReferences
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteReferences
 @property (nonatomic) NSMutableArray *mutableNoteReferences;
 
-/// Also contained in notes. . GCNoteEmbeddedAttribute
+/// @name Accessing notes 
+
+///Also contained in notes. . GCNoteEmbeddedAttribute
 @property (nonatomic) NSArray *noteEmbeddeds;
-/// Also contained in notes. . noteEmbeddeds
+/// @name Accessing notes 
+
+///Also contained in notes. . Contains instances of noteEmbeddeds
 @property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 /// . 

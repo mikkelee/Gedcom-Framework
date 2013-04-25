@@ -2,6 +2,7 @@
 
 import sys, argparse
 import json
+import re
 from string import Template
 
 specialClasses = [ #don't generate classes for these
@@ -126,7 +127,7 @@ def property(tagInfo, selfClass, key, type, doc, forwardDeclarations, is_plural,
 			), propertyT.substitute(
 				type='NSMutableArray',
 				name='mutable%s%s' % (name[0].upper(), name[1:]),
-				doc='. '.join([doc, name])
+				doc='. Contains instances of '.join([doc, name])
 			))
 			implementation = '%s%s' % (
 				'@synthesize %s = _%s;\n' % (name, name),
@@ -209,8 +210,16 @@ def constructors(key, type):
 
 ##########################################################################################
 
+def decamelcase(name):
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
+
 def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplementations, ivars, forwardDeclarations):
-	dec, imp, ivar = property(tagInfo, className, group[1:], '', 'Property for accessing the following properties', forwardDeclarations, True, False, is_property_group=True)
+	section = decamelcase(pluralize(tagInfo, group))
+	docHeader = '@name Accessing %s' % section
+	defaultDoc = '%s\n\n/// Property for accessing the following properties' % docHeader
+	
+	dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
 					
 	propertyDeclarations.append(dec)
 	propertyImplementations.append(imp)
@@ -224,7 +233,7 @@ def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplem
 	
 	for variant in props:
 		if variant.has_key('groupName'):
-			dec, imp, ivar = property(tagInfo, className, group[1:], '', 'Property for accessing the following properties', forwardDeclarations, True, False, is_property_group=True)
+			dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
 			
 			if dec not in propertyDeclarations:
 				propertyDeclarations.append(dec)
@@ -234,7 +243,7 @@ def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplem
 			expand_group(tagInfo, className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
 			continue
 		if variant.has_key('subClassName'):
-			dec, imp, ivar = property(tagInfo, className, group[1:], '', 'Property for accessing the following properties', forwardDeclarations, True, False, is_property_group=True)
+			dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
 			
 			if dec not in propertyDeclarations:
 				propertyDeclarations.append(dec)
@@ -244,7 +253,10 @@ def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplem
 			expand_group(tagInfo, className, variant['subClassName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
 			continue
 		print >> sys.stderr, '		PROCESSING VARIANT "%s": %s' % (variant['name'], tagInfo[variant['name']])
-		dec, imp, ivar = property(tagInfo, className, variant['name'], tagInfo[variant['name']]['objectType'], 'Also contained in %ss. %s' % (group[1:], variant['doc'] if variant.has_key('doc') else ''), forwardDeclarations, variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
+
+		doc = '%s \n\n///Also contained in %ss. %s' % (docHeader, group[1:], variant['doc'] if variant.has_key('doc') else '')
+
+		dec, imp, ivar = property(tagInfo, className, variant['name'], tagInfo[variant['name']]['objectType'], doc, forwardDeclarations, variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
 		propertyDeclarations.append(dec)
 		propertyImplementations.append(imp)
 		if ivar: ivars.append(ivar)
@@ -355,7 +367,7 @@ def set_defaults(tagInfo, key, tagDict):
 	tagDict['key'] = key
 	
 	# name
-	tagDict['name'] = key[1:] if key[0] == '!' else key
+	tagDict['name'] = key[1:] if key[0] in ('!', '@') else key
 	
 	# pluralName
 	if not tagDict.has_key('plural'):
