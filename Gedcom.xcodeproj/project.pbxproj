@@ -415,6 +415,8 @@
 		3E713EBD17295F740098EBC3 /* GCSimilarityAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713EBB17295F730098EBC3 /* GCSimilarityAdditions.m */; };
 		3E713EC61729642E0098EBC3 /* GCContext+GCTransactionAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E713EC41729642E0098EBC3 /* GCContext+GCTransactionAdditions.h */; };
 		3E713EC71729642E0098EBC3 /* GCContext+GCTransactionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713EC51729642E0098EBC3 /* GCContext+GCTransactionAdditions.m */; };
+		3E713ECB172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E713EC9172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h */; };
+		3E713ECC172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713ECA172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m */; };
 		3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */; };
 		3E83FF23171CC5240093B685 /* Tags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF25171CC5240093B685 /* Tags.strings */; };
 		3E83FF26171CC5270093B685 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF28171CC5270093B685 /* Errors.strings */; };
@@ -447,7 +449,7 @@
 		3E8F87CC171CAFFD003111D2 /* GCGedcomLoadingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E8F87CD171CAFFD003111D2 /* GCGedcomLoadingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */; };
 		3E8F87CE171CBAE7003111D2 /* GedcomCharacterSetHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3EAF25261710D3FC00385071 /* GCRelationship+GCReverseRelationshipAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */; };
+		3EAF25261710D3FC00385071 /* GCReverseRelationshipAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E325D391710CA8500109A18 /* GCReverseRelationshipAdditions.m */; };
 		3ED171231614B4FC00B5B83F /* Predicates.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ED171221614B4FC00B5B83F /* Predicates.strings */; };
 		3ED1712A1614C16200B5B83F /* GCPredicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED171291614C16200B5B83F /* GCPredicateTests.m */; };
 		3ED1712D16155AE200B5B83F /* GCObject+GCKeyValueAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -576,7 +578,7 @@
 		3E29DB35154E622600756CF4 /* GCGender.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = GCGender.m; path = Values/GCGender.m; sourceTree = "<group>"; };
 		3E325D2C170D0CC000109A18 /* GCNodeParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCNodeParserDelegate.h; path = Protocols/GCNodeParserDelegate.h; sourceTree = "<group>"; };
 		3E325D2E170E5E6800109A18 /* GCNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCNodeParser.h; path = Nodes/GCNodeParser.h; sourceTree = "<group>"; };
-		3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCRelationship+GCReverseRelationshipAdditions.m"; sourceTree = "<group>"; };
+		3E325D391710CA8500109A18 /* GCReverseRelationshipAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCReverseRelationshipAdditions.m; sourceTree = "<group>"; };
 		3E3950691560DFFC00FEEA9F /* GCNameString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNameString.m; path = Values/GCNameString.m; sourceTree = "<group>"; };
 		3E3969FE154F34E600AE8636 /* GCFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFormatterTests.m; sourceTree = "<group>"; };
 		3E396A02154F375400AE8636 /* GCValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCValueFormatter.m; path = Values/GCValueFormatter.m; sourceTree = "<group>"; };
@@ -939,6 +941,8 @@
 		3E713EBB17295F730098EBC3 /* GCSimilarityAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimilarityAdditions.m; sourceTree = "<group>"; };
 		3E713EC41729642E0098EBC3 /* GCContext+GCTransactionAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCContext+GCTransactionAdditions.h"; sourceTree = "<group>"; };
 		3E713EC51729642E0098EBC3 /* GCContext+GCTransactionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCTransactionAdditions.m"; sourceTree = "<group>"; };
+		3E713EC9172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCContext+GCConvenienceAdditions.h"; sourceTree = "<group>"; };
+		3E713ECA172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCConvenienceAdditions.m"; sourceTree = "<group>"; };
 		3E75836515F8DDF800A9B096 /* GCAge_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCAge_internal.h; path = Values/GCAge_internal.h; sourceTree = "<group>"; };
 		3E75836615F8DF3E00A9B096 /* GCDate_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCDate_internal.h; path = Values/GCDate_internal.h; sourceTree = "<group>"; };
 		3E75837915F8EAB900A9B096 /* GCAgeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCAgeParser.rl; path = Values/GCAgeParser.rl; sourceTree = "<group>"; };
@@ -1084,12 +1088,7 @@
 				3E57558615217C0D00A918D1 /* GCObject.h */,
 				3E09D18C15F9427C00BAA69E /* GCObject_internal.h */,
 				3E57558715217C0D00A918D1 /* GCObject.m */,
-				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */,
-				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */,
-				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
-				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
-				3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */,
-				3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */,
+				3E713ECD172966EE0098EBC3 /* Additions */,
 				3E91773C171FEAE100FF7E2C /* Abstract subclasses */,
 				3E17B4AF16013AFD009D2CCB /* Concrete subclasses */,
 			);
@@ -1103,7 +1102,7 @@
 				3E41BD4C1725FBF8003286E7 /* _Generated */,
 				3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */,
 				3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */,
-				3E713EC3172962630098EBC3 /* Object Additions */,
+				3E713EC3172962630098EBC3 /* Additions */,
 				3E81B76B1607DAA70028F3C1 /* Custom tag subclasses */,
 			);
 			name = "Concrete subclasses";
@@ -1654,10 +1653,7 @@
 				3E14EDC815230DAE00080364 /* GCContext.h */,
 				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,
 				3E14EDC915230DAE00080364 /* GCContext.m */,
-				3E83FF2C171CDFA10093B685 /* GCContext+GCKeyValueAdditions.h */,
-				3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */,
-				3E713EC41729642E0098EBC3 /* GCContext+GCTransactionAdditions.h */,
-				3E713EC51729642E0098EBC3 /* GCContext+GCTransactionAdditions.m */,
+				3E713EC8172965BA0098EBC3 /* Additions */,
 			);
 			name = Contexts;
 			sourceTree = "<group>";
@@ -1688,10 +1684,10 @@
 			name = "General Additions";
 			sourceTree = "<group>";
 		};
-		3E713EC3172962630098EBC3 /* Object Additions */ = {
+		3E713EC3172962630098EBC3 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */,
+				3E325D391710CA8500109A18 /* GCReverseRelationshipAdditions.m */,
 				3E8C1D78161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h */,
 				3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */,
 				3E8C1E97162648DE005B3BE6 /* GCIndividualRecord+GCObjectAdditions.h */,
@@ -1699,7 +1695,33 @@
 				3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */,
 				3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */,
 			);
-			name = "Object Additions";
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		3E713EC8172965BA0098EBC3 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3E713EC9172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h */,
+				3E713ECA172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m */,
+				3E83FF2C171CDFA10093B685 /* GCContext+GCKeyValueAdditions.h */,
+				3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */,
+				3E713EC41729642E0098EBC3 /* GCContext+GCTransactionAdditions.h */,
+				3E713EC51729642E0098EBC3 /* GCContext+GCTransactionAdditions.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		3E713ECD172966EE0098EBC3 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */,
+				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */,
+				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
+				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
+				3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */,
+				3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */,
+			);
+			name = Additions;
 			sourceTree = "<group>";
 		};
 		3E75836015F8DC6D00A9B096 /* Parsers */ = {
@@ -2002,6 +2024,7 @@
 				3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */,
 				3E713EBC17295F740098EBC3 /* GCSimilarityAdditions.h in Headers */,
 				3E713EC61729642E0098EBC3 /* GCContext+GCTransactionAdditions.h in Headers */,
+				3E713ECB172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2258,7 +2281,7 @@
 				3E8C1D7B161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m in Sources */,
 				3E8C1E9A162648DF005B3BE6 /* GCIndividualRecord+GCObjectAdditions.m in Sources */,
 				3E8C1EA01626BECE005B3BE6 /* GCSanityCheckAdditions.m in Sources */,
-				3EAF25261710D3FC00385071 /* GCRelationship+GCReverseRelationshipAdditions.m in Sources */,
+				3EAF25261710D3FC00385071 /* GCReverseRelationshipAdditions.m in Sources */,
 				3E52C01D171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m in Sources */,
 				3E4E8435171ADFF600889651 /* GCNodeParser.rl in Sources */,
 				3E4E8436171ADFFC00889651 /* GCAgeParser.rl in Sources */,
@@ -2432,6 +2455,7 @@
 				3E2001EA17287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m in Sources */,
 				3E713EBD17295F740098EBC3 /* GCSimilarityAdditions.m in Sources */,
 				3E713EC71729642E0098EBC3 /* GCContext+GCTransactionAdditions.m in Sources */,
+				3E713ECC172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
