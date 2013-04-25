@@ -119,6 +119,8 @@
  
  Warning: Not very thoroughly tested at the moment. May blow up in your face, so back up first and carefully check out the resulting context.
  
+ It is recommended to use -addProperty:toRecordsOfType: on one or both of the contexts in order to tell their records apart following the merge (for example to attach a note with the originating context).
+ 
  @param context The context with which to merge.
  @param error If an error occurs, upon return contains an NSError object that describes the problem. If you are not interested in possible errors, pass in NULL.
  @return `YES` for success, `NO` for failure. If `NO`, the error parameter will be populated and the context will need to be reloaded.
