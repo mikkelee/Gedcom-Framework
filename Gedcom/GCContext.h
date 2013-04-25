@@ -142,18 +142,6 @@
 /// The receiver's delegate. See GCContextDelegate.
 @property (weak) id<NSObject, GCContextDelegate> delegate;
 
-#pragma mark Accessing Gedcom output
-/// @name Accessing Gedcom output
-
-/// The receiver as an ordered collection of Gedcom nodes.
-@property (readonly) NSArray *gedcomNodes;
-
-/// The receiver as a Gedcom string.
-@property (readonly) NSString *gedcomString;
-
-/// The receiver's gedcomString as an NSData object using the encoding from fileEncoding
-@property (readonly) NSData *gedcomData;
-
 @end
 
 @interface GCContext (GCTransactionAdditions)

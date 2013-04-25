@@ -10,10 +10,14 @@
 
 #import "GCGedcomLoadingAdditions.h"
 
+#import "GCContext+GCKeyValueAdditions.h"
+
 #import "GCEntity.h"
 #import "GCRecord.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
+
+#import "GCHeaderEntity+GCObjectAdditions.h"
 
 #import "GCNode.h"
 #import "GCNodeParser.h"
@@ -22,6 +26,50 @@
 #import "GCContext_internal.h"
 
 __strong static NSDictionary *_defaultColors;
+
+@implementation GCContext (GCGedcomAccessAdditions)
+
+- (NSArray *)gedcomNodes
+{
+	NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[self.entities count]];
+	
+    if (!self.header) {
+        self.header = [GCHeaderEntity defaultHeaderInContext:self];
+    }
+    
+    @synchronized (self) {
+        for (GCRecord *record in self.entities) {
+            [nodes addObject:record.gedcomNode];
+        }
+	}
+    
+    [nodes addObject:[GCNode nodeWithTag:@"TRLR" value:nil]];
+    
+	return nodes;
+}
+
+- (NSString *)gedcomString
+{
+    NSMutableArray *gedcomStrings = [NSMutableArray array];
+    
+    for (GCNode *node in self.gedcomNodes) {
+        [gedcomStrings addObjectsFromArray:node.gedcomLines];
+    }
+    
+    return [gedcomStrings componentsJoinedByString:@"\n"];
+}
+
+- (NSData *)gedcomData
+{
+    GCFileEncoding useEncoding = self.fileEncoding;
+    
+    NSParameterAssert(useEncoding != GCUnknownFileEncoding);
+    NSParameterAssert(useEncoding != GCANSELFileEncoding);
+    
+    return [self.gedcomString dataUsingEncoding:useEncoding];
+}
+
+@end
 
 @implementation GCObject (GCGedcomAccessAdditions)
 

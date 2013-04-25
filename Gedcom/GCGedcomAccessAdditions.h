@@ -6,12 +6,26 @@
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
+#import "GCContext.h"
 #import "GCObject.h"
-#import "GCEntity.h"
-#import "GCAttribute.h"
-#import "GCRelationship.h"
 
 @class GCNode;
+
+@interface GCContext (GCGedcomAccessAdditions)
+
+#pragma mark Accessing Gedcom output
+/// @name Accessing Gedcom output
+
+/// The receiver as an ordered collection of Gedcom nodes.
+@property (readonly) NSArray *gedcomNodes;
+
+/// The receiver as a Gedcom string.
+@property (readonly) NSString *gedcomString;
+
+/// The receiver's gedcomString as an NSData object using the encoding from fileEncoding
+@property (readonly) NSData *gedcomData;
+
+@end
 
 @interface GCObject (GCGedcomAccessAdditions)
 
