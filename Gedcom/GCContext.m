@@ -246,7 +246,6 @@ __strong static NSArray *_rootKeys = nil;
 #pragma mark Merging contexts
 
 - (BOOL)mergeContext:(GCContext *)context error:(NSError **)error
-// TODO: Add some property to all added root entities (like a note or whatever?) (provide as option)
 {
     context = [context copy];
     
