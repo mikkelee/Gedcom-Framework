@@ -21,8 +21,6 @@
 
 - (NSString *)_propertyDescriptionWithIndent:(NSUInteger)level;
 
-- (BOOL)_allowsMultipleOccurrencesOfPropertyType:(NSString *)type;
-
 #pragma mark Objective-C properties
 
 @property (nonatomic, readonly) NSMutableArray *mutableCustomProperties;
@@ -30,5 +28,7 @@
 @property (nonatomic) NSArray *subNodes;
 
 @property (nonatomic, readonly) NSUndoManager *undoManager;
+
+@property (nonatomic, readonly) GCTag *gedTag;
 
 @end

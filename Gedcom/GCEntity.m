@@ -9,6 +9,7 @@
 #import "GCEntity.h"
 
 #import "GCContext_internal.h"
+#import "GCContext+GCTransactionAdditions.h"
 
 @implementation GCEntity {
     __weak GCContext *_context;

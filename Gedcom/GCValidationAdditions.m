@@ -86,7 +86,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
         
         NSInteger propertyCount = 0;
         
-        if ([self _allowsMultipleOccurrencesOfPropertyType:propertyKey]) {
+        if ([self allowsMultipleOccurrencesOfPropertyType:propertyKey]) {
             propertyCount = [[self valueForKey:propertyKey] count];
             
             for (id property in [self valueForKey:propertyKey]) {

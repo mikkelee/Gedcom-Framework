@@ -18,4 +18,6 @@
 
 - (void)commit;
 
+@property (strong, readonly) NSUndoManager *undoManager;
+
 @end

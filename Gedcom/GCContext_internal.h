@@ -31,6 +31,8 @@
     NSMutableArray *_customEntities;
     
     __weak id<NSObject, GCContextDelegate> _delegate;
+    
+    NSUndoManager *_undoManager;
 }
 
 - (NSString *)_xrefForRecord:(GCRecord *)record;
@@ -48,8 +50,6 @@
 - (void)_clearXrefs;
 - (void)_renumberXrefs;
 - (void)_sortByXrefs;
-
-@property (strong, readonly) NSUndoManager *undoManager;
 
 @end
 

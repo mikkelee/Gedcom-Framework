@@ -27,4 +27,9 @@
     [self.undoManager endUndoGrouping];
 }
 
+- (NSUndoManager *)undoManager
+{
+    return _undoManager;
+}
+
 @end
