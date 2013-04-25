@@ -20,11 +20,6 @@
 #import "GCObject+GCConvenienceAdditions.h"
 #import "GCObject+GCKeyValueAdditions.h"
 
-#import "GCGedcomLoadingAdditions.h"
-#import "GCGedcomAccessAdditions.h"
-#import "GCValidationAdditions.h"
-#import "GCSanityCheckAdditions.h"
-
 #import "GCEntity.h"
 #import "GCRecord.h"
 #import "GCProperty.h"
@@ -33,11 +28,17 @@
 
 #import "GCObjects_generated.h"
 
-#import "GCValue.h"
+#import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomAccessAdditions.h"
+#import "GCValidationAdditions.h"
+#import "GCSanityCheckAdditions.h"
+#import "GCSimilarityAdditions.h"
 
 #import "GCHeaderEntity+GCObjectAdditions.h"
 #import "GCIndividualRecord+GCObjectAdditions.h"
 #import "GCBinaryObjectAttribute+GCObjectAdditions.h"
+
+#import "GCValue.h"
 
 #import "GCContextDelegate.h"
 #import "GCNodeParserDelegate.h"
