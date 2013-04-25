@@ -26,7 +26,23 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     BOOL isValid = YES;
     NSError *returnError = nil;
     
-    // TODO validate missing header!
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
+    
+    if (self.header == nil) {
+        isValid &= NO;
+        
+        NSString *errorString = [frameworkBundle localizedStringForKey:@"Context has no header"
+                                                                 value:@"Context has no header"
+                                                                 table:@"Errors"];
+        NSDictionary *userInfo = @{
+                                   NSLocalizedDescriptionKey: errorString,
+                                   NSAffectedObjectsErrorKey: self
+                                   };
+        
+        returnError = combineErrors(returnError, [NSError errorWithDomain:GCErrorDomain
+                                                                     code:GCMissingHeaderError
+                                                                 userInfo:userInfo]);
+    }
     
     for (GCEntity *entity in self.mutableEntities) {
         //NSLog(@"validating %@", [self xrefForEntity:entity]);

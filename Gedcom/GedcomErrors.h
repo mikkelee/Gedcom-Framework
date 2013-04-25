@@ -21,6 +21,7 @@ typedef enum : NSInteger {
     GCIncorrectTargetTypeError = -102,
     GCValueMissingError = -103,
     GCTargetMissingError = -104,
+    GCMissingHeaderError = -105,
     
     // validation errors cont'd:
     GCTooManyValuesError = -201,
