@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "GCAttribute.h"
-#import "NSObject+MELazyPropertySwizzlingAdditions.h"
 
 /**
  
  An attribute that holds information regarding the change history of an entity.
  
  */
-@interface GCChangeInfoAttribute : GCAttribute <MELazyPropertySwizzling>
+@interface GCChangeInfoAttribute : GCAttribute
 
 #pragma mark Objective-C properties
 

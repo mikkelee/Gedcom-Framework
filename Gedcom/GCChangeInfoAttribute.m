@@ -19,6 +19,8 @@
 
 #import "GCGedcomLoadingAdditions.h"
 
+#import "NSObject+MELazyPropertySwizzlingAdditions.h"
+
 @interface GCChangeInfoAttribute ()
 
 @property NSDate *modificationDate;
@@ -34,6 +36,11 @@
 }
 
 #pragma mark Initialization
+
++ (void)load
+{
+    [self setupLazyProperties];
+}
 
 - (instancetype)init
 {

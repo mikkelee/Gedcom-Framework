@@ -10,7 +10,7 @@
 
 /**
  
- Usage: Add this protocol to a class
+ Usage: Call setupLazyProperties in +load.
  
  For each property that you wish to load lazily, implement the following lazy getter:
  
@@ -39,10 +39,8 @@
 
 static const char lazyPrefix[] = "_lazy";
 
-@protocol MELazyPropertySwizzling <NSObject>
-
-@end
-
 @interface NSObject (MELazyPropertySwizzlingAdditions)
+
++ (void)setupLazyProperties;
 
 @end
