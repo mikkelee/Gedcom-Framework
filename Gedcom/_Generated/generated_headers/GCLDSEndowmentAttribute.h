@@ -19,18 +19,24 @@
 @interface GCLDSEndowmentAttribute : GCIndividualLDSOrdinanceAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a lDSEndowment.
 
  
  @return A new lDSEndowment.
 */
 +(instancetype)lDSEndowment;
+/// @name Initializing
+
 /** Initializes and returns a lDSEndowment.
 
  @param value The value as a GCValue object.
  @return A new lDSEndowment.
 */
 +(instancetype)lDSEndowmentWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a lDSEndowment.
 
  @param value The value as an NSString.

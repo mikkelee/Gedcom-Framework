@@ -12,6 +12,8 @@
 @interface GCWifeRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a wife.
 
  

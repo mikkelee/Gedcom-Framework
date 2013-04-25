@@ -12,18 +12,24 @@
 @interface GCBinaryObjectAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a binaryObject.
 
  
  @return A new binaryObject.
 */
 +(instancetype)binaryObject;
+/// @name Initializing
+
 /** Initializes and returns a binaryObject.
 
  @param value The value as a GCValue object.
  @return A new binaryObject.
 */
 +(instancetype)binaryObjectWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a binaryObject.
 
  @param value The value as an NSString.

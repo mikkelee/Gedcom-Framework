@@ -12,6 +12,8 @@
 @interface GCAncestorInterestRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a ancestorInterest.
 
  

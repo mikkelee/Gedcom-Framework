@@ -12,18 +12,24 @@
 @interface GCRecordFileNumberAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a recordFileNumber.
 
  
  @return A new recordFileNumber.
 */
 +(instancetype)recordFileNumber;
+/// @name Initializing
+
 /** Initializes and returns a recordFileNumber.
 
  @param value The value as a GCValue object.
  @return A new recordFileNumber.
 */
 +(instancetype)recordFileNumberWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a recordFileNumber.
 
  @param value The value as an NSString.

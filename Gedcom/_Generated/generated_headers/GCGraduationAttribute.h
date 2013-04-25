@@ -25,18 +25,24 @@
 @interface GCGraduationAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a graduation.
 
  
  @return A new graduation.
 */
 +(instancetype)graduation;
+/// @name Initializing
+
 /** Initializes and returns a graduation.
 
  @param value The value as a GCValue object.
  @return A new graduation.
 */
 +(instancetype)graduationWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a graduation.
 
  @param value The value as an NSString.

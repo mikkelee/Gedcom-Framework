@@ -19,6 +19,8 @@
 @interface GCRepositoryRecord : GCRecord
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a repository.
 
  @param context The context in which to create the entity.

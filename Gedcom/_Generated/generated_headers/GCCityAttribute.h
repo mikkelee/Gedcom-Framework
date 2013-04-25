@@ -12,18 +12,24 @@
 @interface GCCityAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a city.
 
  
  @return A new city.
 */
 +(instancetype)city;
+/// @name Initializing
+
 /** Initializes and returns a city.
 
  @param value The value as a GCValue object.
  @return A new city.
 */
 +(instancetype)cityWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a city.
 
  @param value The value as an NSString.

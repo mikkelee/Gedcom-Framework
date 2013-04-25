@@ -12,18 +12,24 @@
 @interface GCLanguageAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a language.
 
  
  @return A new language.
 */
 +(instancetype)language;
+/// @name Initializing
+
 /** Initializes and returns a language.
 
  @param value The value as a GCValue object.
  @return A new language.
 */
 +(instancetype)languageWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a language.
 
  @param value The value as an NSString.

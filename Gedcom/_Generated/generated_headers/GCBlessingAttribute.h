@@ -25,18 +25,24 @@
 @interface GCBlessingAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a blessing.
 
  
  @return A new blessing.
 */
 +(instancetype)blessing;
+/// @name Initializing
+
 /** Initializes and returns a blessing.
 
  @param value The value as a GCValue object.
  @return A new blessing.
 */
 +(instancetype)blessingWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a blessing.
 
  @param value The value as an NSString.

@@ -12,18 +12,24 @@
 @interface GCCallNumberAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a callNumber.
 
  
  @return A new callNumber.
 */
 +(instancetype)callNumber;
+/// @name Initializing
+
 /** Initializes and returns a callNumber.
 
  @param value The value as a GCValue object.
  @return A new callNumber.
 */
 +(instancetype)callNumberWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a callNumber.
 
  @param value The value as an NSString.

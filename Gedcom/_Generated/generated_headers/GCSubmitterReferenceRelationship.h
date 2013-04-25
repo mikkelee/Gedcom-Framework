@@ -12,6 +12,8 @@
 @interface GCSubmitterReferenceRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a submitterReference.
 
  

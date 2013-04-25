@@ -12,18 +12,24 @@
 @interface GCRecordTypeAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a recordType.
 
  
  @return A new recordType.
 */
 +(instancetype)recordType;
+/// @name Initializing
+
 /** Initializes and returns a recordType.
 
  @param value The value as a GCValue object.
  @return A new recordType.
 */
 +(instancetype)recordTypeWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a recordType.
 
  @param value The value as an NSString.

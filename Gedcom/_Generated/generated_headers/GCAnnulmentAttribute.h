@@ -27,18 +27,24 @@
 @interface GCAnnulmentAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a annulment.
 
  
  @return A new annulment.
 */
 +(instancetype)annulment;
+/// @name Initializing
+
 /** Initializes and returns a annulment.
 
  @param value The value as a GCValue object.
  @return A new annulment.
 */
 +(instancetype)annulmentWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a annulment.
 
  @param value The value as an NSString.

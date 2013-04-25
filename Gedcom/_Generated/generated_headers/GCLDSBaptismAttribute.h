@@ -19,18 +19,24 @@
 @interface GCLDSBaptismAttribute : GCIndividualLDSOrdinanceAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a lDSBaptism.
 
  
  @return A new lDSBaptism.
 */
 +(instancetype)lDSBaptism;
+/// @name Initializing
+
 /** Initializes and returns a lDSBaptism.
 
  @param value The value as a GCValue object.
  @return A new lDSBaptism.
 */
 +(instancetype)lDSBaptismWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a lDSBaptism.
 
  @param value The value as an NSString.

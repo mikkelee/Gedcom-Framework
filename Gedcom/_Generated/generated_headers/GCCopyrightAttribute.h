@@ -12,18 +12,24 @@
 @interface GCCopyrightAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a copyright.
 
  
  @return A new copyright.
 */
 +(instancetype)copyright;
+/// @name Initializing
+
 /** Initializes and returns a copyright.
 
  @param value The value as a GCValue object.
  @return A new copyright.
 */
 +(instancetype)copyrightWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a copyright.
 
  @param value The value as an NSString.

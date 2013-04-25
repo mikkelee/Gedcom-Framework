@@ -12,18 +12,24 @@
 @interface GCFamilyFileAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a familyFile.
 
  
  @return A new familyFile.
 */
 +(instancetype)familyFile;
+/// @name Initializing
+
 /** Initializes and returns a familyFile.
 
  @param value The value as a GCValue object.
  @return A new familyFile.
 */
 +(instancetype)familyFileWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a familyFile.
 
  @param value The value as an NSString.

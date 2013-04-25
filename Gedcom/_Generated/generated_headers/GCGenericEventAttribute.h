@@ -27,18 +27,24 @@
 @interface GCGenericEventAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a genericEvent.
 
  
  @return A new genericEvent.
 */
 +(instancetype)genericEvent;
+/// @name Initializing
+
 /** Initializes and returns a genericEvent.
 
  @param value The value as a GCValue object.
  @return A new genericEvent.
 */
 +(instancetype)genericEventWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a genericEvent.
 
  @param value The value as an NSString.

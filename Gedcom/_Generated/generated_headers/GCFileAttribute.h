@@ -12,18 +12,24 @@
 @interface GCFileAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a file.
 
  
  @return A new file.
 */
 +(instancetype)file;
+/// @name Initializing
+
 /** Initializes and returns a file.
 
  @param value The value as a GCValue object.
  @return A new file.
 */
 +(instancetype)fileWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a file.
 
  @param value The value as an NSString.

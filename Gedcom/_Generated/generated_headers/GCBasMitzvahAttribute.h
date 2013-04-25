@@ -25,18 +25,24 @@
 @interface GCBasMitzvahAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a basMitzvah.
 
  
  @return A new basMitzvah.
 */
 +(instancetype)basMitzvah;
+/// @name Initializing
+
 /** Initializes and returns a basMitzvah.
 
  @param value The value as a GCValue object.
  @return A new basMitzvah.
 */
 +(instancetype)basMitzvahWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a basMitzvah.
 
  @param value The value as an NSString.

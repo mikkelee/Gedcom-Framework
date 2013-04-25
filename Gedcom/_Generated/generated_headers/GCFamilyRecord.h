@@ -37,6 +37,8 @@
 @interface GCFamilyRecord : GCRecord
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a family.
 
  @param context The context in which to create the entity.

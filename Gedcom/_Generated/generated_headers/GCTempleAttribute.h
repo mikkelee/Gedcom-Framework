@@ -12,18 +12,24 @@
 @interface GCTempleAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a temple.
 
  
  @return A new temple.
 */
 +(instancetype)temple;
+/// @name Initializing
+
 /** Initializes and returns a temple.
 
  @param value The value as a GCValue object.
  @return A new temple.
 */
 +(instancetype)templeWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a temple.
 
  @param value The value as an NSString.

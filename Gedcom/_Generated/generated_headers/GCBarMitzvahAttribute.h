@@ -25,18 +25,24 @@
 @interface GCBarMitzvahAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a barMitzvah.
 
  
  @return A new barMitzvah.
 */
 +(instancetype)barMitzvah;
+/// @name Initializing
+
 /** Initializes and returns a barMitzvah.
 
  @param value The value as a GCValue object.
  @return A new barMitzvah.
 */
 +(instancetype)barMitzvahWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a barMitzvah.
 
  @param value The value as an NSString.

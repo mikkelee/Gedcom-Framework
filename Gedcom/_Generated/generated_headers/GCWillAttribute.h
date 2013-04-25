@@ -25,18 +25,24 @@
 @interface GCWillAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a will.
 
  
  @return A new will.
 */
 +(instancetype)will;
+/// @name Initializing
+
 /** Initializes and returns a will.
 
  @param value The value as a GCValue object.
  @return A new will.
 */
 +(instancetype)willWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a will.
 
  @param value The value as an NSString.

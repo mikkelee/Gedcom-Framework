@@ -12,18 +12,24 @@
 @interface GCAdoptedByWhichParentAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a adoptedByWhichParent.
 
  
  @return A new adoptedByWhichParent.
 */
 +(instancetype)adoptedByWhichParent;
+/// @name Initializing
+
 /** Initializes and returns a adoptedByWhichParent.
 
  @param value The value as a GCValue object.
  @return A new adoptedByWhichParent.
 */
 +(instancetype)adoptedByWhichParentWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a adoptedByWhichParent.
 
  @param value The value as an NSString.

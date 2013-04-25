@@ -13,18 +13,24 @@
 @interface GCGedcomAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a gedcom.
 
  
  @return A new gedcom.
 */
 +(instancetype)gedcom;
+/// @name Initializing
+
 /** Initializes and returns a gedcom.
 
  @param value The value as a GCValue object.
  @return A new gedcom.
 */
 +(instancetype)gedcomWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a gedcom.
 
  @param value The value as an NSString.

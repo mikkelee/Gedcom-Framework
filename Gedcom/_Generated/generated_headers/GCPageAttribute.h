@@ -12,18 +12,24 @@
 @interface GCPageAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a page.
 
  
  @return A new page.
 */
 +(instancetype)page;
+/// @name Initializing
+
 /** Initializes and returns a page.
 
  @param value The value as a GCValue object.
  @return A new page.
 */
 +(instancetype)pageWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a page.
 
  @param value The value as an NSString.

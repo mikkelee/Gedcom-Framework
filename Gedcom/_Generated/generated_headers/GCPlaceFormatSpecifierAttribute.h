@@ -12,18 +12,24 @@
 @interface GCPlaceFormatSpecifierAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a placeFormatSpecifier.
 
  
  @return A new placeFormatSpecifier.
 */
 +(instancetype)placeFormatSpecifier;
+/// @name Initializing
+
 /** Initializes and returns a placeFormatSpecifier.
 
  @param value The value as a GCValue object.
  @return A new placeFormatSpecifier.
 */
 +(instancetype)placeFormatSpecifierWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a placeFormatSpecifier.
 
  @param value The value as an NSString.

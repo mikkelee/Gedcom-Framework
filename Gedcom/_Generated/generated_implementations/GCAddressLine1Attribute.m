@@ -13,6 +13,8 @@
 }
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a addressLine1.
 
  
@@ -22,6 +24,8 @@
 {
 	return [[self alloc] init];
 }
+/// @name Initializing
+
 /** Initializes and returns a addressLine1.
 
  @param value The value as a GCValue object.
@@ -31,6 +35,8 @@
 {
 	return [[self alloc] initWithValue:value];
 }
+/// @name Initializing
+
 /** Initializes and returns a addressLine1.
 
  @param value The value as an NSString.

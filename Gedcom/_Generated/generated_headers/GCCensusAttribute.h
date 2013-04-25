@@ -27,18 +27,24 @@
 @interface GCCensusAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a census.
 
  
  @return A new census.
 */
 +(instancetype)census;
+/// @name Initializing
+
 /** Initializes and returns a census.
 
  @param value The value as a GCValue object.
  @return A new census.
 */
 +(instancetype)censusWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a census.
 
  @param value The value as an NSString.

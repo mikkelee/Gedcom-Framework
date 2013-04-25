@@ -12,18 +12,24 @@
 @interface GCCauseAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a cause.
 
  
  @return A new cause.
 */
 +(instancetype)cause;
+/// @name Initializing
+
 /** Initializes and returns a cause.
 
  @param value The value as a GCValue object.
  @return A new cause.
 */
 +(instancetype)causeWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a cause.
 
  @param value The value as an NSString.

@@ -13,18 +13,24 @@
 @interface GCCorporationAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a corporation.
 
  
  @return A new corporation.
 */
 +(instancetype)corporation;
+/// @name Initializing
+
 /** Initializes and returns a corporation.
 
  @param value The value as a GCValue object.
  @return A new corporation.
 */
 +(instancetype)corporationWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a corporation.
 
  @param value The value as an NSString.

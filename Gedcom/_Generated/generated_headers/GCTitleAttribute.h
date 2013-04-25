@@ -25,18 +25,24 @@
 @interface GCTitleAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a title.
 
  
  @return A new title.
 */
 +(instancetype)title;
+/// @name Initializing
+
 /** Initializes and returns a title.
 
  @param value The value as a GCValue object.
  @return A new title.
 */
 +(instancetype)titleWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a title.
 
  @param value The value as an NSString.

@@ -12,18 +12,24 @@
 @interface GCTextAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a text.
 
  
  @return A new text.
 */
 +(instancetype)text;
+/// @name Initializing
+
 /** Initializes and returns a text.
 
  @param value The value as a GCValue object.
  @return A new text.
 */
 +(instancetype)textWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a text.
 
  @param value The value as an NSString.

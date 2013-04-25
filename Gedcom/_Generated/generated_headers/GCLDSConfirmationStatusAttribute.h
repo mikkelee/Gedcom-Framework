@@ -12,18 +12,24 @@
 @interface GCLDSConfirmationStatusAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a lDSConfirmationStatus.
 
  
  @return A new lDSConfirmationStatus.
 */
 +(instancetype)lDSConfirmationStatus;
+/// @name Initializing
+
 /** Initializes and returns a lDSConfirmationStatus.
 
  @param value The value as a GCValue object.
  @return A new lDSConfirmationStatus.
 */
 +(instancetype)lDSConfirmationStatusWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a lDSConfirmationStatus.
 
  @param value The value as an NSString.

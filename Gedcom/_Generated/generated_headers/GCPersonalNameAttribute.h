@@ -21,18 +21,24 @@
 @interface GCPersonalNameAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a personalName.
 
  
  @return A new personalName.
 */
 +(instancetype)personalName;
+/// @name Initializing
+
 /** Initializes and returns a personalName.
 
  @param value The value as a GCValue object.
  @return A new personalName.
 */
 +(instancetype)personalNameWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a personalName.
 
  @param value The value as an NSString.

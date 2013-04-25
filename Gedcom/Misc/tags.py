@@ -150,7 +150,9 @@ def property(tagInfo, selfClass, key, type, doc, forwardDeclarations, is_plural,
 
 ##########################################################################################
 
-constructorDeclarationT = Template("""/** Initializes and returns a $name.
+constructorDeclarationT = Template("""/// @name Initializing
+
+/** Initializes and returns a $name.
 
  $doc
  @return A new $name.

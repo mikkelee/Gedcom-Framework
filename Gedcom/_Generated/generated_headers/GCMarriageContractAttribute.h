@@ -27,18 +27,24 @@
 @interface GCMarriageContractAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a marriageContract.
 
  
  @return A new marriageContract.
 */
 +(instancetype)marriageContract;
+/// @name Initializing
+
 /** Initializes and returns a marriageContract.
 
  @param value The value as a GCValue object.
  @return A new marriageContract.
 */
 +(instancetype)marriageContractWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a marriageContract.
 
  @param value The value as an NSString.

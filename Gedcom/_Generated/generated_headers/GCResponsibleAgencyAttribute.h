@@ -12,18 +12,24 @@
 @interface GCResponsibleAgencyAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a responsibleAgency.
 
  
  @return A new responsibleAgency.
 */
 +(instancetype)responsibleAgency;
+/// @name Initializing
+
 /** Initializes and returns a responsibleAgency.
 
  @param value The value as a GCValue object.
  @return A new responsibleAgency.
 */
 +(instancetype)responsibleAgencyWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a responsibleAgency.
 
  @param value The value as an NSString.

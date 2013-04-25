@@ -12,18 +12,24 @@
 @interface GCPublicationFactsAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a publicationFacts.
 
  
  @return A new publicationFacts.
 */
 +(instancetype)publicationFacts;
+/// @name Initializing
+
 /** Initializes and returns a publicationFacts.
 
  @param value The value as a GCValue object.
  @return A new publicationFacts.
 */
 +(instancetype)publicationFactsWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a publicationFacts.
 
  @param value The value as an NSString.

@@ -25,18 +25,24 @@
 @interface GCBurialAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a burial.
 
  
  @return A new burial.
 */
 +(instancetype)burial;
+/// @name Initializing
+
 /** Initializes and returns a burial.
 
  @param value The value as a GCValue object.
  @return A new burial.
 */
 +(instancetype)burialWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a burial.
 
  @param value The value as an NSString.

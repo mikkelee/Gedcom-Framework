@@ -27,18 +27,24 @@
 @interface GCMarriageBannAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a marriageBann.
 
  
  @return A new marriageBann.
 */
 +(instancetype)marriageBann;
+/// @name Initializing
+
 /** Initializes and returns a marriageBann.
 
  @param value The value as a GCValue object.
  @return A new marriageBann.
 */
 +(instancetype)marriageBannWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a marriageBann.
 
  @param value The value as an NSString.

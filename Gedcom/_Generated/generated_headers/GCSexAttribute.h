@@ -12,18 +12,24 @@
 @interface GCSexAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a sex.
 
  
  @return A new sex.
 */
 +(instancetype)sex;
+/// @name Initializing
+
 /** Initializes and returns a sex.
 
  @param value The value as a GCValue object.
  @return A new sex.
 */
 +(instancetype)sexWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a sex.
 
  @param value The value as an NSString.

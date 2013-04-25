@@ -12,6 +12,8 @@
 @interface GCChildRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a child.
 
  

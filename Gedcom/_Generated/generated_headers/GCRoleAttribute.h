@@ -12,18 +12,24 @@
 @interface GCRoleAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a role.
 
  
  @return A new role.
 */
 +(instancetype)role;
+/// @name Initializing
+
 /** Initializes and returns a role.
 
  @param value The value as a GCValue object.
  @return A new role.
 */
 +(instancetype)roleWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a role.
 
  @param value The value as an NSString.

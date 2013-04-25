@@ -12,18 +12,24 @@
 @interface GCSurnameAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a surname.
 
  
  @return A new surname.
 */
 +(instancetype)surname;
+/// @name Initializing
+
 /** Initializes and returns a surname.
 
  @param value The value as a GCValue object.
  @return A new surname.
 */
 +(instancetype)surnameWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a surname.
 
  @param value The value as an NSString.

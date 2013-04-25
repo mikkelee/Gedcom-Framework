@@ -12,18 +12,24 @@
 @interface GCPhoneNumberAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a phoneNumber.
 
  
  @return A new phoneNumber.
 */
 +(instancetype)phoneNumber;
+/// @name Initializing
+
 /** Initializes and returns a phoneNumber.
 
  @param value The value as a GCValue object.
  @return A new phoneNumber.
 */
 +(instancetype)phoneNumberWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a phoneNumber.
 
  @param value The value as an NSString.

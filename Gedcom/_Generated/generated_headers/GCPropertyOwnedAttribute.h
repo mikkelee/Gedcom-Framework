@@ -25,18 +25,24 @@
 @interface GCPropertyOwnedAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a propertyOwned.
 
  
  @return A new propertyOwned.
 */
 +(instancetype)propertyOwned;
+/// @name Initializing
+
 /** Initializes and returns a propertyOwned.
 
  @param value The value as a GCValue object.
  @return A new propertyOwned.
 */
 +(instancetype)propertyOwnedWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a propertyOwned.
 
  @param value The value as an NSString.

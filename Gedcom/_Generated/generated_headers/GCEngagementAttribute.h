@@ -27,18 +27,24 @@
 @interface GCEngagementAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a engagement.
 
  
  @return A new engagement.
 */
 +(instancetype)engagement;
+/// @name Initializing
+
 /** Initializes and returns a engagement.
 
  @param value The value as a GCValue object.
  @return A new engagement.
 */
 +(instancetype)engagementWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a engagement.
 
  @param value The value as an NSString.

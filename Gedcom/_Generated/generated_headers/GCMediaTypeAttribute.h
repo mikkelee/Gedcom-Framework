@@ -12,18 +12,24 @@
 @interface GCMediaTypeAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a mediaType.
 
  
  @return A new mediaType.
 */
 +(instancetype)mediaType;
+/// @name Initializing
+
 /** Initializes and returns a mediaType.
 
  @param value The value as a GCValue object.
  @return A new mediaType.
 */
 +(instancetype)mediaTypeWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a mediaType.
 
  @param value The value as an NSString.

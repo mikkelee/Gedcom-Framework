@@ -25,18 +25,24 @@
 @interface GCNumberOfMarriagesAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a numberOfMarriages.
 
  
  @return A new numberOfMarriages.
 */
 +(instancetype)numberOfMarriages;
+/// @name Initializing
+
 /** Initializes and returns a numberOfMarriages.
 
  @param value The value as a GCValue object.
  @return A new numberOfMarriages.
 */
 +(instancetype)numberOfMarriagesWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a numberOfMarriages.
 
  @param value The value as an NSString.

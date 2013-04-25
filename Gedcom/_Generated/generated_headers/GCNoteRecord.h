@@ -16,6 +16,8 @@
 @interface GCNoteRecord : GCRecord
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a note.
 
  @param context The context in which to create the entity.

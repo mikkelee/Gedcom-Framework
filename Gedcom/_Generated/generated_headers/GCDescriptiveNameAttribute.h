@@ -12,18 +12,24 @@
 @interface GCDescriptiveNameAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a descriptiveName.
 
  
  @return A new descriptiveName.
 */
 +(instancetype)descriptiveName;
+/// @name Initializing
+
 /** Initializes and returns a descriptiveName.
 
  @param value The value as a GCValue object.
  @return A new descriptiveName.
 */
 +(instancetype)descriptiveNameWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a descriptiveName.
 
  @param value The value as an NSString.

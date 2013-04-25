@@ -13,18 +13,24 @@
 @interface GCHeaderSourceDataAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a headerSourceData.
 
  
  @return A new headerSourceData.
 */
 +(instancetype)headerSourceData;
+/// @name Initializing
+
 /** Initializes and returns a headerSourceData.
 
  @param value The value as a GCValue object.
  @return A new headerSourceData.
 */
 +(instancetype)headerSourceDataWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a headerSourceData.
 
  @param value The value as an NSString.

@@ -26,18 +26,24 @@
 @interface GCChristeningAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a christening.
 
  
  @return A new christening.
 */
 +(instancetype)christening;
+/// @name Initializing
+
 /** Initializes and returns a christening.
 
  @param value The value as a GCValue object.
  @return A new christening.
 */
 +(instancetype)christeningWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a christening.
 
  @param value The value as an NSString.

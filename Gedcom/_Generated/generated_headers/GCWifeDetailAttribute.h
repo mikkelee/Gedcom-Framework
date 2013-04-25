@@ -12,18 +12,24 @@
 @interface GCWifeDetailAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a wifeDetail.
 
  
  @return A new wifeDetail.
 */
 +(instancetype)wifeDetail;
+/// @name Initializing
+
 /** Initializes and returns a wifeDetail.
 
  @param value The value as a GCValue object.
  @return A new wifeDetail.
 */
 +(instancetype)wifeDetailWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a wifeDetail.
 
  @param value The value as an NSString.

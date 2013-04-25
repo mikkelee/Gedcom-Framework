@@ -12,18 +12,24 @@
 @interface GCNicknameAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a nickname.
 
  
  @return A new nickname.
 */
 +(instancetype)nickname;
+/// @name Initializing
+
 /** Initializes and returns a nickname.
 
  @param value The value as a GCValue object.
  @return A new nickname.
 */
 +(instancetype)nicknameWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a nickname.
 
  @param value The value as an NSString.

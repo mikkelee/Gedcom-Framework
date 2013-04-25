@@ -12,18 +12,24 @@
 @interface GCLDSBaptismStatusAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a lDSBaptismStatus.
 
  
  @return A new lDSBaptismStatus.
 */
 +(instancetype)lDSBaptismStatus;
+/// @name Initializing
+
 /** Initializes and returns a lDSBaptismStatus.
 
  @param value The value as a GCValue object.
  @return A new lDSBaptismStatus.
 */
 +(instancetype)lDSBaptismStatusWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a lDSBaptismStatus.
 
  @param value The value as an NSString.

@@ -12,18 +12,24 @@
 @interface GCQualityOfDataAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a qualityOfData.
 
  
  @return A new qualityOfData.
 */
 +(instancetype)qualityOfData;
+/// @name Initializing
+
 /** Initializes and returns a qualityOfData.
 
  @param value The value as a GCValue object.
  @return A new qualityOfData.
 */
 +(instancetype)qualityOfDataWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a qualityOfData.
 
  @param value The value as an NSString.

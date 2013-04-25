@@ -12,18 +12,24 @@
 @interface GCOrdinanceFlagAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a ordinanceFlag.
 
  
  @return A new ordinanceFlag.
 */
 +(instancetype)ordinanceFlag;
+/// @name Initializing
+
 /** Initializes and returns a ordinanceFlag.
 
  @param value The value as a GCValue object.
  @return A new ordinanceFlag.
 */
 +(instancetype)ordinanceFlagWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a ordinanceFlag.
 
  @param value The value as an NSString.

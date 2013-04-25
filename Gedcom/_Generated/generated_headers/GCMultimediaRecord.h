@@ -19,6 +19,8 @@
 @interface GCMultimediaRecord : GCRecord
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a multimedia.
 
  @param context The context in which to create the entity.

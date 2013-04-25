@@ -12,18 +12,24 @@
 @interface GCDateAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a date.
 
  
  @return A new date.
 */
 +(instancetype)date;
+/// @name Initializing
+
 /** Initializes and returns a date.
 
  @param value The value as a GCValue object.
  @return A new date.
 */
 +(instancetype)dateWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a date.
 
  @param value The value as an NSString.

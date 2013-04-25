@@ -16,18 +16,24 @@
 @interface GCMultimediaEmbeddedAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a multimediaEmbedded.
 
  
  @return A new multimediaEmbedded.
 */
 +(instancetype)multimediaEmbedded;
+/// @name Initializing
+
 /** Initializes and returns a multimediaEmbedded.
 
  @param value The value as a GCValue object.
  @return A new multimediaEmbedded.
 */
 +(instancetype)multimediaEmbeddedWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a multimediaEmbedded.
 
  @param value The value as an NSString.

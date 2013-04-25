@@ -12,18 +12,24 @@
 @interface GCAgeAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a age.
 
  
  @return A new age.
 */
 +(instancetype)age;
+/// @name Initializing
+
 /** Initializes and returns a age.
 
  @param value The value as a GCValue object.
  @return A new age.
 */
 +(instancetype)ageWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a age.
 
  @param value The value as an NSString.

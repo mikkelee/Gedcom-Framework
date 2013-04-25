@@ -25,6 +25,8 @@
 @interface GCSourceRecord : GCRecord
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a source.
 
  @param context The context in which to create the entity.

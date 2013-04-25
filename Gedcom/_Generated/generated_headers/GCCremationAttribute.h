@@ -25,18 +25,24 @@
 @interface GCCremationAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a cremation.
 
  
  @return A new cremation.
 */
 +(instancetype)cremation;
+/// @name Initializing
+
 /** Initializes and returns a cremation.
 
  @param value The value as a GCValue object.
  @return A new cremation.
 */
 +(instancetype)cremationWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a cremation.
 
  @param value The value as an NSString.

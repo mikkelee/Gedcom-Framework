@@ -27,18 +27,24 @@
 @interface GCMarriageLicenseAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a marriageLicense.
 
  
  @return A new marriageLicense.
 */
 +(instancetype)marriageLicense;
+/// @name Initializing
+
 /** Initializes and returns a marriageLicense.
 
  @param value The value as a GCValue object.
  @return A new marriageLicense.
 */
 +(instancetype)marriageLicenseWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a marriageLicense.
 
  @param value The value as an NSString.

@@ -12,6 +12,8 @@
 @interface GCSealedToFamilyRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a sealedToFamily.
 
  

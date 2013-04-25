@@ -26,18 +26,24 @@
 @interface GCAdoptionAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a adoption.
 
  
  @return A new adoption.
 */
 +(instancetype)adoption;
+/// @name Initializing
+
 /** Initializes and returns a adoption.
 
  @param value The value as a GCValue object.
  @return A new adoption.
 */
 +(instancetype)adoptionWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a adoption.
 
  @param value The value as an NSString.

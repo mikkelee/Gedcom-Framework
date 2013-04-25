@@ -12,18 +12,24 @@
 @interface GCStateAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a state.
 
  
  @return A new state.
 */
 +(instancetype)state;
+/// @name Initializing
+
 /** Initializes and returns a state.
 
  @param value The value as a GCValue object.
  @return A new state.
 */
 +(instancetype)stateWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a state.
 
  @param value The value as an NSString.

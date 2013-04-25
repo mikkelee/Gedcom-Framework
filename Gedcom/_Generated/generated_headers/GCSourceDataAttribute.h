@@ -15,18 +15,24 @@
 @interface GCSourceDataAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a sourceData.
 
  
  @return A new sourceData.
 */
 +(instancetype)sourceData;
+/// @name Initializing
+
 /** Initializes and returns a sourceData.
 
  @param value The value as a GCValue object.
  @return A new sourceData.
 */
 +(instancetype)sourceDataWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a sourceData.
 
  @param value The value as an NSString.

@@ -25,18 +25,24 @@
 @interface GCReligionAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a religion.
 
  
  @return A new religion.
 */
 +(instancetype)religion;
+/// @name Initializing
+
 /** Initializes and returns a religion.
 
  @param value The value as a GCValue object.
  @return A new religion.
 */
 +(instancetype)religionWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a religion.
 
  @param value The value as an NSString.

@@ -12,18 +12,24 @@
 @interface GCMultimediaFormatAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a multimediaFormat.
 
  
  @return A new multimediaFormat.
 */
 +(instancetype)multimediaFormat;
+/// @name Initializing
+
 /** Initializes and returns a multimediaFormat.
 
  @param value The value as a GCValue object.
  @return A new multimediaFormat.
 */
 +(instancetype)multimediaFormatWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a multimediaFormat.
 
  @param value The value as an NSString.

@@ -12,18 +12,24 @@
 @interface GCEventCitedAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a eventCited.
 
  
  @return A new eventCited.
 */
 +(instancetype)eventCited;
+/// @name Initializing
+
 /** Initializes and returns a eventCited.
 
  @param value The value as a GCValue object.
  @return A new eventCited.
 */
 +(instancetype)eventCitedWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a eventCited.
 
  @param value The value as an NSString.

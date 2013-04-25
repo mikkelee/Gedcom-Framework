@@ -20,18 +20,24 @@
 @interface GCLDSSealingChildAttribute : GCIndividualLDSOrdinanceAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a lDSSealingChild.
 
  
  @return A new lDSSealingChild.
 */
 +(instancetype)lDSSealingChild;
+/// @name Initializing
+
 /** Initializes and returns a lDSSealingChild.
 
  @param value The value as a GCValue object.
  @return A new lDSSealingChild.
 */
 +(instancetype)lDSSealingChildWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a lDSSealingChild.
 
  @param value The value as an NSString.

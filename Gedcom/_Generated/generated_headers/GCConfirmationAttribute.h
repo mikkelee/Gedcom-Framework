@@ -25,18 +25,24 @@
 @interface GCConfirmationAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a confirmation.
 
  
  @return A new confirmation.
 */
 +(instancetype)confirmation;
+/// @name Initializing
+
 /** Initializes and returns a confirmation.
 
  @param value The value as a GCValue object.
  @return A new confirmation.
 */
 +(instancetype)confirmationWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a confirmation.
 
  @param value The value as an NSString.

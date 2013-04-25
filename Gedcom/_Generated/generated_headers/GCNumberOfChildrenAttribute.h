@@ -25,18 +25,24 @@
 @interface GCNumberOfChildrenAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a numberOfChildren.
 
  
  @return A new numberOfChildren.
 */
 +(instancetype)numberOfChildren;
+/// @name Initializing
+
 /** Initializes and returns a numberOfChildren.
 
  @param value The value as a GCValue object.
  @return A new numberOfChildren.
 */
 +(instancetype)numberOfChildrenWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a numberOfChildren.
 
  @param value The value as an NSString.

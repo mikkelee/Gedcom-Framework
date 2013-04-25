@@ -12,18 +12,24 @@
 @interface GCAddressLine2Attribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a addressLine2.
 
  
  @return A new addressLine2.
 */
 +(instancetype)addressLine2;
+/// @name Initializing
+
 /** Initializes and returns a addressLine2.
 
  @param value The value as a GCValue object.
  @return A new addressLine2.
 */
 +(instancetype)addressLine2WithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a addressLine2.
 
  @param value The value as an NSString.

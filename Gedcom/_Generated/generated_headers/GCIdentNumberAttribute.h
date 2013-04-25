@@ -25,18 +25,24 @@
 @interface GCIdentNumberAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a identNumber.
 
  
  @return A new identNumber.
 */
 +(instancetype)identNumber;
+/// @name Initializing
+
 /** Initializes and returns a identNumber.
 
  @param value The value as a GCValue object.
  @return A new identNumber.
 */
 +(instancetype)identNumberWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a identNumber.
 
  @param value The value as an NSString.

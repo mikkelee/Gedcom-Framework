@@ -25,18 +25,24 @@
 @interface GCFirstCommunionAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a firstCommunion.
 
  
  @return A new firstCommunion.
 */
 +(instancetype)firstCommunion;
+/// @name Initializing
+
 /** Initializes and returns a firstCommunion.
 
  @param value The value as a GCValue object.
  @return A new firstCommunion.
 */
 +(instancetype)firstCommunionWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a firstCommunion.
 
  @param value The value as an NSString.

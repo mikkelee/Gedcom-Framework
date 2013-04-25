@@ -12,18 +12,24 @@
 @interface GCCharacterSetAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a characterSet.
 
  
  @return A new characterSet.
 */
 +(instancetype)characterSet;
+/// @name Initializing
+
 /** Initializes and returns a characterSet.
 
  @param value The value as a GCValue object.
  @return A new characterSet.
 */
 +(instancetype)characterSetWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a characterSet.
 
  @param value The value as an NSString.

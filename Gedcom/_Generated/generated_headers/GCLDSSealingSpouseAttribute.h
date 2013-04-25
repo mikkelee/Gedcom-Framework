@@ -19,18 +19,24 @@
 @interface GCLDSSealingSpouseAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a lDSSealingSpouse.
 
  
  @return A new lDSSealingSpouse.
 */
 +(instancetype)lDSSealingSpouse;
+/// @name Initializing
+
 /** Initializes and returns a lDSSealingSpouse.
 
  @param value The value as a GCValue object.
  @return A new lDSSealingSpouse.
 */
 +(instancetype)lDSSealingSpouseWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a lDSSealingSpouse.
 
  @param value The value as an NSString.

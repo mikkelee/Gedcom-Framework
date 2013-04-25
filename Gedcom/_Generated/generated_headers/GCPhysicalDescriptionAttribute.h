@@ -25,18 +25,24 @@
 @interface GCPhysicalDescriptionAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a physicalDescription.
 
  
  @return A new physicalDescription.
 */
 +(instancetype)physicalDescription;
+/// @name Initializing
+
 /** Initializes and returns a physicalDescription.
 
  @param value The value as a GCValue object.
  @return A new physicalDescription.
 */
 +(instancetype)physicalDescriptionWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a physicalDescription.
 
  @param value The value as an NSString.

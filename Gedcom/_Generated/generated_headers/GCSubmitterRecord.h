@@ -22,6 +22,8 @@
 @interface GCSubmitterRecord : GCRecord
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a submitter.
 
  @param context The context in which to create the entity.

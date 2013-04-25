@@ -25,18 +25,24 @@
 @interface GCResidenceAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a residence.
 
  
  @return A new residence.
 */
 +(instancetype)residence;
+/// @name Initializing
+
 /** Initializes and returns a residence.
 
  @param value The value as a GCValue object.
  @return A new residence.
 */
 +(instancetype)residenceWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a residence.
 
  @param value The value as an NSString.

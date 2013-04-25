@@ -26,18 +26,24 @@
 @interface GCBirthAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a birth.
 
  
  @return A new birth.
 */
 +(instancetype)birth;
+/// @name Initializing
+
 /** Initializes and returns a birth.
 
  @param value The value as a GCValue object.
  @return A new birth.
 */
 +(instancetype)birthWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a birth.
 
  @param value The value as an NSString.

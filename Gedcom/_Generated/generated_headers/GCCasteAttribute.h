@@ -25,18 +25,24 @@
 @interface GCCasteAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a caste.
 
  
  @return A new caste.
 */
 +(instancetype)caste;
+/// @name Initializing
+
 /** Initializes and returns a caste.
 
  @param value The value as a GCValue object.
  @return A new caste.
 */
 +(instancetype)casteWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a caste.
 
  @param value The value as an NSString.

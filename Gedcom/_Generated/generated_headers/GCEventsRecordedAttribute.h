@@ -13,18 +13,24 @@
 @interface GCEventsRecordedAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a eventsRecorded.
 
  
  @return A new eventsRecorded.
 */
 +(instancetype)eventsRecorded;
+/// @name Initializing
+
 /** Initializes and returns a eventsRecorded.
 
  @param value The value as a GCValue object.
  @return A new eventsRecorded.
 */
 +(instancetype)eventsRecordedWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a eventsRecorded.
 
  @param value The value as an NSString.

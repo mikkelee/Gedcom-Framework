@@ -12,18 +12,24 @@
 @interface GCGedcomFormatAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a gedcomFormat.
 
  
  @return A new gedcomFormat.
 */
 +(instancetype)gedcomFormat;
+/// @name Initializing
+
 /** Initializes and returns a gedcomFormat.
 
  @param value The value as a GCValue object.
  @return A new gedcomFormat.
 */
 +(instancetype)gedcomFormatWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a gedcomFormat.
 
  @param value The value as an NSString.

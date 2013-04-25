@@ -12,6 +12,8 @@
 @interface GCHusbandRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a husband.
 
  

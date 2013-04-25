@@ -23,6 +23,8 @@
 }
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a association.
 
  

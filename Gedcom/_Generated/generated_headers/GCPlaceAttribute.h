@@ -16,18 +16,24 @@
 @interface GCPlaceAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a place.
 
  
  @return A new place.
 */
 +(instancetype)place;
+/// @name Initializing
+
 /** Initializes and returns a place.
 
  @param value The value as a GCValue object.
  @return A new place.
 */
 +(instancetype)placeWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a place.
 
  @param value The value as an NSString.

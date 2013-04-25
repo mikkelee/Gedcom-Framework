@@ -17,18 +17,24 @@
 @interface GCAddressAttribute : GCEventDetailAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a address.
 
  
  @return A new address.
 */
 +(instancetype)address;
+/// @name Initializing
+
 /** Initializes and returns a address.
 
  @param value The value as a GCValue object.
  @return A new address.
 */
 +(instancetype)addressWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a address.
 
  @param value The value as an NSString.

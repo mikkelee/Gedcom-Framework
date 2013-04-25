@@ -25,18 +25,24 @@
 @interface GCNationalityAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a nationality.
 
  
  @return A new nationality.
 */
 +(instancetype)nationality;
+/// @name Initializing
+
 /** Initializes and returns a nationality.
 
  @param value The value as a GCValue object.
  @return A new nationality.
 */
 +(instancetype)nationalityWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a nationality.
 
  @param value The value as an NSString.

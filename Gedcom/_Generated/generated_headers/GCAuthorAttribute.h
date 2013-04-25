@@ -12,18 +12,24 @@
 @interface GCAuthorAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a author.
 
  
  @return A new author.
 */
 +(instancetype)author;
+/// @name Initializing
+
 /** Initializes and returns a author.
 
  @param value The value as a GCValue object.
  @return A new author.
 */
 +(instancetype)authorWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a author.
 
  @param value The value as an NSString.

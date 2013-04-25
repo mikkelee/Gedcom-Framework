@@ -25,18 +25,24 @@
 @interface GCBaptismAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a baptism.
 
  
  @return A new baptism.
 */
 +(instancetype)baptism;
+/// @name Initializing
+
 /** Initializes and returns a baptism.
 
  @param value The value as a GCValue object.
  @return A new baptism.
 */
 +(instancetype)baptismWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a baptism.
 
  @param value The value as an NSString.

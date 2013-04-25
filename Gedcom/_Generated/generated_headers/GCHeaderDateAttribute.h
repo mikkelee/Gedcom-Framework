@@ -12,18 +12,24 @@
 @interface GCHeaderDateAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a headerDate.
 
  
  @return A new headerDate.
 */
 +(instancetype)headerDate;
+/// @name Initializing
+
 /** Initializes and returns a headerDate.
 
  @param value The value as a GCValue object.
  @return A new headerDate.
 */
 +(instancetype)headerDateWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a headerDate.
 
  @param value The value as an NSString.

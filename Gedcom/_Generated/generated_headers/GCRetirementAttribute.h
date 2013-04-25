@@ -25,18 +25,24 @@
 @interface GCRetirementAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a retirement.
 
  
  @return A new retirement.
 */
 +(instancetype)retirement;
+/// @name Initializing
+
 /** Initializes and returns a retirement.
 
  @param value The value as a GCValue object.
  @return A new retirement.
 */
 +(instancetype)retirementWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a retirement.
 
  @param value The value as an NSString.

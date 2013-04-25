@@ -12,18 +12,24 @@
 @interface GCNameSuffixAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a nameSuffix.
 
  
  @return A new nameSuffix.
 */
 +(instancetype)nameSuffix;
+/// @name Initializing
+
 /** Initializes and returns a nameSuffix.
 
  @param value The value as a GCValue object.
  @return A new nameSuffix.
 */
 +(instancetype)nameSuffixWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a nameSuffix.
 
  @param value The value as an NSString.

@@ -25,18 +25,24 @@
 @interface GCOrdinationAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a ordination.
 
  
  @return A new ordination.
 */
 +(instancetype)ordination;
+/// @name Initializing
+
 /** Initializes and returns a ordination.
 
  @param value The value as a GCValue object.
  @return A new ordination.
 */
 +(instancetype)ordinationWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a ordination.
 
  @param value The value as an NSString.

@@ -19,6 +19,8 @@
 @interface GCSourceCitationRelationship : GCRelationship
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a sourceCitation.
 
  

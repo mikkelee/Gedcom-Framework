@@ -27,18 +27,24 @@
 @interface GCDivorceFiledAttribute : GCFamilyEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a divorceFiled.
 
  
  @return A new divorceFiled.
 */
 +(instancetype)divorceFiled;
+/// @name Initializing
+
 /** Initializes and returns a divorceFiled.
 
  @param value The value as a GCValue object.
  @return A new divorceFiled.
 */
 +(instancetype)divorceFiledWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a divorceFiled.
 
  @param value The value as an NSString.

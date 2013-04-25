@@ -12,18 +12,24 @@
 @interface GCRecordIdNumberAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a recordIdNumber.
 
  
  @return A new recordIdNumber.
 */
 +(instancetype)recordIdNumber;
+/// @name Initializing
+
 /** Initializes and returns a recordIdNumber.
 
  @param value The value as a GCValue object.
  @return A new recordIdNumber.
 */
 +(instancetype)recordIdNumberWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a recordIdNumber.
 
  @param value The value as an NSString.

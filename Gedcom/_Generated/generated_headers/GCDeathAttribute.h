@@ -25,18 +25,24 @@
 @interface GCDeathAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a death.
 
  
  @return A new death.
 */
 +(instancetype)death;
+/// @name Initializing
+
 /** Initializes and returns a death.
 
  @param value The value as a GCValue object.
  @return A new death.
 */
 +(instancetype)deathWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a death.
 
  @param value The value as an NSString.

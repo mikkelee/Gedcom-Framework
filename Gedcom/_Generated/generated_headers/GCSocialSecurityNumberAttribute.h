@@ -25,18 +25,24 @@
 @interface GCSocialSecurityNumberAttribute : GCIndividualAttributeAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a socialSecurityNumber.
 
  
  @return A new socialSecurityNumber.
 */
 +(instancetype)socialSecurityNumber;
+/// @name Initializing
+
 /** Initializes and returns a socialSecurityNumber.
 
  @param value The value as a GCValue object.
  @return A new socialSecurityNumber.
 */
 +(instancetype)socialSecurityNumberWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a socialSecurityNumber.
 
  @param value The value as an NSString.

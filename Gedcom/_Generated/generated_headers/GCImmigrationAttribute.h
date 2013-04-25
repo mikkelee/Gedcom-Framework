@@ -25,18 +25,24 @@
 @interface GCImmigrationAttribute : GCIndividualEventAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a immigration.
 
  
  @return A new immigration.
 */
 +(instancetype)immigration;
+/// @name Initializing
+
 /** Initializes and returns a immigration.
 
  @param value The value as a GCValue object.
  @return A new immigration.
 */
 +(instancetype)immigrationWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a immigration.
 
  @param value The value as an NSString.

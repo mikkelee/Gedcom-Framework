@@ -13,18 +13,24 @@
 @interface GCPedigreeAttribute : GCAttribute
 
 // Methods:
+/// @name Initializing
+
 /** Initializes and returns a pedigree.
 
  
  @return A new pedigree.
 */
 +(instancetype)pedigree;
+/// @name Initializing
+
 /** Initializes and returns a pedigree.
 
  @param value The value as a GCValue object.
  @return A new pedigree.
 */
 +(instancetype)pedigreeWithValue:(GCValue *)value;
+/// @name Initializing
+
 /** Initializes and returns a pedigree.
 
  @param value The value as an NSString.
