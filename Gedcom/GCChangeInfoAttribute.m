@@ -32,12 +32,11 @@
 	NSMutableArray *_noteEmbeddeds;
     
     GCNode *_lazyModificationDateNode;
-    dispatch_once_t _lazyModificationDateToken;
 }
 
 #pragma mark Initialization
 
-+ (void)load
++ (void)initialize
 {
     [self setupLazyProperties];
 }

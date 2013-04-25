@@ -10,9 +10,13 @@
 
 /**
  
- Usage: Call setupLazyProperties in +load.
+ Usage:
  
- For each property that you wish to load lazily, implement the following lazy getter:
+ * Include this file and its implementation.
+ 
+ * #import this header and call setupLazyProperties in +initialize in the classes you want.
+ 
+ * For each property that you wish to load lazily, implement the following lazy getter:
  
  ```
  - (id)_lazy<PropertyName>
@@ -21,19 +25,7 @@
  }
  ```
  
- Additionally, create an ivar:
- 
- ```
- @implementation MyClass {
-     dispatch_once_t _lazy<PropertyName>Token;
- }
- 
- //...
- 
- @end
- ```
- 
- That's it, you're done. The first time a property is accessed, the _lazy getter is called in to set the ivar. Subsequently, the getters & setters are used as normal.
+ That's it, you're done. The first time a property is accessed, the _lazy getter is called in to set the ivar before calling the original implementation. Subsequently, a dispatch_once token is used to prevent the _lazy getter from running again.
  
  */
 
