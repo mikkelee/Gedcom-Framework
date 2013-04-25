@@ -113,7 +113,7 @@
  */
 + (GCRecord *)recordForURL:(NSURL *)url;
 
-#pragma mark Merging entities
+#pragma mark Merging contexts
 
 /** Causes the receiver to merge another context into it.
  
