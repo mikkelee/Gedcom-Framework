@@ -411,6 +411,8 @@
 		3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C7151E02C300A433A6 /* GCEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E5F50CA151E02C300A433A6 /* GCEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C8151E02C300A433A6 /* GCEntity.m */; };
 		3E5F50CD151E27BA00A433A6 /* GCObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */; };
+		3E713EBC17295F740098EBC3 /* GCSimilarityAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E713EBA17295F730098EBC3 /* GCSimilarityAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E713EBD17295F740098EBC3 /* GCSimilarityAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713EBB17295F730098EBC3 /* GCSimilarityAdditions.m */; };
 		3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */; };
 		3E83FF23171CC5240093B685 /* Tags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF25171CC5240093B685 /* Tags.strings */; };
 		3E83FF26171CC5270093B685 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF28171CC5270093B685 /* Errors.strings */; };
@@ -932,6 +934,8 @@
 		3E5F50C7151E02C300A433A6 /* GCEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCEntity.h; sourceTree = "<group>"; };
 		3E5F50C8151E02C300A433A6 /* GCEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCEntity.m; sourceTree = "<group>"; };
 		3E5F50CC151E27BA00A433A6 /* GCObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjectTests.m; sourceTree = "<group>"; };
+		3E713EBA17295F730098EBC3 /* GCSimilarityAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimilarityAdditions.h; sourceTree = "<group>"; };
+		3E713EBB17295F730098EBC3 /* GCSimilarityAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimilarityAdditions.m; sourceTree = "<group>"; };
 		3E75836515F8DDF800A9B096 /* GCAge_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCAge_internal.h; path = Values/GCAge_internal.h; sourceTree = "<group>"; };
 		3E75836615F8DF3E00A9B096 /* GCDate_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCDate_internal.h; path = Values/GCDate_internal.h; sourceTree = "<group>"; };
 		3E75837915F8EAB900A9B096 /* GCAgeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCAgeParser.rl; path = Values/GCAgeParser.rl; sourceTree = "<group>"; };
@@ -1096,7 +1100,7 @@
 				3E41BD4C1725FBF8003286E7 /* _Generated */,
 				3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */,
 				3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */,
-				3E8C1D77161CD23F005B3BE6 /* Object Additions */,
+				3E713EC3172962630098EBC3 /* Object Additions */,
 				3E81B76B1607DAA70028F3C1 /* Custom tag subclasses */,
 			);
 			name = "Concrete subclasses";
@@ -1179,12 +1183,10 @@
 				3E57557E152057B200A918D1 /* GedcomDateHelpers.h */,
 				3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */,
 				3E14EDC715230A3000080364 /* Nodes */,
-				3E14EDC815230DAE00080364 /* GCContext.h */,
-				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,
-				3E14EDC915230DAE00080364 /* GCContext.m */,
-				3E83FF2C171CDFA10093B685 /* GCContext+GCKeyValueAdditions.h */,
-				3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */,
+				3E713EBF17295F8C0098EBC3 /* Contexts */,
+				3E713EC017295FAE0098EBC3 /* Tags */,
 				3E57558A15217C1600A918D1 /* Objects */,
+				3E713EC117295FF10098EBC3 /* General Additions */,
 				3E14EDCC15230FE400080364 /* Values */,
 				3EB5ABCF153615CD0036B4D5 /* Helpers */,
 				3E1C3E70151C319C005E09E1 /* Supporting Files */,
@@ -1632,7 +1634,6 @@
 				3E4373541521CB7200BA362F /* GCAttribute.m */,
 				3E57558F15217C3B00A918D1 /* GCRelationship.h */,
 				3E57559015217C3B00A918D1 /* GCRelationship.m */,
-				3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */,
 			);
 			name = Properties;
 			sourceTree = "<group>";
@@ -1640,11 +1641,61 @@
 		3E57558A15217C1600A918D1 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				3EF7A1CA151C57A2004A8540 /* GCTag.h */,
-				3EF7A1CB151C57A3004A8540 /* GCTag.m */,
 				3E17B4AE16013ACF009D2CCB /* Object hierarchy */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		3E713EBF17295F8C0098EBC3 /* Contexts */ = {
+			isa = PBXGroup;
+			children = (
+				3E14EDC815230DAE00080364 /* GCContext.h */,
+				3E17B4B31602CEAF009D2CCB /* GCContext_internal.h */,
+				3E14EDC915230DAE00080364 /* GCContext.m */,
+				3E83FF2C171CDFA10093B685 /* GCContext+GCKeyValueAdditions.h */,
+				3EF136A2171C0E7700EDB33C /* GCContext+GCKeyValueAdditions.m */,
+			);
+			name = Contexts;
+			sourceTree = "<group>";
+		};
+		3E713EC017295FAE0098EBC3 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				3EF7A1CA151C57A2004A8540 /* GCTag.h */,
+				3EF7A1CB151C57A3004A8540 /* GCTag.m */,
+			);
+			name = Tags;
+			sourceTree = "<group>";
+		};
+		3E713EC117295FF10098EBC3 /* General Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3E8C1E9416264861005B3BE6 /* GCSanityCheckAdditions.h */,
+				3E8C1E9516264861005B3BE6 /* GCSanityCheckAdditions.m */,
+				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
+				3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */,
+				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
+				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
+				3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */,
+				3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */,
+				3E713EBA17295F730098EBC3 /* GCSimilarityAdditions.h */,
+				3E713EBB17295F730098EBC3 /* GCSimilarityAdditions.m */,
+			);
+			name = "General Additions";
+			sourceTree = "<group>";
+		};
+		3E713EC3172962630098EBC3 /* Object Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3E325D391710CA8500109A18 /* GCRelationship+GCReverseRelationshipAdditions.m */,
+				3E8C1D78161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h */,
+				3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */,
+				3E8C1E97162648DE005B3BE6 /* GCIndividualRecord+GCObjectAdditions.h */,
+				3E8C1E98162648DF005B3BE6 /* GCIndividualRecord+GCObjectAdditions.m */,
+				3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */,
+				3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */,
+			);
+			name = "Object Additions";
 			sourceTree = "<group>";
 		};
 		3E75836015F8DC6D00A9B096 /* Parsers */ = {
@@ -1665,19 +1716,6 @@
 				3E02E7B71607D968008728D9 /* GCCustomObjects.m */,
 			);
 			name = "Custom tag subclasses";
-			sourceTree = "<group>";
-		};
-		3E8C1D77161CD23F005B3BE6 /* Object Additions */ = {
-			isa = PBXGroup;
-			children = (
-				3E8C1D78161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.h */,
-				3E8C1D79161CD267005B3BE6 /* GCBinaryObjectAttribute+GCObjectAdditions.m */,
-				3E8C1E97162648DE005B3BE6 /* GCIndividualRecord+GCObjectAdditions.h */,
-				3E8C1E98162648DF005B3BE6 /* GCIndividualRecord+GCObjectAdditions.m */,
-				3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */,
-				3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */,
-			);
-			name = "Object Additions";
 			sourceTree = "<group>";
 		};
 		3E8C1E0816255344005B3BE6 /* GedcomTools */ = {
@@ -1711,14 +1749,6 @@
 				3E0C32FE17241EE90022E4D1 /* GCRecord.h */,
 				3E0C32FF17241EE90022E4D1 /* GCRecord.m */,
 				3E4373591521CF1400BA362F /* Properties */,
-				3E8C1E9416264861005B3BE6 /* GCSanityCheckAdditions.h */,
-				3E8C1E9516264861005B3BE6 /* GCSanityCheckAdditions.m */,
-				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
-				3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */,
-				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
-				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
-				3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */,
-				3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */,
 			);
 			name = "Abstract subclasses";
 			sourceTree = "<group>";
@@ -1966,6 +1996,7 @@
 				3E053D8E1726B70F0060A622 /* GCGedcomAccessAdditions.h in Headers */,
 				3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */,
 				3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */,
+				3E713EBC17295F740098EBC3 /* GCSimilarityAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2394,6 +2425,7 @@
 				3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */,
 				3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */,
 				3E2001EA17287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m in Sources */,
+				3E713EBD17295F740098EBC3 /* GCSimilarityAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
