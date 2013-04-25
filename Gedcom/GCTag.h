@@ -43,6 +43,14 @@
  */
 + (GCTag *)tagWithObjectClass:(Class)aClass;
 
+/** Returns an ordered collection of root tags.
+ 
+ The tags will be ordered as per the specification.
+ 
+ @return An array of tags.
+ */
++ (NSArray *)rootTags;
+
 #pragma mark Accessing subtags
 /// @name Accessing subtags
 

@@ -342,6 +342,24 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     return _tagStore[aClass];
 }
 
++ (NSArray *)rootTags
+{
+    static dispatch_once_t onceToken;
+    static NSArray *_rootTags = nil;
+    dispatch_once(&onceToken, ^{
+        NSArray *_rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ];
+        
+        NSMutableArray *rootTags = [NSMutableArray array];
+        for (NSString *key in _rootKeys) {
+            [rootTags addObject:_tagStore[key]];
+        }
+        
+        _rootTags = [rootTags copy];
+    });
+    
+    return _rootTags;
+}
+
 #pragma mark Subtags
 
 - (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type

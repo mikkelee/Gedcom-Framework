@@ -25,14 +25,6 @@
 
 @implementation GCContext (GCKeyValueAdditions)
 
-__strong static NSArray *_rootKeys = nil;
-
-+ (void)load
-//TODO clean up...
-{
-    _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ];
-}
-
 - (void)setHeader:(GCHeaderEntity *)header
 {
     if (_header == header) {
@@ -115,8 +107,8 @@ __strong static NSArray *_rootKeys = nil;
         [entities addObject:self.submission];
     }
     
-    for (NSString *entityType in _rootKeys) {
-        [entities addObjectsFromArray:[super valueForKey:entityType]];
+    for (GCTag *rootTag in [GCTag rootTags]) {
+        [entities addObjectsFromArray:[super valueForKey:rootTag.pluralName]];
     }
     
     [entities addObjectsFromArray:_customEntities];
@@ -144,7 +136,7 @@ __strong static NSArray *_rootKeys = nil;
         self.submission = (GCSubmissionRecord *)entity;
     } else  {
         @synchronized (self) {
-            if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
+            if ([[[GCTag rootTags] valueForKey:@"pluralName"] containsObject:entity.gedTag.pluralName]) {
                 [[self mutableArrayValueForKey:entity.gedTag.pluralName] addObject:entity];
             } else {
                 [entity setValue:self forKey:@"context"];
@@ -195,7 +187,7 @@ __strong static NSArray *_rootKeys = nil;
         }
     } else if ([entity isKindOfClass:[GCEntity class]]) {
         @synchronized (self) {
-            if ([_rootKeys containsObject:entity.gedTag.pluralName]) {
+            if ([[[GCTag rootTags] valueForKey:@"pluralName"] containsObject:entity.gedTag.pluralName]) {
                 [[self mutableArrayValueForKey:entity.gedTag.pluralName] removeObject:entity];
             } else {
                 [entity setValue:nil forKey:@"context"];
