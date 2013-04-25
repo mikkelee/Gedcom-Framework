@@ -143,15 +143,3 @@
 @property (weak) id<NSObject, GCContextDelegate> delegate;
 
 @end
-
-@interface GCContext (GCTransactionAdditions)
-
-/// @name Managing transactions
-
-- (void)beginTransaction;
-
-- (void)rollback;
-
-- (void)commit;
-
-@end

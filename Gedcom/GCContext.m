@@ -12,6 +12,7 @@
 #import "GedcomErrors.h"
 
 #import "GCContext+GCKeyValueAdditions.h"
+#import "GCContext+GCTransactionAdditions.h"
 
 #import "GCNodeParser.h"
 #import "GCNode.h"
@@ -545,28 +546,6 @@ __strong static NSArray *_rootKeys = nil;
     // TODO UTF8?
     
     [self.header addAttributeWithType:@"characterSet" value:encodingStr];
-}
-
-@end
-
-#pragma mark -
-
-@implementation GCContext (GCTransactionAdditions)
-
-- (void)beginTransaction
-{
-    [_undoManager beginUndoGrouping];
-}
-
-- (void)rollback
-{
-    [_undoManager endUndoGrouping];
-    [_undoManager undoNestedGroup];
-}
-
-- (void)commit
-{
-    [_undoManager endUndoGrouping];
 }
 
 @end

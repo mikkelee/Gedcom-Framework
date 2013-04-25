@@ -10,13 +10,12 @@
 #import "GCNode.h"
 
 #import "GCContext.h"
-
 #import "GCContext+GCKeyValueAdditions.h"
+#import "GCContext+GCTransactionAdditions.h"
 
 #import "GCTag.h"
 
 #import "GCObject.h"
-
 #import "GCObject+GCConvenienceAdditions.h"
 #import "GCObject+GCKeyValueAdditions.h"
 
