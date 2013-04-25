@@ -12,7 +12,7 @@
 
 - (NSDictionary *)recordsSimilarTo:(GCRecord *)record
 {
-    return nil;
+    return nil; //TODO
 }
 
 @end
@@ -21,12 +21,12 @@
 
 - (NSNumber *)similarityTo:(GCRecord *)record withWeights:(NSDictionary *)weights
 {
-    return nil;
+    return nil; //TODO
 }
 
 - (NSNumber *)similarityTo:(GCRecord *)record
 {
-    return nil;
+    return nil; //TODO
 }
 
 @end
