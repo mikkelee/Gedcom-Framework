@@ -14,7 +14,7 @@
  
  * Include this file and its implementation.
  
- * #import this header and call setupLazyProperties in +initialize in the classes you want.
+ * #import this header and call +setupLazyProperties in +initialize in the classes you want to have lazies.
  
  * For each property that you wish to load lazily, implement the following lazy getter:
  
