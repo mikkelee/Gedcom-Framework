@@ -43,7 +43,7 @@
 		3E1C3E81151C319D005E09E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E69151C319C005E09E1 /* Cocoa.framework */; };
 		3E1C3E84151C319D005E09E1 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E1C3E8A151C319D005E09E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C3E88151C319D005E09E1 /* InfoPlist.strings */; };
-		3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2001E717287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h */; };
+		3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2001E717287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E2001EA17287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2001E817287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m */; };
 		3E21E9B5160E88EB001EE004 /* GCChangeInfoAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E21E9B3160E88EB001EE004 /* GCChangeInfoAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E21E9B6160E88EB001EE004 /* GCChangeInfoAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E21E9B4160E88EB001EE004 /* GCChangeInfoAttribute.m */; };
@@ -1981,6 +1981,7 @@
 				3E1C3E62151C319C005E09E1 /* Frameworks */,
 				3E1C3E63151C319C005E09E1 /* Headers */,
 				3E1C3E64151C319C005E09E1 /* Resources */,
+				3E713EB517294F150098EBC3 /* ShellScript */,
 			);
 			buildRules = (
 				3E83FF2E171D0A330093B685 /* PBXBuildRule */,
@@ -2172,6 +2173,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo \"Cleaning Profiler Information\"\ncd ${OBJECT_FILE_DIR_normal}/${CURRENT_ARCH}\nrm -f *.gcda *.gcno";
+		};
+		3E713EB517294F150098EBC3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "infoPlist=${INFOPLIST_FILE}\nframeworkName=${WRAPPER_NAME}\n\nCFBuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" $infoPlist)\nCFBuildNumber=$(($CFBuildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $CFBuildNumber\" $infoPlist\n\nCFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $infoPlist)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildVersion $CFBundleShortVersionString, build $CFBuildNumber\" $infoPlist\n\nCFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $infoPlist)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $frameworkName $CFBundleShortVersionString, build $CFBuildNumber\" $infoPlist\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
