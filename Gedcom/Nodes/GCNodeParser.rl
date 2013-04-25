@@ -61,18 +61,11 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
         lineCount++;
         
         // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
-        // TODO: refactor (use dict?)
-        if ([code isEqualToString:@"CONT"]) {
+        if (_contConcMap[code]) {
             if (!currentNode.gedValue) {
                 currentNode.gedValue = value;
             } else {
-                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, @"\n", value ? value : @""];
-            }
-        } else if ([code isEqualToString:@"CONC"]) {
-            if (!currentNode.gedValue) {
-                currentNode.gedValue = value;
-            } else {
-                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, concSeparator, value ? value : @""];
+                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, _contConcMap[code], value ? value : @""];
             }
         } else {
             if (xref) {
@@ -161,6 +154,15 @@ __strong static id _sharedNodeParser = nil;
 
 - (BOOL)parseString:(id)gedString error:(NSError *__autoreleasing *)error
 {
+    static dispatch_once_t onceToken;
+    static NSDictionary *_contConcMap = nil;
+    dispatch_once(&onceToken, ^{
+        _contConcMap = @{
+            @"CONT": @"\n",
+            @"CONC": concSeparator,
+        };
+    });
+
     @synchronized(self) {
         if ([gedString isKindOfClass:[NSAttributedString class]]) {
             gedString = [gedString string];
