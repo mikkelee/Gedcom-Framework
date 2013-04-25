@@ -43,6 +43,8 @@
 
 - (BOOL)_shouldHandleCustomTag:(GCTag *)tag forNode:(GCNode *)node onObject:(GCObject *)object;
 
+- (void)_removeXrefForRecord:(GCRecord *)record;
+
 - (void)_clearXrefs;
 - (void)_renumberXrefs;
 - (void)_sortByXrefs;

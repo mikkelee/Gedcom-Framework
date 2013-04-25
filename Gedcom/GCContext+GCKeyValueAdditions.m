@@ -156,15 +156,7 @@
         return;
     }
     
-    GCContext *oldContext = entity.context;
-    
     [self _addEntity:entity];
-    
-    if (oldContext != self) {
-        for (GCRecord *relatedRecord in entity.relatedRecords) {
-            [self _addEntity:relatedRecord];
-        }
-    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
@@ -200,7 +192,10 @@
     
     NSParameterAssert(!entity.context);
     
-    // TODO handle xrefs, remove self as ctx param, and any relationships...
+    if ([entity isKindOfClass:[GCRecord class]]) {
+        [self _removeXrefForRecord:(GCRecord *)entity];
+        
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
@@ -234,6 +229,7 @@
     [_families removeObjectAtIndex:index];
     if ([_families indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 
@@ -261,6 +257,7 @@
     [_individuals removeObjectAtIndex:index];
     if ([_individuals indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 
@@ -289,6 +286,7 @@
     [_multimedias removeObjectAtIndex:index];
     if ([_multimedias indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 
@@ -317,6 +315,7 @@
     [_notes removeObjectAtIndex:index];
     if ([_notes indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 
@@ -345,6 +344,7 @@
     [_repositories removeObjectAtIndex:index];
     if ([_repositories indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 
@@ -373,6 +373,7 @@
     [_sources removeObjectAtIndex:index];
     if ([_sources indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 
@@ -401,6 +402,7 @@
     [_submitters removeObjectAtIndex:index];
     if ([_submitters indexOfObject:old] == NSNotFound) {
         [old setValue:nil forKey:@"context"];
+        [self _removeXrefForRecord:old];
     }
 }
 

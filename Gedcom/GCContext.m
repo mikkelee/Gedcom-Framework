@@ -376,18 +376,24 @@ __strong static NSArray *_rootKeys = nil;
     NSParameterAssert(!_xrefToRecordMap[xref]);
     
     @synchronized (self) {
-        
-        // clear previously set xref, if any
-        if (_recordToXrefMap[record]) {
-            [_xrefToRecordMap removeObjectForKey:_recordToXrefMap[record]];
-            [_recordToXrefMap removeObjectForKey:record];
-        }
+        [self _removeXrefForRecord:record];
         
         // update map
         _xrefToRecordMap[xref] = record;
         
         // update map
         _recordToXrefMap[record] = xref;
+    }
+}
+
+- (void)_removeXrefForRecord:(GCRecord *)record
+{
+    @synchronized (self) {
+        // clear previously set xref, if any
+        if (_recordToXrefMap[record]) {
+            [_xrefToRecordMap removeObjectForKey:_recordToXrefMap[record]];
+            [_recordToXrefMap removeObjectForKey:record];
+        }
     }
 }
 
