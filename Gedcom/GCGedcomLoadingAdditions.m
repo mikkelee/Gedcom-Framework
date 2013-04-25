@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomLoadingAdditions_internal.h"
 
 #import "GCObject+GCConvenienceAdditions.h"
 

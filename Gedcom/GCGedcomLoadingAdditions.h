@@ -13,14 +13,6 @@
 @class GCNode;
 @class GCContext;
 
-@interface GCObject (GCGedcomLoadingAdditions)
-
-- (void)_addPropertyWithGedcomNode:(GCNode *)node;
-
-- (void)_addPropertiesWithGedcomNodes:(NSArray *)nodes;
-
-@end
-
 @interface GCRecord (GCGedcomLoadingAdditions)
 
 /** Returns an entity whose properties reflect the GCNode in the given GCContext.

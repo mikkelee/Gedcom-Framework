@@ -64,6 +64,7 @@
 		3E3995BF155DE4B500228946 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3995BD155DE4B500228946 /* MainMenu.xib */; };
 		3E3995DA155DE57000228946 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E3995DF155DE69200228946 /* Gedcom.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
+		3E3CD5BC17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3CD5BB17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h */; };
 		3E41BE8E1725FBFA003286E7 /* GCObjects_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E41BD4D1725FBF9003286E7 /* GCObjects_generated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E41BE8F1725FBFA003286E7 /* GCAbbreviationAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E41BD4F1725FBF9003286E7 /* GCAbbreviationAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E41BE901725FBFA003286E7 /* GCAddressAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E41BD501725FBF9003286E7 /* GCAddressAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -593,6 +594,7 @@
 		3E3995B8155DE4B500228946 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		3E3995BB155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		3E3995BE155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3E3CD5BB17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomLoadingAdditions_internal.h; sourceTree = "<group>"; };
 		3E41BD4D1725FBF9003286E7 /* GCObjects_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjects_generated.h; sourceTree = "<group>"; };
 		3E41BD4F1725FBF9003286E7 /* GCAbbreviationAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAbbreviationAttribute.h; sourceTree = "<group>"; };
 		3E41BD501725FBF9003286E7 /* GCAddressAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAddressAttribute.h; sourceTree = "<group>"; };
@@ -1671,6 +1673,7 @@
 			isa = PBXGroup;
 			children = (
 				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
+				3E3CD5BB17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h */,
 				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
 				3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */,
 				3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */,
@@ -2025,6 +2028,7 @@
 				3E713EBC17295F740098EBC3 /* GCSimilarityAdditions.h in Headers */,
 				3E713EC61729642E0098EBC3 /* GCContext+GCTransactionAdditions.h in Headers */,
 				3E713ECB172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h in Headers */,
+				3E3CD5BC17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

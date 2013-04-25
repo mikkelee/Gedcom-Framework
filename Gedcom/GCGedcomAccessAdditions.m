@@ -8,7 +8,7 @@
 
 #import "GCGedcomAccessAdditions.h"
 
-#import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomLoadingAdditions_internal.h"
 
 #import "GCContext+GCKeyValueAdditions.h"
 

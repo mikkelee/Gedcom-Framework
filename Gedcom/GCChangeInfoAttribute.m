@@ -17,7 +17,7 @@
 
 #import "GCObject_internal.h"
 
-#import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomLoadingAdditions_internal.h"
 
 #import "NSObject+MELazyPropertySwizzlingAdditions.h"
 
