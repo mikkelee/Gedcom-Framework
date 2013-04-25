@@ -1084,12 +1084,12 @@
 				3E57558615217C0D00A918D1 /* GCObject.h */,
 				3E09D18C15F9427C00BAA69E /* GCObject_internal.h */,
 				3E57558715217C0D00A918D1 /* GCObject.m */,
-				3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */,
-				3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */,
-				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
-				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
 				3E8F87C2171CAE01003111D2 /* GCObject+GCConvenienceAdditions.h */,
 				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */,
+				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
+				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
+				3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */,
+				3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */,
 				3E91773C171FEAE100FF7E2C /* Abstract subclasses */,
 				3E17B4AF16013AFD009D2CCB /* Concrete subclasses */,
 			);
@@ -1674,16 +1674,16 @@
 		3E713EC117295FF10098EBC3 /* General Additions */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C1E9416264861005B3BE6 /* GCSanityCheckAdditions.h */,
-				3E8C1E9516264861005B3BE6 /* GCSanityCheckAdditions.m */,
-				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
-				3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */,
 				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
 				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
 				3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */,
 				3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */,
+				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
+				3E8F87C7171CAE0D003111D2 /* GCValidationAdditions.m */,
 				3E713EBA17295F730098EBC3 /* GCSimilarityAdditions.h */,
 				3E713EBB17295F730098EBC3 /* GCSimilarityAdditions.m */,
+				3E8C1E9416264861005B3BE6 /* GCSanityCheckAdditions.h */,
+				3E8C1E9516264861005B3BE6 /* GCSanityCheckAdditions.m */,
 			);
 			name = "General Additions";
 			sourceTree = "<group>";
