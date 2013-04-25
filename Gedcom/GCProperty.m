@@ -51,7 +51,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:self.describedObject forKey:@"describedObject"];
+    [aCoder encodeConditionalObject:self.describedObject forKey:@"describedObject"];
 }
 
 #pragma mark Objective-C properties

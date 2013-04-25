@@ -50,7 +50,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:_context forKey:@"context"];
+    [aCoder encodeConditionalObject:_context forKey:@"context"];
     if (self.takesValue) {
         [aCoder encodeObject:_value forKey:@"value"];
     }
