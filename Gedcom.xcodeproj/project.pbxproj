@@ -65,6 +65,8 @@
 		3E3995DA155DE57000228946 /* Gedcom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E3995DF155DE69200228946 /* Gedcom.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E1C3E66151C319C005E09E1 /* Gedcom.framework */; };
 		3E3CD5BC17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3CD5BB17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h */; };
+		3E3CD5BE1729BF74003AD101 /* LoadingSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3CD5BD1729BF74003AD101 /* LoadingSheet.xib */; };
+		3E3CD5C11729BFC8003AD101 /* GCLoadingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CD5C01729BFC8003AD101 /* GCLoadingSheetController.m */; };
 		3E41BE8E1725FBFA003286E7 /* GCObjects_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E41BD4D1725FBF9003286E7 /* GCObjects_generated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E41BE8F1725FBFA003286E7 /* GCAbbreviationAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E41BD4F1725FBF9003286E7 /* GCAbbreviationAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E41BE901725FBFA003286E7 /* GCAddressAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E41BD501725FBF9003286E7 /* GCAddressAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -595,6 +597,9 @@
 		3E3995BB155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		3E3995BE155DE4B500228946 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3E3CD5BB17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomLoadingAdditions_internal.h; sourceTree = "<group>"; };
+		3E3CD5BD1729BF74003AD101 /* LoadingSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingSheet.xib; sourceTree = "<group>"; };
+		3E3CD5BF1729BFC8003AD101 /* GCLoadingSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLoadingSheetController.h; sourceTree = "<group>"; };
+		3E3CD5C01729BFC8003AD101 /* GCLoadingSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLoadingSheetController.m; sourceTree = "<group>"; };
 		3E41BD4D1725FBF9003286E7 /* GCObjects_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjects_generated.h; sourceTree = "<group>"; };
 		3E41BD4F1725FBF9003286E7 /* GCAbbreviationAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAbbreviationAttribute.h; sourceTree = "<group>"; };
 		3E41BD501725FBF9003286E7 /* GCAddressAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAddressAttribute.h; sourceTree = "<group>"; };
@@ -1265,9 +1270,12 @@
 				3E3995B7155DE4B500228946 /* Document.h */,
 				3E3995B8155DE4B500228946 /* Document.m */,
 				3E8C1D70161BDA52005B3BE6 /* GCGUIAdditions.h */,
+				3E3CD5BF1729BFC8003AD101 /* GCLoadingSheetController.h */,
+				3E3CD5C01729BFC8003AD101 /* GCLoadingSheetController.m */,
 				3E8C1D71161BDA52005B3BE6 /* GCGUIAdditions.m */,
 				3E3995BA155DE4B500228946 /* Document.xib */,
 				3E3995BD155DE4B500228946 /* MainMenu.xib */,
+				3E3CD5BD1729BF74003AD101 /* LoadingSheet.xib */,
 				3E3995AC155DE4B500228946 /* Supporting Files */,
 			);
 			path = GedcomGUI;
@@ -2182,6 +2190,7 @@
 				3E3995BC155DE4B500228946 /* Document.xib in Resources */,
 				3E3995BF155DE4B500228946 /* MainMenu.xib in Resources */,
 				3ED171231614B4FC00B5B83F /* Predicates.strings in Resources */,
+				3E3CD5BE1729BF74003AD101 /* LoadingSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2493,6 +2502,7 @@
 				3E3995B2155DE4B500228946 /* main.m in Sources */,
 				3E3995B9155DE4B500228946 /* Document.m in Sources */,
 				3E8C1D72161BDA52005B3BE6 /* GCGUIAdditions.m in Sources */,
+				3E3CD5C11729BFC8003AD101 /* GCLoadingSheetController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

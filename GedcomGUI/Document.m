@@ -9,8 +9,7 @@
 #import "Document.h"
 
 #import "GCGUIAdditions.h"
-
-#import <math.h>
+#import "GCLoadingSheetController.h"
 
 @interface Document ()
 
@@ -21,6 +20,8 @@
 @implementation Document {
     BOOL _isEntireFileLoaded;
     NSMutableArray *_individuals;
+    
+    GCLoadingSheetController *_loadingSheetController;
 }
 
 - (instancetype)init
@@ -82,11 +83,9 @@
 
 - (void)parseData:(NSData *)data
 {
-    //TODO sheet is broken with multiple docs open; should probably be moved to its own .nib
-    [NSApp beginSheet:loadingSheet modalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:NULL contextInfo:nil];
+    _loadingSheetController = [[GCLoadingSheetController alloc] init];
     
-    [currentlyLoadingSpinner setUsesThreadedAnimation:YES];
-    [currentlyLoadingSpinner startAnimation:nil];
+    [_loadingSheetController startForWindow:[self windowForSheet]];
     
     self.context = [GCContext context];
     
@@ -131,20 +130,15 @@
 
 - (void)context:(GCContext *)context didUpdateEntityCount:(NSUInteger)entityCount
 {
-    if ( (rand()%1000) < 3) {
-        [recordCountField setIntegerValue:entityCount];
-    }
+    [_loadingSheetController updateWithCount:entityCount];
 }
 
 - (void)context:(GCContext *)context didParseNodesWithEntityCount:(NSUInteger)entityCount
 {
-    [recordCountField setIntegerValue:entityCount];
+    [_loadingSheetController stop];
+    _loadingSheetController = nil;
     
-    [currentlyLoadingSpinner stopAnimation:nil];
     _isEntireFileLoaded = YES;
-    
-    [NSApp endSheet:loadingSheet];
-    [loadingSheet orderOut:nil];
     
     // TODO bind array controller to s.c.i instead
     self.individuals = self.context.individuals;
