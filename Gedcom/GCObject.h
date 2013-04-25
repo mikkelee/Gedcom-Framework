@@ -63,6 +63,27 @@
  */
 - (BOOL)isEqualTo:(id)other;
 
+#pragma mark Accessing properties
+
+/// The GCTag corresponding to the receiver's class.
++ (GCTag *)gedTag;
+
+/** A helper method for quicker lookups when only interested in knowing whether the receiver allows more than one of a given property type.
+ 
+ @param type A property type.
+ @return a `BOOL` indicating whether multiple properties of the given type are allowed.
+ */
+- (BOOL)allowsMultipleOccurrencesOfPropertyType:(NSString *)type;
+
+/// The properties of the receiver ordered as indicated in the spec.
+@property (nonatomic, readonly) NSArray *properties;
+
+/// The properties of the receiver as a KVC-compliant mutable set.
+@property (readonly, nonatomic) NSMutableArray *mutableProperties;
+
+/// The non-standard properties of the receiver, if any.
+@property (nonatomic, readonly) NSArray *customProperties;
+
 #pragma mark - Objective-C properties -
 
 /// @name Accessing properties
@@ -88,22 +109,5 @@
 
 /// The displayValue of the receiver, with attributes.
 @property (nonatomic, readonly) NSAttributedString *attributedDisplayValue;
-
-#pragma mark Accessing properties
-
-/// The properties of the receiver ordered as indicated in the spec.
-@property (nonatomic, readonly) NSArray *properties;
-
-/// The properties of the receiver as a KVC-compliant mutable set.
-@property (readonly, nonatomic) NSMutableArray *mutableProperties;
-
-/// The non-standard properties of the receiver, if any.
-@property (nonatomic, readonly) NSArray *customProperties;
-
-/// The GCTag corresponding to the receiver's class.
-@property (nonatomic, readonly) GCTag *gedTag;
-
-/// The GCTag corresponding to the receiver's class.
-+ (GCTag *)gedTag;
 
 @end

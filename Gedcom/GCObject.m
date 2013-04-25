@@ -70,7 +70,7 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     return [self.gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
 
-- (BOOL)_allowsMultipleOccurrencesOfPropertyType:(NSString *)type
+- (BOOL)allowsMultipleOccurrencesOfPropertyType:(NSString *)type
 {
     return [self.gedTag allowsMultipleOccurrencesOfSubTag:[GCTag tagNamed:type]];
 }
@@ -202,7 +202,7 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     NSMutableArray *properties = [NSMutableArray array];
     
     for (NSString *propertyType in self.validPropertyTypes) {
-        if ([self _allowsMultipleOccurrencesOfPropertyType:propertyType]) {
+        if ([self allowsMultipleOccurrencesOfPropertyType:propertyType]) {
             [properties addObjectsFromArray:[super valueForKey:propertyType]];
         } else {
             if ([self valueForKey:propertyType]) {
