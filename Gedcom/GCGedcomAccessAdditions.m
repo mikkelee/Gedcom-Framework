@@ -128,7 +128,8 @@ __strong static NSDictionary *_defaultColors;
                                       } else if (attrs[GCTagAttributeName]) {
                                           [gedcomString addAttribute:NSForegroundColorAttributeName value:colors[GCTagAttributeName] range:range];
                                       } else if (attrs[GCLinkAttributeName]) {
-                                          [gedcomString addAttribute:NSLinkAttributeName value:self.URL range:range]; //TODO target not self
+                                          NSURL *url = [self.context _recordForXref:attrs[GCLinkAttributeName] create:NO withClass:nil].URL;
+                                          [gedcomString addAttribute:NSLinkAttributeName value:url range:range];
                                       } else if (attrs[GCValueAttributeName]) {
                                           //nothing
                                       }

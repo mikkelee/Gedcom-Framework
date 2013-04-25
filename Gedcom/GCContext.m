@@ -423,7 +423,7 @@ __strong static NSArray *_rootKeys = nil;
         
         if (record) {
             //NSLog(@"Found existing: %@ > %p", xref, record);
-            NSParameterAssert([record isKindOfClass:aClass]);
+            NSParameterAssert(!aClass || [record isKindOfClass:aClass]);
             return record;
         } else if (create) {
             record = [[aClass alloc] initInContext:self];
