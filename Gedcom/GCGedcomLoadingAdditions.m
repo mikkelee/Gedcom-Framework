@@ -13,6 +13,8 @@
 #import "GCNode.h"
 #import "GCContext_internal.h"
 
+#import "GCTag.h"
+
 #import "GCEntity.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"

@@ -12,6 +12,8 @@
 
 #import "GCContext+GCKeyValueAdditions.h"
 
+#import "GCTag.h"
+
 #import "GCEntity.h"
 #import "GCRecord.h"
 #import "GCAttribute.h"

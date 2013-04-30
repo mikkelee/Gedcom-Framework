@@ -10,8 +10,6 @@
 
 #import "GCTag.h"
 
-#import "GedcomErrors.h"
-
 @interface GCObject () {
 @protected
     BOOL _isBuildingFromGedcom;

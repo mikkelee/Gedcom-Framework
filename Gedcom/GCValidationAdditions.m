@@ -8,6 +8,8 @@
 
 #import "GCValidationAdditions.h"
 
+#import "GedcomErrors.h"
+
 #import "GCContext+GCKeyValueAdditions.h"
 
 #import "GCRecord.h"
