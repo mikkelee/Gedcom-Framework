@@ -126,9 +126,7 @@
                     // set up new reverse relationship
                     //NSLog(@"Adding reverse relationship %@ with target: %@", self.reverseRelationshipType, self.rootObject);
                     
-                    GCTag *tag = [GCTag tagNamed:self.reverseRelationshipType];
-                    
-                    GCRelationship *other = [[tag.objectClass alloc] init];
+                    GCRelationship *other = [[[GCObject objectClassWithType:self.reverseRelationshipType] alloc] init];
                     
                     other.other = self;
                     self.other = other;

@@ -107,8 +107,8 @@
         [entities addObject:self.submission];
     }
     
-    for (GCTag *rootTag in [GCTag rootTags]) {
-        [entities addObjectsFromArray:[super valueForKey:rootTag.pluralName]];
+    for (Class rootClass in [GCObject rootClasses]) {
+        [entities addObjectsFromArray:[super valueForKey:[rootClass pluralType]]];
     }
     
     [entities addObjectsFromArray:_customEntities];
@@ -136,8 +136,8 @@
         self.submission = (GCSubmissionRecord *)entity;
     } else  {
         @synchronized (self) {
-            if ([[[GCTag rootTags] valueForKey:@"pluralName"] containsObject:entity.gedTag.pluralName]) {
-                [[self mutableArrayValueForKey:entity.gedTag.pluralName] addObject:entity];
+            if ([[[GCObject rootClasses] valueForKey:@"pluralType"] containsObject:[[entity class] pluralType]]) {
+                [[self mutableArrayValueForKey:[[entity class] pluralType]] addObject:entity];
             } else {
                 [entity setValue:self forKey:@"context"];
                 [_customEntities addObject:entity];
@@ -179,8 +179,8 @@
         }
     } else if ([entity isKindOfClass:[GCEntity class]]) {
         @synchronized (self) {
-            if ([[[GCTag rootTags] valueForKey:@"pluralName"] containsObject:entity.gedTag.pluralName]) {
-                [[self mutableArrayValueForKey:entity.gedTag.pluralName] removeObject:entity];
+            if ([[[GCObject rootClasses] valueForKey:@"pluralType"] containsObject:[[entity class] pluralType]]) {
+                [[self mutableArrayValueForKey:[[entity class] pluralType]] removeObject:entity];
             } else {
                 [entity setValue:nil forKey:@"context"];
                 [_customEntities removeObject:entity];

@@ -8,6 +8,8 @@
 
 #import "GCObject_internal.h"
 
+#import "GCTag.h"
+
 #import "GCObject+GCConvenienceAdditions.h"
 #import "GCGedcomLoadingAdditions.h"
 #import "GCGedcomAccessAdditions.h"
@@ -36,54 +38,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     }
     
     return self;
-}
-
-#pragma mark GCProperty access
-
-- (NSOrderedSet *)validPropertyTypes
-{
-    @synchronized(_validPropertiesByType) {
-        NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
-        
-        if (!_validProperties) {
-            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[self.gedTag.validSubTags count]];
-            
-            for (GCTag *subTag in self.gedTag.validSubTags) {
-                if ([self.gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
-                    [valid addObject:subTag.pluralName];
-                } else {
-                    [valid addObject:subTag.name];
-                }
-            }
-            
-            _validProperties = [valid copy];
-            
-            _validPropertiesByType[self.type] = _validProperties;
-        }
-        
-        return _validProperties;
-    }
-}
-
-- (GCAllowedOccurrences)allowedOccurrencesOfPropertyType:(NSString *)type
-{
-    return [self.gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
-}
-
-- (BOOL)allowsMultipleOccurrencesOfPropertyType:(NSString *)type
-{
-    return [self.gedTag allowsMultipleOccurrencesOfSubTag:[GCTag tagNamed:type]];
-}
-
-- (NSArray *)propertyTypesInGroup:(NSString *)groupName
-{
-    NSMutableArray *propertyTypes = [NSMutableArray array];
-    
-    for (GCTag *tag in [self.gedTag subTagsInGroup:groupName]) {
-        [propertyTypes addObject:tag.pluralName];
-    }
-    
-    return [propertyTypes count] > 0 ? [propertyTypes copy] : nil;
 }
 
 #pragma mark Comparison & equality
@@ -169,26 +123,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 
 #pragma mark Objective-C properties
 
-+ (GCTag *)gedTag
-{
-	return [GCTag tagWithObjectClass:[self class]];
-}
-
-- (GCTag *)gedTag
-{
-    return [[self class] gedTag];
-}
-
-- (NSString *)type
-{
-    return self.gedTag.name;
-}
-
-- (NSString *)localizedType
-{
-    return self.gedTag.localizedName;
-}
-
 @dynamic rootObject;
 @dynamic context;
 
@@ -273,6 +207,99 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 - (void)removeObjectFromCustomPropertiesAtIndex:(NSUInteger)index {
     [_customProperties[index] setValue:nil forKey:@"describedObject"];
     [_customProperties removeObjectAtIndex:index];
+}
+
+@end
+
+@implementation GCObject (GCGedcomPropertyAdditions)
+
++ (Class)objectClassWithType:(NSString *)type
+{
+    return [GCTag tagNamed:type].objectClass;
+}
+
++ (NSArray *)rootClasses
+{
+    NSMutableArray *rootTypes = [NSMutableArray array];
+    
+    for (GCTag *tag in [GCTag rootTags]) {
+        [rootTypes addObject:tag.objectClass];
+    }
+    
+    return [rootTypes copy];
+}
+
+#pragma mark GCProperty access
+
+- (NSOrderedSet *)validPropertyTypes
+{
+    @synchronized(_validPropertiesByType) {
+        NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
+        
+        if (!_validProperties) {
+            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[self.gedTag.validSubTags count]];
+            
+            for (GCTag *subTag in self.gedTag.validSubTags) {
+                if ([self.gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
+                    [valid addObject:subTag.pluralName];
+                } else {
+                    [valid addObject:subTag.name];
+                }
+            }
+            
+            _validProperties = [valid copy];
+            
+            _validPropertiesByType[self.type] = _validProperties;
+        }
+        
+        return _validProperties;
+    }
+}
+
+- (GCAllowedOccurrences)allowedOccurrencesOfPropertyType:(NSString *)type
+{
+    return [self.gedTag allowedOccurrencesOfSubTag:[GCTag tagNamed:type]];
+}
+
+- (BOOL)allowsMultipleOccurrencesOfPropertyType:(NSString *)type
+{
+    return [self.gedTag allowsMultipleOccurrencesOfSubTag:[GCTag tagNamed:type]];
+}
+
+- (NSArray *)propertyTypesInGroup:(NSString *)groupName
+{
+    NSMutableArray *propertyTypes = [NSMutableArray array];
+    
+    for (GCTag *tag in [self.gedTag subTagsInGroup:groupName]) {
+        [propertyTypes addObject:tag.pluralName];
+    }
+    
+    return [propertyTypes count] > 0 ? [propertyTypes copy] : nil;
+}
+
++ (GCTag *)gedTag
+{
+	return [GCTag tagWithObjectClass:[self class]];
+}
+
+- (GCTag *)gedTag
+{
+    return [[self class] gedTag];
+}
+
+- (NSString *)type
+{
+    return self.gedTag.name;
+}
+
+- (NSString *)localizedType
+{
+    return self.gedTag.localizedName;
+}
+
++ (NSString *)pluralType
+{
+    return self.gedTag.pluralName;
 }
 
 @end

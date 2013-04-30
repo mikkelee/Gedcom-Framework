@@ -22,6 +22,71 @@
  */
 @interface GCObject : NSObject <NSCoding, NSCopying>
 
+#pragma mark Comparison
+/// @name Comparing objects
+
+/** Compares the receiver to another GCObject.
+ 
+ @param other A GCObject object.
+ @return `NSOrderedAscending` if the receiver is earlier than other, `NSOrderedDescending` if the receiver is later than other, and `NSOrderedSame` if they are equal.
+ */
+- (NSComparisonResult)compare:(id)other;
+
+#pragma mark Equality
+
+/** Compares the receiver and another GCObject intepreted as Gedcom strings.
+ 
+ @param other A GCObject object.
+ @return `YES` if the strings are identical, otherwise `NO`.
+ */
+- (BOOL)isEqualTo:(id)other;
+
+#pragma mark Accessing properties
+
+/// The properties of the receiver ordered as indicated in the spec.
+@property (nonatomic, readonly) NSArray *properties;
+
+/// The properties of the receiver as a KVC-compliant mutable set.
+@property (readonly, nonatomic) NSMutableArray *mutableProperties;
+
+/// The non-standard properties of the receiver, if any.
+@property (nonatomic, readonly) NSArray *customProperties;
+
+#pragma mark - Objective-C properties -
+
+/// @name Accessing properties
+
+/// The root object of a given tree of GCObjects. Will usually be a GCRecord or a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
+@property (nonatomic, readonly) GCObject *rootObject;
+
+/// The context associated with the receiver. Properties will forward the request to their describedObject.
+@property (nonatomic, readonly, weak) GCContext *context;
+
+/** The value of the receiver appropiate for displaying in the user interface.
+ 
+ For records, it will be their xref; for attributes, their value; and for relationships, the target's xref.
+ 
+ */
+@property (nonatomic, readonly) NSString *displayValue;
+
+/// The displayValue of the receiver, with attributes.
+@property (nonatomic, readonly) NSAttributedString *attributedDisplayValue;
+
+@end
+
+@interface GCObject (GCGedcomPropertyAdditions)
+
+/// The GCTag corresponding to the receiver's class.
++ (GCTag *)gedTag;
+
++ (Class)objectClassWithType:(NSString *)type;
+
++ (NSArray *)rootClasses;
+
++ (NSString *)type;
++ (NSString *)localizedType;
++ (NSString *)pluralType;
+
 #pragma mark Accessing GCProperties
 /// @name Accessing GCProperties
 
@@ -44,45 +109,12 @@
  */
 - (NSArray *)propertyTypesInGroup:(NSString *)groupName;
 
-#pragma mark Comparison
-/// @name Comparing objects
-
-/** Compares the receiver to another GCObject.
- 
- @param other A GCObject object.
- @return `NSOrderedAscending` if the receiver is earlier than other, `NSOrderedDescending` if the receiver is later than other, and `NSOrderedSame` if they are equal.
- */
-- (NSComparisonResult)compare:(id)other;
-
-#pragma mark Equality
-
-/** Compares the receiver and another GCObject intepreted as Gedcom strings.
- 
- @param other A GCObject object.
- @return `YES` if the strings are identical, otherwise `NO`.
- */
-- (BOOL)isEqualTo:(id)other;
-
-#pragma mark Accessing properties
-
-/// The GCTag corresponding to the receiver's class.
-+ (GCTag *)gedTag;
-
 /** A helper method for quicker lookups when only interested in knowing whether the receiver allows more than one of a given property type.
  
  @param type A property type.
  @return a `BOOL` indicating whether multiple properties of the given type are allowed.
  */
 - (BOOL)allowsMultipleOccurrencesOfPropertyType:(NSString *)type;
-
-/// The properties of the receiver ordered as indicated in the spec.
-@property (nonatomic, readonly) NSArray *properties;
-
-/// The properties of the receiver as a KVC-compliant mutable set.
-@property (readonly, nonatomic) NSMutableArray *mutableProperties;
-
-/// The non-standard properties of the receiver, if any.
-@property (nonatomic, readonly) NSArray *customProperties;
 
 #pragma mark - Objective-C properties -
 
@@ -93,21 +125,5 @@
 
 /// The localized type of the receiver.
 @property (nonatomic, readonly) NSString *localizedType;
-
-/// The root object of a given tree of GCObjects. Will usually be a GCRecord or a GCEntity, but may be for instance a GCAttribute if it isn't attached to an entity.
-@property (nonatomic, readonly) GCObject *rootObject;
-
-/// The context associated with the receiver. Properties will forward the request to their describedObject.
-@property (nonatomic, readonly, weak) GCContext *context;
-
-/** The value of the receiver appropiate for displaying in the user interface.
- 
- For records, it will be their xref; for attributes, their value; and for relationships, the target's xref.
- 
- */
-@property (nonatomic, readonly) NSString *displayValue;
-
-/// The displayValue of the receiver, with attributes.
-@property (nonatomic, readonly) NSAttributedString *attributedDisplayValue;
 
 @end
