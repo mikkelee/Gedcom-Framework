@@ -276,18 +276,17 @@ def process(tagInfo, key):
 			methodDefs.append('%s;' % declaration)
 			methodImps.append('%s\n%s' % (declaration, cons[declaration]))
 	
-	if tagDict.has_key('validSubTags'):
-		for prop in tagDict['validSubTags']:
-			print >> sys.stderr, '	PROCESSING SUBTAG %s' % prop
-			if prop.has_key('groupName'):
-				expand_group(tagInfo, tagDict['className'], prop['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
-			if prop.has_key('subClassName'):
-				expand_group(tagInfo, tagDict['className'], prop['subClassName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
-			elif prop.has_key('name'):
-				dec, imp, ivar = property(tagInfo, tagDict['className'], prop['name'], tagInfo[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', forwardDeclarations, prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
-				propertyDeclarations.append(dec)
-				propertyImplementations.append(imp)
-				if ivar: ivars.append(ivar)
+	for prop in tagDict['validSubTags']:
+		print >> sys.stderr, '	PROCESSING SUBTAG %s' % prop
+		if prop.has_key('groupName'):
+			expand_group(tagInfo, tagDict['className'], prop['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
+		if prop.has_key('subClassName'):
+			expand_group(tagInfo, tagDict['className'], prop['subClassName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
+		elif prop.has_key('name'):
+			dec, imp, ivar = property(tagInfo, tagDict['className'], prop['name'], tagInfo[prop['name']]['objectType'], prop['doc'] if prop.has_key('doc') else '', forwardDeclarations, prop['max'] == 'M' or prop['max'] > 1, prop['min'] == 1)
+			propertyDeclarations.append(dec)
+			propertyImplementations.append(imp)
+			if ivar: ivars.append(ivar)
 	
 	methodImps.append(initT.substitute(
 		type=key,
@@ -335,9 +334,6 @@ def propagate(sourceDict, variantDict):
 	
 	variantDict['parent'] = sourceDict['key']
 	
-	if not variantDict.has_key('validSubTags'):
-		variantDict['validSubTags'] = []
-	
 	if sourceDict.has_key('validSubTags'):
 		variantDict['validSubTags'].extend([x for x in sourceDict['validSubTags'] if x not in variantDict['validSubTags']])
 	
@@ -362,6 +358,10 @@ def set_defaults(tagInfo, key, tagDict):
 	# pluralName
 	if not tagDict.has_key('plural'):
 		tagDict['plural'] = '%ss' % tagDict['name']
+		
+	# validSubTags
+	if not tagDict.has_key('validSubTags'):
+		tagDict['validSubTags'] = []
 	
 
 ##########################################################################################
