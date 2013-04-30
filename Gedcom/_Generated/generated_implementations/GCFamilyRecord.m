@@ -264,4 +264,3 @@
 @dynamic changeInfo;
 
 @end
-

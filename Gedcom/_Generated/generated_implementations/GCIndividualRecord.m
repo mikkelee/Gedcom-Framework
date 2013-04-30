@@ -633,4 +633,3 @@
 @dynamic changeInfo;
 
 @end
-

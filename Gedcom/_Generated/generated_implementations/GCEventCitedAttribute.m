@@ -61,4 +61,3 @@
 @dynamic role;
 
 @end
-

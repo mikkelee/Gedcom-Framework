@@ -64,4 +64,3 @@
 @dynamic place;
 
 @end
-

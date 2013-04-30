@@ -85,4 +85,3 @@
 @dynamic noteEmbedded;
 
 @end
-

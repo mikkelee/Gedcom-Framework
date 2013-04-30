@@ -76,4 +76,3 @@
 @dynamic country;
 
 @end
-

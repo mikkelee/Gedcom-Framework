@@ -64,4 +64,3 @@
 @dynamic gedcomFormat;
 
 @end
-

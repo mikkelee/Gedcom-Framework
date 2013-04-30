@@ -70,4 +70,3 @@
 @dynamic headerSourceData;
 
 @end
-

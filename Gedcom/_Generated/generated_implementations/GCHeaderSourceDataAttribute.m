@@ -64,4 +64,3 @@
 @dynamic copyright;
 
 @end
-

@@ -39,4 +39,3 @@
 @dynamic adoptedByWhichParent;
 
 @end
-

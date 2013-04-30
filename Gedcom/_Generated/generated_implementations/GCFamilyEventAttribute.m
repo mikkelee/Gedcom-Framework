@@ -118,4 +118,3 @@
 @dynamic wifeDetail;
 
 @end
-

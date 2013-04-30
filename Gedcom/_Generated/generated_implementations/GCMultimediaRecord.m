@@ -81,4 +81,3 @@
 @dynamic changeInfo;
 
 @end
-

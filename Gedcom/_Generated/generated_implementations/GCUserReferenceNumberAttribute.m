@@ -61,4 +61,3 @@
 @dynamic typeDescription;
 
 @end
-
