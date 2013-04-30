@@ -4,8 +4,6 @@
 
 #import "GCWifeRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCWifeRelationship {

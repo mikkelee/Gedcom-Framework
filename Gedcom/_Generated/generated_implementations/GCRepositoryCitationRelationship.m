@@ -4,8 +4,6 @@
 
 #import "GCRepositoryCitationRelationship.h"
 
-#import "GCObject_internal.h"
-
 #import "GCCallNumberAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"
 #import "GCNoteReferenceRelationship.h"

@@ -4,8 +4,6 @@
 
 #import "GCGenerationsOfAncestorsAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCGenerationsOfAncestorsAttribute {

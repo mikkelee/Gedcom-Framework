@@ -4,8 +4,6 @@
 
 #import "GCGedcomAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCGedcomFormatAttribute.h"
 #import "GCVersionAttribute.h"
 

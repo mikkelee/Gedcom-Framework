@@ -4,8 +4,6 @@
 
 #import "GCPostalCodeAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCPostalCodeAttribute {

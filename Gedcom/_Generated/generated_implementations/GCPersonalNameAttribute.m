@@ -4,8 +4,6 @@
 
 #import "GCPersonalNameAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCGivenNameAttribute.h"
 #import "GCNamePrefixAttribute.h"
 #import "GCNameSuffixAttribute.h"

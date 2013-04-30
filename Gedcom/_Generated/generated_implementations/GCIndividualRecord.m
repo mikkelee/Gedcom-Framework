@@ -4,8 +4,6 @@
 
 #import "GCIndividualRecord.h"
 
-#import "GCObject_internal.h"
-
 #import "GCAdoptionAttribute.h"
 #import "GCAdultChristeningAttribute.h"
 #import "GCAliasRelationship.h"

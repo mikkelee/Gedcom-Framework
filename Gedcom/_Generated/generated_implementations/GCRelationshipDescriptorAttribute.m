@@ -4,8 +4,6 @@
 
 #import "GCRelationshipDescriptorAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCRelationshipDescriptorAttribute {

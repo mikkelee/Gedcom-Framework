@@ -4,8 +4,6 @@
 
 #import "GCSourceDataAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCEventsRecordedAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"
 #import "GCNoteReferenceRelationship.h"

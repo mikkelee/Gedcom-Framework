@@ -4,8 +4,6 @@
 
 #import "GCSexAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCSexAttribute {

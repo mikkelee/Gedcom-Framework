@@ -4,8 +4,6 @@
 
 #import "GCTempleAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCTempleAttribute {

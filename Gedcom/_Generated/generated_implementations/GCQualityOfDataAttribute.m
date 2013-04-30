@@ -4,8 +4,6 @@
 
 #import "GCQualityOfDataAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCQualityOfDataAttribute {

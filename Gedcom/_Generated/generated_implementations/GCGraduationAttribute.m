@@ -4,8 +4,6 @@
 
 #import "GCGraduationAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCAddressAttribute.h"
 #import "GCAgeAttribute.h"
 #import "GCCauseAttribute.h"

@@ -4,8 +4,6 @@
 
 #import "GCLDSSealingSpouseAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDateAttribute.h"
 #import "GCLDSSealingSpouseStatusAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"

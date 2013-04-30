@@ -4,8 +4,6 @@
 
 #import "GCPhoneNumberAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCPhoneNumberAttribute {

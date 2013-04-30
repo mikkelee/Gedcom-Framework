@@ -4,8 +4,6 @@
 
 #import "GCMultimediaReferenceRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCMultimediaReferenceRelationship {

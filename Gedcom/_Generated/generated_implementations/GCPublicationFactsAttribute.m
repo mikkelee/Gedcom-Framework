@@ -4,8 +4,6 @@
 
 #import "GCPublicationFactsAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCPublicationFactsAttribute {

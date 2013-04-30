@@ -4,8 +4,6 @@
 
 #import "GCNoteRecord.h"
 
-#import "GCObject_internal.h"
-
 #import "GCChangeInfoAttribute.h"
 #import "GCRecordIdNumberAttribute.h"
 #import "GCSourceCitationRelationship.h"

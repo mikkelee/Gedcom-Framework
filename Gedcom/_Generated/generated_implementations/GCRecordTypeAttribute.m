@@ -4,8 +4,6 @@
 
 #import "GCRecordTypeAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCRecordTypeAttribute {

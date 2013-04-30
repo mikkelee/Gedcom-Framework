@@ -4,8 +4,6 @@
 
 #import "GCCopyrightAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCCopyrightAttribute {

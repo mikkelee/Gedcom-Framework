@@ -4,8 +4,6 @@
 
 #import "GCCauseAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCCauseAttribute {

@@ -4,8 +4,6 @@
 
 #import "GCSubmissionReferenceRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCSubmissionReferenceRelationship {

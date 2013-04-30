@@ -4,8 +4,6 @@
 
 #import "GCSubmissionRecord.h"
 
-#import "GCObject_internal.h"
-
 #import "GCChangeInfoAttribute.h"
 #import "GCFamilyFileAttribute.h"
 #import "GCGenerationsOfAncestorsAttribute.h"

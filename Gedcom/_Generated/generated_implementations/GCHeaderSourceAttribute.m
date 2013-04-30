@@ -4,8 +4,6 @@
 
 #import "GCHeaderSourceAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCCorporationAttribute.h"
 #import "GCDescriptiveNameAttribute.h"
 #import "GCHeaderSourceDataAttribute.h"

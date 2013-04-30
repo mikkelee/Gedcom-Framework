@@ -4,8 +4,6 @@
 
 #import "GCAuthorAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCAuthorAttribute {

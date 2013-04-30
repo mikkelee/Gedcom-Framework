@@ -4,8 +4,6 @@
 
 #import "GCRoleAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCRoleAttribute {

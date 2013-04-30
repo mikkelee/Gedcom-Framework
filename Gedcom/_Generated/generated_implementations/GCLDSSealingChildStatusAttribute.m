@@ -4,8 +4,6 @@
 
 #import "GCLDSSealingChildStatusAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCLDSSealingChildStatusAttribute {

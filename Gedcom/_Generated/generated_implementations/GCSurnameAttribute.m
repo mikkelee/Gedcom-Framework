@@ -4,8 +4,6 @@
 
 #import "GCSurnameAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCSurnameAttribute {

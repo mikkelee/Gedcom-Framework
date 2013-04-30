@@ -4,8 +4,6 @@
 
 #import "GCDescriptiveNameAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCDescriptiveNameAttribute {

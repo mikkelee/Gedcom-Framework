@@ -4,8 +4,6 @@
 
 #import "GCHeaderDateAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCTimeAttribute.h"
 
 @implementation GCHeaderDateAttribute {

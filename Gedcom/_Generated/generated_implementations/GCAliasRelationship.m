@@ -4,8 +4,6 @@
 
 #import "GCAliasRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCAliasRelationship {

@@ -4,8 +4,6 @@
 
 #import "GCFileAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCFileAttribute {

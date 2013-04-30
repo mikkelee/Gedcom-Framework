@@ -4,8 +4,6 @@
 
 #import "GCRestrictionNoticeAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCRestrictionNoticeAttribute {

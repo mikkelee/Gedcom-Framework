@@ -4,8 +4,6 @@
 
 #import "GCMultimediaRecord.h"
 
-#import "GCObject_internal.h"
-
 #import "GCBinaryObjectAttribute.h"
 #import "GCChangeInfoAttribute.h"
 #import "GCMultimediaFormatAttribute.h"

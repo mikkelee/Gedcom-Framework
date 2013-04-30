@@ -4,8 +4,6 @@
 
 #import "GCEventsRecordedAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDateAttribute.h"
 #import "GCPlaceAttribute.h"
 

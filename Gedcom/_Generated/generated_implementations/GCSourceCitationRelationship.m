@@ -4,8 +4,6 @@
 
 #import "GCSourceCitationRelationship.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDataAttribute.h"
 #import "GCEventCitedAttribute.h"
 #import "GCMultimediaEmbeddedAttribute.h"

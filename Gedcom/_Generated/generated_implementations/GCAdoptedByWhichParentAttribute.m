@@ -4,8 +4,6 @@
 
 #import "GCAdoptedByWhichParentAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCAdoptedByWhichParentAttribute {

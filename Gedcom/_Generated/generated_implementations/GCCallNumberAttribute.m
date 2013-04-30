@@ -4,8 +4,6 @@
 
 #import "GCCallNumberAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCMediaTypeAttribute.h"
 
 @implementation GCCallNumberAttribute {

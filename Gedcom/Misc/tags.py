@@ -31,8 +31,6 @@ implementationFileT = Template("""/*
 
 #import "$className.h"
 
-#import "GCObject_internal.h"
-
 $includeHeaders
 
 $classImplementation
@@ -243,16 +241,6 @@ def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplem
 				if ivar: ivars.append(ivar)
 			
 			expand_group(tagInfo, className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
-			continue
-		if variant.has_key('subClassName'):
-			dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
-			
-			if dec not in propertyDeclarations:
-				propertyDeclarations.append(dec)
-				propertyImplementations.append(imp)
-				if ivar: ivars.append(ivar)
-			
-			expand_group(tagInfo, className, variant['subClassName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
 			continue
 		print >> sys.stderr, '		PROCESSING VARIANT "%s": %s' % (variant['name'], tagInfo[variant['name']])
 

@@ -4,8 +4,6 @@
 
 #import "GCIndividualLDSOrdinanceAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDateAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"
 #import "GCNoteReferenceRelationship.h"

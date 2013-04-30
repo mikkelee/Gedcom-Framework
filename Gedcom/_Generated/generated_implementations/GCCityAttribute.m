@@ -4,8 +4,6 @@
 
 #import "GCCityAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCCityAttribute {

@@ -4,8 +4,6 @@
 
 #import "GCOrdinanceFlagAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCOrdinanceFlagAttribute {

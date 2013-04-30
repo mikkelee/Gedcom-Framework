@@ -4,8 +4,6 @@
 
 #import "GCLDSSealingChildAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDateAttribute.h"
 #import "GCLDSSealingChildStatusAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"

@@ -4,8 +4,6 @@
 
 #import "GCChildRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCChildRelationship {

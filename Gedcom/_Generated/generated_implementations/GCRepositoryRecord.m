@@ -4,8 +4,6 @@
 
 #import "GCRepositoryRecord.h"
 
-#import "GCObject_internal.h"
-
 #import "GCAddressAttribute.h"
 #import "GCChangeInfoAttribute.h"
 #import "GCDescriptiveNameAttribute.h"

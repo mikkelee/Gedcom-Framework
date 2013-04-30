@@ -4,8 +4,6 @@
 
 #import "GCSourceRecord.h"
 
-#import "GCObject_internal.h"
-
 #import "GCAbbreviationAttribute.h"
 #import "GCAuthorAttribute.h"
 #import "GCChangeInfoAttribute.h"

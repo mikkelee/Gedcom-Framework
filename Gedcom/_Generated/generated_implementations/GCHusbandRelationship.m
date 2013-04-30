@@ -4,8 +4,6 @@
 
 #import "GCHusbandRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCHusbandRelationship {

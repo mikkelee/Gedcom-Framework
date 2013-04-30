@@ -4,8 +4,6 @@
 
 #import "GCNamePrefixAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCNamePrefixAttribute {

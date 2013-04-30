@@ -4,8 +4,6 @@
 
 #import "GCLDSEndowmentAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDateAttribute.h"
 #import "GCLDSEndowmentStatusAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"

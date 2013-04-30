@@ -4,8 +4,6 @@
 
 #import "GCHeaderEntity.h"
 
-#import "GCObject_internal.h"
-
 #import "GCCharacterSetAttribute.h"
 #import "GCCopyrightAttribute.h"
 #import "GCDestinationAttribute.h"

@@ -4,8 +4,6 @@
 
 #import "GCDateAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCDateAttribute {

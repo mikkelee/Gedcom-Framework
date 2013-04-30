@@ -4,8 +4,6 @@
 
 #import "GCLDSBaptismAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCDateAttribute.h"
 #import "GCLDSBaptismStatusAttribute.h"
 #import "GCNoteEmbeddedAttribute.h"

@@ -4,8 +4,6 @@
 
 #import "GCAddressLine2Attribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCAddressLine2Attribute {

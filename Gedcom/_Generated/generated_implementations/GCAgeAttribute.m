@@ -4,8 +4,6 @@
 
 #import "GCAgeAttribute.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCAgeAttribute {

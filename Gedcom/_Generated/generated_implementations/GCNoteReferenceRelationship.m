@@ -4,8 +4,6 @@
 
 #import "GCNoteReferenceRelationship.h"
 
-#import "GCObject_internal.h"
-
 
 
 @implementation GCNoteReferenceRelationship {

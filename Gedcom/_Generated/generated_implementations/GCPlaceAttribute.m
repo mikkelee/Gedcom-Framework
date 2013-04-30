@@ -4,8 +4,6 @@
 
 #import "GCPlaceAttribute.h"
 
-#import "GCObject_internal.h"
-
 #import "GCNoteEmbeddedAttribute.h"
 #import "GCNoteReferenceRelationship.h"
 #import "GCPlaceFormatAttribute.h"
