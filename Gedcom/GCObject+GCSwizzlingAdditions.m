@@ -111,7 +111,7 @@
                 imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
                     NSMutableArray *_ivar = object_getIvar(_s, ivar);
                     
-                    if (!((GCObject *)_s)->_isBuildingFromGedcom) {
+                    if (!_s->_isBuildingFromGedcom) {
                         NSUndoManager *uM = [_s valueForKey:@"undoManager"];
                         @synchronized (uM) {
                             [uM beginUndoGrouping];
@@ -250,7 +250,7 @@
                 
                 //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propType, ivarName);
                 
-                IMP imp = imp_implementationWithBlock(^(id _s) {
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
                     //NSLog(@"!!swizz called!! ::: %@ : %@ ::: => %@", cls, selName, object_getIvar(_s, ivar));
                     
                     return object_getIvar(_s, ivar);
