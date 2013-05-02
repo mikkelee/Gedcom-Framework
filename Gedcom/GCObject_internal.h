@@ -8,8 +8,6 @@
 
 #import "GCObject.h"
 
-#import "GCTag.h"
-
 @interface GCObject () {
 @protected
     BOOL _isBuildingFromGedcom;
@@ -26,7 +24,5 @@
 @property (nonatomic) NSArray *subNodes;
 
 @property (nonatomic, readonly) NSUndoManager *undoManager;
-
-@property (nonatomic, readonly) GCTag *gedTag;
 
 @end

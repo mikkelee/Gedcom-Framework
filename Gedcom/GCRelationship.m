@@ -9,6 +9,7 @@
 #import "GCRelationship.h"
 
 #import "GCRecord.h"
+#import "GCTagAccessAdditions.h"
 
 @interface GCRelationship ()
 
@@ -93,7 +94,7 @@
     @synchronized (self.context) {
         NSParameterAssert([target isKindOfClass:self.targetType]);
         
-        GCEntity *oldTarget = _target;
+        GCRecord *oldTarget = _target;
         
         _target = target;
         

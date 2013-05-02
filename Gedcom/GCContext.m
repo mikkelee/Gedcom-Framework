@@ -25,6 +25,7 @@
 
 #import "GCGedcomLoadingAdditions.h"
 #import "GCGedcomAccessAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 #import "GCObject+GCKeyValueAdditions.h"
 
@@ -400,7 +401,7 @@ __strong static NSArray *_rootKeys = nil;
 - (NSString *)_xrefForRecord:(GCRecord *)record
 {
     NSParameterAssert(record);
-    NSParameterAssert(record.gedTag.code);
+    NSParameterAssert(record.gedcomCode);
     
     @synchronized (self) {
         NSString *xref = _recordToXrefMap[record];
@@ -408,7 +409,7 @@ __strong static NSArray *_rootKeys = nil;
         if (!xref) {
             int i = 0;
             do {
-                xref = [NSString stringWithFormat:@"@%@%d@", record.gedTag.code, ++i];
+                xref = [NSString stringWithFormat:@"@%@%d@", record.gedcomCode, ++i];
             } while (_xrefToRecordMap[xref]);
             
             [self _setXref:xref forRecord:record];

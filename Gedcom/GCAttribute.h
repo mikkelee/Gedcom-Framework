@@ -64,10 +64,3 @@
 - (void)setValueWithGedcomString:(NSString *)string;
 
 @end
-
-@interface GCAttribute (GCGedcomAccessAdditions)
-
-/// The type of GCValue this attribute accepts.
-@property (nonatomic, readonly) Class valueType;
-
-@end

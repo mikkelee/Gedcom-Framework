@@ -14,6 +14,7 @@
 #import "GCContext_internal.h"
 
 #import "GCTag.h"
+#import "GCTagAccessAdditions.h"
 
 #import "GCEntity.h"
 #import "GCAttribute.h"

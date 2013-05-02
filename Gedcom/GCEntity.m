@@ -10,6 +10,7 @@
 
 #import "GCContext_internal.h"
 #import "GCContext+GCTransactionAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 @implementation GCEntity {
     __weak GCContext *_context;

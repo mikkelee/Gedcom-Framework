@@ -12,14 +12,13 @@
 
 #import "GCContext+GCKeyValueAdditions.h"
 
-#import "GCTag.h"
-
 #import "GCEntity.h"
 #import "GCRecord.h"
 #import "GCAttribute.h"
 #import "GCRelationship.h"
 
 #import "GCHeaderEntity+GCObjectAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 #import "GCNode.h"
 #import "GCNodeParser.h"
@@ -157,7 +156,7 @@ __strong static NSDictionary *_defaultColors;
     
     GCNode *node = [nodes lastObject];
     
-    GCParameterAssert([self.gedTag.code isEqualToString:node.gedTag]);
+    GCParameterAssert([self.gedcomCode isEqualToString:node.gedTag]);
     
     self.gedcomNode = node;
 }
@@ -199,7 +198,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:self.gedTag.code
+    return [[GCNode alloc] initWithTag:self.gedcomCode
 								 value:self.takesValue ? self.value.gedcomString : nil
 								  xref:nil
 							  subNodes:self.subNodes];
@@ -210,18 +209,13 @@ __strong static NSDictionary *_defaultColors;
     [super setSubNodes:gedcomNode.subNodes];
 }
 
-- (BOOL)takesValue
-{
-    return self.gedTag.takesValue;
-}
-
 @end
 
 @implementation GCRecord (GCGedcomAccessAdditions)
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:self.gedTag.code
+    return [[GCNode alloc] initWithTag:self.gedcomCode
 								 value:self.takesValue ? self.value.gedcomString : nil
 								  xref:self.xref
 							  subNodes:self.subNodes];
@@ -255,7 +249,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:self.gedTag.code
+    return [[GCNode alloc] initWithTag:self.gedcomCode
 								 value:self.value.gedcomString
 								  xref:nil
 							  subNodes:self.subNodes];
@@ -278,11 +272,6 @@ __strong static NSDictionary *_defaultColors;
     return [[NSAttributedString alloc] initWithString:self.displayValue];
 }
 
-- (Class)valueType
-{
-    return self.gedTag.valueType;
-}
-
 @end
 
 @implementation GCRelationship (GCGedcomAccessAdditions)
@@ -291,7 +280,7 @@ __strong static NSDictionary *_defaultColors;
 {
     GCParameterAssert(self.target);
     
-    return [[GCNode alloc] initWithTag:self.gedTag.code
+    return [[GCNode alloc] initWithTag:self.gedcomCode
 								 value:self.target.xref
 								  xref:nil
 							  subNodes:self.subNodes];
@@ -313,11 +302,6 @@ __strong static NSDictionary *_defaultColors;
 {
     return [[NSAttributedString alloc] initWithString:self.displayValue
                                            attributes:@{NSLinkAttributeName: self.target.xref}];
-}
-
-- (Class)targetType
-{
-    return self.gedTag.targetType;
 }
 
 @end

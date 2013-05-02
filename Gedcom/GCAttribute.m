@@ -10,6 +10,7 @@
 
 #import "GCObject_internal.h"
 #import "GCValue.h"
+#import "GCTagAccessAdditions.h"
 
 @implementation GCAttribute
 

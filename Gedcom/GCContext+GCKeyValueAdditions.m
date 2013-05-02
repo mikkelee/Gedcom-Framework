@@ -9,6 +9,7 @@
 #import "GCContext+GCKeyValueAdditions.h"
 
 #import "GCObject+GCConvenienceAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 #import "GCRecord.h"
 #import "GCHeaderEntity.h"

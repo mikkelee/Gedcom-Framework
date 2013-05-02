@@ -8,11 +8,10 @@
 
 #import "GCValidationAdditions.h"
 
-#import "GCTag.h"
-
 #import "GedcomErrors.h"
 
 #import "GCContext+GCKeyValueAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 #import "GCRecord.h"
 #import "GCEntity.h"
@@ -86,8 +85,6 @@ NSString *GCErrorDomain = @"GCErrorDomain";
      }*/
     
     for (NSString *propertyKey in propertyKeys) {
-        GCTag *subTag = [GCTag tagNamed:propertyKey];
-        
         NSInteger propertyCount = 0;
         
         if ([self allowsMultipleOccurrencesOfPropertyType:propertyKey]) {
@@ -118,7 +115,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
             }
         }
         
-        GCAllowedOccurrences allowedOccurrences = [self.gedTag allowedOccurrencesOfSubTag:subTag];
+        GCAllowedOccurrences allowedOccurrences = [self allowedOccurrencesOfPropertyType:propertyKey];
         
         NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
         
@@ -185,14 +182,14 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
     
-    if (self.gedTag.valueType) {
+    if (self.valueType) {
         if (self.value) {
-            if (![self.value isKindOfClass:self.gedTag.valueType]) {
+            if (![self.value isKindOfClass:self.valueType]) {
                 NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is incorrect type for %@ (should be %@)"
                                                                           value:@"Value %@ is incorrect type for %@ (should be %@)"
                                                                           table:@"Errors"];
                 NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.value, self.type, self.gedTag.valueType],
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.value, self.type, self.valueType],
                                            NSAffectedObjectsErrorKey: self
                                            };
                 
@@ -200,12 +197,12 @@ NSString *GCErrorDomain = @"GCErrorDomain";
                                                                              code:GCIncorrectValueTypeError
                                                                          userInfo:userInfo]);
                 isValid &= NO;
-            } else if ([self.gedTag.allowedValues count] > 0 && ![self.value _isContainedInArray:self.gedTag.allowedValues]) {
+            } else if ([self.allowedValues count] > 0 && ![self.value _isContainedInArray:self.allowedValues]) {
                 NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is not allowed for %@ (should be one of %@)"
                                                                           value:@"Value %@ is not allowed for %@ (should be one of %@)"
                                                                           table:@"Errors"];
                 NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.value, self.type, self.gedTag.allowedValues],
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.value, self.type, self.allowedValues],
                                            NSAffectedObjectsErrorKey: self
                                            };
                 
@@ -215,12 +212,12 @@ NSString *GCErrorDomain = @"GCErrorDomain";
                 isValid &= NO;
             }
         } else {
-            if (!self.gedTag.allowsNilValue) {
+            if (!self.allowsNilValue) {
                 NSString *formatString = [frameworkBundle localizedStringForKey:@"Value is missing for %@ (should be a %@)"
                                                                           value:@"Value is missing for %@ (should be a %@)"
                                                                           table:@"Errors"];
                 NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString,  self.type, self.gedTag.valueType],
+                                           NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString,  self.type, self.valueType],
                                            NSAffectedObjectsErrorKey: self
                                            };
                 
@@ -265,7 +262,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
                                                                   value:@"Target is missing for key %@ (should be a %@)"
                                                                   table:@"Errors"];
         NSDictionary *userInfo = @{
-                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.type, self.gedTag.targetType],
+                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.type, self.targetType],
                                    NSAffectedObjectsErrorKey: self
                                    };
         
@@ -273,12 +270,12 @@ NSString *GCErrorDomain = @"GCErrorDomain";
                                                                      code:GCTargetMissingError
                                                                  userInfo:userInfo]);
         isValid &= NO;
-    } else if (![self.target isKindOfClass:self.gedTag.targetType]) {
+    } else if (![self.target isKindOfClass:self.targetType]) {
         NSString *formatString = [frameworkBundle localizedStringForKey:@"Target %@ is incorrect type for key %@ (should be %@)"
                                                                   value:@"Target %@ is incorrect type for key %@ (should be %@)"
                                                                   table:@"Errors"];
         NSDictionary *userInfo = @{
-                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.target, self.type, self.gedTag.targetType],
+                                   NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.target, self.type, self.targetType],
                                    NSAffectedObjectsErrorKey: self
                                    };
         

@@ -397,6 +397,8 @@
 		3E4E8437171ADFFE00889651 /* GCDateParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4BD1606BF55009D2CCB /* GCDateParser.rl */; };
 		3E52C01C171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E52C01D171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */; };
+		3E56885A1730415900CB1997 /* GCTagAccessAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5688581730415900CB1997 /* GCTagAccessAdditions.h */; };
+		3E56885B1730415900CB1997 /* GCTagAccessAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5688591730415900CB1997 /* GCTagAccessAdditions.m */; };
 		3E57557B15202A9600A918D1 /* GCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557915202A9600A918D1 /* GCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E57557C15202A9600A918D1 /* GCValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57557A15202A9600A918D1 /* GCValue.m */; };
 		3E575580152057B200A918D1 /* GedcomDateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E57557E152057B200A918D1 /* GedcomDateHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -924,6 +926,8 @@
 		3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCHeaderEntity+GCObjectAdditions.h"; sourceTree = "<group>"; };
 		3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCHeaderEntity+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3E52C01E171AAF2E00A4D800 /* GCNodeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCNodeParser.rl; path = Nodes/GCNodeParser.rl; sourceTree = "<group>"; };
+		3E5688581730415900CB1997 /* GCTagAccessAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTagAccessAdditions.h; sourceTree = "<group>"; };
+		3E5688591730415900CB1997 /* GCTagAccessAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTagAccessAdditions.m; sourceTree = "<group>"; };
 		3E57557915202A9600A918D1 /* GCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCValue.h; path = Values/GCValue.h; sourceTree = "<group>"; };
 		3E57557A15202A9600A918D1 /* GCValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCValue.m; path = Values/GCValue.m; sourceTree = "<group>"; };
 		3E57557E152057B200A918D1 /* GedcomDateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GedcomDateHelpers.h; sourceTree = "<group>"; };
@@ -1193,7 +1197,7 @@
 				3E14EDC715230A3000080364 /* Nodes */,
 				3E713EBF17295F8C0098EBC3 /* Contexts */,
 				3E713EC017295FAE0098EBC3 /* Tags */,
-				3E57558A15217C1600A918D1 /* Objects */,
+				3E17B4AE16013ACF009D2CCB /* Object hierarchy */,
 				3E713EC117295FF10098EBC3 /* General Additions */,
 				3E14EDCC15230FE400080364 /* Values */,
 				3EB5ABCF153615CD0036B4D5 /* Helpers */,
@@ -1649,14 +1653,6 @@
 			name = Properties;
 			sourceTree = "<group>";
 		};
-		3E57558A15217C1600A918D1 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				3E17B4AE16013ACF009D2CCB /* Object hierarchy */,
-			);
-			name = Objects;
-			sourceTree = "<group>";
-		};
 		3E713EBF17295F8C0098EBC3 /* Contexts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1683,6 +1679,8 @@
 				3E8F87CA171CAFFC003111D2 /* GCGedcomLoadingAdditions.h */,
 				3E3CD5BB17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h */,
 				3E8F87CB171CAFFC003111D2 /* GCGedcomLoadingAdditions.m */,
+				3E5688581730415900CB1997 /* GCTagAccessAdditions.h */,
+				3E5688591730415900CB1997 /* GCTagAccessAdditions.m */,
 				3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */,
 				3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */,
 				3E8F87C6171CAE0D003111D2 /* GCValidationAdditions.h */,
@@ -2037,6 +2035,7 @@
 				3E713EC61729642E0098EBC3 /* GCContext+GCTransactionAdditions.h in Headers */,
 				3E713ECB172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h in Headers */,
 				3E3CD5BC17299F9B003AD101 /* GCGedcomLoadingAdditions_internal.h in Headers */,
+				3E56885A1730415900CB1997 /* GCTagAccessAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2469,6 +2468,7 @@
 				3E713EBD17295F740098EBC3 /* GCSimilarityAdditions.m in Sources */,
 				3E713EC71729642E0098EBC3 /* GCContext+GCTransactionAdditions.m in Sources */,
 				3E713ECC172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m in Sources */,
+				3E56885B1730415900CB1997 /* GCTagAccessAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

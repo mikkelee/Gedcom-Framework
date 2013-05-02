@@ -14,7 +14,10 @@
 #import "GCRelationship.h"
 #import "GCValue.h"
 
+#import "GCTag.h"
+
 #import "GCObject+GCKeyValueAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 @implementation GCObject (GCKeyValueAdditions)
 

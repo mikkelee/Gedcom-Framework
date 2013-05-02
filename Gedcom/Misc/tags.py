@@ -202,7 +202,7 @@ $forwardDeclarations
 /**
  $doc
 */
-@interface $name : $superClass
+@interface $className : $superClass
 
 // Methods:
 $methods
@@ -221,7 +221,7 @@ implementationFileT = Template("""/*
 
 $includeHeaders
 
-@implementation $name {
+@implementation $className {
 $ivars
 }
 
@@ -294,8 +294,8 @@ def process(tagInfo, key):
 	h_file = open('Gedcom/_Generated/generated_headers/%s.h' % tagDict['className'], 'w')
 	h_file.write(headerFileT.substitute(
 		superClass=tagDict['superClass'],
+		className=tagDict['className'],
 		forwardDeclarations="\n".join(sorted([("@class %s;" % x) for x in forwardDeclarations])),
-		name=tagDict['className'],
 		doc=tagDict['doc'] if tagDict.has_key('doc') else '',
 		methods="\n".join(methodDefs),
 		propertyDeclarations="\n".join(propertyDeclarations)
@@ -306,7 +306,6 @@ def process(tagInfo, key):
 	m_file.write(implementationFileT.substitute(
 		className=tagDict['className'],
 		includeHeaders="\n".join(sorted([('#import "%s.h"' % x) for x in forwardDeclarations])),
-		name=tagDict['className'],
 		methods="\n".join(methodImps),
 		propertyImplementations="\n".join(propertyImplementations),
 		ivars="\n".join(['\t%s;' % x for x in ivars])

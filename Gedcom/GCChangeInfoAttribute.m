@@ -12,14 +12,12 @@
 
 #import "GedcomDateHelpers.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-
 #import "GCObject_internal.h"
 
 #import "GCGedcomLoadingAdditions_internal.h"
 
 #import "NSObject+MELazyPropertySwizzlingAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 @interface GCChangeInfoAttribute ()
 
@@ -121,7 +119,7 @@
 
 - (GCNode *)gedcomNode
 {
-    return [[GCNode alloc] initWithTag:self.gedTag.code
+    return [[GCNode alloc] initWithTag:self.gedcomCode
 								 value:nil
 								  xref:nil
 							  subNodes:self.subNodes];

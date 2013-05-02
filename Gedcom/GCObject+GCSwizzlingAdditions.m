@@ -8,6 +8,8 @@
 
 #import "GCObject+GCSwizzlingAdditions.h"
 
+#import "GCTagAccessAdditions.h"
+
 #import <objc/runtime.h>
 
 @implementation GCObject (GCSwizzlingAdditions)
@@ -33,16 +35,15 @@
             
             // indexed mutable object insert
             
-            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:16] substringFromIndex:15] lowercaseString], [[selName substringFromIndex:16] substringToIndex:[selName length]-(16+8)]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:16] substringFromIndex:15] lowercaseString], [[selName substringFromIndex:16] substringToIndex:[selName length]-(16+8)]];
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
             
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
+            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
                 
-                NSString *reverseSelName = [NSString stringWithFormat:@"removeObjectFrom%@%@AtIndex:", [[propName substringToIndex:1] uppercaseString], [propName substringFromIndex:1]];
+                NSString *reverseSelName = [NSString stringWithFormat:@"removeObjectFrom%@%@AtIndex:", [[propType substringToIndex:1] uppercaseString], [propType substringFromIndex:1]];
                 SEL reverseSel = NSSelectorFromString(reverseSelName);
                 
-                //NSLog(@"**** Swizzling %@ :: %@/%@ (%@ / %@) ****", cls, selName, reverseSelName, propName, ivarName);
+                //NSLog(@"**** Swizzling %@ :: %@/%@ (%@ / %@) ****", cls, selName, reverseSelName, propType, ivarName);
                 
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
                 
@@ -91,16 +92,15 @@
             
             // indexed mutable object remove
             
-            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:17] substringFromIndex:16] lowercaseString], [[selName substringFromIndex:17] substringToIndex:[selName length]-(17+8)]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:17] substringFromIndex:16] lowercaseString], [[selName substringFromIndex:17] substringToIndex:[selName length]-(17+8)]];
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
             
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
+            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
                 
-                NSString *reverseSelName = [NSString stringWithFormat:@"insertObject:in%@%@AtIndex:", [[propName substringToIndex:1] uppercaseString], [propName substringFromIndex:1]];
+                NSString *reverseSelName = [NSString stringWithFormat:@"insertObject:in%@%@AtIndex:", [[propType substringToIndex:1] uppercaseString], [propType substringFromIndex:1]];
                 SEL reverseSel = NSSelectorFromString(reverseSelName);
                 
-                //NSLog(@"**** Swizzling %@ :: %@/%@ (%@ / %@) ****", cls, selName, reverseSelName, propName, ivarName);
+                //NSLog(@"**** Swizzling %@ :: %@/%@ (%@ / %@) ****", cls, selName, reverseSelName, propType, ivarName);
                 
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
                 
@@ -143,15 +143,14 @@
             
             // indexed mutable object get
             
-            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:9] substringFromIndex:8] lowercaseString], [[selName substringFromIndex:9] substringToIndex:[selName length]-(9+8)]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:9] substringFromIndex:8] lowercaseString], [[selName substringFromIndex:9] substringToIndex:[selName length]-(9+8)]];
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
             
             Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
             
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
+            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
+                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propType);
                 
                 IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
                     return [object_getIvar(_s, ivar) objectAtIndex:index];
@@ -164,15 +163,14 @@
             
             // indexed mutable count
             
-            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:8] substringFromIndex:7] lowercaseString], [selName substringFromIndex:8]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:8] substringFromIndex:7] lowercaseString], [selName substringFromIndex:8]];
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
             
             Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
             
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag] && [[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
+            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propName);
+                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propType);
                 
                 IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
                     return [object_getIvar(_s, ivar) count];
@@ -185,14 +183,13 @@
             
             // single setter
             
-            NSString *propName = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:4] substringFromIndex:3] lowercaseString], [selName substringFromIndex:4]];
-            propName = [propName substringToIndex:[propName length]-1];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:4] substringFromIndex:3] lowercaseString], [selName substringFromIndex:4]];
+            propType = [propType substringToIndex:[propType length]-1];
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
             
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag] && ![[cls gedTag] allowsMultipleOccurrencesOfSubTag:subtag]) {
+            if ([[cls validPropertyTypes] containsObject:propType] && ![cls allowsMultipleOccurrencesOfPropertyType:propType]) {
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
+                //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propType, ivarName);
                 
                 Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
                 
@@ -244,15 +241,14 @@
             
             // getter
             
-            NSString *propName = selName;
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propName];
+            NSString *propType = selName;
+            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
             
             Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
             
-            GCTag *subtag = [GCTag tagNamed:propName];
-            if ([[cls gedTag].validSubTags containsObject:subtag]) {
+            if ([[cls validPropertyTypes] containsObject:propType]) {
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propName, ivarName);
+                //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propType, ivarName);
                 
                 IMP imp = imp_implementationWithBlock(^(id _s) {
                     //NSLog(@"!!swizz called!! ::: %@ : %@ ::: => %@", cls, selName, object_getIvar(_s, ivar));

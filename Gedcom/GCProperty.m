@@ -7,6 +7,7 @@
 //
 
 #import "GCProperty.h"
+#import "GCTagAccessAdditions.h"
 
 @interface GCProperty ()
 

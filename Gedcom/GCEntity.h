@@ -34,9 +34,3 @@
 @property (nonatomic) GCString *value;
 
 @end
-
-@interface GCEntity (GCGedcomAccessAdditions)
-
-@property (nonatomic, readonly) BOOL takesValue;
-
-@end

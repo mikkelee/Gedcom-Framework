@@ -29,6 +29,7 @@
 
 #import "GCGedcomLoadingAdditions.h"
 #import "GCGedcomAccessAdditions.h"
+#import "GCTagAccessAdditions.h"
 #import "GCValidationAdditions.h"
 #import "GCSanityCheckAdditions.h"
 #import "GCSimilarityAdditions.h"

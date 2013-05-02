@@ -8,6 +8,7 @@
 
 #import "GCSanityCheckAdditions.h"
 #import "GCContext+GCKeyValueAdditions.h"
+#import "GCTagAccessAdditions.h"
 
 #import "GCRecord.h"
 #import "GCIndividualRecord.h"
