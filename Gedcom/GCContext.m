@@ -65,12 +65,10 @@
 }
 
 __strong static NSMapTable *_contextsByName = nil;
-__strong static NSArray *_rootKeys = nil;
 
 + (void)initialize
 {
     _contextsByName = [NSMapTable strongToWeakObjectsMapTable];
-    _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ]; //TODO GCObject rootKeys
 }
 
 - (instancetype)init
@@ -138,8 +136,8 @@ __strong static NSArray *_rootKeys = nil;
         NSParameterAssert(tag);
         
         if (tag.objectClass != [GCTrailerEntity class]) {
-            GCObject *obj = [tag.objectClass newWithGedcomNode:node inContext:self];
-            NSParameterAssert(obj.context == self);
+            GCEntity *entity = [tag.objectClass newWithGedcomNode:node inContext:self];
+            NSParameterAssert(entity.context == self);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -259,7 +257,8 @@ __strong static NSArray *_rootKeys = nil;
     
     [self _clearXrefs]; //TODO undo?
     
-    for (NSString *rootKey in _rootKeys) {
+    for (Class rootClass in [GCObject rootClasses]) {
+        NSString *rootKey = [rootClass pluralType];
         id entity = nil;
         // can't enumerate as they are being removed when adding to the new...
         while ( [context[rootKey] count] > 0 && (entity = context[rootKey][0]) ) {
@@ -330,7 +329,7 @@ __strong static NSArray *_rootKeys = nil;
             [self _setXref:xref forRecord:record];
         }
         
-        //NSLog(@"%p: found %@ for %p in %@", self, xref, entity, _entityToXrefMap);
+        //NSLog(@"%p: found %@ for %p", self, xref, record);
         
         return xref;
     }
@@ -338,7 +337,7 @@ __strong static NSArray *_rootKeys = nil;
 
 - (GCRecord *)_recordForXref:(NSString *)xref create:(BOOL)create withClass:(Class)aClass
 {
-    id record;
+    id record = nil;
     
     @synchronized (self) {
         record = _xrefToRecordMap[xref];
@@ -346,17 +345,16 @@ __strong static NSArray *_rootKeys = nil;
         if (record) {
             //NSLog(@"Found existing: %@ > %p", xref, record);
             NSParameterAssert(!aClass || [record isKindOfClass:aClass]);
-            return record;
         } else if (create) {
             record = [[aClass alloc] initInContext:self];
             //NSLog(@"Creating new: %@ (%@) > %p", xref, aClass, record);
             [self _setXref:xref forRecord:record];
-            return record;
         } else {
             //NSLog(@"NOT creating: %@", xref);
-            return nil;
         }
     }
+    
+    return record;
 }
 
 - (void)_clearXrefs
@@ -370,9 +368,10 @@ __strong static NSArray *_rootKeys = nil;
 - (void)_renumberXrefs
 {
     [self _clearXrefs];
-    for (id record in self.entities) {
-        if ([record isKindOfClass:[GCRecord class]]) {
-            (void)[self _xrefForRecord:record];
+    for (GCEntity *entity in self.entities) {
+        if ([entity isKindOfClass:[GCRecord class]]) {
+            (void)[self _xrefForRecord:(id)entity];
+            //NSLog(@"%p => %@", entity, xref);
         }
     }
 }
