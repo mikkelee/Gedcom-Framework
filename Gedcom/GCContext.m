@@ -472,13 +472,13 @@ __strong static NSArray *_rootKeys = nil;
         };
         
         [self.mutableFamilies sortWithOptions:NSSortStable usingComparator:comp];
-        [self.mutableIndividuals sortUsingComparator:comp];
-        [self.mutableMultimedias sortUsingComparator:comp];
-        [self.mutableNotes sortUsingComparator:comp];
-        [self.mutableFamilies sortUsingComparator:comp];
-        [self.mutableRepositories sortUsingComparator:comp];
-        [self.mutableSources sortUsingComparator:comp];
-        [self.mutableSubmitters sortUsingComparator:comp];
+        [self.mutableIndividuals sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableMultimedias sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableNotes sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableFamilies sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableRepositories sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableSources sortWithOptions:NSSortStable usingComparator:comp];
+        [self.mutableSubmitters sortWithOptions:NSSortStable usingComparator:comp];
         
         [self _renumberXrefs];
     }
