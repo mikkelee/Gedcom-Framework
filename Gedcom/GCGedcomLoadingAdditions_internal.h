@@ -14,4 +14,6 @@
 
 - (void)_addPropertiesWithGedcomNodes:(NSArray *)nodes;
 
+- (void)_waitUntilDoneBuildingFromGedcom;
+
 @end

@@ -22,6 +22,8 @@
 
 #import "GCValue.h"
 
+#import "GCObjectProxy.h"
+
 @implementation GCObject (GCGedcomLoadingAdditions)
 
 - (void)_addPropertyWithGedcomNode:(GCNode *)node
@@ -42,30 +44,56 @@
     }
 }
 
+- (void)_waitUntilDoneBuildingFromGedcom
+{
+    if (self->_isBuildingFromGedcom) {
+        dispatch_semaphore_wait(self->_buildingFromGedcomSemaphore, DISPATCH_TIME_FOREVER);
+    }
+}
+
 @end
 
 @implementation GCEntity (GCGedcomLoadingAdditions)
 
-+ (instancetype)newWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
+- (instancetype)initWithGedcomNode:(GCNode *)node useXref:(BOOL)useXref inContext:(GCContext *)context
 {
     GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
     
-    GCEntity *entity = [[tag.objectClass alloc] initInContext:context];
-    
-    NSParameterAssert(entity);
-    
-    if (entity) {
-        entity->_isBuildingFromGedcom = YES;
-        
-        if (tag.takesValue)
-            entity.value = [GCString valueWithGedcomString:node.gedValue];
-        
-        [entity _addPropertiesWithGedcomNodes:node.subNodes];
-        
-        entity->_isBuildingFromGedcom = NO;
+    if (!useXref || tag.isCustom) {
+        self = [self initInContext:context];
+    } else {
+        self = [context _recordForXref:node.xref create:YES withClass:tag.objectClass];
     }
     
-    return entity;
+    NSParameterAssert(self);
+    
+    if (self) {
+        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+        
+        self->_isBuildingFromGedcom = YES;
+        self->_buildingFromGedcomSemaphore = dispatch_semaphore_create(0);
+        
+        if (tag.takesValue)
+            self.value = [GCString valueWithGedcomString:node.gedValue];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self _addPropertiesWithGedcomNodes:node.subNodes];
+            
+            dispatch_semaphore_signal(self->_buildingFromGedcomSemaphore);
+            self->_isBuildingFromGedcom = NO;
+        });
+    }
+    
+    return self;
+}
+
++ (instancetype)newWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
+{
+    id proxy = [[GCObjectProxy alloc] initWitBlock:^GCObject *{
+        return [[self alloc] initWithGedcomNode:node useXref:NO inContext:context];
+    }];
+    
+    return proxy;
 }
 
 @end
@@ -74,30 +102,11 @@
 
 + (instancetype)newWithGedcomNode:(GCNode *)node inContext:(GCContext *)context
 {
-    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    id proxy = [[GCObjectProxy alloc] initWitBlock:^GCObject *{
+        return [[self alloc] initWithGedcomNode:node useXref:YES inContext:context];
+    }];
     
-    GCRecord *record;
-    
-    if (tag.isCustom) {
-        record = [[tag.objectClass alloc] initInContext:context];
-    } else {
-        record = [context _recordForXref:node.xref create:YES withClass:tag.objectClass];
-    }
-    
-    NSParameterAssert(record);
-    
-    if (record) {
-        record->_isBuildingFromGedcom = YES;
-        
-        if (tag.takesValue)
-            record.value = [GCString valueWithGedcomString:node.gedValue];
-        
-        [record _addPropertiesWithGedcomNodes:node.subNodes];
-        
-        record->_isBuildingFromGedcom = NO;
-    }
-    
-    return record;
+    return proxy;
 }
 
 @end
@@ -109,7 +118,8 @@
     self = [self init];
     
     if (self) {
-        _isBuildingFromGedcom = YES;
+        self->_isBuildingFromGedcom = YES;
+        self->_buildingFromGedcomSemaphore = dispatch_semaphore_create(0);
         
         GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
         
@@ -123,9 +133,12 @@
         
         NSParameterAssert(self.describedObject == object);
         
-        [self _addPropertiesWithGedcomNodes:node.subNodes];
-        
-        _isBuildingFromGedcom = NO;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self _addPropertiesWithGedcomNodes:node.subNodes];
+            
+            dispatch_semaphore_signal(self->_buildingFromGedcomSemaphore);
+            self->_isBuildingFromGedcom = NO;
+        });
     }
     
     return self;
@@ -146,13 +159,9 @@
     self = [super initWithGedcomNode:node onObject:object];
     
     if (self) {
-        _isBuildingFromGedcom = YES;
-        
         if (node.gedValue) {
             [self setValueWithGedcomString:node.gedValue];
         }
-        
-        _isBuildingFromGedcom = NO;
     }
     
     return self;
@@ -172,8 +181,6 @@
     self = [super initWithGedcomNode:node onObject:object];
     
     if (self) {
-        _isBuildingFromGedcom = YES;
-        
         NSParameterAssert(self.describedObject == object);
         GCParameterAssert(object.context);
         
@@ -186,8 +193,6 @@
         self.target = target;
         
         NSParameterAssert(self.target);
-        
-        _isBuildingFromGedcom = NO;
     }
     
     return self;
