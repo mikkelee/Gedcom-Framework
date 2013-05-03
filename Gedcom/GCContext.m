@@ -70,7 +70,7 @@ __strong static NSArray *_rootKeys = nil;
 + (void)initialize
 {
     _contextsByName = [NSMapTable strongToWeakObjectsMapTable];
-    _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ];
+    _rootKeys = @[ @"families", @"individuals", @"multimedias", @"notes", @"repositories", @"sources", @"submitters" ]; //TODO GCObject rootKeys
 }
 
 - (instancetype)init
@@ -269,7 +269,10 @@ __strong static NSArray *_rootKeys = nil;
     
     if (!succeeded) {
         [self rollback];
-        *error = [NSError errorWithDomain:GCErrorDomain code:GCMergeFailedError userInfo:@{}]; //TODO
+        id userInfo = @{}; // TODO
+        *error = [NSError errorWithDomain:GCErrorDomain
+                                     code:GCMergeFailedError
+                                 userInfo:userInfo];
     } else {
         [self commit];
         [self _renumberXrefs];
@@ -277,94 +280,6 @@ __strong static NSArray *_rootKeys = nil;
     
     return succeeded;
 }
-
-#pragma mark Equality
-
-- (BOOL)isEqualTo:(GCObject *)object
-{
-    if (![object isKindOfClass:[self class]]) {
-        return NO;
-    }
-    
-    return [self.gedcomString isEqualToString:object.gedcomString];
-}
-
-#pragma mark NSCopying conformance
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    // deep copy
-    return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
-}
-
-#pragma mark NSCoding conformance
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-	self = [super init];
-    
-    if (self) {
-        NSString *decodedName = [aDecoder decodeObjectForKey:@"name"];
-        
-        NSString *key = decodedName;
-        int i = 0;
-        while (_contextsByName[key]) {
-            key = [NSString stringWithFormat:@"%@::%d", decodedName, ++i];
-        }
-        _name = key;
-        _contextsByName[_name] = self;
-        
-        _xrefToRecordMap = [aDecoder decodeObjectForKey:@"xrefStore"];
-        _recordToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
-        self.header = [aDecoder decodeObjectForKey:@"header"];
-        self.submission = [aDecoder decodeObjectForKey:@"submission"];
-        
-        _families = [aDecoder decodeObjectForKey:@"families"];
-        _individuals = [aDecoder decodeObjectForKey:@"individuals"];
-        _multimedias = [aDecoder decodeObjectForKey:@"multimedias"];
-        _notes = [aDecoder decodeObjectForKey:@"notes"];
-        _repositories = [aDecoder decodeObjectForKey:@"repositories"];
-        _sources = [aDecoder decodeObjectForKey:@"sources"];
-        _submitters = [aDecoder decodeObjectForKey:@"submitters"];
-        
-        _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
-        
-        _mainQueue = [[NSOperationQueue alloc] init];
-        
-        _undoManager = [[NSUndoManager alloc] init];
-        [_undoManager setGroupsByEvent:NO];
-	}
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_xrefToRecordMap forKey:@"xrefStore"];
-    [aCoder encodeObject:_recordToXrefMap forKey:@"entityToXref"];
-    [aCoder encodeObject:self.header forKey:@"header"];
-    [aCoder encodeObject:self.submission forKey:@"submission"];
-    
-    [aCoder encodeObject:_families forKey:@"families"];
-    [aCoder encodeObject:_individuals forKey:@"individuals"];
-    [aCoder encodeObject:_multimedias forKey:@"multimedias"];
-    [aCoder encodeObject:_notes forKey:@"notes"];
-    [aCoder encodeObject:_repositories forKey:@"repositories"];
-    [aCoder encodeObject:_sources forKey:@"sources"];
-    [aCoder encodeObject:_submitters forKey:@"submitters"];
-    
-    [aCoder encodeObject:_customEntities forKey:@"customEntities"];
-}
-
-#pragma mark Description
-
-//COV_NF_START
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToRecordMap];
-}
-//COV_NF_END
 
 #pragma mark Xref handling
 
@@ -503,6 +418,94 @@ __strong static NSArray *_rootKeys = nil;
         return YES;
     }
 }
+
+#pragma mark Equality
+
+- (BOOL)isEqualTo:(GCObject *)object
+{
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    return [self.gedcomString isEqualToString:object.gedcomString];
+}
+
+#pragma mark NSCopying conformance
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    // deep copy
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+}
+
+#pragma mark NSCoding conformance
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super init];
+    
+    if (self) {
+        NSString *decodedName = [aDecoder decodeObjectForKey:@"name"];
+        
+        NSString *key = decodedName;
+        int i = 0;
+        while (_contextsByName[key]) {
+            key = [NSString stringWithFormat:@"%@::%d", decodedName, ++i];
+        }
+        _name = key;
+        _contextsByName[_name] = self;
+        
+        _xrefToRecordMap = [aDecoder decodeObjectForKey:@"xrefStore"];
+        _recordToXrefMap = [aDecoder decodeObjectForKey:@"entityToXref"];
+        self.header = [aDecoder decodeObjectForKey:@"header"];
+        self.submission = [aDecoder decodeObjectForKey:@"submission"];
+        
+        _families = [aDecoder decodeObjectForKey:@"families"];
+        _individuals = [aDecoder decodeObjectForKey:@"individuals"];
+        _multimedias = [aDecoder decodeObjectForKey:@"multimedias"];
+        _notes = [aDecoder decodeObjectForKey:@"notes"];
+        _repositories = [aDecoder decodeObjectForKey:@"repositories"];
+        _sources = [aDecoder decodeObjectForKey:@"sources"];
+        _submitters = [aDecoder decodeObjectForKey:@"submitters"];
+        
+        _customEntities = [aDecoder decodeObjectForKey:@"customEntities"];
+        
+        _mainQueue = [[NSOperationQueue alloc] init];
+        
+        _undoManager = [[NSUndoManager alloc] init];
+        [_undoManager setGroupsByEvent:NO];
+	}
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_name forKey:@"name"];
+    [aCoder encodeObject:_xrefToRecordMap forKey:@"xrefStore"];
+    [aCoder encodeObject:_recordToXrefMap forKey:@"entityToXref"];
+    [aCoder encodeObject:self.header forKey:@"header"];
+    [aCoder encodeObject:self.submission forKey:@"submission"];
+    
+    [aCoder encodeObject:_families forKey:@"families"];
+    [aCoder encodeObject:_individuals forKey:@"individuals"];
+    [aCoder encodeObject:_multimedias forKey:@"multimedias"];
+    [aCoder encodeObject:_notes forKey:@"notes"];
+    [aCoder encodeObject:_repositories forKey:@"repositories"];
+    [aCoder encodeObject:_sources forKey:@"sources"];
+    [aCoder encodeObject:_submitters forKey:@"submitters"];
+    
+    [aCoder encodeObject:_customEntities forKey:@"customEntities"];
+}
+
+#pragma mark Description
+
+//COV_NF_START
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"%@ (name: %@ xrefStore: %@)", [super description], _name, _xrefToRecordMap];
+}
+//COV_NF_END
 
 #pragma mark Objective-C properties
 
