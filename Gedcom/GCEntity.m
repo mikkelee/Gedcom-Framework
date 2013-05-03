@@ -9,6 +9,7 @@
 #import "GCEntity.h"
 
 #import "GCContext_internal.h"
+#import "GCObject_internal.h"
 #import "GCContext+GCTransactionAdditions.h"
 #import "GCTagAccessAdditions.h"
 
@@ -25,7 +26,6 @@
     self = [super init];
     
     if (self) {
-        _isBuildingFromGedcom = NO;
         [context _addEntity:self];
         NSParameterAssert(self.context == context);
     }

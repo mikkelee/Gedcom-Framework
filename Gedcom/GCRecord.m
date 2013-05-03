@@ -13,7 +13,7 @@
 
 #import "GCContext_internal.h"
 
-#import "GCObject.h"
+#import "GCObject_internal.h"
 #import "GCTagAccessAdditions.h"
 
 @interface GCRecord ()

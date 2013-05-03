@@ -8,6 +8,8 @@
 
 #import "GCObject.h"
 
+@class GCObjectProxy;
+
 @interface GCObject () {
 @protected
     BOOL _isBuildingFromGedcom;

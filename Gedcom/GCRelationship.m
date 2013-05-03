@@ -9,6 +9,7 @@
 #import "GCRelationship.h"
 
 #import "GCRecord.h"
+#import "GCObject_internal.h"
 #import "GCTagAccessAdditions.h"
 
 @interface GCRelationship ()

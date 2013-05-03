@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Mikkel Eide Eriksen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "GCObject_internal.h"
+#import "GCObject.h"
 @class GCString;
 
 /**
