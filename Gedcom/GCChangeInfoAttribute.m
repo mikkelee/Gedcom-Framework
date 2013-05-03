@@ -94,7 +94,6 @@
     return dateFromNode(_lazyModificationDateNode);
 }
 
-// TODO remove these?
 @synthesize noteReferences = _noteReferences;
 
 - (NSMutableArray *)mutableNoteReferences {

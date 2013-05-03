@@ -48,8 +48,9 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 {
     GCTag *tag = [GCTag tagWithObjectClass:self];
     
-    if (!tag) {
-        //TODO: FIX! KVO subclasses w NSKVONotifying_ prefix ruin tagwithObjectClass. This hack fixes it, but is ugly and easy to break
+    if (!tag && [[self className] hasPrefix:@"NSKVONotifying_"]) {
+        // FIXME: KVO subclasses w NSKVONotifying_ prefix ruin tagwithObjectClass.
+        // This hack fixes it, but is ugly and easy to break since it relies on undocumented implementation details
         tag = [GCTag tagWithObjectClass:[self superclass]];
     }
     
