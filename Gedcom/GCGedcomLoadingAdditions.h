@@ -13,7 +13,7 @@
 @class GCNode;
 @class GCContext;
 
-@interface GCRecord (GCGedcomLoadingAdditions)
+@interface GCEntity (GCGedcomLoadingAdditions)
 
 /** Returns an entity whose properties reflect the GCNode in the given GCContext.
  
