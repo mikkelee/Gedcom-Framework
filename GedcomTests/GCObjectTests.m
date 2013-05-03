@@ -92,7 +92,7 @@
                                                       value:@"Y"],
                                         ]];
     
-    GCEntity *object = [GCIndividualRecord newWithGedcomNode:node inContext:ctx];
+    GCRecord *object = [GCIndividualRecord newWithGedcomNode:node inContext:ctx];
     
     STAssertEqualObjects(node.gedcomString, object.gedcomString, nil);
     
@@ -197,6 +197,7 @@
     
     STAssertFalse(result, nil);
     STAssertEquals([error code], (NSInteger)NSValidationMultipleErrorsError, nil);
+    STAssertEqualObjects([error localizedDescription], @"Multiple validation errors occurred.", nil);
     
     STAssertEquals([(NSArray *)[error userInfo][NSDetailedErrorsKey] count], (NSUInteger)2, nil);
     
