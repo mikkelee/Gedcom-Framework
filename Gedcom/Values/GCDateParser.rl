@@ -164,6 +164,7 @@ Ragel state machine for GEDCOM dates based on the 5.5 documentation.
     }
     
     action setCalendarFrenchRevolutionary {
+        NSLog(@"WARNING: French revolutionary calendar is not currently supported!");
         calendar = _frenchRevolutionaryCalendar;
     }
     
