@@ -199,7 +199,7 @@ static inline char* ivarNameFromPropName(const char *propName) {
                 
                 Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
-                IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
+                IMP imp = imp_implementationWithBlock(^id(GCObject *_s, NSUInteger index) {
                     return [object_getIvar(_s, ivar) objectAtIndex:index];
                 });
                 
@@ -233,7 +233,7 @@ static inline char* ivarNameFromPropName(const char *propName) {
                 
                 Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
-                IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
+                IMP imp = imp_implementationWithBlock(^NSUInteger(GCObject *_s) {
                     return [object_getIvar(_s, ivar) count];
                 });
                 
@@ -333,7 +333,7 @@ static inline char* ivarNameFromPropName(const char *propName) {
                 
                 Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
-                IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
+                IMP imp = imp_implementationWithBlock(^id(GCObject *_s) {
                     return object_getIvar(_s, ivar);
                 });
                 
