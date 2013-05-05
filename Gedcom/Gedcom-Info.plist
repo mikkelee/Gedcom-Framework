@@ -5,9 +5,9 @@
 	<key>CFBuildDate</key>
 	<date>2013-04-25T11:38:29Z</date>
 	<key>CFBuildNumber</key>
-	<integer>302</integer>
+	<integer>303</integer>
 	<key>CFBuildVersion</key>
-	<string>0.9.4, build 302</string>
+	<string>0.9.4, build 303</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -27,7 +27,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>Gedcom.framework 0.9.4, build 302</string>
+	<string>Gedcom.framework 0.9.4, build 303</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012-2013 Mikkel Eide Eriksen. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
