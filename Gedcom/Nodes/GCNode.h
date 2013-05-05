@@ -58,7 +58,7 @@
 
 /// @name Gedcom output
 
-/// The receiver including its subnodes as a string.
+/// The receiver including its subnodes as a string. Lines will be separated by `\n` - if another separator is desired, use gedcomLines and join them as appropriate.
 @property (readonly) NSString *gedcomString;
 
 /** The receiver including its subnodes as an attributed string.
@@ -108,9 +108,6 @@
 
 /// The xref of the receiver; may be `nil`.
 @property (nonatomic) NSString *xref;
-
-/// The line separator of the receiver; usually `\n`.
-@property (readonly, nonatomic) NSString *lineSeparator;
 
 /// An ordered collection containing the subnodes of the receiver.
 /// @see mutableSubNodes.

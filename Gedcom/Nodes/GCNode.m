@@ -11,9 +11,10 @@
 @interface GCNode ()
 
 @property (weak, nonatomic) GCNode *parent;
-@property (nonatomic) NSString *lineSeparator;
 
 @end
+
+static __strong NSString *_lineSeparator = @"\n";
 
 @implementation GCNode {
     NSMutableArray *_subNodes;
@@ -36,7 +37,6 @@
     self = [super init];
     
 	if (self) {
-        _lineSeparator = @"\n";
         _tagCode = tag;
         _xref = xref;
         _gedcomValue = value;
@@ -224,14 +224,14 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (NSString *)gedcomString
 {
-	return [self.gedcomLines componentsJoinedByString:self.lineSeparator];
+	return [self.gedcomLines componentsJoinedByString:_lineSeparator];
 }
 
 - (NSAttributedString *)attributedGedcomString
 {
     NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] init];
     
-    NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:self.lineSeparator];
+    NSAttributedString *lineFeed = [[NSAttributedString alloc] initWithString:_lineSeparator];
     
     for (NSAttributedString *line in [self attributedGedcomLinesAtLevel:0]) {
         [lines appendAttributedString:line];
@@ -378,7 +378,6 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     [encoder encodeObject:_tagCode forKey:@"tagCode"];
     [encoder encodeObject:_gedcomValue forKey:@"gedcomValue"];
     [encoder encodeObject:_xref forKey:@"xref"];
-    [encoder encodeObject:_lineSeparator forKey:@"lineSeparator"];
     [encoder encodeObject:_subNodes forKey:@"subNodes"];
 }
 
@@ -390,7 +389,6 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
         _tagCode = [decoder decodeObjectForKey:@"tagCode"];
         _gedcomValue = [decoder decodeObjectForKey:@"gedcomValue"];
         _xref = [decoder decodeObjectForKey:@"xref"];
-        _lineSeparator = [decoder decodeObjectForKey:@"lineSeparator"];
         _subNodes = [decoder decodeObjectForKey:@"subNodes"];
 	}
     
@@ -405,8 +403,6 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
                                                       value:self.gedcomValue
                                                        xref:self.xref 
                                                    subNodes:self.subNodes];
-    
-    [copy setValue:self.lineSeparator forKey:@"lineSeparator"];
     
     return copy;
 }
