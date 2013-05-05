@@ -34,7 +34,7 @@
         
         char *getterName = calloc(tmpSize, sizeof(char));
         strncpy(getterName, lazySelName+prefixLen, tmpSize);
-        getterName[0] = getterName[0] + 32; // lowercase first char
+        getterName[0] += 32; // lowercase first char
         
         char *ivarName = calloc(tmpSize+1, sizeof(char));
         strncpy(ivarName+1, getterName, tmpSize);
@@ -70,6 +70,10 @@
         });
         
         method_setImplementation(origGetter, newIMP);
+        
+        free (getterName);
+        free (ivarName);
+        free (tokenName);
     }
 }
 
