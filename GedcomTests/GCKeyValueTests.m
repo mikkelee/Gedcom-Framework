@@ -195,7 +195,7 @@
     [indi.mutablePersonalNames addObject:[GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/ Smed"]];
     
     //TODO should this fire something too?
-    [[indi.personalNames objectAtIndex:1] setValue:[GCString valueWithGedcomString:@"Store Jens"] forKey:@"nickname"];
+    [[indi.personalNames objectAtIndex:1] setValue:[GCNicknameAttribute nicknameWithGedcomStringValue:@"Store Jens"] forKey:@"nickname"];
     
     [indi.mutablePersonalNames removeObjectAtIndex:0];
     

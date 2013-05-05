@@ -23,21 +23,6 @@
 
 #pragma mark NSKeyValueCoding overrides
 
-- (void)setValue:(id)value forKey:(NSString *)key
-{
-    if ([value isKindOfClass:[GCValue class]] && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
-        [self addAttributeWithType:key value:value];
-    } else if ([value isKindOfClass:[GCEntity class]] && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
-        [self addRelationshipWithType:key target:value];
-    } else if ([value isKindOfClass:[NSArray class]] && ([self.validPropertyTypes containsObject:key] || [GCTag tagNamed:key].isCustom)) {
-        for (id item in value) {
-            [self setValue:item forKey:key];
-        }
-    } else {
-        [super setValue:value forKey:key];
-    }
-}
-
 - (id)valueForUndefinedKey:(NSString *)key
 {
     //NSLog(@"%@ %@", NSStringFromSelector(_cmd), key);
@@ -64,14 +49,14 @@
 
 #pragma mark Subscript accessors
 
-- (id)objectForKeyedSubscript:(id)key
+- (id)objectForKeyedSubscript:(NSString *)key
 {
     return [super valueForKey:key];
 }
 
-- (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)key
+- (void)setObject:(id)value forKeyedSubscript:(NSString *)key
 {
-    return [self setValue:object forKey:(NSString *)key];
+    [super setValue:value forKey:key];
 }
 
 #pragma mark NSKeyValueObserving overrides
@@ -155,6 +140,27 @@
         [self setValue:attr forKey:tag.name];
     }
 }
+
+- (void)addAttributeWithType:(NSString *)type valuesFromArray:(NSArray *)values
+{
+    for (id value in values) {
+        [self addAttributeWithType:type value:value];
+    }
+}
+
+- (void)addAttributeWithType:(NSString *)type values:(id)firstValue, ...
+{
+    va_list args;
+    va_start(args, firstValue);
+    
+    for (id value = firstValue; value != nil; value = va_arg(args, id))
+    {
+        [self addAttributeWithType:type value:value];
+    }
+    
+    va_end(args);
+}
+
 
 - (void)addRelationshipWithType:(NSString *)type target:(GCRecord *)target
 {

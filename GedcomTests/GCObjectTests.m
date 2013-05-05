@@ -36,17 +36,12 @@
     // Create an individual entity in the context.
     GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
-    // Create an array of names and set them on the individual for the property key "personalNames".
-    // When an object receives GCValues for a property key, it will implicitly create attributes.
-    // Likewise with GCEntities, creating relationships.
-    NSArray *names = @[
-        [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
-        [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"], 
-    ];
+    // Create an array of names and add them to the individual under "personalNames".
+    [indi addAttributeWithType:@"personalNames" values:
+     [GCNamestring valueWithGedcomString:@"Jens /Hansen/"],
+     [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"],
+     nil];
     
-    [indi setValue:names 
-            forKey:@"personalNames"];
-	
     // Create a birth attribute, give it a date attribute and add it to the individual.
 	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
@@ -54,9 +49,7 @@
     
     [indi.mutableProperties addObject:birt];
     
-    // You can also use subscripted access, in this case adding a single death attribute
-    // with the value yes, indicating that the individual died.
-    indi[@"deaths"] = @[ [GCBool yes] ];
+    [indi addAttributeWithType:@"deaths" value:[GCBool yes]];
     
     // Setting a known date so output is testable:
     [indi setValue:[NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"] forKey:@"modificationDate"];
@@ -73,7 +66,7 @@
                          @"3 TIME 12:00:00"
                          , nil);
     
-    //NSLog(@"indi individualEvents: %@", [indi individualEvents]);
+    //NSLog(@"indi individualEvents: %@", indi.individualEvents);
     
     ctx = [GCContext context]; //fresh context
 	
@@ -124,14 +117,10 @@
 	
     GCFamilyRecord *fam = [GCFamilyRecord familyInContext:ctx];
     
-    [fam setValue:husb forKey:@"husband"];
-    [wife setValue:@[ fam ] forKey:@"spouseInFamilies"];
-    [fam setValue:@[ chil ] forKey:@"children"];
-    
     //alternately:
-	// [fam addRelationshipWithType:@"husband" target:husb];
-	// [fam addRelationshipWithType:@"wife" target:wife];
-	// [fam addRelationshipWithType:@"child" target:chil];
+	[fam addRelationshipWithType:@"husband" target:husb];
+	[fam addRelationshipWithType:@"wife" target:wife];
+	[fam addRelationshipWithType:@"child" target:chil];
 	
     //Setting known dates
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"];
@@ -227,7 +216,7 @@
 	
     GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
-    [indi setValue:[GCGender valueWithGedcomString:@"M"] forKey:@"sex"];
+    [indi addAttributeWithType:@"sex" value:[GCGender valueWithGedcomString:@"M"]];
     
     GCAttribute *name = [GCPersonalNameAttribute personalNameWithGedcomStringValue:@"Jens /Hansen/"];
     
