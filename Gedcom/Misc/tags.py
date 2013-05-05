@@ -33,7 +33,8 @@ def pluralize(tagInfo, key):
 
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
 
-mutablePropertyT = Template("""
+mutablePropertyT = Template("""@synthesize $name = _$name;
+
 - (NSMutableArray *)mutable$capName
 {
 	return [self mutableArrayValueForKey:@"$name"];
@@ -65,12 +66,9 @@ def property(tagInfo, selfClass, key, type, doc, forwardDeclarations, is_plural,
 				name='mutable%s%s' % (name[0].upper(), name[1:]),
 				doc='. Contains instances of '.join([doc, name])
 			))
-			implementation = '%s%s' % (
-				'@synthesize %s = _%s;\n' % (name, name),
-				mutablePropertyT.substitute(
-					capName='%s%s' % (name[:1].upper(), name[1:]),
-					name=name
-				)
+			implementation = mutablePropertyT.substitute(
+				capName='%s%s' % (name[:1].upper(), name[1:]),
+				name=name
 			)
 			ivar = 'NSMutableArray *_%s' % name
 	else:
