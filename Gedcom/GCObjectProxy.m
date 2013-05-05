@@ -8,7 +8,6 @@
 
 #import "GCObjectProxy.h"
 
-#import "GCObject_internal.h"
 #import "GCGedcomLoadingAdditions_internal.h"
 
 @implementation GCObjectProxy {
