@@ -60,7 +60,9 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     }
     
     if (!isValid) {
-        *error = returnError;
+        if (error != NULL) {
+            *error = returnError;
+        }
     }
     
     return isValid;
