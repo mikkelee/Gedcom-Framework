@@ -132,7 +132,7 @@ __strong static NSMapTable *_contextsByName = nil;
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
 {
     [_mainQueue addOperationWithBlock:^{
-        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+        GCTag *tag = [GCTag rootTagWithCode:node.tagCode];
         
         NSParameterAssert(tag);
         

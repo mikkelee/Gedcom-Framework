@@ -157,7 +157,7 @@ __strong static NSDictionary *_defaultColors;
     
     GCNode *node = [nodes lastObject];
     
-    GCParameterAssert([self.gedcomCode isEqualToString:node.gedTag]);
+    GCParameterAssert([self.gedcomCode isEqualToString:node.tagCode]);
     
     self.gedcomNode = node;
 }
@@ -258,7 +258,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    [self setValueWithGedcomString:gedcomNode.gedValue];
+    [self setValueWithGedcomString:gedcomNode.gedcomValue];
     
     [super setSubNodes:gedcomNode.subNodes];
 }
@@ -289,7 +289,7 @@ __strong static NSDictionary *_defaultColors;
 
 - (void)setGedcomNode:(GCNode *)gedcomNode
 {
-    self.target = [self.context _recordForXref:gedcomNode.gedValue create:NO withClass:nil];
+    self.target = [self.context _recordForXref:gedcomNode.gedcomValue create:NO withClass:nil];
     
     [super setSubNodes:gedcomNode.subNodes];
 }

@@ -28,7 +28,7 @@
 
 - (void)_addPropertyWithGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [self.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    GCTag *tag = [self.gedTag subTagWithCode:node.tagCode type:([node valueIsXref] ? @"relationship" : @"attribute")];
     
     if (tag.isCustom && ![self.context _shouldHandleCustomTag:tag forNode:node onObject:self]) {
         return;
@@ -57,7 +57,7 @@
 
 - (instancetype)initWithGedcomNode:(GCNode *)node useXref:(BOOL)useXref inContext:(GCContext *)context
 {
-    GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+    GCTag *tag = [GCTag rootTagWithCode:node.tagCode];
     
     if (!useXref || tag.isCustom) {
         self = [self initInContext:context];
@@ -68,13 +68,13 @@
     NSParameterAssert(self);
     
     if (self) {
-        GCTag *tag = [GCTag rootTagWithCode:node.gedTag];
+        GCTag *tag = [GCTag rootTagWithCode:node.tagCode];
         
         self->_isBuildingFromGedcom = YES;
         self->_buildingFromGedcomSemaphore = dispatch_semaphore_create(0);
         
         if (tag.takesValue)
-            self.value = [GCString valueWithGedcomString:node.gedValue];
+            self.value = [GCString valueWithGedcomString:node.gedcomValue];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self _addPropertiesWithGedcomNodes:node.subNodes];
@@ -121,7 +121,7 @@
         self->_isBuildingFromGedcom = YES;
         self->_buildingFromGedcomSemaphore = dispatch_semaphore_create(0);
         
-        GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:([node valueIsXref] ? @"relationship" : @"attribute")];
+        GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:([node valueIsXref] ? @"relationship" : @"attribute")];
         
         if (tag.isCustom || object.gedTag.isCustom) {
             [object.mutableCustomProperties addObject:self];
@@ -159,8 +159,8 @@
     self = [super initWithGedcomNode:node onObject:object];
     
     if (self) {
-        if (node.gedValue) {
-            [self setValueWithGedcomString:node.gedValue];
+        if (node.gedcomValue) {
+            [self setValueWithGedcomString:node.gedcomValue];
         }
     }
     
@@ -184,9 +184,9 @@
         NSParameterAssert(self.describedObject == object);
         GCParameterAssert(object.context);
         
-        GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
+        GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:@"relationship"];
         
-        id target = [self.context _recordForXref:node.gedValue create:YES withClass:tag.targetType];
+        id target = [self.context _recordForXref:node.gedcomValue create:YES withClass:tag.targetType];
         
         NSParameterAssert(self.describedObject == object);
         
@@ -200,7 +200,7 @@
 
 + (instancetype)newWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
-    GCTag *tag = [object.gedTag subTagWithCode:node.gedTag type:@"relationship"];
+    GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:@"relationship"];
     
     if (tag.hasReverse && !tag.isMain) {
         //NSLog(@"WARNING: dropping non-main reverse: %@", node);

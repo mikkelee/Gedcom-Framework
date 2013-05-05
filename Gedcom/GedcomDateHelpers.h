@@ -16,10 +16,10 @@
 const char *formatString = "%e %b %Y %H:%M:%S %z";
 
 static inline NSDate * dateFromNode(GCNode *node) {
-    NSArray *timeParts = [[[node valueForKey:@"TIME"][0] gedValue] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    NSArray *timeParts = [[[node valueForKey:@"TIME"][0] gedcomValue] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
     
     NSString *dateString = [NSString stringWithFormat:@"%@ %@ %@",
-                            [node gedValue],
+                            [node gedcomValue],
                             timeParts[0],
                             @"+0000"
                             ];

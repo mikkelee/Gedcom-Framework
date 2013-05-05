@@ -37,9 +37,9 @@
     
 	if (self) {
         _lineSeparator = @"\n";
-        _gedTag = tag;
+        _tagCode = tag;
         _xref = xref;
-        _gedValue = value;
+        _gedcomValue = value;
         
         if (subNodes) {
             _subNodes = [NSMutableArray array];
@@ -157,7 +157,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     NSString *firstLine = nil;
     NSArray *subLineNodes = nil;
     
-    NSString *gedVal = self.gedValue;
+    NSString *gedVal = self.gedcomValue;
     if (!self.valueIsXref && ![gedVal hasPrefix:@"@#"]) { // neither an xref nor a calendar escape
         gedVal = [gedVal stringByReplacingOccurrencesOfString:@"@" withString:@"@@"]; // escape @-signs
     }
@@ -172,9 +172,9 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     
     if (self.xref && ![self.xref isEqualToString:@""]) {
         [lineComponents addObject:attributedString(self.xref, GCXrefAttributeName, self.xref)];
-        [lineComponents addObject:attributedString(self.gedTag, GCTagAttributeName, self.gedTag)];
+        [lineComponents addObject:attributedString(self.tagCode, GCTagAttributeName, self.tagCode)];
 	} else {
-        [lineComponents addObject:attributedString(self.gedTag, GCTagAttributeName, self.gedTag)];
+        [lineComponents addObject:attributedString(self.tagCode, GCTagAttributeName, self.tagCode)];
         if (firstLine) {
             if ([firstLine hasPrefix:@"@"] && [firstLine hasSuffix:@"@"]) {
                 [lineComponents addObject:attributedString(firstLine, GCLinkAttributeName, firstLine)];
@@ -253,7 +253,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
         NSMutableArray *subNodes = [NSMutableArray array];
         
         for (GCNode *subNode in self.subNodes) {
-            if ([subNode.gedTag isEqualTo:key]) {
+            if ([subNode.tagCode isEqualTo:key]) {
                 [subNodes addObject:subNode];
             }
         }
@@ -281,9 +281,11 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     
     //NSLog(@"Comparing %@ with %@", a.gedcomString, b.gedcomString);
     
-    if (![self.gedTag isEqualToString:other.gedTag])
+    if (![self.tagCode isEqualToString:other.tagCode])
         return NO;
-    if ((self.gedValue && ![self.gedValue isEqualToString:other.gedValue]) || (other.gedValue && ![other.gedValue isEqualToString:self.gedValue]))
+    if (self.gedcomValue && ![self.gedcomValue isEqualToString:other.gedcomValue])
+        return NO;
+    if (other.gedcomValue && ![other.gedcomValue isEqualToString:self.gedcomValue])
         return NO;
     if ((self.xref && ![self.xref isEqualToString:other.xref]) || (other.xref && ![other.xref isEqualToString:self.xref]))
         return NO;
@@ -354,7 +356,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
         indent = [NSString stringWithFormat:@"%@%@", indent, @"  "];
     }
     
-    return [NSString stringWithFormat:@"%@<%@: %p> (tag: %@ xref: %@ value: %@ parent: %p) {\n%@%@};\n", indent, [self className], self, self.gedTag, self.xref, self.gedValue, self.parent, [self _subNodeDescriptionWithIndent:level+1], indent];
+    return [NSString stringWithFormat:@"%@<%@: %p> (tag: %@ xref: %@ value: %@ parent: %p) {\n%@%@};\n", indent, [self className], self, self.tagCode, self.xref, self.gedcomValue, self.parent, [self _subNodeDescriptionWithIndent:level+1], indent];
 }
 
 - (NSString *)_subNodeDescriptionWithIndent:(NSUInteger)level
@@ -373,8 +375,8 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:_gedTag forKey:@"gedTag"];
-    [encoder encodeObject:_gedValue forKey:@"gedValue"];
+    [encoder encodeObject:_tagCode forKey:@"tagCode"];
+    [encoder encodeObject:_gedcomValue forKey:@"gedcomValue"];
     [encoder encodeObject:_xref forKey:@"xref"];
     [encoder encodeObject:_lineSeparator forKey:@"lineSeparator"];
     [encoder encodeObject:_subNodes forKey:@"subNodes"];
@@ -385,8 +387,8 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 	self = [super init];
     
     if (self) {
-        _gedTag = [decoder decodeObjectForKey:@"gedTag"];
-        _gedValue = [decoder decodeObjectForKey:@"gedValue"];
+        _tagCode = [decoder decodeObjectForKey:@"tagCode"];
+        _gedcomValue = [decoder decodeObjectForKey:@"gedcomValue"];
         _xref = [decoder decodeObjectForKey:@"xref"];
         _lineSeparator = [decoder decodeObjectForKey:@"lineSeparator"];
         _subNodes = [decoder decodeObjectForKey:@"subNodes"];
@@ -399,8 +401,8 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    GCNode *copy = [[GCNode allocWithZone:zone] initWithTag:self.gedTag 
-                                                      value:self.gedValue 
+    GCNode *copy = [[GCNode allocWithZone:zone] initWithTag:self.tagCode
+                                                      value:self.gedcomValue
                                                        xref:self.xref 
                                                    subNodes:self.subNodes];
     
@@ -467,7 +469,10 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 - (BOOL)valueIsXref
 {
-    return _gedValue != nil && [_gedValue hasSuffix:@"@"] && [_gedValue hasPrefix:@"@"] && ![_gedValue hasPrefix:@"@#"];
+    return _gedcomValue != nil
+    && [_gedcomValue hasSuffix:@"@"]
+    && [_gedcomValue hasPrefix:@"@"]
+    && ![_gedcomValue hasPrefix:@"@#"];
 }
 
 - (NSSet *)allSubTags
@@ -475,7 +480,7 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
     NSMutableSet *subTags = [NSMutableSet set];
     
     for (GCNode *subNode in self.subNodes) {
-        [subTags addObject:subNode.gedTag];
+        [subTags addObject:subNode.tagCode];
     }
     
     return [subTags copy];

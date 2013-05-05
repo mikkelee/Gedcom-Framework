@@ -21,7 +21,7 @@
         if ([node.gedTag isEqualToString:@"INDI"]) {
             // and print their names:
             for (GCNode *name in node[@"NAME"]) {
-                NSLog(@"name found: %@", name.gedValue);
+                NSLog(@"name found: %@", name.gedcomValue);
             }
         }
     }
@@ -97,11 +97,11 @@
 /// The parent node of the receiver; will be `nil` for root nodes.
 @property (weak, readonly, nonatomic) GCNode *parent;
 
-/// The tag of the receiver; may not be `nil`.
-@property (nonatomic) NSString *gedTag;
+/// The tag code of the receiver; may not be `nil`.
+@property (nonatomic) NSString *tagCode;
 
 /// The value of the receiver; may be `nil`.
-@property (nonatomic) NSString *gedValue;
+@property (nonatomic) NSString *gedcomValue;
 
 /// `TRUE` the value is non-nil and is wrapped in `@`s, otherwise `NO`.
 @property (readonly, nonatomic) BOOL valueIsXref;

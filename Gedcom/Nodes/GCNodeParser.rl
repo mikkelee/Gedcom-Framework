@@ -62,10 +62,10 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
         
         // CONT/CONC nodes are continuations of values from the previous node, so fold them up here:
         if (_contConcMap[code]) {
-            if (!currentNode.gedValue) {
-                currentNode.gedValue = value;
+            if (!currentNode.gedcomValue) {
+                currentNode.gedcomValue = value;
             } else {
-                currentNode.gedValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedValue, _contConcMap[code], value ? value : @""];
+                currentNode.gedcomValue = [NSString stringWithFormat:@"%@%@%@", currentNode.gedcomValue, _contConcMap[code], value ? value : @""];
             }
         } else {
             if (xref) {
