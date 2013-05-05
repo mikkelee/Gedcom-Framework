@@ -38,7 +38,7 @@
  @return A new value.
  
  */
-+ (id)valueWithGedcomString:(NSString *)gedcomString;
++ (instancetype)valueWithGedcomString:(NSString *)gedcomString;
 
 /// @name Comparing values
 
@@ -89,7 +89,7 @@
 @interface GCPlacestring : GCString
 
 /// Returns the root-level place.
-+ (id)rootPlace;
++ (instancetype)rootPlace;
 
 /// The name of the place string.
 @property (readonly) NSString *name;
@@ -146,19 +146,19 @@
  
  @return A singleton instance representing the male gender.
  */
-+ (id)maleGender;
++ (instancetype)maleGender;
 
 /** Returns a singleton instance representing the female gender.
  
  @return A singleton instance representing the female gender.
  */
-+ (id)femaleGender;
++ (instancetype)femaleGender;
 
 /** Returns a singleton instance representing an unknown gender.
  
  @return A singleton instance representing an unknown gender.
  */
-+ (id)unknownGender;
++ (instancetype)unknownGender;
 
 @end
 
@@ -173,13 +173,13 @@
  
  @return A singleton instance representing a true value.
  */
-+ (id)yes;
++ (instancetype)yes;
 
 /** Returns a singleton instance representing an undecided value.
  
  @return A singleton instance representing an undecided value.
  */
-+ (id)undecided;
++ (instancetype)undecided;
 
 /// The receiver's value as a BOOL.
 @property (readonly) BOOL boolValue;
@@ -207,7 +207,7 @@
  @param toDate A GCDate object.
  @return A new age.
  */
-+ (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate;
++ (instancetype)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate;
 
 #pragma mark Objective-C properties
 
@@ -240,7 +240,7 @@
  @param date An NSDate object.
  @return A new date.
  */
-+ (id)dateWithDate:(NSDate *)date;
++ (instancetype)dateWithDate:(NSDate *)date;
 
 #pragma mark Helpers
 /// @name Helpers
@@ -250,14 +250,14 @@
  @param age A GCAge object.
  @return A new date.
  */
-- (id)dateByAddingAge:(GCAge *)age;
+- (instancetype)dateByAddingAge:(GCAge *)age;
 
 /** Returns a date created by subtracting the given age to the receiver.
  
  @param age A GCAge object.
  @return A new date.
  */
-- (id)dateBySubtractingAge:(GCAge *)age;
+- (instancetype)dateBySubtractingAge:(GCAge *)age;
 
 /** Returns a boolean value indicating whether the given date is contained within the receiver.
  
