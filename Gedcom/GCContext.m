@@ -24,6 +24,7 @@
 #import "GCContextDelegate.h"
 
 #import "GCGedcomLoadingAdditions.h"
+#import "GCGedcomLoadingAdditions_internal.h"
 #import "GCGedcomAccessAdditions.h"
 #import "GCTagAccessAdditions.h"
 
@@ -138,6 +139,11 @@ __strong static NSMapTable *_contextsByName = nil;
         if (tag.objectClass != [GCTrailerEntity class]) {
             GCEntity *entity = [tag.objectClass newWithGedcomNode:node inContext:self];
             NSParameterAssert(entity.context == self);
+            
+            [_mainQueue addOperationWithBlock:^{
+                [entity _waitUntilDoneBuildingFromGedcom];
+                //NSLog(@"%lu: %p done", [_mainQueue operationCount], entity);
+            }];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

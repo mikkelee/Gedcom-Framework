@@ -43,7 +43,9 @@
 {
     [_object _waitUntilDoneBuildingFromGedcom];
     
-    [invocation invokeWithTarget:_object];
+    if ([invocation selector] != @selector(_waitUntilDoneBuildingFromGedcom)) {
+        [invocation invokeWithTarget:_object];
+    }
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
@@ -54,11 +56,6 @@
 - (GCContext *)context
 {
     return _object.context;
-}
-
-- (GCObject *)rootObject
-{
-    return _object.rootObject;
 }
 
 @end
