@@ -4,8 +4,6 @@
 
 #import "GCAuthorAttribute.h"
 
-
-
 @implementation GCAuthorAttribute {
 
 }

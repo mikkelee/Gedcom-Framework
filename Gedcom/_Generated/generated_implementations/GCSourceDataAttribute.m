@@ -4,11 +4,6 @@
 
 #import "GCSourceDataAttribute.h"
 
-#import "GCEventsRecordedAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCResponsibleAgencyAttribute.h"
-
 @implementation GCSourceDataAttribute {
 	NSMutableArray *_eventsRecordeds;
 	GCResponsibleAgencyAttribute *_responsibleAgency;

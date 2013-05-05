@@ -4,8 +4,6 @@
 
 #import "GCLDSBaptismStatusAttribute.h"
 
-
-
 @implementation GCLDSBaptismStatusAttribute {
 
 }

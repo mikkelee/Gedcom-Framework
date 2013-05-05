@@ -4,11 +4,6 @@
 
 #import "GCHeaderSourceAttribute.h"
 
-#import "GCCorporationAttribute.h"
-#import "GCDescriptiveNameAttribute.h"
-#import "GCHeaderSourceDataAttribute.h"
-#import "GCVersionAttribute.h"
-
 @implementation GCHeaderSourceAttribute {
 	GCVersionAttribute *_version;
 	GCDescriptiveNameAttribute *_descriptiveName;

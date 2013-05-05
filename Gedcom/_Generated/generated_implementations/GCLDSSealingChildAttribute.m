@@ -4,16 +4,6 @@
 
 #import "GCLDSSealingChildAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCLDSSealingChildStatusAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceAttribute.h"
-#import "GCSealedToFamilyRelationship.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTempleAttribute.h"
-
 @implementation GCLDSSealingChildAttribute {
 	GCLDSSealingChildStatusAttribute *_lDSSealingChildStatus;
 	GCSealedToFamilyRelationship *_sealedToFamily;

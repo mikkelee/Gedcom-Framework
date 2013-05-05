@@ -4,8 +4,6 @@
 
 #import "GCPageAttribute.h"
 
-
-
 @implementation GCPageAttribute {
 
 }

@@ -4,12 +4,6 @@
 
 #import "GCMultimediaEmbeddedAttribute.h"
 
-#import "GCFileAttribute.h"
-#import "GCMultimediaFormatAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCTitleAttribute.h"
-
 @implementation GCMultimediaEmbeddedAttribute {
 	GCMultimediaFormatAttribute *_multimediaFormat;
 	GCTitleAttribute *_title;

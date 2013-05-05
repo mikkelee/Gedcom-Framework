@@ -4,8 +4,6 @@
 
 #import "GCVersionAttribute.h"
 
-
-
 @implementation GCVersionAttribute {
 
 }

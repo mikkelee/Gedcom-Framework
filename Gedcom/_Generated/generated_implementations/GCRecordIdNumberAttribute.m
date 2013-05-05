@@ -4,8 +4,6 @@
 
 #import "GCRecordIdNumberAttribute.h"
 
-
-
 @implementation GCRecordIdNumberAttribute {
 
 }

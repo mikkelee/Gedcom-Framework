@@ -4,10 +4,6 @@
 
 #import "GCChildInFamilyRelationship.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPedigreeAttribute.h"
-
 @implementation GCChildInFamilyRelationship {
 	GCPedigreeAttribute *_pedigree;
 	NSMutableArray *_noteReferences;

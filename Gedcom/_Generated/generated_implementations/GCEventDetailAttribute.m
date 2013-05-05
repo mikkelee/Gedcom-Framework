@@ -4,8 +4,6 @@
 
 #import "GCEventDetailAttribute.h"
 
-
-
 @implementation GCEventDetailAttribute {
 
 }

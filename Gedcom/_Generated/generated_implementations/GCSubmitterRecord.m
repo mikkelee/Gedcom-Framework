@@ -4,18 +4,6 @@
 
 #import "GCSubmitterRecord.h"
 
-#import "GCAddressAttribute.h"
-#import "GCAncestralFileNumberAttribute.h"
-#import "GCChangeInfoAttribute.h"
-#import "GCDescriptiveNameAttribute.h"
-#import "GCLanguageAttribute.h"
-#import "GCMultimediaEmbeddedAttribute.h"
-#import "GCMultimediaReferenceRelationship.h"
-#import "GCPhoneNumberAttribute.h"
-#import "GCRecordFileNumberAttribute.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCUserReferenceNumberAttribute.h"
-
 @implementation GCSubmitterRecord {
 	GCDescriptiveNameAttribute *_descriptiveName;
 	GCAddressAttribute *_address;

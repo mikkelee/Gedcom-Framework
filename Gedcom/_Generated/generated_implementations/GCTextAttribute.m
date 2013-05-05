@@ -4,8 +4,6 @@
 
 #import "GCTextAttribute.h"
 
-
-
 @implementation GCTextAttribute {
 
 }

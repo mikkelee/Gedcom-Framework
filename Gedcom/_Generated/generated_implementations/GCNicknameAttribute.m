@@ -4,8 +4,6 @@
 
 #import "GCNicknameAttribute.h"
 
-
-
 @implementation GCNicknameAttribute {
 
 }

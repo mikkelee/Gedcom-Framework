@@ -4,8 +4,6 @@
 
 #import "GCStateAttribute.h"
 
-
-
 @implementation GCStateAttribute {
 
 }

@@ -4,8 +4,6 @@
 
 #import "GCLDSEndowmentStatusAttribute.h"
 
-
-
 @implementation GCLDSEndowmentStatusAttribute {
 
 }

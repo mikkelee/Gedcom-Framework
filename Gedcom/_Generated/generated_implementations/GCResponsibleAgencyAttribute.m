@@ -4,8 +4,6 @@
 
 #import "GCResponsibleAgencyAttribute.h"
 
-
-
 @implementation GCResponsibleAgencyAttribute {
 
 }

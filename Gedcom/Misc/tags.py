@@ -217,8 +217,6 @@ implementationFileT = Template("""/*
 
 #import "$className.h"
 
-$includeHeaders
-
 @implementation $className {
 $ivars
 }
@@ -303,7 +301,6 @@ def process(tagInfo, key):
 	m_file = open('Gedcom/_Generated/generated_implementations/%s.m' % tagDict['className'], 'w')
 	m_file.write(implementationFileT.substitute(
 		className=tagDict['className'],
-		includeHeaders="\n".join(sorted([('#import "%s.h"' % x) for x in forwardDeclarations])),
 		methods="\n".join(methodImps),
 		propertyImplementations="\n".join(propertyImplementations),
 		ivars="\n".join(['\t%s;' % x for x in ivars])

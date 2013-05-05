@@ -4,17 +4,6 @@
 
 #import "GCPersonalNameAttribute.h"
 
-#import "GCGivenNameAttribute.h"
-#import "GCNamePrefixAttribute.h"
-#import "GCNameSuffixAttribute.h"
-#import "GCNicknameAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCSurnameAttribute.h"
-#import "GCSurnamePrefixAttribute.h"
-
 @implementation GCPersonalNameAttribute {
 	GCNamePrefixAttribute *_namePrefix;
 	GCGivenNameAttribute *_givenName;

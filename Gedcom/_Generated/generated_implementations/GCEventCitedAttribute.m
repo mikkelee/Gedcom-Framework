@@ -4,8 +4,6 @@
 
 #import "GCEventCitedAttribute.h"
 
-#import "GCRoleAttribute.h"
-
 @implementation GCEventCitedAttribute {
 	GCRoleAttribute *_role;
 }

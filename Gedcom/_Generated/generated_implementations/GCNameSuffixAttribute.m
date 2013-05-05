@@ -4,8 +4,6 @@
 
 #import "GCNameSuffixAttribute.h"
 
-
-
 @implementation GCNameSuffixAttribute {
 
 }

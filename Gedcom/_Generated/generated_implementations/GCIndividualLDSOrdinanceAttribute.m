@@ -4,14 +4,6 @@
 
 #import "GCIndividualLDSOrdinanceAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTempleAttribute.h"
-
 @implementation GCIndividualLDSOrdinanceAttribute {
 	GCDateAttribute *_date;
 	GCTempleAttribute *_temple;

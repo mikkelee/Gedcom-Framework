@@ -4,9 +4,6 @@
 
 #import "GCHeaderSourceDataAttribute.h"
 
-#import "GCCopyrightAttribute.h"
-#import "GCDateAttribute.h"
-
 @implementation GCHeaderSourceDataAttribute {
 	GCDateAttribute *_date;
 	GCCopyrightAttribute *_copyright;

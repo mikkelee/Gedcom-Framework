@@ -4,8 +4,6 @@
 
 #import "GCLDSConfirmationStatusAttribute.h"
 
-
-
 @implementation GCLDSConfirmationStatusAttribute {
 
 }

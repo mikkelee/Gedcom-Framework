@@ -4,15 +4,6 @@
 
 #import "GCRepositoryRecord.h"
 
-#import "GCAddressAttribute.h"
-#import "GCChangeInfoAttribute.h"
-#import "GCDescriptiveNameAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPhoneNumberAttribute.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCUserReferenceNumberAttribute.h"
-
 @implementation GCRepositoryRecord {
 	GCDescriptiveNameAttribute *_descriptiveName;
 	GCAddressAttribute *_address;

@@ -4,8 +4,6 @@
 
 #import "GCAbbreviationAttribute.h"
 
-
-
 @implementation GCAbbreviationAttribute {
 
 }

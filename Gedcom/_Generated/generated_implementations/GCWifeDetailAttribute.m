@@ -4,8 +4,6 @@
 
 #import "GCWifeDetailAttribute.h"
 
-#import "GCAgeAttribute.h"
-
 @implementation GCWifeDetailAttribute {
 	GCAgeAttribute *_age;
 }

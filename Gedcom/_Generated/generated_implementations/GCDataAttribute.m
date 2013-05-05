@@ -4,9 +4,6 @@
 
 #import "GCDataAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCTextAttribute.h"
-
 @implementation GCDataAttribute {
 	GCDateAttribute *_date;
 	NSMutableArray *_texts;

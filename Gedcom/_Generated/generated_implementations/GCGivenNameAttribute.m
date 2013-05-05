@@ -4,8 +4,6 @@
 
 #import "GCGivenNameAttribute.h"
 
-
-
 @implementation GCGivenNameAttribute {
 
 }

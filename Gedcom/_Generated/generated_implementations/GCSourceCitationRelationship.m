@@ -4,15 +4,6 @@
 
 #import "GCSourceCitationRelationship.h"
 
-#import "GCDataAttribute.h"
-#import "GCEventCitedAttribute.h"
-#import "GCMultimediaEmbeddedAttribute.h"
-#import "GCMultimediaReferenceRelationship.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPageAttribute.h"
-#import "GCQualityOfDataAttribute.h"
-
 @implementation GCSourceCitationRelationship {
 	GCPageAttribute *_page;
 	GCDataAttribute *_data;

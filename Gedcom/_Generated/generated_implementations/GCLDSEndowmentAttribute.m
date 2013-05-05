@@ -4,15 +4,6 @@
 
 #import "GCLDSEndowmentAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCLDSEndowmentStatusAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTempleAttribute.h"
-
 @implementation GCLDSEndowmentAttribute {
 	GCLDSEndowmentStatusAttribute *_lDSEndowmentStatus;
 	GCDateAttribute *_date;

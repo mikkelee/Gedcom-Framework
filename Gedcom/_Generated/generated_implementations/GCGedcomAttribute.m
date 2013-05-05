@@ -4,9 +4,6 @@
 
 #import "GCGedcomAttribute.h"
 
-#import "GCGedcomFormatAttribute.h"
-#import "GCVersionAttribute.h"
-
 @implementation GCGedcomAttribute {
 	GCVersionAttribute *_version;
 	GCGedcomFormatAttribute *_gedcomFormat;

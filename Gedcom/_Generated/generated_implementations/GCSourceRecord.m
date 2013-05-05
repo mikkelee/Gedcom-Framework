@@ -4,21 +4,6 @@
 
 #import "GCSourceRecord.h"
 
-#import "GCAbbreviationAttribute.h"
-#import "GCAuthorAttribute.h"
-#import "GCChangeInfoAttribute.h"
-#import "GCMultimediaEmbeddedAttribute.h"
-#import "GCMultimediaReferenceRelationship.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPublicationFactsAttribute.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCRepositoryCitationRelationship.h"
-#import "GCSourceDataAttribute.h"
-#import "GCTextAttribute.h"
-#import "GCTitleAttribute.h"
-#import "GCUserReferenceNumberAttribute.h"
-
 @implementation GCSourceRecord {
 	GCSourceDataAttribute *_sourceData;
 	GCAuthorAttribute *_author;

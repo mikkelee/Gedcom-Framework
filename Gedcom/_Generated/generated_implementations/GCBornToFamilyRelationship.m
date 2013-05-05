@@ -4,8 +4,6 @@
 
 #import "GCBornToFamilyRelationship.h"
 
-
-
 @implementation GCBornToFamilyRelationship {
 
 }

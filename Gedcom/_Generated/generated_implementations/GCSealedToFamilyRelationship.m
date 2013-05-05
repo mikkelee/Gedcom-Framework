@@ -4,8 +4,6 @@
 
 #import "GCSealedToFamilyRelationship.h"
 
-
-
 @implementation GCSealedToFamilyRelationship {
 
 }

@@ -4,13 +4,6 @@
 
 #import "GCAssociationRelationship.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCRecordTypeAttribute.h"
-#import "GCRelationshipDescriptorAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-
 @implementation GCAssociationRelationship {
 	GCRecordTypeAttribute *_recordType;
 	GCRelationshipDescriptorAttribute *_relationshipDescriptor;

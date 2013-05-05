@@ -4,8 +4,6 @@
 
 #import "GCCharacterSetAttribute.h"
 
-#import "GCVersionAttribute.h"
-
 @implementation GCCharacterSetAttribute {
 	GCVersionAttribute *_version;
 }

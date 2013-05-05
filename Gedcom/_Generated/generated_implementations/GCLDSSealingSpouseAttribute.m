@@ -4,15 +4,6 @@
 
 #import "GCLDSSealingSpouseAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCLDSSealingSpouseStatusAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTempleAttribute.h"
-
 @implementation GCLDSSealingSpouseAttribute {
 	GCLDSSealingSpouseStatusAttribute *_lDSSealingSpouseStatus;
 	GCDateAttribute *_date;

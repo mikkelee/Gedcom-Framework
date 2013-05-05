@@ -4,9 +4,6 @@
 
 #import "GCEventsRecordedAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCPlaceAttribute.h"
-
 @implementation GCEventsRecordedAttribute {
 	GCDateAttribute *_date;
 	GCPlaceAttribute *_place;

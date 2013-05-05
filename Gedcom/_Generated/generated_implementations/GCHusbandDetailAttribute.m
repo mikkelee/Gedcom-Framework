@@ -4,8 +4,6 @@
 
 #import "GCHusbandDetailAttribute.h"
 
-#import "GCAgeAttribute.h"
-
 @implementation GCHusbandDetailAttribute {
 	GCAgeAttribute *_age;
 }

@@ -4,8 +4,6 @@
 
 #import "GCAdoptedIntoFamilyRelationship.h"
 
-#import "GCAdoptedByWhichParentAttribute.h"
-
 @implementation GCAdoptedIntoFamilyRelationship {
 	GCAdoptedByWhichParentAttribute *_adoptedByWhichParent;
 }

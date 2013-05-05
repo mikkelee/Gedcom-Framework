@@ -4,8 +4,6 @@
 
 #import "GCCountryAttribute.h"
 
-
-
 @implementation GCCountryAttribute {
 
 }

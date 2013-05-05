@@ -4,8 +4,6 @@
 
 #import "GCUserReferenceNumberAttribute.h"
 
-#import "GCTypeDescriptionAttribute.h"
-
 @implementation GCUserReferenceNumberAttribute {
 	GCTypeDescriptionAttribute *_typeDescription;
 }

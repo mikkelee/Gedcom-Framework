@@ -4,16 +4,6 @@
 
 #import "GCSubmissionRecord.h"
 
-#import "GCChangeInfoAttribute.h"
-#import "GCFamilyFileAttribute.h"
-#import "GCGenerationsOfAncestorsAttribute.h"
-#import "GCGenerationsOfDescendantsAttribute.h"
-#import "GCOrdinanceFlagAttribute.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCSubmitterReferenceRelationship.h"
-#import "GCTempleAttribute.h"
-#import "GCUserReferenceNumberAttribute.h"
-
 @implementation GCSubmissionRecord {
 	GCSubmitterReferenceRelationship *_submitterReference;
 	GCFamilyFileAttribute *_familyFile;

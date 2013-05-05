@@ -4,8 +4,6 @@
 
 #import "GCLDSSealingSpouseStatusAttribute.h"
 
-
-
 @implementation GCLDSSealingSpouseStatusAttribute {
 
 }

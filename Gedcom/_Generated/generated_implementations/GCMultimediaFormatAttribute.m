@@ -4,8 +4,6 @@
 
 #import "GCMultimediaFormatAttribute.h"
 
-
-
 @implementation GCMultimediaFormatAttribute {
 
 }

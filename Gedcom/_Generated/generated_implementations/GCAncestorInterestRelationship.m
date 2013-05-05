@@ -4,8 +4,6 @@
 
 #import "GCAncestorInterestRelationship.h"
 
-
-
 @implementation GCAncestorInterestRelationship {
 
 }

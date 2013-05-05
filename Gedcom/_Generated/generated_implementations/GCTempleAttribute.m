@@ -4,8 +4,6 @@
 
 #import "GCTempleAttribute.h"
 
-
-
 @implementation GCTempleAttribute {
 
 }

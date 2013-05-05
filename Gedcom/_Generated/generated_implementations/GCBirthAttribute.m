@@ -4,22 +4,6 @@
 
 #import "GCBirthAttribute.h"
 
-#import "GCAddressAttribute.h"
-#import "GCAgeAttribute.h"
-#import "GCBornToFamilyRelationship.h"
-#import "GCCauseAttribute.h"
-#import "GCDateAttribute.h"
-#import "GCMultimediaEmbeddedAttribute.h"
-#import "GCMultimediaReferenceRelationship.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPhoneNumberAttribute.h"
-#import "GCPlaceAttribute.h"
-#import "GCResponsibleAgencyAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTypeDescriptionAttribute.h"
-
 @implementation GCBirthAttribute {
 	GCBornToFamilyRelationship *_bornToFamily;
 	GCTypeDescriptionAttribute *_typeDescription;

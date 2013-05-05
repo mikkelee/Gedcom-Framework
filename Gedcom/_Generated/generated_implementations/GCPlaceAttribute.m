@@ -4,12 +4,6 @@
 
 #import "GCPlaceAttribute.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceFormatAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-
 @implementation GCPlaceAttribute {
 	GCPlaceFormatAttribute *_placeFormat;
 	NSMutableArray *_sourceCitations;

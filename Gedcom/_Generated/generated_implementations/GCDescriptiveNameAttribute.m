@@ -4,8 +4,6 @@
 
 #import "GCDescriptiveNameAttribute.h"
 
-
-
 @implementation GCDescriptiveNameAttribute {
 
 }

@@ -4,8 +4,6 @@
 
 #import "GCFamilyFileAttribute.h"
 
-
-
 @implementation GCFamilyFileAttribute {
 
 }

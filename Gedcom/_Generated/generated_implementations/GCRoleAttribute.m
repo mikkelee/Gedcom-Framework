@@ -4,8 +4,6 @@
 
 #import "GCRoleAttribute.h"
 
-
-
 @implementation GCRoleAttribute {
 
 }

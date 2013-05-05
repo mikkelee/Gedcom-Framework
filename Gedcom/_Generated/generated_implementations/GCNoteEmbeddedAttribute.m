@@ -4,8 +4,6 @@
 
 #import "GCNoteEmbeddedAttribute.h"
 
-
-
 @implementation GCNoteEmbeddedAttribute {
 
 }

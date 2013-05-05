@@ -4,10 +4,6 @@
 
 #import "GCSourceEmbeddedAttribute.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCTextAttribute.h"
-
 @implementation GCSourceEmbeddedAttribute {
 	NSMutableArray *_texts;
 	NSMutableArray *_noteReferences;

@@ -4,8 +4,6 @@
 
 #import "GCGedcomFormatAttribute.h"
 
-
-
 @implementation GCGedcomFormatAttribute {
 
 }

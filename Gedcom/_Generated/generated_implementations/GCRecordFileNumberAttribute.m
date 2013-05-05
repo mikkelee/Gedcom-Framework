@@ -4,8 +4,6 @@
 
 #import "GCRecordFileNumberAttribute.h"
 
-
-
 @implementation GCRecordFileNumberAttribute {
 
 }

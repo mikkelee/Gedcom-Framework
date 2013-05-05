@@ -4,13 +4,6 @@
 
 #import "GCAddressAttribute.h"
 
-#import "GCAddressLine1Attribute.h"
-#import "GCAddressLine2Attribute.h"
-#import "GCCityAttribute.h"
-#import "GCCountryAttribute.h"
-#import "GCPostalCodeAttribute.h"
-#import "GCStateAttribute.h"
-
 @implementation GCAddressAttribute {
 	GCAddressLine1Attribute *_addressLine1;
 	GCAddressLine2Attribute *_addressLine2;

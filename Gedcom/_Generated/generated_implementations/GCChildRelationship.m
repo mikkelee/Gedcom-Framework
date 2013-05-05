@@ -4,8 +4,6 @@
 
 #import "GCChildRelationship.h"
 
-
-
 @implementation GCChildRelationship {
 
 }

@@ -4,8 +4,6 @@
 
 #import "GCBinaryObjectAttribute.h"
 
-
-
 @implementation GCBinaryObjectAttribute {
 
 }

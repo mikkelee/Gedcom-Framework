@@ -4,8 +4,6 @@
 
 #import "GCTimeAttribute.h"
 
-
-
 @implementation GCTimeAttribute {
 
 }

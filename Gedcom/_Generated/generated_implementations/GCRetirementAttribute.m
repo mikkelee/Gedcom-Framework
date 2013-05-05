@@ -4,21 +4,6 @@
 
 #import "GCRetirementAttribute.h"
 
-#import "GCAddressAttribute.h"
-#import "GCAgeAttribute.h"
-#import "GCCauseAttribute.h"
-#import "GCDateAttribute.h"
-#import "GCMultimediaEmbeddedAttribute.h"
-#import "GCMultimediaReferenceRelationship.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPhoneNumberAttribute.h"
-#import "GCPlaceAttribute.h"
-#import "GCResponsibleAgencyAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTypeDescriptionAttribute.h"
-
 @implementation GCRetirementAttribute {
 	GCTypeDescriptionAttribute *_typeDescription;
 	GCDateAttribute *_date;

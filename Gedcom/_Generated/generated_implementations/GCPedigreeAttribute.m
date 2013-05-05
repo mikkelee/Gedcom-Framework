@@ -4,9 +4,6 @@
 
 #import "GCPedigreeAttribute.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-
 @implementation GCPedigreeAttribute {
 	NSMutableArray *_noteReferences;
 	NSMutableArray *_noteEmbeddeds;

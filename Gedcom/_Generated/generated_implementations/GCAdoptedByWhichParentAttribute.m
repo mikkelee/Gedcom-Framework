@@ -4,8 +4,6 @@
 
 #import "GCAdoptedByWhichParentAttribute.h"
 
-
-
 @implementation GCAdoptedByWhichParentAttribute {
 
 }

@@ -4,8 +4,6 @@
 
 #import "GCLanguageAttribute.h"
 
-
-
 @implementation GCLanguageAttribute {
 
 }

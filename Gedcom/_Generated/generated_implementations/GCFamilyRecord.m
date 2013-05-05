@@ -4,33 +4,6 @@
 
 #import "GCFamilyRecord.h"
 
-#import "GCAnnulmentAttribute.h"
-#import "GCCensusAttribute.h"
-#import "GCChangeInfoAttribute.h"
-#import "GCChildRelationship.h"
-#import "GCDivorceAttribute.h"
-#import "GCDivorceFiledAttribute.h"
-#import "GCEngagementAttribute.h"
-#import "GCGenericEventAttribute.h"
-#import "GCHusbandRelationship.h"
-#import "GCLDSSealingSpouseAttribute.h"
-#import "GCMarriageAttribute.h"
-#import "GCMarriageBannAttribute.h"
-#import "GCMarriageContractAttribute.h"
-#import "GCMarriageLicenseAttribute.h"
-#import "GCMarriageSettlementAttribute.h"
-#import "GCMultimediaEmbeddedAttribute.h"
-#import "GCMultimediaReferenceRelationship.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCNumberOfChildrenAttribute.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCSubmitterReferenceRelationship.h"
-#import "GCUserReferenceNumberAttribute.h"
-#import "GCWifeRelationship.h"
-
 @implementation GCFamilyRecord {
 	NSMutableArray *_annulments;
 	NSMutableArray *_censuses;

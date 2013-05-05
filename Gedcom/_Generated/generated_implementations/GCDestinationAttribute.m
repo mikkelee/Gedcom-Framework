@@ -4,8 +4,6 @@
 
 #import "GCDestinationAttribute.h"
 
-
-
 @implementation GCDestinationAttribute {
 
 }

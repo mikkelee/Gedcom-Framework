@@ -4,12 +4,6 @@
 
 #import "GCNoteRecord.h"
 
-#import "GCChangeInfoAttribute.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCUserReferenceNumberAttribute.h"
-
 @implementation GCNoteRecord {
 	NSMutableArray *_sourceCitations;
 	NSMutableArray *_sourceEmbeddeds;

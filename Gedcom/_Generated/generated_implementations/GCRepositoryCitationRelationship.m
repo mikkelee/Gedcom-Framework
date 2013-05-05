@@ -4,10 +4,6 @@
 
 #import "GCRepositoryCitationRelationship.h"
 
-#import "GCCallNumberAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-
 @implementation GCRepositoryCitationRelationship {
 	NSMutableArray *_noteReferences;
 	NSMutableArray *_noteEmbeddeds;

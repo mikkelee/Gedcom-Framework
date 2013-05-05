@@ -4,8 +4,6 @@
 
 #import "GCHusbandRelationship.h"
 
-
-
 @implementation GCHusbandRelationship {
 
 }

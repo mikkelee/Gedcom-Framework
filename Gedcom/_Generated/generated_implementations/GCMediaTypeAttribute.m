@@ -4,8 +4,6 @@
 
 #import "GCMediaTypeAttribute.h"
 
-
-
 @implementation GCMediaTypeAttribute {
 
 }

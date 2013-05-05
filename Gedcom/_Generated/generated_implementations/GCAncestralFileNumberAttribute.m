@@ -4,8 +4,6 @@
 
 #import "GCAncestralFileNumberAttribute.h"
 
-
-
 @implementation GCAncestralFileNumberAttribute {
 
 }

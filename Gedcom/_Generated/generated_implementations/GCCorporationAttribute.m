@@ -4,9 +4,6 @@
 
 #import "GCCorporationAttribute.h"
 
-#import "GCAddressAttribute.h"
-#import "GCPhoneNumberAttribute.h"
-
 @implementation GCCorporationAttribute {
 	GCAddressAttribute *_address;
 	NSMutableArray *_phoneNumbers;

@@ -4,8 +4,6 @@
 
 #import "GCDescendantInterestRelationship.h"
 
-
-
 @implementation GCDescendantInterestRelationship {
 
 }

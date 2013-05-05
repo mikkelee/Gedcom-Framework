@@ -4,15 +4,6 @@
 
 #import "GCLDSBaptismAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCLDSBaptismStatusAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTempleAttribute.h"
-
 @implementation GCLDSBaptismAttribute {
 	GCLDSBaptismStatusAttribute *_lDSBaptismStatus;
 	GCDateAttribute *_date;

@@ -4,8 +4,6 @@
 
 #import "GCWifeRelationship.h"
 
-
-
 @implementation GCWifeRelationship {
 
 }

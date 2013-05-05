@@ -4,8 +4,6 @@
 
 #import "GCTypeDescriptionAttribute.h"
 
-
-
 @implementation GCTypeDescriptionAttribute {
 
 }

@@ -4,19 +4,6 @@
 
 #import "GCHeaderEntity.h"
 
-#import "GCCharacterSetAttribute.h"
-#import "GCCopyrightAttribute.h"
-#import "GCDestinationAttribute.h"
-#import "GCFileAttribute.h"
-#import "GCGedcomAttribute.h"
-#import "GCHeaderDateAttribute.h"
-#import "GCHeaderSourceAttribute.h"
-#import "GCLanguageAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCPlaceFormatSpecifierAttribute.h"
-#import "GCSubmissionReferenceRelationship.h"
-#import "GCSubmitterReferenceRelationship.h"
-
 @implementation GCHeaderEntity {
 	GCHeaderSourceAttribute *_headerSource;
 	NSMutableArray *_destinations;

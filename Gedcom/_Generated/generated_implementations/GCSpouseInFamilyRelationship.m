@@ -4,9 +4,6 @@
 
 #import "GCSpouseInFamilyRelationship.h"
 
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-
 @implementation GCSpouseInFamilyRelationship {
 	NSMutableArray *_noteReferences;
 	NSMutableArray *_noteEmbeddeds;

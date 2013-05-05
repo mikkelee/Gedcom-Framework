@@ -4,8 +4,6 @@
 
 #import "GCPlaceFormatSpecifierAttribute.h"
 
-#import "GCPlaceFormatAttribute.h"
-
 @implementation GCPlaceFormatSpecifierAttribute {
 	GCPlaceFormatAttribute *_placeFormat;
 }

@@ -4,15 +4,6 @@
 
 #import "GCMultimediaRecord.h"
 
-#import "GCBinaryObjectAttribute.h"
-#import "GCChangeInfoAttribute.h"
-#import "GCMultimediaFormatAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCRecordIdNumberAttribute.h"
-#import "GCTitleAttribute.h"
-#import "GCUserReferenceNumberAttribute.h"
-
 @implementation GCMultimediaRecord {
 	GCMultimediaFormatAttribute *_multimediaFormat;
 	GCTitleAttribute *_title;

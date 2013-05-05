@@ -4,15 +4,6 @@
 
 #import "GCLDSConfirmationAttribute.h"
 
-#import "GCDateAttribute.h"
-#import "GCLDSBaptismStatusAttribute.h"
-#import "GCNoteEmbeddedAttribute.h"
-#import "GCNoteReferenceRelationship.h"
-#import "GCPlaceAttribute.h"
-#import "GCSourceCitationRelationship.h"
-#import "GCSourceEmbeddedAttribute.h"
-#import "GCTempleAttribute.h"
-
 @implementation GCLDSConfirmationAttribute {
 	GCLDSBaptismStatusAttribute *_lDSBaptismStatus;
 	GCDateAttribute *_date;
