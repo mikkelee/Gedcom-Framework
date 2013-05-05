@@ -117,10 +117,14 @@
 	
     GCFamilyRecord *fam = [GCFamilyRecord familyInContext:ctx];
     
-    //alternately:
 	[fam addRelationshipWithType:@"husband" target:husb];
 	[fam addRelationshipWithType:@"wife" target:wife];
 	[fam addRelationshipWithType:@"child" target:chil];
+    
+    // alternately:
+	// [husb addRelationshipWithType:@"spouseInFamily" target:fam];
+	// [wife addRelationshipWithType:@"spouseInFamily" target:fam];
+	// [chil addRelationshipWithType:@"childInFamily" target:fam];
 	
     //Setting known dates
     NSDate *knownDate = [NSDate dateWithNaturalLanguageString:@"Jan 1, 2000 12:00:00 +0000"];
@@ -170,6 +174,7 @@
                          , nil);
 }
 
+// TODO cleanup:
 - (void)testObjectValidationWithNodeString:(NSString *)nodeString exceptedErrorCode:(GCErrorCode)errorCode string:(NSString *)errorString
 {
     GCContext *ctx = [GCContext context];

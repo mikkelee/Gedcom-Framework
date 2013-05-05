@@ -76,17 +76,12 @@ Showing some different ways to add attributes to an object:
     // Create an individual entity in the context.
     GCIndividualRecord *indi = [GCIndividualRecord individualInContext:ctx];
     
-    // Create an array of names and set them on the individual for the property key "personalNames".
-    // When an object receives GCValues for a property key, it will implicitly create attributes.
-    // Likewise with GCEntities, creating relationships.
-    NSArray *names = @[
-        [GCNamestring valueWithGedcomString:@"Jens /Hansen/"], 
-        [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"], 
-    ];
+    // Create an array of names and add them to the individual under "personalNames".
+    [indi addAttributeWithType:@"personalNames" values:
+     [GCNamestring valueWithGedcomString:@"Jens /Hansen/"],
+     [GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"],
+     nil];
     
-    [indi setValue:names 
-            forKey:@"personalNames"];
-	
     // Create a birth attribute, give it a date attribute and add it to the individual.
 	GCBirthAttribute *birt = [GCBirthAttribute birth];
     
@@ -94,9 +89,7 @@ Showing some different ways to add attributes to an object:
     
     [indi.mutableProperties addObject:birt];
     
-    // You can also use subscripted access, in this case adding a single death attribute
-    // with the value yes, indicating that the individual died.
-    indi[@"deaths"] = @[ [GCBool yes] ];
+    [indi addAttributeWithType:@"deaths" value:[GCBool yes]];
 ```
 
 The above is equivalent to the following GCNode:
@@ -148,14 +141,14 @@ Similarly, for relationships, the following:
 	
     GCFamilyRecord *fam = [GCFamilyRecord familyInContext:ctx];
     
-    [fam setValue:husb forKey:@"husband"];
-    [fam setValue:wife forKey:@"wife"];
-    [fam setValue:[NSArray arrayWithObject:chil] forKey:@"children"];
+	[fam addRelationshipWithType:@"husband" target:husb];
+	[fam addRelationshipWithType:@"wife" target:wife];
+	[fam addRelationshipWithType:@"child" target:chil];
     
-    //alternately:
-	// [fam addRelationshipWithType:@"husband" target:husb];
-	// [fam addRelationshipWithType:@"wife" target:wife];
-	// [fam addRelationshipWithType:@"child" target:chil];
+    // alternately:
+	// [husb addRelationshipWithType:@"spouseInFamily" target:fam];
+	// [wife addRelationshipWithType:@"spouseInFamily" target:fam];
+	// [chil addRelationshipWithType:@"childInFamily" target:fam];
 ```
 
 is equivalent to:
