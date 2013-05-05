@@ -1,5 +1,5 @@
 //
-//  GCFileTests.m
+//  GCContextFileTests.m
 //  Gedcom
 //
 //  Created by Mikkel Eide Eriksen on 24/03/12.
@@ -12,10 +12,10 @@
 
 #import "GedcomCharacterSetHelpers.h"
 
-@interface GCContextTests : SenTestCase 
+@interface GCContextFileTests : SenTestCase 
 @end
 
-@implementation GCContextTests
+@implementation GCContextFileTests
 
 - (void)testFile:(NSString *)path expectedEncoding:(GCFileEncoding)expectedEncoding
 {
