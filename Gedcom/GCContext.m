@@ -110,7 +110,7 @@ __strong static NSMapTable *_contextsByName = nil;
 	return self;
 }
 
-+ (id)context
++ (instancetype)context
 {
 	return [[self alloc] init];
 }

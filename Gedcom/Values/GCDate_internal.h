@@ -16,17 +16,17 @@
 
 @interface GCDate ()
 
-+ (id)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca;
++ (instancetype)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca;
 
-+ (id)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t;
-+ (id)dateWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p;
++ (instancetype)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t;
++ (instancetype)dateWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p;
 
-+ (id)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
-+ (id)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
++ (instancetype)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
++ (instancetype)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t;
 
-+ (id)dateWithPhrase:(NSString *)p;
++ (instancetype)dateWithPhrase:(NSString *)p;
 
-+ (id)dateWithInvalidDateString:(NSString *)s;
++ (instancetype)dateWithInvalidDateString:(NSString *)s;
 
 @end
 

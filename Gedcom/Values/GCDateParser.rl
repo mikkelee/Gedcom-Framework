@@ -321,7 +321,7 @@ __strong static NSArray *_frenchRevolutionaryMonthNames;
 
 }
 
-+ (id)sharedDateParser
++ (instancetype)sharedDateParser
 {
     return _sharedDateParser;
 }

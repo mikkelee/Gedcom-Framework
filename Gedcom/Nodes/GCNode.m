@@ -486,22 +486,22 @@ static inline NSAttributedString * joinedAttributedString(NSArray *components) {
 
 @implementation GCNode (GCConvenienceMethods)
 
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value
++ (instancetype)nodeWithTag:(NSString *)tag value:(NSString *)value
 {
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:nil];
 }
 
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref
++ (instancetype)nodeWithTag:(NSString *)tag xref:(NSString *)xref
 {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:nil];
 }
 
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
++ (instancetype)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(NSArray *)subNodes
 {
     return [[self alloc] initWithTag:tag value:value xref:nil subNodes:subNodes];
 }
 
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
++ (instancetype)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(NSArray *)subNodes
 {
     return [[self alloc] initWithTag:tag value:nil xref:xref subNodes:subNodes];
 }

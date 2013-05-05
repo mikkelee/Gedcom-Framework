@@ -115,7 +115,7 @@ __strong static id _sharedAgeParser = nil;
     _sharedAgeParser = [[self alloc] init];
 }
 
-+ (id)sharedAgeParser
++ (instancetype)sharedAgeParser
 {
     return _sharedAgeParser;
 }

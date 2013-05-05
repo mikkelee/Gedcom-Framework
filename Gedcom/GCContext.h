@@ -53,7 +53,7 @@
 /// @name Obtaining a context
 
 /// Creates and returns a new context.
-+ (id)context;
++ (instancetype)context;
 
 /// Returns a dictionary containing all current contexts, keyed by name.
 + (NSDictionary *)contextsByName;

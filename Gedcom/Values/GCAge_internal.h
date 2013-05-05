@@ -26,9 +26,9 @@ typedef enum : NSInteger {
 - (instancetype)initWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q;
 - (instancetype)initWithInvalidAgeString:(NSString *)s;
 
-+ (id)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
-+ (id)ageWithAgeKeyword:(NSString *)p qualifier:(GCAgeQualifier)q;
-+ (id)ageWithInvalidAgeString:(NSString *)s;
++ (instancetype)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q;
++ (instancetype)ageWithAgeKeyword:(NSString *)p qualifier:(GCAgeQualifier)q;
++ (instancetype)ageWithInvalidAgeString:(NSString *)s;
 
 @property (readonly) GCSimpleAge *refAge; //used for sorting, etc.
 

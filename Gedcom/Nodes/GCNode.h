@@ -131,7 +131,7 @@
  @param value An optional value.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value;
++ (instancetype)nodeWithTag:(NSString *)tag value:(NSString *)value;
 
 /** Returns a node with the specified properties.
  
@@ -139,7 +139,7 @@
  @param xref An optional xref.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref;
++ (instancetype)nodeWithTag:(NSString *)tag xref:(NSString *)xref;
 
 /** Returns a node with the specified properties.
  
@@ -148,7 +148,7 @@
  @param subNodes An ordered collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(id)subNodes;
++ (instancetype)nodeWithTag:(NSString *)tag value:(NSString *)value subNodes:(id)subNodes;
 
 /** Returns a node with the specified properties.
  
@@ -157,7 +157,7 @@
  @param subNodes An ordered collection of nodes. If `nil`, the node will create an empty collection.
  @return A new node.
  */
-+ (id)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(id)subNodes;
++ (instancetype)nodeWithTag:(NSString *)tag xref:(NSString *)xref subNodes:(id)subNodes;
 
 @end
 
