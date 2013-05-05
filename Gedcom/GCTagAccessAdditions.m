@@ -71,13 +71,19 @@ __strong static NSMutableDictionary *_validPropertiesByType;
 
 + (NSArray *)rootClasses
 {
-    NSMutableArray *rootTypes = [NSMutableArray array];
+    static NSArray *_rootClasses;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray *rootTypes = [NSMutableArray array];
+        
+        for (GCTag *tag in [GCTag rootTags]) {
+            [rootTypes addObject:tag.objectClass];
+        }
+        
+        _rootClasses = [rootTypes copy];
+    });
     
-    for (GCTag *tag in [GCTag rootTags]) {
-        [rootTypes addObject:tag.objectClass];
-    }
-    
-    return [rootTypes copy];
+    return _rootClasses;
 }
 
 - (NSOrderedSet *)validPropertyTypes
