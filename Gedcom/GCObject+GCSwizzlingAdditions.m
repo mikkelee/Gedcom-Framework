@@ -12,6 +12,20 @@
 
 #import <objc/runtime.h>
 
+static inline char* ivarNameFromPropName(const char *propName) {
+    size_t propLen = strlen(propName)+1;
+    
+    char *ivarName = calloc(propLen+1, sizeof(char));
+    
+    strncpy(ivarName+1, propName, propLen);
+    ivarName[0] = '_';
+    
+    //NSLog(@"propName: %s", propName);
+    //NSLog(@"ivarName: %s", ivarName);
+    
+    return ivarName;
+}
+
 @implementation GCObject (GCSwizzlingAdditions)
 
 + (BOOL)resolveInstanceMethod:(SEL)sel
@@ -25,33 +39,42 @@
                                                                   value:@"Undo %@"
                                                                   table:@"Misc"];
         
-        NSString *selName = NSStringFromSelector(sel);
+        const char *selName = sel_getName(sel);
+        const size_t atIndexLen = strlen("atIndex:");
         
-        //NSLog(@"%@ selName: %@", [self className], selName);
+        char *prefix = NULL;
+        size_t prefixLen;
         
+        BOOL shouldResolve = NO;
         BOOL didResolve = NO;
         
-        if ([selName hasPrefix:@"insertObject"]) {
+        if (strncmp(prefix = "insertObject:in", selName, prefixLen = strlen(prefix)) == 0) {
             
-            // indexed mutable object insert
+            // indexed object insert
             
-            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:16] substringFromIndex:15] lowercaseString], [[selName substringFromIndex:16] substringToIndex:[selName length]-(16+8)]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
+            size_t size = strlen(selName) - prefixLen;
             
-            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
+            char *propName = calloc(size+1, sizeof(char)); // add room for '\0'
+            strncpy(propName, selName+prefixLen, size);
+            propName[0] += 32; // lowercase first char
+            
+            for (size_t i = 0; i <= atIndexLen ; i++) {
+                propName[size-i] = '\0'; // nil out remains
+            }
+            
+            NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            
+            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+                shouldResolve = YES;
                 
-                NSString *reverseSelName = [NSString stringWithFormat:@"removeObjectFrom%@%@AtIndex:", [[propType substringToIndex:1] uppercaseString], [propType substringFromIndex:1]];
+                NSString *reverseSelName = [NSString stringWithFormat:@"removeObjectFrom%@%@AtIndex:", [[propString substringToIndex:1] uppercaseString], [propString substringFromIndex:1]];
                 SEL reverseSel = NSSelectorFromString(reverseSelName);
                 
-                //NSLog(@"**** Swizzling %@ :: %@/%@ (%@ / %@) ****", cls, selName, reverseSelName, propType, ivarName);
+                char *ivarName = ivarNameFromPropName(propName);
                 
-                Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+                Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
-                // creating fake method first, so I can call it below for the undo manager:
-                IMP imp = imp_implementationWithBlock(^(GCObject *_s, id newObj, NSUInteger index) { return; });
-                class_addMethod(cls, sel, imp, "v@:@I");
-                
-                imp = imp_implementationWithBlock(^(GCObject *_s, id newObj, NSUInteger index) {
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s, id newObj, NSUInteger index) {
                     NSMutableArray *_ivar = object_getIvar(_s, ivar);
                     
                     if ([newObj valueForKey:@"describedObject"] == _s) {
@@ -73,7 +96,7 @@
                     }
                     
                     if ([newObj valueForKey:@"describedObject"]) {
-                        [((GCObject *)[newObj valueForKey:@"describedObject"]).mutableProperties removeObject:newObj];
+                        [[newObj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:newObj];
                     }
                     
                     [newObj setValue:_s forKey:@"describedObject"];
@@ -81,34 +104,44 @@
                     [_ivar insertObject:newObj atIndex:index];
                 });
                 
-                Method method = class_getInstanceMethod(cls, sel);
-                
-                method_setImplementation(method, imp);
-                
-                didResolve = YES;
+                free(ivarName);
+
+                didResolve = class_addMethod(cls, sel, imp, "v@:@I");
             }
             
-        } else if ([selName hasPrefix:@"removeObjectFrom"]) {
+            free(propName);
             
-            // indexed mutable object remove
+            //} else if (strncmp(prefix = "insert", selName, prefixLen = strlen(prefix)) == 0) {
             
-            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:17] substringFromIndex:16] lowercaseString], [[selName substringFromIndex:17] substringToIndex:[selName length]-(17+8)]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
+            // do nothing
             
-            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
+        } else if (strncmp(prefix = "removeObjectFrom", selName, prefixLen = strlen(prefix)) == 0) {
+            
+            // indexed object remove
+            
+            size_t size = strlen(selName) - prefixLen;
+            
+            char *propName = calloc(size+1, sizeof(char)); // add room for '\0'
+            strncpy(propName, selName+prefixLen, size);
+            propName[0] += 32; // lowercase first char
+            
+            for (size_t i = 0; i <= atIndexLen ; i++) {
+                propName[size-i] = '\0'; // nil out remains
+            }
+            
+            NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            
+            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+                shouldResolve = YES;
                 
-                NSString *reverseSelName = [NSString stringWithFormat:@"insertObject:in%@%@AtIndex:", [[propType substringToIndex:1] uppercaseString], [propType substringFromIndex:1]];
+                NSString *reverseSelName = [NSString stringWithFormat:@"insertObject:in%@%@AtIndex:", [[propString substringToIndex:1] uppercaseString], [propString substringFromIndex:1]];
                 SEL reverseSel = NSSelectorFromString(reverseSelName);
                 
-                //NSLog(@"**** Swizzling %@ :: %@/%@ (%@ / %@) ****", cls, selName, reverseSelName, propType, ivarName);
+                char *ivarName = ivarNameFromPropName(propName);
                 
-                Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+                Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
-                // creating fake method first, so I can call it below for the undo manager:
-                IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) { return; });
-                class_addMethod(cls, sel, imp, "v@:I");
-                
-                imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
                     NSMutableArray *_ivar = object_getIvar(_s, ivar);
                     
                     if (!_s->_isBuildingFromGedcom) {
@@ -127,77 +160,110 @@
                         }
                     }
                     
-                    [((GCObject *)_ivar[index]) setValue:nil forKey:@"describedObject"];
+                    [_ivar[index] setValue:nil forKey:@"describedObject"];
                     
                     [_ivar removeObjectAtIndex:index];
                 });
                 
-                Method method = class_getInstanceMethod(cls, sel);
+                free(ivarName);
                 
-                method_setImplementation(method, imp);
-                
-                didResolve = YES;
+                didResolve = class_addMethod(cls, sel, imp, "v@:I");
             }
             
-        } else if ([selName hasPrefix:@"objectIn"]) {
+            free(propName);
             
-            // indexed mutable object get
+            //} else if (strncmp(prefix = "remove", selName, prefixLen = strlen(prefix)) == 0) {
             
-            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:9] substringFromIndex:8] lowercaseString], [[selName substringFromIndex:9] substringToIndex:[selName length]-(9+8)]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
+            // do nothing
             
-            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+        } else if (strncmp(prefix = "objectIn", selName, prefixLen = strlen(prefix)) == 0) {
             
-            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
+            // indexed object get
+            
+            size_t size = strlen(selName) - prefixLen;
+            
+            char *propName = calloc(size+1, sizeof(char)); // add room for '\0'
+            strncpy(propName, selName+prefixLen, size);
+            propName[0] += 32; // lowercase first char
+            
+            for (size_t i = 0; i <= atIndexLen ; i++) {
+                propName[size-i] = '\0'; // nil out remains
+            }
+            
+            NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            
+            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+                shouldResolve = YES;
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propType);
+                char *ivarName = ivarNameFromPropName(propName);
+                
+                Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
                 IMP imp = imp_implementationWithBlock(^(GCObject *_s, NSUInteger index) {
                     return [object_getIvar(_s, ivar) objectAtIndex:index];
                 });
                 
+                free(ivarName);
+                
                 didResolve = class_addMethod(cls, sel, imp, "@@:I");
             }
             
-        } else if ([selName hasPrefix:@"countOf"]) {
+            free(propName);
             
-            // indexed mutable count
+            //} else if (strncmp(prefix = "object", selName, prefixLen = strlen(prefix)) == 0) {
             
-            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:8] substringFromIndex:7] lowercaseString], [selName substringFromIndex:8]];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
+            // do nothing
             
-            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+        } else if (strncmp(prefix = "countOf", selName, prefixLen = strlen(prefix)) == 0) {
             
-            if ([[cls validPropertyTypes] containsObject:propType] && [cls allowsMultipleOccurrencesOfPropertyType:propType]) {
+            // indexed count
+            
+            size_t size = strlen(selName) - prefixLen;
+            
+            char *propName = calloc(size+1, sizeof(char)); // add room for '\0'
+            strncpy(propName, selName+prefixLen, size);
+            propName[0] += 32; // lowercase first char
+            
+            NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            
+            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+                shouldResolve = YES;
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@) ****", cls, selName, propType);
+                char *ivarName = ivarNameFromPropName(propName);
+                
+                Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
                 IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
                     return [object_getIvar(_s, ivar) count];
                 });
                 
+                free(ivarName);
+                
                 didResolve = class_addMethod(cls, sel, imp, "I@:");
             }
             
-        } else if ([selName hasPrefix:@"set"]) {
+            free(propName);
             
-            // single setter
+        } else if (strncmp(prefix = "set", selName, prefixLen = strlen(prefix)) == 0) {
             
-            NSString *propType = [NSString stringWithFormat:@"%@%@", [[[selName substringToIndex:4] substringFromIndex:3] lowercaseString], [selName substringFromIndex:4]];
-            propType = [propType substringToIndex:[propType length]-1];
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
+            // setter
             
-            if ([[cls validPropertyTypes] containsObject:propType] && ![cls allowsMultipleOccurrencesOfPropertyType:propType]) {
+            size_t size = strlen(selName) - prefixLen - 1; // remove prefix and ':'
+            
+            char *propName = calloc(size+1, sizeof(char)); // add room for '\0'
+            strncpy(propName, selName+prefixLen, size);
+            propName[0] += 32; // lowercase first char
+            
+            NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            
+            if ([[cls validPropertyTypes] containsObject:propString] && ![cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+                shouldResolve = YES;
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propType, ivarName);
+                char *ivarName = ivarNameFromPropName(propName);
                 
-                Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+                Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
-                // creating fake method first, so I can call it below for the undo manager:
-                IMP imp = imp_implementationWithBlock(^(id _s, id newObj) { return; });
-                class_addMethod(cls, sel, imp, "v@:@");
-                
-                imp = imp_implementationWithBlock(^(GCObject *_s, id newObj) {
+                IMP imp = imp_implementationWithBlock(^(GCObject *_s, id newObj) {
                     id _ivar = object_getIvar(_s, ivar);
                     
                     if (!_s->_isBuildingFromGedcom) {
@@ -225,46 +291,66 @@
                     NSParameterAssert(!newObj || [newObj valueForKey:@"describedObject"] == _s);
                     
                     object_setIvar(_s, ivar, newObj);
-                    
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ ::: %@ => %@", cls, selName, _ivar, object_getIvar(_s, ivar));
                 });
                 
-                Method method = class_getInstanceMethod(cls, sel);
+                free(ivarName);
                 
-                method_setImplementation(method, imp);
-                
-                didResolve = YES;
+                didResolve = class_addMethod(cls, sel, imp, "v@:@");
             }
             
+            free(propName);
+        
+            //} else if (strncmp(prefix = "_set", selName, prefixLen = strlen(prefix)) == 0) {
+            
+            // do nothing
+            
+            //} else if (strncmp(prefix = "get", selName, prefixLen = strlen(prefix)) == 0) {
+            
+            // do nothing
+            
+            //} else if (strncmp(prefix = "replace", selName, prefixLen = strlen(prefix)) == 0) {
+            
+            // do nothing
             
         } else {
             
             // getter
             
-            NSString *propType = selName;
-            NSString *ivarName = [NSString stringWithFormat:@"_%@", propType];
+            prefix = "";
+            prefixLen = 0;
             
-            Ivar ivar = class_getInstanceVariable(self, [ivarName cStringUsingEncoding:NSASCIIStringEncoding]);
+            size_t size = strlen(selName) - prefixLen;
             
-            if ([[cls validPropertyTypes] containsObject:propType]) {
+            char *propName = calloc(size, sizeof(char));
+            strncpy(propName, selName+prefixLen, size);
+            
+            NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            
+            if ([[cls validPropertyTypes] containsObject:propString]) {
+                shouldResolve = YES;
                 
-                //NSLog(@"**** Swizzling %@ :: %@ (%@ / %@) ****", cls, selName, propType, ivarName);
+                char *ivarName = ivarNameFromPropName(propName);
+                
+                Ivar ivar = class_getInstanceVariable(self, ivarName);
                 
                 IMP imp = imp_implementationWithBlock(^(GCObject *_s) {
-                    //NSLog(@"!!swizz called!! ::: %@ : %@ ::: => %@", cls, selName, object_getIvar(_s, ivar));
-                    
                     return object_getIvar(_s, ivar);
                 });
                 
+                free(ivarName);
+                
                 didResolve = class_addMethod(cls, sel, imp, "@@:");
             }
+            
+            free(propName);
         }
         
         if (didResolve) {
-            //NSLog(@"%@ -> added %@", [self className], selName);
+            //NSLog(@"%@ -> added %s", [self className], selName);
             
             return YES;
         } else {
+            NSParameterAssert(!shouldResolve); // Something went wrong...
             return [super resolveInstanceMethod:sel];
         }
     }
