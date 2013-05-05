@@ -34,7 +34,7 @@ __strong static NSDictionary *_genderStore;
     return self;
 }
 
-+ (id)valueWithGedcomString:(NSString *)string
++ (instancetype)valueWithGedcomString:(NSString *)string
 {
     GCGender *value = _genderStore[string];
     
@@ -45,17 +45,17 @@ __strong static NSDictionary *_genderStore;
     return value;
 }
 
-+ (id)maleGender
++ (instancetype)maleGender
 {
     return [self valueWithGedcomString:@"M"];
 }
 
-+ (id)femaleGender
++ (instancetype)femaleGender
 {
     return [self valueWithGedcomString:@"F"];
 }
 
-+ (id)unknownGender
++ (instancetype)unknownGender
 {
     return [self valueWithGedcomString:@"U"];
 }

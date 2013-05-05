@@ -26,7 +26,7 @@ __strong static NSMutableDictionary *_allPlaces = nil;
     _allPlaces = [NSMutableDictionary dictionary];
 }
 
-+ (id)rootPlace
++ (instancetype)rootPlace
 {
     return _rootPlace;
 }
@@ -43,7 +43,7 @@ __strong static NSMutableDictionary *_allPlaces = nil;
     return self;
 }
 
-+ (id)valueWithGedcomString:(NSString *)gedcomString
++ (instancetype)valueWithGedcomString:(NSString *)gedcomString
 {
     @synchronized(_allPlaces) {
         if (_allPlaces[gedcomString]) {

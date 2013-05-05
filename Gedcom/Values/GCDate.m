@@ -354,7 +354,7 @@
 
 @implementation GCPlaceholderDate
 
-+ (id)allocWithZone:(NSZone *)zone
++ (instancetype)allocWithZone:(NSZone *)zone
 {
     static dispatch_once_t pred = 0;
     __strong static id _sharedDatePlaceholder = nil;
@@ -442,7 +442,7 @@
 
 #pragma mark Initialization
 
-+ (id)allocWithZone:(NSZone *)zone
++ (instancetype)allocWithZone:(NSZone *)zone
 {
     if ([GCDate self] == self)
         return [GCPlaceholderDate allocWithZone:zone];    
@@ -513,47 +513,47 @@
 
 #pragma mark Convenience constructors
 
-+ (id)valueWithGedcomString:(NSString *)gedcom
++ (instancetype)valueWithGedcomString:(NSString *)gedcom
 {
 	return [[self alloc] initWithGedcom:gedcom];
 }
 
-+ (id)dateWithDate:(NSDate *)date
++ (instancetype)dateWithDate:(NSDate *)date
 {
     return [[self alloc] initWithDate:date];
 }
 
-+ (id)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
++ (instancetype)dateWithSimpleDate:(NSDateComponents *)co calendar:(NSCalendar *)ca
 {
 	return [[self alloc] initWithSimpleDate:co calendar:ca];
 }
 
-+ (id)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
++ (instancetype)dateWithApproximateDate:(GCSimpleDate *)sd type:(NSString *)t
 {
 	return [[self alloc] initWithApproximateDate:sd type:t];
 }
 
-+ (id)dateWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
++ (instancetype)dateWithInterpretedDate:(GCSimpleDate *)sd phrase:(GCDatePhrase *)p
 {
     return [[self alloc] initWithInterpretedDate:sd phrase:p];
 }
 
-+ (id)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
++ (instancetype)dateWithPeriodFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
     return [[self alloc] initWithDatePeriodFrom:f to:t];
 }
 
-+ (id)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
++ (instancetype)dateWithRangeFrom:(GCSimpleDate *)f to:(GCSimpleDate *)t
 {
     return [[self alloc] initWithDateRangeFrom:f to:t];
 }
 
-+ (id)dateWithPhrase:(NSString *)p
++ (instancetype)dateWithPhrase:(NSString *)p
 {
     return [[self alloc] initWithDatePhrase:p];
 }
 
-+ (id)dateWithInvalidDateString:(NSString *)s
++ (instancetype)dateWithInvalidDateString:(NSString *)s
 {
     return [[self alloc] initWithInvalidDateString:s];
 }
@@ -562,7 +562,7 @@
 
 //TODO take into account age qualifiers and make them BEF/AFT
 
-- (id)dateByAddingAge:(GCAge *)age
+- (instancetype)dateByAddingAge:(GCAge *)age
 {
     NSDate *theDate = self.minDate ? self.minDate : self.maxDate;
     
@@ -581,7 +581,7 @@
     return [GCDate dateWithDate:result];
 }
 
-- (id)dateBySubtractingAge:(GCAge *)age
+- (instancetype)dateBySubtractingAge:(GCAge *)age
 {
     NSDate *theDate = self.minDate ? self.minDate : self.maxDate;
     

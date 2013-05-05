@@ -123,7 +123,7 @@ NSString * const GCAgeQualifier_toString[] = {
  INFANT = age < 1 year 
  STILLBORN = died just prior, at, or near birth, 0 years 
  */
-- (GCSimpleAge *)refAge
+- (id)refAge
 {
     NSDateComponents *ageComponents = [[NSDateComponents alloc] init]; 
     
@@ -185,7 +185,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 @implementation GCPlaceholderAge
 
-+ (id)allocWithZone:(NSZone *)zone
++ (instancetype)allocWithZone:(NSZone *)zone
 {
     static dispatch_once_t pred = 0;
     __strong static id _sharedAgePlaceholder = nil;
@@ -236,7 +236,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 #pragma mark Initialization
 
-+ (id)allocWithZone:(NSZone *)zone
++ (instancetype)allocWithZone:(NSZone *)zone
 {
     if ([GCAge self] == self)
         return [GCPlaceholderAge allocWithZone:zone];    
@@ -270,29 +270,29 @@ NSString * const GCAgeQualifier_toString[] = {
 
 #pragma mark Convenience constructors
 
-+ (id)valueWithGedcomString:(NSString *)gedcom
++ (instancetype)valueWithGedcomString:(NSString *)gedcom
 {
 	return [[self alloc] initWithGedcom:gedcom];
 }
 
-+ (id)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
++ (instancetype)ageWithSimpleAge:(NSDateComponents *)c qualifier:(GCAgeQualifier)q
 {
 	return [[self alloc] initWithSimpleAge:c qualifier:q];
 }
 
-+ (id)ageWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
++ (instancetype)ageWithAgeKeyword:(NSString *)s qualifier:(GCAgeQualifier)q
 {
 	return [[self alloc] initWithAgeKeyword:s qualifier:q];
 }
 
-+ (id)ageWithInvalidAgeString:(NSString *)s
++ (instancetype)ageWithInvalidAgeString:(NSString *)s
 {
 	return [[self alloc] initWithInvalidAgeString:s];
 }
 
 #pragma mark Helpers
 
-+ (id)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
++ (instancetype)ageFromDate:(GCDate *)fromDate toDate:(GCDate *)toDate
 {
     NSCalendar *calendar = fromDate.calendar;
     

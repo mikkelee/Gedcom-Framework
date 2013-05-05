@@ -23,7 +23,7 @@
     return self;
 }
 
-+ (id)valueWithGedcomString:(NSString *)gedcomString
++ (instancetype)valueWithGedcomString:(NSString *)gedcomString
 {
     return [[self alloc] initWithGedcomString:gedcomString];
 }

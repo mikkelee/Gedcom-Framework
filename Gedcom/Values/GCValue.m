@@ -13,7 +13,7 @@
 #pragma mark Initialization
 
 //COV_NF_START
-+ (id)valueWithGedcomString:(NSString *)gedcomString
++ (instancetype)valueWithGedcomString:(NSString *)gedcomString
 {
     [self doesNotRecognizeSelector:_cmd];    
     return nil;

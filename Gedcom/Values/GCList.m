@@ -27,7 +27,7 @@
     return self;
 }
 
-+ (id)valueWithGedcomString:(NSString *)gedcomString
++ (instancetype)valueWithGedcomString:(NSString *)gedcomString
 {
     NSMutableArray *elements = [NSMutableArray array];
         

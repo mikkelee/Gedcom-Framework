@@ -33,7 +33,7 @@ __strong static NSDictionary *_boolStore;
     return self;
 }
 
-+ (id)valueWithGedcomString:(NSString *)string
++ (instancetype)valueWithGedcomString:(NSString *)string
 {
     GCBool *value = _boolStore[string];
     
@@ -44,12 +44,12 @@ __strong static NSDictionary *_boolStore;
     return value;
 }
 
-+ (id)yes
++ (instancetype)yes
 {
     return [self valueWithGedcomString:@"Y"];
 }
 
-+ (id)undecided
++ (instancetype)undecided
 {
     return [self valueWithGedcomString:@""];
 }
