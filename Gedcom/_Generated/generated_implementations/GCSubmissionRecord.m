@@ -49,7 +49,7 @@
 @dynamic generationsOfDescendants;
 @dynamic ordinanceFlag;
 @synthesize userReferenceNumbers = _userReferenceNumbers;
-
+@dynamic mutableUserReferenceNumbers;
 - (NSMutableArray *)mutableUserReferenceNumbers
 {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];

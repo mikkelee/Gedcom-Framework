@@ -85,14 +85,14 @@
 @dynamic cause;
 @dynamic sources;
 @synthesize sourceCitations = _sourceCitations;
-
+@dynamic mutableSourceCitations;
 - (NSMutableArray *)mutableSourceCitations
 {
 	return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
 @synthesize sourceEmbeddeds = _sourceEmbeddeds;
-
+@dynamic mutableSourceEmbeddeds;
 - (NSMutableArray *)mutableSourceEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -100,14 +100,14 @@
 
 @dynamic multimedias;
 @synthesize multimediaReferences = _multimediaReferences;
-
+@dynamic mutableMultimediaReferences;
 - (NSMutableArray *)mutableMultimediaReferences
 {
 	return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
 @synthesize multimediaEmbeddeds = _multimediaEmbeddeds;
-
+@dynamic mutableMultimediaEmbeddeds;
 - (NSMutableArray *)mutableMultimediaEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -115,14 +115,14 @@
 
 @dynamic notes;
 @synthesize noteReferences = _noteReferences;
-
+@dynamic mutableNoteReferences;
 - (NSMutableArray *)mutableNoteReferences
 {
 	return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
 @synthesize noteEmbeddeds = _noteEmbeddeds;
-
+@dynamic mutableNoteEmbeddeds;
 - (NSMutableArray *)mutableNoteEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];

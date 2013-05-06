@@ -59,7 +59,7 @@
 // Properties:
 @dynamic address;
 @synthesize phoneNumbers = _phoneNumbers;
-
+@dynamic mutablePhoneNumbers;
 - (NSMutableArray *)mutablePhoneNumbers
 {
 	return [self mutableArrayValueForKey:@"phoneNumbers"];

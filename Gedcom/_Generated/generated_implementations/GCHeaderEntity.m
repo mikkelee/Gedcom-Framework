@@ -48,7 +48,7 @@
 // Properties:
 @dynamic headerSource;
 @synthesize destinations = _destinations;
-
+@dynamic mutableDestinations;
 - (NSMutableArray *)mutableDestinations
 {
 	return [self mutableArrayValueForKey:@"destinations"];
@@ -57,7 +57,7 @@
 @dynamic headerDate;
 @dynamic submitterReference;
 @synthesize submissionReferences = _submissionReferences;
-
+@dynamic mutableSubmissionReferences;
 - (NSMutableArray *)mutableSubmissionReferences
 {
 	return [self mutableArrayValueForKey:@"submissionReferences"];
