@@ -103,64 +103,21 @@ static dispatch_queue_t _tagSetupQueue;
     _tagSetupQueue = dispatch_queue_create("dk.kildekort.Gedcom.tagSetup", DISPATCH_QUEUE_CONCURRENT);
     
     dispatch_group_async(_tagSetupGroup, _tagSetupQueue, ^{
-        setupKey((NSString *)kRootObject);
-    });
-}
-
-static inline void setupKey(NSString *key) {
-    if (_tagStore[key]) {
-        return;
-    }
-    
-    NSMutableDictionary *tagDict = _tagInfo[key];
-    assert(tagDict != nil);
-    
-    // store tags
-    if (tagDict[kTagCode] != nil) {
-        GCTag *tag = [[GCTag alloc] initWithName:key
-                                        settings:tagDict];
-        
-        _tagStore[key] = tag;
-        _tagStore[tagDict[kPluralName]] = tag;
-        _tagStore[NSClassFromString(tagDict[kClassName])] = tag;
-        
-        if ([tagDict[kObjectType] isEqualToString:@"entity"] || [tagDict[kObjectType] isEqualToString:@"record"]) {
-            _rootTagsByCode[tagDict[kTagCode]] = tag;
-        }
-    }
-    
-    // set up variants
-    for (NSDictionary *variant in tagDict[kVariants]) {
-        if (variant[kGroupName]) {
-            for (NSDictionary *subVariant in _tagInfo[variant[kGroupName]][kVariants]) {
-                setupKey(subVariant[kTagName]);
+        [_tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSMutableDictionary *tagDict, BOOL *stop) {
+            if (tagDict[kTagCode] != nil) {
+                GCTag *tag = [[GCTag alloc] initWithName:key
+                                                settings:tagDict];
+                
+                _tagStore[key] = tag;
+                _tagStore[tagDict[kPluralName]] = tag;
+                _tagStore[NSClassFromString(tagDict[kClassName])] = tag;
+                
+                if ([tagDict[kObjectType] isEqualToString:@"entity"] || [tagDict[kObjectType] isEqualToString:@"record"]) {
+                    _rootTagsByCode[tagDict[kTagCode]] = tag;
+                }
             }
-        } else {
-            setupKey(variant[kTagName]);
-        }
-    }
-    
-    // set up subtags
-    for (NSDictionary *subTag in tagDict[kValidSubTags]) {
-        if (subTag[kGroupName]) {
-            setupKey(subTag[kGroupName]);
-        } else if (subTag[kSubClassName]) {
-            setupKey(subTag[kSubClassName]);
-        } else {
-            setupKey(subTag[kTagName]);
-        }
-    }
-    
-    // set up subtags
-    for (NSDictionary *subClass in tagDict[kSubClasses]) {
-        if (subClass[kGroupName]) {
-            setupKey(subClass[kGroupName]);
-        } else if (subClass[kSubClassName]) {
-            setupKey(subClass[kSubClassName]);
-        } else {
-            setupKey(subClass[kTagName]);
-        }
-    }
+        }];
+    });
 }
 
 static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *occurrencesDicts, NSDictionary *subtag) {
