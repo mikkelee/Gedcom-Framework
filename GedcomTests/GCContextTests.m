@@ -21,19 +21,21 @@
     
     GCHeaderEntity *head = [GCHeaderEntity defaultHeaderInContext:ctx];
     
-    //TODO insert version number from plist.
-    NSString *expected =
-    @"0 HEAD\n"
-    @"1 SOUR Gedcom.framework\n"
-    @"2 VERS 0.9.4\n"
-    @"2 NAME Gedcom.framework\n"
-    @"2 CORP Mikkel Eide Eriksen\n"
-    @"3 ADDR http://github.com/mikkelee/Gedcom-Framework\n"
-    @"1 SUBM @SUBM1@\n"
-    @"1 GEDC\n"
-    @"2 VERS 5.5\n"
-    @"2 FORM LINEAGE-LINKED\n"
-    @"1 CHAR UNICODE";
+    NSDictionary *info = [[NSBundle bundleForClass:[GCContext class]] infoDictionary];
+    
+    NSString *expected = [NSString stringWithFormat:
+                          @"0 HEAD\n"
+                          @"1 SOUR Gedcom.framework\n"
+                          @"2 VERS %@\n"
+                          @"2 NAME Gedcom.framework\n"
+                          @"2 CORP Mikkel Eide Eriksen\n"
+                          @"3 ADDR http://github.com/mikkelee/Gedcom-Framework\n"
+                          @"1 SUBM @SUBM1@\n"
+                          @"1 GEDC\n"
+                          @"2 VERS 5.5\n"
+                          @"2 FORM LINEAGE-LINKED\n"
+                          @"1 CHAR UNICODE"
+                          , [info objectForKey:@"CFBundleShortVersionString"]];
     
     STAssertEqualObjects(head.gedcomString, expected, nil);
 }
