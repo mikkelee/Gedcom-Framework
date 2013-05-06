@@ -34,7 +34,7 @@ def pluralize(tagInfo, key):
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
 
 mutablePropertyT = Template("""@synthesize $name = _$name;
-
+@dynamic mutable$capName;
 - (NSMutableArray *)mutable$capName
 {
 	return [self mutableArrayValueForKey:@"$name"];
