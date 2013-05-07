@@ -134,7 +134,7 @@
     
     GCAttribute *attr = [[tag.objectClass alloc] initWithValue:val];
     
-    if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+    if ([self allowsMultipleOccurrencesOfPropertyType:type]) {
         [[self mutableArrayValueForKey:tag.pluralName] addObject:attr];
     } else {
         [self setValue:attr forKey:tag.name];
@@ -168,7 +168,7 @@
     
     GCRelationship *rel = [[tag.objectClass alloc] init];
     
-    if ([self.gedTag allowsMultipleOccurrencesOfSubTag:tag]) {
+    if ([self allowsMultipleOccurrencesOfPropertyType:type]) {
         [[self mutableArrayValueForKey:tag.pluralName] addObject:rel];
     } else {
         [self setValue:rel forKey:tag.name];
