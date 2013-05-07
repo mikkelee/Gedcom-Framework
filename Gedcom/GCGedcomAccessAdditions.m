@@ -90,8 +90,8 @@ __strong static NSDictionary *_defaultColors;
 {
     NSMutableArray *subNodes = [NSMutableArray array];
     
-    for (id property in self.properties) {
-        [subNodes addObject:[property valueForKey:@"gedcomNode"]];
+    for (GCProperty *property in self.properties) {
+        [subNodes addObject:property.gedcomNode];
     }
     
 	return subNodes;
