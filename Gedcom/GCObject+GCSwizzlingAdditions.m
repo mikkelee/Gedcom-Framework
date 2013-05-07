@@ -35,7 +35,7 @@ static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMul
         if ([*cls gedTag] && [[*cls validPropertyTypes] containsObject:propString]) {
             if (isMultiple && [*cls allowsMultipleOccurrencesOfPropertyType:propString]) {
                 return YES;
-            } else if (!isMultiple) {
+            } else if (!isMultiple && ![*cls allowsMultipleOccurrencesOfPropertyType:propString]) {
                 return YES;
             }
         }
