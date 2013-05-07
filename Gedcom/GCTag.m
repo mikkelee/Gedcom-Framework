@@ -333,8 +333,8 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
             
             GCTag *tag = [[GCTag alloc] initWithName:tagName
                                             settings:@{kTagCode: code,
-                                               kTagName: tagName,
-                                             kPluralName: pluralName,
+                                            kTagName: tagName,
+                                         kPluralName: pluralName,
                                           kValueType: @"string",
                                          kTargetType: @"record",
                                          kObjectType: type,
