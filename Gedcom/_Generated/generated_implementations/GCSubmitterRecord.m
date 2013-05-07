@@ -51,7 +51,7 @@
 @dynamic descriptiveName;
 @dynamic address;
 @synthesize phoneNumbers = _phoneNumbers;
-@dynamic mutablePhoneNumbers;
+
 - (NSMutableArray *)mutablePhoneNumbers
 {
 	return [self mutableArrayValueForKey:@"phoneNumbers"];
@@ -59,21 +59,21 @@
 
 @dynamic multimedias;
 @synthesize multimediaReferences = _multimediaReferences;
-@dynamic mutableMultimediaReferences;
+
 - (NSMutableArray *)mutableMultimediaReferences
 {
 	return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
 @synthesize multimediaEmbeddeds = _multimediaEmbeddeds;
-@dynamic mutableMultimediaEmbeddeds;
+
 - (NSMutableArray *)mutableMultimediaEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
 }
 
 @synthesize languages = _languages;
-@dynamic mutableLanguages;
+
 - (NSMutableArray *)mutableLanguages
 {
 	return [self mutableArrayValueForKey:@"languages"];
@@ -82,7 +82,7 @@
 @dynamic recordFileNumber;
 @dynamic ancestralFileNumber;
 @synthesize userReferenceNumbers = _userReferenceNumbers;
-@dynamic mutableUserReferenceNumbers;
+
 - (NSMutableArray *)mutableUserReferenceNumbers
 {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];

@@ -81,77 +81,77 @@
 // Properties:
 @dynamic familyEvents;
 @synthesize annulments = _annulments;
-@dynamic mutableAnnulments;
+
 - (NSMutableArray *)mutableAnnulments
 {
 	return [self mutableArrayValueForKey:@"annulments"];
 }
 
 @synthesize censuses = _censuses;
-@dynamic mutableCensuses;
+
 - (NSMutableArray *)mutableCensuses
 {
 	return [self mutableArrayValueForKey:@"censuses"];
 }
 
 @synthesize divorces = _divorces;
-@dynamic mutableDivorces;
+
 - (NSMutableArray *)mutableDivorces
 {
 	return [self mutableArrayValueForKey:@"divorces"];
 }
 
 @synthesize divorceFileds = _divorceFileds;
-@dynamic mutableDivorceFileds;
+
 - (NSMutableArray *)mutableDivorceFileds
 {
 	return [self mutableArrayValueForKey:@"divorceFileds"];
 }
 
 @synthesize engagements = _engagements;
-@dynamic mutableEngagements;
+
 - (NSMutableArray *)mutableEngagements
 {
 	return [self mutableArrayValueForKey:@"engagements"];
 }
 
 @synthesize marriages = _marriages;
-@dynamic mutableMarriages;
+
 - (NSMutableArray *)mutableMarriages
 {
 	return [self mutableArrayValueForKey:@"marriages"];
 }
 
 @synthesize marriageBanns = _marriageBanns;
-@dynamic mutableMarriageBanns;
+
 - (NSMutableArray *)mutableMarriageBanns
 {
 	return [self mutableArrayValueForKey:@"marriageBanns"];
 }
 
 @synthesize marriageContracts = _marriageContracts;
-@dynamic mutableMarriageContracts;
+
 - (NSMutableArray *)mutableMarriageContracts
 {
 	return [self mutableArrayValueForKey:@"marriageContracts"];
 }
 
 @synthesize marriageLicenses = _marriageLicenses;
-@dynamic mutableMarriageLicenses;
+
 - (NSMutableArray *)mutableMarriageLicenses
 {
 	return [self mutableArrayValueForKey:@"marriageLicenses"];
 }
 
 @synthesize marriageSettlements = _marriageSettlements;
-@dynamic mutableMarriageSettlements;
+
 - (NSMutableArray *)mutableMarriageSettlements
 {
 	return [self mutableArrayValueForKey:@"marriageSettlements"];
 }
 
 @synthesize genericEvents = _genericEvents;
-@dynamic mutableGenericEvents;
+
 - (NSMutableArray *)mutableGenericEvents
 {
 	return [self mutableArrayValueForKey:@"genericEvents"];
@@ -160,7 +160,7 @@
 @dynamic husband;
 @dynamic wife;
 @synthesize children = _children;
-@dynamic mutableChildren;
+
 - (NSMutableArray *)mutableChildren
 {
 	return [self mutableArrayValueForKey:@"children"];
@@ -168,14 +168,14 @@
 
 @dynamic numberOfChildren;
 @synthesize submitterReferences = _submitterReferences;
-@dynamic mutableSubmitterReferences;
+
 - (NSMutableArray *)mutableSubmitterReferences
 {
 	return [self mutableArrayValueForKey:@"submitterReferences"];
 }
 
 @synthesize lDSSealingSpouses = _lDSSealingSpouses;
-@dynamic mutableLDSSealingSpouses;
+
 - (NSMutableArray *)mutableLDSSealingSpouses
 {
 	return [self mutableArrayValueForKey:@"lDSSealingSpouses"];
@@ -183,14 +183,14 @@
 
 @dynamic sources;
 @synthesize sourceCitations = _sourceCitations;
-@dynamic mutableSourceCitations;
+
 - (NSMutableArray *)mutableSourceCitations
 {
 	return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
 @synthesize sourceEmbeddeds = _sourceEmbeddeds;
-@dynamic mutableSourceEmbeddeds;
+
 - (NSMutableArray *)mutableSourceEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
@@ -198,14 +198,14 @@
 
 @dynamic multimedias;
 @synthesize multimediaReferences = _multimediaReferences;
-@dynamic mutableMultimediaReferences;
+
 - (NSMutableArray *)mutableMultimediaReferences
 {
 	return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
 @synthesize multimediaEmbeddeds = _multimediaEmbeddeds;
-@dynamic mutableMultimediaEmbeddeds;
+
 - (NSMutableArray *)mutableMultimediaEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
@@ -213,21 +213,21 @@
 
 @dynamic notes;
 @synthesize noteReferences = _noteReferences;
-@dynamic mutableNoteReferences;
+
 - (NSMutableArray *)mutableNoteReferences
 {
 	return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
 @synthesize noteEmbeddeds = _noteEmbeddeds;
-@dynamic mutableNoteEmbeddeds;
+
 - (NSMutableArray *)mutableNoteEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
 }
 
 @synthesize userReferenceNumbers = _userReferenceNumbers;
-@dynamic mutableUserReferenceNumbers;
+
 - (NSMutableArray *)mutableUserReferenceNumbers
 {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];

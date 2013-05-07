@@ -59,7 +59,7 @@
 // Properties:
 @dynamic date;
 @synthesize texts = _texts;
-@dynamic mutableTexts;
+
 - (NSMutableArray *)mutableTexts
 {
 	return [self mutableArrayValueForKey:@"texts"];
