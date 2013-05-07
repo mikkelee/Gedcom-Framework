@@ -76,7 +76,6 @@ const NSString *kIsMain = @"isMain";
 
 __strong static NSMapTable *_tagStore;
 __strong static NSMutableDictionary *_tagInfo;
-__strong static NSMutableDictionary *_singularToPlural;
 __strong static NSMutableDictionary *_rootTagsByCode;
 
 static dispatch_group_t _tagSetupGroup;
@@ -85,7 +84,6 @@ static dispatch_queue_t _tagSetupQueue;
 + (void)load
 {
     _tagStore = [NSMapTable mapTableWithStrongToStrongObjects];
-    _singularToPlural = [NSMutableDictionary dictionary];
     _rootTagsByCode = [NSMutableDictionary dictionary];
     
     NSString *jsonPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"tags"
@@ -145,6 +143,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
 {
     NSMutableDictionary *occurrencesDicts = [NSMutableDictionary dictionary];
     NSMutableOrderedSet *subTags = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
+    
     for (NSDictionary *subtag in _settings[kValidSubTags]) {
         expandSubtag(subTags, occurrencesDicts, subtag);
     }
@@ -385,6 +384,10 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     }
     
     if (_settings[kValidSubTags] == nil) {
+        return (GCAllowedOccurrences){0, 0};
+    }
+    
+    if (![self isValidSubTag:tag]) {
         return (GCAllowedOccurrences){0, 0};
     }
     
