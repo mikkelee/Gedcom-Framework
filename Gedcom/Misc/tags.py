@@ -84,6 +84,49 @@ def property(tagInfo, selfClass, key, type, doc, forwardDeclarations, is_plural,
 
 ##########################################################################################
 
+def decamelcase(name):
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
+
+def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplementations, ivars, forwardDeclarations):
+	section = decamelcase(pluralize(tagInfo, group))
+	docHeader = '@name Accessing %s' % section
+	defaultDoc = '%s\n\n/// Property for accessing the following properties' % docHeader
+	
+	dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
+					
+	propertyDeclarations.append(dec)
+	propertyImplementations.append(imp)
+	if ivar: ivars.append(ivar)
+	
+	props = []
+	if tagInfo[group].has_key('variants'):
+		props.extend(tagInfo[group]['variants'])
+	if tagInfo[group].has_key('subClasses'):
+		props.extend(tagInfo[group]['subClasses'])
+	
+	for variant in props:
+		if variant.has_key('groupName'):
+			dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
+			
+			if dec not in propertyDeclarations:
+				propertyDeclarations.append(dec)
+				propertyImplementations.append(imp)
+				if ivar: ivars.append(ivar)
+			
+			expand_group(tagInfo, className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
+			continue
+		print >> sys.stderr, '		PROCESSING VARIANT "%s": %s' % (variant['name'], tagInfo[variant['name']])
+
+		doc = '%s \n\n///Also contained in %ss. %s' % (docHeader, group[1:], variant['doc'] if variant.has_key('doc') else '')
+
+		dec, imp, ivar = property(tagInfo, className, variant['name'], tagInfo[variant['name']]['objectType'], doc, forwardDeclarations, variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
+		propertyDeclarations.append(dec)
+		propertyImplementations.append(imp)
+		if ivar: ivars.append(ivar)
+
+##########################################################################################
+
 constructorDeclarationT = Template("""/// @name Initializing
 
 /** Initializes and returns a $name.
@@ -143,49 +186,6 @@ def constructors(key, type):
 				extra='WithGedcomStringValue:value'
 			)
 	return cons
-
-##########################################################################################
-
-def decamelcase(name):
-    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
-    return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
-
-def expand_group(tagInfo, className, group, propertyDeclarations, propertyImplementations, ivars, forwardDeclarations):
-	section = decamelcase(pluralize(tagInfo, group))
-	docHeader = '@name Accessing %s' % section
-	defaultDoc = '%s\n\n/// Property for accessing the following properties' % docHeader
-	
-	dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
-					
-	propertyDeclarations.append(dec)
-	propertyImplementations.append(imp)
-	if ivar: ivars.append(ivar)
-	
-	props = []
-	if tagInfo[group].has_key('variants'):
-		props.extend(tagInfo[group]['variants'])
-	if tagInfo[group].has_key('subClasses'):
-		props.extend(tagInfo[group]['subClasses'])
-	
-	for variant in props:
-		if variant.has_key('groupName'):
-			dec, imp, ivar = property(tagInfo, className, group[1:], '', defaultDoc, forwardDeclarations, True, False, is_property_group=True)
-			
-			if dec not in propertyDeclarations:
-				propertyDeclarations.append(dec)
-				propertyImplementations.append(imp)
-				if ivar: ivars.append(ivar)
-			
-			expand_group(tagInfo, className, variant['groupName'], propertyDeclarations, propertyImplementations, ivars, forwardDeclarations)
-			continue
-		print >> sys.stderr, '		PROCESSING VARIANT "%s": %s' % (variant['name'], tagInfo[variant['name']])
-
-		doc = '%s \n\n///Also contained in %ss. %s' % (docHeader, group[1:], variant['doc'] if variant.has_key('doc') else '')
-
-		dec, imp, ivar = property(tagInfo, className, variant['name'], tagInfo[variant['name']]['objectType'], doc, forwardDeclarations, variant['max'] == 'M' or variant['max'] > 1, variant['min'] == 1)
-		propertyDeclarations.append(dec)
-		propertyImplementations.append(imp)
-		if ivar: ivars.append(ivar)
 
 ##########################################################################################
 
