@@ -1070,9 +1070,9 @@
 		3E053D941728167B0060A622 /* Context tests */ = {
 			isa = PBXGroup;
 			children = (
+				3E03110B1736B7A700CD9721 /* GCContextTests.m */,
 				3E396A06155B43B600AE8636 /* GCContextFileTests.m */,
 				3E053D961728170F0060A622 /* GCXrefTests.m */,
-				3E03110B1736B7A700CD9721 /* GCContextTests.m */,
 			);
 			name = "Context tests";
 			sourceTree = "<group>";
