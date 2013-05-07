@@ -26,14 +26,34 @@ static inline char* ivarNameFromPropName(const char *propName) {
     return ivarName;
 }
 
+
+// Ascend class hierarchy and find the class that claims the property
+static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMultiple) {
+    //NSLog(@"Looking for %@ on %@", propString, *cls);
+    
+    do {
+        if ([*cls gedTag] && [[*cls validPropertyTypes] containsObject:propString]) {
+            if (isMultiple && [*cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+                return YES;
+            } else if (!isMultiple) {
+                return YES;
+            }
+        }
+        *cls = class_getSuperclass(*cls);
+        //NSLog(@"=> %@", *cls);
+    } while (*cls != [GCObject class]);
+    
+    return NO;
+}
+
 @implementation GCObject (GCSwizzlingAdditions)
 
 + (BOOL)resolveInstanceMethod:(SEL)sel
 {
     @synchronized (self) {
-        Class cls = [self class];
+        Class cls;
         
-        NSBundle *frameworkBundle = [NSBundle bundleForClass:cls];
+        NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
         
         NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
                                                                   value:@"Undo %@"
@@ -63,8 +83,10 @@ static inline char* ivarNameFromPropName(const char *propName) {
             }
             
             NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            cls = [self class];
             
-            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+            if (classHasProperty(&cls, propString, YES)) {
+                NSParameterAssert(cls == [self class]); // TEST remove when it works...
                 shouldResolve = YES;
                 
                 NSString *reverseSelName = [NSString stringWithFormat:@"removeObjectFrom%@%@AtIndex:", [[propString substringToIndex:1] uppercaseString], [propString substringFromIndex:1]];
@@ -130,8 +152,9 @@ static inline char* ivarNameFromPropName(const char *propName) {
             }
             
             NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            cls = [self class];
             
-            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+            if (classHasProperty(&cls, propString, YES)) {
                 shouldResolve = YES;
                 
                 NSString *reverseSelName = [NSString stringWithFormat:@"insertObject:in%@%@AtIndex:", [[propString substringToIndex:1] uppercaseString], [propString substringFromIndex:1]];
@@ -191,8 +214,9 @@ static inline char* ivarNameFromPropName(const char *propName) {
             }
             
             NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            cls = [self class];
             
-            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+            if (classHasProperty(&cls, propString, YES)) {
                 shouldResolve = YES;
                 
                 char *ivarName = ivarNameFromPropName(propName);
@@ -225,8 +249,9 @@ static inline char* ivarNameFromPropName(const char *propName) {
             propName[0] += 32; // lowercase first char
             
             NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            cls = [self class];
             
-            if ([[cls validPropertyTypes] containsObject:propString] && [cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+            if (classHasProperty(&cls, propString, YES)) {
                 shouldResolve = YES;
                 
                 char *ivarName = ivarNameFromPropName(propName);
@@ -255,8 +280,9 @@ static inline char* ivarNameFromPropName(const char *propName) {
             propName[0] += 32; // lowercase first char
             
             NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            cls = [self class];
             
-            if ([[cls validPropertyTypes] containsObject:propString] && ![cls allowsMultipleOccurrencesOfPropertyType:propString]) {
+            if (classHasProperty(&cls, propString, NO)) {
                 shouldResolve = YES;
                 
                 char *ivarName = ivarNameFromPropName(propName);
@@ -325,8 +351,9 @@ static inline char* ivarNameFromPropName(const char *propName) {
             strncpy(propName, selName+prefixLen, size);
             
             NSString *propString = [NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+            cls = [self class];
             
-            if ([[cls validPropertyTypes] containsObject:propString]) {
+            if (classHasProperty(&cls, propString, NO)) {
                 shouldResolve = YES;
                 
                 char *ivarName = ivarNameFromPropName(propName);
