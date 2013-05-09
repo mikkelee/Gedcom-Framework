@@ -19,31 +19,6 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     _validPropertiesByType = [NSMutableDictionary dictionary];
 }
 
-+ (NSOrderedSet *)validPropertyTypes
-{
-    @synchronized(_validPropertiesByType) {
-        NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
-        
-        if (!_validProperties) {
-            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSetWithCapacity:[self.gedTag.validSubTags count]];
-            
-            for (GCTag *subTag in self.gedTag.validSubTags) {
-                if ([self.gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
-                    [valid addObject:subTag.pluralName];
-                } else {
-                    [valid addObject:subTag.name];
-                }
-            }
-            
-            _validProperties = [valid copy];
-            
-            _validPropertiesByType[self.type] = _validProperties;
-        }
-        
-        return _validProperties;
-    }
-}
-
 + (GCTag *)gedTag
 {
     GCTag *tag = [GCTag tagWithObjectClass:self];
@@ -84,6 +59,31 @@ __strong static NSMutableDictionary *_validPropertiesByType;
     });
     
     return _rootClasses;
+}
+
++ (NSOrderedSet *)validPropertyTypes
+{
+    @synchronized(_validPropertiesByType) {
+        NSOrderedSet *_validProperties = _validPropertiesByType[self.type];
+        
+        if (!_validProperties) {
+            NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSet];
+            
+            for (GCTag *subTag in self.gedTag.validSubTags) {
+                if ([self.gedTag allowedOccurrencesOfSubTag:subTag].max > 1) {
+                    [valid addObject:subTag.pluralName];
+                } else {
+                    [valid addObject:subTag.name];
+                }
+            }
+            
+            _validProperties = [valid copy];
+            
+            _validPropertiesByType[self.type] = _validProperties;
+        }
+        
+        return _validProperties;
+    }
 }
 
 - (NSOrderedSet *)validPropertyTypes
