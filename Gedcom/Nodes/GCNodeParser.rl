@@ -81,6 +81,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
             if (level == 0) { //root
                 if (currentRoot) {
                     nodeCount++;
+                    [nodes addObject:currentRoot];
                     if (_delegate) {
                         [_delegate parser:self didParseNode:currentRoot];
                     }
@@ -111,6 +112,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 	action finish {
         if (currentRoot) {
             nodeCount++;
+            [nodes addObject:currentRoot];
             if (_delegate) {
                 [_delegate parser:self didParseNode:currentRoot];
             }
@@ -188,6 +190,8 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
             [_delegate parser:self willParseCharacterCount:[gedString length]];
         }
         
+        NSMutableArray *nodes = [NSMutableArray array];
+        
 #ifdef DEBUGLEVEL
         NSDate *start = [NSDate date];
 #endif
@@ -200,6 +204,8 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
         NSLog(@"parsed %ld nodes in %ld lines - Time: %f seconds", nodeCount, lineCount, timeInterval);
 #endif
         
+        _parsedNodes = [nodes copy];
+
         if (_delegate) {
             [_delegate parser:self didParseNodesWithCount:nodeCount];
         }
@@ -229,55 +235,20 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 
 @end
 
-@interface _GCNodeParserConvenienceDelegate : NSObject <GCNodeParserDelegate>
-
-@property NSArray *nodes;
-
-@end
-
-@implementation _GCNodeParserConvenienceDelegate {
-    NSMutableArray *_nodes;
-}
-
-- (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount
-{
-    return;
-}
-
-- (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
-{
-    //NSLog(@"%p got node: %@", self, node);
-    if (!_nodes) {
-        _nodes = [NSMutableArray array];
-    }
-    [_nodes addObject:node];
-}
-
-- (void)parser:(GCNodeParser *)parser didParseNodesWithCount:(NSUInteger)nodeCount
-{
-    NSParameterAssert(nodeCount == [_nodes count]);
-}
-
-@end
-
 @implementation GCNodeParser (GCConvenienceMethods)
 
 + (NSArray*)arrayOfNodesFromString:(id)gedString
 {
-    _GCNodeParserConvenienceDelegate *delegate = [[_GCNodeParserConvenienceDelegate alloc] init];
-    
     GCNodeParser *parser = [[GCNodeParser alloc] init];
-    parser.delegate = delegate;
     
     NSError *error = nil;
     BOOL succeeded = [parser parseString:gedString error:&error];
     
-    if (succeeded) {
-        return delegate.nodes;
-    } else {
+    if (!succeeded) {
         NSLog(@"error: %@", error);
-        return nil;
-    }    
+    }
+
+    return parser.parsedNodes;
 }
 
 @end
