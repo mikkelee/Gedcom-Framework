@@ -4,15 +4,8 @@
 
 #import "GCIndividualLDSOrdinanceAttribute.h"
 
-@class GCDateAttribute;
 @class GCLDSSealingChildStatusAttribute;
-@class GCNoteEmbeddedAttribute;
-@class GCNoteReferenceRelationship;
-@class GCPlaceAttribute;
 @class GCSealedToFamilyRelationship;
-@class GCSourceCitationRelationship;
-@class GCSourceEmbeddedAttribute;
-@class GCTempleAttribute;
 
 /**
  
@@ -51,61 +44,6 @@
 
 /// .  NB: required property.
 @property (nonatomic) GCSealedToFamilyRelationship *sealedToFamily;
-
-/// . 
-@property (nonatomic) GCDateAttribute *date;
-
-/// . 
-@property (nonatomic) GCTempleAttribute *temple;
-
-/// . 
-@property (nonatomic) GCPlaceAttribute *place;
-
-/// @name Accessing sources
-
-/// Property for accessing the following properties
-@property (nonatomic) NSArray *sources;
-
-/// @name Accessing sources 
-
-///Also contained in sources. . GCSourceCitationRelationship
-@property (nonatomic) NSArray *sourceCitations;
-/// @name Accessing sources 
-
-///Also contained in sources. . Contains instances of sourceCitations
-@property (nonatomic) NSMutableArray *mutableSourceCitations;
-
-/// @name Accessing sources 
-
-///Also contained in sources. . GCSourceEmbeddedAttribute
-@property (nonatomic) NSArray *sourceEmbeddeds;
-/// @name Accessing sources 
-
-///Also contained in sources. . Contains instances of sourceEmbeddeds
-@property (nonatomic) NSMutableArray *mutableSourceEmbeddeds;
-
-/// @name Accessing notes
-
-/// Property for accessing the following properties
-@property (nonatomic) NSArray *notes;
-
-/// @name Accessing notes 
-
-///Also contained in notes. . GCNoteReferenceRelationship
-@property (nonatomic) NSArray *noteReferences;
-/// @name Accessing notes 
-
-///Also contained in notes. . Contains instances of noteReferences
-@property (nonatomic) NSMutableArray *mutableNoteReferences;
-
-/// @name Accessing notes 
-
-///Also contained in notes. . GCNoteEmbeddedAttribute
-@property (nonatomic) NSArray *noteEmbeddeds;
-/// @name Accessing notes 
-
-///Also contained in notes. . Contains instances of noteEmbeddeds
-@property (nonatomic) NSMutableArray *mutableNoteEmbeddeds;
 
 
 @end

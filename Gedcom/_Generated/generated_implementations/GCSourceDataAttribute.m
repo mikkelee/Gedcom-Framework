@@ -62,7 +62,7 @@
 
 // Properties:
 @synthesize eventsRecordeds = _eventsRecordeds;
-
+@dynamic mutableEventsRecordeds;
 - (NSMutableArray *)mutableEventsRecordeds
 {
 	return [self mutableArrayValueForKey:@"eventsRecordeds"];
@@ -71,14 +71,14 @@
 @dynamic responsibleAgency;
 @dynamic notes;
 @synthesize noteReferences = _noteReferences;
-
+@dynamic mutableNoteReferences;
 - (NSMutableArray *)mutableNoteReferences
 {
 	return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
 @synthesize noteEmbeddeds = _noteEmbeddeds;
-
+@dynamic mutableNoteEmbeddeds;
 - (NSMutableArray *)mutableNoteEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];

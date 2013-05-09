@@ -47,7 +47,7 @@
 @dynamic descriptiveName;
 @dynamic address;
 @synthesize phoneNumbers = _phoneNumbers;
-
+@dynamic mutablePhoneNumbers;
 - (NSMutableArray *)mutablePhoneNumbers
 {
 	return [self mutableArrayValueForKey:@"phoneNumbers"];
@@ -55,21 +55,21 @@
 
 @dynamic notes;
 @synthesize noteReferences = _noteReferences;
-
+@dynamic mutableNoteReferences;
 - (NSMutableArray *)mutableNoteReferences
 {
 	return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
 @synthesize noteEmbeddeds = _noteEmbeddeds;
-
+@dynamic mutableNoteEmbeddeds;
 - (NSMutableArray *)mutableNoteEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
 }
 
 @synthesize userReferenceNumbers = _userReferenceNumbers;
-
+@dynamic mutableUserReferenceNumbers;
 - (NSMutableArray *)mutableUserReferenceNumbers
 {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];

@@ -5,8 +5,7 @@
 #import "GCMarriageContractAttribute.h"
 
 @implementation GCMarriageContractAttribute {
-	GCHusbandDetailAttribute *_husbandDetail;
-	GCWifeDetailAttribute *_wifeDetail;
+
 }
 
 // Methods:
@@ -57,7 +56,6 @@
 
 
 // Properties:
-@dynamic husbandDetail;
-@dynamic wifeDetail;
+
 
 @end

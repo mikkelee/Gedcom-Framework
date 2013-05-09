@@ -316,9 +316,6 @@ def propagate(sourceDict, variantDict):
 	
 	variantDict['parent'] = sourceDict['key']
 	
-	if sourceDict.has_key('validSubTags'):
-		variantDict['validSubTags'].extend([x for x in sourceDict['validSubTags'] if x not in variantDict['validSubTags'] and not x.has_key('subClassName')])
-	
 	if sourceDict.has_key('valueType') and not variantDict.has_key('valueType'):
 		variantDict['valueType'] = sourceDict['valueType']
 	if sourceDict.has_key('objectType') and not variantDict.has_key('objectType'):

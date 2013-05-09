@@ -4,8 +4,7 @@
 
 #import "GCFamilyEventAttribute.h"
 
-@class GCHusbandDetailAttribute;
-@class GCWifeDetailAttribute;
+
 
 /**
  
@@ -39,11 +38,6 @@
 +(instancetype)engagementWithGedcomStringValue:(NSString *)value;
 
 // Properties:
-/// . 
-@property (nonatomic) GCHusbandDetailAttribute *husbandDetail;
-
-/// . 
-@property (nonatomic) GCWifeDetailAttribute *wifeDetail;
 
 
 @end

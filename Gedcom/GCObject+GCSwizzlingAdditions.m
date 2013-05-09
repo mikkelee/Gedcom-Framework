@@ -27,23 +27,33 @@ static inline char* ivarNameFromPropName(const char *propName) {
 }
 
 
-// Ascend class hierarchy and find the class that claims the property
+// Ascend class hierarchy and find the highest class that claims the property
 static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMultiple) {
     //NSLog(@"Looking for %@ on %@", propString, *cls);
     
+    Class c = *cls;
+    Class best = c;
+    BOOL didFind = NO;
+    
     do {
-        if ([*cls gedTag] && [[*cls validPropertyTypes] containsObject:propString]) {
-            if (isMultiple && [*cls allowsMultipleOccurrencesOfPropertyType:propString]) {
-                return YES;
-            } else if (!isMultiple && ![*cls allowsMultipleOccurrencesOfPropertyType:propString]) {
-                return YES;
+        if ([c gedTag] && [[c validPropertyTypes] containsObject:propString]) {
+            if (isMultiple && [c allowsMultipleOccurrencesOfPropertyType:propString]) {
+                didFind = YES;
+                best = c;
+            } else if (!isMultiple && ![c allowsMultipleOccurrencesOfPropertyType:propString]) {
+                didFind = YES;
+                best = c;
             }
         }
-        *cls = class_getSuperclass(*cls);
-        //NSLog(@"=> %@", *cls);
-    } while (*cls != [GCObject class]);
+        c = class_getSuperclass(c);
+    } while (c != [GCObject class]);
     
-    return NO;
+    if (didFind) {
+        *cls = best;
+        //NSLog(@"=> %@", *cls);
+    }
+    
+    return didFind;
 }
 
 @implementation GCObject (GCSwizzlingAdditions)
@@ -86,7 +96,6 @@ static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMul
             cls = [self class];
             
             if (classHasProperty(&cls, propString, YES)) {
-                NSParameterAssert(cls == [self class]); // TEST remove when it works...
                 shouldResolve = YES;
                 
                 NSString *reverseSelName = [NSString stringWithFormat:@"removeObjectFrom%@%@AtIndex:", [[propString substringToIndex:1] uppercaseString], [propString substringFromIndex:1]];

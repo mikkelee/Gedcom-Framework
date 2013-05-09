@@ -42,21 +42,21 @@
 // Properties:
 @dynamic sources;
 @synthesize sourceCitations = _sourceCitations;
-
+@dynamic mutableSourceCitations;
 - (NSMutableArray *)mutableSourceCitations
 {
 	return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
 @synthesize sourceEmbeddeds = _sourceEmbeddeds;
-
+@dynamic mutableSourceEmbeddeds;
 - (NSMutableArray *)mutableSourceEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
 }
 
 @synthesize userReferenceNumbers = _userReferenceNumbers;
-
+@dynamic mutableUserReferenceNumbers;
 - (NSMutableArray *)mutableUserReferenceNumbers
 {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];

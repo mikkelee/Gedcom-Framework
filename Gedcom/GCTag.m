@@ -48,6 +48,7 @@ const NSString *kTagName = @"name";
 const NSString *kPluralName = @"plural";
 const NSString *kGroupName = @"groupName";
 
+const NSString *kParent = @"parent";
 const NSString *kTagCode = @"code";
 
 const NSString *kVariants = @"variants";
@@ -104,7 +105,7 @@ static dispatch_queue_t _tagSetupQueue;
     
     dispatch_group_async(_tagSetupGroup, _tagSetupQueue, ^{
         [_tagInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSMutableDictionary *tagDict, BOOL *stop) {
-            if (tagDict[kTagCode] != nil) {
+            if (![tagDict[@"key"] hasPrefix:@"@"]) {
                 GCTag *tag = [[GCTag alloc] initWithName:key
                                                 settings:tagDict];
                 
@@ -112,12 +113,17 @@ static dispatch_queue_t _tagSetupQueue;
                 _tagStore[tagDict[kPluralName]] = tag;
                 _tagStore[NSClassFromString(tagDict[kClassName])] = tag;
                 
-                if ([tagDict[kObjectType] isEqualToString:@"entity"] || [tagDict[kObjectType] isEqualToString:@"record"]) {
+                if (tagDict[kTagCode] && ([tagDict[kObjectType] isEqualToString:@"entity"] || [tagDict[kObjectType] isEqualToString:@"record"])) {
                     _rootTagsByCode[tagDict[kTagCode]] = tag;
                 }
             }
         }];
     });
+}
+
+- (instancetype)parent
+{
+    return _tagStore[_settings[kParent]];
 }
 
 static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *occurrencesDicts, NSDictionary *subtag) {
@@ -141,6 +147,12 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
     NSMutableOrderedSet *subTags = [NSMutableOrderedSet orderedSetWithCapacity:[_settings[kValidSubTags] count]];
     for (NSDictionary *subtag in _settings[kValidSubTags]) {
         expandSubtag(subTags, occurrencesDicts, subtag);
+    }
+    
+    if (self.parent) {
+        for (NSDictionary *subtag in self.parent->_settings[kValidSubTags]) {
+            expandSubtag(subTags, occurrencesDicts, subtag);
+        }
     }
     
     _validSubTags = [subTags copy];
