@@ -65,39 +65,17 @@
 {
     NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
     
-    [keyPaths addObject:@"attributedGedcomString"];
-    [keyPaths addObject:@"gedcomString"];
-    [keyPaths addObject:@"gedcomNode"];
+    // these affect all and vice versa:
     [keyPaths addObject:@"properties"];
     [keyPaths addObject:@"mutableProperties"];
+    [keyPaths addObject:@"gedcomNode"];
+    [keyPaths addObject:@"gedcomString"];
+    [keyPaths addObject:@"attributedGedcomString"];
     
-    GCTag *tag = [GCTag tagNamed:key];
-    
-    if ([key isEqualToString:@"properties"]) {
-        NSString *cleanName = [[self className] substringFromIndex:2];
-        
-        if ([cleanName hasSuffix:@"Entity"])
-            cleanName = [cleanName substringToIndex:[cleanName length] - 6];
-        if ([cleanName hasSuffix:@"Attribute"])
-            cleanName = [cleanName substringToIndex:[cleanName length] - 9];
-        if ([cleanName hasSuffix:@"Relationship"])
-            cleanName = [cleanName substringToIndex:[cleanName length] - 12];
-        
-        //NSLog(@"cleanName: %@", cleanName);
-        
-        tag = [GCTag tagNamed:[NSString stringWithFormat:@"%@%@", [[cleanName substringToIndex:1] lowercaseString], [cleanName substringFromIndex:1]]];
-    }
-    
-    if (tag != nil) {
+    if ([keyPaths containsObject:key]) {
+        GCTag *tag = [self gedTag];
         for (GCTag *subTag in tag.validSubTags) {
             [keyPaths addObject:subTag.name];
-            /*
-             GCTag *subSubTag = subTag;
-             while ([[subSubTag validSubTags] count] > 0) {
-             for (GCTag *subSubSubTag in [subSubTag validSubTags]) {
-             
-             }
-             }*/
         }
     }
     
