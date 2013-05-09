@@ -81,7 +81,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
             if (level == 0) { //root
                 if (currentRoot) {
                     nodeCount++;
-                    if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNode:)]) {
+                    if (_delegate) {
                         [_delegate parser:self didParseNode:currentRoot];
                     }
                 }
@@ -111,7 +111,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 	action finish {
         if (currentRoot) {
             nodeCount++;
-            if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNode:)]) {
+            if (_delegate) {
                 [_delegate parser:self didParseNode:currentRoot];
             }
         }
@@ -184,7 +184,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
         const char *pe = p + [gedString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         const char *eof = pe;
         
-        if (_delegate && [_delegate respondsToSelector:@selector(parser:willParseCharacterCount:)]) {
+        if (_delegate) {
             [_delegate parser:self willParseCharacterCount:[gedString length]];
         }
         
@@ -200,7 +200,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
         NSLog(@"parsed %ld nodes in %ld lines - Time: %f seconds", nodeCount, lineCount, timeInterval);
 #endif
         
-        if (_delegate && [_delegate respondsToSelector:@selector(parser:didParseNodesWithCount:)]) {
+        if (_delegate) {
             [_delegate parser:self didParseNodesWithCount:nodeCount];
         }
         
@@ -237,6 +237,11 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 
 @implementation _GCNodeParserConvenienceDelegate {
     NSMutableArray *_nodes;
+}
+
+- (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount
+{
+    return;
 }
 
 - (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node

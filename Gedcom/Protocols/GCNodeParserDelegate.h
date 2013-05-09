@@ -20,8 +20,6 @@
  */
 @protocol GCNodeParserDelegate <NSObject>
 
-@optional
-
 /** Will be called just before parsing starts.
  
  @param parser The parser that sent the message.
