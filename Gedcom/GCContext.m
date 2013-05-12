@@ -122,43 +122,6 @@ __strong static NSMapTable *_contextsByName = nil;
     }
 }
 
-#pragma mark GCNodeParser delegate methods
-
-- (void)parser:(GCNodeParser *)parser willParseCharacterCount:(NSUInteger)characterCount
-{
-    
-}
-
-- (void)parser:(GCNodeParser *)parser didParseNode:(GCNode *)node
-{
-    [_mainQueue addOperationWithBlock:^{
-        GCTag *tag = [GCTag rootTagWithCode:node.tagCode];
-        
-        NSParameterAssert(tag);
-        
-        if (tag.objectClass != [GCTrailerEntity class]) {
-            GCEntity *entity = [tag.objectClass newWithGedcomNode:node inContext:self];
-            NSParameterAssert(entity.context == self);
-            
-            [_mainQueue addOperationWithBlock:^{
-                [entity _waitUntilDoneBuildingFromGedcom];
-                //NSLog(@"%lu: %p done", [_mainQueue operationCount], entity);
-            }];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
-                [_delegate context:self didUpdateEntityCount:++_importCount];
-            }
-        });
-    }];
-}
-
-- (void)parser:(GCNodeParser *)parser didParseNodesWithCount:(NSUInteger)nodeCount
-{
-    [_mainQueue setSuspended:NO];
-}
-
 #pragma mark Loading nodes into a context
 
 - (BOOL)parseData:(NSData *)data error:(NSError **)error
@@ -166,9 +129,6 @@ __strong static NSMapTable *_contextsByName = nil;
     GCParameterAssert([self.entities count] == 0);
     
     GCFileEncoding fileEncoding = encodingForData(data);
-    
-    GCNodeParser *nodeParser = [[GCNodeParser alloc] init];
-    nodeParser.delegate = self;
     
     NSString *gedString = nil;
     
@@ -196,7 +156,35 @@ __strong static NSMapTable *_contextsByName = nil;
     NSDate *start = [NSDate date];
 #endif
     
-    BOOL result = [nodeParser parseString:gedString error:error];
+    GCNodeParser *nodeParser = [[GCNodeParser alloc] init];
+    
+    BOOL didParse = [nodeParser parseString:gedString error:error];
+    
+    if (didParse) {
+        for (GCNode *node in nodeParser.parsedNodes) {
+            [_mainQueue addOperationWithBlock:^{
+                GCTag *tag = [GCTag rootTagWithCode:node.tagCode];
+                
+                NSParameterAssert(tag);
+                
+                if (tag.objectClass != [GCTrailerEntity class]) {
+                    GCEntity *entity = [tag.objectClass newWithGedcomNode:node inContext:self];
+                    NSParameterAssert(entity.context == self);
+                    
+                    [_mainQueue addOperationWithBlock:^{
+                        [entity _waitUntilDoneBuildingFromGedcom];
+                        //NSLog(@"%lu: %p done", [_mainQueue operationCount], entity);
+                    }];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (_delegate && [_delegate respondsToSelector:@selector(context:didUpdateEntityCount:)]) {
+                        [_delegate context:self didUpdateEntityCount:++_importCount];
+                    }
+                });
+            }];
+        }
+    }
     
     [_mainQueue waitUntilAllOperationsAreFinished];
     
@@ -205,13 +193,15 @@ __strong static NSMapTable *_contextsByName = nil;
     NSLog(@"parsed %ld entities - Time: %f seconds", [self.entities count], timeInterval);
 #endif
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
-            [_delegate context:self didParseNodesWithEntityCount:[self.entities count]];
-        }
-    });
+    if (didParse) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (_delegate && [_delegate respondsToSelector:@selector(context:didParseNodesWithEntityCount:)]) {
+                [_delegate context:self didParseNodesWithEntityCount:[self.entities count]];
+            }
+        });
+    }
     
-    return result;
+    return didParse;
 }
 
 - (BOOL)readContentsOfFile:(NSString *)path error:(NSError **)error

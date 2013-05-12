@@ -14,7 +14,6 @@
 @class GCRecord;
 
 @protocol GCContextDelegate;
-@protocol GCNodeParserDelegate;
 
 /**
  
@@ -47,7 +46,7 @@
  ```
  
  */
-@interface GCContext : NSObject <NSCoding, NSCopying, GCNodeParserDelegate>
+@interface GCContext : NSObject <NSCoding, NSCopying>
 
 #pragma mark Obtaining a context
 /// @name Obtaining a context
