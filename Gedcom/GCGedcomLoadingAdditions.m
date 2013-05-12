@@ -28,7 +28,7 @@
 
 - (void)_addPropertyWithGedcomNode:(GCNode *)node
 {
-    GCTag *tag = [self.gedTag subTagWithCode:node.tagCode type:([node valueIsXref] ? @"relationship" : @"attribute")];
+    GCTag *tag = [self.gedTag subTagWithCode:node.tagCode type:([node valueIsXref] ? GCTagTypeRelationship : GCTagTypeAttribute)];
     
     if (tag.isCustom && ![self.context _shouldHandleCustomTag:tag forNode:node onObject:self]) {
         return;
@@ -121,7 +121,7 @@
         self->_isBuildingFromGedcom = YES;
         self->_buildingFromGedcomSemaphore = dispatch_semaphore_create(0);
         
-        GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:([node valueIsXref] ? @"relationship" : @"attribute")];
+        GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:([node valueIsXref] ? GCTagTypeRelationship : GCTagTypeAttribute)];
         
         if (tag.isCustom || object.gedTag.isCustom) {
             [object.mutableCustomProperties addObject:self];
@@ -184,7 +184,7 @@
         NSParameterAssert(self.describedObject == object);
         GCParameterAssert(object.context);
         
-        GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:@"relationship"];
+        GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:GCTagTypeRelationship];
         
         id target = [self.context _recordForXref:node.gedcomValue create:YES withClass:tag.targetType];
         
@@ -200,7 +200,7 @@
 
 + (instancetype)newWithGedcomNode:(GCNode *)node onObject:(GCObject *)object
 {
-    GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:@"relationship"];
+    GCTag *tag = [object.gedTag subTagWithCode:node.tagCode type:GCTagTypeRelationship];
     
     if (tag.hasReverse && !tag.isMain) {
         //NSLog(@"WARNING: dropping non-main reverse: %@", node);

@@ -60,7 +60,7 @@
  @param type The type of the requested subtag.
  @return A tag or `nil` if none exists.
  */
-- (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type;
+- (GCTag *)subTagWithCode:(NSString *)code type:(GCTagType)type;
 
 /** Returns the subtag of the receiver with the given name.
  

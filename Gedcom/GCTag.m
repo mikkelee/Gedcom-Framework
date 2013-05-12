@@ -330,12 +330,14 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
 
 #pragma mark Subtags
 
-- (GCTag *)subTagWithCode:(NSString *)code type:(NSString *)type
+- (GCTag *)subTagWithCode:(NSString *)code type:(GCTagType)type
 {
+    NSString *tagType = (type == GCTagTypeRelationship ? @"relationship" : @"attribute" ); //TODO check for others
+    
     if ([code hasPrefix:@"_"]) {
         @synchronized (self) {
-            NSString *className = [NSString stringWithFormat:@"GCCustom%@", [type capitalizedString]];
-            NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [type capitalizedString]];
+            NSString *className = [NSString stringWithFormat:@"GCCustom%@", [tagType capitalizedString]];
+            NSString *tagName = [NSString stringWithFormat:@"custom%@%@", code, [tagType capitalizedString]];
             NSString *pluralName = [NSString stringWithFormat:@"%@s", tagName];
             
             if (_tagStore[tagName]) {
@@ -348,7 +350,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
                                          kPluralName: pluralName,
                                           kValueType: @"string",
                                          kTargetType: @"record",
-                                         kObjectType: type,
+                                         kObjectType: tagType,
                                        kValidSubTags: [NSArray array]}];
             NSLog(@"Created %@: %@", tagName, tag);
             _tagStore[tagName] = tag;
@@ -359,7 +361,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         }
     }
     
-    return _cachedSubTagsByCode[type][code];
+    return _cachedSubTagsByCode[tagType][code];
 }
 
 - (GCTag *)subTagWithName:(NSString *)name
