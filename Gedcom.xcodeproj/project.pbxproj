@@ -392,7 +392,7 @@
 		3E41BFCF17261514003286E7 /* tags.json.pre in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json.pre */; };
 		3E4373551521CB7200BA362F /* GCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4373531521CB7200BA362F /* GCAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
-		3E4BCFA01741B0AB008886B3 /* Gedcom_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4BCF9F1741B0AB008886B3 /* Gedcom_internal.h */; };
+		3E4BCFA01741B0AB008886B3 /* Gedcom_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4BCF9F1741B0AB008886B3 /* Gedcom_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E4E8435171ADFF600889651 /* GCNodeParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E52C01E171AAF2E00A4D800 /* GCNodeParser.rl */; };
 		3E4E8436171ADFFC00889651 /* GCAgeParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E75837915F8EAB900A9B096 /* GCAgeParser.rl */; };
 		3E4E8437171ADFFE00889651 /* GCDateParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4BD1606BF55009D2CCB /* GCDateParser.rl */; };
@@ -411,7 +411,6 @@
 		3E57559215217C3B00A918D1 /* GCRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57559015217C3B00A918D1 /* GCRelationship.m */; };
 		3E5A68641610A6E8005B2319 /* GCList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A68621610A6E8005B2319 /* GCList.m */; };
 		3E5A686C1610F57A005B2319 /* TGC55.ged in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A686B1610F57A005B2319 /* TGC55.ged */; };
-		3E5F5098151DCC7B00A433A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F5097151DCC7B00A433A6 /* README.md */; };
 		3E5F50C2151DF2E800A433A6 /* Gedcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C0151DF2E800A433A6 /* Gedcom.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E5F50C6151DFB0000A433A6 /* GCTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F50C5151DFB0000A433A6 /* GCTagTests.m */; };
 		3E5F50C9151E02C300A433A6 /* GCEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5F50C7151E02C300A433A6 /* GCEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2167,7 +2166,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1C3E74151C319C005E09E1 /* InfoPlist.strings in Resources */,
-				3E5F5098151DCC7B00A433A6 /* README.md in Resources */,
 				3EDD4114156D022200002352 /* Values.strings in Resources */,
 				3E83FF23171CC5240093B685 /* Tags.strings in Resources */,
 				3E41BFCF17261514003286E7 /* tags.json.pre in Resources */,
