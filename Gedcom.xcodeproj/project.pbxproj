@@ -392,9 +392,7 @@
 		3E41BFCF17261514003286E7 /* tags.json.pre in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5ABD5153619280036B4D5 /* tags.json.pre */; };
 		3E4373551521CB7200BA362F /* GCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4373531521CB7200BA362F /* GCAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E4373561521CB7200BA362F /* GCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4373541521CB7200BA362F /* GCAttribute.m */; };
-		3E4E8432171ADFD700889651 /* GCNodeParser.rl in Resources */ = {isa = PBXBuildFile; fileRef = 3E52C01E171AAF2E00A4D800 /* GCNodeParser.rl */; };
-		3E4E8433171ADFDB00889651 /* GCAgeParser.rl in Resources */ = {isa = PBXBuildFile; fileRef = 3E75837915F8EAB900A9B096 /* GCAgeParser.rl */; };
-		3E4E8434171ADFDE00889651 /* GCDateParser.rl in Resources */ = {isa = PBXBuildFile; fileRef = 3E17B4BD1606BF55009D2CCB /* GCDateParser.rl */; };
+		3E4BCFA01741B0AB008886B3 /* Gedcom_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4BCF9F1741B0AB008886B3 /* Gedcom_internal.h */; };
 		3E4E8435171ADFF600889651 /* GCNodeParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E52C01E171AAF2E00A4D800 /* GCNodeParser.rl */; };
 		3E4E8436171ADFFC00889651 /* GCAgeParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E75837915F8EAB900A9B096 /* GCAgeParser.rl */; };
 		3E4E8437171ADFFE00889651 /* GCDateParser.rl in Sources */ = {isa = PBXBuildFile; fileRef = 3E17B4BD1606BF55009D2CCB /* GCDateParser.rl */; };
@@ -929,6 +927,7 @@
 		3E41BE8D1725FBFA003286E7 /* GCWillAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCWillAttribute.m; sourceTree = "<group>"; };
 		3E4373531521CB7200BA362F /* GCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GCAttribute.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3E4373541521CB7200BA362F /* GCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GCAttribute.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3E4BCF9F1741B0AB008886B3 /* Gedcom_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gedcom_internal.h; sourceTree = "<group>"; };
 		3E52C01A171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCHeaderEntity+GCObjectAdditions.h"; sourceTree = "<group>"; };
 		3E52C01B171A2C8000A4D800 /* GCHeaderEntity+GCObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCHeaderEntity+GCObjectAdditions.m"; sourceTree = "<group>"; };
 		3E52C01E171AAF2E00A4D800 /* GCNodeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCNodeParser.rl; path = Nodes/GCNodeParser.rl; sourceTree = "<group>"; };
@@ -1201,6 +1200,7 @@
 				3E8F87C0171C9F42003111D2 /* GedcomTypedefs.h */,
 				3E57557E152057B200A918D1 /* GedcomDateHelpers.h */,
 				3E5A686A1610EFEF005B2319 /* GedcomCharacterSetHelpers.h */,
+				3E4BCF9F1741B0AB008886B3 /* Gedcom_internal.h */,
 				3E14EDC715230A3000080364 /* Nodes */,
 				3E713EBF17295F8C0098EBC3 /* Contexts */,
 				3E713EC017295FAE0098EBC3 /* Tags */,
@@ -2046,6 +2046,7 @@
 				3E0C330017241EE90022E4D1 /* GCRecord.h in Headers */,
 				3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */,
 				3E713EBC17295F740098EBC3 /* GCSimilarityAdditions.h in Headers */,
+				3E4BCFA01741B0AB008886B3 /* Gedcom_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2171,9 +2172,6 @@
 				3E83FF23171CC5240093B685 /* Tags.strings in Resources */,
 				3E41BFCF17261514003286E7 /* tags.json.pre in Resources */,
 				3E8C1EA11626BED7005B3BE6 /* sanity.json in Resources */,
-				3E4E8432171ADFD700889651 /* GCNodeParser.rl in Resources */,
-				3E4E8433171ADFDB00889651 /* GCAgeParser.rl in Resources */,
-				3E4E8434171ADFDE00889651 /* GCDateParser.rl in Resources */,
 				3E83FF26171CC5270093B685 /* Errors.strings in Resources */,
 				3E83FF29171CC52B0093B685 /* Misc.strings in Resources */,
 			);

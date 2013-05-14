@@ -13,6 +13,7 @@
 #import "GCRecord.h"
 #import "GCIndividualRecord.h"
 #import "GedcomErrors.h"
+#import "Gedcom_internal.h"
 
 #import "GCValue.h"
 
@@ -70,8 +71,6 @@
     
 	id settings = sanity[self.type];
     
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
 	[settings[@"orderRequirements"] enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *eventsThatMustOccurLater, BOOL *stop){
 		NSString *keyPath = [NSString stringWithFormat:@"%@s.date.value", key];
 		for (GCDate *eventDate in [self valueForKeyPath:keyPath]) {
@@ -85,9 +84,8 @@
 					if ([otherEventDate isLessThan:eventDate]) {
 						isSane &= NO;
                         
-                        NSString *formatString = [frameworkBundle localizedStringForKey:@"%@ usually occurs before %@"
-                                                                                  value:@"%@ usually occurs before %@"
-                                                                                  table:@"Errors"];
+                        NSString *formatString = GCLocalizedString(@"%@ usually occurs before %@", @"Errors");
+                        
                         NSDictionary *userInfo = @{
                                                    NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, key, eventType],
                                                    NSAffectedObjectsErrorKey: self
@@ -112,9 +110,8 @@
 			if ([ageAtEvent isLessThan:requiredAge]) {
 				isSane &= NO;
                 
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"%@ is young for %@"
-                                                                          value:@"%@ is young for %@"
-                                                                          table:@"Errors"];
+                NSString *formatString = GCLocalizedString(@"%@ is young for %@", @"Errors");
+                
                 NSDictionary *userInfo = @{
                                            NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, ageAtEvent, key],
                                            NSAffectedObjectsErrorKey: self

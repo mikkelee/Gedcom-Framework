@@ -8,8 +8,11 @@
 
 #import "GCContext_internal.h"
 
+// TODO clean up this bunch of imports
+
 #import "GedcomCharacterSetHelpers.h"
 #import "GedcomErrors.h"
+#import "Gedcom_internal.h"
 
 #import "GCContext+GCKeyValueAdditions.h"
 #import "GCContext+GCTransactionAdditions.h"
@@ -23,12 +26,12 @@
 
 #import "GCContextDelegate.h"
 
-#import "GCGedcomLoadingAdditions.h"
 #import "GCGedcomLoadingAdditions_internal.h"
 #import "GCGedcomAccessAdditions.h"
 #import "GCTagAccessAdditions.h"
 
 #import "GCObject+GCKeyValueAdditions.h"
+
 
 @interface GCTrailerEntity : GCEntity //empty class to match trailer objects
 @end
@@ -132,14 +135,10 @@ __strong static NSMapTable *_contextsByName = nil;
     
     NSString *gedString = nil;
     
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
     if (fileEncoding == GCUnknownFileEncoding) {
         if (error != NULL) {
             NSDictionary *userInfo = @{
-                                       NSLocalizedDescriptionKey: [frameworkBundle localizedStringForKey:@"Could not determine encoding for the file."
-                                                                                                   value:@"Could not determine encoding for the file."
-                                                                                                   table:@"Errors"]
+                                       NSLocalizedDescriptionKey: GCLocalizedString(@"Could not determine encoding for the file.", @"Errors")
                                        };
             *error = [NSError errorWithDomain:GCErrorDomain
                                          code:GCUnhandledFileEncodingError

@@ -8,6 +8,8 @@
 
 #import "GCTag.h"
 
+#import "Gedcom_internal.h"
+
 @interface NSMapTable (GCSubscriptAdditions)
 
 - (id)objectForKeyedSubscript:(id)key;
@@ -219,7 +221,7 @@ static inline void expandSubtag(NSMutableOrderedSet *set, NSMutableDictionary *o
         
         _code = _settings[kTagCode];
         _isCustom = [_name hasPrefix:@"custom"];
-        _localizedName = [[NSBundle bundleForClass:[self class]] localizedStringForKey:_name value:_name table:@"Tags"];
+        _localizedName = GCLocalizedString(_name, @"Tags");
         _pluralName = _settings[kPluralName];
         
         // objectClass

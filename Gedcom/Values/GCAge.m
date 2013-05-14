@@ -8,6 +8,7 @@
 
 #import "GCValue.h"
 #import "GCAge_internal.h"
+#import "Gedcom_internal.h"
 
 #pragma mark -
 #pragma mark Concrete subclasses
@@ -48,30 +49,28 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (NSString *)displayString
 {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:3];
 	
 	if ([self.ageComponents year] == 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d year" value:@"%d year" table:@"Values"], [self.ageComponents year]]];
+		[stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d year", @"Values"), [self.ageComponents year]]];
 	} else if ([self.ageComponents year] > 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Values"], [self.ageComponents year]]];
+		[stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d years", @"Values"), [self.ageComponents year]]];
 	}
     
 	if ([self.ageComponents month] == 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d month" value:@"%d month" table:@"Values"], [self.ageComponents month]]];
+		[stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d month", @"Values"), [self.ageComponents month]]];
 	} else if ([self.ageComponents month] > 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d months" value:@"%d months" table:@"Values"], [self.ageComponents month]]];
+		[stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d months", @"Values"), [self.ageComponents month]]];
 	}
 	
 	if ([self.ageComponents day] == 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d day" value:@"%d day" table:@"Values"], [self.ageComponents day]]];
+		[stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d day", @"Values"), [self.ageComponents day]]];
 	} else if ([self.ageComponents day] > 1) {
-		[stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d days" value:@"%d days" table:@"Values"], [self.ageComponents day]]];
+		[stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d days", @"Values"), [self.ageComponents day]]];
 	}
     
     if ([stringComponents count] == 0) {
-        [stringComponents addObject:[NSString stringWithFormat:[frameworkBundle localizedStringForKey:@"%d years" value:@"%d years" table:@"Values"], 0]];
+        [stringComponents addObject:[NSString stringWithFormat:GCLocalizedString(@"%d years", @"Values"), 0]];
     }
     
     return [NSString stringWithFormat:@"%@%@", GCAgeQualifier_toString[_qualifier], [stringComponents componentsJoinedByString:@", "]];
@@ -113,9 +112,7 @@ NSString * const GCAgeQualifier_toString[] = {
 
 - (NSString *)displayString
 {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    return [frameworkBundle localizedStringForKey:self.gedcomString value:self.gedcomString table:@"Values"];
+    return GCLocalizedString(self.gedcomString, @"Values");
 }
 
 /*

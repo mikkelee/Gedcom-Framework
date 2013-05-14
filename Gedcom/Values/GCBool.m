@@ -7,6 +7,7 @@
 //
 
 #import "GCValue.h"
+#import "Gedcom_internal.h"
 
 @implementation GCBool {
     NSString *_gedcomString;
@@ -75,9 +76,7 @@ __strong static NSDictionary *_boolStore;
 
 - (NSString *)displayString
 {
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-    return [frameworkBundle localizedStringForKey:_displayString value:_displayString table:@"Values"];
+    return GCLocalizedString(_displayString, @"Values");
 }
 
 - (BOOL)boolValue

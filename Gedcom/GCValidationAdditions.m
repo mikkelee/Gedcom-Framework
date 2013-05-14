@@ -9,6 +9,7 @@
 #import "GCValidationAdditions.h"
 
 #import "GedcomErrors.h"
+#import "Gedcom_internal.h"
 
 #import "GCContext+GCKeyValueAdditions.h"
 #import "GCTagAccessAdditions.h"
@@ -29,14 +30,10 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     BOOL isValid = YES;
     NSError *returnError = nil;
     
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
     if (self.header == nil) {
         isValid &= NO;
         
-        NSString *errorString = [frameworkBundle localizedStringForKey:@"Context has no header"
-                                                                 value:@"Context has no header"
-                                                                 table:@"Errors"];
+        NSString *errorString = GCLocalizedString(@"Context has no header.", @"Errors");
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: errorString,
                                    NSAffectedObjectsErrorKey: self
@@ -119,14 +116,10 @@ NSString *GCErrorDomain = @"GCErrorDomain";
         
         GCAllowedOccurrences allowedOccurrences = [self allowedOccurrencesOfPropertyType:propertyKey];
         
-        NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-        
         if (propertyCount > allowedOccurrences.max) {
             isValid &= NO;
             
-            NSString *formatString = [frameworkBundle localizedStringForKey:@"Too many values for key %@ on %@"
-                                                                      value:@"Too many values for key %@ on %@"
-                                                                      table:@"Errors"];
+            NSString *formatString = GCLocalizedString(@"Too many values for key %@ on %@", @"Errors");
             NSDictionary *userInfo = @{
                                        NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, propertyKey, self.type],
                                        NSAffectedObjectsErrorKey: self
@@ -140,9 +133,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
         if (propertyCount < allowedOccurrences.min) {
             isValid &= NO;
             
-            NSString *formatString = [frameworkBundle localizedStringForKey:@"Too few values for key %@ on %@"
-                                                                      value:@"Too few values for key %@ on %@"
-                                                                      table:@"Errors"];
+            NSString *formatString = GCLocalizedString(@"Too few values for key %@ on %@", @"Errors");
             NSDictionary *userInfo = @{
                                        NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, propertyKey, self.type],
                                        NSAffectedObjectsErrorKey: self
@@ -182,14 +173,10 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     
     returnError = combineErrors(returnError, err);
     
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
     if (self.valueType) {
         if (self.value) {
             if (![self.value isKindOfClass:self.valueType]) {
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is incorrect type for %@ (should be %@)"
-                                                                          value:@"Value %@ is incorrect type for %@ (should be %@)"
-                                                                          table:@"Errors"];
+                NSString *formatString = GCLocalizedString(@"Value %@ is incorrect type for %@ (should be %@)", @"Errors");
                 NSDictionary *userInfo = @{
                                            NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.value, self.type, self.valueType],
                                            NSAffectedObjectsErrorKey: self
@@ -200,9 +187,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
                                                                          userInfo:userInfo]);
                 isValid &= NO;
             } else if ([self.allowedValues count] > 0 && ![self.value _isContainedInArray:self.allowedValues]) {
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value %@ is not allowed for %@ (should be one of %@)"
-                                                                          value:@"Value %@ is not allowed for %@ (should be one of %@)"
-                                                                          table:@"Errors"];
+                NSString *formatString = GCLocalizedString(@"Value %@ is not allowed for %@ (should be one of %@)", @"Errors");
                 NSDictionary *userInfo = @{
                                            NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.value, self.type, self.allowedValues],
                                            NSAffectedObjectsErrorKey: self
@@ -215,9 +200,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
             }
         } else {
             if (!self.allowsNilValue) {
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Value is missing for %@ (should be a %@)"
-                                                                          value:@"Value is missing for %@ (should be a %@)"
-                                                                          table:@"Errors"];
+                NSString *formatString = GCLocalizedString(@"Value is missing for %@ (should be a %@)", @"Errors");
                 NSDictionary *userInfo = @{
                                            NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString,  self.type, self.valueType],
                                            NSAffectedObjectsErrorKey: self
@@ -257,12 +240,8 @@ NSString *GCErrorDomain = @"GCErrorDomain";
         returnError = combineErrors(returnError, err);
     }
     
-    NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
     if (self.target == nil) {
-        NSString *formatString = [frameworkBundle localizedStringForKey:@"Target is missing for key %@ (should be a %@)"
-                                                                  value:@"Target is missing for key %@ (should be a %@)"
-                                                                  table:@"Errors"];
+        NSString *formatString = GCLocalizedString(@"Target is missing for %@ (should be a %@)", @"Errors");
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.type, self.targetType],
                                    NSAffectedObjectsErrorKey: self
@@ -273,9 +252,7 @@ NSString *GCErrorDomain = @"GCErrorDomain";
                                                                  userInfo:userInfo]);
         isValid &= NO;
     } else if (![self.target isKindOfClass:self.targetType]) {
-        NSString *formatString = [frameworkBundle localizedStringForKey:@"Target %@ is incorrect type for key %@ (should be %@)"
-                                                                  value:@"Target %@ is incorrect type for key %@ (should be %@)"
-                                                                  table:@"Errors"];
+        NSString *formatString = GCLocalizedString(@"Target %@ is incorrect type for %@ (should be %@)", @"Errors");
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, self.target, self.type, self.targetType],
                                    NSAffectedObjectsErrorKey: self

@@ -10,6 +10,8 @@
 
 #import "GCTagAccessAdditions.h"
 
+#import "Gedcom_internal.h"
+
 #import <objc/runtime.h>
 
 static inline char* ivarNameFromPropName(const char *propName) {
@@ -63,11 +65,7 @@ static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMul
     @synchronized (self) {
         Class cls;
         
-        NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-        
-        NSString *formatString = [frameworkBundle localizedStringForKey:@"Undo %@"
-                                                                  value:@"Undo %@"
-                                                                  table:@"Misc"];
+        NSString *formatString = GCLocalizedString(@"Undo %@", @"Misc");
         
         const char *selName = sel_getName(sel);
         const size_t atIndexLen = strlen("atIndex:");
@@ -121,7 +119,7 @@ static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMul
                             [invocation setTarget:[uM prepareWithInvocationTarget:_s]];
                             [invocation setArgument:&index atIndex:2];
                             [invocation invoke];
-                            [uM setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                            [uM setActionName:[NSString stringWithFormat:formatString, _s.localizedType]];
                             [uM endUndoGrouping];
                         }
                     }
@@ -187,7 +185,7 @@ static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMul
                             [invocation setArgument:&obj atIndex:2];
                             [invocation setArgument:&index atIndex:3];
                             [invocation invoke];
-                            [uM setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                            [uM setActionName:[NSString stringWithFormat:formatString, _s.localizedType]];
                             [uM endUndoGrouping];
                         }
                     }
@@ -310,7 +308,7 @@ static inline BOOL classHasProperty(Class *cls, NSString *propString, BOOL isMul
                             [invocation setTarget:[uM prepareWithInvocationTarget:_s]];
                             [invocation setArgument:&_ivar atIndex:2];
                             [invocation invoke];
-                            [uM setActionName:[NSString stringWithFormat:formatString, [_s valueForKey:@"localizedType"]]];
+                            [uM setActionName:[NSString stringWithFormat:formatString, _s.localizedType]];
                             [uM endUndoGrouping];
                         }
                     }

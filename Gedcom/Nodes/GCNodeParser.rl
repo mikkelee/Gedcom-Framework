@@ -14,6 +14,7 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
 #import "GCNode_internal.h"
 
 #import "GedcomErrors.h"
+#import "Gedcom_internal.h"
 
 #define DEBUGLINECOUNT 84300
 
@@ -212,11 +213,8 @@ level + delim + optional_xref_id + tag + delim + optional_line_value + terminato
         
         if (!didFinish) {
             if (error != NULL) {
-                NSBundle *frameworkBundle = [NSBundle bundleForClass:[self class]];
-    
-                NSString *formatString = [frameworkBundle localizedStringForKey:@"Parser stopped at node #%ld (line %ld)"
-                                                                          value:@"Parser stopped at node #%ld (line %ld)"
-                                                                          table:@"Errors"];
+                NSString *formatString = GCLocalizedString(@"Parser stopped at node #%ld (line %ld)", @"Errors");
+                
                 NSDictionary *userInfo = @{
                                            NSLocalizedDescriptionKey: [NSString stringWithFormat:formatString, nodeCount, lineCount],
                                            NSAffectedObjectsErrorKey: currentNode
