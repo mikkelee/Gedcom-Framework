@@ -11,6 +11,10 @@
 
 @interface GCIndividualRecord (GCObjectAdditions)
 
+@property (readonly, nonatomic) GCIndividualRecord *father;
+@property (readonly, nonatomic) GCIndividualRecord *mother;
+@property (readonly, nonatomic) NSArray *children;
+
 /// Attempts to estimate the birth date based on the events attached to the individual
 @property (readonly) GCDate *estimatedBirthDate;
 

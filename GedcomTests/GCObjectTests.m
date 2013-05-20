@@ -172,6 +172,13 @@
                          @"2 DATE 1 JAN 2000\n"
                          @"3 TIME 12:00:00"
                          , nil);
+    
+    STAssertEqualObjects(chil.father, husb, nil);
+    STAssertEqualObjects(chil.mother, wife, nil);
+    STAssertEquals([husb.children count], (NSUInteger)1, nil);
+    STAssertEquals([wife.children count], (NSUInteger)1, nil);
+    STAssertEqualObjects(husb.children[0], chil, nil);
+    STAssertEqualObjects(wife.children[0], chil, nil);
 }
 
 // TODO cleanup:

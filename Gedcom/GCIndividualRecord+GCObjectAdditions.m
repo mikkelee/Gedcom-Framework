@@ -9,10 +9,27 @@
 #import "GCIndividualRecord+GCObjectAdditions.h"
 
 #import "GCSpouseInFamilyRelationship.h"
+#import "GCHusbandRelationship.h"
+#import "GCWifeRelationship.h"
 #import "GCMarriageAttribute.h"
 #import "GCFamilyRecord.h"
 
 @implementation GCIndividualRecord (GCObjectAdditions)
+
+- (GCIndividualRecord *)father
+{
+    return [self valueForKeyPath:@"childInFamilies.target.husband.target"][0];
+}
+
+- (GCIndividualRecord *)mother
+{
+    return [self valueForKeyPath:@"childInFamilies.target.wife.target"][0];
+}
+
+- (NSArray *)children
+{
+    return [self valueForKeyPath:@"spouseInFamilies.target.@distinctUnionOfArrays.children.target"];
+}
 
 - (GCDate *)estimatedBirthDate
 {
