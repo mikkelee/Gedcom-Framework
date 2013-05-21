@@ -18,17 +18,71 @@
 
 - (GCIndividualRecord *)father
 {
-    return [self valueForKeyPath:@"childInFamilies.target.husband.target"][0];
+    id fathers = [self valueForKeyPath:@"childInFamilies.target.husband.target"];
+    id father = [fathers count] > 0 ? fathers[0] : nil;
+    return father != [NSNull null] ? father : nil;
 }
 
 - (GCIndividualRecord *)mother
 {
-    return [self valueForKeyPath:@"childInFamilies.target.wife.target"][0];
+    id mothers = [self valueForKeyPath:@"childInFamilies.target.wife.target"];
+    id mother = [mothers count] > 0 ? mothers[0] : nil;
+    return mother != [NSNull null] ? mother : nil;
+}
+
+- (NSArray *)parents
+{
+    NSMutableArray *parents = [NSMutableArray array];
+    
+    if (self.father) { [parents addObject:self.father]; }
+    if (self.mother) { [parents addObject:self.mother]; }
+    
+    return [parents copy];
 }
 
 - (NSArray *)children
 {
     return [self valueForKeyPath:@"spouseInFamilies.target.@distinctUnionOfArrays.children.target"];
+}
+
+- (BOOL)isDescendantOf:(GCIndividualRecord *)ancestor
+{
+    for (GCIndividualRecord *parent in self.parents) {
+        if (parent == ancestor || [parent isDescendantOf:ancestor]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)isAncestorOf:(GCIndividualRecord *)descendant
+{
+    for (GCIndividualRecord *child in self.children) {
+        if (child == descendant || [child isAncestorOf:descendant]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (GCBirthAttribute *)primaryBirth
+{
+    id births = [self valueForKeyPath:@"births"];
+    return [births count] > 0 ? births[0] : nil;
+}
+
+- (GCDeathAttribute *)primaryDeath
+{
+    id deaths = [self valueForKeyPath:@"deaths"];
+    return [deaths count] > 0 ? deaths[0] : nil;
+}
+
+- (GCPersonalNameAttribute *)primaryPersonalName
+{
+    id names = [self valueForKeyPath:@"personalNames"];
+    return [names count] > 0 ? names[0] : nil;
 }
 
 - (GCDate *)estimatedBirthDate

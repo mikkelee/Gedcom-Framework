@@ -13,7 +13,15 @@
 
 @property (readonly, nonatomic) GCIndividualRecord *father;
 @property (readonly, nonatomic) GCIndividualRecord *mother;
+@property (readonly, nonatomic) NSArray *parents;
 @property (readonly, nonatomic) NSArray *children;
+
+- (BOOL)isDescendantOf:(GCIndividualRecord *)ancestor;
+- (BOOL)isAncestorOf:(GCIndividualRecord *)descendant;
+
+@property (readonly, nonatomic) GCPersonalNameAttribute *primaryPersonalName;
+@property (readonly, nonatomic) GCBirthAttribute *primaryBirth;
+@property (readonly, nonatomic) GCDeathAttribute *primaryDeath;
 
 /// Attempts to estimate the birth date based on the events attached to the individual
 @property (readonly) GCDate *estimatedBirthDate;
