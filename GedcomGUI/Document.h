@@ -8,16 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Gedcom/Gedcom.h>
+#import "GCTreeView.h"
 
 @interface Document : NSDocument <GCContextDelegate> {
-    IBOutlet NSWindow *mainWindow;
+    IBOutlet NSArrayController *_individualsController;
     
-    IBOutlet NSArrayController *individualsController;
+    IBOutlet NSPredicateEditor *_individualsPredicateEditor;
     
-    IBOutlet NSPredicateEditor *individualsPredicateEditor;
+    IBOutlet GCTreeView *_treeView;
 }
 
 - (IBAction)testLog:(id)sender;
+- (IBAction)treeTest:(id)sender;
 
 - (IBAction)updatePredicates:(id)sender;
 

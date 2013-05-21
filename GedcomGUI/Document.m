@@ -100,14 +100,19 @@
 
 - (IBAction)testLog:(id)sender
 {
-    [individualsPredicateEditor addRow:nil];
+    [_individualsPredicateEditor addRow:nil];
     //NSLog(@"header: %@", self.context.header);
+}
+
+- (IBAction)treeTest:(id)sender
+{
+    _treeView.rootIndividual = [_individualsController selection];
 }
 
 - (IBAction)updatePredicates:(id)sender
 {
-    if (sender == individualsPredicateEditor) {
-        self.individualsPredicate = [individualsPredicateEditor predicate];
+    if (sender == _individualsPredicateEditor) {
+        self.individualsPredicate = [_individualsPredicateEditor predicate];
     }
 }
 
@@ -118,7 +123,7 @@
     if ([[link scheme] isEqualToString:@"xref"]) {
         GCEntity *entity = [GCContext recordForURL:link];
         
-        return [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
+        return [entity.type isEqualToString:@"individual"] && [_individualsController setSelectedObjects:@[entity]];
     } else {
         [[NSWorkspace sharedWorkspace] openURL:link];
         
@@ -140,17 +145,27 @@
     
     _isEntireFileLoaded = YES;
     
-    // TODO bind array controller to s.c.i instead
+    // TODO bind array controller to s.c.i instead. not currently possible due to deadlock on xrefs...
     self.individuals = self.context.individuals;
     
-    [individualsPredicateEditor setRowTemplates:[GCIndividualRecord defaultPredicateEditorRowTemplates]];
+    /*
+    id opts = @{
+                  NSContinuouslyUpdatesValueBindingOption : @YES,
+                  NSAllowsEditingMultipleValuesSelectionBindingOption : @YES,
+                  NSConditionallySetsEditableBindingOption : @YES,
+                  NSRaisesForNotApplicableKeysBindingOption : @YES };
+    
+    [_treeView bind:@"rootIndividual" toObject:_individualsController withKeyPath:@"selection" options:opts];
+    */
+    
+    [_individualsPredicateEditor setRowTemplates:[GCIndividualRecord defaultPredicateEditorRowTemplates]];
 }
 
 - (void)context:(GCContext *)context didReceiveActionForRecord:(GCEntity *)entity
 {
     NSLog(@"Clicked: %@", entity);
     
-    [entity.type isEqualToString:@"individual"] && [individualsController setSelectedObjects:@[entity]];
+    [entity.type isEqualToString:@"individual"] && [_individualsController setSelectedObjects:@[entity]];
 }
 
 @end
