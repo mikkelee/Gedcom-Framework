@@ -60,6 +60,7 @@
 
 /// The value as a display-friendly string. Consider using the appropiate GCalueFormatter subclass.
 @property (readonly) NSString *displayString;
+@property (readonly) NSString *shortDisplayString;
 
 @end
 
@@ -270,14 +271,6 @@
 
 #pragma mark Objective-C properties
 
-/// @name Gedcom access
-
-/// The date as a Gedcom-compliant string
-@property (readonly) NSString *gedcomString;
-
-/// The date as a display-friendly string
-@property (readonly) NSString *displayString;
-
 /// @name Helpers
 
 /// The calendar used by the receiver.
@@ -305,6 +298,8 @@
  
  */
 @interface GCValueFormatter : NSFormatter
+
+@property (nonatomic) BOOL displayFullString; // defaults to YES.
 
 @end
 

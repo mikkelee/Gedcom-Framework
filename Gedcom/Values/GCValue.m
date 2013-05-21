@@ -70,4 +70,9 @@
 @dynamic gedcomString;
 @dynamic displayString;
 
+- (NSString *)shortDisplayString
+{
+    return self.displayString;
+}
+
 @end

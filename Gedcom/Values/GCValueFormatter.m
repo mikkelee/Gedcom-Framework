@@ -89,6 +89,17 @@
 }
 //COV_NF_END
 
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _displayFullString = YES;
+    }
+    
+    return self;
+}
+
 - (NSString *)editingStringForObjectValue:(id)anObject
 {
 	if (![anObject isKindOfClass:[self classToFormat]]) {
@@ -106,7 +117,7 @@
         return [anObject description];
     }
     
-    return [anObject displayString];
+    return _displayFullString ? [anObject displayString] : [anObject shortDisplayString];
 }
 
 - (BOOL)getObjectValue:(id *)outVal forString:(NSString *)string errorDescription:(NSString **)error

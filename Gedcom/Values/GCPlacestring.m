@@ -107,6 +107,11 @@ __strong static NSMutableDictionary *_allPlaces = nil;
     return self.gedcomString;
 }
 
+- (NSString *)shortDisplayString
+{
+    return self.name;
+}
+
 //COV_NF_START
 - (NSString *)description
 {
