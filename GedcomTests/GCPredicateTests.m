@@ -20,30 +20,35 @@
     NSString *gedcomString =
     @"0 HEAD\n"
     @"1 CHAR ASCII\n"
+    
     @"0 @I1@ INDI\n"
     @"1 NAME Jens /Hansen/\n"
     @"1 SEX M\n"
     @"1 BIRT\n"
     @"2 DATE 1 JAN 1901\n"
     @"2 PLAC Copenhagen, Denmark\n"
+    
     @"0 @I2@ INDI\n"
     @"1 NAME Hans /Jensen/\n"
     @"1 SEX M\n"
     @"1 DEAT\n"
     @"2 DATE 23 FEB 1910\n"
     @"2 PLAC Copenhagen, Denmark\n"
+    
     @"0 @I3@ INDI\n"
     @"1 NAME Lars /Hansen/\n"
     @"1 SEX M\n"
     @"1 BIRT\n"
     @"2 DATE BEF 1898\n"
     @"2 PLAC Stockholm, Sweden\n"
+    
     @"0 @I4@ INDI\n"
     @"1 SEX M\n"
     @"1 NAME Peder /Hansen/\n"
     @"1 BIRT\n"
     @"2 DATE AFT 1905\n"
     @"2 PLAC Stockholm, Sweden\n"
+    
     @"0 TRLR";
     
     GCContext *ctx = [GCContext context];
