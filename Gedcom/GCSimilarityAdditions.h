@@ -10,6 +10,10 @@
 
 #import "GCContext.h"
 #import "GCRecord.h"
+#import "GCProperty.h"
+#import "GCValue.h"
+
+typedef double GCSimilarity;
 
 @interface GCContext (GCSimilarityAdditions)
 
@@ -19,8 +23,18 @@
 
 @interface GCRecord (GCSimilarityAdditions)
 
-- (NSNumber *)similarityTo:(GCRecord *)record withWeights:(NSDictionary *)weights;
+- (GCSimilarity)similarityTo:(GCRecord *)record;
 
-- (NSNumber *)similarityTo:(GCRecord *)record;
+@end
+
+@interface GCProperty (GCSimilarityAdditions)
+
+- (GCSimilarity)similarityTo:(GCProperty *)property;
+
+@end
+
+@interface GCValue (GCSimilarityAdditions)
+
+- (GCSimilarity)similarityTo:(GCValue *)value;
 
 @end
