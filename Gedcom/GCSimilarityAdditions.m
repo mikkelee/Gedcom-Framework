@@ -10,6 +10,7 @@
 
 #import "GCAttribute.h"
 #import "GCRelationship.h"
+#import "GCValue_internal.h"
 
 #import "GCTagAccessAdditions.h"
 
@@ -22,32 +23,67 @@
 
 @end
 
+static GCSimilarity threshold = 0.9f;
+
+void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *count) {
+    for (NSString *type in obj1.validPropertyTypes) {
+        if ([obj1 allowsMultipleOccurrencesOfPropertyType:type]) {
+            if ([[obj1 valueForKey:type] count] == 0) {
+                for (GCProperty *prop2 in [obj2 valueForKey:type]) {
+                    (*count)++;
+                }
+            } else {
+                (*count)++;
+                for (GCProperty *prop1 in [obj1 valueForKey:type]) {
+                    BOOL foundSimilar = NO;
+                    GCSimilarity tmpSum = 0.0f;
+                    
+                    for (GCProperty *prop2 in [obj2 valueForKey:type]) {
+                        tmpSum = [prop1 similarityTo:prop2];
+                        NSLog(@"tmpSum: %f", tmpSum);
+                        if (tmpSum > threshold) {
+                            foundSimilar = YES;
+                        }
+                    }
+                    
+                    if (foundSimilar) {
+                        (*sum) += tmpSum;
+                    }
+                }
+            }
+        } else {
+            (*count)++;
+            if (([obj1 valueForKey:type] && ![obj2 valueForKey:type]) ||
+                (![obj1 valueForKey:type] && [obj2 valueForKey:type])) {
+                (*sum) += 0.0f;
+            } else if (![obj1 valueForKey:type] && ![obj2 valueForKey:type]) {
+                (*sum) += 1.0f;
+            } else {
+                (*sum) += [[obj1 valueForKey:type] similarityTo:[obj2 valueForKey:type]];
+            }
+        }
+        
+        NSLog(@"%@ :: %f / %ld = %f", type, *sum, *count, *sum / *count);
+    }
+}
+
 @implementation GCRecord (GCSimilarityAdditions)
 
-- (GCSimilarity)similarityTo:(GCRecord *)record 
+- (GCSimilarity)similarityTo:(GCRecord *)record
+{
+    return [self similarityTo:record traverseRelationships:YES];
+}
+
+- (GCSimilarity)similarityTo:(GCRecord *)record traverseRelationships:(BOOL)traverse
 {
     if ([self class] != [record class]) {
         return 0.0f;
     }
     
-    NSUInteger count = 0;
     GCSimilarity sum = 0.0f;
+    NSUInteger count = 0;
     
-    for (NSString *type in self.validPropertyTypes) {
-        if ([self allowsMultipleOccurrencesOfPropertyType:type]) {
-            
-        } else {
-            count++;
-            if (([self valueForKey:type] && ![record valueForKey:type]) ||
-                (![self valueForKey:type] && [record valueForKey:type])) {
-                sum += 0.0f;
-            } else if (![self valueForKey:type] && ![record valueForKey:type]) {
-                sum += 1.0f;
-            } else {
-                sum += [[self valueForKey:type] similarityTo:[record valueForKey:type]];
-            }
-        }
-    }
+    similarity(self, record, &sum, &count);
     
     return sum/count;
 }
@@ -73,7 +109,12 @@
         return 0.0f;
     }
     
-    return [self.value similarityTo:attribute.value];
+    GCSimilarity sum = [self.value similarityTo:attribute.value];
+    NSUInteger count = 1;
+    
+    similarity(self, attribute, &sum, &count);
+    
+    return sum/count;
 }
 
 @end
@@ -86,7 +127,12 @@
         return 0.0f;
     }
     
-    return [self.target similarityTo:relationship.target];
+    GCSimilarity sum = [self.target similarityTo:relationship.target traverseRelationships:NO];
+    NSUInteger count = 1;
+    
+    similarity(self, relationship, &sum, &count);
+    
+    return sum/count;
 }
 
 @end
@@ -353,6 +399,36 @@ double strcmp95(char *ying, char *yang, long y_length, int *ind_c)
     } else {
         return 0.0f;
     }
+}
+
+@end
+
+@implementation GCBool (GCSimilarityAdditions)
+
+- (GCSimilarity)similarityTo:(GCBool *)value
+{
+    if ([self class] != [value class]) {
+        return 0.0f;
+    }
+    
+    if (self == value) {
+        return 1.0f;
+    } else {
+        return 0.0f;
+    }
+}
+
+@end
+
+@implementation GCDate (GCSimilarityAdditions)
+
+- (GCSimilarity)similarityTo:(GCBool *)value
+{
+    if ([self class] != [value class]) {
+        return 0.0f;
+    }
+    
+    return 1.0f; //TODO
 }
 
 @end

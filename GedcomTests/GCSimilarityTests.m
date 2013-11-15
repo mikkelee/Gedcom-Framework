@@ -23,9 +23,17 @@
 	[indi1 addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
 	[indi1 addAttributeWithType:@"sex" value:[GCGender unknownGender]];
     
+	GCBirthAttribute *birt = [GCBirthAttribute birth];
+	[birt addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1 JAN 1901"]];
+    [indi1.mutableProperties addObject:birt];
+    
 	GCIndividualRecord *indi2 = [GCIndividualRecord individualInContext:ctx];
 	[indi2 addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];
 	[indi2 addAttributeWithType:@"sex" value:[GCGender maleGender]];
+    
+	GCBirthAttribute *birt2 = [GCBirthAttribute birth];
+	[birt2 addAttributeWithType:@"date" value:[GCDate valueWithGedcomString:@"1901"]];
+    [indi2.mutableProperties addObject:birt2];
     
     GCSimilarity res1 = [indi1 similarityTo:indi2];
     GCSimilarity res2 = [indi2 similarityTo:indi1];
