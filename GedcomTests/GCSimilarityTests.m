@@ -21,7 +21,7 @@
 	
 	GCIndividualRecord *indi1 = [GCIndividualRecord individualInContext:ctx];
 	[indi1 addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/"]];
-	[indi1 addAttributeWithType:@"sex" value:[GCGender maleGender]];
+	[indi1 addAttributeWithType:@"sex" value:[GCGender unknownGender]];
     
 	GCIndividualRecord *indi2 = [GCIndividualRecord individualInContext:ctx];
 	[indi2 addAttributeWithType:@"personalName" value:[GCNamestring valueWithGedcomString:@"Jens /Hansen/ Smed"]];

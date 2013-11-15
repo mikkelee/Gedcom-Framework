@@ -346,10 +346,10 @@ double strcmp95(char *ying, char *yang, long y_length, int *ind_c)
         return 0.0f;
     }
     
-    // TODO one is unknown return 0.5?
-    
     if (self == value) {
         return 1.0f;
+    } else if (self == [GCGender unknownGender] || value == [GCGender unknownGender]) {
+        return 0.5f;
     } else {
         return 0.0f;
     }
