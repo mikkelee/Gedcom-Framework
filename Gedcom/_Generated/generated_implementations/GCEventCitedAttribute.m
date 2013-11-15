@@ -4,6 +4,10 @@
 
 #import "GCEventCitedAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCEventCitedAttribute {
 	GCRoleAttribute *_role;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic role;
+
+- (id)role
+{
+	return _role;
+}
+	
+- (void)setRole:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCEventCitedAttribute *)[uM prepareWithInvocationTarget:self] setRole:_role];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_role) {
+		[(id)_role setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_role = obj;
+}
+
 
 @end

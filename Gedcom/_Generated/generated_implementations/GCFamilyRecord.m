@@ -4,6 +4,10 @@
 
 #import "GCFamilyRecord.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCFamilyRecord {
 	NSMutableArray *_annulments;
 	NSMutableArray *_censuses;
@@ -81,159 +85,1412 @@
 // Properties:
 @dynamic familyEvents;
 @synthesize annulments = _annulments;
+
 @dynamic mutableAnnulments;
 - (NSMutableArray *)mutableAnnulments
 {
 	return [self mutableArrayValueForKey:@"annulments"];
 }
 
+- (id)objectInAnnulmentsAtIndex:(NSUInteger)idx
+{
+	return [_annulments objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfAnnulments
+{
+	return [_annulments count];
+}
+
+- (void)insertObject:(id)obj inAnnulmentsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromAnnulmentsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_annulments insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromAnnulmentsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_annulments[idx] inAnnulmentsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_annulments[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_annulments removeObjectAtIndex:idx];
+}
+
 @synthesize censuses = _censuses;
+
 @dynamic mutableCensuses;
 - (NSMutableArray *)mutableCensuses
 {
 	return [self mutableArrayValueForKey:@"censuses"];
 }
 
+- (id)objectInCensusesAtIndex:(NSUInteger)idx
+{
+	return [_censuses objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfCensuses
+{
+	return [_censuses count];
+}
+
+- (void)insertObject:(id)obj inCensusesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromCensusesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_censuses insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromCensusesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_censuses[idx] inCensusesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_censuses[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_censuses removeObjectAtIndex:idx];
+}
+
 @synthesize divorces = _divorces;
+
 @dynamic mutableDivorces;
 - (NSMutableArray *)mutableDivorces
 {
 	return [self mutableArrayValueForKey:@"divorces"];
 }
 
+- (id)objectInDivorcesAtIndex:(NSUInteger)idx
+{
+	return [_divorces objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfDivorces
+{
+	return [_divorces count];
+}
+
+- (void)insertObject:(id)obj inDivorcesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromDivorcesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_divorces insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromDivorcesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_divorces[idx] inDivorcesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_divorces[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_divorces removeObjectAtIndex:idx];
+}
+
 @synthesize divorceFileds = _divorceFileds;
+
 @dynamic mutableDivorceFileds;
 - (NSMutableArray *)mutableDivorceFileds
 {
 	return [self mutableArrayValueForKey:@"divorceFileds"];
 }
 
+- (id)objectInDivorceFiledsAtIndex:(NSUInteger)idx
+{
+	return [_divorceFileds objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfDivorceFileds
+{
+	return [_divorceFileds count];
+}
+
+- (void)insertObject:(id)obj inDivorceFiledsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromDivorceFiledsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_divorceFileds insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromDivorceFiledsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_divorceFileds[idx] inDivorceFiledsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_divorceFileds[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_divorceFileds removeObjectAtIndex:idx];
+}
+
 @synthesize engagements = _engagements;
+
 @dynamic mutableEngagements;
 - (NSMutableArray *)mutableEngagements
 {
 	return [self mutableArrayValueForKey:@"engagements"];
 }
 
+- (id)objectInEngagementsAtIndex:(NSUInteger)idx
+{
+	return [_engagements objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfEngagements
+{
+	return [_engagements count];
+}
+
+- (void)insertObject:(id)obj inEngagementsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromEngagementsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_engagements insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromEngagementsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_engagements[idx] inEngagementsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_engagements[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_engagements removeObjectAtIndex:idx];
+}
+
 @synthesize marriages = _marriages;
+
 @dynamic mutableMarriages;
 - (NSMutableArray *)mutableMarriages
 {
 	return [self mutableArrayValueForKey:@"marriages"];
 }
 
+- (id)objectInMarriagesAtIndex:(NSUInteger)idx
+{
+	return [_marriages objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMarriages
+{
+	return [_marriages count];
+}
+
+- (void)insertObject:(id)obj inMarriagesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMarriagesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_marriages insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMarriagesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_marriages[idx] inMarriagesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_marriages[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_marriages removeObjectAtIndex:idx];
+}
+
 @synthesize marriageBanns = _marriageBanns;
+
 @dynamic mutableMarriageBanns;
 - (NSMutableArray *)mutableMarriageBanns
 {
 	return [self mutableArrayValueForKey:@"marriageBanns"];
 }
 
+- (id)objectInMarriageBannsAtIndex:(NSUInteger)idx
+{
+	return [_marriageBanns objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMarriageBanns
+{
+	return [_marriageBanns count];
+}
+
+- (void)insertObject:(id)obj inMarriageBannsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMarriageBannsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_marriageBanns insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMarriageBannsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_marriageBanns[idx] inMarriageBannsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_marriageBanns[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_marriageBanns removeObjectAtIndex:idx];
+}
+
 @synthesize marriageContracts = _marriageContracts;
+
 @dynamic mutableMarriageContracts;
 - (NSMutableArray *)mutableMarriageContracts
 {
 	return [self mutableArrayValueForKey:@"marriageContracts"];
 }
 
+- (id)objectInMarriageContractsAtIndex:(NSUInteger)idx
+{
+	return [_marriageContracts objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMarriageContracts
+{
+	return [_marriageContracts count];
+}
+
+- (void)insertObject:(id)obj inMarriageContractsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMarriageContractsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_marriageContracts insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMarriageContractsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_marriageContracts[idx] inMarriageContractsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_marriageContracts[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_marriageContracts removeObjectAtIndex:idx];
+}
+
 @synthesize marriageLicenses = _marriageLicenses;
+
 @dynamic mutableMarriageLicenses;
 - (NSMutableArray *)mutableMarriageLicenses
 {
 	return [self mutableArrayValueForKey:@"marriageLicenses"];
 }
 
+- (id)objectInMarriageLicensesAtIndex:(NSUInteger)idx
+{
+	return [_marriageLicenses objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMarriageLicenses
+{
+	return [_marriageLicenses count];
+}
+
+- (void)insertObject:(id)obj inMarriageLicensesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMarriageLicensesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_marriageLicenses insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMarriageLicensesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_marriageLicenses[idx] inMarriageLicensesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_marriageLicenses[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_marriageLicenses removeObjectAtIndex:idx];
+}
+
 @synthesize marriageSettlements = _marriageSettlements;
+
 @dynamic mutableMarriageSettlements;
 - (NSMutableArray *)mutableMarriageSettlements
 {
 	return [self mutableArrayValueForKey:@"marriageSettlements"];
 }
 
+- (id)objectInMarriageSettlementsAtIndex:(NSUInteger)idx
+{
+	return [_marriageSettlements objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMarriageSettlements
+{
+	return [_marriageSettlements count];
+}
+
+- (void)insertObject:(id)obj inMarriageSettlementsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMarriageSettlementsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_marriageSettlements insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMarriageSettlementsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_marriageSettlements[idx] inMarriageSettlementsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_marriageSettlements[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_marriageSettlements removeObjectAtIndex:idx];
+}
+
 @synthesize genericEvents = _genericEvents;
+
 @dynamic mutableGenericEvents;
 - (NSMutableArray *)mutableGenericEvents
 {
 	return [self mutableArrayValueForKey:@"genericEvents"];
 }
 
-@dynamic husband;
-@dynamic wife;
+- (id)objectInGenericEventsAtIndex:(NSUInteger)idx
+{
+	return [_genericEvents objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfGenericEvents
+{
+	return [_genericEvents count];
+}
+
+- (void)insertObject:(id)obj inGenericEventsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromGenericEventsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_genericEvents insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromGenericEventsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_genericEvents[idx] inGenericEventsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_genericEvents[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_genericEvents removeObjectAtIndex:idx];
+}
+
+
+- (id)husband
+{
+	return _husband;
+}
+	
+- (void)setHusband:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] setHusband:_husband];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_husband) {
+		[(id)_husband setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_husband = obj;
+}
+
+
+- (id)wife
+{
+	return _wife;
+}
+	
+- (void)setWife:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] setWife:_wife];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_wife) {
+		[(id)_wife setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_wife = obj;
+}
+
 @synthesize children = _children;
+
 @dynamic mutableChildren;
 - (NSMutableArray *)mutableChildren
 {
 	return [self mutableArrayValueForKey:@"children"];
 }
 
-@dynamic numberOfChildren;
+- (id)objectInChildrenAtIndex:(NSUInteger)idx
+{
+	return [_children objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfChildren
+{
+	return [_children count];
+}
+
+- (void)insertObject:(id)obj inChildrenAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromChildrenAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_children insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromChildrenAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_children[idx] inChildrenAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_children[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_children removeObjectAtIndex:idx];
+}
+
+
+- (id)numberOfChildren
+{
+	return _numberOfChildren;
+}
+	
+- (void)setNumberOfChildren:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] setNumberOfChildren:_numberOfChildren];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_numberOfChildren) {
+		[(id)_numberOfChildren setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_numberOfChildren = obj;
+}
+
 @synthesize submitterReferences = _submitterReferences;
+
 @dynamic mutableSubmitterReferences;
 - (NSMutableArray *)mutableSubmitterReferences
 {
 	return [self mutableArrayValueForKey:@"submitterReferences"];
 }
 
+- (id)objectInSubmitterReferencesAtIndex:(NSUInteger)idx
+{
+	return [_submitterReferences objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfSubmitterReferences
+{
+	return [_submitterReferences count];
+}
+
+- (void)insertObject:(id)obj inSubmitterReferencesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromSubmitterReferencesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_submitterReferences insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromSubmitterReferencesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_submitterReferences[idx] inSubmitterReferencesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_submitterReferences[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_submitterReferences removeObjectAtIndex:idx];
+}
+
 @synthesize lDSSealingSpouses = _lDSSealingSpouses;
+
 @dynamic mutableLDSSealingSpouses;
 - (NSMutableArray *)mutableLDSSealingSpouses
 {
 	return [self mutableArrayValueForKey:@"lDSSealingSpouses"];
 }
 
+- (id)objectInLDSSealingSpousesAtIndex:(NSUInteger)idx
+{
+	return [_lDSSealingSpouses objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfLDSSealingSpouses
+{
+	return [_lDSSealingSpouses count];
+}
+
+- (void)insertObject:(id)obj inLDSSealingSpousesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromLDSSealingSpousesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_lDSSealingSpouses insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromLDSSealingSpousesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_lDSSealingSpouses[idx] inLDSSealingSpousesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_lDSSealingSpouses[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_lDSSealingSpouses removeObjectAtIndex:idx];
+}
+
 @dynamic sources;
 @synthesize sourceCitations = _sourceCitations;
+
 @dynamic mutableSourceCitations;
 - (NSMutableArray *)mutableSourceCitations
 {
 	return [self mutableArrayValueForKey:@"sourceCitations"];
 }
 
+- (id)objectInSourceCitationsAtIndex:(NSUInteger)idx
+{
+	return [_sourceCitations objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfSourceCitations
+{
+	return [_sourceCitations count];
+}
+
+- (void)insertObject:(id)obj inSourceCitationsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromSourceCitationsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_sourceCitations insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromSourceCitationsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_sourceCitations[idx] inSourceCitationsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_sourceCitations[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_sourceCitations removeObjectAtIndex:idx];
+}
+
 @synthesize sourceEmbeddeds = _sourceEmbeddeds;
+
 @dynamic mutableSourceEmbeddeds;
 - (NSMutableArray *)mutableSourceEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"sourceEmbeddeds"];
 }
 
+- (id)objectInSourceEmbeddedsAtIndex:(NSUInteger)idx
+{
+	return [_sourceEmbeddeds objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfSourceEmbeddeds
+{
+	return [_sourceEmbeddeds count];
+}
+
+- (void)insertObject:(id)obj inSourceEmbeddedsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromSourceEmbeddedsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_sourceEmbeddeds insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromSourceEmbeddedsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_sourceEmbeddeds[idx] inSourceEmbeddedsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_sourceEmbeddeds[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_sourceEmbeddeds removeObjectAtIndex:idx];
+}
+
 @dynamic multimedias;
 @synthesize multimediaReferences = _multimediaReferences;
+
 @dynamic mutableMultimediaReferences;
 - (NSMutableArray *)mutableMultimediaReferences
 {
 	return [self mutableArrayValueForKey:@"multimediaReferences"];
 }
 
+- (id)objectInMultimediaReferencesAtIndex:(NSUInteger)idx
+{
+	return [_multimediaReferences objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMultimediaReferences
+{
+	return [_multimediaReferences count];
+}
+
+- (void)insertObject:(id)obj inMultimediaReferencesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMultimediaReferencesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_multimediaReferences insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMultimediaReferencesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_multimediaReferences[idx] inMultimediaReferencesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_multimediaReferences[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_multimediaReferences removeObjectAtIndex:idx];
+}
+
 @synthesize multimediaEmbeddeds = _multimediaEmbeddeds;
+
 @dynamic mutableMultimediaEmbeddeds;
 - (NSMutableArray *)mutableMultimediaEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"multimediaEmbeddeds"];
 }
 
+- (id)objectInMultimediaEmbeddedsAtIndex:(NSUInteger)idx
+{
+	return [_multimediaEmbeddeds objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfMultimediaEmbeddeds
+{
+	return [_multimediaEmbeddeds count];
+}
+
+- (void)insertObject:(id)obj inMultimediaEmbeddedsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromMultimediaEmbeddedsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_multimediaEmbeddeds insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromMultimediaEmbeddedsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_multimediaEmbeddeds[idx] inMultimediaEmbeddedsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_multimediaEmbeddeds[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_multimediaEmbeddeds removeObjectAtIndex:idx];
+}
+
 @dynamic notes;
 @synthesize noteReferences = _noteReferences;
+
 @dynamic mutableNoteReferences;
 - (NSMutableArray *)mutableNoteReferences
 {
 	return [self mutableArrayValueForKey:@"noteReferences"];
 }
 
+- (id)objectInNoteReferencesAtIndex:(NSUInteger)idx
+{
+	return [_noteReferences objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfNoteReferences
+{
+	return [_noteReferences count];
+}
+
+- (void)insertObject:(id)obj inNoteReferencesAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromNoteReferencesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_noteReferences insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromNoteReferencesAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_noteReferences[idx] inNoteReferencesAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_noteReferences[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_noteReferences removeObjectAtIndex:idx];
+}
+
 @synthesize noteEmbeddeds = _noteEmbeddeds;
+
 @dynamic mutableNoteEmbeddeds;
 - (NSMutableArray *)mutableNoteEmbeddeds
 {
 	return [self mutableArrayValueForKey:@"noteEmbeddeds"];
 }
 
+- (id)objectInNoteEmbeddedsAtIndex:(NSUInteger)idx
+{
+	return [_noteEmbeddeds objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfNoteEmbeddeds
+{
+	return [_noteEmbeddeds count];
+}
+
+- (void)insertObject:(id)obj inNoteEmbeddedsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromNoteEmbeddedsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_noteEmbeddeds insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromNoteEmbeddedsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_noteEmbeddeds[idx] inNoteEmbeddedsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_noteEmbeddeds[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_noteEmbeddeds removeObjectAtIndex:idx];
+}
+
 @synthesize userReferenceNumbers = _userReferenceNumbers;
+
 @dynamic mutableUserReferenceNumbers;
 - (NSMutableArray *)mutableUserReferenceNumbers
 {
 	return [self mutableArrayValueForKey:@"userReferenceNumbers"];
 }
 
-@dynamic recordIdNumber;
-@dynamic changeInfo;
+- (id)objectInUserReferenceNumbersAtIndex:(NSUInteger)idx
+{
+	return [_userReferenceNumbers objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfUserReferenceNumbers
+{
+	return [_userReferenceNumbers count];
+}
+
+- (void)insertObject:(id)obj inUserReferenceNumbersAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] removeObjectFromUserReferenceNumbersAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_userReferenceNumbers insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromUserReferenceNumbersAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] insertObject:_userReferenceNumbers[idx] inUserReferenceNumbersAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_userReferenceNumbers[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_userReferenceNumbers removeObjectAtIndex:idx];
+}
+
+
+- (id)recordIdNumber
+{
+	return _recordIdNumber;
+}
+	
+- (void)setRecordIdNumber:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] setRecordIdNumber:_recordIdNumber];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_recordIdNumber) {
+		[(id)_recordIdNumber setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_recordIdNumber = obj;
+}
+
+
+- (id)changeInfo
+{
+	return _changeInfo;
+}
+	
+- (void)setChangeInfo:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCFamilyRecord *)[uM prepareWithInvocationTarget:self] setChangeInfo:_changeInfo];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_changeInfo) {
+		[(id)_changeInfo setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_changeInfo = obj;
+}
+
 
 @end

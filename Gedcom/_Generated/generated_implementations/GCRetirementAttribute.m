@@ -4,6 +4,10 @@
 
 #import "GCRetirementAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCRetirementAttribute {
 
 }

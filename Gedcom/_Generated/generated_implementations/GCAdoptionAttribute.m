@@ -4,6 +4,10 @@
 
 #import "GCAdoptionAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCAdoptionAttribute {
 	GCAdoptedIntoFamilyRelationship *_adoptedIntoFamily;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic adoptedIntoFamily;
+
+- (id)adoptedIntoFamily
+{
+	return _adoptedIntoFamily;
+}
+	
+- (void)setAdoptedIntoFamily:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAdoptionAttribute *)[uM prepareWithInvocationTarget:self] setAdoptedIntoFamily:_adoptedIntoFamily];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_adoptedIntoFamily) {
+		[(id)_adoptedIntoFamily setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_adoptedIntoFamily = obj;
+}
+
 
 @end

@@ -4,6 +4,10 @@
 
 #import "GCUserReferenceNumberAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCUserReferenceNumberAttribute {
 	GCTypeDescriptionAttribute *_typeDescription;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic typeDescription;
+
+- (id)typeDescription
+{
+	return _typeDescription;
+}
+	
+- (void)setTypeDescription:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCUserReferenceNumberAttribute *)[uM prepareWithInvocationTarget:self] setTypeDescription:_typeDescription];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_typeDescription) {
+		[(id)_typeDescription setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_typeDescription = obj;
+}
+
 
 @end

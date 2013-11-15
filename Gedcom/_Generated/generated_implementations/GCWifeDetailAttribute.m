@@ -4,6 +4,10 @@
 
 #import "GCWifeDetailAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCWifeDetailAttribute {
 	GCAgeAttribute *_age;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic age;
+
+- (id)age
+{
+	return _age;
+}
+	
+- (void)setAge:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCWifeDetailAttribute *)[uM prepareWithInvocationTarget:self] setAge:_age];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_age) {
+		[(id)_age setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_age = obj;
+}
+
 
 @end

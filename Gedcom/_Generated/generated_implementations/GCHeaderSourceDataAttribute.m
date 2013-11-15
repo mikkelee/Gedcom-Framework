@@ -4,6 +4,10 @@
 
 #import "GCHeaderSourceDataAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCHeaderSourceDataAttribute {
 	GCDateAttribute *_date;
 	GCCopyrightAttribute *_copyright;
@@ -57,7 +61,63 @@
 
 
 // Properties:
-@dynamic date;
-@dynamic copyright;
+
+- (id)date
+{
+	return _date;
+}
+	
+- (void)setDate:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCHeaderSourceDataAttribute *)[uM prepareWithInvocationTarget:self] setDate:_date];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_date) {
+		[(id)_date setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_date = obj;
+}
+
+
+- (id)copyright
+{
+	return _copyright;
+}
+	
+- (void)setCopyright:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCHeaderSourceDataAttribute *)[uM prepareWithInvocationTarget:self] setCopyright:_copyright];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_copyright) {
+		[(id)_copyright setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_copyright = obj;
+}
+
 
 @end

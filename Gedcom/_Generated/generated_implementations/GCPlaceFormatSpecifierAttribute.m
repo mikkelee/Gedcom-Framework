@@ -4,6 +4,10 @@
 
 #import "GCPlaceFormatSpecifierAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCPlaceFormatSpecifierAttribute {
 	GCPlaceFormatAttribute *_placeFormat;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic placeFormat;
+
+- (id)placeFormat
+{
+	return _placeFormat;
+}
+	
+- (void)setPlaceFormat:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCPlaceFormatSpecifierAttribute *)[uM prepareWithInvocationTarget:self] setPlaceFormat:_placeFormat];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_placeFormat) {
+		[(id)_placeFormat setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_placeFormat = obj;
+}
+
 
 @end

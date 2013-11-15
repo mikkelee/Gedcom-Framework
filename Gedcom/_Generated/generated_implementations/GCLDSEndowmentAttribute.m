@@ -4,6 +4,10 @@
 
 #import "GCLDSEndowmentAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCLDSEndowmentAttribute {
 	GCLDSEndowmentStatusAttribute *_lDSEndowmentStatus;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic lDSEndowmentStatus;
+
+- (id)lDSEndowmentStatus
+{
+	return _lDSEndowmentStatus;
+}
+	
+- (void)setLDSEndowmentStatus:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCLDSEndowmentAttribute *)[uM prepareWithInvocationTarget:self] setLDSEndowmentStatus:_lDSEndowmentStatus];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_lDSEndowmentStatus) {
+		[(id)_lDSEndowmentStatus setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_lDSEndowmentStatus = obj;
+}
+
 
 @end

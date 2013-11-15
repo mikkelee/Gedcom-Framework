@@ -4,6 +4,10 @@
 
 #import "GCTimeAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCTimeAttribute {
 
 }

@@ -4,6 +4,10 @@
 
 #import "GCAddressAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCAddressAttribute {
 	GCAddressLine1Attribute *_addressLine1;
 	GCAddressLine2Attribute *_addressLine2;
@@ -61,11 +65,179 @@
 
 
 // Properties:
-@dynamic addressLine1;
-@dynamic addressLine2;
-@dynamic city;
-@dynamic state;
-@dynamic postalCode;
-@dynamic country;
+
+- (id)addressLine1
+{
+	return _addressLine1;
+}
+	
+- (void)setAddressLine1:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAddressAttribute *)[uM prepareWithInvocationTarget:self] setAddressLine1:_addressLine1];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_addressLine1) {
+		[(id)_addressLine1 setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_addressLine1 = obj;
+}
+
+
+- (id)addressLine2
+{
+	return _addressLine2;
+}
+	
+- (void)setAddressLine2:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAddressAttribute *)[uM prepareWithInvocationTarget:self] setAddressLine2:_addressLine2];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_addressLine2) {
+		[(id)_addressLine2 setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_addressLine2 = obj;
+}
+
+
+- (id)city
+{
+	return _city;
+}
+	
+- (void)setCity:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAddressAttribute *)[uM prepareWithInvocationTarget:self] setCity:_city];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_city) {
+		[(id)_city setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_city = obj;
+}
+
+
+- (id)state
+{
+	return _state;
+}
+	
+- (void)setState:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAddressAttribute *)[uM prepareWithInvocationTarget:self] setState:_state];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_state) {
+		[(id)_state setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_state = obj;
+}
+
+
+- (id)postalCode
+{
+	return _postalCode;
+}
+	
+- (void)setPostalCode:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAddressAttribute *)[uM prepareWithInvocationTarget:self] setPostalCode:_postalCode];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_postalCode) {
+		[(id)_postalCode setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_postalCode = obj;
+}
+
+
+- (id)country
+{
+	return _country;
+}
+	
+- (void)setCountry:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCAddressAttribute *)[uM prepareWithInvocationTarget:self] setCountry:_country];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_country) {
+		[(id)_country setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_country = obj;
+}
+
 
 @end

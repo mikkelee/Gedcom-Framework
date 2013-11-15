@@ -4,6 +4,10 @@
 
 #import "GCDataAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCDataAttribute {
 	GCDateAttribute *_date;
 	NSMutableArray *_texts;
@@ -57,12 +61,93 @@
 
 
 // Properties:
-@dynamic date;
+
+- (id)date
+{
+	return _date;
+}
+	
+- (void)setDate:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCDataAttribute *)[uM prepareWithInvocationTarget:self] setDate:_date];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_date) {
+		[(id)_date setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_date = obj;
+}
+
 @synthesize texts = _texts;
+
 @dynamic mutableTexts;
 - (NSMutableArray *)mutableTexts
 {
 	return [self mutableArrayValueForKey:@"texts"];
+}
+
+- (id)objectInTextsAtIndex:(NSUInteger)idx
+{
+	return [_texts objectAtIndex:idx];
+}
+
+- (NSUInteger)countOfTexts
+{
+	return [_texts count];
+}
+
+- (void)insertObject:(id)obj inTextsAtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCDataAttribute *)[uM prepareWithInvocationTarget:self] removeObjectFromTextsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_texts insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFromTextsAtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCDataAttribute *)[uM prepareWithInvocationTarget:self] insertObject:_texts[idx] inTextsAtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_texts[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_texts removeObjectAtIndex:idx];
 }
 
 

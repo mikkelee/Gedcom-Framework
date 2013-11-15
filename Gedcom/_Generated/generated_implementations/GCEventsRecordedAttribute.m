@@ -4,6 +4,10 @@
 
 #import "GCEventsRecordedAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCEventsRecordedAttribute {
 	GCDateAttribute *_date;
 	GCPlaceAttribute *_place;
@@ -57,7 +61,63 @@
 
 
 // Properties:
-@dynamic date;
-@dynamic place;
+
+- (id)date
+{
+	return _date;
+}
+	
+- (void)setDate:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCEventsRecordedAttribute *)[uM prepareWithInvocationTarget:self] setDate:_date];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_date) {
+		[(id)_date setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_date = obj;
+}
+
+
+- (id)place
+{
+	return _place;
+}
+	
+- (void)setPlace:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCEventsRecordedAttribute *)[uM prepareWithInvocationTarget:self] setPlace:_place];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_place) {
+		[(id)_place setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_place = obj;
+}
+
 
 @end

@@ -26,8 +26,6 @@
 		3E03110C1736B7A700CD9721 /* GCContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E03110B1736B7A700CD9721 /* GCContextTests.m */; };
 		3E053D8E1726B70F0060A622 /* GCGedcomAccessAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */; };
-		3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */; };
 		3E053D971728170F0060A622 /* GCXrefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E053D961728170F0060A622 /* GCXrefTests.m */; };
 		3E068630174C0021003E3FF1 /* GCIndividualDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06862F174C0021003E3FF1 /* GCIndividualDetailViewController.m */; };
 		3E09D19115F9815E00BAA69E /* GCObject_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E09D18C15F9427C00BAA69E /* GCObject_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -423,6 +421,7 @@
 		3E713EC71729642E0098EBC3 /* GCContext+GCTransactionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713EC51729642E0098EBC3 /* GCContext+GCTransactionAdditions.m */; };
 		3E713ECB172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E713EC9172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E713ECC172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713ECA172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m */; };
+		3E741146176B529100466863 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3E741145176B529100466863 /* LICENSE */; };
 		3E75A92F1547A55A00F85777 /* GCKeyValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75A92E1547A55A00F85777 /* GCKeyValueTests.m */; };
 		3E83FF23171CC5240093B685 /* Tags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF25171CC5240093B685 /* Tags.strings */; };
 		3E83FF26171CC5270093B685 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E83FF28171CC5270093B685 /* Errors.strings */; };
@@ -557,8 +556,6 @@
 		3E03110B1736B7A700CD9721 /* GCContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContextTests.m; sourceTree = "<group>"; };
 		3E053D8C1726B70F0060A622 /* GCGedcomAccessAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGedcomAccessAdditions.h; sourceTree = "<group>"; };
 		3E053D8D1726B70F0060A622 /* GCGedcomAccessAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGedcomAccessAdditions.m; sourceTree = "<group>"; };
-		3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCObject+GCSwizzlingAdditions.h"; sourceTree = "<group>"; };
-		3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCObject+GCSwizzlingAdditions.m"; sourceTree = "<group>"; };
 		3E053D961728170F0060A622 /* GCXrefTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCXrefTests.m; sourceTree = "<group>"; };
 		3E06862E174C0021003E3FF1 /* GCIndividualDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCIndividualDetailViewController.h; sourceTree = "<group>"; };
 		3E06862F174C0021003E3FF1 /* GCIndividualDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCIndividualDetailViewController.m; sourceTree = "<group>"; };
@@ -965,6 +962,7 @@
 		3E713EC51729642E0098EBC3 /* GCContext+GCTransactionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCTransactionAdditions.m"; sourceTree = "<group>"; };
 		3E713EC9172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCContext+GCConvenienceAdditions.h"; sourceTree = "<group>"; };
 		3E713ECA172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCContext+GCConvenienceAdditions.m"; sourceTree = "<group>"; };
+		3E741145176B529100466863 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3E75836515F8DDF800A9B096 /* GCAge_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCAge_internal.h; path = Values/GCAge_internal.h; sourceTree = "<group>"; };
 		3E75836615F8DF3E00A9B096 /* GCDate_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCDate_internal.h; path = Values/GCDate_internal.h; sourceTree = "<group>"; };
 		3E75837915F8EAB900A9B096 /* GCAgeParser.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GCAgeParser.rl; path = Values/GCAgeParser.rl; sourceTree = "<group>"; };
@@ -1164,6 +1162,7 @@
 			isa = PBXGroup;
 			children = (
 				3E5F5097151DCC7B00A433A6 /* README.md */,
+				3E741145176B529100466863 /* LICENSE */,
 				3E1C3E6F151C319C005E09E1 /* Gedcom */,
 				3E1C3E85151C319D005E09E1 /* GedcomTests */,
 				3E3995AB155DE4B500228946 /* GedcomGUI */,
@@ -1755,8 +1754,6 @@
 				3E8F87C3171CAE01003111D2 /* GCObject+GCConvenienceAdditions.m */,
 				3ED1712B16155AE100B5B83F /* GCObject+GCKeyValueAdditions.h */,
 				3ED1712C16155AE200B5B83F /* GCObject+GCKeyValueAdditions.m */,
-				3E053D901726CD730060A622 /* GCObject+GCSwizzlingAdditions.h */,
-				3E053D911726CD730060A622 /* GCObject+GCSwizzlingAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -1863,7 +1860,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E053D8E1726B70F0060A622 /* GCGedcomAccessAdditions.h in Headers */,
-				3E053D921726CD740060A622 /* GCObject+GCSwizzlingAdditions.h in Headers */,
 				3E713EC61729642E0098EBC3 /* GCContext+GCTransactionAdditions.h in Headers */,
 				3E713ECB172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.h in Headers */,
 				3E56885A1730415900CB1997 /* GCTagAccessAdditions.h in Headers */,
@@ -2192,6 +2188,7 @@
 				3E8C1EA11626BED7005B3BE6 /* sanity.json in Resources */,
 				3E83FF26171CC5270093B685 /* Errors.strings in Resources */,
 				3E83FF29171CC52B0093B685 /* Misc.strings in Resources */,
+				3E741146176B529100466863 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2491,7 +2488,6 @@
 				3E41BFCB1725FBFA003286E7 /* GCWifeRelationship.m in Sources */,
 				3E41BFCC1725FBFA003286E7 /* GCWillAttribute.m in Sources */,
 				3E053D8F1726B70F0060A622 /* GCGedcomAccessAdditions.m in Sources */,
-				3E053D931726CD740060A622 /* GCObject+GCSwizzlingAdditions.m in Sources */,
 				3E2001EA17287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m in Sources */,
 				3E713EBD17295F740098EBC3 /* GCSimilarityAdditions.m in Sources */,
 				3E713EC71729642E0098EBC3 /* GCContext+GCTransactionAdditions.m in Sources */,

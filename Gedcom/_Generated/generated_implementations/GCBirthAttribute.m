@@ -4,6 +4,10 @@
 
 #import "GCBirthAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCBirthAttribute {
 	GCBornToFamilyRelationship *_bornToFamily;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic bornToFamily;
+
+- (id)bornToFamily
+{
+	return _bornToFamily;
+}
+	
+- (void)setBornToFamily:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCBirthAttribute *)[uM prepareWithInvocationTarget:self] setBornToFamily:_bornToFamily];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_bornToFamily) {
+		[(id)_bornToFamily setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_bornToFamily = obj;
+}
+
 
 @end

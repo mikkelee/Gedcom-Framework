@@ -4,6 +4,10 @@
 
 #import "GCLDSSealingChildAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCLDSSealingChildAttribute {
 	GCLDSSealingChildStatusAttribute *_lDSSealingChildStatus;
 	GCSealedToFamilyRelationship *_sealedToFamily;
@@ -57,7 +61,63 @@
 
 
 // Properties:
-@dynamic lDSSealingChildStatus;
-@dynamic sealedToFamily;
+
+- (id)lDSSealingChildStatus
+{
+	return _lDSSealingChildStatus;
+}
+	
+- (void)setLDSSealingChildStatus:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCLDSSealingChildAttribute *)[uM prepareWithInvocationTarget:self] setLDSSealingChildStatus:_lDSSealingChildStatus];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_lDSSealingChildStatus) {
+		[(id)_lDSSealingChildStatus setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_lDSSealingChildStatus = obj;
+}
+
+
+- (id)sealedToFamily
+{
+	return _sealedToFamily;
+}
+	
+- (void)setSealedToFamily:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCLDSSealingChildAttribute *)[uM prepareWithInvocationTarget:self] setSealedToFamily:_sealedToFamily];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_sealedToFamily) {
+		[(id)_sealedToFamily setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_sealedToFamily = obj;
+}
+
 
 @end

@@ -4,6 +4,10 @@
 
 #import "GCCallNumberAttribute.h"
 
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
+
 @implementation GCCallNumberAttribute {
 	GCMediaTypeAttribute *_mediaType;
 }
@@ -56,6 +60,34 @@
 
 
 // Properties:
-@dynamic mediaType;
+
+- (id)mediaType
+{
+	return _mediaType;
+}
+	
+- (void)setMediaType:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[(GCCallNumberAttribute *)[uM prepareWithInvocationTarget:self] setMediaType:_mediaType];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_mediaType) {
+		[(id)_mediaType setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_mediaType = obj;
+}
+
 
 @end

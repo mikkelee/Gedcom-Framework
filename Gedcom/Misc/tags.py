@@ -33,11 +33,94 @@ def pluralize(tagInfo, key):
 
 propertyT = Template('/// $doc\n@property (nonatomic) $type *$name;\n')
 
-mutablePropertyT = Template("""@synthesize $name = _$name;
+singularPropertyT = Template("""
+- (id)$name
+{
+	return _$name;
+}
+	
+- (void)set$capName:(id)obj
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[($selfClass *)[uM prepareWithInvocationTarget:self] set${capName}:_$name];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if (_$name) {
+		[(id)_$name setValue:nil forKey:@"describedObject"];
+	}
+	
+	[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	_$name = obj;
+}
+""")
+
+multiplePropertyT = Template("""@synthesize $name = _$name;
+
 @dynamic mutable$capName;
 - (NSMutableArray *)mutable$capName
 {
 	return [self mutableArrayValueForKey:@"$name"];
+}
+
+- (id)objectIn${capName}AtIndex:(NSUInteger)idx
+{
+	return [_$name objectAtIndex:idx];
+}
+
+- (NSUInteger)countOf$capName
+{
+	return [_$name count];
+}
+
+- (void)insertObject:(id)obj in${capName}AtIndex:(NSUInteger)idx
+{
+	if ([obj valueForKey:@"describedObject"] == self) {
+		return;
+	}
+	
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[($selfClass *)[uM prepareWithInvocationTarget:self] removeObjectFrom${capName}AtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	if ([obj valueForKey:@"describedObject"]) {
+		[[obj valueForKeyPath:@"describedObject.mutableProperties"] removeObject:obj];
+	}
+	
+	[obj setValue:self forKey:@"describedObject"];
+	
+	[_$name insertObject:obj atIndex:idx];
+}
+
+- (void)removeObjectFrom${capName}AtIndex:(NSUInteger)idx
+{
+	if (!_isBuildingFromGedcom) {
+		NSUndoManager *uM = [self valueForKey:@"undoManager"];
+		@synchronized (uM) {
+			[uM beginUndoGrouping];
+			[($selfClass *)[uM prepareWithInvocationTarget:self] insertObject:_$name[idx] in${capName}AtIndex:idx];
+			[uM setActionName:[NSString stringWithFormat:GCLocalizedString(@"Undo %@", @"Misc"), self.localizedType]];
+			[uM endUndoGrouping];
+		}
+	}
+	
+	[_$name[idx] setValue:nil forKey:@"describedObject"];
+	
+	[_$name removeObjectAtIndex:idx];
 }
 """)
 
@@ -66,9 +149,10 @@ def property(tagInfo, selfClass, key, type, doc, forwardDeclarations, is_plural,
 				name='mutable%s%s' % (name[0].upper(), name[1:]),
 				doc='. Contains instances of '.join([doc, name])
 			))
-			implementation = mutablePropertyT.substitute(
+			implementation = multiplePropertyT.substitute(
 				capName='%s%s' % (name[:1].upper(), name[1:]),
-				name=name
+				name=name,
+				selfClass=selfClass
 			)
 			ivar = 'NSMutableArray *_%s' % name
 	else:
@@ -77,7 +161,11 @@ def property(tagInfo, selfClass, key, type, doc, forwardDeclarations, is_plural,
 			name=name,
 			doc='. '.join([doc, ' NB: required property.' if is_required else ''])
 		)
-		implementation = '@dynamic %s;' % name
+		implementation = singularPropertyT.substitute(
+			name=name,
+			capName='%s%s' % (name[:1].upper(), name[1:]),
+			selfClass=selfClass
+		)
 		ivar = '%s *_%s' % (classify(key, type), name)
 
 	return definition, implementation, ivar
@@ -216,6 +304,10 @@ implementationFileT = Template("""/*
  */
 
 #import "$className.h"
+
+#import "GCTagAccessAdditions.h"
+#import "GCObject_internal.h"
+#import "Gedcom_internal.h"
 
 @implementation $className {
 $ivars
