@@ -473,6 +473,8 @@
 		3EDDB42E154EC6470068E85F /* GCBool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDB42C154EC6470068E85F /* GCBool.m */; };
 		3EDDB432154EC6550068E85F /* GCNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDB430154EC6550068E85F /* GCNumber.m */; };
 		3EEC5A3918366CE1006B2365 /* GCSimilarityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC5A3818366CE1006B2365 /* GCSimilarityTests.m */; };
+		3EEC5A3C183E2BC0006B2365 /* NSString+JaroWinkler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EEC5A3A183E2BC0006B2365 /* NSString+JaroWinkler.h */; };
+		3EEC5A3D183E2BC0006B2365 /* NSString+JaroWinkler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC5A3B183E2BC0006B2365 /* NSString+JaroWinkler.m */; };
 		3EECFD67151C32630074E26C /* GCAge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD3B151C32630074E26C /* GCAge.m */; };
 		3EECFD75151C32630074E26C /* GCDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EECFD49151C32630074E26C /* GCDate.m */; };
 		3EECFD8A151C32630074E26C /* GCNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EECFD5E151C32630074E26C /* GCNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1021,6 +1023,8 @@
 		3EDDB42C154EC6470068E85F /* GCBool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCBool.m; path = Values/GCBool.m; sourceTree = "<group>"; };
 		3EDDB430154EC6550068E85F /* GCNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNumber.m; path = Values/GCNumber.m; sourceTree = "<group>"; };
 		3EEC5A3818366CE1006B2365 /* GCSimilarityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimilarityTests.m; sourceTree = "<group>"; };
+		3EEC5A3A183E2BC0006B2365 /* NSString+JaroWinkler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JaroWinkler.h"; sourceTree = "<group>"; };
+		3EEC5A3B183E2BC0006B2365 /* NSString+JaroWinkler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JaroWinkler.m"; sourceTree = "<group>"; };
 		3EECFD3B151C32630074E26C /* GCAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCAge.m; path = Values/GCAge.m; sourceTree = "<group>"; };
 		3EECFD49151C32630074E26C /* GCDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDate.m; path = Values/GCDate.m; sourceTree = "<group>"; };
 		3EECFD5E151C32630074E26C /* GCNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCNode.h; path = Nodes/GCNode.h; sourceTree = "<group>"; };
@@ -1825,6 +1829,8 @@
 				3ED92D3E1563C70500E53E47 /* GCXrefProtocol.m */,
 				3E2001E717287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h */,
 				3E2001E817287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.m */,
+				3EEC5A3A183E2BC0006B2365 /* NSString+JaroWinkler.h */,
+				3EEC5A3B183E2BC0006B2365 /* NSString+JaroWinkler.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2065,6 +2071,7 @@
 				3E2001E917287428004D5EE5 /* NSObject+MELazyPropertySwizzlingAdditions.h in Headers */,
 				3E713EBC17295F740098EBC3 /* GCSimilarityAdditions.h in Headers */,
 				3E4BCFA01741B0AB008886B3 /* Gedcom_internal.h in Headers */,
+				3EEC5A3C183E2BC0006B2365 /* NSString+JaroWinkler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2497,6 +2504,7 @@
 				3E713ECC172965FB0098EBC3 /* GCContext+GCConvenienceAdditions.m in Sources */,
 				3E56885B1730415900CB1997 /* GCTagAccessAdditions.m in Sources */,
 				3E37558E17339B510081AE44 /* GCObjectProxy.m in Sources */,
+				3EEC5A3D183E2BC0006B2365 /* NSString+JaroWinkler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
