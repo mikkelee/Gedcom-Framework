@@ -203,3 +203,19 @@ void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *c
 }
 
 @end
+
+@implementation GCNumber (GCSimilarityAdditions)
+
+- (GCSimilarity)similarityTo:(GCNumber *)value
+{
+    if ([self class] != [value class]) {
+        return 0.0f;
+    }
+    
+    float a = MIN([self.numberValue floatValue], [value.numberValue floatValue]);
+    float b = MAX([self.numberValue floatValue], [value.numberValue floatValue]);
+    
+    return a/b;
+}
+
+@end
