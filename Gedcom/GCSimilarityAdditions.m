@@ -204,6 +204,22 @@ void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *c
 
 @end
 
+@implementation GCAge (GCSimilarityAdditions)
+
+- (GCSimilarity)similarityTo:(GCAge *)value
+{
+    if ([self class] != [value class]) {
+        return 0.0f;
+    }
+    
+    NSUInteger a = MIN(self.totalDays, value.totalDays);
+    NSUInteger b = MAX(self.totalDays, value.totalDays);
+    
+    return (double)a/b;
+}
+
+@end
+
 @implementation GCNumber (GCSimilarityAdditions)
 
 - (GCSimilarity)similarityTo:(GCNumber *)value
