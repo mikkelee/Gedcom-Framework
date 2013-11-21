@@ -223,6 +223,9 @@
 /// The days part of the age.
 @property (readonly) NSUInteger days;
 
+/// An approximate sum of the days, ie (365*years) + (30*months) + days.
+@property (readonly) NSUInteger totalDays;
+
 @end
 
 /**

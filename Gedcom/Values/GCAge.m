@@ -340,4 +340,9 @@ NSString * const GCAgeQualifier_toString[] = {
     return [self.refAge.ageComponents day];
 }
 
+- (NSUInteger)totalDays
+{
+    return (self.years * 365) + (self.months * 30) + self.days;
+}
+
 @end
