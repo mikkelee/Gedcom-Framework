@@ -193,13 +193,20 @@ void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *c
 
 @implementation GCDate (GCSimilarityAdditions)
 
-- (GCSimilarity)similarityTo:(GCBool *)value
+- (GCSimilarity)similarityTo:(GCDate *)value
 {
     if ([self class] != [value class]) {
         return 0.0f;
     }
     
-    return 1.0f; //TODO
+    NSUInteger threshold = 365 * 10;
+    GCAge *diff = [GCAge ageFromDate:self toDate:value];
+    float a = MIN(diff.totalDays, threshold);
+    float b = MAX(diff.totalDays, threshold);
+    
+    //NSLog(@"date %@ / %@ = %f / %f = %f", self, value, a, b, a/b);
+    
+    return a/b;
 }
 
 @end
