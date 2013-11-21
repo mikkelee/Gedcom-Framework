@@ -25,8 +25,6 @@
 
 @end
 
-static GCSimilarity threshold = 0.9f;
-
 void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *count) {
     for (NSString *type in obj1.validPropertyTypes) {
         if ([obj1 allowsMultipleOccurrencesOfPropertyType:type]) {
@@ -35,22 +33,16 @@ void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *c
                     (*count)++;
                 }
             } else {
-                (*count)++;
                 for (GCProperty *prop1 in [obj1 valueForKey:type]) {
-                    BOOL foundSimilar = NO;
-                    GCSimilarity tmpSum = 0.0f;
-                    
-                    for (GCProperty *prop2 in [obj2 valueForKey:type]) {
-                        tmpSum = [prop1 similarityTo:prop2];
-                        NSLog(@"tmpSum: %f", tmpSum);
-                        if (tmpSum > threshold) {
-                            foundSimilar = YES;
-                        }
-                    }
-                    
-                    if (foundSimilar) {
-                        (*sum) += tmpSum;
-                    }
+                   if ([[obj2 valueForKey:type] count] == 0) {
+                       (*count)++;
+                   } else {
+                       for (GCProperty *prop2 in [obj2 valueForKey:type]) {
+                           (*count)++;
+                           (*sum) += [prop1 similarityTo:prop2];
+                           //NSLog(@"%p %@ :: %p-%p :: %f / %ld = %f", obj1, type, prop1, prop2, *sum, *count, *sum / *count);
+                       }
+                   }
                 }
             }
         } else {
@@ -65,7 +57,7 @@ void similarity(GCObject *obj1, GCObject *obj2, GCSimilarity *sum, NSUInteger *c
             }
         }
         
-        NSLog(@"%@ :: %f / %ld = %f", type, *sum, *count, *sum / *count);
+        //NSLog(@"%p %@ :: %f / %ld = %f", obj1, type, *sum, *count, *sum / *count);
     }
 }
 
