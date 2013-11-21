@@ -200,7 +200,7 @@
 
 /// @name Helpers
 
-/** Calculates and returns an age created by subtracting `toDate` from `fromDate`.
+/** Calculates and returns an age created by subtracting the earliest of `toDate` and `fromDate` from the latest. In other words, the absolute number of years, months, & days between the days.
  
  Useful for example for calculating how old an individual was on a given date.
  
