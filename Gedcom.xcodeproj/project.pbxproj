@@ -53,7 +53,7 @@
 		3E325D30170E5E6800109A18 /* GCNodeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E325D2E170E5E6800109A18 /* GCNodeParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E37558D17339B510081AE44 /* GCObjectProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E37558B17339B500081AE44 /* GCObjectProxy.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3E37558E17339B510081AE44 /* GCObjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E37558C17339B500081AE44 /* GCObjectProxy.m */; };
-		3E39506B1560DFFC00FEEA9F /* GCNameString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3950691560DFFC00FEEA9F /* GCNameString.m */; };
+		3E39506B1560DFFC00FEEA9F /* GCNamestring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3950691560DFFC00FEEA9F /* GCNamestring.m */; };
 		3E3969FF154F34E600AE8636 /* GCFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3969FE154F34E600AE8636 /* GCFormatterTests.m */; };
 		3E396A04154F375400AE8636 /* GCValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A02154F375400AE8636 /* GCValueFormatter.m */; };
 		3E396A07155B43B600AE8636 /* GCContextFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E396A06155B43B600AE8636 /* GCContextFileTests.m */; };
@@ -594,7 +594,7 @@
 		3E325D391710CA8500109A18 /* GCReverseRelationshipAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCReverseRelationshipAdditions.m; sourceTree = "<group>"; };
 		3E37558B17339B500081AE44 /* GCObjectProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCObjectProxy.h; sourceTree = "<group>"; };
 		3E37558C17339B500081AE44 /* GCObjectProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCObjectProxy.m; sourceTree = "<group>"; };
-		3E3950691560DFFC00FEEA9F /* GCNameString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNameString.m; path = Values/GCNameString.m; sourceTree = "<group>"; };
+		3E3950691560DFFC00FEEA9F /* GCNamestring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCNamestring.m; path = Values/GCNamestring.m; sourceTree = "<group>"; };
 		3E3969FE154F34E600AE8636 /* GCFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFormatterTests.m; sourceTree = "<group>"; };
 		3E396A02154F375400AE8636 /* GCValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCValueFormatter.m; path = Values/GCValueFormatter.m; sourceTree = "<group>"; };
 		3E396A06155B43B600AE8636 /* GCContextFileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCContextFileTests.m; sourceTree = "<group>"; };
@@ -1280,7 +1280,7 @@
 			isa = PBXGroup;
 			children = (
 				3EDDB427154EC63C0068E85F /* GCString.m */,
-				3E3950691560DFFC00FEEA9F /* GCNameString.m */,
+				3E3950691560DFFC00FEEA9F /* GCNamestring.m */,
 				3EDD4117156D8EE200002352 /* GCPlacestring.m */,
 				3E5A68621610A6E8005B2319 /* GCList.m */,
 				3EDDB430154EC6550068E85F /* GCNumber.m */,
@@ -2317,7 +2317,7 @@
 				3EDDB42E154EC6470068E85F /* GCBool.m in Sources */,
 				3EDDB432154EC6550068E85F /* GCNumber.m in Sources */,
 				3E396A04154F375400AE8636 /* GCValueFormatter.m in Sources */,
-				3E39506B1560DFFC00FEEA9F /* GCNameString.m in Sources */,
+				3E39506B1560DFFC00FEEA9F /* GCNamestring.m in Sources */,
 				3ED92D401563C70500E53E47 /* GCXrefProtocol.m in Sources */,
 				3EDD4119156D8EE200002352 /* GCPlacestring.m in Sources */,
 				3E02E7B91607D968008728D9 /* GCCustomObjects.m in Sources */,
