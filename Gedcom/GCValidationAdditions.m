@@ -78,10 +78,6 @@ NSString *GCErrorDomain = @"GCErrorDomain";
     NSError *returnError = nil;
     
     NSSet *propertyKeys = [self.validPropertyTypes set];
-    /*
-     @synchronized (_propertyStore) {
-     propertyKeys = [[NSSet setWithArray:[_propertyStore allKeys]] setByAddingObjectsFromSet:[self.validPropertyTypes set]];
-     }*/
     
     for (NSString *propertyKey in propertyKeys) {
         NSInteger propertyCount = 0;
