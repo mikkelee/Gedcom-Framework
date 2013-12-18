@@ -148,7 +148,7 @@
 
 - (NSString *)reverseRelationshipType
 {
-    return nil; // override this to set up a reverse relationship
+    return nil; // override this to set up a reverse relationship (see GCReverseRelationshipAdditions)
 }
 
 @end

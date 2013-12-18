@@ -42,6 +42,7 @@
     head.gedcom.version = [GCVersionAttribute versionWithGedcomStringValue:@"5.5"];
     head.gedcom.gedcomFormat = [GCGedcomFormatAttribute gedcomFormatWithGedcomStringValue:@"LINEAGE-LINKED"];
     
+    //TODO check if context has submitter & use that?
     GCSubmitterRecord *subm = [GCSubmitterRecord submitterInContext:context];
     subm.descriptiveName = [GCDescriptiveNameAttribute descriptiveNameWithGedcomStringValue:NSFullUserName()];
     
