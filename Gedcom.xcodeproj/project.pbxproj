@@ -501,7 +501,7 @@
 			outputFiles = (
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m",
 			);
-			script = "/opt/local/bin/ragel ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl -G2 -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\n/opt/local/bin/ragel ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl -V -p -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.dot";
+			script = "/opt/local/bin/ragel \"${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl\" -G2 -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\"\n/opt/local/bin/ragel \"${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.rl\" -V -p -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.dot\"";
 		};
 		3E83FF2E171D0A330093B685 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
@@ -512,7 +512,7 @@
 			outputFiles = (
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
 			);
-			script = "/opt/local/bin/python ${INPUT_FILE_DIR}/tags.py ${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.pre > ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\n";
+			script = "/opt/local/bin/python \"${INPUT_FILE_DIR}/tags.py\" \"${INPUT_FILE_DIR}/${INPUT_FILE_BASE}.pre\" > \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\"\n";
 		};
 /* End PBXBuildRule section */
 
